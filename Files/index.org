@@ -1,0 +1,76 @@
+#+TITLE: Brain.dump()
+#+STARTUP: fold
+#+options: toc:nil num:nil
+
+#+ATTR_HTML: :align left :style margin-right:10px
+[[file:brain.png]]
+
+Este es mi pequeño /Personal Knowledge Management System/ en el cuál guardo
+todo lo que a mi cerebro le da pereza recordar, ademas de una que otra cosa más.
+
+#+begin_quote
+“Personal knowledge management (PKM) is a collection of processes that a person uses to gather, classify,
+store, search, retrieve and share knowledge in their daily activities (Grundspenkis 2007)
+and the way in which these processes support work activities (Wright 2005).
+It is a response to the idea that knowledge workers need to be responsible for their own growth and learning (Smedley 2009).
+It is a bottom-up approach to knowledge management (KM) (Pollard 2008).” [[wikipedia:Personal_knowledge_management][Wikipedia]]
+#+end_quote
+
+Emacs ha generado este sitio con la ayuda del glorioso Org-mode y [[https://github.com/marsmining/ox-twbs][ox-twbs]].
+Los archivos originales de este sitio pueden encontrarse en mi [[https://github.com/ElliotPenson/org][GitHub]].
+
+-----
+
+* libros
+#+begin_quote
+Notas y sobre libros que le leido ultimamtente.
+#+end_quote
+- Libro 1
+
+* Cursos
+#+begin_quote
+Apuntes sobre distintos cursos que he tomado.
+#+end_quote
+- [[file:Cursos/WirelessEssentials/WirelessEssentialsMOC.org][Cisco Wireless Essentials]] (TODO)
+- [[file:Cursos/Pract-ethic-hack/main.org][Practical Ethical Hacking]]
+
+* Lenguajes
+#+begin_quote
+Mi propio rincón con enfoque tipo [[https://learnxinyminutes.com/][Learn X in Y miutes]].
+#+end_quote
+- [[file:Lenguajes/SQL.org][SQL]] (heavy)
+- A
+
+* Teoria
+#+begin_quote
+Teoria pura y +dura+.
+#+end_quote
+- [[file:Teoria/DataStruct/DataStructures.org][Estructuras de datos]]
+  + [[file:Teoria/DataStruct/Stack.org][Stack]]
+  + [[file:Teoria/DataStruct/Arrays.org][Arrays]]
+  + [[file:Teoria/DataStruct/Queues.org][Queues]]
+  + [[file:Teoria/DataStruct/PriorityQueues.org][Priority Queues]]
+  + [[file:Teoria/DataStruct/LinkedLists.org][Linked Lists]]
+  + [[file:Teoria/DataStruct/UnionFind.org][Union find]]
+
+* Anime-Manga
+#+begin_quote
+Porque soy un weeb de /cultura/.
+#+end_quote
+- monas chinas
+
+* Otras cosas
+#+begin_quote
+categorizar todo da +mucha+ pereza.
+#+end_quote
+- Cosas
+
+* Personal
+#+begin_quote
+Notas literarias
+#+end_quote
+- A
+
+* Knowledge
+- Linux
+  + [[file:Knowledge/Linux/Rices.org][Cool things]]

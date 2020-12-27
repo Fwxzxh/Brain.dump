@@ -1,0 +1,12 @@
+#+title: Practical Ethical hacking
+#+options: toc:nil num:nil
+
+[[https://www.udemy.com/course/practical-ethical-hacking/][Fuente]]
+
+* Índice
+- [[file:Bash/Scripting.org][Bash basics]]
+- [[file:Linux/Linux.org][Linux basics]]
+- [[file:Networking/Networking.org][Networking basics]]
+- [[file:Python/Python.org][Python Basics]]
+- [[file:Hacking/TheFiveStages.org][Metodología básica]]
+- A

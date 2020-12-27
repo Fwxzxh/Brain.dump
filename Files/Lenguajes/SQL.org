@@ -1,0 +1,996 @@
+#+TITLE: Introducción a SQL
+#+startup: fold
+#+options: toc:4
+
+[[file:1000_KnowledgeMOC.org][Knowledge Index]]
+
+* TODO DDL: Creando y Manipulando Objetos de la Base de Datos
+* DML: Manipulando La Infomación de Las Tablas
+Una *Transacción* es un conjunto de instrucciones DML que trabajan como una únidad lógica.
+** Insertando Información
+- Con esta instrucción podemos insertar una fila a la vez.
+- Opcionalmente, se listan las columas a las cuales se van a insertar los valores.
+- Usa comillas simples para encerrar los valores de tipo *carácter* y las *fechas*.
+*** Sin especificar columnas
+Si no especificas columnas y no tienes valores para todas, debes llenar los campos con =NULL=.
+#+begin_src sql
+INSERT INTO
+       clientes
+VALUES
+    ('Eugenio','Av. Técnologico',14,'4422274400');
+#+end_src
+
+*** Especificando columnas
+#+begin_src sql
+INSERT INTO
+       clientes (nombre_cliente, calle_cliente, ciudad_cliente, telefono)
+VALUES
+    ('Guillermo','Escobedo',14,'4422274605')
+#+end_src
+
+*** Omitiendo columnas
+Al omitir columas, las columnas a las cuales no se les asigna valor se les da valor nulo (=NULL=),
+asi que solo las columnas que no tienen la restricción de =NOT NULL= pueden omitirse.
+#+begin_src sql
+INSERT INTO
+       clientes (nombre_cliente, ciudad_cliente)
+VALUES
+    ('Guillermo',14)
+#+end_src
+
+*** Intsertando valores especiales (oracle)
+**** Hora y fecha
+la variable =SYSDATE= contiene la hora y fecha actual.
+#+begin_src sql
+INSERT INTO
+       depositos (nombre_cliente, nombre_sucursal, monto, fecha)
+VALUES
+    ('Eugenio','Alamos', 100, SYSDATE)
+#+end_src
+Si se desea insertar una fecha determinada.
+#+begin_src sql
+INSERT INTO
+       (id_alumno, nombre_alumno, sexo, pais_nacimiento, fecha_nacimiento, carrera)
+VALUES
+    (15,'Eugenio','M','México',TO_DATE('FEB 3, 97','MON DD, YY'),1000)
+#+end_src
+
+** Cambiando Información
+El estatuto =UPDATE= Actualiza la información de las filas existentes en una tabla.
+- Se pueden cambiar varias filas a la vez.
+- Las filas actualizadas pueden ser filtradas con el estatuto =WHERE=.
+- Si se omite el =WHERE=, todas las filas serán modificadas.
+*** Ejemplo
+Cambiando el nombre de la sucursal.
+#+begin_src sql
+UPDATE
+    sucursales
+SET
+    nombre_sucursal='Álamos'
+WHERE
+    nombre_sucursal='Alamos'
+#+end_src
+Cambiando el pais de nacimiento de todos los alumnos.
+#+begin_src sql
+UPDATE
+    alumnos
+SET
+    pais_nacimiento='México';
+#+end_src
+
+** Eliminando Infomrmación
+Puedes eliminar filas existentes de una tabla usando el estatuto =DELETE=.
+- Las filas que cumplan con la condición =WHERE= serán eliminadas.
+- Si se omite la cláusula =WHERE= todas las filas serán eliminadas.
+*** Ejemplo
+#+begin_src sql
+DELETE [FROM] nombre_tabla
+[WHERE condición]
+#+end_src
+
+* DML: Iniciando en Consultas SQL
+** SELECT
+*** Capacidades:
+- Selección: Selecciona las filas
+- Proyección: Selecciona las columnas
+- Reunión: Une dos columnas
+*** Estructura
+- SELECT: Lista que columnas van a tener los resultados
+- FROM: De que tablas se va a obtener
+- WHERE: Las condiciónes de reunión
+**** Ejemplo
+#+begin_src sql
+SELECT
+    id_cliente, nombre_cliente, calle_cliente
+FROM
+    clientes
+#+end_src
+
+*** Mostrando todas las columnas
+Se puede mostrar todas las columnas de la tabla con un =*=
+#+description: Selecciona todas las columnas de la tabla clientes
+#+begin_src sql
+SELECT *
+FROM
+    clientes
+#+end_src
+
+#+description: Selecciona todas las columnas de las tablas clientes y departmens
+#+begin_src sql
+SELECT *
+FROM
+    employees, departments
+#+end_src
+
+#+description: Selecciona todas las columnas de la tabla employees
+#+begin_src sql
+SELECT
+    employees*
+FROM
+    employees
+#+end_src
+
+*** DISTINCT
+Para mostrar solo los valores diferentes de las columnas usamos la palabra reservada DISTINCT
+#+begin_src sql
+--Muestra solo los valores diferentes(unicos)
+SELECT
+    DISTINCT department_id
+FROM
+    employees
+#+end_src
+
+*** Alias
+Podemos poner un alias a las columnas del resultado.
+#+begin_src sql
+SELECT
+    salary AS "Salario Anual"
+FROM
+    employees
+#+end_src
+
+*** Expreciones
+El =SELECT= puede contener expreciones con los operadores =+, -, * o /=.
+#+begin_src sql
+-- Podemos usar párentesís para cambiar la procedencia de los operadores
+SELECT
+    (salary+300)*12
+FROM
+    employees
+#+end_src
+
+*** Evaluación de valores nulos
+En *Oracle*, la función =NVL= permite convertir un valor nulo a uno válido
+#+begin_src sql
+-- NVL(columna,valor a dar a los nulos)
+SELECT
+    last_name,
+    salary*12,
+    NVL(commision_pct,0),
+    NVL(hire_date,'2013-05-12'),
+    NVL(phone_number, 'Sin telefono')
+FROM
+    employees
+#+end_src
+
+*** Concatenación de cadenas
+Se pueden concatenar cadenas o columnas con el operador =|| o += (depende de el manejador)
+#+begin_src sql
+-- Nombre apellido
+SELECT
+    last_name||' '||first_name
+FROM
+    employees
+#+end_src
+
+** WHERE
+*** Capacidades
+La cláusula =WHERE= permite filtar los resultados de vienen de la cláusula =SELECT=,
+Esta es colocada despues de la cláusula =FROM=.
+*** Estructura
+#+begin_src sql
+SELECT
+    columas
+FROM
+    tablas
+WHERE
+    condiciones
+#+end_src
+**** Ejemplo
+#+description: esta consulta mostrará todas las columnas de la tabla employees donde department_id sea igual a 60
+#+begin_src sql
+SELECT *
+FROM
+    employees
+WHERE
+    department_id = 60;
+#+end_src
+
+*** Cadenas de caracteres y fechas
+- Los caracteres de tipo string y fechas son delimitados con comillas simples.
+- Son sensibles a Mayusculas.
+- Las fechas son sensibles a un formato, para conocer este formato podemos hacer.
+  #+begin_src sql
+SELECT sysdate
+FROM dual;
+  #+end_src
+- Las fechas pueden requerir la función =TO_DATE= para ser utilizadas en el =WHERE=.
+*** Operadores de comparación
+Se pueden usar los operadores de comparación \=, >,>\= y !=
+#+begin_src sql
+SELECT
+    last_name, salary, commision_pct
+FROM
+    employees
+WHERE
+    commision_pct <= .2;
+#+end_src
+
+*** Operador BETWEEN
+Este opreador se puede usar con cualquer tipo de dato y filtra entre dos valores dados (inclusivo)
+#+begin_src sql
+SELECT
+    last_name, salary
+FROM
+    employees
+WHERE
+    salary BETWEEN 1500 AND 25000;
+#+end_src
+
+*** Operador IN
+Concuerda con cualquer valor contenido en la lista. =IN(lista de valores)=
+#+begin_src sql
+SELECT
+    last_name, salary, manager_id
+FROM
+    employees
+WHERE
+    manager_id IN (120, 123);
+#+end_src
+
+*** Operador LIKE
+Sirve para hacer búsquedas con comodines de cadenas de caracteres.
+- El símbolo =%= representa cero o varios caracteres.
+- El símbolo =_= representa un cáracter.
+#+begin_src sql
+SELECT last_name
+FROM employees
+WHERE last_name LIKE 'S%';
+#+end_src
+Podemos combinar ambos patrones para concordar con una busqueda más compleja.
+*** Operador IS NULL
+Se usa para buscar valores nulos.
+#+begin_src sql
+SELECT
+    last_name, manager_id
+FROM
+    employees
+WHERE
+    manager_id IS NULL;
+#+end_src
+
+*** Operadores lógicos
+Estos operadores pueden ser usados con los () para hacer busquedas más específicas.
+**** Operador AND
+#+begin_src sql
+SELECT
+    employee_id, last_name, job_id, salary
+FROM
+    employees
+WHERE
+    salary >= 1100
+    AND job_id='SA_MAN'
+#+end_src
+
+**** Operador OR
+#+begin_src sql
+SELECT
+    employee_id, last_name, job_id, salary
+FROM
+    employees
+WHERE
+    salary >= 11000
+    OR job_id='SA_MAN';
+#+end_src
+
+**** Operador NOT
+#+begin_src sql
+SELECT
+    employee_id, last_name, job_id, salary
+FROM
+    employees
+WHERE
+    job_id NOT IN ('HR_REP','MK_REP'
+                  'SA_REP','PU_MAN');
+#+end_src
+
+** ORDER BY
+Esta cláusula nos permite ordenar las tablas de salida, puede ser
+- =ASC= : de manera acendente.
+- =DESC= : de manera decendente.
+Esta clausula siempre debe estar al final, en la últma instrucción.
+*** Decendente y Acentendente
+Por defecto se ordena de manera acendente.
+#+begin_src sql
+SELECT
+    last_name, salary*12, department_id, hire_date AS "Fecha de Contrato"
+FROM
+    employees
+ORDER BY
+      hire_date DESC;
+#+end_src
+En =ORDER BY= podemos ordenar llamando al alias de hire_date =ORDER BY "Fecha de Contrato" DESC;=.
+*** Podemos ordenar múltiples columas en un orden
+#+begin_src sql
+SELECT
+    last_name, salary*12, department_id depto, hire_date AS "Fecha de Contrato"
+FROM
+    employees
+ORDER BY
+      depto, hire_date;
+#+end_src
+
+*** Ordenando con columnas no proyectadas
+#+begin_src sql
+SELECT
+    last_name, salary, department_id
+FROM
+    employees
+ORDER BY
+      job_id;
+#+end_src
+Podemos ordenar en base a columnas no proyectadas con el =SELECT=.
+*** Ordenando con expresiones
+#+begin_src sql
+SELECT
+    last_name, salary, department_id
+FROM
+    employees
+ORDER BY
+      salary*12;
+#+end_src
+Podemos usar expreciones para ordenar nuestras columnas.
+* DML: Funciones Sobre Filas Individuales
+- Manipulan unidades de dato.
+- Varios argumentos, un valor de salida.
+- Actuan sobre cada una de las filas regresadas.
+- Regresan un resultado por fila.
+- Pueden modificar tipos de dato.
+- Pueden ser anidadas.
+  + =nombre_funcion (columna | expreción , [arg1,arg2,...])=
+** Funciones caracter
+*** Case Conversion Function
+Cambian las mayúsculas y minúsculas de cadenas de caracteres.
+| Función                 | Resultado  |
+|-------------------------+------------|
+| =LOWER('SQL Course')=   | sql course |
+| =UPPER('SQL Course')=   | SQL COURSE |
+| =INITCAP('SQL Course')= | Sql Course |
+
+*** Ejemplo
+Si desconocemos cómo esta la información en la base de datos,
+nos conviene convertir a minúsculas lo que obtenemos de la base de datos y hacer la comparación.
+#+begin_src sql
+SELECT
+    employee_id, last_name, department_id
+FROM
+    employee
+WHERE
+    LOWER(last_name) = 'king';
+#+end_src
+
+** Funciones de manpulación de caracteres
+Manipulan caracteres.
+| Función                   | Resultado  |
+|---------------------------+------------|
+| =CONCAT('Good','String')= | GoodSrting |
+| =SUBSTR('String',1,3)=    | Str        |
+| =LENGTH('String')=        | 6          |
+| =INSTR('String',r)=       | 3          |
+| =LPAD(SALARY,10,'*')=     | ******500  |
+*** Ejemplo
+
+#+begin_src sql
+SELECT
+    last_name, CONCAT(last_name,first_name), LENGTH(last_name), INSTR(last_name,'s')
+FROM
+    employees
+WHERE
+    SUBSTR(last_name, 2, 2) = 'ar';
+#+end_src
+
+Dando como resultado la tabla:
+
+| last_name | CONCAT(last_name,first_name) | LENGTH(last_name) | INSTR(last_name,'s') |
+|-----------+------------------------------+-------------------+----------------------|
+| Marke     | MarkeSteven                  |                 6 |                    0 |
+| Hartstein | HartsteinMichael             |                 9 |                    5 |
+| Vargas    | VargasPeter                  |                 6 |                    6 |
+
+** Funciones Númericas
+| Función           | Resultado |
+|-------------------+-----------|
+| =ROUND(45.926,2)= |     45,93 |
+| =TRUNC(45.926,2)= |     45.92 |
+| =MOD(1600, 300)=  |       100 |
+** Trabajando con Fechas
+- Oracle almacena las fechas internamente en un formato númerico: siglo, año, mes, día, horas, minutos, segundos.
+- El formato por defecto en México es =DD/MM/YY=.
+- =SYSDATE= es una función que retorna la fecha y hora de sistema.
+- =DUAL= es una tabla comodín que se usa para ver =SYSDATE=.
+*** Usando Funciones de Fecha
+
+| Función                                  | Resultado   |
+|------------------------------------------+-------------|
+| =MONTHS_BETWEEN('01/09/95', '11/01/94')= | 19.6774194  |
+| =ADD_MONTHS('11/01/94',6)=               | '11-JUL-94' |
+| =NEXT_DAY('01/09/95','Viernes')=         | '08-SEP-95' |
+| =LAST_DAY('01/09/95')=                   | '30-SEP-95' |
+| =ROUND(TO_DATE('25/07/95'),'MONTH')=     | '01/08/95'  |
+| =ROUND(TO_DATE('25/07/95'),'YEAR')=      | '01/01/96'  |
+| =TRUNC(TO_DATE('25/07/95'),'MONTH')=     | '01/07/96'  |
+| =TRUNC(TO_DATE('25/07/95'),'YEAR')=      | '01/01/95'  |
+
+*Nota*: Se debe de escribir en inglés el segundo argumento.
+** Conversión Implicita de Tipos de Datos
+En asignaciones, Oracle puede convertir automáticamente.
+| De              | A        |
+|-----------------+----------|
+| VARCHAR2 o CHAR | NUMERO   |
+| VARCHAR2 o CHAR | FECHA    |
+| NUMERO          | VARCHAR2 |
+| FECHA           | VARCHAR2 |
+
+En evaluación de expresiones, Oracle puede convertir automáticamente.
+| De              | A      |
+|-----------------+--------|
+| VARCHAR2 o CHAR | NUMERO |
+| VARCHAR2 o CHAR | FECHA  |
+
+** Función TO_CHAR con Fechas
+=TO_CHAR(fecha, 'formato')=
+- El modelo de formato debe ser encerrado entre comillas simples y es sensible a Mayúsculas.
+- Puede Incluir cualquier elemento de formato válido de fecha.
+- Puede utilizarse un *Fm* para remover blancos o ceros a la izquerda.
+*** Modelos de formato para fechas
+| Modelo de formato | Significado                                |
+|-------------------+--------------------------------------------|
+| YYYY              | Año completo con números                   |
+| YEAR              | Año completo en palabras                   |
+| MM                | Mes en número                              |
+| MONTH             | Nombre completo del mes                    |
+| D                 | Día númerico                               |
+| DY                | Abreviación de 3 letras del nombre del día |
+| DAY               | Nombre completo del día de la semana       |
+
+*** Ejemplos de formato
+| Modelo          | resultado     |
+|-----------------+---------------|
+| =HH24:MI:SS AM= | 15:45:32 AM   |
+| =DD "de" MONTH= | 12 de Octubre |
+| =ddspth=        | fourteenth    |
+
+*** Ejemplo de uso
+#+begin_src sql
+SELECT
+    last_name,
+    TO_CHAR(hire_date, 'DD Month YYYY') AS "Fecha de contratación"
+FROM
+    employees;
+#+end_src
+
+daria resultado a:
+
+| last_name | Fecha de contratación |
+|-----------+-----------------------|
+| Grant     | 13 Enero 2000         |
+| Whalen    | 17 Septiembre 1987    |
+
+** Función TO_CHAR con Números
+=TO_CHAR(número, 'formato')=
+
+Se usan las siguientes tablas de formato:
+
+| =9= | Representa un número          |
+| =0= | Fuerza un cero                |
+| =$= | Muestra un signo de dólar     |
+| =.= | Imprime un punto              |
+| =,= | Imprime un indicador de miles |
+
+*** Ejemplo
+#+begin_src sql
+SELECT
+    first_name,
+    TO_CHAR(salary, '$99,999') fmt_salary
+FROM
+    employees
+WHERE
+    UPPER(last_name) = 'KING';
+#+end_src
+
+| first_name | salary | fmt_salary |
+|------------+--------+------------|
+| Steven     |  24000 | $24,000    |
+| Janette    |  10000 | $10,000    |
+
+*** Funciones =TO_NUMBER= y =TO_DATE=
+- Se usa la función =TO_NUMBER= para convertir cadenas de caracteres a números con formato.
+  + =TO_NUMBER(caracter)=
+- Se usa la función =TO_DATE= para convertir cadenas de caracteres a fecha con formato.
+  + =TO_DATE(caracter[, 'modelo de fomato'])=
+** Función NVL
+Convierte de un valor nulo a uno válido.
+- Se puede usar con fecha, carácter y número.
+- Los tipos de dato deben coincidir.
+
+*** Ejemplo
+#+begin_src sql
+SELECT
+    last_name,
+    salary,
+    commision_pct,
+    (salary*12) + NVL(commision_pct*salary,0) AS "NVL",
+    (salary*12) + (commision_pct*salary) "NULL"
+From
+    employees;
+#+end_src
+
+Que daria como resultado:
+
+#+CAPTION: Si no nos encargamos de los valores nulos, nuestra operación da valor nulo.
+| last_name | salary | commision_pct |   NVL |  NULL |
+|-----------+--------+---------------+-------+-------|
+| Grant     |   7000 |           .15 | 85050 | 85050 |
+| Jhonson   |   6200 |            .1 | 75020 | 75020 |
+| Taylor    |   3200 |               | 38400 |       |
+| Fleaur    |   3100 |               | 37200 |       |
+
+** Función DECODE
+Facilita condiciones haciendo el trabajo de un =IF-THEN-ELSE=.
+#+begin_src sql
+DECODE (columna/expresión, condición 1, resultado 1
+                           [condición 2, resultado 2, ...
+                           , default])
+#+end_src
+
+*** Ejemplo
+Con la consulta:
+#+begin_src sql
+SELECT
+    job_id,
+    salary,
+    DECODE (SUBSTR(job_id, 4, 3),   'MAN', salary*1.20,
+                                    'CLE', salary*1.15,
+                                    'REP', salary*1.10,
+                                           salary) AS "Salario Ajustado"
+FROM
+    employees;
+#+end_src
+
+Obtenemos la tabla:
+| job_id   | salary | Salario Ajustado |
+|----------+--------+------------------|
+| SH_CLERK |   2600 |             2990 |
+| AD_ASST  |   4400 |             4400 |
+| MK_MAN   |  13000 |            15600 |
+| HR_REP   |   6000 |             6600 |
+| AC_MGR   |  12000 |            12000 |
+
+** Anidando Funciones
+- Las funciones sobre filas individuales pueden ser anidadas a cualquier nivel.
+- Las funciones anidadas son evaluadas del nivel más interno al más externo.
+  + =F3(F2(F1(col,arg1),arg2),arg3)=
+* DML: Obtieniendo Información de Múltiples Tablas
+** ¿Qué es una reunión? (JOIN)
+- Se usa para consultar información de múltiples tablas.
+- La condición de reunión se escribe en la clausula =WHERE=.
+- El número de condiciones depende de dos cosas:
+  + El número de tablas listadas en la clausula =FROM=
+  + De los atributos en común que tengan las tablas.
+- Si las tablas solo tienen un solo atributo en común las condiciones dependen del número de tablas.
+  + Sea $n$ el numero de de tablas en la clausula =FROM=.
+  + El número de condiciones de reunión serán $n-1$.
+
+Ejemplo:
+#+begin_src sql
+SELECT
+    tabla1.columna1,
+    tabla2.columna1
+FROM
+    tabla1, tabla2
+WHERE
+    tabla1.columna_comun = tabla2.columna_comun;
+#+end_src
+
+*** Producto cartesiano
+Se forma cuando:
+- Se omite la condición de reunión.
+- La condición de reunión es inválida.
+- Todas las filas de la primer tabla se reúnen con todas las filas de la segunda tabla.
+
+Para evitar un producto cartesiano, siempre se debe incluir una condición de reunión valida
+en el =WHERE=.
+**** Ejemplo
+Si generamos un producto cartesiano de las tablas employees.last_name (107 Filas) y departmens.department_name (27 Filas)
+Obtenemos una tabla resultante con 2849 filas ya que $107 \cdot 27 = 2849$, dando una consulta seguramente incorrecta.
+** Tipos de reuniones
+*** Equi join
+Unimos dos tablas con un operador de igualdad, retornando solo las filas que coinciden en ambas tablas.
+#+begin_src sql
+SELECT
+    E.employee_id,
+    E.last_name,
+    E.department_id,
+    D.department_name,
+    D.location
+FROM
+    employees E, departments D
+WHERE
+    E.department_id = D.department_id;
+#+end_src
+
+**** Uniendo más de dos tablas
+#+begin_src sql
+SELECT
+    E.employee_id,
+    E.last_name,
+    E.department_id,
+    D.department_name,
+    D.location_id,
+    L.city
+FROM
+    employees E, departmens D, locations L
+WHERE
+    E.department_id = D.department_id
+    AND D.location_id = L.location_id;
+#+end_src
+
+*** Non-equi join
+Usan operadores de comparación en lugar de los operadores de igualdad, además de condiciones.
+#+begin_src sql
+SELECT
+    E.last_name,
+    E.salary,
+    S.grade
+FROM
+    employees E, salary_grades S
+WHERE
+    E.salary BETWEEN S.low AND S.high;
+#+end_src
+
+*** Outer join
+Se usan para ver las filas que usualmente no se muestran con las condiciones de reunión (Como valores nulos).
+- El simbolo del Outher join en oracle es (+), En otros manejadores puede ser *.
+#+begin_src sql
+SELECT
+    table1.column,
+    table1.column
+FROM
+    table1, table2
+WHERE
+    table1.column(+) = table2.column;
+#+end_src
+
+*** Self join
+Se usan para unir una tabla con ella misma, usando alias diferentes.
+#+begin_src sql
+SELECT
+    E.last_name||' tabaja para '||J.last_name
+FROM
+    employees E, employees J
+WHERE
+    E.manager_id = J.manager_id;
+#+end_src
+
+* DML: Funciones de Agregación
+** Funciones de grupo
+Operan en un conjunto de filas para dar resultados por grupo.
+- Las funciones =MIN= y =MAX= pueden usarse con cualquer tipo de dato.
+- Las funciones de grupo ignoran los valores nulos, por lo que es necesario el uso de la función =NVL=.
+
+Funciones de grupo:
+- =COUNT= : Cuenta los elementos.
+- =MAX= : El máximo elemento.
+- =MIN= : El mínimo elemento.
+- =AVG= : Promedio.
+- =VARIANCE= : Varianza.
+- =STDDEV= : Desviación estándar.
+** Funciones con Argumentos Númericos
+Las funciones =AVR=, =SUM=, =MAX=, y =MIN= se pueden usar para datos númericos.
+
+#+begin_src sql
+SELECT
+    AVR(salary),
+    SUM(salary),
+    MAX(salary),
+    MIN(salary)
+FROM
+    employees;
+#+end_src
+
+** Función COUNT
+=COUNT(*)= Retorna el número de filas de una columna.
+#+begin_src sql
+SELECT
+    COUNT(*)
+FROM
+    employees;
+#+end_src
+
+Podemos contar los valores únicos.
+#+begin_src sql
+SELECT
+    COUNT(DISTINCT last_name)
+FROM
+    employees;
+#+end_src
+
+** Creando grupos de datos
+Podemos dividir las filas de una columna en grupos más pequeños con la cláusula =GROUP BY=.
+- Si incluyes una función de grupo en la cláusula =SELECT=, *no* puedes seleccionar los resultados
+  individuales, a menos que la columna individual aparezca en la cláusula =GROUP BY=, de lo contrario
+  obtendras un error.
+- Usa la cláusula =WHERE= para pre-excluir las filas que no necesites, antes de crear los grupos.
+- No se pueden usar los alias de las columnas en la cláusula =GROUP BY=.
+- Se pueden ordenar las columnas con la cáusula =ORDER BY=, que siempre debe de ser la última cáusula.
+*** Ejemplo
+#+begin_src sql
+SELECT
+    departments_id,
+    AVG(salary)
+FROM
+    employees
+GROUP BY
+    department_id;
+#+end_src
+También es posible agrupar usando multiples columnas.
+
+*** Consultas Ilegales
+- Cualquier columna o expreción en la lista del =SELECT=, que no se encuentre en una función de grupo,
+  debe de ir en la lista =GROUP BY=
+- No puedes usar la cláusula =WHERE= para filtrar grupos, en ese caso debes de usar la cláusula =HAVING=.
+*** Cláusula HAVING
+Los grupos que coincidan con la condición =HAVING= serán mostrados.
+#+begin_src sql
+-- Estructura --
+SELECT
+    column, función_de_grupo(column)
+FROM
+    table
+[WHERE
+    condition]
+[GROUP BY
+    agrupar_por_expresión]
+[HAVING
+    condición]
+[ORDER BY
+    column]
+#+end_src
+
+**** Ejemplo
+#+begin_src sql
+SELECT
+    department_name AS "Departamento",
+    sum(salary) AS "Nomina Total"
+FROM
+    employees E, departments D
+WHERE
+    E.department_id = D.department_id
+GROUP BY
+    department_name
+HAVING
+    sum(salary) < 1500
+ORDER BY
+    "Nomina Total";
+#+end_src
+
+* DML: Subconsultas
+Permiten ejecutar una consulta más pequeña dentro de una consulta.
+
+Guia para el uso de las subconsultas:
+- Siempre deben de ir encerradas entre parentesís.
+- Se deben de ubicar el lado *derecho* del operador de comparación.
+- No agregar la cláusula =ORDER BY= dentro de una subconsulta.
+- Usar operadores sobre filas individuales con subconsultas que regresen filas individuales.
+- Usar operadores sobre múltiples filas con subconsultas que regresen múltiples filas.
+** Subconsultas de Una Sola Fila
+- Regresan una sola fila.
+- Usan operadores de comparación sobre filas individuales.
+*** Ejemplo
+#+begin_src sql
+SELECT
+    last_name||' '||first_name AS "Empleado",
+    job_id,
+    salary
+FROM
+    employees
+WHERE
+    job_id =    (SELECT
+                    job_id,
+                FROM
+                    employees
+                WHERE
+                    employee_id = 103)
+    AND salary >    (SELECT
+                        salary
+                    FROM
+                        employees
+                    WHERE
+                        employee_id = 203);
+#+end_src
+
+** Subconsultas de Múltiples filas
+- Regresan más de una sola fila.
+- Usan comparaciones de comparación sobre múltiples filas.
+
+Operadores de comparación en Múltiples columas:
+| Operador | Descripción                                                          |
+|----------+----------------------------------------------------------------------|
+| =IN=     | Igual a cualquer elemento de la lista                                |
+| =ANY=    | Compara el valor con cada uno de los valores que retorna la consulta |
+| =ALL=    | Compara el valor con todos los valores dados por la subconsulta      |
+
+*** Ejemplo
+#+begin_src sql
+SELECT
+    employee_id,
+    last_name,
+    job_id,
+    salary
+FROM
+    employees
+WHERE
+    salary < ANY (
+                SELECT
+                    salary
+                FROM
+                    employees
+                WHERE
+                    job_id LIKE '%_REP')
+    AND job_id NOT LIKE '%_REP'
+ORDER BY
+    salary;
+#+end_src
+
+** Subconsultas de múltiples columnas
+La consulta principal compara con los valores de una subconsulta que devuelve múltiples filas y
+columas.
+*** Ejemplo
+Muestra el apellido, la fecha de contratación, el salario y el número de departamento de cualquier
+empleado que coincida en fecha de contratación y salario con cualquier subordinado del empleado 100.
+
+#+begin_src sql
+SELECT
+    last_name,
+    hire_date,
+    salary,
+    department_id
+FROM
+    employees
+WHERE
+    (hire_date, salary) IN (SELECT
+                                hire_date,
+                                salary
+                            FROM
+                                employees
+                            WHERE
+                                manager_id=100)
+ORDER BY
+    last_name;
+#+end_src
+
+*** Subconsultas en la cáusula FROM
+Se pueden hacer subconsultas en la cláusula =FROM=, esto lleva a la creación de una tabla temporal en el buffer.
+
+#+begin_src sql
+SELECT
+    a.last_name,
+    a.salary
+    a.department_id,
+    b.salavg
+FROM
+    employees a,    (SELECT
+                        department_id,
+                        AVG(salary) salavg
+                    FROM
+                        employees
+                    GROUP BY
+                        department_id) b
+WHERE
+    a.department_id = b.department_id
+    AND a.salary > b.salavg;
+#+end_src
+
+* DML: Creando y Manipulando Objetos de la Base de Datos
+** Creando una tabla usando consultas
+Si el manejador tiene la opción de copiado masivo de datos (/Bulk Copy/),
+es posible crear tablas (temporales o permanentes) al momento de realizar una consulta.
+*** Ejemplo: Creando tablas permanentes
+#+begin_src sql
+SELECT
+    * INTO depto100
+FROM
+    employees
+WHERE
+   department_id = 100;
+#+end_src
+
+*** Ejemplo: Creando tablas temporales
+#+begin_src sql
+SELECT
+    ,* INTO #depto100
+FROM
+    employees
+WHERE
+    department_id = 100;
+#+end_src
+
+** Cereando una tabla usando Subconsultas
+Una tabla puede ser llenada combinando la cláusula =CREATE TABLE= y una subconsulta.
+- Si espeificas columas, debes de hacer coincidir el número de columas definidas
+  con las columas regresadas por la subconsulta.
+- Se definen nombres de consultas y valores
+*** Ejemplo
+#+begin_src sql
+CREATE TABLE depto30 AS
+    (SELECT
+        employee_id empno,
+        last_name,
+        first_name
+        salary*12 salanual,
+        hire_date hiredate
+    FROM
+        employees
+    WHERE
+        department_id = 30);
+#+end_src
+
+** Vistas
+Es un objeto de la Base de Datos que es una representación lógica de subconjuntos de
+datos de una o más tablas.
+*** ¿Por qué vistas?
+- Para restringir el acceso a ciertos objetos de la base de datos.
+- Para simplificar consultas complejas.
+- Para permitir independencia de datos.
+- Para personalizar la forma en que se muestran los mismos datos según la necesidad
+  de cada tipo de usuario.
+*** Estructura de las vistas
+- Se incluye una subconsulta en el esta =CREATE VIEW=
+- La subconsulta puede contener sintaxís compleja, incluyendo joins, subconsultas y grupos.
+- La subconsulta *no* debe contener la cláusula =ORDER BY=.
+#+begin_src sql
+CREATE [OR REPLACE] [FORCE|NONFORCE] VIEW view
+       [(alias[,alias]...)]
+AS subconsulta
+[WITH CHECK OPTION [CONSTRAINT restricción]]
+[WITH READ ONLY]
+#+end_src
+
+*** Creando vistas
+Crea una vista, EMPVU10, que contenga los detalles de los empleados del departamento 90.
+#+begin_src sql
+CREATE VIEW vw_emp90
+AS
+    SELECT
+        employee_id,
+        last_name,
+        job_id
+    FROM
+        employees
+    WHERE
+        department_id = 90;
+#+end_src
+
+Puedes describir la estructura de la vista usando el comando =DESCRIBE=.
+#+begin_src sql
+DESCRIBE vw_emp90
+#+end_src
+
+*** Tipos de vistas
+| caracteristicas          | vistas simples | vistas complejas |
+|--------------------------+----------------+------------------|
+| Número de tablas         | Una            | Una o más        |
+| Contiene funciones       | No             | Si               |
+| Contiene Grupos de datos | No             | Si               |
+| DML a través de la vista | Si             | No siempre       |
+*** Modificando una Vista

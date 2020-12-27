@@ -1,0 +1,277 @@
+* Queues
+[[/TOC/]]
+** Dicusión sobre Queues
+*** ¿Que es una Queue?
+Es una estructura de datos lineal que modela una cola del mundo real. Tiene dos
+operaciónes primarias /enqueue/ y /dequeue/.
+*** Terminologia
+
+#+begin_example
+  graph LR
+      subgraph queue
+      id1[( )]    
+      id2[( )]
+      id3[( )]
+      end
+      id1 --Dequeue--> id0[( )]
+      id4[( )] --Enqueue--> id3
+#+end_example
+
+- Añadir elementos al final de la cola se le llama /Enqueue/
+- Remover elementos de el inicio de la cola se le llama /Dequeue/ > No
+  hay una manera consistent de llamar a la terminologia > > Enqueue =
+  Adding = Offering > > Dequueue = Polling
+
+*** ¿Cúando y dónde son usadas?
+
+- Cualquier cosa que pueda ser modelada con una cola, como por ejemplo
+  la cola para comprar boletos del cine
+- Pueden ser usadas para hacer seguimiento de manera eficiente de los
+  últimos x elementos agregados.
+- Breadth first search (BFS) graph traversal.
+  ### Análisis de complejidad
+| Operation | Complexity |
+| :---:     | :---:      |
+| Enqueue   | $`O(1)`$   |
+| Dequeue   | $`O(1)`$   |
+| Peeking   | $`O(1)`$   |
+| Contains  | $`O(n)`$   |
+| Removal   | $`O(n)`$   |
+| Is empty  | $`O(1)`$   |
+
+*** Ejemplo
+Siendo la cola.
+
+#+begin_example
+  graph TD
+      subgraph queue
+      id1[(55)]   
+      id2[(-1)]
+      id3[(33)]
+      id4[(17)] 
+      id4[(11)] 
+      end 
+#+end_example
+
+- =Enqueue(12)=
+
+#+begin_example
+  graph TD
+      subgraph queue
+      id1[(55)]   
+      id2[(-1)]
+      id3[(33)]
+      id4[(17)] 
+      id4[(11)] 
+      id5[(12)]
+      end 
+#+end_example
+
+- =Dequeue()=
+
+#+begin_example
+  graph TD
+      subgraph queue
+      id2[(-1)]
+      id3[(33)]
+      id4[(17)] 
+      id4[(11)] 
+      id5[(52)]
+      end 
+#+end_example
+
+- =Dequeue()=
+
+#+begin_example
+  graph TD
+      subgraph queue
+      id3[(33)]
+      id4[(17)] 
+      id4[(11)] 
+      id5[(52)]
+      end 
+#+end_example
+
+- =Enqueue(7)=
+
+#+begin_example
+  graph TD
+      subgraph queue
+      id3[(33)]
+      id4[(17)] 
+      id4[(11)] 
+      id5[(52)]
+      id6[(7)]
+      end 
+#+end_example
+
+**** Queue Breadth First Search (BFS)
+#+begin_example
+  flowchart LR
+      id1((0)) <--> id2((1)) <--> id3((8)) <--> id4((9)) <--> id1
+      id5((12))
+      id6((7)) <--> id3 
+      id6 <--> id7((10))
+      id81((11)) <--> id6
+      id6 <--> id8((6)) <--> id9((5))
+      id6 <--> id10((3)) <--> id11((4))
+      id10 <--> id12((2))
+
+      subgraph Siendo:
+      id21((unvisited))
+      id22[On the frontier]
+      id23[(visited)]
+      end
+#+end_example
+
+El objetivo es empezar en un nodo y atravezar todo el grafo, empezando
+por visitar todos los vecinos de el nodo inicial e interando sobre este
+concepto.
+
+#+begin_example
+  flowchart LR
+      id1[(0)] <--> id2[1] <--> id3((8)) <--> id4[9] <--> id1
+      id5((12))
+      id6((7)) <--> id3 
+      id6 <--> id7((10))
+      id81((11)) <--> id6
+      id6 <--> id8((6)) <--> id9((5))
+      id6 <--> id10((3)) <--> id11((4))
+      id10 <--> id12((2))
+#+end_example
+
+#+begin_example
+  flowchart LR
+      id1[(0)] <--> id2[(1)] <--> id3[8] <--> id4[(9)] <--> id1
+      id5((12))
+      id6((7)) <--> id3 
+      id6 <--> id7((10))
+      id81((11)) <--> id6
+      id6 <--> id8((6)) <--> id9((5))
+      id6 <--> id10((3)) <--> id11((4))
+      id10 <--> id12((2))
+#+end_example
+
+#+begin_example
+  flowchart LR
+      id1[(0)] <--> id2[(1)] <--> id3[(8)] <--> id4[(9)] <--> id1
+      id5((12))
+      id6[7] <--> id3 
+      id6 <--> id7((10))
+      id81((11)) <--> id6
+      id6 <--> id8((6)) <--> id9((5))
+      id6 <--> id10((3)) <--> id11((4))
+      id10 <--> id12((2))
+#+end_example
+
+#+begin_example
+  flowchart LR
+      id1[(0)] <--> id2[(1)] <--> id3[(8)] <--> id4[(9)] <--> id1
+      id5((12))
+      id6[(7)] <--> id3 
+      id6 <--> id7[10]
+      id81[11] <--> id6
+      id6 <--> id8[6] <--> id9((5))
+      id6 <--> id10[3] <--> id11((4))
+      id10 <--> id12((2))
+#+end_example
+
+***** Implementación en código
+#+begin_example
+  Let Q be a Queue
+  Q.enqueue(starting_node)
+  starting_node.visited = true
+
+  While Q is not empty Do
+
+      node = Q.dequeue()
+
+      For neighbour in neighbours(node):
+          If neighbour has not been visitated:
+              neighbour.visitated = true
+              Q.endqueue(neighbour)
+#+end_example
+
+** Detalles de implementación
+Se puede inmplementar una cola en diferentes maneras, pero las más
+populares son implementarlas usando arrays, SLL o DLL.
+
+Usalmente se usa un puntero para llevar un seguimiento de la cabeza y la
+cola de la lista, y al agregar o quitar elementos solo movemos el
+punrtero a la izquierda o a la derecha. ## Implementación en código
+
+#+begin_src java
+  package com.williamfiset.algorithms.datastructures.queue;
+
+  /**
+   * Besides the Generics, the loss of property of size is another difference between ArrayQueue and
+   * IntQueue. The size of ArrayQueue is calculated by the formula, as are empty status and full
+   * status.
+   *
+   * <p>ArrayQueue maximum size is data.length - 1. The place of the variable rear is always in front
+   * of the variable front logistically if regard the data array as circular. so the number of states
+   * of the combination of rear and front is the length of the data array. And one of the total states
+   * is used to be the judge if the queue is empty or full.
+   *
+   * @author liujingkun, liujkon@gmail.com
+   */
+  public class ArrayQueue<T> implements Queue<T> {
+    private Object[] data;
+    private int front;
+    private int rear;
+
+    public ArrayQueue(int capacity) {
+      // ArrayQueue maximum size is data.length - 1.
+      data = new Object[capacity + 1];
+      front = 0;
+      rear = 0;
+    }
+
+    @Override
+    public void offer(T elem) {
+      if (isFull()) {
+        throw new RuntimeException("Queue is full");
+      }
+      data[rear++] = elem;
+      rear = adjustIndex(rear, data.length);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public T poll() {
+      if (isEmpty()) {
+        throw new RuntimeException("Queue is empty");
+      }
+      front = adjustIndex(front, data.length);
+      return (T) data[front++];
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public T peek() {
+      if (isEmpty()) {
+        throw new RuntimeException("Queue is empty");
+      }
+      front = adjustIndex(front, data.length);
+      return (T) data[front];
+    }
+
+    @Override
+    public int size() {
+      return adjustIndex(rear + data.length - front, data.length);
+    }
+
+    @Override
+    public boolean isEmpty() {
+      return rear == front;
+    }
+
+    public boolean isFull() {
+      return (front + data.length - rear) % data.length == 1;
+    }
+
+    private int adjustIndex(int index, int size) {
+      return index >= size ? index - size : index;
+    }
+  }
+#+end_src

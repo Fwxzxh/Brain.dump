@@ -1,0 +1,32 @@
+#+title: Las cinco faces del hacking ético
+
+* Las cinco faces del hacking ético
+
+1. *Renocimiento (Reconnaissance):*
+
+   - Pasivo: Información que esta al alcance de cualquiera (facebook,
+     google, etc.).
+   - Activo: Bucar activamente y con nuestros propios medios y
+     herramientas información.
+
+2. *Escaneo y enumeración (Scanning & Enumeration):*
+
+   - En esta fase se analizan los datos que provienen de la fase
+     anterior.
+   - Buscamos cosas que puedan tener valor para nosotros.
+
+3. *Ganando acceso (Explotation)*
+
+   - Correremos un /exploit/ contra el cliente o el servicio vulnerable
+     para obtener lo que necesitamos.
+
+4. *Mantener Acceso*
+
+   - Como mantener el acceso a la información que necesitamos.
+
+5. *Eliminar las huellas (Covering Traks):*
+
+   - Probablemente queramos borrar cualquier log, malware o cuenta que
+     creemos que nos pueda delatar.
+
+Estas cinco fases se repiten independientemente del método que usemos.

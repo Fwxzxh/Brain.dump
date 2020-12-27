@@ -1,0 +1,543 @@
+* Linked lists
+
+** Singly & Doubly Linked Lists
+*** ¿Que es una lista enlazada (linked list)?
+Una lista enlazada es una lista sequencial de nodos que tienen datos que
+apuntan a otros nodos que también contienen datos.
+
+TODO: arreglar diagramas
+#+begin_example
+  graph LR
+      id1([Data]) --> id2([Data]) --> id3([Data]) --> id4([Data]) --> id5([Null]) 
+#+end_example
+
+*** ¿Donde son usadas?
+
+- Mayoritariamente en listas, colas & pilas.
+- Para crear listas circulares.
+- Pueden modelar objetos del mundo real como trenes.
+- Usadas en encadenamiento separado (/Separate chaining/), que están
+  presentes en en algunas implementaciónes de de tablas hash para evitar
+  las colisiones hash.
+- Usadas a veces en la implementación de listas de proximidad para
+  grafos.
+
+*** Terminologia
+*** Singliy linked vs. Doubly Linked
+Con Singly linked nos referimos a que cada nodo solo tiene una
+referencia al siguiente nodo. En la implementación siempre se mantiene
+una referencia de la Head y de la Tail para hacer más rápido el agregar
+o remover elementos.
+
+#+begin_example
+  graph LR 
+      3-->84-->85-->21-->29-->44-->30
+#+end_example
+
+Con una Doubly linked list, cada nodo mantiene una referencia al
+siguiente y al nodo anterior. En la implementación siempre se mantiene
+una referencia a Head y Tail de toda la lista para hacer más rápido el
+agregar o remover elementos de ambos lados de la lista.
+
+#+begin_example
+  flowchart LR 
+      3 <--> 84
+      84 <--> 85
+      85 <--> 21
+      21 <--> 29
+      29 <--> 44<-->30
+#+end_example
+
+*** Pros and Cons
+|               | Pros                                        | Cons                                       |
+|---------------+---------------------------------------------+--------------------------------------------|
+| Singly Linked | Usa menos menoria Implementación más simple | No puedes ver fácilmente elementos previos |
+| Doubly Linked | Puede ser invertida                         | Ocupa el doble de memoria                  |
+
+** Detalles de implementación
+*** Insertando en una Singly linked list
+Inserta 11 en el tercer nodo.
+
+#+begin_example
+  flowchart LR
+      id1((5)) --> id2((23)) --> id3((7)) --> id4((13))
+#+end_example
+
+1. Creamos un puntero que apunte a Head
+2. Nos posicionamos en un nodo anterior al que queremos cambiar
+3. Creamos un nuevo nodo que apunte a el nodo que queremos reemplazar
+4. hacemos que el nodo en que estamos posicionados apunte al nuevo nodo.
+
+#+begin_example
+  graph LR
+      subgraph new
+      11-->id4((7))
+      end 
+      id0((5))-->id1((23))-->11
+      id4((7))-->id5((13))
+#+end_example
+
+*** Insertando en una Doubly linked list
+Inserta 11 en el tercer nodo.
+
+#+begin_example
+  flowchart LR
+      id1((5)) <--> id2((23)) <--> id3((7)) <--> id4((13))
+#+end_example
+
+1. Creamos un puntero que apunte a Head
+2. Nos posicionamos en un nodo anterior al que queremos cambiar
+3. Creamos un nuevo nodo que apunte al nodo al que queremos remplazar
+4. hacemos que el nuevo nodo apunte al siguiente nodo que queremos
+   remplazar
+5. hacemos que el nuevo nodo apunte al nodo anterior
+6. Hacemos que el nodo sigiente al que insertamos apunte hacia el nuevo
+   nodo
+
+*** Eliminando elementos de una Singly linked list
+Elimina el 9 de la siguiente SSL
+
+#+begin_example
+  flowchart LR
+      id1((7)) --> id2((0)) --> id3((4)) --> id4((9)) --> id5((15))
+#+end_example
+
+1. Creamos dos punteros
+
+#+begin_example
+  flowchart LR
+      subgraph p1
+      id1((7))
+      end
+      subgraph p2
+      id2((0))
+      end
+      id1((7)) --> id2((0)) --> id3((4)) --> id4((9)) --> id5((15))
+#+end_example
+
+Hacemos avanzar nuestros dos punteros hasta una posicion anterior al
+nodo que queremos eliminar.
+
+#+begin_example
+  flowchart LR
+      subgraph p1
+      id2((0))
+      end
+      subgraph p2
+      id3((4))
+      end
+      id1((7)) --> id2((0)) --> id3((4)) --> id4((9)) --> id5((15))
+#+end_example
+
+Hacemos avanzar el Puntero 2 a un lugar despues de el nodo que queremos
+eliminar y el Puntero 1 a un lugar antes.
+
+#+begin_example
+  flowchart LR
+      subgraph p1
+      id3((4))
+      end
+      subgraph p2
+      id5((15))
+      end
+      id1((7)) --> id2((0)) --> id3((4)) --> id4((9)) --> id5((15))
+#+end_example
+
+Cambiamos el puntero de nodo siguiente a la posición del puntero 2
+
+#+begin_example
+  flowchart LR
+      subgraph p1
+      id3((4))
+      end
+      subgraph p2
+      id5((15))
+      end
+      id1((7)) --> id2((0)) --> id3((4)) --> id5((15))
+      id4((9)) --> id5((15))
+#+end_example
+
+entonces eliminamos el nodo que queremos eliminar
+
+#+begin_example
+  flowchart LR
+      subgraph p1
+      id3((4))
+      end
+      subgraph p2
+      id5((15))
+      end
+      id1((7)) --> id2((0)) --> id3((4)) --> id5((15))
+#+end_example
+
+*** Eliminar elementos de una Doubly linked list
+Elimina el elemento 9 de la siguiente DDL
+
+#+begin_example
+  flowchart LR
+      id1((7)) <--> id2((0)) <--> id3((4)) <--> id4((9)) <--> id5((15))
+#+end_example
+
+Creamos nuestro puntero en head.
+
+#+begin_example
+  flowchart LR
+      subgraph P1
+      id1
+      end
+      id1((7)) <--> id2((0)) <--> id3((4)) <--> id4((9)) <--> id5((15))
+#+end_example
+
+lo movemos hasta que lleguemos al nodo que se desea eliminar.
+
+#+begin_example
+  flowchart LR
+      subgraph P1
+      id4
+      end
+      id1((7)) <--> id2((0)) <--> id3((4)) <--> id4((9)) <--> id5((15))
+#+end_example
+
+Hacemos que el nodo anterior apunte al nodo que le sigue al que queremos
+eliminar.
+
+#+begin_example
+  flowchart LR
+      subgraph P1
+      id4
+      end
+      id1((7)) <--> id2((0)) <--> id3((4)) <--> id4((9)) <--> id5((15))
+      id3 --> id5
+#+end_example
+
+Luego hacemos que el puntero de 15 apunte a 4.
+
+#+begin_example
+  flowchart LR
+      subgraph P1
+      id4
+      end
+      id1((7)) <--> id2((0)) <--> id3((4)) <--> id4((9)) <--> id5((15))
+      id3 <--> id5
+#+end_example
+
+Entonces podemos proceder a remover el nodo 9.
+
+#+begin_example
+  flowchart LR
+      
+      id1((7)) <--> id2((0)) <--> id3((4)) <--> id5((15))
+#+end_example
+
+** Analisis de complejidad
+|                  | Singly Linked | Doubly linked |
+|------------------+---------------+---------------|
+| Search           | $`O(n)`$      | $`O(n)`$      |
+| Insert at Head   | $`O(1)`$      | $`O(1)`$      |
+| Insert at Tail   | $`O(1)`$      | $`O(1)`$      |
+| Remove at Head   | $`O(1)`$      | $`O(1)`$      |
+| Remove at Tail   | $`O(n)`$      | $`O(1)`$      |
+| Remove in middle | $`O(n)`$      | $`O(n)`$      |
+
+** Implementación en código
+#+begin_src java
+  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList<T> implements Iterable<T> {
+    private int size = 0;
+    private Node<T> head = null;
+    private Node<T> tail = null;
+
+    // Internal node class to represent data
+    private static class Node<T> {
+      private T data;
+      private Node<T> prev, next;
+
+      public Node(T data, Node<T> prev, Node<T> next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node<T> trav = head;
+      while (trav != null) {
+        Node<T> next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node<T>(elem, null, null);
+      } else {
+        tail.next = new Node<T>(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node<T>(elem, null, null);
+      } else {
+        head.prev = new Node<T>(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index < 0) {
+        throw new Exception("Illegal Index");
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node<T> temp = head;
+      for (int i = 0; i < index - 1; i++) {
+        temp = temp.next;
+      }
+      Node<T> newNode = new Node<>(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException("Empty list");
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException("Empty list");
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException("Empty list");
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException("Empty list");
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node<T> node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index < 0 || index >= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node<T> trav;
+
+      // Search from the front of the list
+      if (index < size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node<T> trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node<T> trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator<T> iterator() {
+      return new java.util.Iterator<T>() {
+        private Node<T> trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append("[ ");
+      Node<T> trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(", ");
+        }
+        trav = trav.next;
+      }
+      sb.append(" ]");
+      return sb.toString();
+    }
+  } 
+#+end_src

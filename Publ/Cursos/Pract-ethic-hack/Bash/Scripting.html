@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Scripting w Bash</title>
+<!-- 2020-12-25 Fri 16:36 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"></div><div class="col-md-9 col-md-pull-3"><h1 class="title">Scripting w Bash</h1>
+<p>
+Todo el output de un comando de terminal puede ser guardado en un
+archivo, lo cual facilita la manipulación y análisis de este output.
+</p>
+
+<p>
+Por ejemplo podríamos usar el comando ping, guardar el output de este
+comando en un archivo y manipular este archivo.
+</p>
+
+
+<figure>
+<p><img src="Imagenes/Img-1.png" class="img-responsive" alt="Img-1.png">
+</p>
+</figure>
+
+<blockquote>
+<p>
+AL hacer ping con la bandera <code>-c5</code> hacemos 5 peticiones icmp, con el
+operador <code>&gt;</code> escribimos en el archivo <code>ping.txt</code> la salida del comando
+ping. Con el comando <code>cat ping.txt</code> concatenamos el contenido de
+<code>ping.txt</code> en la terminal.
+</p>
+</blockquote>
+
+<p>
+Imaginemos que queremos saber cuantas peticiones icmp se hicieron,
+podemos utilizar el comando <code>grep</code> y hacer pipe, las <i>pipes</i> nos
+permiten tomar el output de un comando y usarlo como imput de otro, se
+usa con el operador <code>|</code>.
+</p>
+
+<p>
+Para la situación que escribimos más arriba, hariamos uso de el comando
+<code>cat ping.txt | grep "64 bytes"</code>
+</p>
+
+
+<figure>
+<p><img src="Imagenes/Img-2.png" class="img-responsive" alt="Img-2.png">
+</p>
+</figure>
+
+<blockquote>
+<p>
+Aqui estamos buscando la cadena &ldquo;64 bytes&rdquo; en el archivo <code>ping.txt</code> y
+nos regresa las lineas que tienen ese string.
+</p>
+</blockquote>
+
+<p>
+Ahora imaginemos que queremos buscar cosas más específicas, existe el
+comando <code>cut</code> que nos permite buscar cosas con reglas más precisas.
+</p>
+
+
+<figure>
+<p><img src="Imagenes/Img-3.png" class="img-responsive" alt="Img-3.png">
+</p>
+</figure>
+
+<p>
+Imaginemos que queremos extraer el campo de IP de una petición icmp
+específica, que en este caso seria <code>127.0.0.1</code> pero bien podría ser
+cualquier otra dirección a la cual se hizo ping.
+</p>
+
+<p>
+<img src="Imagenes/Img-4.png" class="img-responsive" alt="Img-4.png"> &gt; Hacemos otro <i>pipe</i> dándole el output de
+grep a cut en el cual le damos como argumento <code>-d " "</code> d viene de
+delimiter, le decimos que tome los espacios como delimitadores, y con el
+argumento <code>-f 4</code>, le decimos que nos de el cuarto elemento tomando en
+cuenta lo anterior.
+</p>
+
+<p>
+Pero tenemos un problema, hay un <code>:</code> al final de la IP que nos impide
+usar esta IP.
+</p>
+
+<p>
+Podemos quitarlo con la ayuda de el comando <code>tr</code> haciendo <i>pipe</i> otra
+vez. <img src="Imagenes/Img-5.png" class="img-responsive" alt="Img-5.png">
+</p>
+
+<p>
+Ahora usando estos conocimientos podemos crear un script.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell">  <span style="color: #6f7787; font-style: italic;">#</span><span style="color: #6f7787; font-style: italic;">! /bin/bash </span>
+
+  <span style="color: #81A1C1; font-style: italic;">for</span> ip<span style="color: #81A1C1; font-style: italic;"> in</span> <span style="color: #81A1C1; font-weight: bold;">`seq 1 254`</span> ; <span style="color: #81A1C1; font-style: italic;">do</span>
+      ping -c <span style="color: #B48EAD; font-weight: bold;">1</span> $<span style="color: #B48EAD; font-weight: bold;">1.</span>$<span style="color: #D8DEE9;">ip</span> | <span style="color: #8FBCBB;">grep</span> <span style="color: #A3BE8C;">"64 bytes"</span> | cut -d <span style="color: #A3BE8C;">" "</span> -f <span style="color: #B48EAD; font-weight: bold;">4</span> | tr -d <span style="color: #A3BE8C;">":"</span> &amp;
+  <span style="color: #81A1C1; font-style: italic;">done</span>
+</pre>
+</div>
+
+<p>
+Guardamos con la extención <code>.sh</code>
+</p>
+
+<blockquote>
+<p>
+La primera linea corresponde a algo llamado <i>bang</i> que indica que
+programa va a ejecutar el script, en este caso es un script bash, pero
+puede ser python o otro.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+La segunda linea corresponde a un ciclo for, declarando <i>ip</i> y
+diciendo que itere de 1 a 254.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+La tercera linea nos dice que hagamos ping <code>-c 1</code> es que hagamos solo
+un ping, <code>$1</code> indica el imput del usuario, e <code>$ip</code> la variable <i>ip</i>
+con la que vamos a iterar en el ciclo for
+</p>
+</blockquote>
+
+<p>
+A esto se le llama IP sweeping, este script va a recibir como imput los
+primeros 3 octetos de una dirección IP y va a a hacer ping a todas las
+direcciones posibles dentro del cuarto octeto para ver cúales tienen
+conectividad y cuales no.
+</p>
+
+<p>
+Ahora para poder ejecutarlo, necesitamos darle permisos de ejecución al
+script, esto se hace con el comando <code>chmod +x archivo</code> y lo ejecutamos
+con <code>./archivo</code>
+</p>
+
+<p>
+El script dara como output algo como esto.
+</p>
+
+
+<figure>
+<p><img src="Imagenes/Img-6.png" class="img-responsive" alt="Img-6.png">
+</p>
+</figure>
+
+<p>
+Pero sería más útil si guardamos estas IPs en un archivo. con el comando
+<code>./sweep.sh &gt; iplist.txt</code>
+</p>
+
+
+<figure>
+<p><img src="Imagenes/Img-7.png" class="img-responsive" alt="Img-7.png">
+</p>
+</figure>
+
+<p>
+También podemos mejorar un poco nuestro script de esta manera:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-shell">  <span style="color: #6f7787; font-style: italic;">#</span><span style="color: #6f7787; font-style: italic;">! /bin/bash </span>
+
+  <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #81A1C1;">[</span> <span style="color: #A3BE8C;">"</span><span style="color: #81A1C1;">$</span><span style="color: #D8DEE9;">1</span><span style="color: #A3BE8C;">"</span> == <span style="color: #A3BE8C;">""</span> <span style="color: #81A1C1;">]</span>
+  <span style="color: #81A1C1; font-style: italic;">then</span>
+      <span style="color: #8FBCBB;">echo</span> <span style="color: #A3BE8C;">"Olvidaste poner una direcci&#243;n IP"</span>
+      <span style="color: #8FBCBB;">echo</span> <span style="color: #A3BE8C;">"EJ: ./script 192.168.1 "</span>
+  <span style="color: #81A1C1; font-style: italic;">else</span>
+      <span style="color: #81A1C1; font-style: italic;">for</span> ip<span style="color: #81A1C1; font-style: italic;"> in</span> <span style="color: #81A1C1; font-weight: bold;">`seq 1 254`</span> ; <span style="color: #81A1C1; font-style: italic;">do</span>
+          ping -c <span style="color: #B48EAD; font-weight: bold;">1</span> $<span style="color: #B48EAD; font-weight: bold;">1.</span>$<span style="color: #D8DEE9;">ip</span> | <span style="color: #8FBCBB;">grep</span> <span style="color: #A3BE8C;">"64 bytes"</span> | cut -d <span style="color: #A3BE8C;">" "</span> -f <span style="color: #B48EAD; font-weight: bold;">4</span> | tr -d <span style="color: #A3BE8C;">":"</span> &amp;
+  <span style="color: #81A1C1; font-style: italic;">done</span>
+  <span style="color: #81A1C1; font-style: italic;">fi</span>
+</pre>
+</div>
+
+<p>
+Una de las ventajas de linux es que la terminal es un interprete de
+bash, asi que podemos hacer cosas como estas:
+</p>
+
+<p>
+<code>for ip in $(cat iplist.txt); do nmap -sS -p 80 -T4 $ip &amp; done</code>
+</p>
+
+
+<figure>
+<p><img src="Imagenes/Img-8.png" class="img-responsive" alt="Img-8.png">
+</p>
+</figure>
+
+<p>
+Aqui acabamos de ejecutar un mini script de una linea en el que le
+pasamos las IPs a un programa para que ejecute un análisis de las 8 IPs.
+</p>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2020-12-25 Fri 16:36</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

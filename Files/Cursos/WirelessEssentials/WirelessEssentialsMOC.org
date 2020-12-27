@@ -1,0 +1,348 @@
+#+TITLE: Switching, Routing, and Wireles Essentials MOC
+#+options: toc:4
+
+* Basic Device Configurations
+* Switching Concepts
+* VLANs
+* TODO Inter-VLAN Routing
+** Inter-VLAN Routing Operation
+*** What is inter-VLAN Routing
+*** Legacy inter-VLAN Routing
+*** Router-on-a-Stick inter-VLAN Routing
+*** Inter-VLAN routing on a Layer 3 Switch
+** Router-on-a-Stick inter-VLAN Routing
+*** Router-on-a-Stick scenario
+*** S1 VLAN and Trunking Configuration
+*** S2 VLAN and Trunking Configuration
+*** R1 Subinterface Configuration
+*** Verify Connectivity Between PC1 and PC2
+*** Router-on-a-Stick Inter-VLAN Routing Verification
+** Inter-VLAN Routing using Layer 3 Switches
+*** Layer 3 Switch Inter-VLAN Routing
+*** Layer 3 Switch Scenario
+*** Layer 3 Switch Configuration
+*** Layer 3 Switch Inter-VLAN Routing Verifcation
+*** Routing on a Layer 3 Switch
+*** Routing Scenario on a Layer 3 Switch
+*** Routing Configuration on a Layer 3 Switch
+** Troubleshoot Inter-VLAN Routing
+*** Common Inter-VLAN Issues
+*** Troubleshoot Inter-VLAN Routing Scenario
+*** Missig VLANs
+*** Switch Trunk Port Issues
+*** Switch Access Port Issues
+*** Router Configuration Issues
+* STP Concepts
+* EtherChannel
+* DHCPv4
+** DCHPv4 Concepts
+*** DCHPv4 Server and Client
+DCHPv4 o /Dinamic Host Configuration Protocol v4/ asigna direcciones y otros tipos de configuración de red dinámicamente.
+
+Un router de cisco puede ser configurado para proveer servicios DHCPv4 sin la necesidad de un servidor dedicado.
+
+El servidor DHCPv4 asigna o presta dinámicamente direcciones IPv4 de un grupo por un período de tiempo limitado definido por el servidor o hasta que el cliente ya no necesita la dirección.
+
+A los clientes les es prestada la información del servidor comúnmente por 24h o hasta una semana,
+cuando el tiempo expira el cliente debe pedir otra dirección,
+aunque normalmente se le da la misma dirección.
+
+Proceso:
+1. El proceso de arrendamiento o prestamo, incia con el ciente mandando un mensaje pidiendo los servicios de un servidor DHCP.
+2. Si hay un Servidor DHCPv4 disponible, este recibe el mensaje y responde con una dirección IPv4 y otra información de configuración.
+*** DCHPv4 Operation
+El protocolo DHCPv4 funciona en un modelo de Cliente/Servidor.
+
+1. El servidor asigna o arrenda una dirección IPv4 a un cliente.
+2. El cliente se conceta a la red con esa dirección hasta que esta expira.
+3. El cliente debe contactar al servidor DHCP periodicamente para extender su arrendamiento.
+
+Este modelo permite que se reusen direcciones cuando no están en uso.
+
+*** Steps to Obtain a Lease
+Cuando un cliente enciende o se conecta a una red empieza un proceso para optener un arrendamiento de IPv4.
+
+1. DHCP Discover (DHCPDICOVER).
+   * El cliente inicia el proceso con un mensaje broadcast DHCPDICOVER con su propia dirección MAC para encontrar un servidor DHCPv4.
+   * Usa broadcast de capa 2 y 3 para comunicarse con el servidor.
+2. DHCP Offer (DHCPOFFER).
+   * Cuando el servidor recibe un DHCPDICOVER, reserva una dirección IPv4 disponible para arrendarla al cliente.
+   * Crea una entrada ARP que consiste de la dirección MAC del cliente y la dirección asignada a este.
+   * Manda un mensaje DHCPOFFER al cliente.
+3. DHCP Request (DHCPREQUEST)
+   * El cliente recibe el DHCPOFFER y responde con un mensaje DHCPREQUEST.
+   * Este mensaje es usado para el arrendamiento y para la renovación del mismo.
+4. DHCP Acknowledgment (DHCPACK)
+   * Cuando el servidor recibe el DHCPREQUEST, puede verificar la información de arrendamiento con un mensake ICMP (ping) a la dirección asignada.
+   * Crea una nueva entrada ARP para el arrendamiento y responde con un DHCPACK.
+   * El DHCPACK es un duplicado del DHCPOFFER exepto por un cambio en el tipo de mensaje.
+
+*** Steps to Renew a Lease
+Antes de que el arrendamiento termine,
+el cliente inicia un proceso de dos pasos para renovar el arrendamiento.
+
+1. DHCP Request (DHCPREQUEST).
+   Antes de que expire, el cliente manda un DHCPREQUEST directamente al servidor DHCPv4 que le ofreció su dirección IPv4,
+   Si no es recibida una respuesta DHCPACK, el cliente manda otro DHCPREQUEST.
+2. DHCP Acknowledgment (DHCPACK).
+   EL servidor verifica la información de arrendamiento y retorna un DHCPACK.
+
+** Configure a Cisco IOS DHCPv4 Server
+*** Steps to Configure a Cisco IOS DHCPv4 Server
+Se necesitan los siguientes pasos para Configurar un Servidor DHCPv4.
+1. Exclude IPv4 Addresses
+   Excluimos algunas direcciones que no queremos que sean asignadas.
+  #+BEGIN_SRC
+Router(config)# ip dhcp excluded-address low-address [high-address]
+  #+END_SRC
+2. Define a DHCPv4 Pool Name
+   Asignamos un nombre a el conjunto de direcciones que vamos a arrendar.
+   #+BEGIN_SRC
+Router(config)# ip dhcp pool pool-name
+Router(dhcp-config)#
+   #+END_SRC
+3. Configure the DHCPv4 Pool
+   El conjunto de direcciones (/address pool/) y la puerta de enlace predeterminada del ruter debe ser configurada,
+   Otros Comandos pueden ser opcionales.
+
+   | Task                                  | IOS Command                                                     |
+   |---------------------------------------+-----------------------------------------------------------------|
+   | Define the address pool               | =network network-number [mask/prefix-length]=                   |
+   | Define the default router or gateway  | =default-router address [ address2….address8]=                  |
+   | Define a DNS server                   | =dns-server address [ address2…address8]=                       |
+   | Define the duration of the DHCP lease | =lease {days [hours [minutes]]} infinite (simbolo or) infinite= |
+   | Define the domain name                | =domain-name domain=                                            |
+   | Define the NetBIOS WINS server        | =netbios-name-server address [ address2…address8]=              |
+
+*** Configuration Example
+Este ejemplo muestra la configuración para hacer a R1 un servidor DHCPv4 para 192.168.10.0/24 LAN.
+#+BEGIN_SRC
+R1(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.9
+R1(config)# ip dhcp excluded-address 192.168.10.254
+R1(config)# ip dhcp pool LAN-POOL-1
+R1(dhcp-config)# network 192.168.10.0 255.255.255.0
+R1(dhcp-config)# default-router 192.168.10.1
+R1(dhcp-config)# dns-server 192.168.11.5
+R1(dhcp-config)# domain-name example.com
+R1(dhcp-config)# end
+R1#
+#+END_SRC
+
+*** DHCPv4 Verification Commands
+- =show running config | section dhcp= :: Muestra los comandos de DHCPv4 configurados en el router.
+- =show ip dhcp binding= :: Muestra una lista de todas las direcciones MAC dadas por DHCPv4.
+- =show ip dhcp server statistics= :: Muestra información sobre el numero de mensajes DHCPv4 que se han sido enviados o recibidos.
+*** Verify DHCPv4 is Operational
+Según una topología, R1 ha sido configurado para proveer servicios de DHCPv4,
+PC1 aun no ha sido enciendido, asi que no tiene dirección IP.
+**** Verify the DHCPv4 Configuration
+como se muestra en el ejemplo, el comando =show running-config | section dhcp=
+muestra la configuración de R1, el parametro =| section dhcp= muestra solo la información relacionada con DHCPv4.
+
+#+BEGIN_SRC
+R1# show running-config | section dhcp
+ip dhcp excluded-address 192.168.10.1 192.168.10.9
+ip dhcp excluded-address 192.168.10.254
+ip dhcp pool LAN-POOL-1
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 192.168.11.5
+ domain-name example.com
+#+END_SRC
+
+**** Verify DHCPv4 Bindings
+La operación de DHCPv4 puede ser verificada usando el comando =show ip dhcp binding=,
+este muestra una lista de las relaciones IPv4 a MAC que fueron dadas por el servidor DHCPv4.
+
+#+BEGIN_SRC
+R1# show ip dhcp binding
+Bindings from all pools not associated with VRF:
+IP address      Client-ID/              Lease expiration        Type       State      Interface
+                Hardware address/
+                User name
+192.168.10.10   0100.5056.b3ed.d8       Sep 15 2019 8:42 AM    Automatic  Active     GigabitEthernet0/0/0
+#+END_SRC
+
+**** Verify DHCPv4 Statics
+Este comando muestr la el número de mensajes DHCPv4 que han sido mandados y recibidos.
+
+#+BEGIN_SRC
+R1# show ip dhcp server statistics
+Memory usage         19465
+Address pools        1
+Database agents      0
+Automatic bindings   2
+Manual bindings      0
+Expired bindings     0
+Malformed messages   0
+Secure arp entries   0
+Renew messages       0
+Workspace timeouts   0
+Static routes        0
+Relay bindings       0
+Relay bindings active        0
+Relay bindings terminated    0
+Relay bindings selecting     0
+Message              Received
+BOOTREQUEST          0
+DHCPDISCOVER         4
+DHCPREQUEST          2
+DHCPDECLINE          0
+DHCPRELEASE          0
+DHCPINFORM           0
+#+END_SRC
+
+**** Verify DHCPv4 Client Recieved IPv4 Adddressing
+Con el comando =ipconfig /all= podemos ver si el cliente recibió la información del servidor DHCPv4.
+
+#+BEGIN_SRC
+C:\Users\Student> ipconfig /all
+Windows IP Configuration
+   Host Name . . . . . . . . . . . . : ciscolab
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+Ethernet adapter Ethernet0:
+   Connection-specific DNS Suffix  . : example.com <-----
+   Description . . . . . . . . . . . : Realtek PCIe GBE Family Controller
+   Physical Address. . . . . . . . . : 00-05-9A-3C-7A-00
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   IPv4 Address. . . . . . . . . . . : 192.168.10.10 <-----
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained  . . . . . . . . . : Saturday, September 14, 2019 8:42:22AM
+   Lease Expires   . . . . . . . . . : Sunday, September 15, 2019 8:42:22AM
+   Default Gateway . . . . . . . . . : 192.168.10.1 <-----
+   DHCP Server . . . . . . . .. . .  : 192.168.10.1
+   DNS Servers . . . . . . . .. . .  : 192.168.11.5 <-----
+#+END_SRC
+*** Disable the Cisco IOS DHCPv4 Server
+El servicio DHCPv4 esta activado por defecto,
+para desactivarlo usamos el comando =no service dhcp=.
+
+#+BEGIN_SRC
+R1(config)# no service dhcp
+R1(config)# service dhcp
+R1(config)#
+#+END_SRC
+*** DHCPv4 Relay
+En redes más complejas, los servidores de una empresa estan localizados de forma centralizada,
+Estos proveen DHCP, DNS, TFTP y FTP por toda la red.
+Y es problable que los cientes no esten en la misma Subred que esos servidores.
+Para locarizar esos servidores se ocupan mensajes broadcast.
+
+#+CAPTION: En este esenario se intenta renovar la información de direccionamiento de PC1.
+[[./Images/Img-1.png]]
+
+En la figura, PC1 intenta adquirir una dirección IPv4 de un servidor DHCPv4 usando un broadcast.
+R1 no esta configurado como servidor DHCPv4 y no enruta los paquetes.
+
+**** ipconfig /release
+Siendo PC1 una maquina con windows, verificamos la información de direccionamiento con el comando:
+#+BEGIN_SRC
+C:\Users\Student> ipconfig /release
+Windows IP Configuration
+Ethernet adapter Ethernet0:
+   Connection-specific DNS Suffix  . :
+   Default Gateway . . . . . . . . . :
+#+END_SRC
+
+**** ipconfig /renew
+Seguido, el administrador de red intenta renovar la dirección IPv4 con el comando =ipconfig /renew=.
+Este comando manda un mensaje DHCPDICOVER.
+#+BEGIN_SRC
+C:\Users\Student> ipconfig /renew
+Windows IP Configuration
+An error occurred while renewing interface Ethernet0 : unable to connect to your DHCP server. Request has timed out.
+#+END_SRC
+
+**** ip helper-address
+Una mejor solución para configurar R1 es con el comando =ip helper-addres=.
+Este hace que R1, releve los mensajes DHCPv4 al servidor DHCPv4.
+#+BEGIN_SRC
+R1(config)# interface g0/0/0
+R1(config-if)# ip helper-address 192.168.11.6 <--- dirección del servidor DHCP
+R1(config-if)# end
+R1#
+#+END_SRC
+
+**** show ip interface
+Cuando R1 ha sido configurado como /relay agent/ DHCPv4,
+acepta los broadcast del servicio DHCPv4 y los manda al servidor DHCPv4.
+El administrador puede usar el siguiente comando para verificar esta información.
+
+#+BEGIN_SRC
+R1# show ip interface g0/0/0
+GigabitEthernet0/0/0 is up, line protocol is up
+  Internet address is 192.168.10.1/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is 192.168.11.6
+(output omitted)
+#+END_SRC
+
+**** ipcongig /all
+Como se muestra en esta salida PC1 fue capaz de adquir información de direccionamiento.
+
+#+BEGIN_SRC
+C:\Users\Student> ipconfig /all
+Windows IP Configuration
+
+Ethernet adapter Ethernet0:
+   Connection-specific DNS Suffix  . : example.com
+   IPv4 Address. . . . . . . . . . . : 192.168.10.10
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.10.1
+#+END_SRC
+
+** Configure a Cisco IOS DHCPv4 Client
+*** Cisco Router as a DHCPv4 Client
+
+* SLAAC and DHCPv6
+* FHRP Concepts
+* LAN Security Concepts
+* Switch Security Configuration
+** Implement Port Security
+*** Secure Unused Ports
+Los dispositivos de capa 2 son los dispositivos más vulnerables en una infraestructura.
+Todas las interfaces (puertos) deben de estar asegurados antes de que el switch sea usado.
+
+La manera más fácil de asegurar puertos es desactivar los que no estan en uso.
+
+#+DESCRIPTION: Para esto se usa el comando *interface range*
+#+BEGIN_SRC
+Switch(config)# interface range type module/first-number – last-number
+#+END_SRC
+
+Por ejemplo para apagar todos los puertos para Fa0/8 a través de Fa0/24 en S1.
+
+#+BEGIN_SRC
+S1(config)# interface range fa0/8 - 24
+S1(config-if-range)# shutdown
+%LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
+(output omitted)
+%LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
+S1(config-if-range)#
+#+END_SRC
+
+*** Mitigate MAC Address Table Attacks
+El método más efectivo para prevenir /overflow/ de la tabla de direcciones MAC es habilitar seguridad de puertos.
+
+Esta medida permite al switch aprender dinámicamente un número límitado de direcciones MAC,
+permitiendo mitigar el acceso no autorizado al switch.
+
+*** Enable Port Security
+
+*** Limit and Learn MAC Addresses
+*** Port Security Aging
+*** Port Security Violation Modes
+*** Ports in error-disabled State
+*** Verify Port Security
+
+* WLAN Concepts
+* WLAN Configuration
+* Routing Concepts
+* IP Static Routing
+* Troubleshoot Static and Default Routes

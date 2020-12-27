@@ -1,0 +1,213 @@
+* Stacks
+** Discusión sobre Stacks
+Una pila (/Stack/) es una estructura
+lineal de una solo lado que modela una pila de cosas que van poniendose
+una encima de la otra, tienen dos operaciones primarias =push=y =pop=.
+
+#+begin_example
+  flowchart TD    
+      subgraph Pop
+      id4(data) 
+      end
+      subgraph Stack
+      id1(data) --> id2(data) --> id3(data)
+      end
+      subgraph Push
+      id5(data)
+      end
+      id1 --> Pop
+      Push --> Stack
+#+end_example
+
+*** ¿Que es un Stack?
+**** Instrucciones
+Teniendo el siguente stack
+
+#+begin_example
+  flowchart TD
+      subgraph Stack
+      Potato --> Cabbage --> Garlic --> Apple
+      end
+#+end_example
+
+- Si hacemos la operación =pop()= tendremos.
+
+#+begin_example
+  flowchart TD
+  subgraph Stack
+      potato --> cabbage --> garlic   
+      end
+#+end_example
+
+- Si hacemos la operación =push('Onion')=
+
+#+begin_example
+  flowchart TD
+  subgraph Stack
+      potato --> cabbage --> garlic --> Onion
+      end
+#+end_example
+
+- Si hacemos la operación =push('Celery')=
+
+#+begin_example
+  flowchart TD
+  subgraph Stack
+      potato --> cabbage --> garlic --> Onion --> Celery
+      end
+#+end_example
+
+- Si hacemos la operación =pop()=
+
+#+begin_example
+  flowchart TD
+  subgraph Stack
+      potato --> cabbage --> garlic --> Onion
+      end
+#+end_example
+
+*** ¿Cuándo y dónde son usados los Stacks?
+
+- Usados en mecanismos de /undo/ en editores de texto.
+- Usados en compiladores en el chequeo de síntaxis de corchetes,
+  parentesis y llaves.
+- Puede ser usado para modelar una pila de libros o de platos.
+- Usado para soportar recursividad manteniendo un seguimiento de
+  llamadas a la función previas.
+- Puede ser usado para hacer una /Depth First Search (DFS)/ en un grafo.
+
+*** Análisis de complejidad
+| Operación | Complejidad |
+|-----------+-------------|
+| Pushing   | $`O(1)`$    |
+| Poping    | $`O(1)`$    |
+| Peeking   | $`O(1)`$    |
+| Searching | $`O(n)`$    |
+| Size      | $`O(1)`$    |
+
+#+begin_quote
+  Asumiendo que la implementación del stack fue mediante una link list.
+#+end_quote
+
+*** Ejemplos de uso
+**** Brackets
+*Problema:* Dado un string hecho con los siguentes caracteres =()= ={}=
+=[]=, Determina si estos estan cerrados de manera correcta.
+
+#+begin_example
+  [{}] --> Valid
+  (() ()) --> Valid
+  {] --> Invalid
+  [()]))() --> Invalid
+  []{}({}) --> Valid
+#+end_example
+
+Secuencia de Brackets: =[[{}]()}=
+
+Si metemos los elementos del string uno a uno en un stack, si
+encontramos el caracter que lo cierra popeamos este caracter del stack
+
+#+begin_example
+  String:[
+  Stack:['[']
+
+  String:[[
+  Stack:['[','[']
+
+  String:[[{
+  Stack:['[','[','{']
+
+  String:[[{}
+  Stack:['[','[']
+
+  String:[[{}]
+  Stack:['[']
+
+  String:[[{}](
+  Stack:['[','(']
+
+  String:[[{}()
+  Stack:['[']
+
+  String:[[{}()]
+  Stack:[]
+#+end_example
+
+Si al final tenemos el stack vacio, la secuencia es correcta y no hay
+brackets sin cerrar.
+
+***** Implementación en código:
+#+begin_src java
+  //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply 
+#+end_src
+
+** Implementación en Código
+Los stackst son normalmente implementados mediante arrays, singly linked
+list o como doubly linked list. > Usando una DLL
+
+#+begin_src java
+  /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack<T> implements Iterable<T>, Stack<T> {
+
+    private java.util.LinkedList<T> list = new java.util.LinkedList<T>();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator<T> iterator() {
+      return list.iterator();
+    }
+  }
+#+end_src

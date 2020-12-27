@@ -1,0 +1,12 @@
+#+TITLE: Knowledge MOC
+#+STARTUP: showall
+
+[[file:~/org/index.org][Index]]
+
+* Knowlege MOC
+** [[file:Progrgamming/Pr_ProgrammingMOC.org][Programming]]
+** [[file:School/Sc_schoolMOC.org][School]]
+** Emacs
+** [[file:Networking/Nt_NetworkingMOC.org][Networking]]
+** Linux
+** SQL

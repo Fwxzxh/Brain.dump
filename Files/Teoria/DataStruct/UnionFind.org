@@ -1,0 +1,111 @@
+* Union Find (Disjoint Set)
+
+** ¿Qué es una Union Find?
+Union-Find es una estructura de datos que mantiene un conjunto de
+elementos particionados en un número de conjuntos disjuntos (no se
+solapan los conjuntos), tiene dos operaciones primarias *find* y
+*union*.
+
+- Find: Dado un elemento te dice a que grupo pertenece.
+- Union: Junta dos grupos.
+
+** Ejemplo de los imanes
+Imaginemos que tenemos un grupo de imanes desordenados:
+
+[[file:Imagenes/UnionFind/Img-1.png]]
+
+Cada iman será atraido por el iman que este más cerca a este formando
+grupos
+
+[[file:Imagenes/UnionFind/Img-2.png]]
+
+Es así como funciona, cada iman pertenece a su propio grupo de color, y
+podriamos seguir hasta hacer un solo grupo que contenga a todos los
+imanes.
+
+** ¿Cuándo y dónde son usadas?
+
+- Algotitmo de kruskal
+- Grid percolation
+- Conectividad de red
+- Least common ancestor en árboles
+- Procesamiento de imágenes
+
+** Algotitmo de [[https://es.wikipedia.org/wiki/Algoritmo_de_Kruskal][Kruskal]]
+Dado un grafo $`G = (V, E)`$ queremos encontrar el árbol recubridor
+mínimo (Minimum Spaning Tree) en el grafo que puede o no puede ser
+único. Es un subconjunto de aristas que, formando un árbol incluyen
+todos los vértices y donde el valor de la suma de todas las aristas del
+árbol es el mínimo.
+
+Teniendo el siguiente grafo:
+
+[[file:Imagenes/UnionFind/Img-3.png]]
+
+Y siendo un árbol recubridor mínimo:
+
+[[file:Imagenes/UnionFind/Img-4.png]]
+
+#+begin_quote
+  con un peso de 14
+#+end_quote
+
+El algoritmo de Kruskal es un ejemplo de algoritmo voraz que funciona de
+la siguiente manera: 1. Ordenar las aristas en orden acendente con su
+peso. 2. Recorrer las aristas ordenadas, y mirar a que nodos pertenecen,
+si los nodos ya fueron unificados no los incluimos, y si no, los
+unificamos. 3 El algoritmo termina cuándo cada arista ha sido procesada
+o cuándo todos los vértices han sido unificados.
+
+Teniendo el grafo anterior
+[[file:Imagenes/UnionFind/Img-5.png]]
+[[file:Imagenes/UnionFind/Img-5-1.png]]
+[[file:Imagenes/UnionFind/Img-5-2.png]]
+[[file:Imagenes/UnionFind/Img-5-3.png]]
+[[file:Imagenes/UnionFind/Img-5-4.png]]
+[[file:Imagenes/UnionFind/Img-5-5.png]]
+
+#+begin_quote
+como C y J pertenecen al mismo grupo se crea un ciclo, así que no lo coloreamos.
+#+end_quote
+
+[[file:Imagenes/UnionFind/Img-5-6.png]]
+
+#+begin_quote
+  Como D ya pertenece a un grupo unificamos ambos grupos y tomamos un
+  color arbitrario. [[file:Imagenes/UnionFind/Img-5-7.png]]
+#+end_quote
+
+[[file:Imagenes/UnionFind/Img-5-8.png]]
+[[file:Imagenes/UnionFind/Img-5-9.png]]
+
+** Análisis de complejidad
+| Constuction        | $`O(n)`$ |
+|--------------------+----------|
+| Union              | $`\alpha(n)`$ |
+| Find               | $`\alpha(n)`$ |
+| Get Component size | $`\alpha(n)`$ |
+| Check if connected | $`\alpha(n)`$ |
+| Count components   | $`O(1)`$ |
+
+#+begin_quote
+  $`\alpha(n)`$ Tiempo constante amortizado.
+#+end_quote
+
+*** Detalles de implementación
+** Operaciones Find & Union
+Para empezar a usar Union Find, primero necesitamos construir un mapeo
+ente los objetos y los enteros en el rango de $`[0,n)`$. > Esto no es
+estrictamente necesario, pero nos ayuda a construir una Union Find
+basada en arrays.
+
+Asignamos aleatoriamente un mapeo entre los objetos de la izquierda y
+los números de la derecha.
+
+[[file:Imagenes/UnionFind/Img-6.png]]
+
+[[file:Imagenes/UnionFind/Img-6-1.png]]
+
+2:41:13 ## Path compression # Implementación en código
+
+p

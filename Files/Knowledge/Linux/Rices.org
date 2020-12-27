@@ -1,0 +1,19 @@
+#+TITLE: Linux ricing
+
+
+* Cool dotfiles:
+** Bspwm
+** i3
+** Awesome
+*** [[https://github.com/JavaCafe01/dotfiles][cool minimal dotfiles]]
+Inspirado en el rice de elena, buen widget de notificaciones
+*** [[https://github.com/elenapan/dotfiles][elena dotfiles]]
+Awesome rice, bastante completo.
+
+* Linux Utilities
+** [[github:kazhala/dotbare][Dotbare]]
+Utilidad interesante para manejar dotfiles.
+
+* Vim plugins
+** [[github:romgrk/barbar.nvim][BarBar]]
+Mejor sistema de tabs para vim.

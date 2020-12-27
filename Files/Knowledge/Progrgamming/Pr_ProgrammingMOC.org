@@ -1,0 +1,5 @@
+#+TITLE: Pr Programming Moc
+
+[[file:~/org/Knowledge/1000_KnowledgeMOC.org][Knowledge Index]]
+
+* Programming MOC

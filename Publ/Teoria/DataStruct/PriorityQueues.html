@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title></title>
+<!-- 2020-12-25 Fri 20:59 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Priority Queues (PQ)</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. ¿Que es una PQ?</a></li>
+<li><a href="#sec-1-2">1.2. Implementación en código</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title"></h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Priority Queues (PQ)</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> ¿Que es una PQ?</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Es un tipo de dato abtracto (ADT) que
+opera en forma similar a una cola, execpto que <b>cada elemento tiene
+cierta prioridad</b>. Esta prioridad define en que orden los elementos son
+removidos de la cola.
+</p>
+
+<blockquote>
+<p>
+Las colas de prioridad solo soportan datos comparables, de modo que estos puedan ser ordenados de una manera u
+otra.
+</p>
+</blockquote>
+
+<p>
+Suponga que todos los siguientes valores son insertados en una PQ con un orden dado por los números, en este caso de menor a mayor.
+</p>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-1.png" class="img-responsive" alt="Img-1.png">
+</p>
+<figcaption><span class="figure-number">Figure 1:</span> Si hacemos un <code>poll()</code> sacamos de la cola al elemento de mayor prioridad.</figcaption>
+</figure>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-2.png" class="img-responsive" alt="Img-2.png">
+</p>
+<figcaption><span class="figure-number">Figure 2:</span> Si hacemos un <code>add(2)</code> agregamos 2 a la cola</figcaption>
+</figure>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-3.png" class="img-responsive" alt="Img-3.png">
+</p>
+<figcaption><span class="figure-number">Figure 3:</span> Si hacemos otro <code>poll()</code></figcaption>
+</figure>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-4.png" class="img-responsive" alt="Img-4.png">
+</p>
+</figure>
+
+<blockquote>
+<p>
+La maquina sabe cual es el orden de los elementos usando un heap
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> ¿Que es un heap?</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Un heap es una estructura de datos basada en árboles que se basa en lo
+siguiente.
+</p>
+
+<blockquote>
+<p>
+Si A es un nodo pariente de B entonces A esta ordenada con respecto de
+B para todos los nodos A, B en el heap.
+</p>
+</blockquote>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-5.png" class="img-responsive" alt="Img-5.png">
+</p>
+<figcaption><span class="figure-number">Figure 5:</span> En los Max Heap la Root va a ser mayor que las ramas y en la Min Heap el root va a ser el menor.</figcaption>
+</figure>
+
+<p>
+Estos son Heaps binarios, ya que cada nodo solo va a tener dos ramas.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> ¿Cuándo y dónde son usadas las PQ?</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li>Usadas en ciertas implementaciones de el algoritmo de el camino más
+corto de Dijkstra
+</li>
+<li>Cada vez que necesites buscar el sigiente mejor o el siguiente peor
+elemento
+</li>
+<li>Usado en codificación de Huffman (el cuál es usado para compresión de
+datos sin perdida)
+</li>
+<li>Usado en algoritmos de <i>Best First Search</i> (BFS) como A* que usa PQ
+para agarrar continuamente el nodo próximo mas prometedor.
+</li>
+<li>Usado para algoritmos de <i>Minimum Spanning Tree</i> (MST).
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Análisis de complejidad</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">Binary Heap Construction</th>
+<th scope="col" class="text-left">\(`O(n)`\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">Polling</td>
+<td class="text-left">\(`O(log(n))`\)</td>
+</tr>
+
+<tr>
+<td class="text-left">Peeking</td>
+<td class="text-left">\(`O(1)`\)</td>
+</tr>
+
+<tr>
+<td class="text-left">Adding</td>
+<td class="text-left">\(`O(log(n))`\)</td>
+</tr>
+
+<tr>
+<td class="text-left">Naive Removing</td>
+<td class="text-left">\(`O(n)`\)</td>
+</tr>
+
+<tr>
+<td class="text-left">Advanced removing with help from a hash table*</td>
+<td class="text-left">\(`O(log(n))`\)</td>
+</tr>
+
+<tr>
+<td class="text-left">Naive contains</td>
+<td class="text-left">\(`O(n)`\)</td>
+</tr>
+
+<tr>
+<td class="text-left">Contains check with help of a hash table*</td>
+<td class="text-left">\(`O(1)`\)</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<ul class="org-ul">
+<li>Usado una tabla de hash para ayudar a optimizar estas operaciones
+</li>
+</ul>
+<p>
+toma tiempo lineal.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> ¿Cómo convertir una Min PQ en una Max PQ?</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+A veces las librerias estándar de la mayoria de los lenguajes de
+programación solo proveen una <i>Min PQ</i> que ordena los elementos dede el
+elemento con menos prioridad.
+</p>
+
+<p>
+Desde que los elementos en una PQ son comparables, seguramente fue
+implementada alguna interfaz para comparar los elementos que podemos
+simplemente negar para producier un <i>Max Heap</i>.
+</p>
+
+<blockquote>
+<p>
+Sean \(`x, y`\) números en la PQ. Para un min PQ, Si \(`x <= y`\) entonces
+\(`x`\) sale de la PQ antes que \(`y`\) asi que lo contrario a esto es que
+si \(`x >= y`\) entonces \(`y`\) viene despues de \(`x`\).
+</p>
+</blockquote>
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-6.png" class="img-responsive" alt="Img-6.png">
+<img src="Imagenes/PriorityQueues/Img-7.png" class="img-responsive" alt="Img-7.png">
+</p>
+
+<blockquote>
+<p>
+Un método alternativo para números es negar los numeros mientras los
+insertas en la PQ y despues negarlos otra vez cuando salgan.
+</p>
+</blockquote>
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-8.png" class="img-responsive" alt="Img-8.png">
+<img src="Imagenes/PriorityQueues/Img-9.png" class="img-responsive" alt="Img-9.png">
+<img src="Imagenes/PriorityQueues/Img-7.png" class="img-responsive" alt="Img-7.png">
+</p>
+
+<blockquote>
+<p>
+Supongamos que <code>lex</code> es un comparador para strings que soporta strings
+en orden lexicografíco (el estándar en la mayoria de los lenguajes de
+programación). Entonces <code>nlex</code> es la negación de <code>lex</code> y \(`s_1, s_2`\)
+sean strings.
+</p>
+</blockquote>
+
+<pre class="example">
+  lex (s1, s2) = -1 if s1 &lt; s2 lexicographically
+  lex (s1, s2) = 0 if s1 = s2 lexicographically
+  lex (s1, s2) = +1 if s1 &gt; s2 lexicographically
+
+  nlex (s1, s2) = -(-1) = +1 s1 &lt; s2 lexicographically
+  nlex (s1, s2) = -(0) = 0 s1 = s2 lexicographically
+  nlex (s1, s2) = -(+1) = -1 s1 &gt; s2 lexicographically
+</pre>
+
+<p>
+Añadiendo todos estos string a la derecha de la PQ con el comparador
+<code>lex</code> obtenemos lo siguiente.
+</p>
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-10.png" class="img-responsive" alt="Img-10.png">
+<img src="Imagenes/PriorityQueues/Img-11.png" class="img-responsive" alt="Img-11.png">
+</p>
+
+<p>
+Añadiendo todos estos string a la derecha de la PQ con el operador
+<code>nlex</code>, obtenemos lo contrario.
+</p>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-12.png" class="img-responsive" alt="Img-12.png">
+</p>
+</figure>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-1-4-1" name="sec-1-1-4-1"></a>Añadir elementos a una Heap binaria<br ><div class="outline-text-5" id="text-1-1-4-1">
+<p>
+Priority queues (PQ) son usualmente implementadas con
+heaps, porque dan el mejor resultado en complejidad de tiempo.
+</p>
+
+<p>
+Una PQ es un <b>Abstract Data Type</b> (ADT), desde que usando heaps no es la
+única manera de implementar PQs. Como ejemplo, Se podria usar una lista
+no ordenada pero no nos daria la los mejores resultados en terminos de
+complejidad del tiempo.
+</p>
+
+<p>
+Hay muchos tipos de heaps que se pueden utilizar para implementar una
+PQ:
+</p>
+<ul class="org-ul">
+<li>Binary Heap
+</li>
+<li>Fibonacci Heap
+</li>
+<li>Binomial Heap
+</li>
+<li>Pairing Heap
+</li>
+<li>Etc.
+</li>
+</ul>
+</div>
+</li>
+
+<li><a id="sec-1-1-4-2" name="sec-1-1-4-2"></a>Binary Heap<br ><div class="outline-text-5" id="text-1-1-4-2">
+<p>
+Una heap binaria es un árbol binario que soporta la variante heap. En
+este árbol cada nodo tiene como máximo dos nodos hijos.
+</p>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-13.png" class="img-responsive" alt="Img-13.png">
+</p>
+</figure>
+
+<p>
+Un árbol binario completo es un árbol en el cúal cada nivel, exepto
+problablemente el último está lleno completamente y los nodos hijos
+estan llenos hasta la derecha.
+</p>
+
+<blockquote>
+<p>
+Sea \(`i`\) el índice del nodo padre (basado en zero):
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Índice del nodo hijo de la izquierda: \(`2i + 1`\) &gt;
+</li>
+<li>Índice del nodo hijo de la derecha: \(`2i + 2`\)
+</li>
+</ul>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-14.png" class="img-responsive" alt="Img-14.png">
+</p>
+</figure>
+</div>
+</li>
+
+<li><a id="sec-1-1-4-3" name="sec-1-1-4-3"></a>Añadiendo Elementos a una Heap binaria<br ><div class="outline-text-5" id="text-1-1-4-3">
+<p>
+Sea la Heap binaria:
+<img src="Imagenes/PriorityQueues/Img-15.png" class="img-responsive" alt="Img-15.png">
+</p>
+
+<pre class="example">
+=Insert(1)=
+</pre>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-16.png" class="img-responsive" alt="Img-16.png">
+</p>
+</figure>
+
+<blockquote>
+<p>
+Debido a que esta es una <i>Min Heap</i> tenemos que acomodoar los nodos de nuevo,
+intercambiando el nodo padre por el hijo si este es mayor haciendolo de
+manera recursiva.
+</p>
+</blockquote>
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-17.png" class="img-responsive" alt="Img-17.png">
+<img src="Imagenes/PriorityQueues/Img-18.png" class="img-responsive" alt="Img-18.png">
+<img src="Imagenes/PriorityQueues/Img-19.png" class="img-responsive" alt="Img-19.png">
+</p>
+
+<pre class="example">
+=Insert(13)=
+</pre>
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-20.png" class="img-responsive" alt="Img-20.png">
+<img src="Imagenes/PriorityQueues/Img-21.png" class="img-responsive" alt="Img-21.png">
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-4-4" name="sec-1-1-4-4"></a>Remover elementos de una Heap binaria<br ><div class="outline-text-5" id="text-1-1-4-4">
+<ul class="org-ul">
+<li><code>Poll()</code>
+polling, haciendo esto eliminamos el primer nodo y lo
+intercambiamos por el último, siguendo las propiedades de la heap.
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-22.png" class="img-responsive" alt="Img-22.png">
+<img src="Imagenes/PriorityQueues/Img-22-1.png" class="img-responsive" alt="Img-22-1.png">
+<img src="Imagenes/PriorityQueues/Img-22-2.png" class="img-responsive" alt="Img-22-2.png">
+<img src="Imagenes/PriorityQueues/Img-22-3.png" class="img-responsive" alt="Img-22-3.png">
+<img src="Imagenes/PriorityQueues/Img-22-4.png" class="img-responsive" alt="Img-22-4.png">
+</p>
+</li>
+
+<li><code>Remove(12)</code>
+Buscamos 12 haciendo un escaneo lineal por todoss los
+elementos hasta que encontramos el número 12.
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-23.png" class="img-responsive" alt="Img-23.png">
+<img src="Imagenes/PriorityQueues/Img-23-1.png" class="img-responsive" alt="Img-23-1.png">
+<img src="Imagenes/PriorityQueues/Img-23-2.png" class="img-responsive" alt="Img-23-2.png">
+</p>
+</li>
+</ul>
+
+<blockquote>
+<ul class="org-ul">
+<li>Polling - \(`O(log(n))`\)
+</li>
+<li>Removing - \(`O(n)`\) - Hay una manera más eficiente de hacerlo
+</li>
+</ul>
+</blockquote>
+</div>
+</li>
+
+<li><a id="sec-1-1-4-5" name="sec-1-1-4-5"></a>Remover elementos de una heap binaria en tiempo logaritmico<br ><div class="outline-text-5" id="text-1-1-4-5">
+<p>
+La inieficiencia de el anterior algoritmo para remover elementos de la
+heap viene del hecho de que tenemos que hacer una busqueda lineal
+(llendo de uno por uno) para buscar en dónde está indexado el elemento
+en cuestión. La solución es buscarlo haciendo uso de una <i>hashtable</i>
+Tabla de hash Para buscar en que nodo esta indexado.
+</p>
+
+<p>
+<b>Problema:</b> ¿Que pasa si hay dos nodos con el mismo valor?
+</p>
+
+<p>
+En vez de mapear un valor con una posición, mapearemos un valor a
+múltiples posiciones. Podemos mantener un <i>Set</i> o un <i>Tree Set</i> de
+índices para un nodo particual y el valor (o llave) al que es mapeado.
+</p>
+
+
+<figure>
+<p><img src="Imagenes/PriorityQueues/Img-24.png" class="img-responsive" alt="Img-24.png">
+</p>
+</figure>
+
+<ul class="org-ul">
+<li><code>insert(3)</code>
+</li>
+</ul>
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-24-1.png" class="img-responsive" alt="Img-24-1.png">
+<img src="Imagenes/PriorityQueues/Img-24-2.png" class="img-responsive" alt="Img-24-2.png">
+<img src="Imagenes/PriorityQueues/Img-24-3.png" class="img-responsive" alt="Img-24-3.png">
+</p>
+
+<ul class="org-ul">
+<li><code>remove(2)</code> que sería igual a hacer un <code>poll()</code>
+</li>
+</ul>
+
+<p>
+<img src="Imagenes/PriorityQueues/Img-24-4.png" class="img-responsive" alt="Img-24-4.png">
+<img src="Imagenes/PriorityQueues/Img-24-5.png" class="img-responsive" alt="Img-24-5.png">
+<img src="Imagenes/PriorityQueues/Img-24-6.png" class="img-responsive" alt="Img-24-6.png">
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Implementación en código</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-java">  <span style="color: #78808f; font-style: italic;">/**</span>
+<span style="color: #78808f; font-style: italic;">   * A min priority queue implementation using a binary heap.</span>
+<span style="color: #78808f; font-style: italic;">   *</span>
+<span style="color: #78808f; font-style: italic;">   * </span><span style="color: #81A1C1; font-style: italic;">@author</span><span style="color: #78808f; font-style: italic;"> William Fiset, william.alexandre.fiset@gmail.com</span>
+<span style="color: #78808f; font-style: italic;">   */</span>
+  <span style="color: #81A1C1; font-style: italic;">package</span> com.williamfiset.algorithms.datastructures.<span style="color: #81A1C1;">priorityqueue</span>;
+
+  <span style="color: #81A1C1; font-style: italic;">import</span> <span style="color: #81A1C1;">java</span>.<span style="color: #81A1C1;">util</span>.<span style="color: #8FBCBB;">ArrayList</span>;
+  <span style="color: #81A1C1; font-style: italic;">import</span> <span style="color: #81A1C1;">java</span>.<span style="color: #81A1C1;">util</span>.<span style="color: #8FBCBB;">Collection</span>;
+  <span style="color: #81A1C1; font-style: italic;">import</span> <span style="color: #81A1C1;">java</span>.<span style="color: #81A1C1;">util</span>.<span style="color: #8FBCBB;">List</span>;
+
+  <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #81A1C1; font-style: italic;">class</span> <span style="color: #8FBCBB;">BinaryHeap</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span> <span style="color: #81A1C1; font-style: italic;">extends</span> <span style="color: #8FBCBB;">Comparable</span><span style="color: #B48EAD;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #B48EAD;">&gt;</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #81A1C1;">{</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">A dynamic list to track the elements inside the heap</span>
+    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">List</span><span style="color: #B48EAD;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #B48EAD;">&gt;</span> <span style="color: #D8DEE9;">heap</span> = <span style="color: #81A1C1;">null</span>;
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Construct and initially empty priority queue</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">BinaryHeap</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">this</span><span style="color: #A3BE8C;">(</span><span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Construct a priority queue with an initial capacity</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">BinaryHeap</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">sz</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      heap = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">ArrayList</span><span style="color: #A3BE8C;">&lt;&gt;(</span>sz<span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Construct a priority queue using heapify in O(n) time, a great explanation can be found at:</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">BinaryHeap</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">[]</span> <span style="color: #D8DEE9;">elems</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">heapSize</span> = elems.length;
+      heap = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">ArrayList</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;(</span>heapSize<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Place all element in heap</span>
+      <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span> = <span style="color: #B48EAD; font-weight: bold;">0</span>; i &lt; <span style="color: #8FBCBB;">heapSize</span>; i++<span style="color: #A3BE8C;">)</span> heap.add<span style="color: #A3BE8C;">(</span>elems<span style="color: #81A1C1;">[</span>i<span style="color: #81A1C1;">]</span><span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Heapify process, O(n)</span>
+      <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span> = Math.max<span style="color: #81A1C1;">(</span><span style="color: #B48EAD; font-weight: bold;">0</span>, <span style="color: #B48EAD;">(</span>heapSize / <span style="color: #B48EAD; font-weight: bold;">2</span><span style="color: #B48EAD;">)</span> - <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #81A1C1;">)</span>; i &gt;= <span style="color: #B48EAD; font-weight: bold;">0</span>; i--<span style="color: #A3BE8C;">)</span> sink<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Priority queue construction, O(n)</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">BinaryHeap</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">Collection</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">elems</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">heapSize</span> = elems.size<span style="color: #A3BE8C;">()</span>;
+      heap = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">ArrayList</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;(</span>heapSize<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Add all elements of the given collection to the heap</span>
+      heap.addAll<span style="color: #A3BE8C;">(</span>elems<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Heapify process, O(n)</span>
+      <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span> = Math.max<span style="color: #81A1C1;">(</span><span style="color: #B48EAD; font-weight: bold;">0</span>, <span style="color: #B48EAD;">(</span>heapSize / <span style="color: #B48EAD; font-weight: bold;">2</span><span style="color: #B48EAD;">)</span> - <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #81A1C1;">)</span>; i &gt;= <span style="color: #B48EAD; font-weight: bold;">0</span>; i--<span style="color: #A3BE8C;">)</span> sink<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Returns true/false depending on if the priority queue is empty</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">isEmpty</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">return</span> size<span style="color: #A3BE8C;">()</span> == <span style="color: #B48EAD; font-weight: bold;">0</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Clears everything inside the heap, O(n)</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">clear</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
+      heap.clear<span style="color: #A3BE8C;">()</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Return the size of the heap</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">int</span> <span style="color: #8FBCBB;">size</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">return</span> heap.size<span style="color: #A3BE8C;">()</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Returns the value of the element with the lowest</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">priority in this priority queue. If the priority</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">queue is empty null is returned.</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">peek</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">null</span>;
+      <span style="color: #81A1C1; font-style: italic;">return</span> heap.get<span style="color: #A3BE8C;">(</span><span style="color: #B48EAD; font-weight: bold;">0</span><span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Removes the root of the heap, O(log(n))</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">poll</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">return</span> removeAt<span style="color: #A3BE8C;">(</span><span style="color: #B48EAD; font-weight: bold;">0</span><span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Test if an element is in heap, O(n)</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">contains</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Linear scan to check containment</span>
+      <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span> = <span style="color: #B48EAD; font-weight: bold;">0</span>; i &lt; <span style="color: #8FBCBB;">size</span><span style="color: #81A1C1;">()</span>; i++<span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>heap.get<span style="color: #81A1C1;">(</span>i<span style="color: #81A1C1;">)</span>.equals<span style="color: #81A1C1;">(</span>elem<span style="color: #81A1C1;">)</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">true</span>;
+      <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">false</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Adds an element to the priority queue, the</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">element must not be null, O(log(n))</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">add</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>elem == <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">IllegalArgumentException</span><span style="color: #A3BE8C;">()</span>;
+
+      heap.add<span style="color: #A3BE8C;">(</span>elem<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">indexOfLastElem</span> = size<span style="color: #A3BE8C;">()</span> - <span style="color: #B48EAD; font-weight: bold;">1</span>;
+      swim<span style="color: #A3BE8C;">(</span>indexOfLastElem<span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Tests if the value of node i &lt;= node j</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">This method assumes i &amp; j are valid indices, O(1)</span>
+    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">less</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span>, <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">j</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">node1</span> = heap.get<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">node2</span> = heap.get<span style="color: #A3BE8C;">(</span>j<span style="color: #A3BE8C;">)</span>;
+      <span style="color: #81A1C1; font-style: italic;">return</span> node1.compareTo<span style="color: #A3BE8C;">(</span>node2<span style="color: #A3BE8C;">)</span> &lt;= <span style="color: #B48EAD; font-weight: bold;">0</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Perform bottom up node swim, O(log(n))</span>
+    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">swim</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">k</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Grab the index of the next parent node WRT to k</span>
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">parent</span> = <span style="color: #A3BE8C;">(</span>k - <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #A3BE8C;">)</span> / <span style="color: #B48EAD; font-weight: bold;">2</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Keep swimming while we have not reached the</span>
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">root and while we're less than our parent.</span>
+      <span style="color: #81A1C1; font-style: italic;">while</span> <span style="color: #A3BE8C;">(</span>k &gt; <span style="color: #B48EAD; font-weight: bold;">0</span> &amp;&amp; less<span style="color: #81A1C1;">(</span>k, parent<span style="color: #81A1C1;">)</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
+        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Exchange k with the parent</span>
+        swap<span style="color: #81A1C1;">(</span>parent, k<span style="color: #81A1C1;">)</span>;
+        k = parent;
+
+        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Grab the index of the next parent node WRT to k</span>
+        parent = <span style="color: #81A1C1;">(</span>k - <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #81A1C1;">)</span> / <span style="color: #B48EAD; font-weight: bold;">2</span>;
+      <span style="color: #A3BE8C;">}</span>
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Top down node sink, O(log(n))</span>
+    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">sink</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">k</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">heapSize</span> = size<span style="color: #A3BE8C;">()</span>;
+      <span style="color: #81A1C1; font-style: italic;">while</span> <span style="color: #A3BE8C;">(</span><span style="color: #81A1C1;">true</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
+        <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">left</span> = <span style="color: #B48EAD; font-weight: bold;">2</span> * k + <span style="color: #B48EAD; font-weight: bold;">1</span>; <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Left  node</span>
+        <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">right</span> = <span style="color: #B48EAD; font-weight: bold;">2</span> * k + <span style="color: #B48EAD; font-weight: bold;">2</span>; <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Right node</span>
+        <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">smallest</span> = left; <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Assume left is the smallest node of the two children</span>
+
+        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Find which is smaller left or right</span>
+        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">If right is smaller set smallest to be right</span>
+        <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #81A1C1;">(</span>right &lt; <span style="color: #8FBCBB;">heapSize</span> &amp;&amp; less<span style="color: #B48EAD;">(</span>right, left<span style="color: #B48EAD;">)</span><span style="color: #81A1C1;">)</span> smallest = right;
+
+        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Stop if we're outside the bounds of the tree</span>
+        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">or stop early if we cannot sink k anymore</span>
+        <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #81A1C1;">(</span>left &gt;= heapSize || less<span style="color: #B48EAD;">(</span>k, smallest<span style="color: #B48EAD;">)</span><span style="color: #81A1C1;">)</span> <span style="color: #81A1C1; font-style: italic;">break</span>;
+
+        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Move down the tree following the smallest node</span>
+        swap<span style="color: #81A1C1;">(</span>smallest, k<span style="color: #81A1C1;">)</span>;
+        k = smallest;
+      <span style="color: #A3BE8C;">}</span>
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Swap two nodes. Assumes i &amp; j are valid, O(1)</span>
+    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">swapint</span> <span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">i</span>, <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">j</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem_i</span> = heap.get<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem_j</span> = heap.get<span style="color: #A3BE8C;">(</span>j<span style="color: #A3BE8C;">)</span>;
+
+      heap.set<span style="color: #A3BE8C;">(</span>i, elem_j<span style="color: #A3BE8C;">)</span>;
+      heap.set<span style="color: #A3BE8C;">(</span>j, elem_i<span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Removes a particular element in the heap, O(n)</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">remove</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">element</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>element == <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">false</span>;
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Linear removal via search, O(n)</span>
+      <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span> = <span style="color: #B48EAD; font-weight: bold;">0</span>; i &lt; <span style="color: #8FBCBB;">size</span><span style="color: #81A1C1;">()</span>; i++<span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
+        <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #81A1C1;">(</span>element.equals<span style="color: #B48EAD;">(</span>heap.get<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span><span style="color: #B48EAD;">)</span><span style="color: #81A1C1;">)</span> <span style="color: #81A1C1;">{</span>
+          removeAt<span style="color: #B48EAD;">(</span>i<span style="color: #B48EAD;">)</span>;
+          <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">true</span>;
+        <span style="color: #81A1C1;">}</span>
+      <span style="color: #A3BE8C;">}</span>
+      <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">false</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Removes a node at particular index, O(log(n))</span>
+    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">removeAt</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">null</span>;
+
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">indexOfLastElem</span> = size<span style="color: #A3BE8C;">()</span> - <span style="color: #B48EAD; font-weight: bold;">1</span>;
+      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">removed_data</span> = heap.get<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+      swap<span style="color: #A3BE8C;">(</span>i, indexOfLastElem<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Obliterate the value</span>
+      heap.remove<span style="color: #A3BE8C;">(</span>indexOfLastElem<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Check if the last element was removed</span>
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>i == indexOfLastElem<span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> removed_data;
+      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem</span> = heap.get<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Try sinking element</span>
+      sink<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">If sinking did not work try swimming</span>
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>heap.get<span style="color: #81A1C1;">(</span>i<span style="color: #81A1C1;">)</span>.equals<span style="color: #81A1C1;">(</span>elem<span style="color: #81A1C1;">)</span><span style="color: #A3BE8C;">)</span> swim<span style="color: #A3BE8C;">(</span>i<span style="color: #A3BE8C;">)</span>;
+      <span style="color: #81A1C1; font-style: italic;">return</span> removed_data;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Recursively checks if this heap is a min heap</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">This method is just for testing purposes to make</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">sure the heap invariant is still being maintained</span>
+    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Called this method with k=0 to start at the root</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">isMinHeap</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">k</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">If we are outside the bounds of the heap return true</span>
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">heapSize</span> = size<span style="color: #A3BE8C;">()</span>;
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>k &gt;= heapSize<span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">true</span>;
+
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">left</span> = <span style="color: #B48EAD; font-weight: bold;">2</span> * k + <span style="color: #B48EAD; font-weight: bold;">1</span>;
+      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">right</span> = <span style="color: #B48EAD; font-weight: bold;">2</span> * k + <span style="color: #B48EAD; font-weight: bold;">2</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Make sure that the current node k is less than</span>
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">both of its children left, and right if they exist</span>
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">return false otherwise to indicate an invalid heap</span>
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>left &lt; <span style="color: #8FBCBB;">heapSize</span> &amp;&amp; <span style="color: #81A1C1; font-weight: bold;">!</span>less<span style="color: #81A1C1;">(</span>k, left<span style="color: #81A1C1;">)</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">false</span>;
+      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>right &lt; <span style="color: #8FBCBB;">heapSize</span> &amp;&amp; <span style="color: #81A1C1; font-weight: bold;">!</span>less<span style="color: #81A1C1;">(</span>k, right<span style="color: #81A1C1;">)</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">false</span>;
+
+      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Recurse on both children to make sure they're also valid heaps</span>
+      <span style="color: #81A1C1; font-style: italic;">return</span> isMinHeap<span style="color: #A3BE8C;">(</span>left<span style="color: #A3BE8C;">)</span> &amp;&amp; isMinHeap<span style="color: #A3BE8C;">(</span>right<span style="color: #A3BE8C;">)</span>;
+    <span style="color: #B48EAD;">}</span>
+
+    <span style="color: #81A1C1;">@Override</span>
+    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">String</span> <span style="color: #8FBCBB;">toString</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
+      <span style="color: #81A1C1; font-style: italic;">return</span> heap.toString<span style="color: #A3BE8C;">()</span>;
+    <span style="color: #B48EAD;">}</span>
+  <span style="color: #81A1C1;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2020-12-25 Fri 20:59</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

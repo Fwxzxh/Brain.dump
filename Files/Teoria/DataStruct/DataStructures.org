@@ -1,0 +1,222 @@
+#+title: Data Structures
+
+* What is a Data Structure? (DS)
+- Una manera de organizar datos para que puedan ser usados de manera
+  efectiva.
+
+* Why Data Structures?
+
+- Son esenciales para crear algoritmos rápidos y eficientes.
+- Ayudan a manejar y organizar datos.
+- Hacen que el código se vea limpio y sea fácil de entender.
+
+* Abstact Data Type (ADT)
+Son una abstracción de una estructura de datos que provee solo la
+interfaz a la que una estructura de datos deberia de adherirse.
+
+Esta no da ningún detalle especifico sobre como algo debería de ser
+implementado.
+
+#+begin_quote
+  Si tuviera que llegar del punto A al punto B el ADT seria la tarea de
+  llegar de "A a B" y la estuctura de datos sería el medio para llegar
+  de "A a B".
+#+end_quote
+
+| Abstraction (ADT) | Implementation (DS)                                            |
+|-------------------+----------------------------------------------------------------|
+| List              | Dynamic Array, Linked List                                     |
+| Queue             | Linked List, Based Queue, Array based Queue, Stack based Queue |
+| Map               | Tree Map, Hash Map/Hash Table                                  |
+| Vehicle           | Golf Cart, Bycycle, Smart Car                                  |
+
+* Computational Complexity Anlalysis
+Se trata de preguntarnos dos preguntas: * ¿Cuánto *tiempo* este
+algoritmo tarda en terminar? * ¿Cuánto *espacio* necesita este algoritmo
+para trabajar?
+
+* Big-O Notation
+Esta notación nos da un tope de la complejidad en el *peor* caso,
+ayudando a cuantificar el rendimiento cuando el tamaño de la entrada de
+datos se hace arbitrariamente grande.
+** Niveles de complejidad
+Siendo $n$ el tamaño de la entrada, La complejidad va de la de menor a mayor.
+1. Tiempo Constante: $O(1)$.
+2. Tiempo Logarítmico: $O(log(n))$.
+3. Tiempo Linear: $O(n)$.
+4. Tiempo Linearitmic: $O(n*log(n)$.
+5. Tiempo Cuadrado: $O(n^2)$.
+6. Tiempo Cúbico: $O(n^3)$.
+7. Tiempo Exponencial: $O(b^n),b>1$.
+8. Tiempo Factorial: $O(n!)$.
+
+**  Propiedades de Big-O
+
+\begin{aligned}
+    O(n+c)&= \mathbf{O(n)} \\
+    O(cn)&= \mathbf{O(n)}, c>0
+\end{aligned}
+
+Sea f una función que describe el tiempo de ejecución de un algoritmo
+para una entrada de tamaño $n$:
+
+\begin{math}
+  f(n) = 7log(n)^3 + 15n^2 + 2n^3 + 8 \\
+  O(f(n)) = \mathbf{O(n^3)}
+\end{math}
+
+*** Ejemplos Big-O
+**** Tiempo Constante
+
+El siguiente ejemplo corre en tiempo /constante/: $0(1)$
+
+#+begin_src java
+  a := 1      
+  b := 1      
+  c := a + 5*b    
+#+end_src
+
+#+begin_src java
+  i := 0
+  While i < do
+  i = 1+1 
+#+end_src
+
+**** Tiempo Lineal
+Los siguientes ejemplos corren en tiempo /lineal/: $\mathbf{O(n)}$
+
+#+begin_src java
+  i := 0
+  While i < n Do
+      i = i + 1
+#+end_src
+
+Expresado matemáticamente
+
+\begin{aligned}
+    f(n) &= n \\
+    O(f(n)) &= \mathbf{O(n)}
+\end{aligned}
+
+#+begin_quote
+  Siendo $`n`$ el valor mayor posible llegaremos en $`n`$ iteraciones.
+#+end_quote
+
+#+begin_src java
+  i := 0
+  While i < n Do
+      i = i + 3
+#+end_src
+
+Expresado matemáticamente
+
+\begin{aligned}
+    f(n) &= n/3     \\
+    O(f(n)) &= \mathbf{O(n)}
+\end{aligned}
+
+#+begin_quote
+  Siendo $n$ el valor mayor posible llegaremos a $n$ en una tercera
+  parte de las iteraciones del ejemplo anterior.
+#+end_quote
+
+**** Tiempo Cuadrático
+Ambos de los siguientes ejemplos corren en tiempo cuadrático.
+
+El primero puede que sea ovbio desde que $n$ trabajos hechos en $n$
+tiempos es $n*n = \mathbf{O(n^2)}$ Pero el segundo..
+
+#+begin_src java
+  For (i := 0 ; i < n; i = i + 1)
+      For (j := 0 ; j < n; j = j + 1)
+#+end_src
+
+#+begin_example
+  f(n) = n* n = n^2, O(f(n)) = \mathbf{O(n^2)}
+#+end_example
+
+#+begin_src java
+  For (i := 0 ; i < n ; i = i + 1)
+      For (j := i ; j < n ; j = j = 1) 
+#+end_src
+
+En el segundo For. =i= toma valores desde $`[0,n)`$ la cantidad de
+ciclos que hace es directamente determinada por que valor =i= es.
+
+#+begin_quote
+  Si =i=0= hace $`n`$ iteraciones, si =i=1= hacemos $`n-1`$ iteraciones,
+  si hacemos =i=2=, hacemos $`n-2`$ iteraciones, etc...
+#+end_quote
+
+Esto se convierte en $n + (n-1) + (n-2) + (n-3) + \dots + 3 + 2 + 1$
+Esta serie se convierte en: $n(n-1)/2$ así que.
+
+\begin{math}
+O(n(n+1)/2) = O(n^2/2 + n/2) = \mathbf{O(n²)}
+\end{math}
+
+**** Tiempo Logarítmico
+Supongamos que tenemos un array ordenado y queremos encontrar el índice
+de un valor particular, Si este existe.
+
+¿Cuál es la complejidad en el tiempo del sigiente algoritmo?
+
+#+begin_src java
+  low := 0 
+  high := n-1 
+  While low <= high Do
+      mid := (low + high) / 2
+
+      If array[mid] == value: return mid
+      Else If array[mid] < value: lo = mid + 1
+      Else If array[mid] > value: hi = mid - 1
+
+  return -1 //value not found
+#+end_src
+
+#+begin_quote
+  *Respuesta:* $O(log_2(n)) = \mathbf{log(n))}$
+#+end_quote
+
+
+**** Otros ejemplos
+
+¿Cuál es la complejidad en el tiempo del sigiente algoritmo?
+
+#+begin_src java
+  i := 0
+  While i < n Do
+      j = 0
+      While j < 3*n Do
+          j = j + 1
+      j = 0 
+      While j < 2 * n Do
+          j = j + 1
+      i = i + 1
+#+end_src
+
+Representado matemáticamente
+
+  \begin{aligned}
+      f(n) &= n \cdot (3n + 2n) = 5n^2 \\
+      O(f(n)) &= \mathbf{O(n^2)}
+  \end{aligned}
+
+¿Cuál es la complejidad en el tiempo del sigiente algoritmo?
+
+#+begin_src java
+  i := 0
+  While i < 3 * n Do
+      j := 10
+      While j <= 40 Do
+          j = j + 1
+      j = 0
+      While j < n*n*n Do
+          j = j + 2
+      i = i + 1
+#+end_src
+
+\begin{math}
+    f(n) = 3n \cdot (40 + n^3 / 2) = 3n/40 + 3n^4/2 \\
+    O(f(n)) = \mathbf{O(n^4)}
+\end{math}
