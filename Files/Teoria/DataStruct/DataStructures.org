@@ -195,7 +195,7 @@ de un valor particular, Si este existe.
       i = i + 1
 #+end_src
 
-Representado matemáticamente
+Representado matemáticamente.
 
 \begin{aligned}
     f(n) &= n \cdot (3n + 2n) = 5n^2 \\
