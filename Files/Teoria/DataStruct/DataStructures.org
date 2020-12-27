@@ -197,10 +197,10 @@ de un valor particular, Si este existe.
 
 Representado matemáticamente
 
-  \begin{aligned}
-      f(n) &= n \cdot (3n + 2n) = 5n^2 \\
-      O(f(n)) &= \mathbf{O(n^2)}
-  \end{aligned}
+\begin{aligned}
+    f(n) &= n \cdot (3n + 2n) = 5n^2 \\
+    O(f(n)) &= \mathbf{O(n^2)}
+\end{aligned}
 
 ¿Cuál es la complejidad en el tiempo del sigiente algoritmo?
 
