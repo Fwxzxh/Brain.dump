@@ -83,7 +83,7 @@ El siguiente ejemplo corre en tiempo /constante/: $0(1)$
 #+end_src
 
 **** Tiempo Lineal
-Los siguientes ejemplos corren en tiempo /lineal/: $\mathbf{O(n)}$
+Los siguientes ejemplos corren en tiempo /lineal/: $\mathbf{O(n)}$.
 
 #+begin_src java
   i := 0
