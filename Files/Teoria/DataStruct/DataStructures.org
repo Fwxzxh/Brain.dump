@@ -151,9 +151,9 @@ ciclos que hace es directamente determinada por que valor =i= es.
 Esto se convierte en $n + (n-1) + (n-2) + (n-3) + \dots + 3 + 2 + 1$
 Esta serie se convierte en: $n(n-1)/2$ así que.
 
-\begin{math}
-O(n(n+1)/2) = O(n^2/2 + n/2) = \mathbf{O(n²)}
-\end{math}
+\begin{displaymath}
+    O(n(n+1)/2) = O(n^2/2 + n/2) = \mathbf{O(n²)}
+\end{displaymath}
 
 **** Tiempo Logarítmico
 Supongamos que tenemos un array ordenado y queremos encontrar el índice
@@ -216,7 +216,7 @@ Representado matemáticamente
       i = i + 1
 #+end_src
 
-\begin{math}
+\begin{displaymath}
     f(n) = 3n \cdot (40 + n^3 / 2) = 3n/40 + 3n^4/2 \\
     O(f(n)) = \mathbf{O(n^4)}
-\end{math}
+\end{displaymath}
