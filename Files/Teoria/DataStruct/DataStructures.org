@@ -60,10 +60,10 @@ Siendo $n$ el tamaño de la entrada, La complejidad va de la de menor a mayor.
 Sea f una función que describe el tiempo de ejecución de un algoritmo
 para una entrada de tamaño $n$:
 
-\begin{math}
-  f(n) = 7log(n)^3 + 15n^2 + 2n^3 + 8 \\
-  O(f(n)) = \mathbf{O(n^3)}
-\end{math}
+\begin{aligned}
+  f(n) &= 7log(n)^3 + 15n^2 + 2n^3 + 8 \\
+  O(f(n)) &= \mathbf{O(n^3)}
+\end{aligned}
 
 *** Ejemplos Big-O
 **** Tiempo Constante
@@ -99,7 +99,7 @@ Expresado matemáticamente
 \end{aligned}
 
 #+begin_quote
-  Siendo $`n`$ el valor mayor posible llegaremos en $`n`$ iteraciones.
+  Siendo $n$ el valor mayor posible llegaremos en $n$ iteraciones.
 #+end_quote
 
 #+begin_src java
@@ -175,7 +175,7 @@ de un valor particular, Si este existe.
 #+end_src
 
 #+begin_quote
-  *Respuesta:* $O(log_2(n)) = \mathbf{log(n))}$
+  *Respuesta:* $O(log_2(n)) = \mathbf{log(n))}$.
 #+end_quote
 
 
@@ -216,7 +216,7 @@ Representado matemáticamente
       i = i + 1
 #+end_src
 
-\begin{displaymath}
-    f(n) = 3n \cdot (40 + n^3 / 2) = 3n/40 + 3n^4/2 \\
-    O(f(n)) = \mathbf{O(n^4)}
-\end{displaymath}
+\begin{aligned}
+    f(n) &= 3n \cdot (40 + n^3 / 2) = 3n/40 + 3n^4/2 \\
+    O(f(n)) &= \mathbf{O(n^4)}
+\end{aligned}
