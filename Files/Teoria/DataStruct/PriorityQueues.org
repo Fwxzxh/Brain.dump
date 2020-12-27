@@ -1,3 +1,6 @@
+#+title:  PriorityQueues
+#+options: toc: 4
+
 * Priority Queues (PQ)
 ** ¿Que es una PQ?
 Es un tipo de dato abtracto (ADT) que

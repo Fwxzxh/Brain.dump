@@ -17,7 +17,7 @@ It is a bottom-up approach to knowledge management (KM) (Pollard 2008).” [[wik
 #+end_quote
 
 Emacs ha generado este sitio con la ayuda del glorioso Org-mode y [[https://github.com/marsmining/ox-twbs][ox-twbs]].
-Los archivos originales de este sitio pueden encontrarse en mi [[https://github.com/ElliotPenson/org][GitHub]].
+Los archivos originales de este sitio pueden encontrarse en mi [[https://github.com/Fwxzxh/Brain.dump][GitHub]].
 
 -----
 

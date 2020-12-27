@@ -151,9 +151,9 @@ ciclos que hace es directamente determinada por que valor =i= es.
 Esto se convierte en $n + (n-1) + (n-2) + (n-3) + \dots + 3 + 2 + 1$
 Esta serie se convierte en: $n(n-1)/2$ así que.
 
-\begin{displaymath}
+\begin{equation*}
     O(n(n+1)/2) = O(n^2/2 + n/2) = \mathbf{O(n²)}
-\end{displaymath}
+\end{equation*}
 
 **** Tiempo Logarítmico
 Supongamos que tenemos un array ordenado y queremos encontrar el índice
