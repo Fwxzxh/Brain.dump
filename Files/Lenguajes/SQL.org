@@ -2,7 +2,7 @@
 #+startup: fold
 #+options: toc:4
 
-[[file:1000_KnowledgeMOC.org][Knowledge Index]]
+[[file:~/org/Files/index.org][Índice]]
 
 * TODO DDL: Creando y Manipulando Objetos de la Base de Datos
 * DML: Manipulando La Infomación de Las Tablas

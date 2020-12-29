@@ -1,12 +1,11 @@
-#+title:  PriorityQueues
-#+options: toc: 4
+#+title: Priority Queues
+#+options: toc:4
 
 * Priority Queues (PQ)
 ** ¿Que es una PQ?
-Es un tipo de dato abtracto (ADT) que
-opera en forma similar a una cola, execpto que *cada elemento tiene
-cierta prioridad*. Esta prioridad define en que orden los elementos son
-removidos de la cola.
+Es un tipo de dato abstracto (ADT) que
+opera en forma similar a una cola, excepto que *cada elemento tiene cierta prioridad*.
+Esta prioridad define en que orden los elementos son removidos de la cola.
 
 #+begin_quote
 Las colas de prioridad solo soportan datos comparables, de modo que estos puedan ser ordenados de una manera u
@@ -18,10 +17,10 @@ Suponga que todos los siguientes valores son insertados en una PQ con un orden d
 #+caption: Si hacemos un =poll()= sacamos de la cola al elemento de mayor prioridad.
 [[file:Imagenes/PriorityQueues/Img-1.png]]
 
-#+caption: Si hacemos un =add(2)= agregamos 2 a la cola
+#+caption: Si hacemos un =add(2)= agregamos 2 a la cola.
 [[file:Imagenes/PriorityQueues/Img-2.png]]
 
-#+caption: Si hacemos otro =poll()=
+#+caption: Si hacemos otro =poll()=.
 [[file:Imagenes/PriorityQueues/Img-3.png]]
 
 [[file:Imagenes/PriorityQueues/Img-4.png]]
@@ -35,8 +34,8 @@ Un heap es una estructura de datos basada en árboles que se basa en lo
 siguiente.
 
 #+begin_quote
-  Si A es un nodo pariente de B entonces A esta ordenada con respecto de
-  B para todos los nodos A, B en el heap.
+Si A es un nodo pariente de B entonces A esta ordenada con respecto de
+B para todos los nodos A, B en el heap.
 #+end_quote
 
 #+caption:  En los Max Heap la Root va a ser mayor que las ramas y en la Min Heap el root va a ser el menor.
@@ -57,42 +56,41 @@ Estos son Heaps binarios, ya que cada nodo solo va a tener dos ramas.
 - Usado para algoritmos de /Minimum Spanning Tree/ (MST).
 
 *** Análisis de complejidad
-| Binary Heap Construction                       | $`O(n)`$      |
+| Binary Heap Construction                       | $O(n)$        |
 |------------------------------------------------+---------------|
-| Polling                                        | $`O(log(n))`$ |
-| Peeking                                        | $`O(1)`$      |
-| Adding                                         | $`O(log(n))`$ |
-| Naive Removing                                 | $`O(n)`$      |
-| Advanced removing with help from a hash table* | $`O(log(n))`$ |
-| Naive contains                                 | $`O(n)`$      |
-| Contains check with help of a hash table*      | $`O(1)`$      |
+| Polling                                        | $O(log(n))$   |
+| Peeking                                        | $O(1)$        |
+| Adding                                         | $O(log(n))$   |
+| Naive Removing                                 | $O(n)$        |
+| Advanced removing with help from a hash table* | $O(log(n))$   |
+| Naive contains                                 | $O(n)$        |
+| Contains check with help of a hash table*      | $O(1)$        |
 
 #+begin_quote
-  * Usado una tabla de hash para ayudar a optimizar estas operaciones
-  toma tiempo lineal.
+/* Usado una tabla de hash para ayudar a optimizar estas operaciones toma tiempo lineal.
 #+end_quote
 
 *** ¿Cómo convertir una Min PQ en una Max PQ?
-A veces las librerias estándar de la mayoria de los lenguajes de
-programación solo proveen una /Min PQ/ que ordena los elementos dede el
+A veces las librerías estándar de la mayoría de los lenguajes de
+programación solo proveen una /Min PQ/ que ordena los elementos desde el
 elemento con menos prioridad.
 
 Desde que los elementos en una PQ son comparables, seguramente fue
 implementada alguna interfaz para comparar los elementos que podemos
-simplemente negar para producier un /Max Heap/.
+simplemente negar para producir un /Max Heap/.
 
 #+begin_quote
-  Sean $`x, y`$ números en la PQ. Para un min PQ, Si $`x <= y`$ entonces
-  $`x`$ sale de la PQ antes que $`y`$ asi que lo contrario a esto es que
-  si $`x >= y`$ entonces $`y`$ viene despues de $`x`$.
+Sean $x, y$ números en la PQ. Para un min PQ, Si $x <= y$ entonces
+$x$ sale de la PQ antes que $y$ así que lo contrario a esto es que
+si $x >= y$ entonces $y$ viene despues de $x$.
 #+end_quote
 
 [[file:Imagenes/PriorityQueues/Img-6.png]]
 [[file:Imagenes/PriorityQueues/Img-7.png]]
 
 #+begin_quote
-  Un método alternativo para números es negar los numeros mientras los
-  insertas en la PQ y despues negarlos otra vez cuando salgan.
+Un método alternativo para números es negar los números mientras los
+insertas en la PQ y despues negarlos otra vez cuando salgan.
 #+end_quote
 
 [[file:Imagenes/PriorityQueues/Img-8.png]]
@@ -100,20 +98,20 @@ simplemente negar para producier un /Max Heap/.
 [[file:Imagenes/PriorityQueues/Img-7.png]]
 
 #+begin_quote
-  Supongamos que =lex= es un comparador para strings que soporta strings
-  en orden lexicografíco (el estándar en la mayoria de los lenguajes de
-  programación). Entonces =nlex= es la negación de =lex= y $`s_1, s_2`$
-  sean strings.
+Supongamos que =lex= es un comparador para strings que soporta strings
+en orden lexicografíco (el estándar en la mayoria de los lenguajes de
+programación). Entonces =nlex= es la negación de =lex= y $`s_1, s_2`$
+sean strings.
 #+end_quote
 
 #+begin_example
-  lex (s1, s2) = -1 if s1 < s2 lexicographically
-  lex (s1, s2) = 0 if s1 = s2 lexicographically
-  lex (s1, s2) = +1 if s1 > s2 lexicographically
+lex (s1, s2) = -1 if s1 < s2 lexicographically
+lex (s1, s2) = 0 if s1 = s2 lexicographically
+lex (s1, s2) = +1 if s1 > s2 lexicographically
 
-  nlex (s1, s2) = -(-1) = +1 s1 < s2 lexicographically
-  nlex (s1, s2) = -(0) = 0 s1 = s2 lexicographically
-  nlex (s1, s2) = -(+1) = -1 s1 > s2 lexicographically
+nlex (s1, s2) = -(-1) = +1 s1 < s2 lexicographically
+nlex (s1, s2) = -(0) = 0 s1 = s2 lexicographically
+nlex (s1, s2) = -(+1) = -1 s1 > s2 lexicographically
 #+end_example
 
 Añadiendo todos estos string a la derecha de la PQ con el comparador
@@ -155,11 +153,11 @@ problablemente el último está lleno completamente y los nodos hijos
 estan llenos hasta la derecha.
 
 #+begin_quote
-Sea $`i`$ el índice del nodo padre (basado en zero):
+Sea $i$ el índice del nodo padre (basado en cero):
 #+end_quote
 
-- Índice del nodo hijo de la izquierda: $`2i + 1`$ >
-- Índice del nodo hijo de la derecha: $`2i + 2`$
+- Índice del nodo hijo de la izquierda: $2i + 1$
+- Índice del nodo hijo de la derecha: $2i + 2$
 
 [[file:Imagenes/PriorityQueues/Img-14.png]]
 
@@ -168,7 +166,7 @@ Sea la Heap binaria:
 [[file:Imagenes/PriorityQueues/Img-15.png]]
 
 #+begin_example
-=Insert(1)=
+Insert(1)
 #+end_example
 
 [[file:Imagenes/PriorityQueues/Img-16.png]]
@@ -184,7 +182,7 @@ manera recursiva.
 [[file:Imagenes/PriorityQueues/Img-19.png]]
 
 #+begin_example
-=Insert(13)=
+Insert(13)
 #+end_example
 
 [[file:Imagenes/PriorityQueues/Img-20.png]]
@@ -211,8 +209,8 @@ manera recursiva.
   [[file:Imagenes/PriorityQueues/Img-23-2.png]]
 
 #+begin_quote
-  - Polling - $`O(log(n))`$
-  - Removing - $`O(n)`$ - Hay una manera más eficiente de hacerlo
+- Polling - $O(log(n))$
+- Removing - $O(n)$ - Hay una manera más eficiente de hacerlo
 #+end_quote
 
 **** Remover elementos de una heap binaria en tiempo logaritmico
@@ -244,6 +242,7 @@ múltiples posiciones. Podemos mantener un /Set/ o un /Tree Set/ de
 [[file:Imagenes/PriorityQueues/Img-24-6.png]]
 
 ** Implementación en código
+
 #+begin_src java
   /**
    * A min priority queue implementation using a binary heap.

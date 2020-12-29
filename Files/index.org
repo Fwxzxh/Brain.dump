@@ -6,7 +6,7 @@
 [[file:brain.png]]
 
 Este es mi pequeño /Personal Knowledge Management System/ en el cuál guardo
-todo lo que a mi cerebro le da pereza recordar, ademas de una que otra cosa más.
+todo lo que a mi cerebro le da pereza recordar, además de una que otra cosa más.
 
 #+begin_quote
 “Personal knowledge management (PKM) is a collection of processes that a person uses to gather, classify,
@@ -41,9 +41,9 @@ Mi propio rincón con enfoque tipo [[https://learnxinyminutes.com/][Learn X in Y
 - [[file:Lenguajes/SQL.org][SQL]] (heavy)
 - A
 
-* Teoria
+* Teoría
 #+begin_quote
-Teoria pura y +dura+.
+Teoría pura y +dura+.
 #+end_quote
 - [[file:Teoria/DataStruct/DataStructures.org][Estructuras de datos]]
   + [[file:Teoria/DataStruct/Stack.org][Stack]]
@@ -69,7 +69,8 @@ categorizar todo da +mucha+ pereza.
 #+begin_quote
 Notas literarias
 #+end_quote
-- A
+- Salud
+  + eh
 
 * Knowledge
 - Linux
