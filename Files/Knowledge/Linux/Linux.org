@@ -1,0 +1,5 @@
+#+title: Linux
+
+Algunas notas sobre cosas relacionadas con Linux.
+
+* Arch Linux

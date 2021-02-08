@@ -1,0 +1,17 @@
+#+title: Emacs
+
+Cosas sobre emacs
+
+* Org Mode
+** Cambiar idioma export
+Para cambiar el idioma para exportar de org mode a Latex o HTML podemos agregar estas lineas
+al inicio de el documento.
+
+#+begin_src org
+
+,#+LANGUAGE: es
+,#+LATEX_HEADER: \usepackage[AUTO]{babel}
+
+#+end_src
+
+** A

@@ -1,5 +1,7 @@
 #+title: Las cinco faces del hacking ético
 
+[[file:~/org/Files/Cursos/Pract-ethic-hack/PracIndex.org][Índice]]
+
 * Las cinco faces del hacking ético
 
 1. *Renocimiento (Reconnaissance):*

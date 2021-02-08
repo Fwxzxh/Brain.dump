@@ -1,5 +1,7 @@
 #+title: Linux
 
+[[file:~/org/Files/Cursos/Pract-ethic-hack/PracIndex.org][Índice]]
+
 * Navegando entre achivos
 Consola > GUI
 - =pwd= nos dice en que directorio estamos. (/PrintWorking Directory/)

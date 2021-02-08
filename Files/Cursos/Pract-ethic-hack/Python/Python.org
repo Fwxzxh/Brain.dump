@@ -1,5 +1,7 @@
 #+title: Python
 
+[[file:~/org/Files/Cursos/Pract-ethic-hack/PracIndex.org][Índice]]
+
 * Python
 ** Shebangs y Strings
 Siempre que hagamos un script en python tenemos que incluir una

@@ -1,6 +1,110 @@
 #+title: Longevidad y porque comer una vez al día
+#+startup: fold
+#+options: toc:nil num:nil
 
-Basado en este [[https://lifeforbusypeople.com/2016/07/23/longevity-why-i-eat-once-a-day/][post]].
+#+attr_html: :style justify
+style=”text-align: justify;”
+No les ha pasado que se encuentran haciendo /algo/ completamente banal y se
+preguntan; ¿Quien dijo que esta es la mejor forma de hacer $X$ o $Y$ cosa? a mi
+me pasa bastante debo decir, pero nunca me había cuestionado la razón para comer
+3 veces al día, es algo que nos dicen que /debemos/ hacer, pero ¿Por qué? ¿Es
+más saludable? ¿Es necesario para nuestro desarrollo?
 
-* El post
-E
+Era un día normal en mi feed de youtube cuando el infame algoritmo de este sitio
+me recomendó [[https://www.youtube.com/watch?v=PKfR6bAXr-c&feature=emb_logo][este]] vídeo, con un título bastante llamativo, después de verlo
+sentí que toda mi vida hasta el día de hoy había sido quizá un engaño, pero
+vamos por partes.
+
+* Use it the way it was designed!
+El vídeo empieza con una metáfora sobre un auto y su inventor, la cual dice.
+
+#+begin_quote
+In the 1950’s, my friend Bill was a very gifted Engineer who made an extraordinary car.
+It looked very similar to a Chevrolet Corvette, but the insides of the car is what made it so unique.
+It wasn’t the first Hybrid car, but it was much more practical and appealing than its predecessors.
+There was one snag: it never took off because he couldn’t get people to use it properly.
+The car’s main fuel source was electricity, and gasoline was to be put in whenever available.
+It was fine for the car to use gasoline every other day or so, but the problem was that people ran it on gasoline nearly 90% of the time.
+This resulted in the car breaking down frequently, to the surprise of the owners.
+Everyone was giving each other advice on how to run the car smoothly, all the while Bill was trying to tell people “Just use it the way it was designed!” Despite his advice, people continued to theorize about how to properly use the car.
+Bill went bankrupt and left the Automotive industry soon after.
+#+end_quote
+
+En esta pequeña metáfora se nos habla sobre un carro, su inventor y el mal hábito que tenemos las personas
+de hacer lo que se nos da la gana con nuestras cosas.
+Pero hay algo más allí, nosotros no somos máquinas diseñadas por el pequeño Bill, somos /Homo Sapiens/
+no voy a ponerme a hablar sobre nuestro origen, pero allí esta el problema,
+¿Como usamos nuestro cuerpo de la manera en la que fue diseñado?
+
+Digo, toda esta ola de gurúes de la nutrición y las incontables dietas que hay flotando por todas partes
+de internet son relativamente modernas, durante miles de años fuimos enteramente cazadores/recolectores,
+incluso la agricultura es relativamente nueva, comparado con el tiempo que algo parecido a nosotros
+ha caminado sobre la tierra, nosotros hemos adaptado todo nuestro entorno a nosotros, incluyendo nuestros alimentos
+solo tenemos que [[https://www.elespanol.com/cocinillas/reportajes-gastronomicos/20170130/fruta-cultivasen-humanos/189982229_0.html][observar]] como eran los alimentos de antes para darnos cuenta que quizá estábamos acostumbrados
+a comer menos de cada cosa.
+
+Lo más probable es que nuestro ambiente hubiera escogido nuestra dieta alimenticia en esos tiempos,
+obligándonos a comer lo que había en el lugar o lo que estaba muerto, pero más importante
+*obligándonos a comer solo cuando había algo que comer*, este razonamiento no es nada nuevo
+solo tenemos que voltear a ver a la dieta [[https://www.mayoclinic.org/es-es/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/paleo-diet/art-20111182][paleo]].
+
+* Buscando respuestas
+Haciendo una conjetura algo forzada de todo esto podríamos pensar,
+que entre más comamos, más sanos y más longevos somos, ignorando lo que nos sucede si comemos
+demasiado, esto podría tener sentido, ¿no?.
+
+En el vídeo nos ponen al buen Elon Musk [[youtube:NV3sBlRgzTI][explicando]] el [[https://es.wikipedia.org/wiki/Primer_principio][método]] del primer principio, el cual,
+para resumirlo se basa en descomponer las cosas en sus principios /fundamentales/, esos principios
+para los cuales no se necesita una demostración.
+
+¿Que podemos decir sobre la /longevidad/? Si le preguntaran a la gente ¿que necesitas hacer para vivir más?
+Las respuestas serian variadas, pero las palabras; ejercicio, nutrientes y antioxidantes serian recurrentes.
+
+Hablemos sobre las calorías, hay diversos estudios como [[https://academic.oup.com/ajcn/article/78/3/361/4689958][este]] que hablan sobre algo llamado restricción de
+calorías (CR) en casi todos los casos termina extendiendo la vida en animales, como dice este pequeño
+fragmento del /abstract/ de dicho articulo.
+
+#+begin_quote
+Calorie restriction (CR) extends life span and retards age-related chronic diseases in a variety of species,
+including rats, mice, fish, flies, worms, and yeast.
+The mechanism or mechanisms through which this occurs are unclear.
+CR reduces metabolic rate and oxidative stress, improves insulin sensitivity,
+and alters neuroendocrine and sympathetic nervous system function in animals.
+#+end_quote
+
+[[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3014770/][Este]] otro estudio habla sobre la isla de Okinawa, en Japón, esta isla tiene de 4 a 5 veces el promedio mundial de
+centenarios con un estimado de 50 en cada 100,000 personas, citando el articulo anterior.
+
+#+begin_quote
+What is interesting about this population is that a low caloric intake was reported in school children on the island more than 40 years ago and later studies confirmed a 20% CR in adults residing on Okinawa compared to mainland Japan.
+#+end_quote
+
+Entiendo, menos calorías nos llevan a tener una vida más saludable y larga, pero ¿Que sabemos sobre
+comer 3 veces al día? según Abigail Carrol en su libro [[https://www.amazon.com/Three-Squares-Invention-American-Meal/dp/0465025528][Three Squares: The Invention of the American Meal]];
+Tiene un origen cultural, no tanto biológico.
+
+#+begin_quote
+ Eating three meals a day was basically invented due to culture, not out of biological necessity.
+ It goes back to Middle Age Europe when they would eat a light meal before going out to work,
+ then a heavy meal in the middle of the day, then another light meal at night.
+ When European settlers got to America, they found Native Americans were basically just eating whenever they felt the urge to, rather than at specified times.
+ The Europeans took their lack of defined eating times as evidence that they were uncivilized and had them change.
+#+end_quote
+
+** La manera en que nuestro ambiente nos ha moldeado
+En nuestros inicios como cazadores-recolectores, muy probablemente
+hubiéramos tenido que pasar prolongados tiempos sin comer un bocado y si  no
+estuviéramos biológicamente preparados para hacer eso, probablemente no estaríamos
+aquí, y aun hay gente que vive de esta forma.
+
+En el Amazonas hay un grupo de gente llamados los [[https://daneverettbooks.com/about-dan/about-the-pirahas/][pirahã]], los cuales a pesar de
+conocer métodos de almacenamiento de comida, no intentan comer 3 veces al día,
+ni siquiera diariamente, solo almacenan comida para hacer intercambios con otras tribus.
+
+Este grupo de gente es de lo más parecido a la raza humana antes de la agricultura, la
+agricultura es la que nos permitió tener comida disponible cuando nosotros lo deseemos.
+
+Aquí podemos hablar sobre lo corta que era la esperanza de vida en esa época,
+pero hay muchísimos más factores que pueden afectar eso, como la mortalidad infantil,
+
+* A

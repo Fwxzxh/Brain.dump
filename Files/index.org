@@ -23,7 +23,7 @@ Los archivos originales de este sitio pueden encontrarse en mi [[https://github.
 
 * libros
 #+begin_quote
-Notas y sobre libros que le leido ultimamtente.
+Notas y sobre libros que le leído últimamente.
 #+end_quote
 - Libro 1
 
@@ -75,3 +75,5 @@ Notas literarias
 * Knowledge
 - Linux
   + [[file:Knowledge/Linux/Rices.org][Cool things]]
+  + [[file:Knowledge/Linux/Linux.org][Linux]]
+  + [[file:Knowledge/Linux/Emacs.org][Emacs]]

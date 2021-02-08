@@ -1,5 +1,7 @@
 #+title: Networking
 
+[[file:~/org/Files/Cursos/Pract-ethic-hack/PracIndex.org][Índice]]
+
 * IP Addresses
 
 - Trabaja dentro de la Capa 3, como los routers.

@@ -1,6 +1,6 @@
 #+title: Scripting with Bash
 
-Índice
+[[file:~/org/Files/Cursos/Pract-ethic-hack/PracIndex.org][Índice]]
 
 Todo el output de un comando de terminal puede ser guardado en un
 archivo, lo cual facilita la manipulación y análisis de este output.
