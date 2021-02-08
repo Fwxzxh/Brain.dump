@@ -2,4 +2,5 @@
 
 Algunas notas sobre cosas relacionadas con Linux.
 
+* Linux general
 * Arch Linux
