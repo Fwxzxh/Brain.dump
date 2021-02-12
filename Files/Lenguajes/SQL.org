@@ -5,7 +5,7 @@
 [[file:~/org/Files/index.org][Índice]]
 
 * TODO DDL: Creando y Manipulando Objetos de la Base de Datos
-* DML: Manipulando La Infomación de Las Tablas
+* DML: Manipulando La Información de Las Tablas
 Una *Transacción* es un conjunto de instrucciones DML que trabajan como una únidad lógica.
 ** Insertando Información
 - Con esta instrucción podemos insertar una fila a la vez.
@@ -580,7 +580,7 @@ Obtenemos la tabla:
 - Las funciones sobre filas individuales pueden ser anidadas a cualquier nivel.
 - Las funciones anidadas son evaluadas del nivel más interno al más externo.
   + =F3(F2(F1(col,arg1),arg2),arg3)=
-* DML: Obtieniendo Información de Múltiples Tablas
+* DML: Obteniendo Información de Múltiples Tablas
 ** ¿Qué es una reunión? (JOIN)
 - Se usa para consultar información de múltiples tablas.
 - La condición de reunión se escribe en la clausula =WHERE=.
@@ -994,3 +994,257 @@ DESCRIBE vw_emp90
 | Contiene Grupos de datos | No             | Si               |
 | DML a través de la vista | Si             | No siempre       |
 *** Modificando una Vista
+* DML: Producir impresiones legibles con SQL*Plus
+** Posibilidades de edición
+- SQL*Plus almacena un buffer con la última sentencia SQL introducida.
+- Esta sentencia puede ser recuperada para ejecutarla de nuevo con los comandos
+  + =RUN= Visualiza la sentencia antes de ejecutarla.
+  + =/= Ejecuta la sentencia sin visualizarla.
+- También podemos editar la sentencia SQL mediante un editor en línea.
+  + =APPEND texto= Añade texto al final de la linea.
+  + =CHANGE/fuente/destino= Cambia 'fuente' por 'destino'.
+    - =CHANGE/texto= Quita 'texto' de una linea.
+  + =CLEAR BUFFER= borra el buffer.
+  + =INPUT= inserta una o más lineas.
+- Podemos acceder desde el editor del sistema operativo al buffer.
+  + Necesitamos definir la variable =define_editor= Ej. =define_editor=vim=
+  + Accedemos al buffer con el comando =edit=.
+** Archivos SPOOL y SQL
+- SQL*Plus considera dos tipos de archivos, SPOOL y de comandos.
+  + Un archivo SPOOL almacena los comandos y resultados de una o varias consultas.
+    - =SPOOL archivo= Iniciamos SPOOL indicando el nombre del archivo de salida.
+    - =SPOOL OUT= Manda el archivo SPOOL a la impresora.
+    - =SPOOL OOF= Cierra el archivo SPOOL.
+    - =EXIT= Al salir de la sección se cierran los archivos SPOOL.
+  + Los archivos de comando almacenan instrucciones SQL y tiene de exención =.sql=.
+    - Para editarlo se usa el comando =EDIT=.
+    - Para ejecutarlo se usa el comando =START archivo= o =@archivo=.
+** Variables de sustitución
+- SQL*PLUS puede utilizar el =&= para guardar valores temporalmente.
+  + Pueden ser predefinidas con los comandos:
+    - =ACEPT= Lee la linea de entrada y la almacena en una variable.
+    - =DEFINE=  Crea y asigna el valor en una variable.
+  + Estas variables pueden ser usadas de manera interactivamente en el =WHERE=.
+    - Alterar títulos.
+    - Obtener valores de entrada.
+    - Valores de paso, Tomar valores de una secuencia SQL a otra.
+    - Ejemplo:
+
+     #+begin_src sql
+SQL> SELECT empno, ename, sal, depto
+FROM emp
+WHERE empno = &employee_num;
+
+Enter value for employee_num: 7369
+
+EMPNO ENAME SAL  DEPTNO
+----- ----- --- --------
+7369  SMITH 800       20
+
+SQL> define oficio=Analista
+SQL> define tabla=emp
+SQL> select nombre,job from &tabla where job='&oficio';
+old   1: select nombre, oficio from &tabla where oficio='&oficio'
+new   1: select nombre, oficio from emp where oficio='Analista'
+     #+end_src
+
+** Comando =SET VERIFY=
+- Se usa para confirmar los cambios de las sentencias SQL.
+  + Obliga a SQL*PLUS a desplegar el valor de las variables antes y despues de reemplazar.
+
+    #+begin_src sql
+SQL> SET VERIFY ON
+SQL> SELECT empno, ename, sal, deptno
+   2 FROM emp
+   3 WHERE empno= &employee_num;
+
+Enter value for employee_num: 7369
+
+Old  3: WHERE empno=&employee_num
+New  3: WHERE empno=7369
+    #+end_src
+
+** Doble && para la sustitución de variables
+- Se puede utilizar para la sustitución de variables
+  + Solo es una sustitución de un solo uso, después volverá a ser el anterior
+
+#+begin_example
+SQL> SELECT empno, ename, job, &&column_name
+FROM emp
+ORDER BY &colum_name
+
+Enter value for colum_name: deptno
+
+EMPNO ENAME  JOB      DEPTNO
+----- ------ -------------- ------
+ 7839 KING  PRESIDENT         10
+ 7782 CLARK  MANAGER    10
+ 7934 MILLER CLERK    10
+#+end_example
+
+** Definiendo variables de usuario
+- Se pueden predefinir variables de usuario antes de ejecutar una sentencia.
+  + =DEFINE variable=value= Crea una variable tipo CHAR y le asigna un valor.
+  + =DEFINE variable= Despliega una variable, su valor y su tipo de dato.
+  + =DEFINE= Despliega todas las variables de usuario y su información
+  + =ACCEPT= Lee a una linea de entrada del usuario y almacena la variable.
+*** Comando =ACCEPT=
+- Explícitamente define una variable de tipo NUMBER o DATE.
+- Oculta la entrada del usuario por razones de seguridad.
+- =ACCEPT varibale [datatype] [FORMAT format] [PROMPT text] [HIDE]=
+  + Variable: el nombre de la variable que almacena el valor.
+  + DATATYPE: Puede ser NUMBER, CHAR o DATE.
+  + FORMAT: Especifica el formato, por ejemplo A10, 9,999.
+  + PROMPT: text, es el texto que se despliega antes de que el usuario introduzca el valor.
+  + HIDE: Oculta el valor que introduce el usuario.
+
+   #+begin_example
+ACCEPT p_dept PROMPT ‘Provide the department name:’
+SELECT *
+FROM dept
+WHERE dname = UPPER(‘&p_dept’)
+
+Provide the department name: Sales
+
+DEPTNO DNAME LOC
+------ ---------- -------
+    30 SALES CHICAGO
+   #+end_example
+
+*** Comandos =DEFINE= y =UNDEFINE=
+- Las variables son definidas hasta que:
+  + Se use el comando =UNDEFINE=.
+  + Salga de SQL*PLUS.
+  + Se modifica el archivo *login.sql* para que cada variable sea creada al iniciar.
+
+  + Ejemplo:
+    - Se crea una variable para almacenar el nombre del departamento.
+
+       #+begin_example
+    SQL> DEFINE deptname=sales
+    SQL> DEFINE deptname
+    DEFINE deptname   = “sales”(CHAR)
+       #+end_example
+
+    - Se crea la variable deptname, y la sentencia despliega.
+
+     #+begin_example
+SQL> SELECT *
+FROM dept
+WHERE dname = UPPER(‘&deptname’);
+
+DEPTNO DNAME  LOC
+------ ------ -------
+    30 SALES  CHICAGO
+     #+end_example
+
+    - Para borrar la variable definida, se usa =UNDEFINE=.
+
+     #+begin_example
+SQL> UNDEFINE deptname
+SQL> DEFINE deptname
+Symbol deptname is UNDEFINE.
+     #+end_example
+
+** Personalizando el ambiente de SQL*PLUS
+- Se usan los comandos =SET= para controlar la sesión actual.
+  + =SET system_variable value=
+- Se pueden verificar los contenidos de las variables con =SHOW=.
+
+ #+begin_example
+SQL> SET ECHO ON
+SQL> SHOW ECHO
+echo ON
+ #+end_example
+
+- Para poder mostrar todos los valores del comando =SET= se usa =SHOW ALL=.
+- El archivo *login.sql* contiene todos los comandos SQL y =SET= con valores standard.
+** Comandos para dar formato SQL*Plus
+- =COL[UMN] {clumn option}= controla el formato de las columnas.
+- =TITI[tle] {text OFF/ON}= Especifica un titulo para cada página del reporte.
+- =BTI[TLE] {text OFF/ON}= Especifica un pie de página para el reporte.
+- =BRE[AK] {ON report_element}= Suprime valores duplicados y selecciona filas de datos
+  con avances de linea.
+
+ #+begin_quote
+Todos los comandos de formato siguen teniendo efecto hasta al final de la sesión
+ #+end_quote
+
+*** El comando =COLUMN=
+Opciones:
+- =CLE[AR]= Borra el formato de cualquer columna.
+- =FOR[MAT] format=
+- =HEA[DING] text= Fija el titulo en la columna.
+- =JUS[TIFY] {align}= Justifica el titulo de la columna ya sea izquierda, centro o derecha.
+- =NOPRI[INT]= Oculta la columna.
+- =NUL[L] text= Especifica el texto que se desplegará para los valores ~NULL~.
+- =PRI[NT]= Muestra la columna.
+- =TRU[NCATED]= Trunca la secuencia en el extremo de la primera linea del informe.
+- =WRA[PED]= Cambia el final de la palabra a la siguiente linea.
+
+Para  realizar ajustes actuales para las columnas, se usan:
+- =COL[UMN] column= Despliega el valor de la columna especificada.
+- =COL[UMN]= Despliega el valor de todas las columnas.
+- =COL[UMN] column CLEAR= Quita ajustes para la columna especifica.
+- =CLE[AR] COL[UMN]= Quita ajustes para todas las columnas.
+
+**** Ejemplo
+1. Crear títulos para las columnas
+
+#+begin_src sql
+COLUMN ename HEADING ‘Employee|Name’ FORMAT A15
+COLUMN sal JUSTIFY LEFT FORMAT $99,990.00
+COLUMN mgr FORMAT 999999999 NULL ‘No manager’
+
+Select ename,sal,mgr from emp;
+
+#+end_src
+
+2. Despliega el valor actual para el nombre.
+
+#+begin_src sql
+COLUMN ename
+#+end_src
+*** Comandos =TITLE= y =BTITLE=
+- Formato para títulos y Pie de página.
+  + =TI[TLE] [text|OFF|ON]=.
+- Especificar el título del reporte.
+  + =SQL> TTITLE ‘Salary|Report’=.
+- Especificar el pie de página.
+  + =SQL> BTITLE ‘Confidential’=.
+- Se usa la =|= (barra vertical) para separar el titulo en varias lineas.
+*** Comando =BREAK=
+- Elimina las filas duplicadas.
+- Para suprimir los duplicados.
+  + =SQL> BREAK ON ename ON job=.
+- Para seleccionar un grupo de filas.
+  + =SQL> BREAK ON ename SKIP 4 ON job SKIP 2=
+- se puede usar el comando para seleccionar un grupo de filas y eliminar valores duplicados.
+- Sintaxis:
+  + =BREAK on column [|alias|row] [skip n|dup|page] on … [on report]=
+  + Donde:
+    - =page= - Cambia a una pagina nueva cuando el valor de =BREAK= cambia.
+    - =skip n= - Salta n número de llenas cuando el valor de =BREAK= cambia y puede
+      ser activado con:
+      + =Column=.
+      + =Row=.
+      + =Page=.
+      + =Report=.
+    - =Duplicate= - Despliega los valores duplicados.
+- Para limpiar todos los valores de =BREAK= se utiliza el comando =CLEAR=.
+*** Crear un fichero FLAT (plano)
+- Para mover datos entre diverso software a veces es necesario utilizar un archivo FLAT.
+  + FLAT = Un archivo sin caracteres de escape, títulos o caracteres adicionales.
+- Para lograr un archivo FLAT se utilizan los siguientes =SET=.
+
+  #+begin_src sql
+SET NEWPAGE 0
+SET SPACE 0
+SET LINESIZE 80
+SET PAGESIZE 0
+SET ECHO OFF
+SET FEEDBACK OFF
+SET HEADING OFF
+  #+end_src
+
+*** Lineas de comandos SQL*PLUS
