@@ -925,9 +925,9 @@ WHERE
     department_id = 100;
 #+end_src
 
-** Cereando una tabla usando Subconsultas
+** Creando una tabla usando Subconsultas
 Una tabla puede ser llenada combinando la cláusula =CREATE TABLE= y una subconsulta.
-- Si espeificas columas, debes de hacer coincidir el número de columas definidas
+- Si especificas columas, debes de hacer coincidir el número de columas definidas
   con las columas regresadas por la subconsulta.
 - Se definen nombres de consultas y valores
 *** Ejemplo
@@ -956,7 +956,7 @@ datos de una o más tablas.
   de cada tipo de usuario.
 *** Estructura de las vistas
 - Se incluye una subconsulta en el esta =CREATE VIEW=
-- La subconsulta puede contener sintaxís compleja, incluyendo joins, subconsultas y grupos.
+- La subconsulta puede contener sintaxis compleja, incluyendo /joins/, subconsultas y grupos.
 - La subconsulta *no* debe contener la cláusula =ORDER BY=.
 #+begin_src sql
 CREATE [OR REPLACE] [FORCE|NONFORCE] VIEW view
@@ -967,7 +967,7 @@ AS subconsulta
 #+end_src
 
 *** Creando vistas
-Crea una vista, EMPVU10, que contenga los detalles de los empleados del departamento 90.
+Crea una vista, =EMPVU10=, que contenga los detalles de los empleados del departamento 90.
 #+begin_src sql
 CREATE VIEW vw_emp90
 AS
@@ -1248,3 +1248,58 @@ SET HEADING OFF
   #+end_src
 
 *** Lineas de comandos SQL*PLUS
+* Crear y administrar tablas que incluyan /constraints/
+** Integridad de los datos
+- El objetivo en cuanto integridad es proteger la base de datos contra operaciones
+  que puedan traer inconsistencias en los datos.
+- Integridad de datos:
+  + Es el grado en el cual los datos son correctos.
+  + Cuando una base de datos contiene errores pierde integridad.
+  + Garantiza que los datos en una base de datos se adhieran a un sistema de reglas predefinidas.
+- Reglas de integridad
+  + Integridad de la entidad:
+    - Mantiene los datos dentro de una entidad.
+  + Integridad referencial:
+    - Mantiene los datos entre tablas.
+  + integridad de la columna:
+    - Valores que contienen constantes el formato de datos definidos.
+  + Integridad definida por el usuario:
+    - Los datos almacenados en la base de datos deben de seguir las reglas de negocios.
+** Tipos de integridad
+Las siguientes reglas se aplican a tablas y permiten hacer cumplir diversos tipos de
+integridad de datos.
+- =NULLs=
+  + Es una regla definida en una columna que permite que un dato contenga un =NULL=.
+- =UNIQUE COLUMN VALUES=
+  + Es una regla definida en una columna que permite que haya una valor único por columna.
+- =PRIMARY KEY VALUES=
+  + Es una regla definida en una columna  para identificar únicamente a una fila en una tabla.
+- =REFERENCIAL INTEGRITY=
+  + Es una regla definida en una columna que permite que el =insert= o el =update= de
+    registros para que solamente si el valor de la columna o sistema de columnas empareja
+    un valor en una columna de una tabla relacionada.
+  + Hay otras reglas que se relacionan con la integridad referencial:
+    - =RESTRICT=
+      + Regla que rechaza la actualización o eliminación de datos referidos.
+    - =SET TO NULL=
+      + Cuando los datos referidos son actualizados o borrados, todos se fijan a un valor default.
+    - =CASCADE=
+      + Cuando los datos referidos son actualizados,
+        todos los datos dependientes asociados son correspondientemente actualizados.
+    - =COMPLEX INTEGRITY CHEKING=
+      + Una regla definida por el usuario para una columna que permite =inserts=,
+        =update=, =delete= de registros basados en el valor que contiene para la columna.
+** Tipos de constraints
+Oracle soporta los siguientes constraints de integridad:
+- =NOT NULL=
+  + Especifica que una columna no puede contener valores nulos.
+- =UNIQUE=
+  + Asegura que los valores de una columna no pueden ser iguales.
+- =PRIMARY KEY=
+  + Asegura que cada registro de la tabla debe contener una entrada que distinga únicamente
+    a la fila de cualquier otra fila.
+- =FOREGIN KEY=
+  + Se asegura que cada fila en una tabla pueda tener una relación a los datos en otra tabla.
+  + pag 4
+
+** s

@@ -1,0 +1,26 @@
+#+title: Notas Varias
+
+#+begin_quote
+Aquí hay notas sobre diferentes temas o vídeos que he visto sin un orden aparente
+#+end_quote
+
+* The Black box method :learning:
+
+Fuente: [[https://youtu.be/RDzsrmMl48I][YouTube]]
+
+** Black box
+- Es una pieza de código que hace algo, pero no sabemos como lo hace.
+- No sabemos como, porque no es necesario. (EJ. APIs)
+- Una ventaja, es que podemos copiar y pegar cualquier trozo de código y sin importar si lo entendemos, funcionara.
+- Necesitamos visualizarla en términos de Entrada/Salida, ¿Que entra? ¿Que sale?
+
+** ¿Como se usa?
+- Podemos ver las Black boxes como una buena forma de empezar a entender algo, y ser productivos con esas cosas en poco tiempo.
+- No es un sustituto para entender las cosas a fondo y es una buena idea entenderlas cuando se requieren modificaciones.
+- Necesitamos un poco de practica para entender las Entradas/Salidas.
+- Es un excelente punto medio para entender las cosas eventualmente.
+- Ventajas:
+  + Funciona rápido.
+  + Te permite saber que buscar exactamente.
+  + Te permite identificar problemas similares.
+  + Te permite mantenerte concentrado en lo que importa. (no detalles de implementación)
