@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Introducción a SQL</title>
-<!-- 2021-02-12 Fri 11:36 -->
+<!-- 2021-03-12 Fri 12:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -386,7 +386,7 @@ MathJax.Hub.Config({
 <li><a href="#sec-8-1-2">8.1.2. Ejemplo: Creando tablas temporales</a></li>
 </ul>
 </li>
-<li><a href="#sec-8-2">8.2. Cereando una tabla usando Subconsultas</a>
+<li><a href="#sec-8-2">8.2. Creando una tabla usando Subconsultas</a>
 <ul class="nav">
 <li><a href="#sec-8-2-1">8.2.1. Ejemplo</a></li>
 </ul>
@@ -427,6 +427,14 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
+<li><a href="#sec-10">10. Crear y administrar tablas que incluyan <i>constraints</i></a>
+<ul class="nav">
+<li><a href="#sec-10-1">10.1. Integridad de los datos</a></li>
+<li><a href="#sec-10-2">10.2. Tipos de integridad</a></li>
+<li><a href="#sec-10-3">10.3. Tipos de constraints</a></li>
+<li><a href="#sec-10-4">10.4. s</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -465,10 +473,10 @@ Si no especificas columnas y no tienes valores para todas, debes llenar los camp
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">INSERT</span> <span style="color: #81A1C1; font-style: italic;">INTO</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">INSERT</span> <span style="color: #ff79c6; font-style: italic;">INTO</span>
        clientes
-<span style="color: #81A1C1; font-style: italic;">VALUES</span>
-    (<span style="color: #A3BE8C;">'Eugenio'</span>,<span style="color: #A3BE8C;">'Av. T&#233;cnologico'</span>,<span style="color: #B48EAD; font-weight: bold;">14</span>,<span style="color: #A3BE8C;">'4422274400'</span>);
+<span style="color: #ff79c6; font-style: italic;">VALUES</span>
+    <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Eugenio'</span>,<span style="color: #f1fa8c;">'Av. T&#233;cnologico'</span>,<span style="color: #bd93f9; font-weight: bold;">14</span>,<span style="color: #f1fa8c;">'4422274400'</span><span style="color: #61bfff;">)</span>;
 </pre>
 </div>
 </div>
@@ -479,10 +487,10 @@ Si no especificas columnas y no tienes valores para todas, debes llenar los camp
 <div class="outline-text-4" id="text-2-1-2">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">INSERT</span> <span style="color: #81A1C1; font-style: italic;">INTO</span>
-       clientes (nombre_cliente, calle_cliente, ciudad_cliente, telefono)
-<span style="color: #81A1C1; font-style: italic;">VALUES</span>
-    (<span style="color: #A3BE8C;">'Guillermo'</span>,<span style="color: #A3BE8C;">'Escobedo'</span>,<span style="color: #B48EAD; font-weight: bold;">14</span>,<span style="color: #A3BE8C;">'4422274605'</span>)
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">INSERT</span> <span style="color: #ff79c6; font-style: italic;">INTO</span>
+       clientes <span style="color: #61bfff;">(</span>nombre_cliente, calle_cliente, ciudad_cliente, telefono<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">VALUES</span>
+    <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Guillermo'</span>,<span style="color: #f1fa8c;">'Escobedo'</span>,<span style="color: #bd93f9; font-weight: bold;">14</span>,<span style="color: #f1fa8c;">'4422274605'</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -497,10 +505,10 @@ asi que solo las columnas que no tienen la restricción de <code>NOT NULL</code>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">INSERT</span> <span style="color: #81A1C1; font-style: italic;">INTO</span>
-       clientes (nombre_cliente, ciudad_cliente)
-<span style="color: #81A1C1; font-style: italic;">VALUES</span>
-    (<span style="color: #A3BE8C;">'Guillermo'</span>,<span style="color: #B48EAD; font-weight: bold;">14</span>)
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">INSERT</span> <span style="color: #ff79c6; font-style: italic;">INTO</span>
+       clientes <span style="color: #61bfff;">(</span>nombre_cliente, ciudad_cliente<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">VALUES</span>
+    <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Guillermo'</span>,<span style="color: #bd93f9; font-weight: bold;">14</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -515,10 +523,10 @@ la variable <code>SYSDATE</code> contiene la hora y fecha actual.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">INSERT</span> <span style="color: #81A1C1; font-style: italic;">INTO</span>
-       depositos (nombre_cliente, nombre_sucursal, monto, fecha)
-<span style="color: #81A1C1; font-style: italic;">VALUES</span>
-    (<span style="color: #A3BE8C;">'Eugenio'</span>,<span style="color: #A3BE8C;">'Alamos'</span>, <span style="color: #B48EAD; font-weight: bold;">100</span>, SYSDATE)
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">INSERT</span> <span style="color: #ff79c6; font-style: italic;">INTO</span>
+       depositos <span style="color: #61bfff;">(</span>nombre_cliente, nombre_sucursal, monto, fecha<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">VALUES</span>
+    <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Eugenio'</span>,<span style="color: #f1fa8c;">'Alamos'</span>, <span style="color: #bd93f9; font-weight: bold;">100</span>, SYSDATE<span style="color: #61bfff;">)</span>
 </pre>
 </div>
 <p>
@@ -526,10 +534,10 @@ Si se desea insertar una fecha determinada.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">INSERT</span> <span style="color: #81A1C1; font-style: italic;">INTO</span>
-       (id_alumno, nombre_alumno, sexo, pais_nacimiento, fecha_nacimiento, carrera)
-<span style="color: #81A1C1; font-style: italic;">VALUES</span>
-    (<span style="color: #B48EAD; font-weight: bold;">15</span>,<span style="color: #A3BE8C;">'Eugenio'</span>,<span style="color: #A3BE8C;">'M'</span>,<span style="color: #A3BE8C;">'M&#233;xico'</span>,TO_DATE(<span style="color: #A3BE8C;">'FEB 3, 97'</span>,<span style="color: #A3BE8C;">'MON DD, YY'</span>),<span style="color: #B48EAD; font-weight: bold;">1000</span>)
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">INSERT</span> <span style="color: #ff79c6; font-style: italic;">INTO</span>
+       <span style="color: #61bfff;">(</span>id_alumno, nombre_alumno, sexo, pais_nacimiento, fecha_nacimiento, carrera<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">VALUES</span>
+    <span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">15</span>,<span style="color: #f1fa8c;">'Eugenio'</span>,<span style="color: #f1fa8c;">'M'</span>,<span style="color: #f1fa8c;">'M&#233;xico'</span>,TO_DATE<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">'FEB 3, 97'</span>,<span style="color: #f1fa8c;">'MON DD, YY'</span><span style="color: #ff79c6;">)</span>,<span style="color: #bd93f9; font-weight: bold;">1000</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -560,12 +568,12 @@ Cambiando el nombre de la sucursal.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">UPDATE</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">UPDATE</span>
     sucursales
-<span style="color: #81A1C1; font-style: italic;">SET</span>
-    nombre_sucursal=<span style="color: #A3BE8C;">'&#193;lamos'</span>
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    nombre_sucursal=<span style="color: #A3BE8C;">'Alamos'</span>
+<span style="color: #ff79c6; font-style: italic;">SET</span>
+    nombre_sucursal=<span style="color: #f1fa8c;">'&#193;lamos'</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    nombre_sucursal=<span style="color: #f1fa8c;">'Alamos'</span>
 </pre>
 </div>
 <p>
@@ -573,10 +581,10 @@ Cambiando el pais de nacimiento de todos los alumnos.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">UPDATE</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">UPDATE</span>
     alumnos
-<span style="color: #81A1C1; font-style: italic;">SET</span>
-    pais_nacimiento=<span style="color: #A3BE8C;">'M&#233;xico'</span>;
+<span style="color: #ff79c6; font-style: italic;">SET</span>
+    pais_nacimiento=<span style="color: #f1fa8c;">'M&#233;xico'</span>;
 </pre>
 </div>
 </div>
@@ -601,8 +609,8 @@ Puedes eliminar filas existentes de una tabla usando el estatuto <code>DELETE</c
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">DELETE</span> [<span style="color: #81A1C1; font-style: italic;">FROM</span>] nombre_tabla
-[<span style="color: #81A1C1; font-style: italic;">WHERE</span> condici&#243;n]
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">DELETE</span> <span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">FROM</span><span style="color: #61bfff;">]</span> nombre_tabla
+<span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">WHERE</span> condici&#243;n<span style="color: #61bfff;">]</span>
 </pre>
 </div>
 </div>
@@ -644,9 +652,9 @@ Puedes eliminar filas existentes de una tabla usando el estatuto <code>DELETE</c
 <ol class="org-ol"><li><a id="sec-3-1-2-1" name="sec-3-1-2-1"></a>Ejemplo<br ><div class="outline-text-5" id="text-3-1-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     id_cliente, nombre_cliente, calle_cliente
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     clientes
 </pre>
 </div>
@@ -662,25 +670,25 @@ Se puede mostrar todas las columnas de la tabla con un <code>*</code>
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span> *
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span> *
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     clientes
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span> *
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span> *
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees, departments
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     employees*
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
 </pre>
 </div>
@@ -695,10 +703,10 @@ Para mostrar solo los valores diferentes de las columnas usamos la palabra reser
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6f7787; font-style: italic;">--Muestra solo los valores diferentes(unicos)</span>
-<span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    <span style="color: #81A1C1; font-style: italic;">DISTINCT</span> department_id
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">--Muestra solo los valores diferentes(unicos)</span>
+<span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    <span style="color: #ff79c6; font-style: italic;">DISTINCT</span> department_id
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
 </pre>
 </div>
@@ -713,9 +721,9 @@ Podemos poner un alias a las columnas del resultado.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    salary <span style="color: #81A1C1; font-style: italic;">AS</span> "Salario Anual"
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    salary <span style="color: #ff79c6; font-style: italic;">AS</span> "Salario Anual"
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
 </pre>
 </div>
@@ -730,10 +738,10 @@ El <code>SELECT</code> puede contener expreciones con los operadores <code>+, -,
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6f7787; font-style: italic;">-- Podemos usar p&#225;rentes&#237;s para cambiar la procedencia de los operadores</span>
-<span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    (salary+<span style="color: #B48EAD; font-weight: bold;">300</span>)*<span style="color: #B48EAD; font-weight: bold;">12</span>
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- Podemos usar p&#225;rentes&#237;s para cambiar la procedencia de los operadores</span>
+<span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    <span style="color: #61bfff;">(</span>salary+<span style="color: #bd93f9; font-weight: bold;">300</span><span style="color: #61bfff;">)</span>*<span style="color: #bd93f9; font-weight: bold;">12</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
 </pre>
 </div>
@@ -748,14 +756,14 @@ En <b>Oracle</b>, la función <code>NVL</code> permite convertir un valor nulo a
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6f7787; font-style: italic;">-- NVL(columna,valor a dar a los nulos)</span>
-<span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- NVL(columna,valor a dar a los nulos)</span>
+<span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name,
-    salary*<span style="color: #B48EAD; font-weight: bold;">12</span>,
-    NVL(commision_pct,<span style="color: #B48EAD; font-weight: bold;">0</span>),
-    NVL(hire_date,<span style="color: #A3BE8C;">'2013-05-12'</span>),
-    NVL(phone_number, <span style="color: #A3BE8C;">'Sin telefono'</span>)
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+    salary*<span style="color: #bd93f9; font-weight: bold;">12</span>,
+    NVL<span style="color: #61bfff;">(</span>commision_pct,<span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">)</span>,
+    NVL<span style="color: #61bfff;">(</span>hire_date,<span style="color: #f1fa8c;">'2013-05-12'</span><span style="color: #61bfff;">)</span>,
+    NVL<span style="color: #61bfff;">(</span>phone_number, <span style="color: #f1fa8c;">'Sin telefono'</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
 </pre>
 </div>
@@ -770,10 +778,10 @@ Se pueden concatenar cadenas o columnas con el operador <code>|| o +</code> (dep
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6f7787; font-style: italic;">-- Nombre apellido</span>
-<span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    last_name||<span style="color: #A3BE8C;">' '</span>||first_name
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- Nombre apellido</span>
+<span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    last_name||<span style="color: #f1fa8c;">' '</span>||first_name
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
 </pre>
 </div>
@@ -798,11 +806,11 @@ Esta es colocada despues de la cláusula <code>FROM</code>.
 <div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     columas
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     tablas
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
     condiciones
 </pre>
 </div>
@@ -810,11 +818,11 @@ Esta es colocada despues de la cláusula <code>FROM</code>.
 <ol class="org-ol"><li><a id="sec-3-2-2-1" name="sec-3-2-2-1"></a>Ejemplo<br ><div class="outline-text-5" id="text-3-2-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span> *
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span> *
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    department_id = <span style="color: #B48EAD; font-weight: bold;">60</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    department_id = <span style="color: #bd93f9; font-weight: bold;">60</span>;
 </pre>
 </div>
 </div>
@@ -832,8 +840,8 @@ Esta es colocada despues de la cláusula <code>FROM</code>.
 <li>Las fechas son sensibles a un formato, para conocer este formato podemos hacer.
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span> sysdate
-<span style="color: #81A1C1; font-style: italic;">FROM</span> dual;
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span> sysdate
+<span style="color: #ff79c6; font-style: italic;">FROM</span> dual;
 </pre>
 </div>
 </li>
@@ -850,12 +858,12 @@ Se pueden usar los operadores de comparación \=, &gt;,&gt;\= y !=
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name, salary, commision_pct
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    commision_pct &lt;= .<span style="color: #B48EAD; font-weight: bold;">2</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    commision_pct &lt;= .<span style="color: #bd93f9; font-weight: bold;">2</span>;
 </pre>
 </div>
 </div>
@@ -869,12 +877,12 @@ Este opreador se puede usar con cualquer tipo de dato y filtra entre dos valores
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name, salary
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    salary <span style="color: #81A1C1; font-style: italic;">BETWEEN</span> <span style="color: #B48EAD; font-weight: bold;">1500</span> <span style="color: #81A1C1; font-style: italic;">AND</span> <span style="color: #B48EAD; font-weight: bold;">25000</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    salary <span style="color: #ff79c6; font-style: italic;">BETWEEN</span> <span style="color: #bd93f9; font-weight: bold;">1500</span> <span style="color: #ff79c6; font-style: italic;">AND</span> <span style="color: #bd93f9; font-weight: bold;">25000</span>;
 </pre>
 </div>
 </div>
@@ -888,12 +896,12 @@ Concuerda con cualquer valor contenido en la lista. <code>IN(lista de valores)</
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name, salary, manager_id
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    manager_id <span style="color: #81A1C1; font-style: italic;">IN</span> (<span style="color: #B48EAD; font-weight: bold;">120</span>, <span style="color: #B48EAD; font-weight: bold;">123</span>);
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    manager_id <span style="color: #ff79c6; font-style: italic;">IN</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">120</span>, <span style="color: #bd93f9; font-weight: bold;">123</span><span style="color: #61bfff;">)</span>;
 </pre>
 </div>
 </div>
@@ -913,9 +921,9 @@ Sirve para hacer búsquedas con comodines de cadenas de caracteres.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span> last_name
-<span style="color: #81A1C1; font-style: italic;">FROM</span> employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span> last_name <span style="color: #81A1C1; font-style: italic;">LIKE</span> <span style="color: #A3BE8C;">'S%'</span>;
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span> last_name
+<span style="color: #ff79c6; font-style: italic;">FROM</span> employees
+<span style="color: #ff79c6; font-style: italic;">WHERE</span> last_name <span style="color: #ff79c6; font-style: italic;">LIKE</span> <span style="color: #f1fa8c;">'S%'</span>;
 </pre>
 </div>
 <p>
@@ -931,12 +939,12 @@ Se usa para buscar valores nulos.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name, manager_id
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    manager_id <span style="color: #81A1C1; font-style: italic;">IS</span> <span style="color: #81A1C1; font-style: italic;">NULL</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    manager_id <span style="color: #ff79c6; font-style: italic;">IS</span> <span style="color: #ff79c6; font-style: italic;">NULL</span>;
 </pre>
 </div>
 </div>
@@ -952,13 +960,13 @@ Estos operadores pueden ser usados con los () para hacer busquedas más específ
 <ol class="org-ol"><li><a id="sec-3-2-9-1" name="sec-3-2-9-1"></a>Operador AND<br ><div class="outline-text-5" id="text-3-2-9-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     employee_id, last_name, job_id, salary
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    salary &gt;= <span style="color: #B48EAD; font-weight: bold;">1100</span>
-    <span style="color: #81A1C1; font-style: italic;">AND</span> job_id=<span style="color: #A3BE8C;">'SA_MAN'</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    salary &gt;= <span style="color: #bd93f9; font-weight: bold;">1100</span>
+    <span style="color: #ff79c6; font-style: italic;">AND</span> job_id=<span style="color: #f1fa8c;">'SA_MAN'</span>
 </pre>
 </div>
 </div>
@@ -967,13 +975,13 @@ Estos operadores pueden ser usados con los () para hacer busquedas más específ
 <li><a id="sec-3-2-9-2" name="sec-3-2-9-2"></a>Operador OR<br ><div class="outline-text-5" id="text-3-2-9-2">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     employee_id, last_name, job_id, salary
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    salary &gt;= <span style="color: #B48EAD; font-weight: bold;">11000</span>
-    <span style="color: #81A1C1; font-style: italic;">OR</span> job_id=<span style="color: #A3BE8C;">'SA_MAN'</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    salary &gt;= <span style="color: #bd93f9; font-weight: bold;">11000</span>
+    <span style="color: #ff79c6; font-style: italic;">OR</span> job_id=<span style="color: #f1fa8c;">'SA_MAN'</span>;
 </pre>
 </div>
 </div>
@@ -982,13 +990,13 @@ Estos operadores pueden ser usados con los () para hacer busquedas más específ
 <li><a id="sec-3-2-9-3" name="sec-3-2-9-3"></a>Operador NOT<br ><div class="outline-text-5" id="text-3-2-9-3">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     employee_id, last_name, job_id, salary
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    job_id <span style="color: #81A1C1; font-style: italic;">NOT</span> <span style="color: #81A1C1; font-style: italic;">IN</span> (<span style="color: #A3BE8C;">'HR_REP'</span>,<span style="color: #A3BE8C;">'MK_REP'</span>
-                  <span style="color: #A3BE8C;">'SA_REP'</span>,<span style="color: #A3BE8C;">'PU_MAN'</span>);
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    job_id <span style="color: #ff79c6; font-style: italic;">NOT</span> <span style="color: #ff79c6; font-style: italic;">IN</span> <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'HR_REP'</span>,<span style="color: #f1fa8c;">'MK_REP'</span>
+                  <span style="color: #f1fa8c;">'SA_REP'</span>,<span style="color: #f1fa8c;">'PU_MAN'</span><span style="color: #61bfff;">)</span>;
 </pre>
 </div>
 </div>
@@ -1020,12 +1028,12 @@ Por defecto se ordena de manera acendente.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    last_name, salary*<span style="color: #B48EAD; font-weight: bold;">12</span>, department_id, hire_date <span style="color: #81A1C1; font-style: italic;">AS</span> "Fecha de Contrato"
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    last_name, salary*<span style="color: #bd93f9; font-weight: bold;">12</span>, department_id, hire_date <span style="color: #ff79c6; font-style: italic;">AS</span> "Fecha de Contrato"
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
-      hire_date <span style="color: #81A1C1; font-style: italic;">DESC</span>;
+<span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
+      hire_date <span style="color: #ff79c6; font-style: italic;">DESC</span>;
 </pre>
 </div>
 <p>
@@ -1038,11 +1046,11 @@ En <code>ORDER BY</code> podemos ordenar llamando al alias de hire<sub>date</sub
 <div class="outline-text-4" id="text-3-3-2">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    last_name, salary*<span style="color: #B48EAD; font-weight: bold;">12</span>, department_id depto, hire_date <span style="color: #81A1C1; font-style: italic;">AS</span> "Fecha de Contrato"
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    last_name, salary*<span style="color: #bd93f9; font-weight: bold;">12</span>, department_id depto, hire_date <span style="color: #ff79c6; font-style: italic;">AS</span> "Fecha de Contrato"
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
+<span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
       depto, hire_date;
 </pre>
 </div>
@@ -1054,11 +1062,11 @@ En <code>ORDER BY</code> podemos ordenar llamando al alias de hire<sub>date</sub
 <div class="outline-text-4" id="text-3-3-3">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name, salary, department_id
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
+<span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
       job_id;
 </pre>
 </div>
@@ -1072,12 +1080,12 @@ Podemos ordenar en base a columnas no proyectadas con el <code>SELECT</code>.
 <div class="outline-text-4" id="text-3-3-4">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name, salary, department_id
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
-      salary*<span style="color: #B48EAD; font-weight: bold;">12</span>;
+<span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
+      salary*<span style="color: #bd93f9; font-weight: bold;">12</span>;
 </pre>
 </div>
 <p>
@@ -1161,12 +1169,12 @@ nos conviene convertir a minúsculas lo que obtenemos de la base de datos y hace
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     employee_id, last_name, department_id
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employee
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    <span style="color: #81A1C1;">LOWER</span>(last_name) = <span style="color: #A3BE8C;">'king'</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    <span style="color: #ffb86c;">LOWER</span><span style="color: #61bfff;">(</span>last_name<span style="color: #61bfff;">)</span> = <span style="color: #f1fa8c;">'king'</span>;
 </pre>
 </div>
 </div>
@@ -1226,12 +1234,12 @@ Manipulan caracteres.
 <div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    last_name, CONCAT(last_name,first_name), <span style="color: #81A1C1; font-style: italic;">LENGTH</span>(last_name), INSTR(last_name,<span style="color: #A3BE8C;">'s'</span>)
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    last_name, CONCAT<span style="color: #61bfff;">(</span>last_name,first_name<span style="color: #61bfff;">)</span>, <span style="color: #ff79c6; font-style: italic;">LENGTH</span><span style="color: #61bfff;">(</span>last_name<span style="color: #61bfff;">)</span>, INSTR<span style="color: #61bfff;">(</span>last_name,<span style="color: #f1fa8c;">'s'</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    SUBSTR(last_name, <span style="color: #B48EAD; font-weight: bold;">2</span>, <span style="color: #B48EAD; font-weight: bold;">2</span>) = <span style="color: #A3BE8C;">'ar'</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    SUBSTR<span style="color: #61bfff;">(</span>last_name, <span style="color: #bd93f9; font-weight: bold;">2</span>, <span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #61bfff;">)</span> = <span style="color: #f1fa8c;">'ar'</span>;
 </pre>
 </div>
 
@@ -1591,10 +1599,10 @@ En evaluación de expresiones, Oracle puede convertir automáticamente.
 <div class="outline-text-4" id="text-4-6-3">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name,
-    TO_CHAR(hire_date, <span style="color: #A3BE8C;">'DD Month YYYY'</span>) <span style="color: #81A1C1; font-style: italic;">AS</span> "Fecha de contrataci&#243;n"
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+    TO_CHAR<span style="color: #61bfff;">(</span>hire_date, <span style="color: #f1fa8c;">'DD Month YYYY'</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">AS</span> "Fecha de contrataci&#243;n"
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees;
 </pre>
 </div>
@@ -1686,13 +1694,13 @@ Se usan las siguientes tablas de formato:
 <div class="outline-text-4" id="text-4-7-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     first_name,
-    TO_CHAR(salary, <span style="color: #A3BE8C;">'$99,999'</span>) fmt_salary
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+    TO_CHAR<span style="color: #61bfff;">(</span>salary, <span style="color: #f1fa8c;">'$99,999'</span><span style="color: #61bfff;">)</span> fmt_salary
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    <span style="color: #81A1C1;">UPPER</span>(last_name) = <span style="color: #A3BE8C;">'KING'</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    <span style="color: #ffb86c;">UPPER</span><span style="color: #61bfff;">(</span>last_name<span style="color: #61bfff;">)</span> = <span style="color: #f1fa8c;">'KING'</span>;
 </pre>
 </div>
 
@@ -1769,13 +1777,13 @@ Convierte de un valor nulo a uno válido.
 <div class="outline-text-4" id="text-4-8-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name,
     salary,
     commision_pct,
-    (salary*<span style="color: #B48EAD; font-weight: bold;">12</span>) + NVL(commision_pct*salary,<span style="color: #B48EAD; font-weight: bold;">0</span>) <span style="color: #81A1C1; font-style: italic;">AS</span> "NVL",
-    (salary*<span style="color: #B48EAD; font-weight: bold;">12</span>) + (commision_pct*salary) "<span style="color: #81A1C1; font-style: italic;">NULL</span>"
-<span style="color: #81A1C1; font-style: italic;">From</span>
+    <span style="color: #61bfff;">(</span>salary*<span style="color: #bd93f9; font-weight: bold;">12</span><span style="color: #61bfff;">)</span> + NVL<span style="color: #61bfff;">(</span>commision_pct*salary,<span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">AS</span> "NVL",
+    <span style="color: #61bfff;">(</span>salary*<span style="color: #bd93f9; font-weight: bold;">12</span><span style="color: #61bfff;">)</span> + <span style="color: #61bfff;">(</span>commision_pct*salary<span style="color: #61bfff;">)</span> "<span style="color: #ff79c6; font-style: italic;">NULL</span>"
+<span style="color: #ff79c6; font-style: italic;">From</span>
     employees;
 </pre>
 </div>
@@ -1853,9 +1861,9 @@ Facilita condiciones haciendo el trabajo de un <code>IF-THEN-ELSE</code>.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql">DECODE (columna/expresi&#243;n, condici&#243;n <span style="color: #B48EAD; font-weight: bold;">1</span>, resultado <span style="color: #B48EAD; font-weight: bold;">1</span>
-                           [condici&#243;n <span style="color: #B48EAD; font-weight: bold;">2</span>, resultado <span style="color: #B48EAD; font-weight: bold;">2</span>, ...
-                           , <span style="color: #81A1C1; font-style: italic;">default</span>])
+<pre class="src src-sql">DECODE <span style="color: #61bfff;">(</span>columna/expresi&#243;n, condici&#243;n <span style="color: #bd93f9; font-weight: bold;">1</span>, resultado <span style="color: #bd93f9; font-weight: bold;">1</span>
+                           <span style="color: #ff79c6;">[</span>condici&#243;n <span style="color: #bd93f9; font-weight: bold;">2</span>, resultado <span style="color: #bd93f9; font-weight: bold;">2</span>, ...
+                           , <span style="color: #ff79c6; font-style: italic;">default</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -1868,14 +1876,14 @@ Con la consulta:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     job_id,
     salary,
-    DECODE (SUBSTR(job_id, <span style="color: #B48EAD; font-weight: bold;">4</span>, <span style="color: #B48EAD; font-weight: bold;">3</span>),   <span style="color: #A3BE8C;">'MAN'</span>, salary*<span style="color: #B48EAD; font-weight: bold;">1.20</span>,
-                                    <span style="color: #A3BE8C;">'CLE'</span>, salary*<span style="color: #B48EAD; font-weight: bold;">1.15</span>,
-                                    <span style="color: #A3BE8C;">'REP'</span>, salary*<span style="color: #B48EAD; font-weight: bold;">1.10</span>,
-                                           salary) <span style="color: #81A1C1; font-style: italic;">AS</span> "Salario Ajustado"
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+    DECODE <span style="color: #61bfff;">(</span>SUBSTR<span style="color: #ff79c6;">(</span>job_id, <span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #ff79c6;">)</span>,   <span style="color: #f1fa8c;">'MAN'</span>, salary*<span style="color: #bd93f9; font-weight: bold;">1.20</span>,
+                                    <span style="color: #f1fa8c;">'CLE'</span>, salary*<span style="color: #bd93f9; font-weight: bold;">1.15</span>,
+                                    <span style="color: #f1fa8c;">'REP'</span>, salary*<span style="color: #bd93f9; font-weight: bold;">1.10</span>,
+                                           salary<span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">AS</span> "Salario Ajustado"
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees;
 </pre>
 </div>
@@ -1986,12 +1994,12 @@ Ejemplo:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     tabla1.columna1,
     tabla2.columna1
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     tabla1, tabla2
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
     tabla1.columna_comun = tabla2.columna_comun;
 </pre>
 </div>
@@ -2037,15 +2045,15 @@ Unimos dos tablas con un operador de igualdad, retornando solo las filas que coi
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     E.employee_id,
     E.last_name,
     E.department_id,
     D.department_name,
     D.location
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees E, departments D
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
     E.department_id = D.department_id;
 </pre>
 </div>
@@ -2054,18 +2062,18 @@ Unimos dos tablas con un operador de igualdad, retornando solo las filas que coi
 <ol class="org-ol"><li><a id="sec-5-2-1-1" name="sec-5-2-1-1"></a>Uniendo más de dos tablas<br ><div class="outline-text-5" id="text-5-2-1-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     E.employee_id,
     E.last_name,
     E.department_id,
     D.department_name,
     D.location_id,
     L.city
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees E, departmens D, locations L
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
     E.department_id = D.department_id
-    <span style="color: #81A1C1; font-style: italic;">AND</span> D.location_id = L.location_id;
+    <span style="color: #ff79c6; font-style: italic;">AND</span> D.location_id = L.location_id;
 </pre>
 </div>
 </div>
@@ -2080,14 +2088,14 @@ Usan operadores de comparación en lugar de los operadores de igualdad, además 
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     E.last_name,
     E.salary,
     S.grade
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees E, salary_grades S
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    E.salary <span style="color: #81A1C1; font-style: italic;">BETWEEN</span> S.low <span style="color: #81A1C1; font-style: italic;">AND</span> S.high;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    E.salary <span style="color: #ff79c6; font-style: italic;">BETWEEN</span> S.low <span style="color: #ff79c6; font-style: italic;">AND</span> S.high;
 </pre>
 </div>
 </div>
@@ -2105,13 +2113,13 @@ Se usan para ver las filas que usualmente no se muestran con las condiciones de 
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    table1.<span style="color: #81A1C1; font-style: italic;">column</span>,
-    table1.<span style="color: #81A1C1; font-style: italic;">column</span>
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    table1.<span style="color: #ff79c6; font-style: italic;">column</span>,
+    table1.<span style="color: #ff79c6; font-style: italic;">column</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     table1, table2
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    table1.<span style="color: #81A1C1; font-style: italic;">column</span>(+) = table2.<span style="color: #81A1C1; font-style: italic;">column</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    table1.<span style="color: #ff79c6; font-style: italic;">column</span><span style="color: #61bfff;">(</span>+<span style="color: #61bfff;">)</span> = table2.<span style="color: #ff79c6; font-style: italic;">column</span>;
 </pre>
 </div>
 </div>
@@ -2125,11 +2133,11 @@ Se usan para unir una tabla con ella misma, usando alias diferentes.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    E.last_name||<span style="color: #A3BE8C;">' tabaja para '</span>||J.last_name
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    E.last_name||<span style="color: #f1fa8c;">' tabaja para '</span>||J.last_name
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees E, employees J
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
     E.manager_id = J.manager_id;
 </pre>
 </div>
@@ -2182,12 +2190,12 @@ Las funciones <code>AVR</code>, <code>SUM</code>, <code>MAX</code>, y <code>MIN<
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    AVR(salary),
-    <span style="color: #81A1C1;">SUM</span>(salary),
-    <span style="color: #81A1C1;">MAX</span>(salary),
-    <span style="color: #81A1C1;">MIN</span>(salary)
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    AVR<span style="color: #61bfff;">(</span>salary<span style="color: #61bfff;">)</span>,
+    <span style="color: #ffb86c;">SUM</span><span style="color: #61bfff;">(</span>salary<span style="color: #61bfff;">)</span>,
+    <span style="color: #ffb86c;">MAX</span><span style="color: #61bfff;">(</span>salary<span style="color: #61bfff;">)</span>,
+    <span style="color: #ffb86c;">MIN</span><span style="color: #61bfff;">(</span>salary<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees;
 </pre>
 </div>
@@ -2202,9 +2210,9 @@ Las funciones <code>AVR</code>, <code>SUM</code>, <code>MAX</code>, y <code>MIN<
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    <span style="color: #81A1C1;">COUNT</span>(*)
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    <span style="color: #ffb86c;">COUNT</span><span style="color: #61bfff;">(</span>*<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees;
 </pre>
 </div>
@@ -2214,9 +2222,9 @@ Podemos contar los valores únicos.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    <span style="color: #81A1C1;">COUNT</span>(<span style="color: #81A1C1; font-style: italic;">DISTINCT</span> last_name)
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    <span style="color: #ffb86c;">COUNT</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">DISTINCT</span> last_name<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees;
 </pre>
 </div>
@@ -2247,12 +2255,12 @@ obtendras un error.
 <div class="outline-text-4" id="text-6-4-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     departments_id,
-    <span style="color: #81A1C1;">AVG</span>(salary)
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+    <span style="color: #ffb86c;">AVG</span><span style="color: #61bfff;">(</span>salary<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">GROUP</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
+<span style="color: #ff79c6; font-style: italic;">GROUP</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
     department_id;
 </pre>
 </div>
@@ -2282,19 +2290,19 @@ Los grupos que coincidan con la condición <code>HAVING</code> serán mostrados.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6f7787; font-style: italic;">-- Estructura --</span>
-<span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    <span style="color: #81A1C1; font-style: italic;">column</span>, funci&#243;n_de_grupo(<span style="color: #81A1C1; font-style: italic;">column</span>)
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
-    <span style="color: #81A1C1; font-style: italic;">table</span>
-[<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    condition]
-[<span style="color: #81A1C1; font-style: italic;">GROUP</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
-    agrupar_por_expresi&#243;n]
-[<span style="color: #81A1C1; font-style: italic;">HAVING</span>
-    condici&#243;n]
-[<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
-    <span style="color: #81A1C1; font-style: italic;">column</span>]
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- Estructura --</span>
+<span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    <span style="color: #ff79c6; font-style: italic;">column</span>, funci&#243;n_de_grupo<span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">column</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
+    <span style="color: #ff79c6; font-style: italic;">table</span>
+<span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    condition<span style="color: #61bfff;">]</span>
+<span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">GROUP</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
+    agrupar_por_expresi&#243;n<span style="color: #61bfff;">]</span>
+<span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">HAVING</span>
+    condici&#243;n<span style="color: #61bfff;">]</span>
+<span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
+    <span style="color: #ff79c6; font-style: italic;">column</span><span style="color: #61bfff;">]</span>
 </pre>
 </div>
 </div>
@@ -2302,18 +2310,18 @@ Los grupos que coincidan con la condición <code>HAVING</code> serán mostrados.
 <ol class="org-ol"><li><a id="sec-6-4-3-1" name="sec-6-4-3-1"></a>Ejemplo<br ><div class="outline-text-5" id="text-6-4-3-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    department_name <span style="color: #81A1C1; font-style: italic;">AS</span> "Departamento",
-    <span style="color: #81A1C1;">sum</span>(salary) <span style="color: #81A1C1; font-style: italic;">AS</span> "Nomina Total"
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    department_name <span style="color: #ff79c6; font-style: italic;">AS</span> "Departamento",
+    <span style="color: #ffb86c;">sum</span><span style="color: #61bfff;">(</span>salary<span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">AS</span> "Nomina Total"
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees E, departments D
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
     E.department_id = D.department_id
-<span style="color: #81A1C1; font-style: italic;">GROUP</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
+<span style="color: #ff79c6; font-style: italic;">GROUP</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
     department_name
-<span style="color: #81A1C1; font-style: italic;">HAVING</span>
-    <span style="color: #81A1C1;">sum</span>(salary) &lt; <span style="color: #B48EAD; font-weight: bold;">1500</span>
-<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
+<span style="color: #ff79c6; font-style: italic;">HAVING</span>
+    <span style="color: #ffb86c;">sum</span><span style="color: #61bfff;">(</span>salary<span style="color: #61bfff;">)</span> &lt; <span style="color: #bd93f9; font-weight: bold;">1500</span>
+<span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
     "Nomina Total";
 </pre>
 </div>
@@ -2361,25 +2369,25 @@ Guia para el uso de las subconsultas:
 <div class="outline-text-4" id="text-7-1-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    last_name||<span style="color: #A3BE8C;">' '</span>||first_name <span style="color: #81A1C1; font-style: italic;">AS</span> "Empleado",
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    last_name||<span style="color: #f1fa8c;">' '</span>||first_name <span style="color: #ff79c6; font-style: italic;">AS</span> "Empleado",
     job_id,
     salary
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    job_id =    (<span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    job_id =    <span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">SELECT</span>
                     job_id,
-                <span style="color: #81A1C1; font-style: italic;">FROM</span>
+                <span style="color: #ff79c6; font-style: italic;">FROM</span>
                     employees
-                <span style="color: #81A1C1; font-style: italic;">WHERE</span>
-                    employee_id = <span style="color: #B48EAD; font-weight: bold;">103</span>)
-    <span style="color: #81A1C1; font-style: italic;">AND</span> salary &gt;    (<span style="color: #81A1C1; font-style: italic;">SELECT</span>
+                <span style="color: #ff79c6; font-style: italic;">WHERE</span>
+                    employee_id = <span style="color: #bd93f9; font-weight: bold;">103</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">AND</span> salary &gt;    <span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">SELECT</span>
                         salary
-                    <span style="color: #81A1C1; font-style: italic;">FROM</span>
+                    <span style="color: #ff79c6; font-style: italic;">FROM</span>
                         employees
-                    <span style="color: #81A1C1; font-style: italic;">WHERE</span>
-                        employee_id = <span style="color: #B48EAD; font-weight: bold;">203</span>);
+                    <span style="color: #ff79c6; font-style: italic;">WHERE</span>
+                        employee_id = <span style="color: #bd93f9; font-weight: bold;">203</span><span style="color: #61bfff;">)</span>;
 </pre>
 </div>
 </div>
@@ -2437,23 +2445,23 @@ Operadores de comparación en Múltiples columas:
 <div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     employee_id,
     last_name,
     job_id,
     salary
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    salary &lt; <span style="color: #81A1C1; font-style: italic;">ANY</span> (
-                <span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    salary &lt; <span style="color: #ff79c6; font-style: italic;">ANY</span> <span style="color: #61bfff;">(</span>
+                <span style="color: #ff79c6; font-style: italic;">SELECT</span>
                     salary
-                <span style="color: #81A1C1; font-style: italic;">FROM</span>
+                <span style="color: #ff79c6; font-style: italic;">FROM</span>
                     employees
-                <span style="color: #81A1C1; font-style: italic;">WHERE</span>
-                    job_id <span style="color: #81A1C1; font-style: italic;">LIKE</span> <span style="color: #A3BE8C;">'%_REP'</span>)
-    <span style="color: #81A1C1; font-style: italic;">AND</span> job_id <span style="color: #81A1C1; font-style: italic;">NOT</span> <span style="color: #81A1C1; font-style: italic;">LIKE</span> <span style="color: #A3BE8C;">'%_REP'</span>
-<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
+                <span style="color: #ff79c6; font-style: italic;">WHERE</span>
+                    job_id <span style="color: #ff79c6; font-style: italic;">LIKE</span> <span style="color: #f1fa8c;">'%_REP'</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">AND</span> job_id <span style="color: #ff79c6; font-style: italic;">NOT</span> <span style="color: #ff79c6; font-style: italic;">LIKE</span> <span style="color: #f1fa8c;">'%_REP'</span>
+<span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
     salary;
 </pre>
 </div>
@@ -2479,22 +2487,22 @@ empleado que coincida en fecha de contratación y salario con cualquier subordin
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name,
     hire_date,
     salary,
     department_id
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    (hire_date, salary) <span style="color: #81A1C1; font-style: italic;">IN</span> (<span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    <span style="color: #61bfff;">(</span>hire_date, salary<span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">IN</span> <span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">SELECT</span>
                                 hire_date,
                                 salary
-                            <span style="color: #81A1C1; font-style: italic;">FROM</span>
+                            <span style="color: #ff79c6; font-style: italic;">FROM</span>
                                 employees
-                            <span style="color: #81A1C1; font-style: italic;">WHERE</span>
-                                manager_id=<span style="color: #B48EAD; font-weight: bold;">100</span>)
-<span style="color: #81A1C1; font-style: italic;">ORDER</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
+                            <span style="color: #ff79c6; font-style: italic;">WHERE</span>
+                                manager_id=<span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">ORDER</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
     last_name;
 </pre>
 </div>
@@ -2510,22 +2518,22 @@ Se pueden hacer subconsultas en la cláusula <code>FROM</code>, esto lleva a la 
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
     a.last_name,
     a.salary
     a.department_id,
     b.salavg
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
-    employees a,    (<span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
+    employees a,    <span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">SELECT</span>
                         department_id,
-                        <span style="color: #81A1C1;">AVG</span>(salary) salavg
-                    <span style="color: #81A1C1; font-style: italic;">FROM</span>
+                        <span style="color: #ffb86c;">AVG</span><span style="color: #ff79c6;">(</span>salary<span style="color: #ff79c6;">)</span> salavg
+                    <span style="color: #ff79c6; font-style: italic;">FROM</span>
                         employees
-                    <span style="color: #81A1C1; font-style: italic;">GROUP</span> <span style="color: #81A1C1; font-style: italic;">BY</span>
-                        department_id) b
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
+                    <span style="color: #ff79c6; font-style: italic;">GROUP</span> <span style="color: #ff79c6; font-style: italic;">BY</span>
+                        department_id<span style="color: #61bfff;">)</span> b
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
     a.department_id = b.department_id
-    <span style="color: #81A1C1; font-style: italic;">AND</span> a.salary &gt; b.salavg;
+    <span style="color: #ff79c6; font-style: italic;">AND</span> a.salary &gt; b.salavg;
 </pre>
 </div>
 </div>
@@ -2549,12 +2557,12 @@ es posible crear tablas (temporales o permanentes) al momento de realizar una co
 <div class="outline-text-4" id="text-8-1-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    * <span style="color: #81A1C1; font-style: italic;">INTO</span> depto100
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    * <span style="color: #ff79c6; font-style: italic;">INTO</span> depto100
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-   department_id = <span style="color: #B48EAD; font-weight: bold;">100</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+   department_id = <span style="color: #bd93f9; font-weight: bold;">100</span>;
 </pre>
 </div>
 </div>
@@ -2565,12 +2573,12 @@ es posible crear tablas (temporales o permanentes) al momento de realizar una co
 <div class="outline-text-4" id="text-8-1-2">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SELECT</span>
-    * <span style="color: #81A1C1; font-style: italic;">INTO</span> #depto100
-<span style="color: #81A1C1; font-style: italic;">FROM</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SELECT</span>
+    * <span style="color: #ff79c6; font-style: italic;">INTO</span> #depto100
+<span style="color: #ff79c6; font-style: italic;">FROM</span>
     employees
-<span style="color: #81A1C1; font-style: italic;">WHERE</span>
-    department_id = <span style="color: #B48EAD; font-weight: bold;">100</span>;
+<span style="color: #ff79c6; font-style: italic;">WHERE</span>
+    department_id = <span style="color: #bd93f9; font-weight: bold;">100</span>;
 </pre>
 </div>
 </div>
@@ -2578,13 +2586,13 @@ es posible crear tablas (temporales o permanentes) al momento de realizar una co
 </div>
 
 <div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="section-number-3">8.2</span> Cereando una tabla usando Subconsultas</h3>
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> Creando una tabla usando Subconsultas</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 Una tabla puede ser llenada combinando la cláusula <code>CREATE TABLE</code> y una subconsulta.
 </p>
 <ul class="org-ul">
-<li>Si espeificas columas, debes de hacer coincidir el número de columas definidas
+<li>Si especificas columas, debes de hacer coincidir el número de columas definidas
 con las columas regresadas por la subconsulta.
 </li>
 <li>Se definen nombres de consultas y valores
@@ -2596,17 +2604,17 @@ con las columas regresadas por la subconsulta.
 <div class="outline-text-4" id="text-8-2-1">
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">CREATE</span> <span style="color: #81A1C1; font-style: italic;">TABLE</span> <span style="color: #8FBCBB;">depto30</span> <span style="color: #81A1C1; font-style: italic;">AS</span>
-    (<span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">CREATE</span> <span style="color: #ff79c6; font-style: italic;">TABLE</span> <span style="color: #50fa7b;">depto30</span> <span style="color: #ff79c6; font-style: italic;">AS</span>
+    <span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">SELECT</span>
         employee_id empno,
         last_name,
         first_name
-        salary*<span style="color: #B48EAD; font-weight: bold;">12</span> salanual,
+        salary*<span style="color: #bd93f9; font-weight: bold;">12</span> salanual,
         hire_date hiredate
-    <span style="color: #81A1C1; font-style: italic;">FROM</span>
+    <span style="color: #ff79c6; font-style: italic;">FROM</span>
         employees
-    <span style="color: #81A1C1; font-style: italic;">WHERE</span>
-        department_id = <span style="color: #B48EAD; font-weight: bold;">30</span>);
+    <span style="color: #ff79c6; font-style: italic;">WHERE</span>
+        department_id = <span style="color: #bd93f9; font-weight: bold;">30</span><span style="color: #61bfff;">)</span>;
 </pre>
 </div>
 </div>
@@ -2643,18 +2651,18 @@ de cada tipo de usuario.
 <ul class="org-ul">
 <li>Se incluye una subconsulta en el esta <code>CREATE VIEW</code>
 </li>
-<li>La subconsulta puede contener sintaxís compleja, incluyendo joins, subconsultas y grupos.
+<li>La subconsulta puede contener sintaxis compleja, incluyendo <i>joins</i>, subconsultas y grupos.
 </li>
 <li>La subconsulta <b>no</b> debe contener la cláusula <code>ORDER BY</code>.
 </li>
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">CREATE</span> [<span style="color: #81A1C1; font-style: italic;">OR</span> REPLACE] [FORCE|NONFORCE] <span style="color: #81A1C1; font-style: italic;">VIEW</span> <span style="color: #81A1C1; font-style: italic;">view</span>
-       [(<span style="color: #81A1C1; font-style: italic;">alias</span>[,<span style="color: #81A1C1; font-style: italic;">alias</span>]...)]
-<span style="color: #81A1C1; font-style: italic;">AS</span> subconsulta
-[<span style="color: #81A1C1; font-style: italic;">WITH</span> <span style="color: #81A1C1; font-style: italic;">CHECK</span> <span style="color: #81A1C1; font-style: italic;">OPTION</span> [<span style="color: #81A1C1; font-style: italic;">CONSTRAINT</span> restricci&#243;n]]
-[<span style="color: #81A1C1; font-style: italic;">WITH</span> <span style="color: #81A1C1; font-style: italic;">READ</span> <span style="color: #81A1C1; font-style: italic;">ONLY</span>]
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">CREATE</span> <span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">OR</span> REPLACE<span style="color: #61bfff;">]</span> <span style="color: #61bfff;">[</span>FORCE|NONFORCE<span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">VIEW</span> <span style="color: #ff79c6; font-style: italic;">view</span>
+       <span style="color: #61bfff;">[</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">alias</span><span style="color: #50fa7b;">[</span>,<span style="color: #ff79c6; font-style: italic;">alias</span><span style="color: #50fa7b;">]</span>...<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">]</span>
+<span style="color: #ff79c6; font-style: italic;">AS</span> subconsulta
+<span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">WITH</span> <span style="color: #ff79c6; font-style: italic;">CHECK</span> <span style="color: #ff79c6; font-style: italic;">OPTION</span> <span style="color: #ff79c6;">[</span><span style="color: #ff79c6; font-style: italic;">CONSTRAINT</span> restricci&#243;n<span style="color: #ff79c6;">]</span><span style="color: #61bfff;">]</span>
+<span style="color: #61bfff;">[</span><span style="color: #ff79c6; font-style: italic;">WITH</span> <span style="color: #ff79c6; font-style: italic;">READ</span> <span style="color: #ff79c6; font-style: italic;">ONLY</span><span style="color: #61bfff;">]</span>
 </pre>
 </div>
 </div>
@@ -2664,20 +2672,20 @@ de cada tipo de usuario.
 <h4 id="sec-8-3-3"><span class="section-number-4">8.3.3</span> Creando vistas</h4>
 <div class="outline-text-4" id="text-8-3-3">
 <p>
-Crea una vista, EMPVU10, que contenga los detalles de los empleados del departamento 90.
+Crea una vista, <code>EMPVU10</code>, que contenga los detalles de los empleados del departamento 90.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">CREATE</span> <span style="color: #81A1C1; font-style: italic;">VIEW</span> <span style="color: #8FBCBB;">vw_emp90</span>
-<span style="color: #81A1C1; font-style: italic;">AS</span>
-    <span style="color: #81A1C1; font-style: italic;">SELECT</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">CREATE</span> <span style="color: #ff79c6; font-style: italic;">VIEW</span> <span style="color: #50fa7b;">vw_emp90</span>
+<span style="color: #ff79c6; font-style: italic;">AS</span>
+    <span style="color: #ff79c6; font-style: italic;">SELECT</span>
         employee_id,
         last_name,
         job_id
-    <span style="color: #81A1C1; font-style: italic;">FROM</span>
+    <span style="color: #ff79c6; font-style: italic;">FROM</span>
         employees
-    <span style="color: #81A1C1; font-style: italic;">WHERE</span>
-        department_id = <span style="color: #B48EAD; font-weight: bold;">90</span>;
+    <span style="color: #ff79c6; font-style: italic;">WHERE</span>
+        department_id = <span style="color: #bd93f9; font-weight: bold;">90</span>;
 </pre>
 </div>
 
@@ -2686,7 +2694,7 @@ Puedes describir la estructura de la vista usando el comando <code>DESCRIBE</cod
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">DESCRIBE</span> vw_emp90
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">DESCRIBE</span> vw_emp90
 </pre>
 </div>
 </div>
@@ -2846,21 +2854,21 @@ Puedes describir la estructura de la vista usando el comando <code>DESCRIBE</cod
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SQL</span>&gt; <span style="color: #81A1C1; font-style: italic;">SELECT</span> empno, ename, sal, depto
-<span style="color: #81A1C1; font-style: italic;">FROM</span> emp
-<span style="color: #81A1C1; font-style: italic;">WHERE</span> empno = &amp;employee_num;
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SQL</span>&gt; <span style="color: #ff79c6; font-style: italic;">SELECT</span> empno, ename, sal, depto
+<span style="color: #ff79c6; font-style: italic;">FROM</span> emp
+<span style="color: #ff79c6; font-style: italic;">WHERE</span> empno = &amp;employee_num;
 
-Enter <span style="color: #81A1C1; font-style: italic;">value</span> <span style="color: #81A1C1; font-style: italic;">for</span> employee_num: <span style="color: #B48EAD; font-weight: bold;">7369</span>
+Enter <span style="color: #ff79c6; font-style: italic;">value</span> <span style="color: #ff79c6; font-style: italic;">for</span> employee_num: <span style="color: #bd93f9; font-weight: bold;">7369</span>
 
 EMPNO ENAME SAL  DEPTNO
-<span style="color: #6f7787; font-style: italic;">----- ----- --- --------</span>
-<span style="color: #B48EAD; font-weight: bold;">7369</span>  SMITH <span style="color: #B48EAD; font-weight: bold;">800</span>       <span style="color: #B48EAD; font-weight: bold;">20</span>
+<span style="color: #6272a4; font-style: italic;">----- ----- --- --------</span>
+<span style="color: #bd93f9; font-weight: bold;">7369</span>  SMITH <span style="color: #bd93f9; font-weight: bold;">800</span>       <span style="color: #bd93f9; font-weight: bold;">20</span>
 
-<span style="color: #81A1C1; font-style: italic;">SQL</span>&gt; define oficio=Analista
-<span style="color: #81A1C1; font-style: italic;">SQL</span>&gt; define tabla=emp
-<span style="color: #81A1C1; font-style: italic;">SQL</span>&gt; <span style="color: #81A1C1; font-style: italic;">select</span> nombre,job <span style="color: #81A1C1; font-style: italic;">from</span> &amp;tabla <span style="color: #81A1C1; font-style: italic;">where</span> job=<span style="color: #A3BE8C;">'&amp;oficio'</span>;
-<span style="color: #81A1C1; font-style: italic;">old</span>   <span style="color: #B48EAD; font-weight: bold;">1</span>: <span style="color: #81A1C1; font-style: italic;">select</span> nombre, oficio <span style="color: #81A1C1; font-style: italic;">from</span> &amp;tabla <span style="color: #81A1C1; font-style: italic;">where</span> oficio=<span style="color: #A3BE8C;">'&amp;oficio'</span>
-<span style="color: #81A1C1; font-style: italic;">new</span>   <span style="color: #B48EAD; font-weight: bold;">1</span>: <span style="color: #81A1C1; font-style: italic;">select</span> nombre, oficio <span style="color: #81A1C1; font-style: italic;">from</span> emp <span style="color: #81A1C1; font-style: italic;">where</span> oficio=<span style="color: #A3BE8C;">'Analista'</span>
+<span style="color: #ff79c6; font-style: italic;">SQL</span>&gt; define oficio=Analista
+<span style="color: #ff79c6; font-style: italic;">SQL</span>&gt; define tabla=emp
+<span style="color: #ff79c6; font-style: italic;">SQL</span>&gt; <span style="color: #ff79c6; font-style: italic;">select</span> nombre,job <span style="color: #ff79c6; font-style: italic;">from</span> &amp;tabla <span style="color: #ff79c6; font-style: italic;">where</span> job=<span style="color: #f1fa8c;">'&amp;oficio'</span>;
+<span style="color: #ff79c6; font-style: italic;">old</span>   <span style="color: #bd93f9; font-weight: bold;">1</span>: <span style="color: #ff79c6; font-style: italic;">select</span> nombre, oficio <span style="color: #ff79c6; font-style: italic;">from</span> &amp;tabla <span style="color: #ff79c6; font-style: italic;">where</span> oficio=<span style="color: #f1fa8c;">'&amp;oficio'</span>
+<span style="color: #ff79c6; font-style: italic;">new</span>   <span style="color: #bd93f9; font-weight: bold;">1</span>: <span style="color: #ff79c6; font-style: italic;">select</span> nombre, oficio <span style="color: #ff79c6; font-style: italic;">from</span> emp <span style="color: #ff79c6; font-style: italic;">where</span> oficio=<span style="color: #f1fa8c;">'Analista'</span>
 </pre>
 </div>
 </li>
@@ -2882,15 +2890,15 @@ EMPNO ENAME SAL  DEPTNO
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SQL</span>&gt; <span style="color: #81A1C1; font-style: italic;">SET</span> VERIFY <span style="color: #81A1C1; font-style: italic;">ON</span>
-<span style="color: #81A1C1; font-style: italic;">SQL</span>&gt; <span style="color: #81A1C1; font-style: italic;">SELECT</span> empno, ename, sal, deptno
-   <span style="color: #B48EAD; font-weight: bold;">2</span> <span style="color: #81A1C1; font-style: italic;">FROM</span> emp
-   <span style="color: #B48EAD; font-weight: bold;">3</span> <span style="color: #81A1C1; font-style: italic;">WHERE</span> empno= &amp;employee_num;
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SQL</span>&gt; <span style="color: #ff79c6; font-style: italic;">SET</span> VERIFY <span style="color: #ff79c6; font-style: italic;">ON</span>
+<span style="color: #ff79c6; font-style: italic;">SQL</span>&gt; <span style="color: #ff79c6; font-style: italic;">SELECT</span> empno, ename, sal, deptno
+   <span style="color: #bd93f9; font-weight: bold;">2</span> <span style="color: #ff79c6; font-style: italic;">FROM</span> emp
+   <span style="color: #bd93f9; font-weight: bold;">3</span> <span style="color: #ff79c6; font-style: italic;">WHERE</span> empno= &amp;employee_num;
 
-Enter <span style="color: #81A1C1; font-style: italic;">value</span> <span style="color: #81A1C1; font-style: italic;">for</span> employee_num: <span style="color: #B48EAD; font-weight: bold;">7369</span>
+Enter <span style="color: #ff79c6; font-style: italic;">value</span> <span style="color: #ff79c6; font-style: italic;">for</span> employee_num: <span style="color: #bd93f9; font-weight: bold;">7369</span>
 
-<span style="color: #81A1C1; font-style: italic;">Old</span>  <span style="color: #B48EAD; font-weight: bold;">3</span>: <span style="color: #81A1C1; font-style: italic;">WHERE</span> empno=&amp;employee_num
-<span style="color: #81A1C1; font-style: italic;">New</span>  <span style="color: #B48EAD; font-weight: bold;">3</span>: <span style="color: #81A1C1; font-style: italic;">WHERE</span> empno=<span style="color: #B48EAD; font-weight: bold;">7369</span>
+<span style="color: #ff79c6; font-style: italic;">Old</span>  <span style="color: #bd93f9; font-weight: bold;">3</span>: <span style="color: #ff79c6; font-style: italic;">WHERE</span> empno=&amp;employee_num
+<span style="color: #ff79c6; font-style: italic;">New</span>  <span style="color: #bd93f9; font-weight: bold;">3</span>: <span style="color: #ff79c6; font-style: italic;">WHERE</span> empno=<span style="color: #bd93f9; font-weight: bold;">7369</span>
 </pre>
 </div>
 </li>
@@ -3137,11 +3145,11 @@ Para  realizar ajustes actuales para las columnas, se usan:
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">COLUMN</span> ename HEADING &#8216;Employee|<span style="color: #81A1C1; font-style: italic;">Name</span>&#8217; FORMAT A15
-<span style="color: #81A1C1; font-style: italic;">COLUMN</span> sal JUSTIFY <span style="color: #81A1C1; font-style: italic;">LEFT</span> FORMAT $<span style="color: #B48EAD; font-weight: bold;">99</span>,<span style="color: #B48EAD; font-weight: bold;">990.00</span>
-<span style="color: #81A1C1; font-style: italic;">COLUMN</span> mgr FORMAT <span style="color: #B48EAD; font-weight: bold;">999999999</span> <span style="color: #81A1C1; font-style: italic;">NULL</span> &#8216;<span style="color: #81A1C1; font-style: italic;">No</span> manager&#8217;
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">COLUMN</span> ename HEADING &#8216;Employee|<span style="color: #ff79c6; font-style: italic;">Name</span>&#8217; FORMAT A15
+<span style="color: #ff79c6; font-style: italic;">COLUMN</span> sal JUSTIFY <span style="color: #ff79c6; font-style: italic;">LEFT</span> FORMAT $<span style="color: #bd93f9; font-weight: bold;">99</span>,<span style="color: #bd93f9; font-weight: bold;">990.00</span>
+<span style="color: #ff79c6; font-style: italic;">COLUMN</span> mgr FORMAT <span style="color: #bd93f9; font-weight: bold;">999999999</span> <span style="color: #ff79c6; font-style: italic;">NULL</span> &#8216;<span style="color: #ff79c6; font-style: italic;">No</span> manager&#8217;
 
-<span style="color: #81A1C1; font-style: italic;">Select</span> ename,sal,mgr <span style="color: #81A1C1; font-style: italic;">from</span> emp;
+<span style="color: #ff79c6; font-style: italic;">Select</span> ename,sal,mgr <span style="color: #ff79c6; font-style: italic;">from</span> emp;
 
 </pre>
 </div>
@@ -3153,7 +3161,7 @@ Para  realizar ajustes actuales para las columnas, se usan:
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">COLUMN</span> ename
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">COLUMN</span> ename
 </pre>
 </div>
 </div>
@@ -3252,13 +3260,13 @@ ser activado con:
 
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #81A1C1; font-style: italic;">SET</span> NEWPAGE <span style="color: #B48EAD; font-weight: bold;">0</span>
-<span style="color: #81A1C1; font-style: italic;">SET</span> <span style="color: #81A1C1; font-style: italic;">SPACE</span> <span style="color: #B48EAD; font-weight: bold;">0</span>
-<span style="color: #81A1C1; font-style: italic;">SET</span> LINESIZE <span style="color: #B48EAD; font-weight: bold;">80</span>
-<span style="color: #81A1C1; font-style: italic;">SET</span> PAGESIZE <span style="color: #B48EAD; font-weight: bold;">0</span>
-<span style="color: #81A1C1; font-style: italic;">SET</span> ECHO <span style="color: #81A1C1; font-style: italic;">OFF</span>
-<span style="color: #81A1C1; font-style: italic;">SET</span> FEEDBACK <span style="color: #81A1C1; font-style: italic;">OFF</span>
-<span style="color: #81A1C1; font-style: italic;">SET</span> HEADING <span style="color: #81A1C1; font-style: italic;">OFF</span>
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">SET</span> NEWPAGE <span style="color: #bd93f9; font-weight: bold;">0</span>
+<span style="color: #ff79c6; font-style: italic;">SET</span> <span style="color: #ff79c6; font-style: italic;">SPACE</span> <span style="color: #bd93f9; font-weight: bold;">0</span>
+<span style="color: #ff79c6; font-style: italic;">SET</span> LINESIZE <span style="color: #bd93f9; font-weight: bold;">80</span>
+<span style="color: #ff79c6; font-style: italic;">SET</span> PAGESIZE <span style="color: #bd93f9; font-weight: bold;">0</span>
+<span style="color: #ff79c6; font-style: italic;">SET</span> ECHO <span style="color: #ff79c6; font-style: italic;">OFF</span>
+<span style="color: #ff79c6; font-style: italic;">SET</span> FEEDBACK <span style="color: #ff79c6; font-style: italic;">OFF</span>
+<span style="color: #ff79c6; font-style: italic;">SET</span> HEADING <span style="color: #ff79c6; font-style: italic;">OFF</span>
 </pre>
 </div>
 </li>
@@ -3271,10 +3279,170 @@ ser activado con:
 </div>
 </div>
 </div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Crear y administrar tablas que incluyan <i>constraints</i></h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> Integridad de los datos</h3>
+<div class="outline-text-3" id="text-10-1">
+<ul class="org-ul">
+<li>El objetivo en cuanto integridad es proteger la base de datos contra operaciones
+que puedan traer inconsistencias en los datos.
+</li>
+<li>Integridad de datos:
+<ul class="org-ul">
+<li>Es el grado en el cual los datos son correctos.
+</li>
+<li>Cuando una base de datos contiene errores pierde integridad.
+</li>
+<li>Garantiza que los datos en una base de datos se adhieran a un sistema de reglas predefinidas.
+</li>
+</ul>
+</li>
+<li>Reglas de integridad
+<ul class="org-ul">
+<li>Integridad de la entidad:
+<ul class="org-ul">
+<li>Mantiene los datos dentro de una entidad.
+</li>
+</ul>
+</li>
+<li>Integridad referencial:
+<ul class="org-ul">
+<li>Mantiene los datos entre tablas.
+</li>
+</ul>
+</li>
+<li>integridad de la columna:
+<ul class="org-ul">
+<li>Valores que contienen constantes el formato de datos definidos.
+</li>
+</ul>
+</li>
+<li>Integridad definida por el usuario:
+<ul class="org-ul">
+<li>Los datos almacenados en la base de datos deben de seguir las reglas de negocios.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-10-2" class="outline-3">
+<h3 id="sec-10-2"><span class="section-number-3">10.2</span> Tipos de integridad</h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+Las siguientes reglas se aplican a tablas y permiten hacer cumplir diversos tipos de
+integridad de datos.
+</p>
+<ul class="org-ul">
+<li><code>NULLs</code>
+<ul class="org-ul">
+<li>Es una regla definida en una columna que permite que un dato contenga un <code>NULL</code>.
+</li>
+</ul>
+</li>
+<li><code>UNIQUE COLUMN VALUES</code>
+<ul class="org-ul">
+<li>Es una regla definida en una columna que permite que haya una valor único por columna.
+</li>
+</ul>
+</li>
+<li><code>PRIMARY KEY VALUES</code>
+<ul class="org-ul">
+<li>Es una regla definida en una columna  para identificar únicamente a una fila en una tabla.
+</li>
+</ul>
+</li>
+<li><code>REFERENCIAL INTEGRITY</code>
+<ul class="org-ul">
+<li>Es una regla definida en una columna que permite que el <code>insert</code> o el <code>update</code> de
+registros para que solamente si el valor de la columna o sistema de columnas empareja
+un valor en una columna de una tabla relacionada.
+</li>
+<li>Hay otras reglas que se relacionan con la integridad referencial:
+<ul class="org-ul">
+<li><code>RESTRICT</code>
+<ul class="org-ul">
+<li>Regla que rechaza la actualización o eliminación de datos referidos.
+</li>
+</ul>
+</li>
+<li><code>SET TO NULL</code>
+<ul class="org-ul">
+<li>Cuando los datos referidos son actualizados o borrados, todos se fijan a un valor default.
+</li>
+</ul>
+</li>
+<li><code>CASCADE</code>
+<ul class="org-ul">
+<li>Cuando los datos referidos son actualizados,
+todos los datos dependientes asociados son correspondientemente actualizados.
+</li>
+</ul>
+</li>
+<li><code>COMPLEX INTEGRITY CHEKING</code>
+<ul class="org-ul">
+<li>Una regla definida por el usuario para una columna que permite <code>inserts</code>,
+<code>update</code>, <code>delete</code> de registros basados en el valor que contiene para la columna.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-10-3" class="outline-3">
+<h3 id="sec-10-3"><span class="section-number-3">10.3</span> Tipos de constraints</h3>
+<div class="outline-text-3" id="text-10-3">
+<p>
+Oracle soporta los siguientes constraints de integridad:
+</p>
+<ul class="org-ul">
+<li><code>NOT NULL</code>
+<ul class="org-ul">
+<li>Especifica que una columna no puede contener valores nulos.
+</li>
+</ul>
+</li>
+<li><code>UNIQUE</code>
+<ul class="org-ul">
+<li>Asegura que los valores de una columna no pueden ser iguales.
+</li>
+</ul>
+</li>
+<li><code>PRIMARY KEY</code>
+<ul class="org-ul">
+<li>Asegura que cada registro de la tabla debe contener una entrada que distinga únicamente
+a la fila de cualquier otra fila.
+</li>
+</ul>
+</li>
+<li><code>FOREGIN KEY</code>
+<ul class="org-ul">
+<li>Se asegura que cada fila en una tabla pueda tener una relación a los datos en otra tabla.
+</li>
+<li>pag 4
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-10-4" class="outline-3">
+<h3 id="sec-10-4"><span class="section-number-3">10.4</span> s</h3>
+</div>
+</div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-02-12 Fri 11:36</p>
+<p class="date">Created: 2021-03-12 Fri 12:42</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
