@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Data Structures</title>
-<!-- 2020-12-27 Sun 14:47 -->
+<!-- 2021-03-30 Tue 07:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -188,7 +188,7 @@ $(function() {
 
     $('.bs-docs-sidebar').affix();
 });
-</script>
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -397,17 +397,1449 @@ El siguiente ejemplo corre en tiempo <i>constante</i>: \(0(1)\)
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1;">a</span> := <span style="color: #B48EAD; font-weight: bold;">1</span>      
-  b := <span style="color: #B48EAD; font-weight: bold;">1</span>      
-  c := a + <span style="color: #B48EAD; font-weight: bold;">5</span>*b    
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b    
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1;">i</span> := <span style="color: #B48EAD; font-weight: bold;">0</span>
-  While i &lt; <span style="color: #81A1C1; font-style: italic;">do</span>
-  i = <span style="color: #B48EAD; font-weight: bold;">1</span>+<span style="color: #B48EAD; font-weight: bold;">1</span> 
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1 
 </pre>
 </div>
 </div>
@@ -420,9 +1852,728 @@ Los siguientes ejemplos corren en tiempo <i>lineal</i>: \(\mathbf{O(n)}\).
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1;">i</span> := <span style="color: #B48EAD; font-weight: bold;">0</span>
-  While i &lt; <span style="color: #8FBCBB;">n</span> Do
-      i = i + <span style="color: #B48EAD; font-weight: bold;">1</span>
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1   i := 0
+  While i &lt; n Do
+      i = i + 1
 </pre>
 </div>
 
@@ -443,9 +2594,730 @@ Siendo \(n\) el valor mayor posible llegaremos en \(n\) iteraciones.
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1;">i</span> := <span style="color: #B48EAD; font-weight: bold;">0</span>
-  While i &lt; <span style="color: #8FBCBB;">n</span> Do
-      i = i + <span style="color: #B48EAD; font-weight: bold;">3</span>
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1   i := 0
+  While i &lt; n Do
+      i = i + 1  i := 0
+  While i &lt; n Do
+      i = i + 3
 </pre>
 </div>
 
@@ -479,8 +3351,731 @@ tiempos es \(n*n = \mathbf{O(n^2)}\) Pero el segundo..
 
 <div class="org-src-container">
 
-<pre class="src src-java">  For <span style="color: #81A1C1;">(</span>i := <span style="color: #B48EAD; font-weight: bold;">0</span> ; i &lt; <span style="color: #8FBCBB;">n</span>; i = i + <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #81A1C1;">)</span>
-      For <span style="color: #81A1C1;">(</span>j := <span style="color: #B48EAD; font-weight: bold;">0</span> ; j &lt; <span style="color: #8FBCBB;">n</span>; j = j + <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #81A1C1;">)</span>
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1   i := 0
+  While i &lt; n Do
+      i = i + 1  i := 0
+  While i &lt; n Do
+      i = i + 3  For (i := 0 ; i &lt; n; i = i + 1)
+      For (j := 0 ; j &lt; n; j = j + 1)
 </pre>
 </div>
 
@@ -490,8 +4085,732 @@ tiempos es \(n*n = \mathbf{O(n^2)}\) Pero el segundo..
 
 <div class="org-src-container">
 
-<pre class="src src-java">  For <span style="color: #81A1C1;">(</span>i := <span style="color: #B48EAD; font-weight: bold;">0</span> ; i &lt; <span style="color: #8FBCBB;">n</span> ; i = i + <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #81A1C1;">)</span>
-      For <span style="color: #81A1C1;">(</span>j := i ; j &lt; <span style="color: #8FBCBB;">n</span> ; j = j = <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #81A1C1;">)</span> 
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1   i := 0
+  While i &lt; n Do
+      i = i + 1  i := 0
+  While i &lt; n Do
+      i = i + 3  For (i := 0 ; i &lt; n; i = i + 1)
+      For (j := 0 ; j &lt; n; j = j + 1)  For (i := 0 ; i &lt; n ; i = i + 1)
+      For (j := i ; j &lt; n ; j = j = 1) 
 </pre>
 </div>
 
@@ -530,16 +4849,741 @@ de un valor particular, Si este existe.
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1;">low</span> := <span style="color: #B48EAD; font-weight: bold;">0</span> 
-  high := n-<span style="color: #B48EAD; font-weight: bold;">1</span> 
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1   i := 0
+  While i &lt; n Do
+      i = i + 1  i := 0
+  While i &lt; n Do
+      i = i + 3  For (i := 0 ; i &lt; n; i = i + 1)
+      For (j := 0 ; j &lt; n; j = j + 1)  For (i := 0 ; i &lt; n ; i = i + 1)
+      For (j := i ; j &lt; n ; j = j = 1)   low := 0 
+  high := n-1 
   While low &lt;= high Do
-      mid := <span style="color: #81A1C1;">(</span>low + high<span style="color: #81A1C1;">)</span> / <span style="color: #B48EAD; font-weight: bold;">2</span>
+      mid := (low + high) / 2
 
-      If array<span style="color: #81A1C1;">[</span>mid<span style="color: #81A1C1;">]</span> == value: <span style="color: #81A1C1; font-style: italic;">return</span> mid
-      Else If array<span style="color: #81A1C1;">[</span>mid<span style="color: #81A1C1;">]</span> &lt; value: lo = mid + <span style="color: #B48EAD; font-weight: bold;">1</span>
-      Else If array<span style="color: #81A1C1;">[</span>mid<span style="color: #81A1C1;">]</span> &gt; value: hi = mid - <span style="color: #B48EAD; font-weight: bold;">1</span>
+      If array[mid] == value: return mid
+      Else If array[mid] &lt; value: lo = mid + 1
+      Else If array[mid] &gt; value: hi = mid - 1
 
-  <span style="color: #81A1C1; font-style: italic;">return</span> -<span style="color: #B48EAD; font-weight: bold;">1</span> <span style="color: #6f7787; font-style: italic;">//</span><span style="color: #6f7787; font-style: italic;">value not found</span>
+  return -1 //value not found
 </pre>
 </div>
 
@@ -559,15 +5603,749 @@ de un valor particular, Si este existe.
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1;">i</span> := <span style="color: #B48EAD; font-weight: bold;">0</span>
-  While i &lt; <span style="color: #8FBCBB;">n</span> Do
-      j = <span style="color: #B48EAD; font-weight: bold;">0</span>
-      While j &lt; <span style="color: #B48EAD; font-weight: bold;">3</span>*n Do
-          j = j + <span style="color: #B48EAD; font-weight: bold;">1</span>
-      j = <span style="color: #B48EAD; font-weight: bold;">0</span> 
-      While j &lt; <span style="color: #B48EAD; font-weight: bold;">2</span> * n Do
-          j = j + <span style="color: #B48EAD; font-weight: bold;">1</span>
-      i = i + <span style="color: #B48EAD; font-weight: bold;">1</span>
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1   i := 0
+  While i &lt; n Do
+      i = i + 1  i := 0
+  While i &lt; n Do
+      i = i + 3  For (i := 0 ; i &lt; n; i = i + 1)
+      For (j := 0 ; j &lt; n; j = j + 1)  For (i := 0 ; i &lt; n ; i = i + 1)
+      For (j := i ; j &lt; n ; j = j = 1)   low := 0 
+  high := n-1 
+  While low &lt;= high Do
+      mid := (low + high) / 2
+
+      If array[mid] == value: return mid
+      Else If array[mid] &lt; value: lo = mid + 1
+      Else If array[mid] &gt; value: hi = mid - 1
+
+  return -1 //value not found  i := 0
+  While i &lt; n Do
+      j = 0
+      While j &lt; 3*n Do
+          j = j + 1
+      j = 0 
+      While j &lt; 2 * n Do
+          j = j + 1
+      i = i + 1
 </pre>
 </div>
 
@@ -586,15 +6364,757 @@ Representado matemáticamente.
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1;">i</span> := <span style="color: #B48EAD; font-weight: bold;">0</span>
-  While i &lt; <span style="color: #B48EAD; font-weight: bold;">3</span> * n Do
-      j := <span style="color: #B48EAD; font-weight: bold;">10</span>
-      While j &lt;= <span style="color: #B48EAD; font-weight: bold;">40</span> Do
-          j = j + <span style="color: #B48EAD; font-weight: bold;">1</span>
-      j = <span style="color: #B48EAD; font-weight: bold;">0</span>
-      While j &lt; <span style="color: #8FBCBB;">n</span>*n*n Do
-          j = j + <span style="color: #B48EAD; font-weight: bold;">2</span>
-      i = i + <span style="color: #B48EAD; font-weight: bold;">1</span>
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
+
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
+
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
+
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
+
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
+
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
+        trav = next;
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
+
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
+
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
+
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
+        tail = tail.next;
+      }
+      size++;
+    }
+
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
+        head = head.prev;
+      }
+      size++;
+    }
+
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
+
+      if (index == size) {
+        addLast(data);
+        return;
+      }
+
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
+        temp = temp.next;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
+      temp.next.prev = newNode;
+      temp.next = newNode;
+
+      size++;
+    }
+
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
+
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
+
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
+      head = head.next;
+      --size;
+
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
+
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
+
+      // Return the data that was at the first node we just removed
+      return data;
+    }
+
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
+      tail = tail.prev;
+      --size;
+
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
+
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
+
+      // Return the data that was in the last node we just removed
+      return data;
+    }
+
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
+
+      // Make the pointers of adjacent nodes skip over 'node'
+      node.next.prev = node.prev;
+      node.prev.next = node.next;
+
+      // Temporarily store the data we want to return
+      T data = node.data;
+
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
+
+      --size;
+
+      // Return the data in the node we just removed
+      return data;
+    }
+
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
+
+      int i;
+      Node&lt;T&gt; trav;
+
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
+          trav = trav.next;
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
+          trav = trav.prev;
+        }
+
+      return remove(trav);
+    }
+
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
+
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
+
+      return -1;
+    }
+
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
+
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
+
+        @Override
+        public T next() {
+          T data = trav.data;
+          trav = trav.next;
+          return data;
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
+        trav = trav.next;
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  }   //Let S be a Stack
+  For bracket in bracket_string:
+      rev = getReversedBracket(bracket)
+
+      If isLeftBracket(bracket):
+          S.push(bracket)
+      
+      Else If S.isEmply() or S.pop() != rev:
+          return false //invalid
+
+  return S.isEmpty() //Valid if S is emply   /**
+   * A linked list implementation of a stack
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.stack;
+
+  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
+
+    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
+
+    // Create an empty stack
+    public ListStack() {}
+
+    // Create a Stack with an initial element
+    public ListStack(T firstElem) {
+      push(firstElem);
+    }
+
+    // Return the number of elements in the stack
+    public int size() {
+      return list.size();
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Push an element on the stack
+    public void push(T elem) {
+      list.addLast(elem);
+    }
+
+    // Pop an element off the stack
+    // Throws an error is the stack is empty
+    public T pop() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.removeLast();
+    }
+
+    // Peek the top of the stack without removing an element
+    // Throws an exception if the stack is empty
+    public T peek() {
+      if (isEmpty()) throw new java.util.EmptyStackException();
+      return list.peekLast();
+    }
+
+    // Allow users to iterate through the stack using an iterator
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return list.iterator();
+    }
+  }A[0] = 44
+A[1] = 12
+A[4] = 6
+A[7] = 9
+A[9] =&gt; index out of bounds!A = [34,4]
+A.add(-1)   A = [34,4,-7]
+A.add(34)   A = [34,4,-7,34]
+A.remove(4) A = [34,-7,34]/**
+* A generic dynamic array implementation
+*
+* @author William Fiset, william.alexandre.fiset@gmail.com
+*/
+package com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
+    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    private T[] arr;
+    private int len = 0; // length user thinks array is
+    private int capacity = 0; // Actual array size
+
+    public DynamicArray() {
+      this(16);
+    }
+
+    public DynamicArray(int capacity) {
+      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
+      this.capacity = capacity;
+      arr = (T[]) new Object[capacity];
+    }
+
+    public int size() {
+      return len;
+    }
+
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    public T get(int index) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      return arr[index];
+    }
+
+    public void set(int index, T elem) {
+      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
+      arr[index] = elem;
+    }
+
+    public void clear() {
+      for (int i = 0; i &lt; len; i++) arr[i] = null;
+      len = 0;
+    }
+
+    public void add(T elem) {
+
+      // Time to resize!
+      if (len + 1 &gt;= capacity) {
+        if (capacity == 0) capacity = 1;
+        else capacity *= 2; // double the size
+        T[] new_arr = (T[]) new Object[capacity];
+        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
+        arr = new_arr; // arr has extra nulls padded
+      }
+
+      arr[len++] = elem;
+    }
+
+    // Removes an element at the specified index in this array.
+    public T removeAt(int rm_index) {
+      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
+      T data = arr[rm_index];
+      T[] new_arr = (T[]) new Object[len - 1];
+      for (int i = 0, j = 0; i &lt; len; i++, j++)
+        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+        else new_arr[j] = arr[i];
+      arr = new_arr;
+      capacity = --len;
+      return data;
+    }
+
+    public boolean remove(Object obj) {
+      int index = indexOf(obj);
+      if (index == -1) return false;
+      removeAt(index);
+      return true;
+    }
+
+    public int indexOf(Object obj) {
+      for (int i = 0; i &lt; len; i++) {
+        if (obj == null) {
+          if (arr[i] == null) return i;
+        } else {
+          if (obj.equals(arr[i])) return i;
+        }
+      }
+      return -1;
+    }
+
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
+
+    // Iterator is still fast but not as fast as iterative for loop
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+          return index &lt; len;
+        }
+
+        @Override
+        public T next() {
+          return arr[index++];
+        }
+
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
+
+    @Override
+    public String toString() {
+      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
+      else {
+        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
+        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
+        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
+      }
+    }
+}  /**
+   * A min priority queue implementation using a binary heap.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.priorityqueue;
+
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.List;
+
+  public class BinaryHeap&lt;T extends Comparable&lt;T&gt;&gt; {
+
+    // A dynamic list to track the elements inside the heap
+    private List&lt;T&gt; heap = null;
+
+    // Construct and initially empty priority queue
+    public BinaryHeap() {
+      this(1);
+    }
+
+    // Construct a priority queue with an initial capacity
+    public BinaryHeap(int sz) {
+      heap = new ArrayList&lt;&gt;(sz);
+    }
+
+    // Construct a priority queue using heapify in O(n) time, a great explanation can be found at:
+    // http://www.cs.umd.edu/~meesh/351/mount/lectures/lect14-heapsort-analysis-part.pdf
+    public BinaryHeap(T[] elems) {
+
+      int heapSize = elems.length;
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Place all element in heap
+      for (int i = 0; i &lt; heapSize; i++) heap.add(elems[i]);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Priority queue construction, O(n)
+    public BinaryHeap(Collection&lt;T&gt; elems) {
+
+      int heapSize = elems.size();
+      heap = new ArrayList&lt;T&gt;(heapSize);
+
+      // Add all elements of the given collection to the heap
+      heap.addAll(elems);
+
+      // Heapify process, O(n)
+      for (int i = Math.max(0, (heapSize / 2) - 1); i &gt;= 0; i--) sink(i);
+    }
+
+    // Returns true/false depending on if the priority queue is empty
+    public boolean isEmpty() {
+      return size() == 0;
+    }
+
+    // Clears everything inside the heap, O(n)
+    public void clear() {
+      heap.clear();
+    }
+
+    // Return the size of the heap
+    public int size() {
+      return heap.size();
+    }
+
+    // Returns the value of the element with the lowest
+    // priority in this priority queue. If the priority
+    // queue is empty null is returned.
+    public T peek() {
+      if (isEmpty()) return null;
+      return heap.get(0);
+    }
+
+    // Removes the root of the heap, O(log(n))
+    public T poll() {
+      return removeAt(0);
+    }
+
+    // Test if an element is in heap, O(n)
+    public boolean contains(T elem) {
+      // Linear scan to check containment
+      for (int i = 0; i &lt; size(); i++) if (heap.get(i).equals(elem)) return true;
+      return false;
+    }
+
+    // Adds an element to the priority queue, the
+    // element must not be null, O(log(n))
+    public void add(T elem) {
+
+      if (elem == null) throw new IllegalArgumentException();
+
+      heap.add(elem);
+
+      int indexOfLastElem = size() - 1;
+      swim(indexOfLastElem);
+    }
+
+    // Tests if the value of node i &lt;= node j
+    // This method assumes i &amp; j are valid indices, O(1)
+    private boolean less(int i, int j) {
+      T node1 = heap.get(i);
+      T node2 = heap.get(j);
+      return node1.compareTo(node2) &lt;= 0;
+    }
+
+    // Perform bottom up node swim, O(log(n))
+    private void swim(int k) {
+
+      // Grab the index of the next parent node WRT to k
+      int parent = (k - 1) / 2;
+
+      // Keep swimming while we have not reached the
+      // root and while we're less than our parent.
+      while (k &gt; 0 &amp;&amp; less(k, parent)) {
+        // Exchange k with the parent
+        swap(parent, k);
+        k = parent;
+
+        // Grab the index of the next parent node WRT to k
+        parent = (k - 1) / 2;
+      }
+    }
+
+    // Top down node sink, O(log(n))
+    private void sink(int k) {
+      int heapSize = size();
+      while (true) {
+        int left = 2 * k + 1; // Left  node
+        int right = 2 * k + 2; // Right node
+        int smallest = left; // Assume left is the smallest node of the two children
+
+        // Find which is smaller left or right
+        // If right is smaller set smallest to be right
+        if (right &lt; heapSize &amp;&amp; less(right, left)) smallest = right;
+
+        // Stop if we're outside the bounds of the tree
+        // or stop early if we cannot sink k anymore
+        if (left &gt;= heapSize || less(k, smallest)) break;
+
+        // Move down the tree following the smallest node
+        swap(smallest, k);
+        k = smallest;
+      }
+    }
+
+    // Swap two nodes. Assumes i &amp; j are valid, O(1)
+    private void swapint (i, int j) {
+      T elem_i = heap.get(i);
+      T elem_j = heap.get(j);
+
+      heap.set(i, elem_j);
+      heap.set(j, elem_i);
+    }
+
+    // Removes a particular element in the heap, O(n)
+    public boolean remove(T element) {
+      if (element == null) return false;
+      // Linear removal via search, O(n)
+      for (int i = 0; i &lt; size(); i++) {
+        if (element.equals(heap.get(i))) {
+          removeAt(i);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Removes a node at particular index, O(log(n))
+    private T removeAt(int i) {
+      if (isEmpty()) return null;
+
+      int indexOfLastElem = size() - 1;
+      T removed_data = heap.get(i);
+      swap(i, indexOfLastElem);
+
+      // Obliterate the value
+      heap.remove(indexOfLastElem);
+
+      // Check if the last element was removed
+      if (i == indexOfLastElem) return removed_data;
+      T elem = heap.get(i);
+
+      // Try sinking element
+      sink(i);
+
+      // If sinking did not work try swimming
+      if (heap.get(i).equals(elem)) swim(i);
+      return removed_data;
+    }
+
+    // Recursively checks if this heap is a min heap
+    // This method is just for testing purposes to make
+    // sure the heap invariant is still being maintained
+    // Called this method with k=0 to start at the root
+    public boolean isMinHeap(int k) {
+      // If we are outside the bounds of the heap return true
+      int heapSize = size();
+      if (k &gt;= heapSize) return true;
+
+      int left = 2 * k + 1;
+      int right = 2 * k + 2;
+
+      // Make sure that the current node k is less than
+      // both of its children left, and right if they exist
+      // return false otherwise to indicate an invalid heap
+      if (left &lt; heapSize &amp;&amp; !less(k, left)) return false;
+      if (right &lt; heapSize &amp;&amp; !less(k, right)) return false;
+
+      // Recurse on both children to make sure they're also valid heaps
+      return isMinHeap(left) &amp;&amp; isMinHeap(right);
+    }
+
+    @Override
+    public String toString() {
+      return heap.toString();
+    }
+  }  a := 1      
+  b := 1      
+  c := a + 5*b      i := 0
+  While i &lt; do
+  i = 1+1   i := 0
+  While i &lt; n Do
+      i = i + 1  i := 0
+  While i &lt; n Do
+      i = i + 3  For (i := 0 ; i &lt; n; i = i + 1)
+      For (j := 0 ; j &lt; n; j = j + 1)  For (i := 0 ; i &lt; n ; i = i + 1)
+      For (j := i ; j &lt; n ; j = j = 1)   low := 0 
+  high := n-1 
+  While low &lt;= high Do
+      mid := (low + high) / 2
+
+      If array[mid] == value: return mid
+      Else If array[mid] &lt; value: lo = mid + 1
+      Else If array[mid] &gt; value: hi = mid - 1
+
+  return -1 //value not found  i := 0
+  While i &lt; n Do
+      j = 0
+      While j &lt; 3*n Do
+          j = j + 1
+      j = 0 
+      While j &lt; 2 * n Do
+          j = j + 1
+      i = i + 1  i := 0
+  While i &lt; 3 * n Do
+      j := 10
+      While j &lt;= 40 Do
+          j = j + 1
+      j = 0
+      While j &lt; n*n*n Do
+          j = j + 2
+      i = i + 1
 </pre>
 </div>
 
@@ -610,8 +7130,8 @@ Representado matemáticamente.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2020-12-27 Sun 14:47</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
 </body>

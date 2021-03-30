@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2020-12-25 Fri 20:59 -->
+<!-- 2021-03-30 Tue 07:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -188,7 +188,7 @@ $(function() {
 
     $('.bs-docs-sidebar').affix();
 });
-</script>
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -655,305 +655,305 @@ Entonces podemos proceder a remover el nodo 9.
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #78808f; font-style: italic;">/**</span>
-<span style="color: #78808f; font-style: italic;">   * A doubly linked list implementation.</span>
-<span style="color: #78808f; font-style: italic;">   *</span>
-<span style="color: #78808f; font-style: italic;">   * </span><span style="color: #81A1C1; font-style: italic;">@author</span><span style="color: #78808f; font-style: italic;"> William Fiset, william.alexandre.fiset@gmail.com</span>
-<span style="color: #78808f; font-style: italic;">   */</span>
-  <span style="color: #81A1C1; font-style: italic;">package</span> com.williamfiset.algorithms.datastructures.<span style="color: #81A1C1;">linkedlist</span>;
+<pre class="src src-java">  /**
+   * A doubly linked list implementation.
+   *
+   * @author William Fiset, william.alexandre.fiset@gmail.com
+   */
+  package com.williamfiset.algorithms.datastructures.linkedlist;
 
-  <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #81A1C1; font-style: italic;">class</span> <span style="color: #8FBCBB;">DoublyLinkedList</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #81A1C1; font-style: italic;">implements</span> <span style="color: #8FBCBB;">Iterable</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #81A1C1;">{</span>
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">size</span> = <span style="color: #B48EAD; font-weight: bold;">0</span>;
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">Node</span><span style="color: #B48EAD;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #B48EAD;">&gt;</span> <span style="color: #D8DEE9;">head</span> = <span style="color: #81A1C1;">null</span>;
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">Node</span><span style="color: #B48EAD;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #B48EAD;">&gt;</span> <span style="color: #D8DEE9;">tail</span> = <span style="color: #81A1C1;">null</span>;
+  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+    private int size = 0;
+    private Node&lt;T&gt; head = null;
+    private Node&lt;T&gt; tail = null;
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Internal node class to represent data</span>
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #81A1C1; font-style: italic;">static</span> <span style="color: #81A1C1; font-style: italic;">class</span> <span style="color: #8FBCBB;">Node</span><span style="color: #B48EAD;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #B48EAD;">&gt;</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">data</span>;
-      <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">prev</span>, <span style="color: #D8DEE9;">next</span>;
+    // Internal node class to represent data
+    private static class Node&lt;T&gt; {
+      private T data;
+      private Node&lt;T&gt; prev, next;
 
-      <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">data</span>, <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #D8DEE9;">prev</span>, <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #D8DEE9;">next</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">this</span>.data = data;
-        <span style="color: #81A1C1; font-style: italic;">this</span>.prev = prev;
-        <span style="color: #81A1C1; font-style: italic;">this</span>.next = next;
-      <span style="color: #A3BE8C;">}</span>
+      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
+      }
 
-      <span style="color: #81A1C1;">@Override</span>
-      <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">String</span> <span style="color: #8FBCBB;">toString</span><span style="color: #A3BE8C;">()</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">return</span> data.toString<span style="color: #81A1C1;">()</span>;
-      <span style="color: #A3BE8C;">}</span>
-    <span style="color: #B48EAD;">}</span>
+      @Override
+      public String toString() {
+        return data.toString();
+      }
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Empty this linked list, O(n)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">clear</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">trav</span> = head;
-      <span style="color: #81A1C1; font-style: italic;">while</span> <span style="color: #A3BE8C;">(</span>trav != <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #D8DEE9;">next</span> = trav.next;
-        trav.prev = trav.next = <span style="color: #81A1C1;">null</span>;
-        trav.data = <span style="color: #81A1C1;">null</span>;
+    // Empty this linked list, O(n)
+    public void clear() {
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        Node&lt;T&gt; next = trav.next;
+        trav.prev = trav.next = null;
+        trav.data = null;
         trav = next;
-      <span style="color: #A3BE8C;">}</span>
-      head = tail = trav = <span style="color: #81A1C1;">null</span>;
-      size = <span style="color: #B48EAD; font-weight: bold;">0</span>;
-    <span style="color: #B48EAD;">}</span>
+      }
+      head = tail = trav = null;
+      size = 0;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Return the size of this linked list</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">int</span> <span style="color: #8FBCBB;">size</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> size;
-    <span style="color: #B48EAD;">}</span>
+    // Return the size of this linked list
+    public int size() {
+      return size;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Is this linked list empty?</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">isEmpty</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> size<span style="color: #A3BE8C;">()</span> == <span style="color: #B48EAD; font-weight: bold;">0</span>;
-    <span style="color: #B48EAD;">}</span>
+    // Is this linked list empty?
+    public boolean isEmpty() {
+      return size() == 0;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Add an element to the tail of the linked list, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">add</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      addLast<span style="color: #A3BE8C;">(</span>elem<span style="color: #A3BE8C;">)</span>;
-    <span style="color: #B48EAD;">}</span>
+    // Add an element to the tail of the linked list, O(1)
+    public void add(T elem) {
+      addLast(elem);
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Add a node to the tail of the linked list, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">addLast</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        head = tail = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;(</span>elem, <span style="color: #81A1C1;">null</span>, <span style="color: #81A1C1;">null</span><span style="color: #81A1C1;">)</span>;
-      <span style="color: #A3BE8C;">}</span> <span style="color: #81A1C1; font-style: italic;">else</span> <span style="color: #A3BE8C;">{</span>
-        tail.next = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;(</span>elem, tail, <span style="color: #81A1C1;">null</span><span style="color: #81A1C1;">)</span>;
+    // Add a node to the tail of the linked list, O(1)
+    public void addLast(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        tail.next = new Node&lt;T&gt;(elem, tail, null);
         tail = tail.next;
-      <span style="color: #A3BE8C;">}</span>
+      }
       size++;
-    <span style="color: #B48EAD;">}</span>
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Add an element to the beginning of this linked list, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">addFirst</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        head = tail = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;(</span>elem, <span style="color: #81A1C1;">null</span>, <span style="color: #81A1C1;">null</span><span style="color: #81A1C1;">)</span>;
-      <span style="color: #A3BE8C;">}</span> <span style="color: #81A1C1; font-style: italic;">else</span> <span style="color: #A3BE8C;">{</span>
-        head.prev = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;(</span>elem, <span style="color: #81A1C1;">null</span>, head<span style="color: #81A1C1;">)</span>;
+    // Add an element to the beginning of this linked list, O(1)
+    public void addFirst(T elem) {
+      if (isEmpty()) {
+        head = tail = new Node&lt;T&gt;(elem, null, null);
+      } else {
+        head.prev = new Node&lt;T&gt;(elem, null, head);
         head = head.prev;
-      <span style="color: #A3BE8C;">}</span>
+      }
       size++;
-    <span style="color: #B48EAD;">}</span>
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Add an element at a specified index</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">addAt</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">index</span>, <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">data</span><span style="color: #B48EAD;">)</span> <span style="color: #81A1C1; font-style: italic;">throws</span> <span style="color: #8FBCBB;">Exception</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>index &lt; <span style="color: #B48EAD; font-weight: bold;">0</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">Exception</span><span style="color: #81A1C1;">(</span><span style="color: #A3BE8C;">"Illegal Index"</span><span style="color: #81A1C1;">)</span>;
-      <span style="color: #A3BE8C;">}</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>index == <span style="color: #B48EAD; font-weight: bold;">0</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        addFirst<span style="color: #81A1C1;">(</span>data<span style="color: #81A1C1;">)</span>;
-        <span style="color: #81A1C1; font-style: italic;">return</span>;
-      <span style="color: #A3BE8C;">}</span>
+    // Add an element at a specified index
+    public void addAt(int index, T data) throws Exception {
+      if (index &lt; 0) {
+        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
+      }
+      if (index == 0) {
+        addFirst(data);
+        return;
+      }
 
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>index == size<span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        addLast<span style="color: #81A1C1;">(</span>data<span style="color: #81A1C1;">)</span>;
-        <span style="color: #81A1C1; font-style: italic;">return</span>;
-      <span style="color: #A3BE8C;">}</span>
+      if (index == size) {
+        addLast(data);
+        return;
+      }
 
-      <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">temp</span> = head;
-      <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span> = <span style="color: #B48EAD; font-weight: bold;">0</span>; i &lt; <span style="color: #8FBCBB;">index</span> - <span style="color: #B48EAD; font-weight: bold;">1</span>; i++<span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
+      Node&lt;T&gt; temp = head;
+      for (int i = 0; i &lt; index - 1; i++) {
         temp = temp.next;
-      <span style="color: #A3BE8C;">}</span>
-      <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">newNode</span> = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;&gt;(</span>data, temp, temp.next<span style="color: #A3BE8C;">)</span>;
+      }
+      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
       temp.next.prev = newNode;
       temp.next = newNode;
 
       size++;
-    <span style="color: #B48EAD;">}</span>
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Check the value of the first node if it exists, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">peekFirst</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">RuntimeException</span><span style="color: #A3BE8C;">(</span><span style="color: #A3BE8C;">"Empty list"</span><span style="color: #A3BE8C;">)</span>;
-      <span style="color: #81A1C1; font-style: italic;">return</span> head.data;
-    <span style="color: #B48EAD;">}</span>
+    // Check the value of the first node if it exists, O(1)
+    public T peekFirst() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return head.data;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Check the value of the last node if it exists, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">peekLast</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">RuntimeException</span><span style="color: #A3BE8C;">(</span><span style="color: #A3BE8C;">"Empty list"</span><span style="color: #A3BE8C;">)</span>;
-      <span style="color: #81A1C1; font-style: italic;">return</span> tail.data;
-    <span style="color: #B48EAD;">}</span>
+    // Check the value of the last node if it exists, O(1)
+    public T peekLast() {
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
+      return tail.data;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Remove the first value at the head of the linked list, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">removeFirst</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Can't remove data from an empty list</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">RuntimeException</span><span style="color: #A3BE8C;">(</span><span style="color: #A3BE8C;">"Empty list"</span><span style="color: #A3BE8C;">)</span>;
+    // Remove the first value at the head of the linked list, O(1)
+    public T removeFirst() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Extract the data at the head and move</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">the head pointer forwards one node</span>
-      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">data</span> = head.data;
+      // Extract the data at the head and move
+      // the head pointer forwards one node
+      T data = head.data;
       head = head.next;
       --size;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">If the list is empty set the tail to null</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> tail = <span style="color: #81A1C1;">null</span>;
+      // If the list is empty set the tail to null
+      if (isEmpty()) tail = null;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Do a memory cleanup of the previous node</span>
-      <span style="color: #81A1C1; font-style: italic;">else</span> head.prev = <span style="color: #81A1C1;">null</span>;
+      // Do a memory cleanup of the previous node
+      else head.prev = null;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Return the data that was at the first node we just removed</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> data;
-    <span style="color: #B48EAD;">}</span>
+      // Return the data that was at the first node we just removed
+      return data;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Remove the last value at the tail of the linked list, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">removeLast</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Can't remove data from an empty list</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">RuntimeException</span><span style="color: #A3BE8C;">(</span><span style="color: #A3BE8C;">"Empty list"</span><span style="color: #A3BE8C;">)</span>;
+    // Remove the last value at the tail of the linked list, O(1)
+    public T removeLast() {
+      // Can't remove data from an empty list
+      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Extract the data at the tail and move</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">the tail pointer backwards one node</span>
-      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">data</span> = tail.data;
+      // Extract the data at the tail and move
+      // the tail pointer backwards one node
+      T data = tail.data;
       tail = tail.prev;
       --size;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">If the list is now empty set the head to null</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> head = <span style="color: #81A1C1;">null</span>;
+      // If the list is now empty set the head to null
+      if (isEmpty()) head = null;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Do a memory clean of the node that was just removed</span>
-      <span style="color: #81A1C1; font-style: italic;">else</span> tail.next = <span style="color: #81A1C1;">null</span>;
+      // Do a memory clean of the node that was just removed
+      else tail.next = null;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Return the data that was in the last node we just removed</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> data;
-    <span style="color: #B48EAD;">}</span>
+      // Return the data that was in the last node we just removed
+      return data;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Remove an arbitrary node from the linked list, O(1)</span>
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">remove</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">node</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">If the node to remove is somewhere either at the</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">head or the tail handle those independently</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>node.prev == <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> removeFirst<span style="color: #A3BE8C;">()</span>;
-      <span style="color: #81A1C1; font-style: italic;">if</span><span style="color: #A3BE8C;">(</span>node.next == <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #81A1C1; font-style: italic;">return</span> removeLast<span style="color: #A3BE8C;">()</span>;
+    // Remove an arbitrary node from the linked list, O(1)
+    private T remove(Node&lt;T&gt; node) {
+      // If the node to remove is somewhere either at the
+      // head or the tail handle those independently
+      if (node.prev == null) return removeFirst();
+      if(node.next == null) return removeLast();
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Make the pointers of adjacent nodes skip over 'node'</span>
+      // Make the pointers of adjacent nodes skip over 'node'
       node.next.prev = node.prev;
       node.prev.next = node.next;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Temporarily store the data we want to return</span>
-      <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">data</span> = node.data;
+      // Temporarily store the data we want to return
+      T data = node.data;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Memory cleanup</span>
-      node.data = <span style="color: #81A1C1;">null</span>;
-      node = node.prev = node.next = <span style="color: #81A1C1;">null</span>;
+      // Memory cleanup
+      node.data = null;
+      node = node.prev = node.next = null;
 
       --size;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Return the data in the node we just removed</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> data;
-    <span style="color: #B48EAD;">}</span>
+      // Return the data in the node we just removed
+      return data;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Remove a node at a particular index, O(n)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">removeAt</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">index</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Make sure the index provided is valid</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>index &lt; <span style="color: #B48EAD; font-weight: bold;">0</span> || index &gt;= size<span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">IllegalArgumentException</span><span style="color: #81A1C1;">()</span>;
-      <span style="color: #A3BE8C;">}</span>
+    // Remove a node at a particular index, O(n)
+    public T removeAt(int index) {
+      // Make sure the index provided is valid
+      if (index &lt; 0 || index &gt;= size) {
+        throw new IllegalArgumentException();
+      }
 
-      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">i</span>;
-      <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">trav</span>;
+      int i;
+      Node&lt;T&gt; trav;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Search from the front of the list</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>index &lt; <span style="color: #8FBCBB;">size</span> / <span style="color: #B48EAD; font-weight: bold;">2</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #81A1C1;">(</span>i = <span style="color: #B48EAD; font-weight: bold;">0</span>, trav = head; i != index; i++<span style="color: #81A1C1;">)</span> <span style="color: #81A1C1;">{</span>
+      // Search from the front of the list
+      if (index &lt; size / 2) {
+        for (i = 0, trav = head; i != index; i++) {
           trav = trav.next;
-        <span style="color: #81A1C1;">}</span>
-        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Search from the back of the list</span>
-      <span style="color: #A3BE8C;">}</span> <span style="color: #81A1C1; font-style: italic;">else</span>
-        <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span>i = size - <span style="color: #B48EAD; font-weight: bold;">1</span>, trav = tail; i != index; i--<span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
+        }
+        // Search from the back of the list
+      } else
+        for (i = size - 1, trav = tail; i != index; i--) {
           trav = trav.prev;
-        <span style="color: #A3BE8C;">}</span>
+        }
 
-      <span style="color: #81A1C1; font-style: italic;">return</span> remove<span style="color: #A3BE8C;">(</span>trav<span style="color: #A3BE8C;">)</span>;
-    <span style="color: #B48EAD;">}</span>
+      return remove(trav);
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Remove a particular value in the linked list, O(n)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">remove</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">Object</span> <span style="color: #D8DEE9;">obj</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">trav</span> = head;
+    // Remove a particular value in the linked list, O(n)
+    public boolean remove(Object obj) {
+      Node&lt;T&gt; trav = head;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Support searching for null</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>obj == <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #81A1C1;">(</span>trav = head; trav != <span style="color: #81A1C1;">null</span>; trav = trav.next<span style="color: #81A1C1;">)</span> <span style="color: #81A1C1;">{</span>
-          <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #B48EAD;">(</span>trav.data == <span style="color: #81A1C1;">null</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-            remove<span style="color: #A3BE8C;">(</span>trav<span style="color: #A3BE8C;">)</span>;
-            <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">true</span>;
-          <span style="color: #B48EAD;">}</span>
-        <span style="color: #81A1C1;">}</span>
-        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Search for non null object</span>
-      <span style="color: #A3BE8C;">}</span> <span style="color: #81A1C1; font-style: italic;">else</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #81A1C1;">(</span>trav = head; trav != <span style="color: #81A1C1;">null</span>; trav = trav.next<span style="color: #81A1C1;">)</span> <span style="color: #81A1C1;">{</span>
-          <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #B48EAD;">(</span>obj.equals<span style="color: #A3BE8C;">(</span>trav.data<span style="color: #A3BE8C;">)</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-            remove<span style="color: #A3BE8C;">(</span>trav<span style="color: #A3BE8C;">)</span>;
-            <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">true</span>;
-          <span style="color: #B48EAD;">}</span>
-        <span style="color: #81A1C1;">}</span>
-      <span style="color: #A3BE8C;">}</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1;">false</span>;
-    <span style="color: #B48EAD;">}</span>
+      // Support searching for null
+      if (obj == null) {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (trav.data == null) {
+            remove(trav);
+            return true;
+          }
+        }
+        // Search for non null object
+      } else {
+        for (trav = head; trav != null; trav = trav.next) {
+          if (obj.equals(trav.data)) {
+            remove(trav);
+            return true;
+          }
+        }
+      }
+      return false;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Find the index of a particular value in the linked list, O(n)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">int</span> <span style="color: #8FBCBB;">indexOf</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">Object</span> <span style="color: #D8DEE9;">obj</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">index</span> = <span style="color: #B48EAD; font-weight: bold;">0</span>;
-      <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">trav</span> = head;
+    // Find the index of a particular value in the linked list, O(n)
+    public int indexOf(Object obj) {
+      int index = 0;
+      Node&lt;T&gt; trav = head;
 
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Support searching for null</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>obj == <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #81A1C1;">(</span>; trav != <span style="color: #81A1C1;">null</span>; trav = trav.next, index++<span style="color: #81A1C1;">)</span> <span style="color: #81A1C1;">{</span>
-          <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #B48EAD;">(</span>trav.data == <span style="color: #81A1C1;">null</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-            <span style="color: #81A1C1; font-style: italic;">return</span> index;
-          <span style="color: #B48EAD;">}</span>
-        <span style="color: #81A1C1;">}</span>
-        <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Search for non null object</span>
-      <span style="color: #A3BE8C;">}</span> <span style="color: #81A1C1; font-style: italic;">else</span>
-        <span style="color: #81A1C1; font-style: italic;">for</span> <span style="color: #A3BE8C;">(</span>; trav != <span style="color: #81A1C1;">null</span>; trav = trav.next, index++<span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-          <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #81A1C1;">(</span>obj.equals<span style="color: #B48EAD;">(</span>trav.data<span style="color: #B48EAD;">)</span><span style="color: #81A1C1;">)</span> <span style="color: #81A1C1;">{</span>
-            <span style="color: #81A1C1; font-style: italic;">return</span> index;
-          <span style="color: #81A1C1;">}</span>
-        <span style="color: #A3BE8C;">}</span>
+      // Support searching for null
+      if (obj == null) {
+        for (; trav != null; trav = trav.next, index++) {
+          if (trav.data == null) {
+            return index;
+          }
+        }
+        // Search for non null object
+      } else
+        for (; trav != null; trav = trav.next, index++) {
+          if (obj.equals(trav.data)) {
+            return index;
+          }
+        }
 
-      <span style="color: #81A1C1; font-style: italic;">return</span> -<span style="color: #B48EAD; font-weight: bold;">1</span>;
-    <span style="color: #B48EAD;">}</span>
+      return -1;
+    }
 
-    <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">Check is a value is contained within the linked list</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">contains</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">Object</span> <span style="color: #D8DEE9;">obj</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> indexOf<span style="color: #A3BE8C;">(</span>obj<span style="color: #A3BE8C;">)</span> != -<span style="color: #B48EAD; font-weight: bold;">1</span>;
-    <span style="color: #B48EAD;">}</span>
+    // Check is a value is contained within the linked list
+    public boolean contains(Object obj) {
+      return indexOf(obj) != -1;
+    }
 
-    <span style="color: #81A1C1;">@Override</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #81A1C1;">java</span>.<span style="color: #81A1C1;">util</span>.<span style="color: #8FBCBB;">Iterator</span><span style="color: #B48EAD;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #B48EAD;">&gt;</span> <span style="color: #8FBCBB;">iterator</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #81A1C1;">java</span>.<span style="color: #81A1C1;">util</span>.<span style="color: #8FBCBB;">Iterator</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;()</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">Node</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #D8DEE9;">trav</span> = head;
+    @Override
+    public java.util.Iterator&lt;T&gt; iterator() {
+      return new java.util.Iterator&lt;T&gt;() {
+        private Node&lt;T&gt; trav = head;
 
-        <span style="color: #81A1C1;">@Override</span>
-        <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">hasNext</span><span style="color: #81A1C1;">()</span> <span style="color: #81A1C1;">{</span>
-          <span style="color: #81A1C1; font-style: italic;">return</span> trav != <span style="color: #81A1C1;">null</span>;
-        <span style="color: #81A1C1;">}</span>
+        @Override
+        public boolean hasNext() {
+          return trav != null;
+        }
 
-        <span style="color: #81A1C1;">@Override</span>
-        <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">next</span><span style="color: #81A1C1;">()</span> <span style="color: #81A1C1;">{</span>
-          <span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">data</span> = trav.data;
+        @Override
+        public T next() {
+          T data = trav.data;
           trav = trav.next;
-          <span style="color: #81A1C1; font-style: italic;">return</span> data;
-        <span style="color: #81A1C1;">}</span>
+          return data;
+        }
 
-        <span style="color: #81A1C1;">@Override</span>
-        <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">remove</span><span style="color: #81A1C1;">()</span> <span style="color: #81A1C1;">{</span>
-          <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">UnsupportedOperationException</span><span style="color: #B48EAD;">()</span>;
-        <span style="color: #81A1C1;">}</span>
-      <span style="color: #A3BE8C;">}</span>;
-    <span style="color: #B48EAD;">}</span>
+        @Override
+        public void remove() {
+          throw new UnsupportedOperationException();
+        }
+      };
+    }
 
-    <span style="color: #81A1C1;">@Override</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">String</span> <span style="color: #8FBCBB;">toString</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #8FBCBB;">StringBuilder</span> <span style="color: #D8DEE9;">sb</span> = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">StringBuilder</span><span style="color: #A3BE8C;">()</span>;
-      sb.append<span style="color: #A3BE8C;">(</span><span style="color: #A3BE8C;">"[ "</span><span style="color: #A3BE8C;">)</span>;
-      <span style="color: #8FBCBB;">Node</span><span style="color: #A3BE8C;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">&gt;</span> <span style="color: #D8DEE9;">trav</span> = head;
-      <span style="color: #81A1C1; font-style: italic;">while</span> <span style="color: #A3BE8C;">(</span>trav != <span style="color: #81A1C1;">null</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        sb.append<span style="color: #81A1C1;">(</span>trav.data<span style="color: #81A1C1;">)</span>;
-        <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #81A1C1;">(</span>trav.next != <span style="color: #81A1C1;">null</span><span style="color: #81A1C1;">)</span> <span style="color: #81A1C1;">{</span>
-          sb.append<span style="color: #B48EAD;">(</span><span style="color: #A3BE8C;">", "</span><span style="color: #B48EAD;">)</span>;
-        <span style="color: #81A1C1;">}</span>
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
+      Node&lt;T&gt; trav = head;
+      while (trav != null) {
+        sb.append(trav.data);
+        if (trav.next != null) {
+          sb.append(<span style="color: #f1fa8c;">", "</span>);
+        }
         trav = trav.next;
-      <span style="color: #A3BE8C;">}</span>
-      sb.append<span style="color: #A3BE8C;">(</span><span style="color: #A3BE8C;">" ]"</span><span style="color: #A3BE8C;">)</span>;
-      <span style="color: #81A1C1; font-style: italic;">return</span> sb.toString<span style="color: #A3BE8C;">()</span>;
-    <span style="color: #B48EAD;">}</span>
-  <span style="color: #81A1C1;">}</span> 
+      }
+      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
+      return sb.toString();
+    }
+  } 
 </pre>
 </div>
 </div>
@@ -962,8 +962,8 @@ Entonces podemos proceder a remover el nodo 9.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2020-12-25 Fri 20:59</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
 </body>

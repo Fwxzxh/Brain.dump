@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2020-12-25 Fri 20:59 -->
+<!-- 2021-03-30 Tue 07:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -188,7 +188,7 @@ $(function() {
 
     $('.bs-docs-sidebar').affix();
 });
-</script>
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -536,79 +536,79 @@ punrtero a la izquierda o a la derecha. ## Implementación en código
 
 <div class="org-src-container">
 
-<pre class="src src-java">  <span style="color: #81A1C1; font-style: italic;">package</span> com.williamfiset.algorithms.datastructures.<span style="color: #81A1C1;">queue</span>;
+<pre class="src src-java">  <span style="color: #ff79c6; font-style: italic;">package</span> com.williamfiset.algorithms.datastructures.queue;
 
-  <span style="color: #78808f; font-style: italic;">/**</span>
-<span style="color: #78808f; font-style: italic;">   * Besides the Generics, the loss of property of size is another difference between ArrayQueue and</span>
-<span style="color: #78808f; font-style: italic;">   * IntQueue. The size of ArrayQueue is calculated by the formula, as are empty status and full</span>
-<span style="color: #78808f; font-style: italic;">   * status.</span>
-<span style="color: #78808f; font-style: italic;">   *</span>
-<span style="color: #78808f; font-style: italic;">   * </span><span style="color: #81A1C1; font-style: italic;">&lt;p&gt;</span><span style="color: #78808f; font-style: italic;">ArrayQueue maximum size is data.length - 1. The place of the variable rear is always in front</span>
-<span style="color: #78808f; font-style: italic;">   * of the variable front logistically if regard the data array as circular. so the number of states</span>
-<span style="color: #78808f; font-style: italic;">   * of the combination of rear and front is the length of the data array. And one of the total states</span>
-<span style="color: #78808f; font-style: italic;">   * is used to be the judge if the queue is empty or full.</span>
-<span style="color: #78808f; font-style: italic;">   *</span>
-<span style="color: #78808f; font-style: italic;">   * </span><span style="color: #81A1C1; font-style: italic;">@author</span><span style="color: #78808f; font-style: italic;"> liujingkun, liujkon@gmail.com</span>
-<span style="color: #78808f; font-style: italic;">   */</span>
-  <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #81A1C1; font-style: italic;">class</span> <span style="color: #8FBCBB;">ArrayQueue</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #81A1C1; font-style: italic;">implements</span> <span style="color: #8FBCBB;">Queue</span><span style="color: #81A1C1;">&lt;</span><span style="color: #8FBCBB;">T</span><span style="color: #81A1C1;">&gt;</span> <span style="color: #81A1C1;">{</span>
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">Object</span><span style="color: #B48EAD;">[]</span> <span style="color: #D8DEE9;">data</span>;
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">front</span>;
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">rear</span>;
+  <span style="color: #6272a4; font-style: italic;">/**</span>
+<span style="color: #6272a4; font-style: italic;">   * Besides the Generics, the loss of property of size is another difference between ArrayQueue and</span>
+<span style="color: #6272a4; font-style: italic;">   * IntQueue. The size of ArrayQueue is calculated by the formula, as are empty status and full</span>
+<span style="color: #6272a4; font-style: italic;">   * status.</span>
+<span style="color: #6272a4; font-style: italic;">   *</span>
+<span style="color: #6272a4; font-style: italic;">   * &lt;p&gt;ArrayQueue maximum size is data.length - 1. The place of the variable rear is always in front</span>
+<span style="color: #6272a4; font-style: italic;">   * of the variable front logistically if regard the data array as circular. so the number of states</span>
+<span style="color: #6272a4; font-style: italic;">   * of the combination of rear and front is the length of the data array. And one of the total states</span>
+<span style="color: #6272a4; font-style: italic;">   * is used to be the judge if the queue is empty or full.</span>
+<span style="color: #6272a4; font-style: italic;">   *</span>
+<span style="color: #6272a4; font-style: italic;">   * @author liujingkun, liujkon@gmail.com</span>
+<span style="color: #6272a4; font-style: italic;">   */</span>
+  <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">ArrayQueue</span><span style="color: #61bfff;">&lt;</span><span style="color: #8be9fd;">T</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">implements</span> <span style="color: #bd93f9;">Queue</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">Object</span><span style="color: #ff79c6;">[]</span> data;
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ffb86c;">int</span> front;
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ffb86c;">int</span> rear;
 
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">ArrayQueue</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">capacity</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #6f7787; font-style: italic;">// </span><span style="color: #6f7787; font-style: italic;">ArrayQueue maximum size is data.length - 1.</span>
-      data = <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">Object</span><span style="color: #A3BE8C;">[</span>capacity + <span style="color: #B48EAD; font-weight: bold;">1</span><span style="color: #A3BE8C;">]</span>;
-      front = <span style="color: #B48EAD; font-weight: bold;">0</span>;
-      rear = <span style="color: #B48EAD; font-weight: bold;">0</span>;
-    <span style="color: #B48EAD;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">ArrayQueue</span><span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">int</span> capacity<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #6272a4; font-style: italic;">// ArrayQueue maximum size is data.length - 1.</span>
+      data = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Object</span><span style="color: #50fa7b;">[</span>capacity + <span style="color: #8be9fd;">1</span><span style="color: #50fa7b;">]</span>;
+      front = <span style="color: #8be9fd;">0</span>;
+      rear = <span style="color: #8be9fd;">0</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #81A1C1;">@Override</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">void</span> <span style="color: #8FBCBB;">offer</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">T</span> <span style="color: #D8DEE9;">elem</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isFull<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">RuntimeException</span><span style="color: #81A1C1;">(</span><span style="color: #A3BE8C;">"Queue is full"</span><span style="color: #81A1C1;">)</span>;
-      <span style="color: #A3BE8C;">}</span>
-      data<span style="color: #A3BE8C;">[</span>rear++<span style="color: #A3BE8C;">]</span> = elem;
-      rear = adjustIndex<span style="color: #A3BE8C;">(</span>rear, data.length<span style="color: #A3BE8C;">)</span>;
-    <span style="color: #B48EAD;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">offer</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">T</span> elem<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isFull</span><span style="color: #61bfff;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Queue is full"</span><span style="color: #61bfff;">)</span>;
+      <span style="color: #50fa7b;">}</span>
+      data<span style="color: #50fa7b;">[</span>rear++<span style="color: #50fa7b;">]</span> = elem;
+      rear = <span style="color: #50fa7b;">adjustIndex</span><span style="color: #50fa7b;">(</span>rear, data.length<span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #81A1C1;">@Override</span>
-    <span style="color: #81A1C1;">@SuppressWarnings</span><span style="color: #B48EAD;">(</span><span style="color: #A3BE8C;">"unchecked"</span><span style="color: #B48EAD;">)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">poll</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">RuntimeException</span><span style="color: #81A1C1;">(</span><span style="color: #A3BE8C;">"Queue is empty"</span><span style="color: #81A1C1;">)</span>;
-      <span style="color: #A3BE8C;">}</span>
-      front = adjustIndex<span style="color: #A3BE8C;">(</span>front, data.length<span style="color: #A3BE8C;">)</span>;
-      <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">)</span> data<span style="color: #A3BE8C;">[</span>front++<span style="color: #A3BE8C;">]</span>;
-    <span style="color: #B48EAD;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">SuppressWarnings</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"unchecked"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">poll</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Queue is empty"</span><span style="color: #61bfff;">)</span>;
+      <span style="color: #50fa7b;">}</span>
+      front = <span style="color: #50fa7b;">adjustIndex</span><span style="color: #50fa7b;">(</span>front, data.length<span style="color: #50fa7b;">)</span>;
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">T</span><span style="color: #50fa7b;">)</span> data<span style="color: #50fa7b;">[</span>front++<span style="color: #50fa7b;">]</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #81A1C1;">@Override</span>
-    <span style="color: #81A1C1;">@SuppressWarnings</span><span style="color: #B48EAD;">(</span><span style="color: #A3BE8C;">"unchecked"</span><span style="color: #B48EAD;">)</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">T</span> <span style="color: #8FBCBB;">peek</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #A3BE8C;">(</span>isEmpty<span style="color: #81A1C1;">()</span><span style="color: #A3BE8C;">)</span> <span style="color: #A3BE8C;">{</span>
-        <span style="color: #81A1C1; font-style: italic;">throw</span> <span style="color: #81A1C1; font-style: italic;">new</span> <span style="color: #8FBCBB;">RuntimeException</span><span style="color: #81A1C1;">(</span><span style="color: #A3BE8C;">"Queue is empty"</span><span style="color: #81A1C1;">)</span>;
-      <span style="color: #A3BE8C;">}</span>
-      front = adjustIndex<span style="color: #A3BE8C;">(</span>front, data.length<span style="color: #A3BE8C;">)</span>;
-      <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #A3BE8C;">(</span><span style="color: #8FBCBB;">T</span><span style="color: #A3BE8C;">)</span> data<span style="color: #A3BE8C;">[</span>front<span style="color: #A3BE8C;">]</span>;
-    <span style="color: #B48EAD;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">SuppressWarnings</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"unchecked"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">peek</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Queue is empty"</span><span style="color: #61bfff;">)</span>;
+      <span style="color: #50fa7b;">}</span>
+      front = <span style="color: #50fa7b;">adjustIndex</span><span style="color: #50fa7b;">(</span>front, data.length<span style="color: #50fa7b;">)</span>;
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">T</span><span style="color: #50fa7b;">)</span> data<span style="color: #50fa7b;">[</span>front<span style="color: #50fa7b;">]</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #81A1C1;">@Override</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">int</span> <span style="color: #8FBCBB;">size</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> adjustIndex<span style="color: #A3BE8C;">(</span>rear + data.length - front, data.length<span style="color: #A3BE8C;">)</span>;
-    <span style="color: #B48EAD;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">size</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">adjustIndex</span><span style="color: #50fa7b;">(</span>rear + data.length - front, data.length<span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #81A1C1;">@Override</span>
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">isEmpty</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> rear == front;
-    <span style="color: #B48EAD;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">boolean</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> rear == front;
+    <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #81A1C1; font-style: italic;">public</span> <span style="color: #8FBCBB;">boolean</span> <span style="color: #8FBCBB;">isFull</span><span style="color: #B48EAD;">()</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> <span style="color: #A3BE8C;">(</span>front + data.length - rear<span style="color: #A3BE8C;">)</span> % data.length == <span style="color: #B48EAD; font-weight: bold;">1</span>;
-    <span style="color: #B48EAD;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">boolean</span> <span style="color: #50fa7b;">isFull</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">(</span>front + data.length - rear<span style="color: #50fa7b;">)</span> % data.length == <span style="color: #8be9fd;">1</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #81A1C1; font-style: italic;">private</span> <span style="color: #8FBCBB;">int</span> <span style="color: #8FBCBB;">adjustIndex</span><span style="color: #B48EAD;">(</span><span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">index</span>, <span style="color: #8FBCBB;">int</span> <span style="color: #D8DEE9;">size</span><span style="color: #B48EAD;">)</span> <span style="color: #B48EAD;">{</span>
-      <span style="color: #81A1C1; font-style: italic;">return</span> index &gt;= size ? index - size : index;
-    <span style="color: #B48EAD;">}</span>
-  <span style="color: #81A1C1;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">adjustIndex</span><span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">int</span> index, <span style="color: #ffb86c;">int</span> size<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> index &gt;= size ? index - size : index;
+    <span style="color: #ff79c6;">}</span>
+  <span style="color: #61bfff;">}</span>
 </pre>
 </div>
 </div>
@@ -617,8 +617,8 @@ punrtero a la izquierda o a la derecha. ## Implementación en código
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2020-12-25 Fri 20:59</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
 </body>

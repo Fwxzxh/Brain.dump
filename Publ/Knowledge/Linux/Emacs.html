@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Emacs</title>
-<!-- 2021-02-07 Sun 20:15 -->
+<!-- 2021-03-30 Tue 07:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -197,8 +197,12 @@ $(function() {
 <ul class="nav">
 <li><a href="#sec-1">1. Org Mode</a>
 <ul class="nav">
-<li><a href="#sec-1-1">1.1. Cambiar idioma export</a></li>
-<li><a href="#sec-1-2">1.2. A</a></li>
+<li><a href="#sec-1-1">1.1. Integrar un CSS personalizado</a></li>
+<li><a href="#sec-1-2">1.2. Cambiar idioma export</a></li>
+<li><a href="#sec-1-3">1.3. Default latex export</a></li>
+<li><a href="#sec-1-4">1.4. Latex export con solo lo mínimo indispensable</a></li>
+<li><a href="#sec-1-5">1.5. Latex setupfile</a></li>
+<li><a href="#sec-1-6">1.6. Código de colores con orgmode latex</a></li>
 </ul>
 </li>
 </ul>
@@ -213,17 +217,15 @@ Cosas sobre emacs
 <h2 id="sec-1"><span class="section-number-2">1</span> Org Mode</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Cambiar idioma export</h3>
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Integrar un CSS personalizado</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-Para cambiar el idioma para exportar de org mode a Latex o HTML podemos agregar estas lineas
-al inicio de el documento.
+El archivo ccs tiene que estar en la carpeta con el archivo org y llamarse <code>styles.css</code>
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span style="color: #78808f;">#+LANGUAGE: es</span>
-<span style="color: #78808f;">#+LATEX_HEADER: \usepackage[AUTO]{babel}</span>
+<pre class="src src-org"><span style="color: #8995ba;">#+HTML_HEAD: &lt;link rel="sylesheet" type="text/css" href="styles.css"/&gt;</span>
 
 </pre>
 </div>
@@ -231,14 +233,191 @@ al inicio de el documento.
 </div>
 
 <div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> A</h3>
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Cambiar idioma export</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Para cambiar el idioma para exportar de org mode a Latex o HTML podemos agregar estas lineas
+al inicio de el documento.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #8995ba;">#+LANGUAGE: es</span>
+<span style="color: #8995ba;">#+LATEX_HEADER: \usepackage[AUTO]{babel}</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Default latex export</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #8995ba;">#+LATEX_CLASS: article</span>
+<span style="color: #8995ba;">#+LATEX_CLASS_OPTIONS: [letterpaper]</span>
+<span style="color: #8995ba;">#+OPTIONS: toc:t</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Latex export con solo lo mínimo indispensable</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Esto debería de ir en el archivo de configuración.
+</li>
+<li>Se incluye al archivo con la opción <code>#+LATEX_CLASS: org-plain-latex</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">with-eval-after-load</span> <span style="color: #ff79c6;">'</span><span style="color: #8be9fd;">ox-latex</span>
+<span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">add-to-list</span> <span style="color: #ff79c6;">'</span>org-latex-classes
+             <span style="color: #ff79c6;">'</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"org-plain-latex"</span>
+               <span style="color: #f1fa8c;">"\\documentclass{article}</span>
+<span style="color: #f1fa8c;">           [NO-DEFAULT-PACKAGES]</span>
+<span style="color: #f1fa8c;">           [PACKAGES]</span>
+<span style="color: #f1fa8c;">           [EXTRA]"</span>
+               <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"\\section{%s}"</span> . <span style="color: #f1fa8c;">"\\section*{%s}"</span><span style="color: #61bfff;">)</span>
+               <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"\\subsection{%s}"</span> . <span style="color: #f1fa8c;">"\\subsection*{%s}"</span><span style="color: #61bfff;">)</span>
+               <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"\\subsubsection{%s}"</span> . <span style="color: #f1fa8c;">"\\subsubsection*{%s}"</span><span style="color: #61bfff;">)</span>
+               <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"\\paragraph{%s}"</span> . <span style="color: #f1fa8c;">"\\paragraph*{%s}"</span><span style="color: #61bfff;">)</span>
+               <span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"\\subparagraph{%s}"</span> . <span style="color: #f1fa8c;">"\\subparagraph*{%s}"</span><span style="color: #61bfff;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Latex setupfile</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Mejores <i>defaults</i> para exportar a latex.
+</li>
+<li>Guardar este código con un nombre y con extensión <code>org</code> o <code>setup</code>.
+</li>
+<li>Incluirlo a nuestro archivo org con <code>#+SETUPFILE: ~/rutaAlArchivo.org</code>
+</li>
+</ul>
+
+<pre class="example">
+
+#+LaTeX_CLASS: org-plain-latex
+#+LaTeX_CLASS_OPTIONS: [letterpaper, 11pt]
+#+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font
+
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[AUTO]{inputenc}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}
+#+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}
+
+% Colorizing links in a nicer way.
+#+LATEX_HEADER: \definecolor{bblue}{HTML}{0645AD}
+#+LATEX_HEADER: \usepackage[colorlinks]{hyperref}
+#+LATEX_HEADER: \hypersetup{colorlinks, linkcolor=blue, urlcolor=bblue}
+
+% Moving up the title.
+#+LATEX_HEADER: \usepackage{titling}
+#+LATEX_HEADER: \setlength{\droptitle}{-6em}
+
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \setlength{\parskip}{1em}
+#+LATEX_HEADER: \usepackage[stretch=10]{microtype}
+#+LATEX_HEADER: \usepackage{hyphenat}
+#+LATEX_HEADER: \usepackage{ragged2e}
+#+LATEX_HEADER: \usepackage{subfig} % Subfigures (not needed in Org I think)
+#+LATEX_HEADER: \usepackage{hyperref} % Links
+#+LATEX_HEADER: \usepackage{listings} % Code highlighting
+% Disables flush alighment on the right side. Personal preference.
+# #+LATEX_HEADER: \RaggedRight
+
+% Page geometry
+#+LATEX_HEADER: \usepackage[top=1in, bottom=1.25in, left=1.55in, right=1.55in]{geometry}
+
+% Line spacing
+#+LATEX_HEADER: \renewcommand{\baselinestretch}{1.15}
+
+% Page numbering - this disables it
+# #+LATEX_HEADER: \pagenumbering{gobble}
+
+% Spacing, titling, text setting.
+#+LATEX_HEADER: \usepackage[explicit]{titlesec}
+
+% Title customization
+#+LATEX_HEADER: \pretitle{\begin{center}\fontsize{20pt}{20pt}\selectfont}
+#+LATEX_HEADER: \posttitle{\par\end{center}}
+#+LATEX_HEADER: \preauthor{\begin{center}\vspace{-6bp}\fontsize{14pt}{14pt}\selectfont}
+#+LATEX_HEADER: \postauthor{\par\end{center}\vspace{-25bp}}
+
+#+LATEX_HEADER: \predate{\begin{center}\fontsize{12pt}{12pt}\selectfont}
+#+LATEX_HEADER: \postdate{\par\end{center}\vspace{0em}}
+
+
+% Section/subsection headings:
+
+%Section
+#+LATEX_HEADER: \titlespacing\section{0pt}{5pt}{5pt} % left margin, space before section header, space after section header
+
+%Subsection
+#+LATEX_HEADER: \titlespacing\subsection{0pt}{5pt}{-2pt} % left margin, space before subsection header, space after subsection header
+
+%Subsubsection
+#+LATEX_HEADER: \titlespacing\subsubsection{0pt}{5pt}{-2pt} % left margin, space before subsection header, space after subsection header
+
+% List spacing
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist{itemsep=-2pt} % or \setlist{noitemsep} to leave space around whole list
+
+
+# %Section
+# #+LATEX_HEADER: \titleformat{\section} {\Large}{\thesection}{1em}{\textbf{#1}} % Section header formatting
+# #+LATEX_HEADER: \titlespacing\section{0pt}{5pt}{-5pt} % left margin, space before section header, space after section header
+
+# %Subsection
+# #+LATEX_HEADER: \titleformat{\subsection} {\large}{\thesubsection}{1em}{\textbf{#1}}
+\titlespacing\subsection{0pt}{5pt}{-5pt} % left margin, space before subsection header, space after subsection header
+
+# %Subsubsection
+# #+LATEX_HEADER: \titleformat{\subsubsection} {\large}{\thesubsubsection}{1em}{#1}
+\titlespacing\subsubsection{0pt}{5pt}{-5pt} % left margin, space before subsection header, space after subsection header
+
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Código de colores con orgmode latex</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>Si llega a faltar alguno de estos dos en donde deben de ir el archivo no compilara
+</li>
+</ul>
+
+<div class="org-src-container">
+<label class="org-src-name">En tu configuración</label>
+<pre class="src src-emacs-lisp"><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">setq</span> org-latex-listings <span style="color: #ff79c6;">'</span><span style="color: #8be9fd;">t</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<label class="org-src-name">En el archivo org a exportar</label>
+<pre class="src src-org"><span style="color: #8995ba;">#+LATEX_HEADER: \usepackage{listings}</span>
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-02-07 Sun 20:15</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
 </body>

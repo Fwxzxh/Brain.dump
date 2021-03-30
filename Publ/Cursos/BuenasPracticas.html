@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Buenas Practicas para escritura de Código</title>
+<!-- 2021-03-30 Tue 07:17 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Ejes que hacen la calidad del código</a></li>
+<li><a href="#sec-2">2. Código legible</a></li>
+<li><a href="#sec-3">3. Código mantenible</a></li>
+<li><a href="#sec-4">4. Código libre de vicios</a></li>
+<li><a href="#sec-5">5. Conocer Principios SOLID</a></li>
+<li><a href="#sec-6">6. Patrones de diseño y su aplicación</a></li>
+<li><a href="#sec-7">7. Comprender las nociones del testing automático</a></li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Buenas Practicas para escritura de Código</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Ejes que hacen la calidad del código</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Características internas (que solo ve el programador)
+</p>
+<dl class="org-dl">
+<dt> Legibilidad </dt><dd>¿Que tan fácil es interpretar lo que el código hace.
+</dd>
+<dt> Mantenibilidad </dt><dd>Cuanto esfuerzo supone adaptar el código a nuevos requerimientos.
+</dd>
+<dt> Testeabilidad </dt><dd>Cuanto esfuerzo supone realizar pruebas a el código.
+</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Código legible</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Define un estándar(o usa uno) y respétalo.
+</li>
+<li>Apóyate con un <i>linter</i>.
+</li>
+<li>Genera código claro y consistente.
+</li>
+<li>Identificadores mnemotématicos, específicos y precisos.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Código mantenible</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Código modular.
+<ul class="org-ul">
+<li>Encapsular los procesos y decisiones del programa en métodos y funciones.
+</li>
+</ul>
+</li>
+<li>Código reutilizable.
+<ul class="org-ul">
+<li>Funciones que hagan solamente una cosa.
+</li>
+<li>No repitas código, haz una función.
+</li>
+</ul>
+</li>
+<li>Código organizado.
+<ul class="org-ul">
+<li>Usa nombres de archivos con sentido.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Código libre de vicios</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Evitar el hardcoding, usar identificadores siempre.
+</li>
+<li>Evitar efectos colaterales.
+<ul class="org-ul">
+<li>Se refiere a efectos que suceden más allá del código que se esta leyendo.
+</li>
+<li>Evita variables globales.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Conocer Principios SOLID</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>SOLID significa:
+<dl class="org-dl">
+<dt> S </dt><dd>Single Responsability Principle.
+<ul class="org-ul">
+<li>Una clase solo debe de tener un objetivo.
+</li>
+</ul>
+</dd>
+<dt> O </dt><dd>Open/Closed Principle.
+<ul class="org-ul">
+<li>Una entidad de software debe de estar abierta para su extención y cerrada para su modificación.
+</li>
+</ul>
+</dd>
+<dt> L </dt><dd>Liskov Substitution Principle.
+<ul class="org-ul">
+<li>Establece que cada clase que hereda de otra puede usarse como su padre sin necesidad de conocer las diferencias entre ellas.
+</li>
+</ul>
+</dd>
+<dt> I </dt><dd>Interface Segregation Principle.
+<ul class="org-ul">
+<li>Establece que los clientes del programa solo deberían conocer de éste los métodos que realmente usan.
+</li>
+</ul>
+</dd>
+<dt> D </dt><dd>Dependency Inversion Principle.
+<ul class="org-ul">
+<li>Los modulos de alto nivel no deben depender de los de bajo nivel, ambos deben de depender de abstracciones.
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Patrones de diseño y su aplicación</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Son soluciones conceptuales que se pueden aplicar a la hora de diseñar las clases.
+</li>
+<li>tres tipos
+<dl class="org-dl">
+<dt> Creación </dt><dd>Nos dice como se crean nuevas instancias de los objetos.
+</dd>
+<dt> Estructurales </dt><dd>Nos dicen como debemos de estructurar nuestras clases.
+</dd>
+<dt> Comportamiento </dt><dd>Nos dicen como deben de comportarse nuestros objetos.
+</dd>
+</dl>
+</li>
+<li>No siempre son aplicables, pero nos ayudan a pensar desde una hoja en blanco.
+</li>
+<li>Patrón Singlenton.
+<ul class="org-ul">
+<li>Creación/comportamiento.
+</li>
+<li>Una clase que solo tenga una instancia al lo largo de toda nuestra aplicación.
+</li>
+<li>Se utiliza para optimizar recursos.
+</li>
+</ul>
+</li>
+<li>Patrón Factory
+<ul class="org-ul">
+<li>Creacional.
+</li>
+<li>Se utiliza cuando la creación de un objeto es algo compleja.
+</li>
+</ul>
+</li>
+<li>Patrón Command
+<ul class="org-ul">
+<li>Se utiliza cuando una operación compleja que debe de ser realizada desde diferentes puntos de entrada.
+</li>
+<li>Permite solicitar una operación a un objeto sin conocer realmente el contenido de esta operación.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Comprender las nociones del testing automático</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>Testing manual, es costoso, lento y poco confiable.
+</li>
+<li>Testing automatizado, (escribes programas que puedan testear tu programa) es más barato, rápido y más confiable.
+</li>
+<li>Tipos de testing automatizado:
+<dl class="org-dl">
+<dt> Unit Testing </dt><dd>Evaluamos el funcionamiento de los componentes individualmente.
+</dd>
+<dt> Integration Testing </dt><dd>Validar la integración entre los componentes y el sistema completo.
+</dd>
+</dl>
+</li>
+<li>Test Driven Development
+<ul class="org-ul">
+<li>Propone primero escribir las pruebas y después el software.
+<ol class="org-ol">
+<li>Escribimos un test que falle.
+</li>
+<li>Hacemos que el código funcione con el test.
+</li>
+<li>Eliminamos todo el código redundante y lo simplificamos pero siempre intentando pasar el test.
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Documentación
+<ul class="org-ul">
+<li>¿Qué documentar?
+<ul class="org-ul">
+<li>Como implementar una nueva funcionalidad.
+</li>
+<li>Como se realizan las pruebas.
+</li>
+</ul>
+</li>
+<li>¿Como documentar?
+<ul class="org-ul">
+<li>UML como documentación.
+</li>
+</ul>
+</li>
+<li>¿Donde documentar?
+<ul class="org-ul">
+<li>Propio código.
+</li>
+<li>Sistema de documentación.
+</li>
+</ul>
+</li>
+<li>¿Cuando documentar?
+<ul class="org-ul">
+<li>Documentar inmediatamente después de escribir código.
+</li>
+<li>Cuando se resuelve un problema.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

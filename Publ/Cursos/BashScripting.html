@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Curso de Bash Scripting</title>
+<!-- 2021-03-30 Tue 07:17 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Programación de shell básica</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Definir variables y su alcance</a></li>
+<li><a href="#sec-1-2">1.2. Tipos de operadores</a></li>
+<li><a href="#sec-1-3">1.3. Script con argumentos</a></li>
+<li><a href="#sec-1-4">1.4. Sustitución de comandos en variables</a></li>
+<li><a href="#sec-1-5">1.5. Debug un script</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Scripts interactivos</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Capturar información del usuario</a></li>
+<li><a href="#sec-2-2">2.2. Validar la información</a></li>
+<li><a href="#sec-2-3">2.3. Paso de parametros y opciones</a></li>
+<li><a href="#sec-2-4">2.4. Descargar archivos de internet</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Condicionales.</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. <code>If else</code></a></li>
+<li><a href="#sec-3-2">3.2. Expresiones condicionales</a></li>
+<li><a href="#sec-3-3">3.3. Sentencias <code>case</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Sentencias de iteración</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Arreglos</a></li>
+<li><a href="#sec-4-2">4.2. Sentencia <code>for</code></a></li>
+<li><a href="#sec-4-3">4.3. Sentencia <code>while loop</code></a></li>
+<li><a href="#sec-4-4">4.4. <code>loops</code> anidados</a></li>
+<li><a href="#sec-4-5">4.5. Utilizando las sentencias <code>break</code> y <code>continue</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Archivos</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Creación de archivos y directorios</a></li>
+<li><a href="#sec-5-2">5.2. Escribir dentro de un archivo</a></li>
+<li><a href="#sec-5-3">5.3. Leer de un archivo</a></li>
+<li><a href="#sec-5-4">5.4. Copiar, mover y eliminar archivos</a></li>
+<li><a href="#sec-5-5">5.5. Empaquetamiento de archivos usando <code>tar</code></a></li>
+<li><a href="#sec-5-6">5.6. Empaquetamiento con <code>gzip</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Funciones</a>
+<ul class="nav">
+<li><a href="#sec-6-1">6.1. Creando funciones</a></li>
+<li><a href="#sec-6-2">6.2. Llamando funciones</a></li>
+<li><a href="#sec-6-3">6.3. Paso de argumentos a una función</a></li>
+<li><a href="#sec-6-4">6.4. Ejecutar funcion en segundo plano</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Curso de Bash Scripting</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Programación de shell básica</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Nuestro primer programa&#x2026;
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name">Hola mundo en bash, archivo hola.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Hola mundo"</span>
+</pre>
+</div>
+
+<pre class="example">
+Hola mundo
+</pre>
+
+
+<p>
+Para poder ejecutar nuestro script debemos darle permisos de ejecución con <code>chmod +x hola.sh</code>,
+y ejecutamos con <code>./hola.sh</code>.
+</p>
+
+<p>
+Podemos saber más información sobre un comando de bash con el comando <code>type</code>, por ejemplo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #ffb86c;">type</span> man
+</pre>
+</div>
+
+<pre class="example">
+man is /usr/sbin/man
+</pre>
+
+
+
+<p>
+También podemos saber si el nombre que le pongamos a nuestro script es único con el comando <code>type -a</code>, el cual nos muestra todos los comandos con el mismo nombre.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #ffb86c;">type</span> -a man
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<tbody>
+<tr>
+<td class="text-left">man</td>
+<td class="text-left">is</td>
+<td class="text-left">/usr/sbin/man</td>
+</tr>
+
+<tr>
+<td class="text-left">man</td>
+<td class="text-left">is</td>
+<td class="text-left">/sbin/man</td>
+</tr>
+
+<tr>
+<td class="text-left">man</td>
+<td class="text-left">is</td>
+<td class="text-left">/usr/bin/man</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Definir variables y su alcance</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Tenemos dos tipos de variables:
+</p>
+<ul class="org-ul">
+<li>Variables de usuario.
+</li>
+<li>Variables de entorno o de sistema operativo.
+<ul class="org-ul">
+<li>Podemos verlas si abrimos con un editor de texto  <code>/etc/profile</code>.
+</li>
+<li>Estas son las variables del sistema operativo, aplican para todos los usuarios.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">Programa para verificar la declaraci&#243;n de variables.</span>
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">definicon de variables a nivel de programa</span>
+opcion=<span style="color: #bd93f9; font-weight: bold;">0</span>
+nombre=David
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Opcion: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">opcion</span><span style="color: #f1fa8c;"> y nombre: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">nombre</span><span style="color: #f1fa8c;">"</span>
+
+</pre>
+</div>
+
+<pre class="example">
+Opcion: 0 y nombre: David
+</pre>
+
+
+<ul class="org-ul">
+<li>Estas variables solo son accesibles en el proceso en el que fueron creadas.
+</li>
+<li>Podemos usar la palabra <code>export</code> para utilizarlas afuera.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-nillangnilswitchesnilflags">nilbody
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Tipos de operadores</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">!/usr/bin/bash</span>
+numA=<span style="color: #bd93f9; font-weight: bold;">5</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">todo junto &lt;---</span>
+numB=<span style="color: #bd93f9; font-weight: bold;">10</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"A + B ="</span> $<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span>numA + numB<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">los operadores aritmeticos y relacionales son los mismos que siempre</span>
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">operadores de asignaci&#243;n tambien son los nomrales +=, -=, etc</span>
+
+</pre>
+</div>
+
+<pre class="example">
+A + B = 15
+</pre>
+
+
+<p>
+Para aplicar formato al echo podemos usar <code>echo -e "\ntexto aqui"</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Script con argumentos</h3>
+<div class="outline-text-3" id="text-1-3">
+<dl class="org-dl">
+<dt> <code>$0</code> </dt><dd>Nos da el nombre del script.
+</dd>
+<dt> =$1 al ${10} </dt><dd>El número de argumentos dados (si son más de 9, se agrupan con llaves).
+</dd>
+<dt> <code>$#</code> </dt><dd>Contador de argumentos.
+</dd>
+<dt> <code>$*</code> </dt><dd>Todos los argumentos.
+</dd>
+</dl>
+
+<div class="org-src-container">
+<label class="org-src-name">Teniendo el script argumentos.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+nombreCurso=$<span style="color: #bd93f9; font-weight: bold;">1</span>
+horarioCurso=$<span style="color: #bd93f9; font-weight: bold;">2</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"El nombre el curso es </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">nombreCurso</span><span style="color: #f1fa8c;"> y el horario es </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">horarioCurso</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"El numero de parametros dados es </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">#</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"los parametros enviados son </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">*</span><span style="color: #f1fa8c;">"</span>
+
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./argumentos.sh bashCourse "10 a 11 am"
+El nombre el curso es bashCourse y el horario es 10 a 11 am
+El numero de parametros dados es 2
+los parametros enviados son bashCourse 10 a 11 am
+pi@rasp-server:~/bashCourse $
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Sustitución de comandos en variables</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+La idea es usar la salida de un comando y guardarla en una variable.
+</p>
+
+<p>
+Se puede hacer con:
+</p>
+<ul class="org-ul">
+<li><code>'</code>
+</li>
+<li><code>$(comando)</code>
+</li>
+</ul>
+
+<div class="org-src-container">
+<label class="org-src-name">Script comandos.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+ubicacionActual=<span style="color: #f1fa8c;">'</span><span style="color: #f1fa8c;">pwd</span><span style="color: #f1fa8c;">'</span>
+infoKernel=$<span style="color: #61bfff;">(</span>uname -a<span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"ruta actual </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">ubicacionActual</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"informaci&#243;n del kenrel </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">infoKernel</span><span style="color: #f1fa8c;">"</span>
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./comandos.sh
+ruta actual /home/pi/bashCourse
+información del kenrel Linux rasp-server 5.10.17-v7l+ #1403 SMP Mon Feb 22 11:33:35 GMT 2021 armv7l GNU/Linux
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Debug un script</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Para debugear un script de bash tenemos los siguientes argumentos del comando <code>bash</code>.
+<dl class="org-dl">
+<dt> <code>-v</code> </dt><dd>Utilizado para ver el resultado detallado de nuestro script, evaluado línea por línea.
+</dd>
+<dt> <code>-x</code> </dt><dd>Se utiliza para desplegar la información de los comandos que son utilizados, capturando el comando y su salida.
+</dd>
+</dl>
+</li>
+</ul>
+
+<pre class="example">
+
+pi@rasp-server:~/bashCourse $ bash -v comandos.sh
+# !/usr/bin/bash
+
+ubicacionActual=`pwd`
+infoKernel=$(uname -a)
+
+echo "ruta actual $ubicacionActual"
+ruta actual /home/pi/bashCourse
+echo "información del kenrel $infoKernel"
+información del kenrel Linux rasp-server 5.10.17-v7l+ #1403 SMP Mon Feb 22 11:33:35 GMT 2021 armv7l GNU/Linux
+
+pi@rasp-server:~/bashCourse $ bash -x comandos.sh
+++ pwd
++ ubicacionActual=/home/pi/bashCourse
+++ uname -a
++ infoKernel='Linux rasp-server 5.10.17-v7l+ #1403 SMP Mon Feb 22 11:33:35 GMT 2021 armv7l GNU/Linux'
++ echo 'ruta actual /home/pi/bashCourse'
+ruta actual /home/pi/bashCourse
++ echo 'información del kenrel Linux rasp-server 5.10.17-v7l+ #1403 SMP Mon Feb 22 11:33:35 GMT 2021 armv7l GNU/Linux'
+información del kenrel Linux rasp-server 5.10.17-v7l+ #1403 SMP Mon Feb 22 11:33:35 GMT 2021 armv7l GNU/Linux
+
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Scripts interactivos</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Capturar información del usuario</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Se usa el comando <code>read</code>
+</p>
+<dl class="org-dl">
+<dt> <code>read -p</code> </dt><dd>Permite ingresar una frase o prompt a la hora de leer un dato.
+</dd>
+<dt> <code>read -s</code> </dt><dd>No muestra ningún carácter en la terminal (bueno para contraseñas)
+</dd>
+<dt> =read -n[num] </dt><dd>permite leer como máximo n caracteres.
+</dd>
+<dt> <code>read -r</code> </dt><dd><i>Raw</i>, toma el botón de retroceso como un carácter y no borra nada.
+</dd>
+</dl>
+
+<div class="org-src-container">
+<label class="org-src-name">Script test.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"test"</span>
+<span style="color: #ffb86c;">read</span> -p <span style="color: #f1fa8c;">"hola: "</span> resp
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"..."</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"</span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">resp</span><span style="color: #f1fa8c;">"</span>
+
+<span style="color: #bd93f9;">echo</span> -n <span style="color: #f1fa8c;">"Ingrese su nombre: "</span>
+<span style="color: #ffb86c;">read</span>
+name=$REPLY
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Tu nombre es: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">name</span><span style="color: #f1fa8c;">"</span>
+</pre>
+</div>
+
+
+<pre class="example">
+
+pi@rasp-server:~/bashCourse $ ./test.sh
+test
+hola: holaaaaaaaa
+...
+holaaaaaaaa
+Ingrese su nombre: Jorge
+Tu nombre es: Jorge
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Validar la información</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Hay dos maneras:
+</p>
+<ul class="org-ul">
+<li>Con <code>read -n num-de-caracteres</code>.
+</li>
+<li>Con expresiones regulares.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Paso de parametros y opciones</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Opciones vs Paramétros.
+</li>
+<li>Envio independiente.
+</li>
+<li>Envio complementario.
+</li>
+<li>Leer los valores.
+</li>
+</ul>
+
+<div class="org-src-container">
+<label class="org-src-name">Con el script opciones.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">/usr/bin/bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Progama opciones"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Opcion 1 enviada </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">1</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Opcion 2 enviada </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">2</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Opcion 3 enviada </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">3</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"opciones enviadas </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">*</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\n"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Recuperando valores"</span>
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">[</span> -n <span style="color: #f1fa8c;">"</span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">1</span><span style="color: #f1fa8c;">"</span> <span style="color: #61bfff;">]</span>
+<span style="color: #ff79c6; font-style: italic;">do</span>
+<span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #f1fa8c;">"</span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">1</span><span style="color: #f1fa8c;">"</span><span style="color: #ff79c6; font-style: italic;"> in</span>
+        -a) <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Opcion -a utilzada"</span>;;
+        -b) <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Opcion -b utilzada"</span>;;
+        -c) <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Opcion -c utilzada"</span>;;
+        *) <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"</span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">1</span><span style="color: #f1fa8c;"> no es una opci&#243;n"</span>;;
+<span style="color: #ff79c6; font-style: italic;">esac</span>
+<span style="color: #ffb86c;">shift</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+</pre>
+</div>
+
+<pre class="example">
+
+pi@rasp-server:~/bashCourse $ ./opciones.sh -a -b holaaaa
+Progama opciones
+Opcion 1 enviada -a
+Opcion 2 enviada -b
+Opcion 3 enviada holaaaa
+opciones enviadas -a -b holaaaa
+
+
+Recuperando valores
+Opcion -a utilzada
+Opcion -b utilzada
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Descargar archivos de internet</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Archivos pequeños -&gt; <code>wget</code>.
+</li>
+<li>Para comunicarse a un servicio (Ej. una api restful) -&gt; <code>curl</code>.
+</li>
+<li>Archivos grandes -&gt; <code>aria2</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/usr/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"descargando informaci&#243;n de internet"</span>
+wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.54/bin/apache-tomcat-8.5.54.zip
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Condicionales.</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> <code>If else</code></h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">[</span> contidion <span style="color: #61bfff;">]</span>; <span style="color: #ff79c6; font-style: italic;">then</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">siembre debe de haber espeacios entre las llaves</span>
+    statement1
+<span style="color: #ff79c6; font-style: italic;">elif</span> <span style="color: #61bfff;">[</span> condition <span style="color: #61bfff;">]</span>; <span style="color: #ff79c6; font-style: italic;">then</span>
+    statement2
+<span style="color: #ff79c6; font-style: italic;">else</span>
+    statement3
+<span style="color: #ff79c6; font-style: italic;">fi</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Ejemplo:
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<label class="org-src-name">if.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+notaClase=<span style="color: #bd93f9; font-weight: bold;">0</span>
+edad=<span style="color: #bd93f9; font-weight: bold;">0</span>
+
+<span style="color: #ffb86c;">read</span> -n1 -p <span style="color: #f1fa8c;">"Indique cual es su nota: "</span> notaClase
+<span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\n"</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span> $notaClase &gt;= <span style="color: #bd93f9; font-weight: bold;">7</span> <span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>; <span style="color: #ff79c6; font-style: italic;">then</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">(()) y [] son lo mismo.</span>
+        <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"El alumno aprobo"</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>
+        <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"El alumno reprobo"</span>
+<span style="color: #ff79c6; font-style: italic;">fi</span>
+
+<span style="color: #ffb86c;">read</span> -p <span style="color: #f1fa8c;">"Indique su edad: "</span> edad
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">[</span> $edad -le <span style="color: #bd93f9; font-weight: bold;">19</span> <span style="color: #61bfff;">]</span>; <span style="color: #ff79c6; font-style: italic;">then</span>
+        <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"la persona puede sufragar"</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>
+        <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"La persona no puede sufragar"</span>
+<span style="color: #ff79c6; font-style: italic;">fi</span>
+</pre>
+</div>
+
+<pre class="example">
+
+pi@rasp-server:~/bashCourse $ ./if.sh
+Indique cual es su nota: 8
+
+El alumno aprobo
+Indique su edad: 19
+la persona puede sufragar
+
+</pre>
+
+<blockquote>
+<p>
+Para if anidados solo necesitamos un <code>fi</code>
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Operadores relacionales</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<dl class="org-dl">
+<dt> <code>-eq</code> </dt><dd>Igual a.
+</dd>
+<dt> <code>-ne</code> </dt><dd>No es igual a.
+</dd>
+<dt> <code>-gt</code> </dt><dd>Mayor a.
+</dd>
+<dt> <code>-ge</code> </dt><dd>Mayor igual a.
+</dd>
+<dt> <code>-lt</code> </dt><dd>Menor a.
+</dd>
+<dt> <code>-le</code> </dt><dd>Menor igual a.
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Expresiones condicionales</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li><code>[001 = 1]</code> Da falso ya que la cadena de caracteres no es la misma.
+</li>
+<li><code>[001 -eq 1]</code> es verdadero, los ceros no tienen valor.
+</li>
+<li><code>-d</code> te permite saber si un directorio existe.
+</li>
+<li><code>-e</code> te permite saber si un archivo existe.
+</li>
+<li><code>-r</code> te permite saber si un archivo tiene permiso de lectura.
+</li>
+<li><code>-s</code> te permite saber si el tamaño de un archivo es mayor a 0.
+</li>
+<li><code>-w</code> te permite saber si un archivo tiene permisos de escritura.
+</li>
+<li><code>-x</code> te permite saber si un archivo tiene permisos de ejecución.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Corchetes simples <code>[]</code> vs Corchetes Dobles <code>[[]]</code></h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Los dobles corchetes resultan ser una mejora respecto a los simples. Así, las diferencias entre uno y otro son las siguientes:
+</p>
+<ul class="org-ul">
+<li>No necesitas usar comillas con las variables <code>[ -f "$file" ]</code> a <code>[[ -f $file ]]</code>.
+</li>
+<li>con <code>[[]]</code> puedes usar los operadores <code>||</code>, <code>&amp;&amp;</code>  y puedes usar el operador <code>=~</code> para expresiones regulares.
+<ul class="org-ul">
+<li><code>[[ $respuesta =~ ^s(i)?$ ]]</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Sentencias <code>case</code></h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/bash</span>
+
+opcion=<span style="color: #f1fa8c;">""</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Ejemplo sentencia case"</span>
+<span style="color: #ffb86c;">read</span> -p <span style="color: #f1fa8c;">"Ingrese la opci&#243;n de la A - Z: "</span> opcion
+<span style="color: #bd93f9;">echo</span> -n <span style="color: #f1fa8c;">"\n"</span>
+
+<span style="color: #ff79c6; font-style: italic;">case</span> $opcion<span style="color: #ff79c6; font-style: italic;"> in</span>
+        <span style="color: #f1fa8c;">"A"</span>) <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Operaci&#243;n guardar archivo"</span>;;
+        <span style="color: #f1fa8c;">"B"</span>) <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Operaci&#243;n Eliminar archivo"</span>;;
+        <span style="color: #61bfff;">[</span>C-E<span style="color: #61bfff;">]</span>) <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"No esta implementada la operaci&#243;n"</span>;; <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">&lt;- en el rango de C a E.</span>
+        <span style="color: #f1fa8c;">"*"</span>) <span style="color: #f1fa8c;">"Opci&#243;n incorrecta"</span>
+<span style="color: #ff79c6; font-style: italic;">esac</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Sentencias de iteración</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Arreglos</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Para remover elementos de un arreglo se ocupa el comando <code>unset nombreAregglo[pos]</code>.
+</li>
+<li>Índice 0.
+</li>
+</ul>
+
+<div class="org-src-container">
+<label class="org-src-name">Script arreglos.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+arregloNumeros=<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">1</span> <span style="color: #bd93f9; font-weight: bold;">2</span> <span style="color: #bd93f9; font-weight: bold;">3</span> <span style="color: #bd93f9; font-weight: bold;">4</span> <span style="color: #bd93f9; font-weight: bold;">5</span> <span style="color: #bd93f9; font-weight: bold;">6</span><span style="color: #61bfff;">)</span>
+arregloCadenas=<span style="color: #61bfff;">(</span>Marco, Antonio, Pedro, Susana<span style="color: #61bfff;">)</span>
+arregloRangos=<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">{</span>A..Z<span style="color: #ff79c6;">}</span> <span style="color: #ff79c6;">{</span>10..20<span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">list comprehencion</span>
+
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Arreglo n&#250;meros: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">{arregloNumeros[*]}</span><span style="color: #f1fa8c;">"</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">imprime todos los elementos</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Arreglo de cadenas: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">{arregloCadenaas[*]}</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Arreglo de rangos: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">{arregloRangos[*]}</span><span style="color: #f1fa8c;">"</span>
+
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Arreglo n&#250;meros: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">{#arregloNumeros[*]}</span><span style="color: #f1fa8c;">"</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">imprime la longitud del arreglo</span>
+
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Arreglo de cadenas: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">{arregloCadenaas[3]}</span><span style="color: #f1fa8c;">"</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">elemento en posisci&#243;n 3</span>
+
+
+arregloNumeros<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">]</span>=<span style="color: #bd93f9; font-weight: bold;">20</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">Cambiamos el elemento 5</span>
+<span style="color: #ffb86c;">unset</span> arregloNumeros<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">]</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">eliminamos el elemento 0</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Arreglo n&#250;meros: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">{arregloNumeros[*]}</span><span style="color: #f1fa8c;">"</span>
+
+</pre>
+</div>
+
+<pre class="example">
+
+pi@rasp-server:~/bashCourse $ ./arreglos.sh
+Arreglo números: 1 2 3 4 5 6
+Arreglo de cadenas:
+Arreglo de rangos: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 10 11 12 13 14 15 16 17 18 19 20
+Arreglo números: 6
+Arreglo de cadenas:
+Arreglo números: 2 3 4 5 20
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Sentencia <code>for</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<label class="org-src-name">archivo for.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+arregloNumeros=<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">1</span> <span style="color: #bd93f9; font-weight: bold;">2</span> <span style="color: #bd93f9; font-weight: bold;">3</span> <span style="color: #bd93f9; font-weight: bold;">4</span> <span style="color: #bd93f9; font-weight: bold;">5</span> <span style="color: #bd93f9; font-weight: bold;">6</span> <span style="color: #bd93f9; font-weight: bold;">7</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"iterar en una lista de numeros"</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> num<span style="color: #ff79c6; font-style: italic;"> in</span> $<span style="color: #61bfff;">{</span>arregloNumeros<span style="color: #ff79c6;">[</span>*<span style="color: #ff79c6;">]</span><span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Numero: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">num</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Iterar en la lista de Cadenas"</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> nom<span style="color: #ff79c6; font-style: italic;"> in</span> <span style="color: #f1fa8c;">"Marco"</span> <span style="color: #f1fa8c;">"Pedro"</span> <span style="color: #f1fa8c;">"Luis"</span> <span style="color: #f1fa8c;">"Daniela"</span>
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Nombres: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">nom</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Iterar en archivos"</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> fil<span style="color: #ff79c6; font-style: italic;"> in</span> *
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Nombre de archivo </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">fil</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Iterar con el resultado de un comando"</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> fil<span style="color: #ff79c6; font-style: italic;"> in</span> $<span style="color: #61bfff;">(</span><span style="color: #bd93f9;">ls</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Nombre de archivo </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">fil</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./for.sh
+iterar en una lista de numeros
+Numero: 1
+Numero: 2
+Numero: 3
+Numero: 4
+Numero: 5
+Numero: 6
+Numero: 7
+Iterar en la lista de Cadenas
+Nombres: Marco
+Nombres: Pedro
+Nombres: Luis
+Nombres: Daniela
+Iterar en archivos
+Nombre de archivo argumentos.sh
+Nombre de archivo arreglos.sh
+Nombre de archivo case.sh
+Nombre de archivo comandos.sh
+Nombre de archivo descargas.sh
+Nombre de archivo for.sh
+Nombre de archivo if.sh
+Nombre de archivo opciones.sh
+Nombre de archivo test.sh
+Iterar con el resultado de un comando
+Nombre de archivo argumentos.sh
+Nombre de archivo arreglos.sh
+Nombre de archivo case.sh
+Nombre de archivo comandos.sh
+Nombre de archivo descargas.sh
+Nombre de archivo for.sh
+Nombre de archivo if.sh
+Nombre de archivo opciones.sh
+Nombre de archivo test.sh
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Sentencia <code>while loop</code></h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+numero=<span style="color: #bd93f9; font-weight: bold;">1</span>
+
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">[</span> $numero -ne <span style="color: #bd93f9; font-weight: bold;">10</span> <span style="color: #61bfff;">]</span>
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Imprimiendo el </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">numero</span><span style="color: #f1fa8c;">"</span>
+    numero=$<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span> numero + <span style="color: #bd93f9; font-weight: bold;">1</span> <span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+</pre>
+</div>
+
+<p>
+Imprimiendo el 1
+Imprimiendo el 2
+Imprimiendo el 3
+Imprimiendo el 4
+Imprimiendo el 5
+Imprimiendo el 6
+Imprimiendo el 7
+Imprimiendo el 8
+Imprimiendo el 9
+Imprimiendo el 1
+Imprimiendo el 2
+Imprimiendo el 3
+Imprimiendo el 4
+Imprimiendo el 5
+Imprimiendo el 6
+Imprimiendo el 7
+Imprimiendo el 8
+Imprimiendo el 9
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> <code>loops</code> anidados</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<label class="org-src-name">Script forAnidado.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Loops anidados"</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> fil<span style="color: #ff79c6; font-style: italic;"> in</span> $<span style="color: #61bfff;">(</span><span style="color: #bd93f9;">ls</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> nombre<span style="color: #ff79c6; font-style: italic;"> in</span> <span style="color: #61bfff;">{</span>1..4<span style="color: #61bfff;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">do</span>
+        <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Nombre archivo: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">fil</span><span style="color: #f1fa8c;"> _ </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">nombre</span><span style="color: #f1fa8c;">"</span>
+    <span style="color: #ff79c6; font-style: italic;">done</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./forAnidado.sh
+Loops anidados
+Nombre archivo: argumentos.sh _ 1
+Nombre archivo: argumentos.sh _ 2
+Nombre archivo: argumentos.sh _ 3
+Nombre archivo: argumentos.sh _ 4
+Nombre archivo: arreglos.sh _ 1
+Nombre archivo: arreglos.sh _ 2
+Nombre archivo: arreglos.sh _ 3
+Nombre archivo: arreglos.sh _ 4
+Nombre archivo: case.sh _ 1
+Nombre archivo: case.sh _ 2
+Nombre archivo: case.sh _ 3
+Nombre archivo: case.sh _ 4
+Nombre archivo: comandos.sh _ 1
+Nombre archivo: comandos.sh _ 2
+Nombre archivo: comandos.sh _ 3
+Nombre archivo: comandos.sh _ 4
+Nombre archivo: descargas.sh _ 1
+Nombre archivo: descargas.sh _ 2
+Nombre archivo: descargas.sh _ 3
+Nombre archivo: descargas.sh _ 4
+Nombre archivo: forAnidado.sh _ 1
+Nombre archivo: forAnidado.sh _ 2
+Nombre archivo: forAnidado.sh _ 3
+Nombre archivo: forAnidado.sh _ 4
+Nombre archivo: for.sh _ 1
+Nombre archivo: for.sh _ 2
+Nombre archivo: for.sh _ 3
+Nombre archivo: for.sh _ 4
+Nombre archivo: if.sh _ 1
+Nombre archivo: if.sh _ 2
+Nombre archivo: if.sh _ 3
+Nombre archivo: if.sh _ 4
+Nombre archivo: opciones.sh _ 1
+Nombre archivo: opciones.sh _ 2
+Nombre archivo: opciones.sh _ 3
+Nombre archivo: opciones.sh _ 4
+Nombre archivo: test.sh _ 1
+Nombre archivo: test.sh _ 2
+Nombre archivo: test.sh _ 3
+Nombre archivo: test.sh _ 4
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Utilizando las sentencias <code>break</code> y <code>continue</code></h3>
+<div class="outline-text-3" id="text-4-5">
+<ul class="org-ul">
+<li>Se ocupa <code>break</code> para romper el loop en el que se encuentra.
+</li>
+<li>Se usa la sentencia <code>continue</code> para continuar con la siguiente iteración.
+</li>
+</ul>
+
+<div class="org-src-container">
+<label class="org-src-name">Script breakContinue.sh.</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"sentencia break y continue"</span>
+
+<span style="color: #ff79c6; font-style: italic;">for</span> fil<span style="color: #ff79c6; font-style: italic;"> in</span> $<span style="color: #61bfff;">(</span><span style="color: #bd93f9;">ls</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> nombre<span style="color: #ff79c6; font-style: italic;"> in</span> <span style="color: #61bfff;">{</span>1..4<span style="color: #61bfff;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">do</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">[</span> $fil = <span style="color: #f1fa8c;">"forAnidado.sh"</span> <span style="color: #61bfff;">]</span>; <span style="color: #ff79c6; font-style: italic;">then</span>
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+        <span style="color: #ff79c6; font-style: italic;">elif</span> <span style="color: #61bfff;">[</span><span style="color: #ff79c6;">[</span> $fil == 4* <span style="color: #ff79c6;">]</span><span style="color: #61bfff;">]</span>; <span style="color: #ff79c6; font-style: italic;">then</span>
+            <span style="color: #ff79c6; font-style: italic;">continue</span>;
+        <span style="color: #ff79c6; font-style: italic;">else</span>
+            <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Nombre de archivo: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">fil</span><span style="color: #f1fa8c;"> - </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">nombre</span><span style="color: #f1fa8c;">"</span>
+        <span style="color: #ff79c6; font-style: italic;">fi</span>
+    <span style="color: #ff79c6; font-style: italic;">done</span>
+<span style="color: #ff79c6; font-style: italic;">done</span>
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./breakContinue.sh
+sentencia break y continue
+Nombre de archivo: argumentos.sh - 1
+Nombre de archivo: argumentos.sh - 2
+Nombre de archivo: argumentos.sh - 3
+Nombre de archivo: argumentos.sh - 4
+Nombre de archivo: arreglos.sh - 1
+Nombre de archivo: arreglos.sh - 2
+Nombre de archivo: arreglos.sh - 3
+Nombre de archivo: arreglos.sh - 4
+Nombre de archivo: breakContinue.sh - 1
+Nombre de archivo: breakContinue.sh - 2
+Nombre de archivo: breakContinue.sh - 3
+Nombre de archivo: breakContinue.sh - 4
+Nombre de archivo: case.sh - 1
+Nombre de archivo: case.sh - 2
+Nombre de archivo: case.sh - 3
+Nombre de archivo: case.sh - 4
+Nombre de archivo: comandos.sh - 1
+Nombre de archivo: comandos.sh - 2
+Nombre de archivo: comandos.sh - 3
+Nombre de archivo: comandos.sh - 4
+Nombre de archivo: descargas.sh - 1
+Nombre de archivo: descargas.sh - 2
+Nombre de archivo: descargas.sh - 3
+Nombre de archivo: descargas.sh - 4
+Nombre de archivo: for.sh - 1
+Nombre de archivo: for.sh - 2
+Nombre de archivo: for.sh - 3
+Nombre de archivo: for.sh - 4
+Nombre de archivo: if.sh - 1
+Nombre de archivo: if.sh - 2
+Nombre de archivo: if.sh - 3
+Nombre de archivo: if.sh - 4
+Nombre de archivo: opciones.sh - 1
+Nombre de archivo: opciones.sh - 2
+Nombre de archivo: opciones.sh - 3
+Nombre de archivo: opciones.sh - 4
+Nombre de archivo: test.sh - 1
+Nombre de archivo: test.sh - 2
+Nombre de archivo: test.sh - 3
+Nombre de archivo: test.sh - 4
+pi@rasp-server:~/bashCourse $ ls
+argumentos.sh  breakContinue.sh  comandos.sh   forAnidado.sh  if.sh        test.sh
+arreglos.sh    case.sh           descargas.sh  for.sh         opciones.sh
+pi@rasp-server:~/bashCourse $
+</pre>
+</div>
+
+<div id="outline-container-sec-4-5-1" class="outline-4">
+<h4 id="sec-4-5-1"><span class="section-number-4">4.5.1</span> Generando un menú de opciones</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+opcion=<span style="color: #bd93f9; font-weight: bold;">0</span>
+
+<span style="color: #ff79c6; font-style: italic;">while</span>:
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    clear <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">limpiar pantalla</span>
+    <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">desplegar menu de opciones</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"___________________________________"</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"_____________ MENU X ______________"</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"___________________________________"</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"1. Haz x cosa."</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"2. Haz y cosa."</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"3. salir."</span>
+
+    <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">Leer los datos del usuario</span>
+    <span style="color: #ffb86c;">read</span> -n1 -p <span style="color: #f1fa8c;">"Ingrese una opci&#243;n [1-3]: "</span> opcion
+
+    <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">validar la opci&#243;n</span>
+    <span style="color: #ff79c6; font-style: italic;">case</span> $opcion<span style="color: #ff79c6; font-style: italic;"> in</span>
+        <span style="color: #bd93f9; font-weight: bold;">1</span>)
+            <span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\nInstalandoooo x..."</span>
+            <span style="color: #bd93f9;">sleep</span> <span style="color: #bd93f9; font-weight: bold;">3</span>
+
+            .
+            .
+            .
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Archivos</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Creación de archivos y directorios</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>Directorios <code>mkdir nombreDirectorio</code>.
+</li>
+<li>Archivos <code>touch nombreArchivo</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+<label class="org-src-name">Script archivosDir.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Archivos - Directorios"</span>
+
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">[</span> $<span style="color: #bd93f9; font-weight: bold;">1</span> = <span style="color: #f1fa8c;">"d"</span> <span style="color: #61bfff;">]</span>; <span style="color: #ff79c6; font-style: italic;">then</span>
+    <span style="color: #bd93f9;">mkdir</span> -m <span style="color: #bd93f9; font-weight: bold;">755</span> $<span style="color: #bd93f9; font-weight: bold;">2</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Directorio creado correctamente"</span>
+    <span style="color: #bd93f9;">ls</span> -la $<span style="color: #bd93f9; font-weight: bold;">2</span>
+<span style="color: #ff79c6; font-style: italic;">elif</span> <span style="color: #61bfff;">[</span> $<span style="color: #bd93f9; font-weight: bold;">1</span> == <span style="color: #f1fa8c;">"f"</span> <span style="color: #61bfff;">]</span>; <span style="color: #ff79c6; font-style: italic;">then</span>
+    <span style="color: #bd93f9;">touch</span> $<span style="color: #bd93f9; font-weight: bold;">2</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Archivo creado correctamente"</span>
+    <span style="color: #bd93f9;">ls</span> -la $<span style="color: #bd93f9; font-weight: bold;">2</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"No existe esa opci&#243;n: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">1</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #ff79c6; font-style: italic;">fi</span>
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./archivosDir.sh d dirTest
+Archivos - Directorios
+Directorio creado correctamente
+total 8
+drwxr-xr-x 2 pi pi 4096 Mar 28 19:13 .
+drwxr-xr-x 3 pi pi 4096 Mar 28 19:13 ..
+pi@rasp-server:~/bashCourse $ ls
+archivosDir.sh  arreglos.sh       case.sh      descargas.sh  forAnidado.sh  if.sh        test.sh
+argumentos.sh   breakContinue.sh  comandos.sh  dirTest       for.sh         opciones.sh
+pi@rasp-server:~/bashCourse $ ./archivosDir.sh f archTest
+Archivos - Directorios
+Archivo creado correctamente
+-rw-r--r-- 1 pi pi 0 Mar 28 19:13 archTest
+pi@rasp-server:~/bashCourse $
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Escribir dentro de un archivo</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Podemos utilizar el comando <code>echo</code> así como el comando <code>cat</code>.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name">Script writeFile.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">/bin/bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Escribir en un archivo"</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Valores escritos con el comando </span><span style="color: #f1fa8c;">echo</span><span style="color: #f1fa8c;">"</span> &gt;&gt; $<span style="color: #bd93f9; font-weight: bold;">1</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">mandamos la cadena a la variable $1</span>
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">adici&#243;n multininea</span>
+<span style="color: #bd93f9;">cat</span> &lt;&lt;EOM&gt;&gt;$<span style="color: #bd93f9; font-weight: bold;">1</span> <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">EOM=END OF MESSAGE</span>
+<span style="color: #f1fa8c;">$2</span>
+<span style="color: #f1fa8c;">EOM</span>
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./writeFile.sh archivo.txt algooooo
+Escribir en un archivo
+pi@rasp-server:~/bashCourse $ cat archivo.txt
+Valores escritos con el comando echo
+algooooo
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Leer de un archivo</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<label class="org-src-name">Script readFile.sh</label>
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Leer de un archivo"</span>
+<span style="color: #bd93f9;">cat</span> $<span style="color: #bd93f9; font-weight: bold;">1</span>
+<span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\nAlmacenar los valores en una variable"</span>
+valorCat=<span style="color: #bd93f9; font-weight: bold;">`</span><span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #bd93f9; font-weight: bold;"> $1`</span>
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"</span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">valorCat</span><span style="color: #f1fa8c;">"</span>
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">se utiliza la variable IFS (Internal Field Separator) para evitar que los espacios en blanco al inicio o al final se recorten</span>
+<span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\nLeer archivos linea por linea"</span>
+<span style="color: #ff79c6; font-style: italic;">while</span> IFS= read linea
+<span style="color: #ff79c6; font-style: italic;">do</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"</span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">linea</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #ff79c6; font-style: italic;">done</span> &lt; $<span style="color: #bd93f9; font-weight: bold;">1</span>
+</pre>
+</div>
+
+<pre class="example">
+pi@rasp-server:~/bashCourse $ ./readFile.sh archivo.txt
+Leer de un archivo
+Valores escritos con el comando echo
+algooooo
+
+Almacenar los valores en una variable
+Valores escritos con el comando echo
+algooooo
+
+Leer archivos linea por linea
+Valores escritos con el comando echo
+algooooo
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> Copiar, mover y eliminar archivos</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>Una vez creado el archivo se pueden hacer varias operaciones sobre el como <code>cp</code> copiar, <code>mv</code> mover o <code>rm</code> eliminar.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Operaciones de un archivo"</span>
+<span style="color: #bd93f9;">mkdir</span> -m <span style="color: #bd93f9; font-weight: bold;">755</span> backupScripts
+<span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\nCopiar los scripts del directorio actual al nuevo directorio backupScripts"</span>
+<span style="color: #bd93f9;">cp</span> *.* backupScripts/ <span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">copiamos todos los scripts de la carpeta actual a la nueva carpeta</span>
+<span style="color: #bd93f9;">ls</span> -la backupScripts/
+
+<span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\nMover el directorio backupScript a otra ubicaci&#243;n: </span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">HOME</span><span style="color: #f1fa8c;">"</span>
+<span style="color: #bd93f9;">mv</span> backupScripts $HOME
+
+<span style="color: #bd93f9;">echo</span> -e <span style="color: #f1fa8c;">"\nEliminar los archivos .txt"</span>
+<span style="color: #bd93f9;">rm</span> *.txt
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> Empaquetamiento de archivos usando <code>tar</code></h3>
+<div class="outline-text-3" id="text-5-5">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Empaquetar algo en un tar"</span>
+tar -cvf shellCourse.tar *.sh
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-6" class="outline-3">
+<h3 id="sec-5-6"><span class="section-number-3">5.6</span> Empaquetamiento con <code>gzip</code></h3>
+<div class="outline-text-3" id="text-5-6">
+<ul class="org-ul">
+<li><code>gzip</code> solo puede ser aplicado para comprimir un archivo simple o un flujo de datos; es decir, no puede comprimir carpetas.
+</li>
+<li>permite configurar el ratio de compresión de 1 a 9, siento 1 la más baja pero más rápida y 9 la más alta pero la más lenta.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Empaquetar todos los scripts de la carpeta shellCourse"</span>
+tar -cvf shellCourse.tar *.sh
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">cuando se empaqueta con gzip el empquetamiento anterior se elimina.</span>
+gzip shellCourse.tar
+
+<span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Empaquetar un solo archivo, con un ratio de 9"</span>
+gzip -9 9_options.sh
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Funciones</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Son bloques de código con funcionalidad especifica que existen en memoria y que ayudan a organizar el código del programa
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Creando funciones</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">!/bin/</span><span style="color: #ff79c6; font-style: italic;">bash</span>
+
+opcion=<span style="color: #bd93f9; font-weight: bold;">0</span>
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">funcion para instalar sql</span>
+<span style="color: #50fa7b;">instalarSQL</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    ehco <span style="color: #f1fa8c;">"instalando SQL"</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #50fa7b;">desinstalarSQL</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    ehco <span style="color: #f1fa8c;">"desinstalando SQL"</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">...</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Llamando funciones</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">...</span>
+
+<span style="color: #ff79c6; font-style: italic;">case</span> $option<span style="color: #ff79c6; font-style: italic;"> in</span>
+    <span style="color: #bd93f9; font-weight: bold;">1</span>)
+        instalarSQL
+        <span style="color: #bd93f9;">sleep</span> <span style="color: #bd93f9; font-weight: bold;">3</span>
+        ;;
+    <span style="color: #bd93f9; font-weight: bold;">2</span>)
+        desinstalarSQL
+        <span style="color: #bd93f9;">sleep</span> <span style="color: #bd93f9; font-weight: bold;">3</span>
+        ;;
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">...</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Paso de argumentos a una función</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #50fa7b;">sacarRespaldo</span> <span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Sacar respaldo"</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Directorio backup"</span> $<span style="color: #bd93f9; font-weight: bold;">1</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #50fa7b;">restaurarRespaldo</span> <span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"restaurar respaldo"</span>
+    <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Directorio respaldo"</span> $<span style="color: #bd93f9; font-weight: bold;">1</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">...</span>
+
+<span style="color: #ff79c6; font-style: italic;">case</span> $option<span style="color: #ff79c6; font-style: italic;"> in</span>
+    <span style="color: #bd93f9; font-weight: bold;">1</span>)
+        <span style="color: #ffb86c;">read</span> -p <span style="color: #f1fa8c;">"Directorio backup: "</span> directorioBackup
+        sacarRespaldo $directorioBackup
+        <span style="color: #bd93f9;">sleep</span> <span style="color: #bd93f9; font-weight: bold;">3</span>
+        ;;
+    <span style="color: #bd93f9; font-weight: bold;">2</span>)
+        <span style="color: #ffb86c;">read</span> -p <span style="color: #f1fa8c;">"Directorio respaldos"</span> directorioRespaldos
+        restaurarRespaldo $directorioRespaldos
+        <span style="color: #bd93f9;">sleep</span> <span style="color: #bd93f9; font-weight: bold;">3</span>
+        ;;
+
+<span style="color: #6272a4; font-style: italic;"># </span><span style="color: #6272a4; font-style: italic;">...</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Ejecutar funcion en segundo plano</h3>
+<div class="outline-text-3" id="text-6-4">
+<ul class="org-ul">
+<li>Para ejecutar una función o comando se utiliza el operador <code>&amp;</code>.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

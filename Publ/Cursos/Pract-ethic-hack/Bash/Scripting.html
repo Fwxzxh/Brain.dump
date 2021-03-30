@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Scripting with Bash</title>
-<!-- 2021-01-02 Sat 16:58 -->
+<!-- 2021-03-30 Tue 07:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -288,11 +288,11 @@ Ahora usando estos conocimientos podemos crear un script.
 
 <div class="org-src-container">
 
-<pre class="src src-shell">  <span style="color: #6f7787; font-style: italic;">#</span><span style="color: #6f7787; font-style: italic;">! /bin/bash </span>
+<pre class="src src-shell">  <span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">! /bin/bash </span>
 
-  <span style="color: #81A1C1; font-style: italic;">for</span> ip<span style="color: #81A1C1; font-style: italic;"> in</span> <span style="color: #81A1C1; font-weight: bold;">`seq 1 254`</span> ; <span style="color: #81A1C1; font-style: italic;">do</span>
-      ping -c <span style="color: #B48EAD; font-weight: bold;">1</span> $<span style="color: #B48EAD; font-weight: bold;">1.</span>$<span style="color: #D8DEE9;">ip</span> | <span style="color: #8FBCBB;">grep</span> <span style="color: #A3BE8C;">"64 bytes"</span> | cut -d <span style="color: #A3BE8C;">" "</span> -f <span style="color: #B48EAD; font-weight: bold;">4</span> | tr -d <span style="color: #A3BE8C;">":"</span> &amp;
-  <span style="color: #81A1C1; font-style: italic;">done</span>
+  <span style="color: #ff79c6; font-style: italic;">for</span> ip<span style="color: #ff79c6; font-style: italic;"> in</span> <span style="color: #bd93f9; font-weight: bold;">`seq 1 254`</span> ; <span style="color: #ff79c6; font-style: italic;">do</span>
+      ping -c <span style="color: #bd93f9; font-weight: bold;">1</span> $<span style="color: #bd93f9; font-weight: bold;">1.</span>$ip | <span style="color: #bd93f9;">grep</span> <span style="color: #f1fa8c;">"64 bytes"</span> | cut -d <span style="color: #f1fa8c;">" "</span> -f <span style="color: #bd93f9; font-weight: bold;">4</span> | tr -d <span style="color: #f1fa8c;">":"</span> &amp;
+  <span style="color: #ff79c6; font-style: italic;">done</span>
 </pre>
 </div>
 
@@ -363,17 +363,17 @@ También podemos mejorar un poco nuestro script de esta manera:
 
 <div class="org-src-container">
 
-<pre class="src src-shell">  <span style="color: #6f7787; font-style: italic;">#</span><span style="color: #6f7787; font-style: italic;">! /bin/bash </span>
+<pre class="src src-shell">  <span style="color: #6272a4; font-style: italic;">#</span><span style="color: #6272a4; font-style: italic;">! /bin/bash </span>
 
-  <span style="color: #81A1C1; font-style: italic;">if</span> <span style="color: #81A1C1;">[</span> <span style="color: #A3BE8C;">"</span><span style="color: #81A1C1;">$</span><span style="color: #D8DEE9;">1</span><span style="color: #A3BE8C;">"</span> == <span style="color: #A3BE8C;">""</span> <span style="color: #81A1C1;">]</span>
-  <span style="color: #81A1C1; font-style: italic;">then</span>
-      <span style="color: #8FBCBB;">echo</span> <span style="color: #A3BE8C;">"Olvidaste poner una direcci&#243;n IP"</span>
-      <span style="color: #8FBCBB;">echo</span> <span style="color: #A3BE8C;">"EJ: ./script 192.168.1 "</span>
-  <span style="color: #81A1C1; font-style: italic;">else</span>
-      <span style="color: #81A1C1; font-style: italic;">for</span> ip<span style="color: #81A1C1; font-style: italic;"> in</span> <span style="color: #81A1C1; font-weight: bold;">`seq 1 254`</span> ; <span style="color: #81A1C1; font-style: italic;">do</span>
-          ping -c <span style="color: #B48EAD; font-weight: bold;">1</span> $<span style="color: #B48EAD; font-weight: bold;">1.</span>$<span style="color: #D8DEE9;">ip</span> | <span style="color: #8FBCBB;">grep</span> <span style="color: #A3BE8C;">"64 bytes"</span> | cut -d <span style="color: #A3BE8C;">" "</span> -f <span style="color: #B48EAD; font-weight: bold;">4</span> | tr -d <span style="color: #A3BE8C;">":"</span> &amp;
-  <span style="color: #81A1C1; font-style: italic;">done</span>
-  <span style="color: #81A1C1; font-style: italic;">fi</span>
+  <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">[</span> <span style="color: #f1fa8c;">"</span><span style="color: #8be9fd;">$</span><span style="color: #f1fa8c;">1</span><span style="color: #f1fa8c;">"</span> == <span style="color: #f1fa8c;">""</span> <span style="color: #61bfff;">]</span>
+  <span style="color: #ff79c6; font-style: italic;">then</span>
+      <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"Olvidaste poner una direcci&#243;n IP"</span>
+      <span style="color: #bd93f9;">echo</span> <span style="color: #f1fa8c;">"EJ: ./script 192.168.1 "</span>
+  <span style="color: #ff79c6; font-style: italic;">else</span>
+      <span style="color: #ff79c6; font-style: italic;">for</span> ip<span style="color: #ff79c6; font-style: italic;"> in</span> <span style="color: #bd93f9; font-weight: bold;">`seq 1 254`</span> ; <span style="color: #ff79c6; font-style: italic;">do</span>
+          ping -c <span style="color: #bd93f9; font-weight: bold;">1</span> $<span style="color: #bd93f9; font-weight: bold;">1.</span>$ip | <span style="color: #bd93f9;">grep</span> <span style="color: #f1fa8c;">"64 bytes"</span> | cut -d <span style="color: #f1fa8c;">" "</span> -f <span style="color: #bd93f9; font-weight: bold;">4</span> | tr -d <span style="color: #f1fa8c;">":"</span> &amp;
+  <span style="color: #ff79c6; font-style: italic;">done</span>
+  <span style="color: #ff79c6; font-style: italic;">fi</span>
 </pre>
 </div>
 
@@ -399,8 +399,8 @@ pasamos las IPs a un programa para que ejecute un análisis de las 8 IPs.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-01-02 Sat 16:58</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
 </body>
