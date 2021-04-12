@@ -1,0 +1,71 @@
+#+title: Recursos
+
+#+begin_quote
+Links a cosas que pueden ser de utilidad sobre distintos temas
+#+end_quote
+
+
+* Cursos/Tutoriales
+** Lenguajes de programación en general
+*** Python
+- [[https://realpython.com/python-debugging-pdb/][Debugging with Pdb]]
+- [[https://www.slitherintopython.com][An introduction to python for beginers]]
+- [[https://www.reddit.com/r/Python/comments/i0m2sy/i_know_python_basics_what_next/][I Know pthon basics, what next?]]
+- [[https://www.youtube.com/watch?v=XGf2GcyHPhc][Learn python by building five games]]
+*** Go
+- [[https://github.com/golang/go/wiki/LearnServerProgramming][Backend in Go (learn Server Programing)]]
+- [[https://towardsdatascience.com/neural-network-from-scratch-in-go-language-b98e2abcced3][Build your own Neural network in Go]]
+- [[https://www.practical-go-lessons.com][Practical Go Lessons]]
+*** C++
+- [[https://www.youtube.com/watch?v=_bYFu9mBnr4][C++ 10 hours]]
+- [[https://www.youtube.com/watch?v=GQp1zzTwrIg][C++ Full course 10 hours]]
+*** ASM
+- [[https://www.reddit.com/r/programming/comments/gatepr/game_of_life_in_32_bytes_of_assembler_source/][Game of life in 32 bytes asembler]]
+** Machine Learning/Data science
+- [[https://www.reddit.com/r/MachineLearning/comments/fdw0ax/d_advanced_courses_update/][ML advanced curses]]
+- [[https://github.com/jakevdp/PythonDataScienceHandbook][Pyhon Data Science Handbook]]
+- [[https://docs.google.com/document/d/1TSxb0JrjaN4I4vRI7r-XpYuw5DxPdE2EQsCWu5irTYs/edit][Recursos de IA para pasar una buena cuarentena]]
+- [[https://www.kaggle.com/learn/overview][ML Tutorials]]
+- [[https://www.reddit.com/r/learnmachinelearning/comments/gy8n5b/a_beginnerfriendly_list_of_data_science_projects/][Beginer-friendly list of data science projects]]
+- [[https://github.com/Machine-Learning-Tokyo/Math_resources][Math resources for Machine Learning]]
+** Data Structures
+- [[https://www.youtube.com/watch?v=RBSGKlAvoiM][Data Structures Easy to advanced 8 hours]]
+** Algorithmic Trading
+- [[https://www.youtube.com/watch?v=SEQbb8w7VTw][Algorithmic Trading Using Python]]
+** Linux
+- [[https://www.youtube.com/watch?v=wBp0Rb-ZJak][The complete Linux course 7 hours]]
+- [[https://mega.nz/file/cBQj2Y5J#MX58k58WQWp-rtjwEfqCeqSn8edsfLiHy4FKLoV7VmI][Curso de administración de linux]]
+** $\LaTeX$
+*** katex
+- [[https://katex.org/docs/supported.html][Katex reference]]
+*** Draw
+- [[https://latexdraw.com][Drawing with tikz]]
+
+* Recursos escritos
+** Hacking
+- [[https://mega.nz/folder/zGJT1QQQ#O-8yiH845GN26ajAvkoLkA][Hacking books (4chan)]]
+- [[https://mega.nz/folder/YigVhZCZ#RznVxTiA0iN-N6Ps01pEJw][More hacking books (4chan)]]
+- [[https://malwareunicorn.org/#/workshops][Reverse engineering workshops]]
+** Google Drives
+*** Idiomas
+- [[https://drive.google.com/drive/folders/16MJgoXEbA6fIHK975zlyd27HCiZnrHf6][Idiomas]]
+*** Redes Con linux
+- [[https://drive.google.com/drive/folders/1GKLrJT43Uvo-mNlWIIEWKzhNpaEK122X][Redes con linux]]
+** Bibliotecas
+- [[https://mega.nz/folder/UBU3HIaI#hdNfSn9amoOVrT_CaBiB8w][Programing Books (large)]]
+- [[https://csgordon.github.io/books.html][CS books (large)]]
+** CS
+- [[https://teachyourselfcs.com][Teach yousef CS]]
+- [[https://github.com/ossu/computer-science][Path to a free self-taught education in Computer Science!]]
+** Competitive Programing
+- [[https://github.com/kth-competitive-programming/kactl][KTH Algorithm Competition Template Library]]
+- [[https://usaco.guide][USACO Guide]]
+** Security
+- [[https://archive.is/X9M2Q][The paranoid #! Security Guide]]
+- [[https://ssd.eff.org/en][Surveillance Self-defence]]
+- [[https://pastebin.com/WQhRYB59][Leaning/News/CTF]]
+* Patas
+** Path to pentester
+- [[https://archive.is/XB5hl][Path to pentester]]
+- [[https://archive.is/7YW04#selection-389.0-394.0][Basic Knowlege requeriments]]
+* Tools
