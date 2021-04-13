@@ -71,7 +71,7 @@ Porque soy un weeb de /cultura/.
 #+begin_quote
 categorizar todo da +mucha+ pereza.
 #+end_quote
-- Recursos
+- [[file:Otros/Recursos.org][Recursos]]
 
 * Personal
 #+begin_quote

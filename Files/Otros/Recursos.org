@@ -19,6 +19,8 @@ Links a cosas que pueden ser de utilidad sobre distintos temas
 *** C++
 - [[https://www.youtube.com/watch?v=_bYFu9mBnr4][C++ 10 hours]]
 - [[https://www.youtube.com/watch?v=GQp1zzTwrIg][C++ Full course 10 hours]]
+*** Elisp
+- [[https://github.com/p3r7/awesome-elisp][Emacs lisp resources]]
 *** ASM
 - [[https://www.reddit.com/r/programming/comments/gatepr/game_of_life_in_32_bytes_of_assembler_source/][Game of life in 32 bytes asembler]]
 ** Machine Learning/Data science
@@ -35,6 +37,8 @@ Links a cosas que pueden ser de utilidad sobre distintos temas
 ** Linux
 - [[https://www.youtube.com/watch?v=wBp0Rb-ZJak][The complete Linux course 7 hours]]
 - [[https://mega.nz/file/cBQj2Y5J#MX58k58WQWp-rtjwEfqCeqSn8edsfLiHy4FKLoV7VmI][Curso de administración de linux]]
+** Networking
+- [[https://github.com/facyber/awesome-networking][Awesome Networking, collection of courses, books, tutorials, software and other resources ]]
 ** $\LaTeX$
 *** katex
 - [[https://katex.org/docs/supported.html][Katex reference]]
