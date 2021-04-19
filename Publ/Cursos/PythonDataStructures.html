@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Python Data Structures</title>
-<!-- 2021-03-30 Tue 07:17 -->
+<!-- 2021-04-18 Sun 22:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -262,23 +262,11 @@ Se usan para crear listas que siguen ciertas reglas
 
 
 <colgroup>
-<col  class="right">
-
-<col  class="right">
-
-<col  class="right">
-
-<col  class="right">
-
-<col  class="right">
+<col  class="left">
 </colgroup>
 <tbody>
 <tr>
-<td class="text-right">0</td>
-<td class="text-right">1</td>
-<td class="text-right">8</td>
-<td class="text-right">27</td>
-<td class="text-right">64</td>
+<td class="text-left">None</td>
 </tr>
 </tbody>
 </table>
@@ -299,23 +287,11 @@ También podemos usar <code>if</code> para agregar condiciones:
 
 
 <colgroup>
-<col  class="right">
-
-<col  class="right">
-
-<col  class="right">
-
-<col  class="right">
-
-<col  class="right">
+<col  class="left">
 </colgroup>
 <tbody>
 <tr>
-<td class="text-right">0</td>
-<td class="text-right">4</td>
-<td class="text-right">16</td>
-<td class="text-right">36</td>
-<td class="text-right">64</td>
+<td class="text-left">None</td>
 </tr>
 </tbody>
 </table>
@@ -338,6 +314,12 @@ podemos dar un valor por defecto opcional
 </li>
 <li>Para determinar la longitud de una lista, tenemos la función <code>len()</code>.
 </li>
+<li>Podemos agregar elementos al diccionario haciendo <code>dict[clave] = valor</code>.
+<ul class="org-ul">
+<li>Se puede eliminar un elemento o un diccionario completo con <code>del</code> ejemplo <code>del dict[clave]</code>
+</li>
+</ul>
+</li>
 <li>Para iterar sobre los elementos de el diccionario podemos usar la función <code>values()</code>.
 <ul class="org-ul">
 <li><code>for value in diccionario.values():</code>
@@ -355,6 +337,8 @@ podemos dar un valor por defecto opcional
 <li><code>dic = { ("David", 42): "Red", ("Bob", 24): "Green" }</code>
 </li>
 </ul>
+</li>
+<li>Pueden ser creadas sin los paréntesis solo separando los elementos con comas. <code>dic = "one", "dos", "tre"</code>
 </li>
 </ul>
 </dd>
@@ -377,14 +361,11 @@ a, b, c <span style="color: #ff79c6; font-style: italic;">=</span> numbers
 </pre>
 </div>
 
-<ul class="org-ul">
-<li>1
-</li>
-<li>2
-</li>
-<li>3
-</li>
-</ul>
+<pre class="example">
+- None
+</pre>
+
+
 <div class="org-src-container">
 
 <pre class="src src-python">a, b, <span style="color: #ff79c6; font-style: italic;">*</span>c, d <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">7</span>, <span style="color: #8be9fd;">8</span>, <span style="color: #8be9fd;">9</span><span style="color: #61bfff;">]</span>
@@ -393,16 +374,10 @@ a, b, c <span style="color: #ff79c6; font-style: italic;">=</span> numbers
 </pre>
 </div>
 
-<ul class="org-ul">
-<li>1
-</li>
-<li>2
-</li>
-<li>(3 4 5 6 7 8)
-</li>
-<li>9
-</li>
-</ul>
+<pre class="example">
+- None
+</pre>
+
 
 
 <dl class="org-dl">
@@ -411,6 +386,8 @@ a, b, c <span style="color: #ff79c6; font-style: italic;">=</span> numbers
 <li><code>num_set = {1, 2, 3, 4, 5}</code>
 </li>
 <li>Es más rápido ver si hay un elemento dentro de un <i>set</i> que de una lista con el operador <code>in</code>.
+</li>
+<li>No se puede acceder a ellos con un índice ya que no están indexados.
 </li>
 <li>Se puede utilizar la función <code>add(item)</code> para agregar y la función <code>remove(item)</code> para eliminar un elemento.
 </li>
@@ -496,20 +473,20 @@ Implementación de una pila con una lista.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> stack:
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[]</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[]</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #61bfff;">[]</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #61bfff;">[]</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">push</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, item<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">insert</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, item<span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">push</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, item<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">insert</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, item<span style="color: #61bfff;">)</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pop</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">pop</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pop</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">pop</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printStack</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printStack</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </li>
@@ -548,21 +525,21 @@ Implementación de una cola usando una lista.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Queue</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[]</span>
+<pre class="src src-python">  <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Queue</span>:
+      <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+          <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[]</span>
 
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #61bfff;">[]</span>
+      <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+          <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #61bfff;">[]</span>
 
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">enqueue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, item<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">insert</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, item<span style="color: #61bfff;">)</span>
+      <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">enqueue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, item<span style="color: #61bfff;">)</span>:
+          <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">insert</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, item<span style="color: #61bfff;">)</span>
 
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">dequeue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">pop</span><span style="color: #61bfff;">()</span> <span style="color: #6272a4; font-style: italic;"># &lt;-- last element</span>
+      <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">dequeue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+          <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">pop</span><span style="color: #61bfff;">()</span> <span style="color: #6272a4; font-style: italic;"># &lt;-- last element</span>
 
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printQueue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span> <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span><span style="color: #61bfff;">)</span>
+      <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printQueue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+          <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">items</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </li>
@@ -596,40 +573,40 @@ Implementación de una lista enlazada.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Node</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, data, next<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">data</span> <span style="color: #ff79c6; font-style: italic;">=</span> data
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">next</span> <span style="color: #ff79c6; font-style: italic;">=</span> next
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, data, next<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">data</span> <span style="color: #ff79c6; font-style: italic;">=</span> data
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">next</span> <span style="color: #ff79c6; font-style: italic;">=</span> next
 
 <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">LinkedList</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">None</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">None</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addAtFront</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, data<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Node</span><span style="color: #61bfff;">(</span>data, <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addAtFront</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, data<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Node</span><span style="color: #61bfff;">(</span>data, <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span><span style="color: #61bfff;">)</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addAtEnd</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, data<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; font-style: italic;">not</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Node</span><span style="color: #61bfff;">(</span>data, <span style="color: #ffb86c;">None</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   curr <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">while</span> curr.<span style="color: #8be9fd; font-style: italic;">next</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   curr <span style="color: #ff79c6; font-style: italic;">=</span> curr.<span style="color: #8be9fd; font-style: italic;">next</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   curr.<span style="color: #8be9fd; font-style: italic;">next</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Node</span><span style="color: #61bfff;">(</span>data, <span style="color: #ffb86c;">None</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addAtEnd</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, data<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; font-style: italic;">not</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>:
+            <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Node</span><span style="color: #61bfff;">(</span>data, <span style="color: #ffb86c;">None</span><span style="color: #61bfff;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">return</span>
+        curr <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>
+        <span style="color: #ff79c6; font-style: italic;">while</span> curr.<span style="color: #8be9fd; font-style: italic;">next</span>:
+            curr <span style="color: #ff79c6; font-style: italic;">=</span> curr.<span style="color: #8be9fd; font-style: italic;">next</span>
+        curr.<span style="color: #8be9fd; font-style: italic;">next</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Node</span><span style="color: #61bfff;">(</span>data, <span style="color: #ffb86c;">None</span><span style="color: #61bfff;">)</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">getLastNode</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   n <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">while</span><span style="color: #61bfff;">(</span>n.<span style="color: #8be9fd; font-style: italic;">next</span> <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #ffb86c;">None</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   n <span style="color: #ff79c6; font-style: italic;">=</span> n.<span style="color: #8be9fd; font-style: italic;">next</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> n.<span style="color: #8be9fd; font-style: italic;">data</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">getLastNode</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        n <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>
+        <span style="color: #ff79c6; font-style: italic;">while</span><span style="color: #61bfff;">(</span>n.<span style="color: #8be9fd; font-style: italic;">next</span> <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #ffb86c;">None</span><span style="color: #61bfff;">)</span>:
+            n <span style="color: #ff79c6; font-style: italic;">=</span> n.<span style="color: #8be9fd; font-style: italic;">next</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> n.<span style="color: #8be9fd; font-style: italic;">data</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #ffb86c;">None</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #ffb86c;">None</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printList</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   n <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">while</span> n <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #ffb86c;">None</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>n.<span style="color: #8be9fd; font-style: italic;">data</span>, <span style="color: #bd93f9; font-weight: bold;">end</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">" =&gt; "</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   n <span style="color: #ff79c6; font-style: italic;">=</span> n.<span style="color: #8be9fd; font-style: italic;">next</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printList</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        n <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">head</span>
+        <span style="color: #ff79c6; font-style: italic;">while</span> n <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #ffb86c;">None</span>:
+            <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>n.<span style="color: #8be9fd; font-style: italic;">data</span>, <span style="color: #bd93f9; font-weight: bold;">end</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">" =&gt; "</span><span style="color: #61bfff;">)</span>
+            n <span style="color: #ff79c6; font-style: italic;">=</span> n.<span style="color: #8be9fd; font-style: italic;">next</span>
 
 s <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">LinkedList</span><span style="color: #61bfff;">()</span>
 s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">addAtFront</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
@@ -643,8 +620,57 @@ s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">printList
 </div>
 
 <pre class="example">
-9 =&gt; 5 =&gt; 8 =&gt; 
-8
+    Python 3.9.3 (default, Apr  8 2021, 23:35:02) 
+    Type 'copyright', 'credits' or 'license' for more information
+    IPython 7.22.0 -- An enhanced Interactive Python. Type '?' for help.
+
+    In [1]:    ...:    ...:    ...:    ...: 
+    In [2]:    ...:    ...:    ...: 
+    In [3]:    ...:    ...: 
+    In [4]:    ...:    ...:    ...:    ...:    ...:    ...:    ...:    ...: 
+    In [5]:    ...:    ...:    ...:    ...:    ...: 
+    In [6]:    ...:    ...: 
+    In [7]:    ...:    ...:    ...:    ...:    ...: 
+    In [8]: 
+    In [9]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    [0;32m&lt;ipython-input-9-622ecd76e3fa&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+    [0;32m----&gt; 1[0;31m [0ms[0m[0;34m.[0m[0maddAtFront[0m[0;34m([0m[0;36m5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+    [0m
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'addAtFront'
+
+    In [10]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    [0;32m&lt;ipython-input-10-4335dc9ab3d4&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+    [0;32m----&gt; 1[0;31m [0ms[0m[0;34m.[0m[0maddAtEnd[0m[0;34m([0m[0;36m8[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+    [0m
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'addAtEnd'
+
+    In [11]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    [0;32m&lt;ipython-input-11-3fe61dade55c&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+    [0;32m----&gt; 1[0;31m [0ms[0m[0;34m.[0m[0maddAtFront[0m[0;34m([0m[0;36m9[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+    [0m
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'addAtFront'
+
+    In [12]: 
+    In [12]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    [0;32m&lt;ipython-input-12-5b055e21e2c8&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+    [0;32m----&gt; 1[0;31m [0ms[0m[0;34m.[0m[0mprintList[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+    [0m
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'printList'
+
+    In [13]: 
+
+    In [14]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    [0;32m&lt;ipython-input-14-d13bb925b047&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+    [0;32m----&gt; 1[0;31m [0mprint[0m[0;34m([0m[0ms[0m[0;34m.[0m[0mgetLastNode[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+    [0m
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'getLastNode'
+
+    In [15]: Do you really want to exit ([y]/n)? 
 </pre>
 </li>
 </ul>
@@ -683,38 +709,79 @@ Implementación de un grafo usando una matriz de adyacencia.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Graph</span><span style="color: #61bfff;">()</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, size<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span> <span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">0</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">*</span> size <span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #ff79c6;">(</span>size<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">]</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">=</span> size
+<pre class="src src-python">    <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Graph</span><span style="color: #61bfff;">()</span>:
+        <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, size<span style="color: #61bfff;">)</span>:
+            <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span> <span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">0</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">*</span> size <span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #ff79c6;">(</span>size<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">]</span>
+            <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">=</span> size
 
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, orig, dest<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">if</span> orig <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> orig <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Elemento invalido"</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">else</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1</span>
+        <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, orig, dest<span style="color: #61bfff;">)</span>:
+            <span style="color: #ff79c6; font-style: italic;">if</span> orig <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> orig <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span>:
+                <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Elemento invalido"</span><span style="color: #61bfff;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">else</span>:
+                <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1</span>
+                <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1</span>
 
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">removeEdge</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, orig, dest<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">if</span> orig <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> orig <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Elemento invalido"</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">else</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
+        <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">removeEdge</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, orig, dest<span style="color: #61bfff;">)</span>:
+            <span style="color: #ff79c6; font-style: italic;">if</span> orig <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">size</span> <span style="color: #ff79c6; font-style: italic;">or</span> orig <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span> <span style="color: #ff79c6; font-style: italic;">or</span> dest <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">0</span>:
+                <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Elemento invalido"</span><span style="color: #61bfff;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">else</span>:
+                <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
+                <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span><span style="color: #61bfff;">[</span>dest<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">][</span>orig<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
 
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">display</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">for</span> row <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">for</span> val <span style="color: #ff79c6; font-style: italic;">in</span> row:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'{:4}'</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">format</span><span style="color: #ff79c6;">(</span>val<span style="color: #ff79c6;">)</span>,<span style="color: #bd93f9; font-weight: bold;">end</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">""</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">()</span>
+        <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">display</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+            <span style="color: #ff79c6; font-style: italic;">for</span> row <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">adj</span>:
+                <span style="color: #ff79c6; font-style: italic;">for</span> val <span style="color: #ff79c6; font-style: italic;">in</span> row:
+                    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'{:4}'</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">format</span><span style="color: #ff79c6;">(</span>val<span style="color: #ff79c6;">)</span>,<span style="color: #bd93f9; font-weight: bold;">end</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">""</span><span style="color: #61bfff;">)</span>
+                <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">()</span>
 
-<span style="background-color: #373844;"> </span>   <span style="color: #8be9fd;">G</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Graph</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">3</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">display</span><span style="color: #61bfff;">()</span>
+    <span style="color: #8be9fd;">G</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Graph</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+    <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">3</span><span style="color: #61bfff;">)</span>
+    <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+    <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">addEdge</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+    <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">display</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
+
+<pre class="example">
+        Python 3.9.3 (default, Apr  8 2021, 23:35:02) 
+        Type 'copyright', 'credits' or 'license' for more information
+        IPython 7.22.0 -- An enhanced Interactive Python. Type '?' for help.
+
+        In [1]:    ...:    ...:    ...:    ...: 
+        In [2]:    ...:    ...:    ...:    ...:    ...:    ...: 
+        In [3]:    ...:    ...:    ...:    ...:    ...:    ...: 
+        In [4]:    ...:    ...:    ...:    ...:    ...: 
+        In [5]: 
+        In [6]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        [0;32m&lt;ipython-input-6-290726dfbc89&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+        [0;32m----&gt; 1[0;31m [0mG[0m[0;34m.[0m[0maddEdge[0m[0;34m([0m[0;36m1[0m[0;34m,[0m [0;36m3[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+        [0m
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'addEdge'
+
+        In [7]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        [0;32m&lt;ipython-input-7-59d339a4f314&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+        [0;32m----&gt; 1[0;31m [0mG[0m[0;34m.[0m[0maddEdge[0m[0;34m([0m[0;36m3[0m[0;34m,[0m [0;36m4[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+        [0m
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'addEdge'
+
+        In [8]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        [0;32m&lt;ipython-input-8-09ecbed649a8&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+        [0;32m----&gt; 1[0;31m [0mG[0m[0;34m.[0m[0maddEdge[0m[0;34m([0m[0;36m2[0m[0;34m,[0m [0;36m4[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+        [0m
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'addEdge'
+
+        In [9]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        [0;32m&lt;ipython-input-9-138db70f5c0a&gt;[0m in [0;36m&lt;module&gt;[0;34m[0m
+        [0;32m----&gt; 1[0;31m [0mG[0m[0;34m.[0m[0mdisplay[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+        [0m
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'display'
+
+        In [10]: Do you really want to exit ([y]/n)? 
+</pre>
 </li>
 </ul>
 </li>
@@ -743,7 +810,7 @@ Implementación de un grafo usando una matriz de adyacencia.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-03-30 Tue 07:17</p>
+<p class="date">Created: 2021-04-18 Sun 22:04</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>

@@ -1,0 +1,1984 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Python Intermedio</title>
+<!-- 2021-04-18 Sun 22:04 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Programación funcional</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Funciones puras</a></li>
+<li><a href="#sec-1-2">1.2. Lambdas</a></li>
+<li><a href="#sec-1-3">1.3. Map</a></li>
+<li><a href="#sec-1-4">1.4. Filter</a></li>
+<li><a href="#sec-1-5">1.5. Generators</a></li>
+<li><a href="#sec-1-6">1.6. Decorators</a></li>
+<li><a href="#sec-1-7">1.7. Recursión.</a></li>
+<li><a href="#sec-1-8">1.8. *args</a></li>
+<li><a href="#sec-1-9">1.9. **kwargs</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. OOP</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Clases</a></li>
+<li><a href="#sec-2-2">2.2. <code>__init___</code></a></li>
+<li><a href="#sec-2-3">2.3. Métodos</a></li>
+<li><a href="#sec-2-4">2.4. Herencia</a></li>
+<li><a href="#sec-2-5">2.5. Métodos mágicos</a></li>
+<li><a href="#sec-2-6">2.6. Data Hiding</a></li>
+<li><a href="#sec-2-7">2.7. Métodos de clase</a></li>
+<li><a href="#sec-2-8">2.8. Métodos estáticos</a></li>
+<li><a href="#sec-2-9">2.9. Propiedades</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Excepciones</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Manejo de excepciones</a></li>
+<li><a href="#sec-3-2">3.2. Finally</a></li>
+<li><a href="#sec-3-3">3.3. Else</a></li>
+<li><a href="#sec-3-4">3.4. Levantando excepciones</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Archivos</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Abriendo archivos</a></li>
+<li><a href="#sec-4-2">4.2. leeyendo archivos</a></li>
+<li><a href="#sec-4-3">4.3. Escribiendo archivos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Python Intermedio</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Programación funcional</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Es un estilo de programación.
+</li>
+<li>Esta basado fuertemente en funciones.
+</li>
+<li>Una parte clave de la programación funcional son las <i>funciones de orden superior</i> (Higher-order function).
+<ul class="org-ul">
+<li>Estas funciones toman como argumentos otras funciones.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">apllyTwice</span><span style="color: #61bfff;">(</span>func, arg<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #ff79c6;">(</span>arg<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addFive</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span>
+
+<span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">apllyTwice</span><span style="color: #61bfff;">(</span>addFive, <span style="color: #8be9fd;">10</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El código de arriba retorna 20.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Funciones puras</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>La programación funcional busca funciones puras.
+<ul class="org-ul">
+<li>No tienen efectos secundarios (side efects).
+</li>
+<li>Retornan un valor que depende <b>solo</b> de sus argumentos.
+</li>
+<li>Emula como las funciones en matemáticas funcionan.
+</li>
+</ul>
+</li>
+<li>Tienen ventajas y desventajas:
+<ul class="org-ul">
+<li>Son más fáciles de debuggear y de testear.
+</li>
+<li>Son más eficientes, el resultado de una función puede guardarse y darse a la siguiente función
+reduciendo el numero de veces que esta es llamada.
+</li>
+<li>Mejores para correr en paralelo.
+</li>
+<li>Pueden ser más difíciles de escribir en ciertas situaciones.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pureFunct</span><span style="color: #61bfff;">(</span>x, y<span style="color: #61bfff;">)</span>: <span style="color: #6272a4; font-style: italic;"># todo ocurre dentro de la funci&#243;n.</span>
+    temp <span style="color: #ff79c6; font-style: italic;">=</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>y
+    <span style="color: #ff79c6; font-style: italic;">return</span> temp<span style="color: #ff79c6; font-style: italic;">/</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>x <span style="color: #ff79c6; font-style: italic;">+</span> y<span style="color: #61bfff;">)</span>
+
+
+
+someList <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[]</span> <span style="color: #6272a4; font-style: italic;"># tiene efectos secundarios ya que modificamos cosas afuera de esas funciones.</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">impureFunct</span><span style="color: #61bfff;">(</span>args<span style="color: #61bfff;">)</span>:
+    someList.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">append</span><span style="color: #61bfff;">(</span>args<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Lambdas</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Usualmente creamos funciones con <code>def</code>.
+</li>
+<li>Podemos crear funciones sobre la marcha con <code>lambda</code>.
+</li>
+<li>Estas son funciones anónimas.
+</li>
+<li>Esto normalmente se usa para funciones simples.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">myFunc</span><span style="color: #61bfff;">(</span>f, arg<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">f</span><span style="color: #61bfff;">(</span>arg<span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9; font-weight: bold;">myFunc</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>x<span style="color: #ff79c6; font-style: italic;">*</span>x, <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Solo pueden hacer operaciones que requieren de una sola expresión.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #6272a4; font-style: italic;"># named function</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">polynomial</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> x<span style="color: #ff79c6; font-style: italic;">**</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span><span style="color: #ff79c6; font-style: italic;">*</span>x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">4</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">polynomial</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #6272a4; font-style: italic;"># lambda</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: x<span style="color: #ff79c6; font-style: italic;">**</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span><span style="color: #ff79c6; font-style: italic;">*</span>x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Map</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Son útiles cuando trabajamos con listas o objetos iteratables.
+</li>
+<li>Toma una función y un iteratable como argumento y retorna un nuevo iteratable con la función aplicada a cada argumento.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addFive</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span>
+
+nums <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
+result <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">map</span><span style="color: #ff79c6;">(</span>addFive, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #6272a4; font-style: italic;"># o usando una lambda</span>
+nums <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
+result <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">map</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span>, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Filter</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li><code>filter</code> Toma un iteratable y filtra los elementos que cumplen con una condición.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">nums <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
+res <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">filter</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: x <span style="color: #ff79c6; font-style: italic;">%</span> <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">==</span><span style="color: #8be9fd;">0</span>, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">return</span> res
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="right">
+
+<col  class="right">
+</colgroup>
+<tbody>
+<tr>
+<td class="text-right">22</td>
+<td class="text-right">44</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Generators</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Son un tipo de iteratable, como las listas o las tuplas.
+</li>
+<li>No permiten indexar con índices arbitrarios.
+</li>
+<li>Pueden ser creados usando funciones y el operador <code>yield</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">countDown</span><span style="color: #61bfff;">()</span>:
+    i <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">5</span>
+    <span style="color: #ff79c6; font-style: italic;">while</span> i <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">0</span>:
+        <span style="color: #ff79c6; font-style: italic;">yield</span> i
+        i <span style="color: #ff79c6; font-style: italic;">-=</span> <span style="color: #8be9fd;">1</span>
+
+<span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">countDown</span><span style="color: #61bfff;">()</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> i
+</pre>
+</div>
+
+<blockquote>
+<p>
+<code>yield</code> es usado para definir un generador, remplazando el <code>return</code> de una función; esto para retornar un resultado sin destruir las variables locales de la función.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Debido al hecho de que solo retornan un elemento a la vez, no tienen restricciones de memoria y pueden ser infinitos.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">infiniteSevens</span><span style="color: #61bfff;">()</span>:
+    <span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #ffb86c;">True</span>:
+        <span style="color: #ff79c6; font-style: italic;">yield</span> <span style="color: #8be9fd;">7</span>
+
+<span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">infiniteSevens</span><span style="color: #61bfff;">()</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>i<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Básicamente, los generadores nos permiten declarar funciones que se comportan como objetos iteratables.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Generadores finitos pueden ser convertidos en listas.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">numbers</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">if</span> i <span style="color: #ff79c6; font-style: italic;">%</span> <span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span>:
+            <span style="color: #ff79c6; font-style: italic;">yield</span> i
+
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">numbers</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">11</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Usar generadores da mejor rendimiento el cual es resultado de la evaluación perezosa (lazy evaluation).
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Decorators</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>Proveen una manera de modificar funciones usando otras funciones.
+</li>
+<li>Se usan para extender la funcionalidad de una función que no quieres modificar.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">decor</span><span style="color: #61bfff;">(</span>func<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">wrap</span><span style="color: #61bfff;">()</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"========="</span><span style="color: #61bfff;">)</span>
+        <span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #61bfff;">()</span>
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"========="</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> wrap
+
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printText</span><span style="color: #61bfff;">()</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #61bfff;">)</span>
+
+decorated <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">decor</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">printText</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9; font-weight: bold;">decorated</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<pre class="example">
+============
+Hello world!
+============
+</pre>
+
+<p>
+Definimos una función <code>decor</code>, que recibe un parámetro <code>func</code>. Dentro de <code>decor</code>, definimos una función anidada llamada <code>wrap</code>.
+Esta función imprime un string, entonces llama a <code>func()</code> e imprime otro string. La función <code>decor</code> retorna a <code>wrap</code>.
+</p>
+
+<p>
+Podríamos decir que la variable <code>decorated</code>. es una versión decorada de <code>printText</code>, es <code>printText</code> más algo más.
+</p>
+
+<p>
+Si quisiéramos escribir una función decorada útil, probablemente reemplazaríamos <code>printText</code> con la función decorada,
+de esa manera siempre tendríamos <code>printText</code> &ldquo;más algo&rdquo;, reasignando la variable que tiene la función.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">printText <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">decor</span><span style="color: #61bfff;">(</span>printText<span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9; font-weight: bold;">printText</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Ahora <code>printText</code> corresponde a nuestra versión decorada.
+</p>
+</blockquote>
+
+<p>
+Python provee soporte para hacer wrap de cualquier función precediendo la declaración de esta con el nombre del decorador y el símbolo <code>@</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">decor</span><span style="color: #61bfff;">(</span>func<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">wrap</span><span style="color: #61bfff;">()</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"============"</span><span style="color: #61bfff;">)</span>
+        <span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #61bfff;">()</span>
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"============"</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> wrap
+
+<span style="color: #bd93f9; font-weight: bold;">@decor</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printText</span><span style="color: #61bfff;">()</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9; font-weight: bold;">printText</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<pre class="example">
+============
+Hello world!
+============
+</pre>
+
+<blockquote>
+<p>
+Una sola función puede tener más de un decorador.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Recursión.</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>Se basa en la auto-referencia se una función
+</li>
+<li>Se usa cuando los problemas pueden resolverse partiendolos en sub-problemas del mismo tipo.
+</li>
+</ul>
+
+<blockquote>
+<p>
+Un buen ejemplo de recursión es el factorial.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">factorial</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">if</span> x <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">1</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">1</span>
+    <span style="color: #ff79c6; font-style: italic;">else</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #bd93f9; font-weight: bold;">factorial</span><span style="color: #61bfff;">(</span>x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9; font-weight: bold;">factorial</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+\(1! = 1\) es conocido como el <b>caso base</b>, este actúa como la salida de la recursión, y evita que la recursión se haga infinitamente.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>También podemos tener recursión indirecta, con una función que llama a una segunda y esta segunda a la primera.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEven</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">if</span> x <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">True</span>
+    <span style="color: #ff79c6; font-style: italic;">else</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">isOdd</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isOdd</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">not</span> <span style="color: #bd93f9; font-weight: bold;">isEven</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> *args</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>Usando <code>*args</code> podemos pasarle un numero arbitrario de argumentos a una función.
+</li>
+<li>Los argumentos son accesibles en una tupla.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">function</span><span style="color: #61bfff;">(</span>named_arg, <span style="color: #ff79c6; font-style: italic;">*</span>args<span style="color: #61bfff;">)</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>named_arg<span style="color: #61bfff;">)</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">*</span>args<span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9; font-weight: bold;">function</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+1
+(2, 3, 4, 5)
+</pre>
+
+<ul class="org-ul">
+<li>El parametro <code>*args</code> debe venir al final de los argumentos con nombre.
+</li>
+<li>El nombre <code>args</code> es una convención, puede ser cualquier otro.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> **kwargs</h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li><i>Keyword arguments</i>.
+</li>
+<li>Te permite manipular argumentos con nombre que no han sido definidos antes.
+</li>
+<li>Estos argumentos son retornados en un diccionario.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">myFunc</span><span style="color: #61bfff;">(</span>x, y<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #8be9fd;">7</span>, <span style="color: #ff79c6; font-style: italic;">*</span>args, <span style="color: #ff79c6; font-style: italic;">**</span>kwargs<span style="color: #61bfff;">)</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>kwargs<span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9; font-weight: bold;">myFunc</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">6</span>, <span style="color: #bd93f9; font-weight: bold;">a</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #8be9fd;">7</span>, <span style="color: #bd93f9; font-weight: bold;">b</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #8be9fd;">8</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+{'a': 7, 'b': 8}
+</pre>
+
+<blockquote>
+<p>
+Los argumentos dados en <code>kwargs</code>, no son los mismos que se incluyen en <code>args</code>.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> OOP</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Clases</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>El foco de la <i>programación orientada a objetos</i> (POO) son los <b>objetos</b>.
+</li>
+<li>Estos objetos son creados usando <b>clases</b>.
+</li>
+<li>Una clase describe como el objeto va a ser, podemos definirlo como el molde del objeto a crear.
+</li>
+<li>Son creadas con la palabra clave <code>class</code>.
+<ul class="org-ul">
+<li>Contienen metodos de clase (funciones).
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> cat:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, color, legs<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">legs</span> <span style="color: #ff79c6; font-style: italic;">=</span> legs
+
+felix <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"ginger"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+rover <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">car</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"blue"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+stumpy <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"brown"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Aqui tenemos una clase <code>cat</code>, que tiene dos atributos: color y legs.
+</p>
+
+<p>
+Usamos esta clase para crear tres objetos tipo <code>cat</code> con diferentes atributos.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <code>__init___</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>El método más importante de una clase.
+</li>
+<li>Es llamado cuando se crea una instancia (objeto) de la clase, usando el nombre de la clase como método.
+</li>
+<li>Deben tener <code>self</code> como primer parametro.
+<ul class="org-ul">
+<li>Pero no es necesario paasarlo como argumento cuando llamas a un método.
+</li>
+<li><code>self</code> se refiere a la instancia llamando al método.
+</li>
+</ul>
+</li>
+<li>En un método <code>__init__</code>, <code>self.atributo</code> puede ser usado para definir los valores iniciales en una nueva instancia.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> cat:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, color, legs<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">legs</span> <span style="color: #ff79c6; font-style: italic;">=</span> legs
+
+felix <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"ginger"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>felix.<span style="color: #8be9fd; font-style: italic;">color</span><span style="color: #61bfff;">)</span>
+<span style="color: #6272a4; font-style: italic;"># Nos imprimir&#237;a, ginger</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+En el ejemplo de arriba, el método <code>__init__</code> toma dos argumentos los cuales son asignados a los atributos del objeto creado.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+El método <code>__init__</code> es llamado también constructor.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Métodos</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Las clases pueden tener otros métodos para añadir funcionalidad a esa clase.
+</li>
+<li>Todos los métodos deben tener <code>self</code> como primer parametro.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> dog:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, color<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Woof!"</span><span style="color: #61bfff;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">barkColor</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Wooof!"</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># podemos acceder a los argumentos del constructor con self</span>
+
+fido <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"fido"</span>, <span style="color: #f1fa8c;">"brown"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>fido.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #61bfff;">)</span>
+fido.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Los atributos de una clase son compartidos por todas las instancias de esta clase.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Herencia</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Provee una manera de compartir funcionalidad entre clases.
+</li>
+<li>Podemos tener una clase base con ciertos métodos/atributos y extenderla con otras clases hijas que toman esos métodos/atributos y los extienden.
+</li>
+<li>Para heredar una clase a otra ponemos el nombre de la <b>super-clase</b> (la clase de la que queremos la funcionalidad) entre los parentesis.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> animal:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, color<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">cat</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">animal</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">purr</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Purr..."</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">dog</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">animal</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Woof!"</span><span style="color: #61bfff;">)</span>
+
+fido <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Fido"</span>, <span style="color: #f1fa8c;">"brown"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>fido.<span style="color: #8be9fd; font-style: italic;">color</span><span style="color: #61bfff;">)</span>
+fido.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Cuando una clase toma herencia de otra se le llama <b>sub-clase</b>.
+</li>
+<li>Si una clase hereda de otra y tiene los mismos atributos y/o métodos, estos son anulados.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> wolf:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, color<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Grr!"</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">dog</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">wolf</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Woof!"</span><span style="color: #61bfff;">)</span>
+
+husky <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Max"</span>, <span style="color: #f1fa8c;">"grey"</span><span style="color: #61bfff;">)</span>
+husky.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</span><span style="color: #61bfff;">()</span>
+<span style="color: #6272a4; font-style: italic;"># retornaria: Woof!</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Podemos referirnos a la clase padre de una instancia con la función <code>super()</code>.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> a:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">spam</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">b</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">a</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">spam</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span><span style="color: #61bfff;">)</span>
+        <span style="color: #ffb86c; font-weight: bold;">super</span><span style="color: #61bfff;">()</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">spam</span><span style="color: #61bfff;">()</span>
+
+<span style="color: #bd93f9; font-weight: bold;">b</span><span style="color: #61bfff;">()</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">spam</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<pre class="example">
+2
+1
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Métodos mágicos</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Son métodos especiales que tienen dos guiones bajos antes y despues de su nombre.
+<ul class="org-ul">
+<li>Como el método <code>__init__</code>.
+</li>
+</ul>
+</li>
+<li>Son conocidos también como <code>dunders</code>.
+</li>
+<li>Son usados para crear funcionalidades que no pueden hacerse usando métodos convencionales.
+<ul class="org-ul">
+<li>Un uso común de ellos es hacer sobrecarga de operadores (Operator overloading).
+<ul class="org-ul">
+<li>Esto significa definir operadores para clases personalizadas que permiten operadores como <code>*</code> y <code>+</code> ser usados.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> vector2D:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, x, y<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> x
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> y
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__add__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, other<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">x</span> <span style="color: #ff79c6; font-style: italic;">+</span> other.<span style="color: #8be9fd; font-style: italic;">x</span>, <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">y</span> <span style="color: #ff79c6; font-style: italic;">+</span> other.<span style="color: #8be9fd; font-style: italic;">y</span><span style="color: #61bfff;">)</span>
+
+first <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>
+second <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">9</span><span style="color: #61bfff;">)</span>
+result <span style="color: #ff79c6; font-style: italic;">=</span> first <span style="color: #ff79c6; font-style: italic;">+</span> second
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>result.<span style="color: #8be9fd; font-style: italic;">x</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>result.<span style="color: #8be9fd; font-style: italic;">y</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+8
+16
+</pre>
+
+<blockquote>
+<p>
+El método <code>__add__</code> permite un comportamiento custom de el operador <code>+</code> en nuestra clase.
+</p>
+
+<p>
+Añade los atributos correspondientes de los objetos y retorna un nuevo objeto con el resultado.
+</p>
+
+<p>
+Una vez definido podemos sumar dos objetos tipo vector.
+</p>
+</blockquote>
+
+<p>
+Algunos métodos mágicos son:
+</p>
+<dl class="org-dl">
+<dt> <code>__sub__</code> </dt><dd>para <code>-</code>.
+</dd>
+<dt> <code>__mul__</code> </dt><dd>para <code>*</code>.
+</dd>
+<dt> <code>__truediv__</code> </dt><dd>para <code>/</code>.
+</dd>
+<dt> <code>__floordiv__</code> </dt><dd>para <code>//</code>.
+</dd>
+<dt> <code>__mod__</code> </dt><dd>para <code>%</code>.
+</dd>
+<dt> <code>__pow__</code> </dt><dd>para <code>**</code>.
+</dd>
+<dt> <code>__and__</code> </dt><dd>para <code>&amp;</code>.
+</dd>
+<dt> <code>__xor__</code> </dt><dd>para <code>^</code>.
+</dd>
+<dt> <code>__or__</code> </dt><dd>para <code>|</code>.
+</dd>
+</dl>
+
+<p>
+La expresión <code>x + y</code> es traducida como <code>x.__add__(y)</code>.
+</p>
+
+<p>
+Sin embargo si en x no se ha implementado el método <code>__add__</code> y x &amp; y son de tipos diferentes se llama al método <code>y.__raad__(x)</code>, hay un método <code>r</code> para cada uno de los operadores.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> specialString:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, cont<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__truediv__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, other<span style="color: #61bfff;">)</span>:
+        line <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"="</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #61bfff;">(</span>other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"</span><span style="color: #ff79c6; font-style: italic;">\n</span><span style="color: #f1fa8c;">"</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">join</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span>, line, other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+
+spam <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">)</span>
+hello <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span> <span style="color: #61bfff;">(</span>spam <span style="color: #ff79c6; font-style: italic;">/</span> hello<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+spam
+============
+Hello world!
+</pre>
+
+<blockquote>
+<p>
+En este ejemplo definimos el operador de división para nuestra clase specialString.
+</p>
+</blockquote>
+
+<p>
+Python nos da métodos mágicos para comparaciones.
+</p>
+<dl class="org-dl">
+<dt> <code>__lt__</code> </dt><dd>para <code>&lt;</code>.
+</dd>
+<dt> <code>__le__</code> </dt><dd>para <code>&lt;=</code>.
+</dd>
+<dt> <code>__eq__</code> </dt><dd>para <code>==</code>.
+</dd>
+<dt> <code>__ne__</code> </dt><dd>para <code>!=</code>.
+</dd>
+<dt> <code>__gt__</code> </dt><dd>para <code>&gt;</code>.
+</dd>
+<dt> <code>__ge__</code> </dt><dd>para <code>&gt;=</code>.
+</dd>
+</dl>
+
+<blockquote>
+<p>
+Si <code>__ne__</code> no esta implementado, retorna el opuesto de <code>__eq__</code>.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> specialString:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, cont<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__gt__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, other<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">for</span> index <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #ff79c6;">)</span><span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>:
+            result <span style="color: #ff79c6; font-style: italic;">=</span> other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>:index<span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"&gt;"</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span>
+            result <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #f1fa8c;">"&gt;"</span> <span style="color: #ff79c6; font-style: italic;">+</span> other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>index:<span style="color: #61bfff;">]</span>
+            <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>result<span style="color: #61bfff;">)</span>
+
+spam <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">)</span>
+spam <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"eggs"</span><span style="color: #61bfff;">)</span>
+spam <span style="color: #ff79c6; font-style: italic;">&gt;</span> eggs
+</pre>
+</div>
+
+<pre class="example">
+&gt;spam&gt;eggs
+e&gt;spam&gt;ggs
+eg&gt;spam&gt;gs
+egg&gt;spam&gt;s
+eggs&gt;spam&gt;
+</pre>
+
+<blockquote>
+<p>
+Podemos definir cualquier operación custom para cada operador.
+</p>
+</blockquote>
+
+<p>
+Hay diferentes métodos para hacer que una clase se comporte como un contenedor.
+</p>
+<dl class="org-dl">
+<dt> <code>__len__</code> </dt><dd>para <code>len()</code>.
+</dd>
+<dt> <code>__getitem__</code> </dt><dd>para indexar.
+</dd>
+<dt> <code>__setitem__</code> </dt><dd>para asignar a valores indexados.
+</dd>
+<dt> <code>__delitem__</code> </dt><dd>para borrar valores indexados.
+</dd>
+<dt> <code>__iter__</code> </dt><dd>para iterar a travez de objetos.
+</dd>
+<dt> <code>__contains__</code> </dt><dd>para <code>in</code>.
+</dd>
+</dl>
+
+<p>
+Hay muchos más tipos de métodos mágicos como <code>__call__</code> para llamar a objetos como funciones o <code>__int__</code>, <code>__str__</code> para convertir objetos a otros tipo de datos.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">import</span> random
+
+<span style="color: #ff79c6; font-style: italic;">class</span> vagueList:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, cont<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__getitem__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, index<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>index <span style="color: #ff79c6; font-style: italic;">+</span> random.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">randint</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">]</span>
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__len__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> random.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">randint</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #ff79c6;">)</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #8be9fd;">2</span><span style="color: #61bfff;">)</span>
+
+
+vague_list <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vagueList</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"A"</span>, <span style="color: #f1fa8c;">"B"</span>, <span style="color: #f1fa8c;">"C"</span>, <span style="color: #f1fa8c;">"D"</span>, <span style="color: #f1fa8c;">"E"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>vague_list<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>vague_list<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>vague_list<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>vague_list<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+0
+10
+C
+B
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Data Hiding</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>Una parte importante de la POO es el concepto de <b>encapsulación</b>.
+<ul class="org-ul">
+<li>Se trata de empacar un grupo de ciertas variables y funciones en un objeto.
+</li>
+</ul>
+</li>
+<li>Un concepto con relación a esto es el <i>Data Hiding</i>, el cual dice que los detalles de implementación de una clase deben de estar ocultos,
+y ser presentados al usuario con una <b>interfaz</b> estandar y limpia.
+<ul class="org-ul">
+<li>En otros lenguajes esto se hace haciendo uso de métodos privados que bloquean acceso externo a sus variables y métodos.
+</li>
+</ul>
+</li>
+<li>En python la filosofia va en el estilo de &ldquo;we are all consenting adults here&rdquo;.
+<ul class="org-ul">
+<li>Significando que no deberias poner restricciones arbitrarias para acceder a ciertas partes de una clase asi que no hay maneras de hacerlo.
+</li>
+<li>Podemos desanimar a la gente de accesar a partes de una clase denotando que son detalles de implementación y deben de usarse bajo su propio riesgo.
+</li>
+</ul>
+</li>
+<li>Los métodos y atributos privados por convención empiezan con un solo guion bajo antes del nombre.
+<ul class="org-ul">
+<li>Esto es solo una convención porque nada te detiene de acceder a ellos.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> queue:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, contents<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_hiddenList</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span>contents<span style="color: #61bfff;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">push</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, value<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_hiddenList</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">insert</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, value<span style="color: #61bfff;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pop</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_hiddenList</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">pop</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__repr__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Queue({})"</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">format</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_hiddenList</span><span style="color: #61bfff;">)</span>
+
+
+queue <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Queue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>queue<span style="color: #61bfff;">)</span>
+queue.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">push</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>queue<span style="color: #61bfff;">)</span>
+queue.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">pop</span><span style="color: #61bfff;">()</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>queue<span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>queue.<span style="color: #8be9fd; font-style: italic;">_hiddenlist</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Queue([1, 2, 3])
+Queue([0, 1, 2, 3])
+Queue([0, 1, 2])
+[0, 1, 2]
+</pre>
+
+<blockquote>
+<p>
+En el código de arriba, <code>_hiddenList</code> esta marcado como privado, pero aun asi podemos acceder a el y el método mágico <code>__repr__</code> es usado como representación de la instancia.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Los métodos muy privados (Strongly Private) tienen doble guión bajo antes del nombre.
+<ul class="org-ul">
+<li>Esto causa que estos elementos no puedan ser accedidos directamente desde afuera de la clase.
+</li>
+<li>El propósito de esto no es para mantenerlos privados, si no evitar bugs si hay otros métodos o atributos con el mismo nombre.
+</li>
+</ul>
+</li>
+<li>Estos métodos siguen siendo accesibles desde afuera de la clase, pero de una manera diferente.
+<ul class="org-ul">
+<li>El método <code>__privateMethod</code> de la clase <code>spam</code>, puede ser accedido escribiendo <code>_spam__privateMethod</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> spam:
+    __egg <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printEgg</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">__egg</span><span style="color: #61bfff;">)</span>
+
+s <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">spam</span><span style="color: #61bfff;">()</span>
+s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">printEgg</span><span style="color: #61bfff;">()</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>s.<span style="color: #8be9fd; font-style: italic;">_spam__egg</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>s.<span style="color: #8be9fd; font-style: italic;">__egg</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+7
+7
+
+Traceback (most recent call last):
+  File "file0.py", line 9, in &lt;module&gt;
+    print(s.__egg)
+AttributeError: 'spam' object has no attribute '__egg'
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Métodos de clase</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Son diferentes a los que son llamados de la instancia de un objeto son la palabra <code>self</code>.
+</li>
+<li>Los métodos de clase son llamados por una clase, la cual es pasada al argumento <code>cls</code> del método.
+</li>
+<li>Son usados como métodos fábrica (factory methods)
+<ul class="org-ul">
+<li>Son métodos que retornan un objeto clase (Son como un constructor), para diferentes usos.
+</li>
+<li>Estos métodos son marcados con el decorador <code>classmethod</code>.
+</li>
+<li>Esto significa que puedes usar la clase y sus propiedades dentro de este método sin tener que instanciar la clase.
+</li>
+</ul>
+</li>
+<li>Es similar a <i>function overloading</i> en c++.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">from</span> datetime <span style="color: #ff79c6; font-style: italic;">import</span> date
+
+<span style="color: #6272a4; font-style: italic;"># random Person</span>
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, age<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> age
+
+    <span style="color: #bd93f9; font-weight: bold;">@classmethod</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">fromBirthYear</span><span style="color: #61bfff;">(</span>cls, name, birthYear<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">cls</span><span style="color: #61bfff;">(</span>name, date.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">today</span><span style="color: #ff79c6;">()</span>.<span style="color: #8be9fd; font-style: italic;">year</span> <span style="color: #ff79c6; font-style: italic;">-</span> birthYear<span style="color: #61bfff;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">display</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"'s age is: "</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ffb86c; font-weight: bold;">str</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+
+person <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Person</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Adam'</span>, <span style="color: #8be9fd;">19</span><span style="color: #61bfff;">)</span>
+person.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">display</span><span style="color: #61bfff;">()</span>
+
+person1 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9;">Person</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">fromBirthYear</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'John'</span>,  <span style="color: #8be9fd;">1985</span><span style="color: #61bfff;">)</span>
+person1.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">display</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<pre class="example">
+Adam's age is: 19
+John's age is: 31
+</pre>
+
+<p>
+<code>newSquare</code> es un método de clase y es llamado en la clase, en lugar de ser una instancia de la clase, retorna un objeto tipo cls
+</p>
+
+<blockquote>
+<p>
+Los nombres <code>self</code> y <code>cls</code>, son solo convenciones, pueden ser cambiados a cualquier cosa, pero es mejor seguir las convenciones.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Métodos estáticos</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>Son similares a los métodos de clase, pero estos no reciben ningún argumento.
+</li>
+<li>Son idénticos a funciones normales de una clase.
+</li>
+<li>Son marcados con el decorador <code>staticmethod</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> pizza:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, toppings<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
+
+    <span style="color: #bd93f9; font-weight: bold;">@staticmethod</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">validateTopping</span><span style="color: #61bfff;">(</span>topping<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">if</span> topping <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #f1fa8c;">"pineapple"</span>:
+            <span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9; font-weight: bold;">ValueError</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"No pineapples!"</span><span style="color: #61bfff;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">else</span>:
+            <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">True</span>
+
+ingredients <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"cheese"</span>, <span style="color: #f1fa8c;">"onions"</span>, <span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">]</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffb86c; font-weight: bold;">all</span><span style="color: #61bfff;">(</span>pizza.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">validateTopping</span><span style="color: #ff79c6;">(</span>i<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> ingredients<span style="color: #61bfff;">)</span>:
+    <span style="color: #bd93f9;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span>ingredients<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Los Métodos estáticos se comportan como funciones normales, pero puedes llamarlos desde una instancia de una clase.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> Propiedades</h3>
+<div class="outline-text-3" id="text-2-9">
+<ul class="org-ul">
+<li>Proveen una manera de personalizar el acceso a atributos de una instancia.
+</li>
+<li>Son creados añadiendo el decorador <code>@property</code>.
+</li>
+<li>Un uso común de es hacer un atributo solo de lectura.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> pizza:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, toppings<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
+
+    <span style="color: #bd93f9; font-weight: bold;">@property</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pineappleAllowed</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">False</span>
+
+<span style="color: #bd93f9;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"cheese"</span>, <span style="color: #f1fa8c;">"tomato"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span><span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span>
+</pre>
+</div>
+
+<pre class="example">
+False
+
+
+Traceback (most recent call last):
+  File "file0.py", line 11, in &lt;module&gt;
+    Pizza.pineapple_allowed = True
+AttributeError: can't set attribute
+</pre>
+
+<ul class="org-ul">
+<li>Propiedades pueden definirse como funciones <code>getter/setter</code>
+<dl class="org-dl">
+<dt> Los <code>setter</code> </dt><dd>Definen valores en las propiedades.
+</dd>
+<dt> Los <code>getter</code> </dt><dd>Obtienen los valores de las propiedades.
+</dd>
+</dl>
+</li>
+<li>Para definir un <code>setter</code>, ocupamos un decorador del mismo nombre que la propiedad seguido con un punto y la palabra <code>setter</code>.
+<ul class="org-ul">
+<li>Lo mismo aplica para los <code>getter</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> pizza:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, toppings<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">False</span>
+
+    <span style="color: #bd93f9; font-weight: bold;">@property</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pineappleAllowed</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_pineappleAllowed</span>
+
+    <span style="color: #bd93f9; font-weight: bold;">@pineappleAllowed.</span><span style="color: #8be9fd; font-weight: bold; font-style: italic;">setter</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pineappleAllowed</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, value<span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">if</span> value:
+            password <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">input</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Enter the password: "</span><span style="color: #61bfff;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">if</span> password <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #f1fa8c;">"Sw0rdf1sh!"</span>:
+                <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> value
+            <span style="color: #ff79c6; font-style: italic;">else</span>:
+                <span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9; font-weight: bold;">ValueError</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Alert! Intruder!"</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #bd93f9;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Cheese"</span>, <span style="color: #f1fa8c;">"tomato"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span><span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span> <span style="color: #6272a4; font-style: italic;"># al cambiar de la propiedad nos pide la contrase&#241;a del setter</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+False
+Enter the password: Sw0rdf1sh!
+True
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Excepciones</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Una excepción es un evento, el cual ocurre en la ejecución del programa y rompe el flujo de este.
+</li>
+<li>Ocurren cuando algo sale mal, puede ser por una entrada incorrecta de input o de codigo.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">num1 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
+num2 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>num1<span style="color: #ff79c6; font-style: italic;">/</span>num2<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Traceback (most recent call last):
+  File "file0.py", line 3, in &lt;module&gt;
+    print(num1/num2)
+ZeroDivisionError: division by zero
+</pre>
+
+<p>
+Diferentes excepciones son levantadas por diferentes razones:
+</p>
+<dl class="org-dl">
+<dt> <code>ImportError</code> </dt><dd>Fallo un <code>import</code>.
+</dd>
+<dt> <code>IndexError</code> </dt><dd>Una lista esta indexada con un número fuera de rango.
+</dd>
+<dt> <code>NameError</code> </dt><dd>Una variable desconocida esta siendo usada.
+</dd>
+<dt> <code>SyntaxError</code> </dt><dd>El código no puede ser parseado de manera correcta.
+</dd>
+<dt> <code>TypeError</code> </dt><dd>Una función es llamada con un valor de incorrecto tipo.
+</dd>
+</dl>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Manejo de excepciones</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Cuando una excepción ocurre, el programa deja de ejecutarse.
+</li>
+<li>Para manejar excepciones y ejecutar código cuando ocurren se usan los bloques <code>try/except</code>.
+<ul class="org-ul">
+<li>El bloque <code>try</code> contiene código que puede lanzar una excepción, si esta ocurre el bloque <code>try</code> deja de ejecutarse
+y el código en el bloque <code>except</code> es ejecutado.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
+    num1 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
+    num2 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>num1<span style="color: #ff79c6; font-style: italic;">/</span>num2<span style="color: #61bfff;">)</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Done"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">ZeroDivisionError</span>: <span style="color: #6272a4; font-style: italic;"># si ocurre la excepci&#243;n ZeroDivisionError</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Un error ha ocurrido"</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Debido a division con zero"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Un error ha ocurrido
+Debido a division con zero
+</pre>
+
+<ul class="org-ul">
+<li>Un bloque <code>try</code> puede tener diferentes bloques <code>except</code> para manejar diferentes excepciones.
+</li>
+<li>Múltiples excepciones pueden ponerse en un bloque <code>except</code> usando parentesis.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
+    variable <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>variable <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"hello"</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>variable <span style="color: #ff79c6; font-style: italic;">/</span> <span style="color: #8be9fd;">2</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">ZeroDivisionError</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Divided by zero"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">ValueError</span>, <span style="color: #bd93f9;">TypeError</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Error occurred"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Un bloque <code>except</code> sin una excepción especificada se detonara con cualquier excepción.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
+    word <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"spam"</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>word <span style="color: #ff79c6; font-style: italic;">/</span> <span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">except</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"An error occurred"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+An error occurred
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Finally</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Despues de los bloques <code>try/except</code> podemos agregar un bloque <code>finally</code>.
+</li>
+<li>Este bloque se ejecutara <b>siempre</b> sin importar si la excepción ocurrio o no.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello"</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span> <span style="color: #ff79c6; font-style: italic;">/</span> <span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">ZeroDivisionError</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Divided by zero"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">finally</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"This code will run no matter what"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Hello
+Divided by zero
+This code will run no matter what
+</pre>
+
+<blockquote>
+<p>
+Este bloque es útil, porque por ejemplo cuando trabajamos con archivos pueden ocurrir muchas excepciones, pero siempre debemos cerrar
+el archivo al final no importa que.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Else</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>El bloque <code>else</code> puede usarse junto con los bloques <code>try/except</code>.
+</li>
+<li>En este caso solo se ejecuta si no hubieron excepciones.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">ZeroDivisionError</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">3</span><span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">try</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6; font-style: italic;">/</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">ZeroDivisionError</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+1
+3
+4
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Levantando excepciones</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Puedes lanzar excepciones arbitrariamente en tu programa con <code>raise</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">num <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">102</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> num <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">100</span>:
+  <span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9;">ValueError</span>
+</pre>
+</div>
+
+<pre class="example">
+Traceback (most recent call last):
+  File "file0.py", line 3, in &lt;module&gt;
+    raise ValueError
+ValueError
+</pre>
+
+<blockquote>
+<p>
+Necesitas especificar el tipo de excepción que se va a levantar.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Excepciones pueden ser levantadas con argumentos para dar más detalles sobre ellas.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">name <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"123"</span>
+<span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9; font-weight: bold;">NameError</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Invalid Name"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Traceback (most recent call last):
+  File "file0.py", line 2, in &lt;module&gt;
+    raise NameError("Invalid name!")
+NameError: Invalid name!
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Archivos</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Abriendo archivos</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Es útil poder abrir, leer y escribir archivos.
+</li>
+<li>En python podemos hacerlo con la función <code>open</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">myfile <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El argumento de <code>open</code> es la ruta al archivo.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Puedes especificar el <i>modo</i> en el que el archivo será abierto, dando un segundo argumento a <code>open</code>.
+<dl class="org-dl">
+<dt> &ldquo;r&rdquo; </dt><dd>Significa que el archivo esta en modo lectura (default).
+</dd>
+<dt> &ldquo;w&rdquo; </dt><dd>Modo de escritura.
+</dd>
+<dt> &ldquo;a&rdquo; </dt><dd>Modo añadir, para añadir nuevo contenido al final del archivo.
+</dd>
+<dt> (no term) </dt><dd>Añadir &ldquo;b&rdquo; a cualquier modo, habilita el modo binario, el cual es usado para archivos que no son de texto.
+</dd>
+</dl>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>,<span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"test.bin"</span>, <span style="color: #f1fa8c;">"wb"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+Despues de que un archivo ha sido abierto y usado, debe ser cerrado con la función <code>close</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> leeyendo archivos</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Los contenidos de un archivo abierto pueden leerse con el método <code>read</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+cont <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #61bfff;">()</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>cont<span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El código de arriba imprime el contenido del archivo.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Para leer una cierta cantidad de bytes de un archivo podemos darselos como argumento a <code>read</code>.
+</li>
+<li>Cada carácter ASCII es 1 byte
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprime los primeros 5 caracteres</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">7</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprime los siguientes 7 caracteres</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprime lo restante del archivo</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Para leer cada linea de un archivo podemos usar el método <code>readlines()</code>.
+<ul class="org-ul">
+<li>Esto retornará una lista con cada uno de los renglones del archivo.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> line <span style="color: #ff79c6; font-style: italic;">in</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">readlines</span><span style="color: #61bfff;">()</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>line<span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>También podemos iterar sobre la variable <code>file</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> line <span style="color: #ff79c6; font-style: italic;">in</span> file:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>line<span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Escribiendo archivos</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Para escribir usamos el método <code>write</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">write</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"This has been written"</span><span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Si el archivo no existe, lo creara.
+</li>
+<li>Si el archivo existe, borrara el contenido y lo reemplazara con lo que escribamos (en modo &ldquo;w&rdquo;).
+</li>
+<li>Podemos agregar contenido a un archivo existente con el modo &ldquo;a&rdquo;.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"a"</span><span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">write</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"</span><span style="color: #ff79c6; font-style: italic;">\n</span><span style="color: #f1fa8c;">This has been added in a new line"</span><span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El método write retorna la cantidad de bytes escritos, si es que la escritura es exitosa.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python">msg <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Hello world!"</span>
+file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"newfile.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+bytesWritten <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">write</span><span style="color: #61bfff;">(</span>msg<span style="color: #61bfff;">)</span>
+file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Para escribir algo que no sea un string, debe de convertirse a un string primero.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Es buena practica cerrar los archivos después de escribir o leer en ellos.
+<ul class="org-ul">
+<li>Una buena manera de hacer esto es con <code>try/finally</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
+    file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span>
+    conf <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #61bfff;">()</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>conf<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">finally</span>:
+    file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Una forma alternativa de hacer esto es con <code>with</code>.
+<ul class="org-ul">
+<li>Esto crea una variable alternativa (normalmente llamada <code>f</code>), que solo es accesible dentro del bloque <code>with</code>.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">with</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">as</span> f:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>f.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El archivo es automáticamente cerrado al final del bloque <code>with</code>.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2021-04-18 Sun 22:04</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

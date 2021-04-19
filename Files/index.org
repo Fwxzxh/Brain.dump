@@ -37,6 +37,8 @@ Apuntes sobre distintos cursos que he tomado.
 - [[file:Cursos/TecnicalWriting.org][Tectical writing]]
 - [[file:Cursos/BuenasPracticas.org][Buenas Practicas para escritura de código]]
 - [[file:Cursos/BashScripting.org][Bash scripting]]
+- [[file:Cursos/IntermPython.org][Intermediate Python]]
+
 * Notas generales
 #+begin_quote
 Notas sobre algunas cosas interesantes (para mi)
