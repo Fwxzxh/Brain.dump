@@ -1,0 +1,596 @@
+#+TITLE: C#
+
+* Conceptos Básicos
+** C#
+- Un elegante lenguaje orientado objetos.
+- Corre sobre el .NET Framework.
+** .NET Framework
+- Consiste en:
+  + =CLR (Common Languaje Runtime)=
+    - Es la fundación de .NET.
+    - Maneja muchas cosas.
+      + Código en tiempo de ejecución.
+      + Manejo de memoria.
+      + Etc.
+  + =.NET Framework Class Library=.
+    - Colección de clases, interfaces y Tipos de datos que te permiten hacer
+      Un rango de tareas de programación comunes.
+    - C# La Usa extensivamente.
+** Variables
+- Reservan información en memoria.
+- Deben tener nombres descriptivos.
+- También son llamadas identificadores.
+
+** Tipos de variables
+- Define el tipo de valor que va a ser guardado en la variable asi como la memoria que se necesita.
+
+#+begin_src csharp
+int myAge;
+#+end_src
+
+
+#+begin_quote
+Una linea de código que completa una acción es llamada declaración y terminan con punto y coma.
+#+end_quote
+
+- Podemos asignarle un valor a la variable cuando la declaras.
+
+#+begin_src csharp
+int myAge = 18;
+#+end_src
+
+** Tipos de datos
+- Hay algunos tipos de datos por defecto en C#.
+  + =int= :: Entero.
+  + =float= :: Números de coma flotante (Con decimales pues.).
+  + =double= :: Una versión con más precisión (más dígitos) de float.
+  + =char= :: Un carácter.
+  + =bool= :: =true= o =false=.
+  + =string= :: Cadenas de caracteres.
+
+#+begin_quote
+valores =char= son definidos con comillas simples y =string= con comillas dobles.
+#+end_quote
+
+** Mi primer programa en C#
+- Cada aplicación de consola en C# debe tener una función llamada =Main=
+  + Esta función es el punto de entrada para cada aplicación.
+
+** Mostrando texto
+- La mayoría de las aplicaciones necesitan algún tipo de =input= y nos tan algún tipo de =output=.
+- Para mostrar texto en pantalla usamos =Console.write()= o =Console.WriteLine()=.
+  + La diferencia es que con el segundo al final del texto da un salto de linea.
+
+#+begin_src csharp
+Console.WriteLine("Hola Mundo!");
+#+end_src
+
+- Para imprimir una cadena con un formato especifico podemos hacer.
+
+#+begin_src csharp
+int x = 10;
+double y = 20;
+
+Console.WriteLine("x = {0}; y = {1}", x, y);
+#+end_src
+
+#+begin_quote
+={0}= sera remplazado por el valor de =x= y ={1}= por el valor de =y=.
+#+end_quote
+
+** Leyendo texto
+- Podemos leer texto de la terminal con =Console.ReadLine()= y asignarlo a una variable.
+
+#+begin_src csharp
+yourInput = Console.ReadLine();
+#+end_src
+
+#+begin_quote
+Esto siempre retorna un =string=.
+#+end_quote
+
+- Podemos Convertir este =string= en otro tipo de dato fácilmente con el método =Convert.ToXXX=.
+  + EJ. =Convert.ToDouble= o =Convert.ToBoolean=.
+    - También podemos convertir a enteros de un tamaño en especifico =Convert.ToInt16=, =Convert.ToInt32=, etc.
+      + El tipo de dato por defecto en enteros es =Int32=.
+
+** Comentarios
+- Empiezan con =//=.
+- Comentarios multilinea son =/* texto */=.
+
+** La palabra =var=
+- C# provee una forma de declarar variables y hacer que el compilador determine el tipo de dato de esta.
+
+#+begin_src csharp
+var num = 15;
+#+end_src
+
+- Estas variables son llamadas de *Tipo implícito*.
+- Estas variables *deben* ser inicializadas con un valor.
+
+#+begin_src csharp
+// Esto dará un error!
+var num;
+num = 15;
+#+end_src
+
+#+begin_quote
+Es buena práctica declarar tus variables con su tipo de dato y usar =var= solo para casos especiales.
+#+end_quote
+
+** Constantes
+- Se definen constantes con la palabra =const=.
+
+#+begin_src csharp
+//Ejemplo
+const double PI = 3.14;
+#+end_src
+
+- Las constantes siempre deben se ser inicializadas asignandoles un valor.
+- Son variables que no pueden ser cambiadas.
+
+** Operadores Aritméticos
+- Son los mismos de toda la vida =+, -, *, /, %=.
+- Tienen una jerarquía de evaluación normal y esta puede afectarse con los parentesis.
+
+** Operadores de asignación e incremento
+
+#+begin_src
+x += 2; // equivalente a x = x + 2;
+x %= 2; // equivalente a x = x % 2;
+// y de la misma manera con los operadores anteriores.
+#+end_src
+
+*** Operadores de incremento
+- Podemos incrementar un valor a una variable cada que nuestro programa pase por allí.
+  + Es especialmente útil en ciclos.
+
+#+begin_src csharp
+x++; // equivalente a x = x + 1;
+#+end_src
+
+*** Formas de prefijo y postfijo
+- El operador de incremento tiene dos formas.
+
+#+begin_src csharp
+++x; // prefijo
+x++; // postfijo
+#+end_src
+
+- Prefijo: Incrementa el valor y despues procede con la expresión.
+- Postfijo: Evalúa la expresión y despues incrementa el valor.
+
+#+begin_src csharp
+int x = 3;
+int y = ++x;
+// x es 4, y es 4
+#+end_src
+
+#+begin_src csharp
+int x = 3;
+int y = x++;
+// x es 4, y es 3
+#+end_src
+
+#+begin_quote
+Esto también funciona con el operador de decremento =-=, siendo x-- y --x.
+#+end_quote
+
+* Condicionales y loops
+** =if else=
+- Ejecuta un bloque de código si una condición se cumple.
+
+#+begin_src csharp
+if (x > y)
+    {
+        Console.WriteLine("x es más grande que y");
+    }
+#+end_src
+
+*** Operadores Relacionales
+- Se usan para evaluar condiciones.
+- Son los mismos de siempre; !=, >=, <=, ==.
+
+*** Operador =else=
+- Se ejecuta cuando no se cumple la condición dentro del =if=.
+
+#+begin_src csharp
+if (x > y)
+    {
+        Console.WriteLine("x es más grande que y");
+    }
+else
+    {
+        Console.WriteLine("y es más grande que x");
+    }
+#+end_src
+
+- Podemos combinarlos y agruparlos como queramos
+
+#+begin_src csharp
+if ( x )
+    {
+        // algo
+    }
+else if ( y )
+    {
+        // otra cosa
+    }
+else if ( z )
+    {
+        //aaaaaa
+    }
+else
+    {
+        //final
+    }
+#+end_src
+
+** operador =switch=
+- Provee una manera más elegante de comparar una variable con ciertos casos predefinidos.
+- Cada caso es llamado =case=.
+
+#+begin_src csharp
+int num = 3;
+switch (num)
+    {
+        case 1:
+            Console.WriteLine("one");
+            break;
+        case 2:
+            Console.WriteLine("two");
+            break;
+        case 3:
+            Console.WriteLine("Three");
+            break;
+        default:
+            Console.WriteLine("No es uno, dos o tres");
+            break;
+    }
+#+end_src
+
+#+begin_quote
+Un =switch= puede incluir n número de casos, pero cada caso debe de ser único.
+#+end_quote
+
+#+begin_quote
+El bloque =default= solo se ejecuta si no se cumple ninguno de los =case=.
+#+end_quote
+
+*** La palabra =break=
+- Se usa para romper el ciclo de ejecución del =switch=
+  + Sin el, el =switch= seguirá comparando con otros case a pesar de entrar en uno.
+  + También sirve para romper ciclos =for= o =while=.
+  + En C# =break= es obligatorio al final de cada =case=.
+
+** El ciclo =while=
+- Ejecuta un bloque de código siempre y cuando una condición se cumpla.
+
+#+begin_src csharp
+int num = 1;
+while (num < 6)
+    {
+        Console.WriteLine(num);
+        num++;
+    }
+#+end_src
+
+#+begin_quote
+El código anterior imprime los números del 1 al 5.
+#+end_quote
+
+** El ciclo =for=
+- Ejecuta un bloque de código un número especifico de veces.
+
+#+begin_src csharp
+for (init; condition; increment)
+    {
+        //code
+    }
+#+end_src
+
+*Ejemplo:*
+
+#+begin_src csharp
+for (int x = 10; x < 15; x++)
+    {
+        Console.WriteLine("Value of x: {0}", x);
+    }
+#+end_src
+
+- En el bloque del incremento podemos hacer otras cosas como incrementar de 3 con =x+=3= o decrementar de la misma manera el contador.
+- También podemos quitar el bloque =init= e =increment= del bloque, pero los puntos y comas son obligatorios.
+
+#+begin_src csharp
+int x = 10;
+for ( ; x > 10 ; )
+    {
+        Console.WriteLine(x);
+        x -= 3;
+    }
+#+end_src
+
+#+begin_quote
+=for (;;){}= es un ciclo for infinito.
+#+end_quote
+
+** =do-while=
+- Es similar a un ciclo =while=, solo que en este el bloque de código es ejecutado al menos una vez.
+
+#+begin_src csharp
+int a = 0;
+do {
+    Console.WriteLine(a);
+    a++;
+} while (a < 5);
+#+end_src
+
+** =break= y =continue=
+- Otro uso de =break= es en ciclos, ya que "rompe" la ejecución de estos.
+
+#+begin_src csharp
+int num = 0;
+while (num < 20)
+    {
+        if (num == 5)
+            break;
+
+        Console.WriteLine(num);
+        num++;
+    }
+#+end_src
+
+#+begin_quote
+En el bloque de anterior, el =while= parará cuando =num= sea igual a 5.
+#+end_quote
+
+- La palabra =continue= es similar al =break=, pero este solo se salta una iteración del ciclo.
+
+#+begin_src csharp
+for (int i = 0; i < 10; i++) {
+    if (i == 5)
+        continue;
+
+    Console.WriteLine(i);
+}
+#+end_src
+
+** Operadores lógicos
+- Son usados para unir múltiples expresiones y retornar =true= o =false=.
+- son =&&, ||, !=, AND, OR y NOT respectivamente.
+
+#+begin_src csharp
+int age = 42;
+doubel money = 540;
+if (age > 18 && money > 100) {
+    Console.WriteLine("Welkome");
+}
+#+end_src
+
+** El operador condicional
+- También llamado operador ternario.
+- Podemos hacer una operación condicional asi como en el if pero con una sola línea de código.
+
+#+begin_src csharp
+Expr1 ? Expr2 : Expr3;
+#+end_src
+
+- La Expr1, es evaluada, si esta es verdadera.
+  + Entonces Exp2 es evaluada y se convierte en el valor de toda la expresión.
+- Si Expr1 es falsa, entonces Exp3 es evaluada y se convierte en el valor de toda la expresión.
+
+#+begin_src csharp
+int age = 42;
+string msg;
+msg = (age >= 18) ? "Welcome" : "Sorry";
+Console.WriteLine(msg)
+#+end_src
+
+* Métodos
+** Introducción a los métodos
+- Un método es un grupo de declaraciones que hacen una tarea en particular.
+- Además de los métodos que tiene C# puedes definir los tuyos.
+- Tienen muchas ventajas:
+  + Son código reusable.
+  + Fáciles de testear.
+  + Modificaciones a un método no afectan al programa.
+  + Un método puede aceptar diferentes tipos de inputs.
+
+#+begin_quote
+Todo programa de C# tiene al menos un método, el método =Main=.
+#+end_quote
+
+** Declarando métodos
+- Para usar un método primero necesitas declararlo, y después llamarlo.
+- Cada declaración de método incluye:
+  + El tipo de dato que retorna.
+  + El nombre del método.
+  + Una lista opcional de parametros.
+
+#+begin_src csharp
+<tipo de dato de retorno> name(type1 part1, type2 part2, ..., typeN partN){
+    //Bloque de código..
+    return <tipo de dato>
+}
+#+end_src
+
+#+begin_src csharp
+int Sqr(int x)
+    {
+        int result = x * x;
+        return result;
+    }
+#+end_src
+
+- Podemos hacer que métodos no retornen nada poniendoles el tipo de dato =void=.
+
+** Llamando a métodos
+
+#+begin_src csharp
+static void SayHi()
+    {
+        Console.WriteLine("Hello");
+    }
+
+static void Main(string[] args)
+    {
+        SayHi();
+    }
+#+end_src
+
+#+begin_quote
+Aquí declaramos un método y lo llamamos desde =Main=, la palabra =static= es para hacer los métodos accesibles al =Main=.
+#+end_quote
+
+** Parametros
+- Las declaraciones de métodos pueden definir una serie de parametros para trabajar.
+- Estos parametros son variables que aceptan valores específicos.
+
+#+begin_src csharp
+void Print(int x)
+    {
+        Console.WriteLine(x);
+    }
+#+end_src
+
+#+begin_quote
+Las declaraciones de parametros son similares a las declaraciones de variables; Estas solo existen dentro del método donde se declararon.
+#+end_quote
+
+#+begin_src csharp
+void Print(int x)
+    {
+        Console.WriteLine(x);
+    }
+
+static void Main(string[] args)
+    {
+        Print(42);
+    }
+#+end_src
+
+#+begin_quote
+Ahora podemos llamar a nuestro método y pasarle argumentos.
+#+end_quote
+
+*** Parametros múltiples
+- Se pueden tener N número de parametros en un método separandolos con comas en la definición.
+
+#+begin_src csharp
+int Sum(int x, int y)
+    {
+        return x + y;
+    }
+#+end_src
+
+#+begin_quote
+Los métodos retornan valores con la palabra =return=.
+#+end_quote
+
+#+begin_src csharp
+int Sum(int x, int y)
+    {
+        return x + y;
+    }
+
+static void Main(string[] args)
+    {
+        suma = Sum(42, 45);
+        Console.WriteLine(suma);
+    }
+#+end_src
+
+#+begin_quote
+Podemos asignar parametros múltiples cuando llamamos al método, separandolos con comas, asi como también guardar lo que nos regresa el método en una variable para usarlo después.
+#+end_quote
+
+*** Parametros opcionales
+- Cuando defines métodos puedes declarar valores por defecto a parametros opcionales.
+- Si estos parametros no están presentes cuando se llama al método se usan los valores por defecto.
+
+#+begin_src csharp
+static int Pow(int x, int y=2)
+    {
+    int result = 1;
+    for (int i = 0; i < y; i++)
+        {
+            result *= x;
+        }
+
+    return result;
+    }
+#+end_src
+
+#+begin_quote
+El método =Pow= asigna un valor por defecto de 2 al parametro y.
+#+end_quote
+
+#+begin_src csharp
+static void Main(string[] args)
+    {
+        Console.WriteLine(Pow(4));
+        Console.WriteLine(Pow(4,3));
+    }
+#+end_src
+
+*** Parametros nombrados
+- Los argumentos nombrados nos ayudan a no tener que recordar el orden de los parametros.
+- Cada argumento puede ser especificado a la variable a la que pertenece.
+
+#+begin_src csharp
+static int Are(int h, int w)
+    {
+        return h * w;
+    }
+
+static void Main(string[] args)
+    {
+        int res = Area(w: 5, h: 8);
+        Console.WriteLine(res);
+    }
+#+end_src
+
+** Pasando argumentos
+- Hay tres maneras de pasar argumentos a un método cuando este es llamado.
+  + Por valor, por referencia y como /Output/.
+  + Si se hace por valor, copia el argumento del valor dentro del parámetro formal del método.
+    - Este es el comportamiento por defecto de C#.
+
+#+begin_src csharp
+static void Sqrt(int x)
+    {
+        x = x * x;
+    }
+static void Main()
+    {
+        int a = 3;
+        Sqrt(a);
+        Console.WriteLine(a); // imprime 3
+    }
+#+end_src
+
+- En este caso =x= es parametro de =Sqrt=, y a es el valor pasado al método.
+
+#+begin_quote
+El método =Sqrt()= no cambia el valor de la variable, trabaja con el valor, no con la variable.
+#+end_quote
+
+*** Pasando por referencia
+- Pasar un argumento por referencia, copia la dirección de memoria en el parametro formal del método.
+  + Dentro de este, esta dirección es usada para acceder al argumento.
+    - Esto significa que los cambios que se hacen dentro del método, afectan al parametro.
+
+#+begin_src csharp
+static void Sqrt(ref int x) // <---
+    {
+        x = x * x;
+    }
+static void Main()
+    {
+        int a = 3;
+        Sqrt(ref a); // <---
+        Console.WriteLine(a); // imprime 9
+    }
+#+end_src
+
+*** Pasando por Output

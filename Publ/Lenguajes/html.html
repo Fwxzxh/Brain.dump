@@ -1,0 +1,1848 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>HTML</title>
+<!-- 2021-05-19 Wed 22:47 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. HTML</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Diseño web Moderno.</a></li>
+<li><a href="#sec-1-2">1.2. La etiqueta <code>&lt;html&gt;</code></a></li>
+<li><a href="#sec-1-3">1.3. La etiqueta <code>&lt;head&gt;</code></a></li>
+<li><a href="#sec-1-4">1.4. La etiqueta <code>&lt;body&gt;</code></a></li>
+<li><a href="#sec-1-5">1.5. La etiqueta <code>&lt;title&gt;</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Básicas de HTML</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Elemento <code>&lt;p&gt;</code></a></li>
+<li><a href="#sec-2-2">2.2. Salto de linea</a></li>
+<li><a href="#sec-2-3">2.3. Elementos de formato.</a></li>
+<li><a href="#sec-2-4">2.4. Encabezados</a></li>
+<li><a href="#sec-2-5">2.5. Lineas horizontales</a></li>
+<li><a href="#sec-2-6">2.6. Comentarios</a></li>
+<li><a href="#sec-2-7">2.7. Atributos html</a></li>
+<li><a href="#sec-2-8">2.8. Unidades de medida de los atributos</a></li>
+<li><a href="#sec-2-9">2.9. La etiqueta <code>&lt;img&gt;</code></a></li>
+<li><a href="#sec-2-10">2.10. la etiqueta <code>&lt;a&gt;</code></a></li>
+<li><a href="#sec-2-11">2.11. Listas ordenadas.</a></li>
+<li><a href="#sec-2-12">2.12. Listas no ordenadas.</a></li>
+<li><a href="#sec-2-13">2.13. Tablas</a></li>
+<li><a href="#sec-2-14">2.14. Tipos de elementos</a></li>
+<li><a href="#sec-2-15">2.15. El elemento <code>&lt;form&gt;</code></a></li>
+<li><a href="#sec-2-16">2.16. Colores HTML</a></li>
+<li><a href="#sec-2-17">2.17. La etiqueta <code>&lt;frame&gt;</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. HTML 5</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Modelos de contenido</a></li>
+<li><a href="#sec-3-2">3.2. Estructura de la pagina en HTML5</a></li>
+<li><a href="#sec-3-3">3.3. La etiqueta <code>&lt;header&gt;</code></a></li>
+<li><a href="#sec-3-4">3.4. El elemento <code>&lt;footer&gt;</code></a></li>
+<li><a href="#sec-3-5">3.5. El elemento <code>&lt;nav&gt;</code></a></li>
+<li><a href="#sec-3-6">3.6. El elemento <code>&lt;article&gt;</code></a></li>
+<li><a href="#sec-3-7">3.7. El elemento <code>&lt;section&gt;</code></a></li>
+<li><a href="#sec-3-8">3.8. El elemento <code>&lt;aside&gt;</code></a></li>
+<li><a href="#sec-3-9">3.9. Audio en la web</a></li>
+<li><a href="#sec-3-10">3.10. Vídeos en HTML</a></li>
+<li><a href="#sec-3-11">3.11. Barras de progreso</a></li>
+<li><a href="#sec-3-12">3.12. Almacenamiento Web</a></li>
+<li><a href="#sec-3-13">3.13. API de geolocalización</a></li>
+<li><a href="#sec-3-14">3.14. Haciendo elementos <i>Draggables</i></a></li>
+<li><a href="#sec-3-15">3.15. SVG</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">HTML</h1>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> HTML</h2>
+<div class="outline-text-2" id="text-1">
+<dl class="org-dl">
+<dt> HTML </dt><dd><i>Hyper Text Markup Languaje</i>.
+</dd>
+<dt> (no term) </dt><dd>HTML usa etiquetas para identificar contenido.
+</dd>
+<dt> (no term) </dt><dd>HTML es un <i>Markup Languaje</i> como lo puede ser markdown o org-mode.
+</dd>
+</dl>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Soy un parrafo <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Diseño web Moderno.</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Estructura de una web moderna.
+<ul class="org-ul">
+<li><b>HTML</b> - Estructura.
+</li>
+<li><b>CSS</b> - Presentación.
+</li>
+<li><b>JavaScript</b> - Comportamiento.
+</li>
+<li><b>PHP o similares</b> - Backend.
+</li>
+<li><b>CMS</b> - Manejo de contenido.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> La etiqueta <code>&lt;html&gt;</code></h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>La estructura de html se asemeja un poco a un sawdwich en la cual cada elemento tiene su contra parte.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Todo nuestro documento html esta dentro de las etiquetas html.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> La etiqueta <code>&lt;head&gt;</code></h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>El elemento head contiene los elementos <b>no visuales</b> que ayudan a que la página funcione.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> La etiqueta <code>&lt;body&gt;</code></h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Todos los elementos <b>visuales-estructurales</b> están dentro de esta etiqueta.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> La etiqueta <code>&lt;title&gt;</code></h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Define el titulo que aparecera en la pestaña de tu navegador y es usado por los motores de busqueda.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">title</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Primera pagina yay <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">title</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    esta es una linea de texto xd.
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Básicas de HTML</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Elemento <code>&lt;p&gt;</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Sirve para crear párrafos.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Primer parrafo <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Segundo parrafo <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Salto de linea</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Podemos usar la etiqueta <code>&lt;br&gt;</code> para añadir un salto de linea
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Esto es un <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">br</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> salto de linea <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Elementos de formato.</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Hay una lista de elementos con los cuales podemos dar formato a texto.
+</li>
+<li>Solo es necesario poner el texto dentro de las etiquetas.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto regular <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">b</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto en negritas<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">b</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">big</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto un poco m&#225;s grande <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">big</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">i</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto en italicas <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">i</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">small</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto un poco m&#225;s peque&#241;o <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">small</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">strong</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto con enfasis <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">strong</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">sub</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto subindice <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">sub</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">sup</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto superindice <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">sup</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">ins</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto subrallado <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">ins</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">del</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Texto tachado <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">del</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Los navegadores muestran texto <code>&lt;strong&gt;</code> como <code>&lt;b&gt;</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Encabezados</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Podemos poner encabezados para los títulos con las etiquetas <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Encabezado tama&#241;o 1<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h2</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Encabezado tama&#241;o 2<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h2</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h6</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Encabezado tama&#241;o 6<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h6</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Son importantes ya que la web usa los encabezados para indexar resultados y la estructura de la pagina.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Lineas horizontales</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Para crear una linea horizontal usamos la tag <code>&lt;hr/&gt;</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Encabezado tama&#241;o 1<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h2</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Encabezado tama&#241;o 2<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h2</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">hr</span>/&gt;
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h6</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Encabezado tama&#241;o 6<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h6</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Comentarios</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>Podemos poner comentarios en código html para añadir descripciones a quien vea el código.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #6272a4; font-style: italic;">&lt;!-- &#8203;Tu comentario va aqui --&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Atributos html</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Proveen información adicional sobre un elemento o etiqueta además de modificarla.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span> <span style="color: #bd93f9; font-weight: bold;">align</span>="<span style="color: #f1fa8c;">center</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+ Este texto esta alineado al centro
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Unidades de medida de los atributos</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>Hay diferentes unidades de medida.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">hr</span> <span style="color: #bd93f9; font-weight: bold;">width</span>="<span style="color: #f1fa8c;">50px</span>"/&gt;
+</pre>
+</div>
+
+<blockquote>
+<p>
+Podemos usar píxeles (px)
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">hr</span> <span style="color: #bd93f9; font-weight: bold;">width</span>="<span style="color: #f1fa8c;">50%</span>"/&gt;
+</pre>
+</div>
+
+<blockquote>
+<p>
+También podemos usar porcentajes
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> La etiqueta <code>&lt;img&gt;</code></h3>
+<div class="outline-text-3" id="text-2-9">
+<ul class="org-ul">
+<li>Se usa para insertar una imagen.
+</li>
+<li>No tiene una etiqueta que la cierra.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">img</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">image.jpg</span>" /&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-9-1" class="outline-4">
+<h4 id="sec-2-9-1"><span class="section-number-4">2.9.1</span> Tamaño de la imagen</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">img</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">image.jpg</span>" <span style="color: #bd93f9; font-weight: bold;">height</span>="<span style="color: #f1fa8c;">150px</span>" <span style="color: #bd93f9; font-weight: bold;">width</span>="<span style="color: #f1fa8c;">150px</span>" <span style="color: #bd93f9; font-weight: bold;">alt</span>="" /&gt;
+</pre>
+</div>
+
+<blockquote>
+<p>
+En el caso de que la imagen no pueda ser mostrada se mostrara lo que haya dentro de el parametro alt
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-9-2" class="outline-4">
+<h4 id="sec-2-9-2"><span class="section-number-4">2.9.2</span> Borde de imagen</h4>
+<div class="outline-text-4" id="text-2-9-2">
+<ul class="org-ul">
+<li>Por defecto las imágenes no tienen borde, podemos usar el atributo <code>border</code> para esto.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">img</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">image.jpg</span>" <span style="color: #bd93f9; font-weight: bold;">height</span>="<span style="color: #f1fa8c;">150px</span>" <span style="color: #bd93f9; font-weight: bold;">width</span>="<span style="color: #f1fa8c;">150px</span>" <span style="color: #bd93f9; font-weight: bold;">border</span>="<span style="color: #f1fa8c;">1px</span>" <span style="color: #bd93f9; font-weight: bold;">alt</span>="" /&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10"><span class="section-number-3">2.10</span> la etiqueta <code>&lt;a&gt;</code></h3>
+<div class="outline-text-3" id="text-2-10">
+<ul class="org-ul">
+<li>Podemos definir links con la etiqueta <code>&lt;a&gt;</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">a</span> <span style="color: #bd93f9; font-weight: bold;">href</span>="<span style="color: #f1fa8c;">www.google.com</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Un link a google<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">a</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Podemos meter un bloque de imagen entre uno de links.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-2-10-1" class="outline-4">
+<h4 id="sec-2-10-1"><span class="section-number-4">2.10.1</span> El atributo <code>target</code></h4>
+<div class="outline-text-4" id="text-2-10-1">
+<ul class="org-ul">
+<li>Este define donde se va a abrir un link, con el atributo <code>_blank</code>, se abrirá en una nueva pestaña.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">a</span> <span style="color: #bd93f9; font-weight: bold;">href</span>="<span style="color: #f1fa8c;">www.google.com</span>" <span style="color: #bd93f9; font-weight: bold;">target</span>="<span style="color: #f1fa8c;">_blank</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Un link a google<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">a</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-11" class="outline-3">
+<h3 id="sec-2-11"><span class="section-number-3">2.11</span> Listas ordenadas.</h3>
+<div class="outline-text-3" id="text-2-11">
+<ul class="org-ul">
+<li>Las listas ordenadas van dentro del bloque <code>&lt;ol&gt;</code>.
+</li>
+<li>Cada elemento de la lista esta definido con el bloque <code>&lt;li&gt;</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">ol</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> lista 1 <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> lista 2 <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> elemento 1 <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">ol</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-12" class="outline-3">
+<h3 id="sec-2-12"><span class="section-number-3">2.12</span> Listas no ordenadas.</h3>
+<div class="outline-text-3" id="text-2-12">
+<ul class="org-ul">
+<li>Van dentro del bloque <code>&lt;ul&gt;</code>.
+</li>
+<li>Cada elemento de la lista esta definido con el bloque <code>&lt;li&gt;</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">ul</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> lista 1 <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> lista 2 <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> elemento 1 <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">ul</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-13" class="outline-3">
+<h3 id="sec-2-13"><span class="section-number-3">2.13</span> Tablas</h3>
+<div class="outline-text-3" id="text-2-13">
+<ul class="org-ul">
+<li>Son definidas por la etiqueta <code>&lt;table&gt;</code>.
+</li>
+<li>Agregamos columnas con la etiqueta <code>&lt;tr&gt;</code>.
+</li>
+<li>Las filas son definidas por la etiqueta <code>&lt;td&gt;</code>.
+</li>
+</ul>
+
+<p>
+Una tabla con una fila y tres columnas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">table</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">table</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Las etiquetas <code>&lt;td&gt;</code> pueden contener todo tipo de elementos, como texto, imágenes, listas así como otras tablas.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-2-13-1" class="outline-4">
+<h4 id="sec-2-13-1"><span class="section-number-4">2.13.1</span> Atributos <code>border</code> y <code>colspan</code></h4>
+<div class="outline-text-4" id="text-2-13-1">
+<ul class="org-ul">
+<li>Podemos añadir bordes con el atributo <code>border</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">table</span> <span style="color: #bd93f9; font-weight: bold;">border</span>="<span style="color: #f1fa8c;">2</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Red<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Blue<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Green<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">br</span> /&gt;<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span> <span style="color: #bd93f9; font-weight: bold;">colspan</span>="<span style="color: #f1fa8c;">2</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">br</span> /&gt;<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">table</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Con <code>colspan</code> tenemos celdas que ocupan más de un espacio en la tabla.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-13-2" class="outline-4">
+<h4 id="sec-2-13-2"><span class="section-number-4">2.13.2</span> Los atributos <code>align</code> y <code>bgcolor</code></h4>
+<div class="outline-text-4" id="text-2-13-2">
+<ul class="org-ul">
+<li>Para cambiar la posición de la tabla usamos el atributo <code>align</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">table</span> <span style="color: #bd93f9; font-weight: bold;">align</span>="<span style="color: #f1fa8c;">center</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Podemos especificar el color de fondo de una celda con el atributo <code>bgcolor</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">table</span> <span style="color: #bd93f9; font-weight: bold;">border</span>="<span style="color: #f1fa8c;">2</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span> <span style="color: #bd93f9; font-weight: bold;">bgcolor</span>="<span style="color: #f1fa8c;">red</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Red<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Blue<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Green<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Yellow<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">td</span> <span style="color: #bd93f9; font-weight: bold;">colspan</span>="<span style="color: #f1fa8c;">2</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Orange<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">td</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">tr</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">table</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-14" class="outline-3">
+<h3 id="sec-2-14"><span class="section-number-3">2.14</span> Tipos de elementos</h3>
+<div class="outline-text-3" id="text-2-14">
+<p>
+En html la mayoría de los elementos son definidos como elementos de bloque (<i>bock level</i>) o elementos de linea (<i>inline</i>).
+</p>
+<ul class="org-ul">
+<li>Elementos de bloque:
+<ul class="org-ul">
+<li>Normalmente empiezan en una linea nueva.
+</li>
+<li><code>&lt;h1&gt;, &lt;form&gt;, &lt;li&gt;, &lt;p&gt;</code>
+</li>
+</ul>
+</li>
+<li>Elementos en linea:
+<ul class="org-ul">
+<li>Normalmente son presentados en la misma linea donde se declaran.
+</li>
+<li><code>&lt;b&gt;, &lt;a&gt;, &lt;strong&gt;, &lt;img&gt;</code>
+</li>
+</ul>
+</li>
+<li>El elemento <code>&lt;div&gt;</code> se usa como contenedor de otros elementos HTML.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Headline<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">div</span> <span style="color: #bd93f9; font-weight: bold;">style</span>="<span style="color: #f1fa8c;">background-color:green; color:white; padding:20px;</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+      <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Some paragraph text goes here.<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+      <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Another paragraph goes here.<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">div</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<p>
+Otros elementos pueden ser usados como elementos de bloque o elementos de linea.
+</p>
+<ul class="org-ul">
+<li>APPLET : Applet de java enbebido.
+</li>
+<li>IFRAME : Marco en linea.
+</li>
+<li>INS : Texto insertado.
+</li>
+<li>MAP : Mapa de imágenes.
+</li>
+<li>OBJECT : Objeto enbebido
+</li>
+<li>SCRIPT : Script dentro de un documento html.
+</li>
+</ul>
+
+<blockquote>
+<p>
+Los elementos de linea no pueden contener ningún elemento de bloque.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-15" class="outline-3">
+<h3 id="sec-2-15"><span class="section-number-3">2.15</span> El elemento <code>&lt;form&gt;</code></h3>
+<div class="outline-text-3" id="text-2-15">
+<ul class="org-ul">
+<li>Son usados para obtener información del usuario.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">form</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">form</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<p>
+Podemos utilizar el atributo <code>action</code> para apuntar a otra pagina web despues de que el usuario termine el formulario.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">form</span> <span style="color: #bd93f9; font-weight: bold;">action</span>="<span style="color: #f1fa8c;">https://www.google.com</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">form</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-15-1" class="outline-4">
+<h4 id="sec-2-15-1"><span class="section-number-4">2.15.1</span> Los atributos <code>method</code> y <code>name</code></h4>
+<div class="outline-text-4" id="text-2-15-1">
+<ul class="org-ul">
+<li>El atributo <code>method</code> especifica que tipo de petición HTTP (<code>GET</code> o <code>POST</code>) sera utilizada para cuando el formulario sea mandado.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">form</span> <span style="color: #bd93f9; font-weight: bold;">action</span>="<span style="color: #f1fa8c;">url</span>" <span style="color: #bd93f9; font-weight: bold;">method</span>="<span style="color: #f1fa8c;">GET</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Cuando usas <code>GET</code>, la información que mandes sera visible en la url de la pagina.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">form</span> <span style="color: #bd93f9; font-weight: bold;">action</span>="<span style="color: #f1fa8c;">url</span>" <span style="color: #bd93f9; font-weight: bold;">method</span>="<span style="color: #f1fa8c;">POST</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Se usa <code>POST</code> cuando se quiere mejor seguridad porque la información no es visible en la url
+</p>
+</blockquote>
+
+<p>
+Para obtener datos del usuario debemos de tener los elementos, como pueden ser campos de texto.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">form</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">input</span> <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">text</span>" <span style="color: #bd93f9; font-weight: bold;">name</span>="<span style="color: #f1fa8c;">username</span>" /&gt;<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">br</span> /&gt;
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">input</span> <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">password</span>" <span style="color: #bd93f9; font-weight: bold;">name</span>="<span style="color: #f1fa8c;">password</span>" /&gt;
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">form</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-15-2" class="outline-4">
+<h4 id="sec-2-15-2"><span class="section-number-4">2.15.2</span> Elementos de los <code>form</code></h4>
+<div class="outline-text-4" id="text-2-15-2">
+<ul class="org-ul">
+<li>Si ponemos el tipo de input a <code>radio</code> el usuario puede seleccionar solo una de las opciones.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">input</span> <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">radio</span>" <span style="color: #bd93f9; font-weight: bold;">name</span>="<span style="color: #f1fa8c;">gender</span>" <span style="color: #bd93f9; font-weight: bold;">value</span>="<span style="color: #f1fa8c;">male</span>" /&gt; Male
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">br</span> /&gt;
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">input</span> <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">radio</span>" <span style="color: #bd93f9; font-weight: bold;">name</span>="<span style="color: #f1fa8c;">gender</span>" <span style="color: #bd93f9; font-weight: bold;">value</span>="<span style="color: #f1fa8c;">female</span>" /&gt; Female
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">br</span> /&gt;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El tipo <code>checkbox</code> permite al usuario elegir más de una opción.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">input</span> <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">checkbox</span>" <span style="color: #bd93f9; font-weight: bold;">name</span>="<span style="color: #f1fa8c;">gender</span>" <span style="color: #bd93f9; font-weight: bold;">value</span>="<span style="color: #f1fa8c;">male</span>" /&gt; Male
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">br</span> /&gt;
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">input</span> <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">checkbox</span>" <span style="color: #bd93f9; font-weight: bold;">name</span>="<span style="color: #f1fa8c;">gender</span>" <span style="color: #bd93f9; font-weight: bold;">value</span>="<span style="color: #f1fa8c;">female</span>" /&gt; Female
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">br</span> /&gt;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>También tenemos un tipo <code>submit</code> que es un botón para mandar los datos.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">input</span> <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">submit</span>" <span style="color: #bd93f9; font-weight: bold;">value</span>="<span style="color: #f1fa8c;">submit</span>" /&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-16" class="outline-3">
+<h3 id="sec-2-16"><span class="section-number-3">2.16</span> Colores HTML</h3>
+<div class="outline-text-3" id="text-2-16">
+<ul class="org-ul">
+<li>Se usa una escala hexadecimal.
+</li>
+<li>Son mostrados en una conbinación de rojo (R), verde (G) y azul (B).
+</li>
+<li>Los valores hexadecimales son escritos usando el <code>#</code> y la conbinación de 3 o 6 valores hexadecimales.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-2-16-1" class="outline-4">
+<h4 id="sec-2-16-1"><span class="section-number-4">2.16.1</span> Fondo y colores de letra</h4>
+<div class="outline-text-4" id="text-2-16-1">
+<ul class="org-ul">
+<li>Podemos usar el atributo <code>bgcolor</code> para cambiar el fondo.
+</li>
+<li>Podemos usar el atributo <code>color</code> dentro de la tag <code>&lt;font&gt;</code> para cambiar el color de la letra.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+        <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">title</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>first page<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">title</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">body</span> <span style="color: #bd93f9; font-weight: bold;">bgcolor</span>="<span style="color: #f1fa8c;">#000099</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+        <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+            <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">font</span> <span style="color: #bd93f9; font-weight: bold;">color</span>="<span style="color: #f1fa8c;">#FFFFFF</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> White headline <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">font</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+        <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-17" class="outline-3">
+<h3 id="sec-2-17"><span class="section-number-3">2.17</span> La etiqueta <code>&lt;frame&gt;</code></h3>
+<div class="outline-text-3" id="text-2-17">
+<ul class="org-ul">
+<li>Una pagina puede ser dividida en marcos.
+</li>
+<li>La etiqueta <code>&lt;fame&gt;</code> define una ventana especifica dentro de un <code>&lt;frameset&gt;</code>.
+</li>
+<li>Cada <code>frame</code> puede tener diferentes atributos, como borde, scroll, la habilidad de cambiar de tamaño, etc.
+</li>
+<li>El elemento <code>&lt;fameset&gt;</code> especifica el número de columnas o filas o el tamaño en píxeles
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">frameset</span> <span style="color: #bd93f9; font-weight: bold;">cols</span>="<span style="color: #f1fa8c;">100, 25%, *</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">frameset</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">frameset</span> <span style="color: #bd93f9; font-weight: bold;">rows</span>="<span style="color: #f1fa8c;">100, 25%, *</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">frameset</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+<code>Frameset</code> no esta soportado en html 5
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-2-17-1" class="outline-4">
+<h4 id="sec-2-17-1"><span class="section-number-4">2.17.1</span> Trabajando con <code>frames</code></h4>
+<div class="outline-text-4" id="text-2-17-1">
+<ul class="org-ul">
+<li>Usamos el atributo <code>&lt;noresize&gt;</code> para especificar que el usuario no puede cambiar el tamaño de un frame.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">frame</span> <span style="color: #bd93f9; font-weight: bold;">noresize</span>="<span style="color: #f1fa8c;">noresize</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El elemento <code>&lt;noframes&gt;</code> provee una manera a los navegadores que no soportan frames.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">frameset</span> <span style="color: #bd93f9; font-weight: bold;">cols</span>="<span style="color: #f1fa8c;">25%,50%,25%</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">frame</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">a.htm</span>" /&gt;
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">frame</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">b.htm</span>" /&gt;
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">frame</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">c.htm</span>" /&gt;
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">noframes</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Frames not supported!<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">noframes</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">frameset</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+<code>&lt;frame&gt;</code> no esta soportado en html 5
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> HTML 5</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Al principio del documento va la declaración.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #8be9fd;">&lt;!DOCTYPE HTML</span><span style="color: #8be9fd; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Despues va el charset.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">meta</span> <span style="color: #bd93f9; font-weight: bold;">charset</span>="<span style="color: #f1fa8c;">UTF-8</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El charset por defecto es UTF-8
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Modelos de contenido</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+HTML introduce 7 modelos de contenido principales.
+</p>
+
+<ul class="org-ul">
+<li>Metadata
+<ul class="org-ul">
+<li>La configuración de la presentación o el comportamiento del contenido.
+</li>
+<li>Normalmente son los elementos que van dentro de <code>&lt;head&gt;</code>.
+</li>
+<li><code>&lt;base&gt;, &lt;link&gt;, &lt;meta&gt;, &lt;noscript&gt;, &lt;script&gt;, &lt;style&gt;, &lt;title&gt;</code>
+</li>
+</ul>
+</li>
+<li>Embedded
+<ul class="org-ul">
+<li>Contenido que importa otros recursos dentro del documento.
+</li>
+<li><code>&lt;audio&gt;, &lt;video&gt;, &lt;canvas&gt;, &lt;ifame&gt;, &lt;img&gt;, &lt;math&gt;, &lt;object&gt;, &lt;svg&gt;</code>
+</li>
+</ul>
+</li>
+<li>Interactive
+<ul class="org-ul">
+<li>Contenidos diseñados para que el usuario interactue con ellos.
+</li>
+<li><code>&lt;a&gt;, &lt;audio&gt;, &lt;video&gt;, &lt;button&gt;, &lt;details&gt;, &lt;embeded&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;input&gt;, &lt;label&gt;, &lt;object&gt;, &lt;select&gt;, &lt;textarea&gt;</code>
+</li>
+</ul>
+</li>
+<li>Heading
+<ul class="org-ul">
+<li>Definen una cabecera de una sección.
+</li>
+<li><code>&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;, &lt;hgroup&gt;</code>
+</li>
+</ul>
+</li>
+<li>Phrasing
+<ul class="org-ul">
+<li>Elementos de linea en común con html 4.
+</li>
+<li><code>&lt;img&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;label&gt;, &lt;br /&gt;, &lt;small&gt;, &lt;sub&gt;</code>, etc
+</li>
+</ul>
+</li>
+<li>Flow
+<ul class="org-ul">
+<li>Contiene la mayoría de los elementos html 5 que estan en el documento.
+</li>
+</ul>
+</li>
+<li>Sectioning
+<ul class="org-ul">
+<li>Define el alcance de headers, contenido, footers, etc.
+</li>
+<li><code>&lt;article&gt;, &lt;aside&gt;, &lt;nav&gt;, &lt;section&gt;</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Estructura de la pagina en HTML5</h3>
+<div class="outline-text-3" id="text-3-2">
+<pre class="example">
+
+                      +------------------------------+
+                      |           &lt;header&gt;           |
+                      | Contiene cosas como logos    |
+                      +------------------------------+
+                      +------------------------------+
+                      |             &lt;nav&gt;            |
+                      | Contiene cosas relacionadas  |
+                      | con la navegación del sitio  |
+                      +------------------------------+
+ +-------------------------------------+ +-----------------------------------------+
+ |             &lt;article&gt;               | |                                         |
+ |  Contenido principal de la pagina   | |                &lt;aside&gt;                  |
+ |                                     | |                                         |
+ |  +-------------------------------+  | | Contiene información extra relacionada  |
+ |  |          &lt;section&gt;            |  | | con la pagina como links                |
+ |  | Sección dividida de la pagina |  | |                                         |
+ |  | principal                     |  | |                                         |
+ |  +-------------------------------+  | |                                         |
+ |                                     | +-----------------------------------------+
+ +-------------------------------------+
+   +--------------------------------------------------------------------------+
+   |                                &lt;footer&gt;                                  |
+   |informacion sobre copyright, politica de privacidad, terminos de uso, etc |
+   +--------------------------------------------------------------------------+
+</pre>
+
+<blockquote>
+<p>
+Puede que no utilices todos los elementos, depende de la estructura de la página.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> La etiqueta <code>&lt;header&gt;</code></h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>El elemento <code>&lt;header&gt;</code> puede ser usado dentro del <code>&lt;body&gt;</code>.
+</li>
+</ul>
+
+<blockquote>
+<p>
+El elemento <code>&lt;header&gt;</code> es diferente que <code>&lt;head&gt;</code>.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #8be9fd;">&lt;!DOCTYPE HTML</span><span style="color: #8be9fd; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">head</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">header</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+      <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> EL header m&#225;s importante <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">header</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">body</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">html</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> El elemento <code>&lt;footer&gt;</code></h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Normalmente nos referimos a la parte de abajo de la página como footer.
+</li>
+<li>Donde podemos encontrar:
+<ul class="org-ul">
+<li>Información de contacto.
+</li>
+<li>Política de privacidad.
+</li>
+<li>Iconos de redes sociales.
+</li>
+<li>Términos de servicio.
+</li>
+<li>Información de copyright.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">footer</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;/</span><span style="color: #ffb86c;">footer</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> El elemento <code>&lt;nav&gt;</code></h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Esta etiqueta representa una sección que es usada para poner links a otras páginas o a ciertas partes de la misma página.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">nav</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">ul</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">a</span> <span style="color: #bd93f9; font-weight: bold;">href</span>="<span style="color: #f1fa8c;">#</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Home<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">a</span> <span style="color: #bd93f9; font-weight: bold;">href</span>="<span style="color: #f1fa8c;">#</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>Services<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;&lt;</span><span style="color: #ffb86c;">a</span> <span style="color: #bd93f9; font-weight: bold;">href</span>="<span style="color: #f1fa8c;">#</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>About us<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">li</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">ul</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">nav</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+En este ejemplo tenemos enlaces de navegación a diferentes secciones de la página
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> El elemento <code>&lt;article&gt;</code></h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>Es una pieza de contenido autocontenido que puede ser usada de manera separada a los diferentes elementos de la página.
+</li>
+<li>Podría ser un Post de un foro, una revista o un articulo de periódico, un comentario, un widget interactivo o cualquier otro contenido independiente.
+</li>
+<li>Este elemento remplaza el <code>&lt;div&gt;</code> que se usaba en html4 junto con una clase o id.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">article</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> El titulo del articulo <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Contenido <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">article</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> El elemento <code>&lt;section&gt;</code></h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li>Es un contenedor lógico dentro de una pagina o articulo.
+</li>
+<li>Pueden ser usados para dividir contenido dentro de un articulo.
+</li>
+<li>Cada <code>&lt;section&gt;</code> debería de ser identificada con un header.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">article</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Welcome <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">section</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Heading <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Contenido o imagen <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">section</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">article</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-8" class="outline-3">
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> El elemento <code>&lt;aside&gt;</code></h3>
+<div class="outline-text-3" id="text-3-8">
+<ul class="org-ul">
+<li>Es un contenido secundario que puede considerarse separado pero relacionado a el contenido principal.
+</li>
+<li>Este tipo de contenido es representado regularmente en <i>sidebars</i>.
+</li>
+<li>Cuando <code>&lt;aside&gt;</code> esta dentro de <code>&lt;article&gt;</code> el contenido debe de estar relacionado al del articulo.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">article</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Regalos para todos <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">h1</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Este es el mejor lugar para elegir regalos <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">aside</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+    <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span> Los regalos seran entregados dentro de 24hrs despues del pedido <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">p</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">aside</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">article</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-9" class="outline-3">
+<h3 id="sec-3-9"><span class="section-number-3">3.9</span> Audio en la web</h3>
+<div class="outline-text-3" id="text-3-9">
+<ul class="org-ul">
+<li>Hay dos maneras de especificar el URL del audio.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">audio</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">audio.mp3</span>" <span style="color: #bd93f9; font-weight: bold;">controls</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  Audio element not supported by your browser
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">audio</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">audio</span> <span style="color: #bd93f9; font-weight: bold;">controls</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">source</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">audio.mp3</span>" <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">audio/mpeg</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">source</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">audio.ogg</span>" <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">audio/ogg</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">audio</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El bloque audio crea un reproductor de audio dentro de la pagina web.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-3-9-1" class="outline-4">
+<h4 id="sec-3-9-1"><span class="section-number-4">3.9.1</span> Atributos de audio</h4>
+<div class="outline-text-4" id="text-3-9-1">
+<dl class="org-dl">
+<dt> <code>controls</code> </dt><dd>Especifica que los controles de audio deben ser mostrados (Play/pause).
+</dd>
+<dt> <code>autoplay</code> </dt><dd>Especifica que el audio debe de ser reproducido en cuanto este listo.
+</dd>
+<dt> <code>loop</code> </dt><dd>Especifica que el audio debe de reproducirse otra vez cuando termine.
+</dd>
+</dl>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">audio</span> <span style="color: #bd93f9; font-weight: bold;">controls</span> <span style="color: #bd93f9; font-weight: bold;">autoplay</span> <span style="color: #bd93f9; font-weight: bold;">loop</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Formatos soportados: MP3, OGG, WAV.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-10" class="outline-3">
+<h3 id="sec-3-10"><span class="section-number-3">3.10</span> Vídeos en HTML</h3>
+<div class="outline-text-3" id="text-3-10">
+<ul class="org-ul">
+<li>Es similar a audio.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">video</span> <span style="color: #bd93f9; font-weight: bold;">controls</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">source</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">video.mp4</span>" <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">video/mp4</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">source</span> <span style="color: #bd93f9; font-weight: bold;">src</span>="<span style="color: #f1fa8c;">video.ogg</span>" <span style="color: #bd93f9; font-weight: bold;">type</span>="<span style="color: #f1fa8c;">video/ogg</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+  Video is not suported in your browser.
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">video</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Video comparte los mismos atributos que audio
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Formatos soportados: MP4, OGG, WebM.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-11" class="outline-3">
+<h3 id="sec-3-11"><span class="section-number-3">3.11</span> Barras de progreso</h3>
+<div class="outline-text-3" id="text-3-11">
+<ul class="org-ul">
+<li>El elemento <code>&lt;progress&gt;</code> provee barras de progreso.
+</li>
+<li>Pueden ser usadas en cualquier lugar dentro del <code>&lt;body&gt;</code>.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-3-11-1" class="outline-4">
+<h4 id="sec-3-11-1"><span class="section-number-4">3.11.1</span> Atributos de las barras de progreso</h4>
+<div class="outline-text-4" id="text-3-11-1">
+<dl class="org-dl">
+<dt> <code>value</code> </dt><dd>Especifica el valor de la tarea realizado.
+</dd>
+<dt> <code>max</code> </dt><dd>Especifica el valor máximo de la tarea a realizar.
+</dd>
+</dl>
+
+<div class="org-src-container">
+
+<pre class="src src-html">Status: <span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">progress</span> <span style="color: #bd93f9; font-weight: bold;">min</span>="<span style="color: #f1fa8c;">0</span>" <span style="color: #bd93f9; font-weight: bold;">max</span>="<span style="color: #f1fa8c;">100</span>" <span style="color: #bd93f9; font-weight: bold;">value</span>="<span style="color: #f1fa8c;">35</span>"<span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+<span style="color: #f8f8f2; background-color: #1E2029;">&lt;/</span><span style="color: #ffb86c;">progress</span><span style="color: #f8f8f2; background-color: #1E2029;">&gt;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Se usa en conjunto con JavaScript para mostrar el porcentaje dinámico.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-12" class="outline-3">
+<h3 id="sec-3-12"><span class="section-number-3">3.12</span> Almacenamiento Web</h3>
+<div class="outline-text-3" id="text-3-12">
+<ul class="org-ul">
+<li>Con HTML5, sitios web pueden guardar datos en la computadora local del usuario.
+</li>
+<li>Ventajas del almacenamiento web:
+<ul class="org-ul">
+<li>Más seguro.
+</li>
+<li>Más rápido.
+</li>
+<li>Puedes almacenar más datos.
+</li>
+<li>Etc.
+</li>
+</ul>
+</li>
+</ul>
+
+<blockquote>
+<p>
+Almacenamiento local es por dominio, Solo las paginas de un dominio especifico pueden acceder a el almacenamiento de ese dominio.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-3-12-1" class="outline-4">
+<h4 id="sec-3-12-1"><span class="section-number-4">3.12.1</span> Tipos de Objetos de almacenamiento Web</h4>
+<div class="outline-text-4" id="text-3-12-1">
+<ul class="org-ul">
+<li>Hay dos tipos de almacenamiento web:
+<ul class="org-ul">
+<li><code>sessionStorage()</code>
+<ul class="org-ul">
+<li>Es destruido una vez el usuario cierra el navegador.
+</li>
+</ul>
+</li>
+<li><code>localStroage()</code>
+<ul class="org-ul">
+<li>Guarda datos sin fecha de vencimiento.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-12-2" class="outline-4">
+<h4 id="sec-3-12-2"><span class="section-number-4">3.12.2</span> Trabajando con valores.</h4>
+<div class="outline-text-4" id="text-3-12-2">
+<ul class="org-ul">
+<li>La información es guardada en forma de diccionario (key/value).
+</li>
+</ul>
+
+<p>
+<b>Guardando un valor.</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">localStroage<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">setItem</span><span style="color: #61bfff; background-color: #1E2029;">(</span><span style="color: #f1fa8c;">"key1"</span><span style="color: #f8f8f2; background-color: #1E2029;">,</span> <span style="color: #f1fa8c;">"Value"</span><span style="color: #61bfff; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+</pre>
+</div>
+
+<p>
+<b>Obteniendo un valor.</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #6272a4; font-style: italic;">//Esto imprimira el valor</span>
+<span style="color: #bd93f9; font-weight: bold;">alert</span><span style="color: #61bfff; background-color: #1E2029;">(</span>localStroage<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">getItem</span><span style="color: #ff79c6; background-color: #1E2029;">(</span><span style="color: #f1fa8c;">"key1"</span><span style="color: #ff79c6; background-color: #1E2029;">)</span><span style="color: #61bfff; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+</pre>
+</div>
+
+<p>
+<b>Eliminando un valor.</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">localStroage<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">removeItem</span><span style="color: #61bfff; background-color: #1E2029;">(</span><span style="color: #f1fa8c;">"Key1"</span><span style="color: #61bfff; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+</pre>
+</div>
+
+<p>
+<b>Eliminando todos los valores.</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">localStroage<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">clear</span><span style="color: #61bfff; background-color: #1E2029;">()</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+La misma sintaxis aplica para <code>sessionStorage</code>.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-13" class="outline-3">
+<h3 id="sec-3-13"><span class="section-number-3">3.13</span> API de geolocalización</h3>
+<div class="outline-text-3" id="text-3-13">
+<ul class="org-ul">
+<li>Sirve para obtener la localización geográfica del usuario.
+</li>
+<li>Por privacidad, esta opción tiene que ser aprobada por el usuario.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">navigator<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">geolocation</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">getCurrentPosition</span><span style="color: #61bfff; background-color: #1E2029;">()</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Parametros:
+<ul class="org-ul">
+<li><code>showLocation</code> (Mandatorio): Define el método que recibe la información.
+</li>
+<li><code>errorHandler</code> (Opcional): Define un método que es llamado cuando ocurre un error.
+</li>
+<li><code>Options</code> (Opcional): Define una serie de opciones para recibir la información.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-3-13-1" class="outline-4">
+<h4 id="sec-3-13-1"><span class="section-number-4">3.13.1</span> Presentando los datos</h4>
+<div class="outline-text-4" id="text-3-13-1">
+<ul class="org-ul">
+<li>Los datos pueden ser presentados de dos formas:
+</li>
+<li>Geodetic:
+<ul class="org-ul">
+<li>Se refiere a datos de latitud y longitud.
+</li>
+</ul>
+</li>
+<li>Civic:
+<ul class="org-ul">
+<li>Una forma más casual y leible por cualquier persona.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-14" class="outline-3">
+<h3 id="sec-3-14"><span class="section-number-3">3.14</span> Haciendo elementos <i>Draggables</i></h3>
+<div class="outline-text-3" id="text-3-14">
+<ul class="org-ul">
+<li>Permite que un elemento pueda moverse y cambiarse de posición con el cursor.
+</li>
+<li>Para hacerlo <i>draggable</i> solo pon el atributo de ese mismo nombre a <code>true</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-html"><span style="color: #f8f8f2; background-color: #1E2029;">&lt;</span><span style="color: #ffb86c;">img</span> <span style="color: #bd93f9; font-weight: bold;">draggable</span>="<span style="color: #f1fa8c;">true</span>" /&gt;
+</pre>
+</div>
+
+<blockquote>
+<p>
+Cualquier elemento puede ser <i>draggable</i>
+</p>
+</blockquote>
+
+<p>
+La API de HTML5 de <i>drag and drop</i> se maneja por eventos.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #ff79c6; font-style: italic;">&lt;!</span><span style="color: #8be9fd;">DOCTYPE</span> HTML<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">&lt;</span>html<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+   <span style="color: #ff79c6; font-style: italic;">&lt;</span>head<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+   <span style="color: #ff79c6; font-style: italic;">&lt;</span>script<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+function allowDrop<span style="color: #61bfff;">(</span>ev<span style="color: #61bfff;">)</span> <span style="color: #61bfff; background-color: #1E2029;">{</span>
+    ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">preventDefault</span><span style="color: #ff79c6; background-color: #1E2029;">()</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+<span style="color: #61bfff; background-color: #1E2029;">}</span>
+
+function drag<span style="color: #61bfff;">(</span>ev<span style="color: #61bfff;">)</span> <span style="color: #61bfff; background-color: #1E2029;">{</span>
+    ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">dataTransfer</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">setData</span><span style="color: #ff79c6; background-color: #1E2029;">(</span><span style="color: #f1fa8c;">"text"</span><span style="color: #f8f8f2; background-color: #1E2029;">,</span> ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">target</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">id</span><span style="color: #ff79c6; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+<span style="color: #61bfff; background-color: #1E2029;">}</span>
+
+function drop<span style="color: #61bfff;">(</span>ev<span style="color: #61bfff;">)</span> <span style="color: #61bfff; background-color: #1E2029;">{</span>
+    ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">preventDefault</span><span style="color: #ff79c6; background-color: #1E2029;">()</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> data <span style="color: #ff79c6; font-style: italic;">=</span> ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">dataTransfer</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">getData</span><span style="color: #ff79c6; background-color: #1E2029;">(</span><span style="color: #f1fa8c;">"text"</span><span style="color: #ff79c6; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+    ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">target</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">appendChild</span><span style="color: #ff79c6; background-color: #1E2029;">(</span><span style="color: #ffb86c;">document</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">getElementById</span><span style="color: #50fa7b; background-color: #1E2029;">(</span>data<span style="color: #50fa7b; background-color: #1E2029;">)</span><span style="color: #ff79c6; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+<span style="color: #61bfff; background-color: #1E2029;">}</span>
+   <span style="color: #ff79c6; font-style: italic;">&lt;</span>/script<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+   <span style="color: #ff79c6; font-style: italic;">&lt;</span>/head<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">&lt;</span>body<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+
+   <span style="color: #ff79c6; font-style: italic;">&lt;</span>div id<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"box"</span> ondrop<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"drop(event)"</span>
+   ondragover<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"allowDrop(event)"</span>
+   style<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"border:1px solid black;</span>
+<span style="color: #f1fa8c;">   width:200px; height:200px"</span><span style="color: #ff79c6; font-style: italic;">&gt;&lt;</span>/div<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+
+   <span style="color: #ff79c6; font-style: italic;">&lt;</span>img id<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"image"</span> src<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"sample.jpg"</span> draggable<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"true"</span>
+   ondragstart<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"drag(event)"</span> width<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"150"</span> height<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"50"</span> alt<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">""</span> /<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+
+<span style="color: #ff79c6; font-style: italic;">&lt;</span>/body<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">&lt;</span>/html<span style="color: #ff79c6; font-style: italic;">&gt;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3-14-1" class="outline-4">
+<h4 id="sec-3-14-1"><span class="section-number-4">3.14.1</span> Lo que se va a mover</h4>
+<div class="outline-text-4" id="text-3-14-1">
+<ul class="org-ul">
+<li>Cuando un elemento es arrastrado con el mause, el atributo <code>ondragstart</code>, llama a la función <code>drag()</code> que especifica que se va a mover.
+</li>
+<li>El método <code>dataTransfer.setData()</code> pone el tipo de dato y el valor de los elementos a mover.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #ff79c6; font-style: italic;">function</span> <span style="color: #50fa7b;">drag</span><span style="color: #61bfff; background-color: #1E2029;">(</span>ev<span style="color: #61bfff; background-color: #1E2029;">)</span> <span style="color: #61bfff; background-color: #1E2029;">{</span>
+    ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">dataTransfer</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">setData</span><span style="color: #ff79c6; background-color: #1E2029;">(</span><span style="color: #f1fa8c;">"text"</span><span style="color: #f8f8f2; background-color: #1E2029;">,</span> ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">target</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">id</span><span style="color: #ff79c6; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+<span style="color: #61bfff; background-color: #1E2029;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El tipo de dato es &ldquo;text&rdquo; y el valor es el ID del elemento a mover, &ldquo;image&rdquo;.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-14-2" class="outline-4">
+<h4 id="sec-3-14-2"><span class="section-number-4">3.14.2</span> A donde ponerlo</h4>
+<div class="outline-text-4" id="text-3-14-2">
+<ul class="org-ul">
+<li>El atributo <code>ondragover</code> especifica donde el objeto puede ser soltado.
+<ul class="org-ul">
+<li>Por defecto, datos y elementos no pueden ser soltados dentro de otros.
+<ul class="org-ul">
+<li>Debemos prevenir el manejo por defecto de los elementos.
+</li>
+</ul>
+</li>
+<li>Esto se hace llamando al método <code>preventDefault()</code> para el evento <code>ondragover</code>.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-14-3" class="outline-4">
+<h4 id="sec-3-14-3"><span class="section-number-4">3.14.3</span> Hacer el Drop</h4>
+<div class="outline-text-4" id="text-3-14-3">
+<ul class="org-ul">
+<li>Cuando el objeto es soltado, ocurre el evento <i>drop</i>.
+</li>
+<li>En el ejemplo el atributo <code>ondrop</code> llama a la función <code>drop()</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #ff79c6; font-style: italic;">function</span> <span style="color: #50fa7b;">drop</span><span style="color: #61bfff; background-color: #1E2029;">(</span>ev<span style="color: #61bfff; background-color: #1E2029;">)</span> <span style="color: #61bfff; background-color: #1E2029;">{</span>
+    ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">preventDefault</span><span style="color: #ff79c6; background-color: #1E2029;">()</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> data <span style="color: #ff79c6; font-style: italic;">=</span> ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">dataTransfer</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">getData</span><span style="color: #ff79c6; background-color: #1E2029;">(</span><span style="color: #f1fa8c;">"text"</span><span style="color: #ff79c6; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+    ev<span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #8be9fd; font-style: italic;">target</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">appendChild</span><span style="color: #ff79c6; background-color: #1E2029;">(</span><span style="color: #ffb86c;">document</span><span style="color: #f8f8f2; background-color: #1E2029;">.</span><span style="color: #bd93f9; font-weight: bold; font-style: italic;">getElementById</span><span style="color: #50fa7b; background-color: #1E2029;">(</span>data<span style="color: #50fa7b; background-color: #1E2029;">)</span><span style="color: #ff79c6; background-color: #1E2029;">)</span><span style="color: #f8f8f2; background-color: #1E2029;">;</span>
+<span style="color: #61bfff; background-color: #1E2029;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El método <code>preventDefault()</code> previene el el manejo por defecto del evento.
+</li>
+<li>Los datos de el elemento pueden obtenerse con <code>dataTransfer.getData()</code>.
+<ul class="org-ul">
+<li>Estos datos seria el ID del elemento movido <code>"image"</code>.
+</li>
+</ul>
+</li>
+<li>El elemento movido es añadido al final del evento <i>drop</i>, usando la función <code>appendChild()</code>.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-15" class="outline-3">
+<h3 id="sec-3-15"><span class="section-number-3">3.15</span> SVG</h3>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2021-05-19 Wed 22:47</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>C#</title>
+<!-- 2021-05-19 Wed 22:47 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Conceptos Básicos</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. C#</a></li>
+<li><a href="#sec-1-2">1.2. .NET Framework</a></li>
+<li><a href="#sec-1-3">1.3. Variables</a></li>
+<li><a href="#sec-1-4">1.4. Tipos de variables</a></li>
+<li><a href="#sec-1-5">1.5. Tipos de datos</a></li>
+<li><a href="#sec-1-6">1.6. Mi primer programa en C#</a></li>
+<li><a href="#sec-1-7">1.7. Mostrando texto</a></li>
+<li><a href="#sec-1-8">1.8. Leyendo texto</a></li>
+<li><a href="#sec-1-9">1.9. Comentarios</a></li>
+<li><a href="#sec-1-10">1.10. La palabra <code>var</code></a></li>
+<li><a href="#sec-1-11">1.11. Constantes</a></li>
+<li><a href="#sec-1-12">1.12. Operadores Aritméticos</a></li>
+<li><a href="#sec-1-13">1.13. Operadores de asignación e incremento</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Condicionales y loops</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. <code>if else</code></a></li>
+<li><a href="#sec-2-2">2.2. operador <code>switch</code></a></li>
+<li><a href="#sec-2-3">2.3. El ciclo <code>while</code></a></li>
+<li><a href="#sec-2-4">2.4. El ciclo <code>for</code></a></li>
+<li><a href="#sec-2-5">2.5. <code>do-while</code></a></li>
+<li><a href="#sec-2-6">2.6. <code>break</code> y <code>continue</code></a></li>
+<li><a href="#sec-2-7">2.7. Operadores lógicos</a></li>
+<li><a href="#sec-2-8">2.8. El operador condicional</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Métodos</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Introducción a los métodos</a></li>
+<li><a href="#sec-3-2">3.2. Declarando métodos</a></li>
+<li><a href="#sec-3-3">3.3. Llamando a métodos</a></li>
+<li><a href="#sec-3-4">3.4. Parametros</a></li>
+<li><a href="#sec-3-5">3.5. Pasando argumentos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">C#</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Conceptos Básicos</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> C#</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Un elegante lenguaje orientado objetos.
+</li>
+<li>Corre sobre el .NET Framework.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> .NET Framework</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Consiste en:
+<ul class="org-ul">
+<li><code>CLR (Common Languaje Runtime)</code>
+<ul class="org-ul">
+<li>Es la fundación de .NET.
+</li>
+<li>Maneja muchas cosas.
+<ul class="org-ul">
+<li>Código en tiempo de ejecución.
+</li>
+<li>Manejo de memoria.
+</li>
+<li>Etc.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>.NET Framework Class Library</code>.
+<ul class="org-ul">
+<li>Colección de clases, interfaces y Tipos de datos que te permiten hacer
+Un rango de tareas de programación comunes.
+</li>
+<li>C# La Usa extensivamente.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Variables</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Reservan información en memoria.
+</li>
+<li>Deben tener nombres descriptivos.
+</li>
+<li>También son llamadas identificadores.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Tipos de variables</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Define el tipo de valor que va a ser guardado en la variable asi como la memoria que se necesita.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> myAge;
+</pre>
+</div>
+
+
+<blockquote>
+<p>
+Una linea de código que completa una acción es llamada declaración y terminan con punto y coma.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Podemos asignarle un valor a la variable cuando la declaras.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> myAge = <span style="color: #bd93f9; font-weight: bold;">18</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Tipos de datos</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Hay algunos tipos de datos por defecto en C#.
+<dl class="org-dl">
+<dt> <code>int</code> </dt><dd>Entero.
+</dd>
+<dt> <code>float</code> </dt><dd>Números de coma flotante (Con decimales pues.).
+</dd>
+<dt> <code>double</code> </dt><dd>Una versión con más precisión (más dígitos) de float.
+</dd>
+<dt> <code>char</code> </dt><dd>Un carácter.
+</dd>
+<dt> <code>bool</code> </dt><dd><code>true</code> o <code>false</code>.
+</dd>
+<dt> <code>string</code> </dt><dd>Cadenas de caracteres.
+</dd>
+</dl>
+</li>
+</ul>
+
+<blockquote>
+<p>
+valores <code>char</code> son definidos con comillas simples y <code>string</code> con comillas dobles.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Mi primer programa en C#</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>Cada aplicación de consola en C# debe tener una función llamada <code>Main</code>
+<ul class="org-ul">
+<li>Esta función es el punto de entrada para cada aplicación.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Mostrando texto</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>La mayoría de las aplicaciones necesitan algún tipo de <code>input</code> y nos tan algún tipo de <code>output</code>.
+</li>
+<li>Para mostrar texto en pantalla usamos <code>Console.write()</code> o <code>Console.WriteLine()</code>.
+<ul class="org-ul">
+<li>La diferencia es que con el segundo al final del texto da un salto de linea.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp">Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hola Mundo!"</span><span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Para imprimir una cadena con un formato especifico podemos hacer.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> x = <span style="color: #bd93f9; font-weight: bold;">10</span>;
+<span style="color: #bd93f9;">double</span> y = <span style="color: #bd93f9; font-weight: bold;">20</span>;
+
+Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"x = {0}; y = {1}"</span>, x, y<span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+<code>{0}</code> sera remplazado por el valor de <code>x</code> y <code>{1}</code> por el valor de <code>y</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> Leyendo texto</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>Podemos leer texto de la terminal con <code>Console.ReadLine()</code> y asignarlo a una variable.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp">yourInput = Console.<span style="color: #50fa7b;">ReadLine</span><span style="color: #61bfff;">()</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+Esto siempre retorna un <code>string</code>.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Podemos Convertir este <code>string</code> en otro tipo de dato fácilmente con el método <code>Convert.ToXXX</code>.
+<ul class="org-ul">
+<li>EJ. <code>Convert.ToDouble</code> o <code>Convert.ToBoolean</code>.
+<ul class="org-ul">
+<li>También podemos convertir a enteros de un tamaño en especifico <code>Convert.ToInt16</code>, <code>Convert.ToInt32</code>, etc.
+<ul class="org-ul">
+<li>El tipo de dato por defecto en enteros es <code>Int32</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> Comentarios</h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li>Empiezan con <code>//</code>.
+</li>
+<li>Comentarios multilinea son <code>/* texto */</code>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10"><span class="section-number-3">1.10</span> La palabra <code>var</code></h3>
+<div class="outline-text-3" id="text-1-10">
+<ul class="org-ul">
+<li>C# provee una forma de declarar variables y hacer que el compilador determine el tipo de dato de esta.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">var</span> num = <span style="color: #bd93f9; font-weight: bold;">15</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Estas variables son llamadas de <b>Tipo implícito</b>.
+</li>
+<li>Estas variables <b>deben</b> ser inicializadas con un valor.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Esto dar&#225; un error!</span>
+<span style="color: #bd93f9;">var</span> num;
+num = <span style="color: #bd93f9; font-weight: bold;">15</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+Es buena práctica declarar tus variables con su tipo de dato y usar <code>var</code> solo para casos especiales.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11"><span class="section-number-3">1.11</span> Constantes</h3>
+<div class="outline-text-3" id="text-1-11">
+<ul class="org-ul">
+<li>Se definen constantes con la palabra <code>const</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Ejemplo</span>
+<span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">double</span> PI = <span style="color: #bd93f9; font-weight: bold;">3.14</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Las constantes siempre deben se ser inicializadas asignandoles un valor.
+</li>
+<li>Son variables que no pueden ser cambiadas.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-12" class="outline-3">
+<h3 id="sec-1-12"><span class="section-number-3">1.12</span> Operadores Aritméticos</h3>
+<div class="outline-text-3" id="text-1-12">
+<ul class="org-ul">
+<li>Son los mismos de toda la vida <code>+, -, *, /, %</code>.
+</li>
+<li>Tienen una jerarquía de evaluación normal y esta puede afectarse con los parentesis.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-13" class="outline-3">
+<h3 id="sec-1-13"><span class="section-number-3">1.13</span> Operadores de asignación e incremento</h3>
+<div class="outline-text-3" id="text-1-13">
+<pre class="example">
+x += 2; // equivalente a x = x + 2;
+x %= 2; // equivalente a x = x % 2;
+// y de la misma manera con los operadores anteriores.
+</pre>
+</div>
+
+<div id="outline-container-sec-1-13-1" class="outline-4">
+<h4 id="sec-1-13-1"><span class="section-number-4">1.13.1</span> Operadores de incremento</h4>
+<div class="outline-text-4" id="text-1-13-1">
+<ul class="org-ul">
+<li>Podemos incrementar un valor a una variable cada que nuestro programa pase por allí.
+<ul class="org-ul">
+<li>Es especialmente útil en ciclos.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp">x++; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">equivalente a x = x + 1;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-13-2" class="outline-4">
+<h4 id="sec-1-13-2"><span class="section-number-4">1.13.2</span> Formas de prefijo y postfijo</h4>
+<div class="outline-text-4" id="text-1-13-2">
+<ul class="org-ul">
+<li>El operador de incremento tiene dos formas.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp">++x; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">prefijo</span>
+x++; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">postfijo</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Prefijo: Incrementa el valor y despues procede con la expresión.
+</li>
+<li>Postfijo: Evalúa la expresión y despues incrementa el valor.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> x = <span style="color: #bd93f9; font-weight: bold;">3</span>;
+<span style="color: #bd93f9;">int</span> y = ++x;
+<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">x es 4, y es 4</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> x = <span style="color: #bd93f9; font-weight: bold;">3</span>;
+<span style="color: #bd93f9;">int</span> y = x++;
+<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">x es 4, y es 3</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Esto también funciona con el operador de decremento <code>-</code>, siendo x&#x2013; y &#x2013;x.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Condicionales y loops</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <code>if else</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Ejecuta un bloque de código si una condición se cumple.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>x &gt; y<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"x es m&#225;s grande que y"</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Operadores Relacionales</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li>Se usan para evaluar condiciones.
+</li>
+<li>Son los mismos de siempre; !=, &gt;=, &lt;=, ==.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Operador <code>else</code></h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>Se ejecuta cuando no se cumple la condición dentro del <code>if</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>x &gt; y<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"x es m&#225;s grande que y"</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"y es m&#225;s grande que x"</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Podemos combinarlos y agruparlos como queramos
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span> x <span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">algo</span>
+    <span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span> y <span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">otra cosa</span>
+    <span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span> z <span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">aaaaaa</span>
+    <span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">final</span>
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> operador <code>switch</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Provee una manera más elegante de comparar una variable con ciertos casos predefinidos.
+</li>
+<li>Cada caso es llamado <code>case</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> num = <span style="color: #bd93f9; font-weight: bold;">3</span>;
+<span style="color: #ff79c6; font-style: italic;">switch</span> <span style="color: #61bfff;">(</span>num<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #bd93f9; font-weight: bold;">1</span>:
+            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"one"</span><span style="color: #ff79c6;">)</span>;
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #bd93f9; font-weight: bold;">2</span>:
+            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"two"</span><span style="color: #ff79c6;">)</span>;
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #bd93f9; font-weight: bold;">3</span>:
+            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Three"</span><span style="color: #ff79c6;">)</span>;
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+        <span style="color: #ff79c6; font-style: italic;">default</span>:
+            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"No es uno, dos o tres"</span><span style="color: #ff79c6;">)</span>;
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Un <code>switch</code> puede incluir n número de casos, pero cada caso debe de ser único.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+El bloque <code>default</code> solo se ejecuta si no se cumple ninguno de los <code>case</code>.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> La palabra <code>break</code></h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li>Se usa para romper el ciclo de ejecución del <code>switch</code>
+<ul class="org-ul">
+<li>Sin el, el <code>switch</code> seguirá comparando con otros case a pesar de entrar en uno.
+</li>
+<li>También sirve para romper ciclos <code>for</code> o <code>while</code>.
+</li>
+<li>En C# <code>break</code> es obligatorio al final de cada <code>case</code>.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> El ciclo <code>while</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Ejecuta un bloque de código siempre y cuando una condición se cumpla.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> num = <span style="color: #bd93f9; font-weight: bold;">1</span>;
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>num &lt; <span style="color: #bd93f9; font-weight: bold;">6</span><span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>num<span style="color: #ff79c6;">)</span>;
+        num++;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El código anterior imprime los números del 1 al 5.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> El ciclo <code>for</code></h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Ejecuta un bloque de código un número especifico de veces.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span>init; condition; increment<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">code</span>
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+<b>Ejemplo:</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x = <span style="color: #bd93f9; font-weight: bold;">10</span>; x &lt; <span style="color: #bd93f9; font-weight: bold;">15</span>; x++<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Value of x: {0}"</span>, x<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>En el bloque del incremento podemos hacer otras cosas como incrementar de 3 con <code>x+=3</code> o decrementar de la misma manera el contador.
+</li>
+<li>También podemos quitar el bloque <code>init</code> e <code>increment</code> del bloque, pero los puntos y comas son obligatorios.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> x = <span style="color: #bd93f9; font-weight: bold;">10</span>;
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span> ; x &gt; <span style="color: #bd93f9; font-weight: bold;">10</span> ; <span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
+        x -= <span style="color: #bd93f9; font-weight: bold;">3</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+<code>for (;;){}</code> es un ciclo for infinito.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> <code>do-while</code></h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Es similar a un ciclo <code>while</code>, solo que en este el bloque de código es ejecutado al menos una vez.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> a = <span style="color: #bd93f9; font-weight: bold;">0</span>;
+<span style="color: #ff79c6; font-style: italic;">do</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>;
+    a++;
+<span style="color: #61bfff;">}</span> <span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>a &lt; <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> <code>break</code> y <code>continue</code></h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>Otro uso de <code>break</code> es en ciclos, ya que &ldquo;rompe&rdquo; la ejecución de estos.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> num = <span style="color: #bd93f9; font-weight: bold;">0</span>;
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>num &lt; <span style="color: #bd93f9; font-weight: bold;">20</span><span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>num == <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #ff79c6;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>num<span style="color: #ff79c6;">)</span>;
+        num++;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+En el bloque de anterior, el <code>while</code> parará cuando <code>num</code> sea igual a 5.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>La palabra <code>continue</code> es similar al <code>break</code>, pero este solo se salta una iteración del ciclo.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> i = <span style="color: #bd93f9; font-weight: bold;">0</span>; i &lt; <span style="color: #bd93f9; font-weight: bold;">10</span>; i++<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>i == <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #ff79c6;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">continue</span>;
+
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>i<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Operadores lógicos</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Son usados para unir múltiples expresiones y retornar <code>true</code> o <code>false</code>.
+</li>
+<li>son <code>&amp;&amp;, ||, !</code>, AND, OR y NOT respectivamente.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> age = <span style="color: #bd93f9; font-weight: bold;">42</span>;
+<span style="color: #bd93f9;">doubel</span> money = <span style="color: #bd93f9; font-weight: bold;">540</span>;
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>age &gt; <span style="color: #bd93f9; font-weight: bold;">18</span> &amp;&amp; money &gt; <span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Welkome"</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> El operador condicional</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>También llamado operador ternario.
+</li>
+<li>Podemos hacer una operación condicional asi como en el if pero con una sola línea de código.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp">Expr1 ? <span style="color: #bd93f9;">Expr2</span> : Expr3;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La Expr1, es evaluada, si esta es verdadera.
+<ul class="org-ul">
+<li>Entonces Exp2 es evaluada y se convierte en el valor de toda la expresión.
+</li>
+</ul>
+</li>
+<li>Si Expr1 es falsa, entonces Exp3 es evaluada y se convierte en el valor de toda la expresión.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> age = <span style="color: #bd93f9; font-weight: bold;">42</span>;
+<span style="color: #bd93f9;">string</span> msg;
+msg = <span style="color: #61bfff;">(</span>age &gt;= <span style="color: #bd93f9; font-weight: bold;">18</span><span style="color: #61bfff;">)</span> ? <span style="color: #f1fa8c;">"Welcome"</span> : <span style="color: #f1fa8c;">"Sorry"</span>;
+Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>msg<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Métodos</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Introducción a los métodos</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Un método es un grupo de declaraciones que hacen una tarea en particular.
+</li>
+<li>Además de los métodos que tiene C# puedes definir los tuyos.
+</li>
+<li>Tienen muchas ventajas:
+<ul class="org-ul">
+<li>Son código reusable.
+</li>
+<li>Fáciles de testear.
+</li>
+<li>Modificaciones a un método no afectan al programa.
+</li>
+<li>Un método puede aceptar diferentes tipos de inputs.
+</li>
+</ul>
+</li>
+</ul>
+
+<blockquote>
+<p>
+Todo programa de C# tiene al menos un método, el método <code>Main</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Declarando métodos</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Para usar un método primero necesitas declararlo, y después llamarlo.
+</li>
+<li>Cada declaración de método incluye:
+<ul class="org-ul">
+<li>El tipo de dato que retorna.
+</li>
+<li>El nombre del método.
+</li>
+<li>Una lista opcional de parametros.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #61bfff;">&lt;</span>tipo de dato <span style="color: #bd93f9;">de</span> retorno<span style="color: #61bfff;">&gt;</span> <span style="color: #50fa7b;">name</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">type1</span> part1, <span style="color: #bd93f9;">type2</span> part2, ..., <span style="color: #bd93f9;">typeN</span> partN<span style="color: #61bfff;">){</span>
+    <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Bloque de c&#243;digo..</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6;">&lt;</span>tipo <span style="color: #bd93f9;">de</span> dato<span style="color: #ff79c6;">&gt;</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Sqr</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #bd93f9;">int</span> result = x * x;
+        <span style="color: #ff79c6; font-style: italic;">return</span> result;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Podemos hacer que métodos no retornen nada poniendoles el tipo de dato <code>void</code>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Llamando a métodos</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">SayHi</span><span style="color: #61bfff;">()</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hello"</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> args<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Aquí declaramos un método y lo llamamos desde <code>Main</code>, la palabra <code>static</code> es para hacer los métodos accesibles al <code>Main</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Parametros</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Las declaraciones de métodos pueden definir una serie de parametros para trabajar.
+</li>
+<li>Estos parametros son variables que aceptan valores específicos.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Las declaraciones de parametros son similares a las declaraciones de variables; Estas solo existen dentro del método donde se declararon.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> args<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #50fa7b;">Print</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Ahora podemos llamar a nuestro método y pasarle argumentos.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> Parametros múltiples</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li>Se pueden tener N número de parametros en un método separandolos con comas en la definición.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Sum</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x, <span style="color: #bd93f9;">int</span> y<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> x + y;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Los métodos retornan valores con la palabra <code>return</code>.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Sum</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x, <span style="color: #bd93f9;">int</span> y<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> x + y;
+    <span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> args<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        suma = <span style="color: #50fa7b;">Sum</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span>, <span style="color: #bd93f9; font-weight: bold;">45</span><span style="color: #ff79c6;">)</span>;
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>suma<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Podemos asignar parametros múltiples cuando llamamos al método, separandolos con comas, asi como también guardar lo que nos regresa el método en una variable para usarlo después.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4-2" class="outline-4">
+<h4 id="sec-3-4-2"><span class="section-number-4">3.4.2</span> Parametros opcionales</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<ul class="org-ul">
+<li>Cuando defines métodos puedes declarar valores por defecto a parametros opcionales.
+</li>
+<li>Si estos parametros no están presentes cuando se llama al método se usan los valores por defecto.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Pow</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x, <span style="color: #bd93f9;">int</span> y=<span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span> result = <span style="color: #bd93f9; font-weight: bold;">1</span>;
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> i = <span style="color: #bd93f9; font-weight: bold;">0</span>; i &lt; y; i++<span style="color: #ff79c6;">)</span>
+        <span style="color: #ff79c6;">{</span>
+            result *= x;
+        <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">return</span> result;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El método <code>Pow</code> asigna un valor por defecto de 2 al parametro y.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> args<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">Pow</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">4</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>;
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">Pow</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">4</span>,<span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4-3" class="outline-4">
+<h4 id="sec-3-4-3"><span class="section-number-4">3.4.3</span> Parametros nombrados</h4>
+<div class="outline-text-4" id="text-3-4-3">
+<ul class="org-ul">
+<li>Los argumentos nombrados nos ayudan a no tener que recordar el orden de los parametros.
+</li>
+<li>Cada argumento puede ser especificado a la variable a la que pertenece.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Are</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> h, <span style="color: #bd93f9;">int</span> w<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> h * w;
+    <span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> args<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #bd93f9;">int</span> res = <span style="color: #50fa7b;">Area</span><span style="color: #ff79c6;">(</span>w: <span style="color: #bd93f9; font-weight: bold;">5</span>, h: <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">)</span>;
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>res<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Pasando argumentos</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Hay tres maneras de pasar argumentos a un método cuando este es llamado.
+<ul class="org-ul">
+<li>Por valor, por referencia y como <i>Output</i>.
+</li>
+<li>Si se hace por valor, copia el argumento del valor dentro del parámetro formal del método.
+<ul class="org-ul">
+<li>Este es el comportamiento por defecto de C#.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Sqrt</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> x<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        x = x * x;
+    <span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">()</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #bd93f9;">int</span> a = <span style="color: #bd93f9; font-weight: bold;">3</span>;
+        <span style="color: #50fa7b;">Sqrt</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>;
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">imprime 3</span>
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>En este caso <code>x</code> es parametro de <code>Sqrt</code>, y a es el valor pasado al método.
+</li>
+</ul>
+
+<blockquote>
+<p>
+El método <code>Sqrt()</code> no cambia el valor de la variable, trabaja con el valor, no con la variable.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-3-5-1" class="outline-4">
+<h4 id="sec-3-5-1"><span class="section-number-4">3.5.1</span> Pasando por referencia</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<ul class="org-ul">
+<li>Pasar un argumento por referencia, copia la dirección de memoria en el parametro formal del método.
+<ul class="org-ul">
+<li>Dentro de este, esta dirección es usada para acceder al argumento.
+<ul class="org-ul">
+<li>Esto significa que los cambios que se hacen dentro del método, afectan al parametro.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Sqrt</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">int</span> x<span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;---</span>
+    <span style="color: #61bfff;">{</span>
+        x = x * x;
+    <span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">()</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #bd93f9;">int</span> a = <span style="color: #bd93f9; font-weight: bold;">3</span>;
+        <span style="color: #50fa7b;">Sqrt</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">a</span><span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;---</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">imprime 9</span>
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5-2" class="outline-4">
+<h4 id="sec-3-5-2"><span class="section-number-4">3.5.2</span> Pasando por Output</h4>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2021-05-19 Wed 22:47</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+</div>
+</footer>
+</body>
+</html>

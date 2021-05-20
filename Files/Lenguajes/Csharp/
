@@ -1,0 +1,291 @@
+#+TITLE: C#
+
+* ¿Que es C#?
+** C#
+- Un elegante lenguaje orientado objetos.
+- Corre sobre el .NET Framework.
+** .NET Framework
+- Consiste en:
+  + =CLR (Common Languaje Runtime)=
+    - Es la fundación de .NET.
+    - Maneja muchas cosas.
+      + Código en tiempo de ejecución.
+      + Manejo de memoria.
+      + Etc.
+  + =.NET Framework Class Library=.
+    - Colección de clases, interfaces y Tipos de datos que te permiten hacer
+      Un rango de tareas de programación comunes.
+    - C# La Usa extensivamente.
+** Variables
+- Reservan información en memoria.
+- Deben tener nombres descriptivos.
+- También son llamadas identificadores.
+
+** Tipos de variables
+- Define el tipo de valor que va a ser guardado en la variable asi como la memoria que se necesita.
+
+#+begin_src csharp
+int myAge;
+#+end_src
+
+
+#+begin_quote
+Una linea de código que completa una acción es llamada declaración y terminan con punto y coma.
+#+end_quote
+
+- Podemos asignarle un valor a la variable cuando la declaras.
+
+#+begin_src csharp
+int myAge = 18;
+#+end_src
+
+** Tipos de datos
+- Hay algunos tipos de datos por defecto en C#.
+  + =int= :: Entero.
+  + =float= :: Números de coma flotante (Con decimales pues.).
+  + =double= :: Una versión con más precisión (más dígitos) de float.
+  + =char= :: Un carácter.
+  + =bool= :: =true= o =false=.
+  + =string= :: Cadenas de caracteres.
+
+#+begin_quote
+valores =char= son definidos con comillas simples y =string= con comillas dobles.
+#+end_quote
+
+** Mi primer programa en C#
+- Cada aplicación de consola en C# debe tener una función llamada =Main=
+  + Esta función es el punto de entrada para cada aplicación.
+
+** Mostrando texto
+- La mayoría de las aplicaciones necesitan algún tipo de =input= y nos tan algún tipo de =output=.
+- Para mostrar texto en pantalla usamos =Console.write()= o =Console.WriteLine()=.
+  + La diferencia es que con el segundo al final del texto da un salto de linea.
+
+#+begin_src csharp
+Console.WriteLine("Hola Mundo!");
+#+end_src
+
+- Para imprimir una cadena con un formato especifico podemos hacer.
+
+#+begin_src csharp
+int x = 10;
+double y = 20;
+
+Console.WriteLine("x = {0}; y = {1}", x, y);
+#+end_src
+
+#+begin_quote
+={0}= sera remplazado por el valor de =x= y ={1}= por el valor de =y=.
+#+end_quote
+
+** Leyendo texto
+- Podemos leer texto de la terminal con =Console.ReadLine()= y asignarlo a una variable.
+
+#+begin_src csharp
+yourInput = Console.ReadLine();
+#+end_src
+
+#+begin_quote
+Esto siempre retorna un =string=.
+#+end_quote
+
+- Podemos Convertir este =string= en otro tipo de dato fácilmente con el método =Convert.ToXXX=.
+  + EJ. =Convert.ToDouble= o =Convert.ToBoolean=.
+    - También podemos convertir a enteros de un tamaño en especifico =Convert.ToInt16=, =Convert.ToInt32=, etc.
+      + El tipo de dato por defecto en enteros es =Int32=.
+
+** Comentarios
+- Empiezan con =//=.
+- Comentarios multilinea son =/* texto */=.
+
+** La palabra =var=
+- C# provee una forma de declarar variables y hacer que el compilador determine el tipo de dato de esta.
+
+#+begin_src csharp
+var num = 15;
+#+end_src
+
+- Estas variables son llamadas de *Tipo implícito*.
+- Estas variables *deben* ser inicializadas con un valor.
+
+#+begin_src csharp
+// Esto dará un error!
+var num;
+num = 15;
+#+end_src
+
+#+begin_quote
+Es buena práctica declarar tus variables con su tipo de dato y usar =var= solo para casos especiales.
+#+end_quote
+
+** Constantes
+- Se definen constantes con la palabra =const=.
+
+#+begin_src csharp
+//Ejemplo
+const double PI = 3.14;
+#+end_src
+
+- Las constantes siempre deben se ser inicializadas asignandoles un valor.
+- Son variables que no pueden ser cambiadas.
+
+** Operadores Aritméticos
+- Son los mismos de toda la vida =+, -, *, /, %=.
+- Tienen una jerarquía de evaluación normal y esta puede afectarse con los parentesis.
+
+** Operadores de asignación e incremento
+
+#+begin_src
+x += 2; // equivalente a x = x + 2;
+x %= 2; // equivalente a x = x % 2;
+// y de la misma manera con los operadores anteriores.
+#+end_src
+
+*** Operadores de incremento
+- Podemos incrementar un valor a una variable cada que nuestro programa pase por allí.
+  + Es especialmente útil en ciclos.
+
+#+begin_src csharp
+x++; // equivalente a x = x + 1;
+#+end_src
+
+*** Formas de prefijo y postfijo
+- El operador de incremento tiene dos formas.
+
+#+begin_src csharp
+++x; // prefijo
+x++; // postfijo
+#+end_src
+
+- Prefijo: Incrementa el valor y despues procede con la expresión.
+- Postfijo: Evalúa la expresión y despues incrementa el valor.
+
+#+begin_src csharp
+int x = 3;
+int y = ++x;
+// x es 4, y es 4
+#+end_src
+
+#+begin_src csharp
+int x = 3;
+int y = x++;
+// x es 4, y es 3
+#+end_src
+
+#+begin_quote
+Esto también funciona con el operador de decremento =-=, siendo x-- y --x.
+#+end_quote
+
+** =if else=
+- Ejecuta un bloque de código si una condición se cumple.
+
+#+begin_src csharp
+if (x > y)
+    {
+        Console.WriteLine("x es más grande que y");
+    }
+#+end_src
+
+*** Operadores Relacionales
+- Se usan para evaluar condiciones.
+- Son los mismos de siempre; !=, >=, <=, ==.
+
+*** Operador =else=
+- Se ejecuta cuando no se cumple la condición dentro del =if=.
+
+#+begin_src csharp
+if (x > y)
+    {
+        Console.WriteLine("x es más grande que y");
+    }
+else
+    {
+        Console.WriteLine("y es más grande que x");
+    }
+#+end_src
+
+- Podemos combinarlos y agruparlos como queramos
+
+#+begin_src csharp
+if ( x )
+    {
+        // algo
+    }
+else if ( y )
+    {
+        // otra cosa
+    }
+else if ( z )
+    {
+        //aaaaaa
+    }
+else
+    {
+        //final
+    }
+#+end_src
+
+** operador =switch=
+- Provee una manera más elegante de comparar una variable con ciertos casos predefinidos.
+- Cada caso es llamado =case=.
+
+#+begin_src csharp
+int num = 3;
+switch (num)
+    {
+        case 1:
+            Console.WriteLine("one");
+            break;
+        case 2:
+            Console.WriteLine("two");
+            break;
+        case 3:
+            Console.WriteLine("Three");
+            break;
+        default:
+            Console.WriteLine("No es uno, dos o tres");
+            break;
+    }
+#+end_src
+
+#+begin_quote
+Un =switch= puede incluir n número de casos, pero cada caso debe de ser único.
+#+end_quote
+
+#+begin_quote
+El bloque =default= solo se ejecuta si no se cumple ninguno de los =case=.
+#+end_quote
+
+*** La palabra =break=
+- Se usa para romper el ciclo de ejecución del =switch=
+  + Sin el, el =switch= seguirá comparando con otros case a pesar de entrar en uno.
+  + También sirve para romper ciclos =for= o =while=.
+  + En C# =break= es obligatorio al final de cada =case=.
+
+** El ciclo =while=
+- Ejecuta un bloque de código siempre y cuando una condición se cumpla.
+
+#+begin_src csharp
+int num = 1;
+while (num < 6)
+    {
+        Console.WriteLine(num);
+        num++;
+    }
+#+end_src
+
+#+begin_quote
+El código anterior imprime los números del 1 al 5.
+#+end_quote
+
+** El ciclo =for=
+- Ejecuta un bloque de código un número especifico de veces.
+
+#+begin_src csharp
+for (init; condition; increment)
+    {
+        //code
+    }
+#+end_src
+
+*Ejemplo:*

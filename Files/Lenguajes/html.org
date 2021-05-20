@@ -1,0 +1,853 @@
+#+title: HTML
+
+
+* HTML
+- HTML :: /Hyper Text Markup Languaje/.
+- HTML usa etiquetas para identificar contenido.
+- HTML es un /Markup Languaje/ como lo puede ser markdown o org-mode.
+
+#+begin_src html
+<p> Soy un parrafo </p>
+#+end_src
+
+** Diseño web Moderno.
+- Estructura de una web moderna.
+  + *HTML* - Estructura.
+  + *CSS* - Presentación.
+  + *JavaScript* - Comportamiento.
+  + *PHP o similares* - Backend.
+  + *CMS* - Manejo de contenido.
+
+** La etiqueta =<html>=
+- La estructura de html se asemeja un poco a un sawdwich en la cual cada elemento tiene su contra parte.
+
+#+begin_src html
+<html>
+
+</html>
+#+end_src
+
+#+begin_quote
+Todo nuestro documento html esta dentro de las etiquetas html.
+#+end_quote
+
+** La etiqueta =<head>=
+- El elemento head contiene los elementos *no visuales* que ayudan a que la página funcione.
+
+#+begin_src html
+<html>
+  <head></head>
+</html>
+#+end_src
+
+** La etiqueta =<body>=
+- Todos los elementos *visuales-estructurales* están dentro de esta etiqueta.
+
+#+begin_src html
+<html>
+  <head>
+  </head>
+  <body>
+  </body>
+</html>
+#+end_src
+
+** La etiqueta =<title>=
+- Define el titulo que aparecera en la pestaña de tu navegador y es usado por los motores de busqueda.
+
+#+begin_src html
+<html>
+  <head>
+    <title> Primera pagina yay </title>
+  </head>
+  <body>
+    esta es una linea de texto xd.
+  </body>
+</html>
+#+end_src
+
+* Básicas de HTML
+** Elemento =<p>=
+- Sirve para crear párrafos.
+
+#+begin_src html
+<body>
+  <p> Primer parrafo </p>
+  <p> Segundo parrafo </p>
+</body>
+#+end_src
+
+** Salto de linea
+- Podemos usar la etiqueta =<br>= para añadir un salto de linea
+
+#+begin_src html
+<p> Esto es un <br> salto de linea </p>
+#+end_src
+
+** Elementos de formato.
+- Hay una lista de elementos con los cuales podemos dar formato a texto.
+- Solo es necesario poner el texto dentro de las etiquetas.
+
+#+begin_src html
+<p> Texto regular </p>
+<p><b> Texto en negritas</b></p>
+<p><big> Texto un poco más grande </big></p>
+<p><i> Texto en italicas </i></p>
+<p><small> Texto un poco más pequeño </small></p>
+<p><strong> Texto con enfasis </strong></p>
+<p><sub> Texto subindice </sub></p>
+<p><sup> Texto superindice </sup></p>
+<p><ins> Texto subrallado </ins></p>
+<p><del> Texto tachado <del></p>
+#+end_src
+
+#+begin_quote
+Los navegadores muestran texto =<strong>= como =<b>=.
+#+end_quote
+
+** Encabezados
+- Podemos poner encabezados para los títulos con las etiquetas =<h1>= a =<h6>=
+
+#+begin_src html
+<h1> Encabezado tamaño 1</h1>
+<h2> Encabezado tamaño 2</h2>
+<h6> Encabezado tamaño 6</h6>
+#+end_src
+
+#+begin_quote
+Son importantes ya que la web usa los encabezados para indexar resultados y la estructura de la pagina.
+#+end_quote
+
+** Lineas horizontales
+- Para crear una linea horizontal usamos la tag =<hr/>=.
+
+#+begin_src html
+<h1> Encabezado tamaño 1</h1>
+<h2> Encabezado tamaño 2</h2>
+<hr/>
+<h6> Encabezado tamaño 6</h6>
+#+end_src
+
+** Comentarios
+- Podemos poner comentarios en código html para añadir descripciones a quien vea el código.
+
+#+begin_src html
+<!-- ​Tu comentario va aqui -->
+#+end_src
+
+** Atributos html
+- Proveen información adicional sobre un elemento o etiqueta además de modificarla.
+
+#+begin_src html
+<p align="center">
+ Este texto esta alineado al centro
+</p>
+#+end_src
+
+** Unidades de medida de los atributos
+- Hay diferentes unidades de medida.
+
+#+begin_src html
+<hr width="50px"/>
+#+end_src
+
+#+begin_quote
+Podemos usar píxeles (px)
+#+end_quote
+
+#+begin_src html
+<hr width="50%"/>
+#+end_src
+
+#+begin_quote
+También podemos usar porcentajes
+#+end_quote
+
+** La etiqueta =<img>=
+- Se usa para insertar una imagen.
+- No tiene una etiqueta que la cierra.
+
+#+begin_src html
+<img src="image.jpg" />
+#+end_src
+
+*** Tamaño de la imagen
+
+#+begin_src html
+<img src="image.jpg" height="150px" width="150px" alt="" />
+#+end_src
+
+#+begin_quote
+En el caso de que la imagen no pueda ser mostrada se mostrara lo que haya dentro de el parametro alt
+#+end_quote
+
+*** Borde de imagen
+- Por defecto las imágenes no tienen borde, podemos usar el atributo =border= para esto.
+
+#+begin_src html
+<img src="image.jpg" height="150px" width="150px" border="1px" alt="" />
+#+end_src
+
+** la etiqueta =<a>=
+- Podemos definir links con la etiqueta =<a>=.
+
+#+begin_src html
+<a href="www.google.com"> Un link a google</a>
+#+end_src
+
+#+begin_quote
+Podemos meter un bloque de imagen entre uno de links.
+#+end_quote
+
+*** El atributo =target=
+- Este define donde se va a abrir un link, con el atributo =_blank=, se abrirá en una nueva pestaña.
+
+#+begin_src html
+<a href="www.google.com" target="_blank"> Un link a google</a>
+#+end_src
+
+** Listas ordenadas.
+- Las listas ordenadas van dentro del bloque =<ol>=.
+- Cada elemento de la lista esta definido con el bloque =<li>=.
+
+#+begin_src html
+<ol>
+  <li> lista 1 </li>
+  <li> lista 2 </li>
+  <li> elemento 1 </li>
+</ol>
+#+end_src
+
+** Listas no ordenadas.
+- Van dentro del bloque =<ul>=.
+- Cada elemento de la lista esta definido con el bloque =<li>=.
+
+#+begin_src html
+<ul>
+  <li> lista 1 </li>
+  <li> lista 2 </li>
+  <li> elemento 1 </li>
+</ul>
+#+end_src
+
+** Tablas
+- Son definidas por la etiqueta =<table>=.
+- Agregamos columnas con la etiqueta =<tr>=.
+- Las filas son definidas por la etiqueta =<td>=.
+
+Una tabla con una fila y tres columnas.
+
+#+begin_src html
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+#+end_src
+
+#+begin_quote
+Las etiquetas =<td>= pueden contener todo tipo de elementos, como texto, imágenes, listas así como otras tablas.
+#+end_quote
+
+*** Atributos =border= y =colspan=
+- Podemos añadir bordes con el atributo =border=.
+
+#+begin_src html
+<table border="2">
+  <tr>
+    <td>Red</td>
+    <td>Blue</td>
+    <td>Green</td>
+  </tr>
+  <tr>
+    <td><br /></td>
+    <td colspan="2"><br /></td>
+  </tr>
+</table>
+#+end_src
+
+#+begin_quote
+Con =colspan= tenemos celdas que ocupan más de un espacio en la tabla.
+#+end_quote
+
+*** Los atributos =align= y =bgcolor=
+- Para cambiar la posición de la tabla usamos el atributo =align=.
+
+#+begin_src html
+<table align="center">
+#+end_src
+
+- Podemos especificar el color de fondo de una celda con el atributo =bgcolor=.
+
+#+begin_src html
+<table border="2">
+  <tr>
+    <td bgcolor="red">Red</td>
+    <td>Blue</td>
+    <td>Green</td>
+  </tr>
+  <tr>
+    <td>Yellow</td>
+    <td colspan="2">Orange</td>
+  </tr>
+</table>
+#+end_src
+
+** Tipos de elementos
+En html la mayoría de los elementos son definidos como elementos de bloque (/bock level/) o elementos de linea (/inline/).
+- Elementos de bloque:
+  + Normalmente empiezan en una linea nueva.
+  + =<h1>, <form>, <li>, <p>=
+- Elementos en linea:
+  + Normalmente son presentados en la misma linea donde se declaran.
+  + =<b>, <a>, <strong>, <img>=
+- El elemento =<div>= se usa como contenedor de otros elementos HTML.
+
+#+begin_src html
+<html>
+  <body>
+    <h1>Headline</h1>
+    <div style="background-color:green; color:white; padding:20px;">
+      <p>Some paragraph text goes here.</p>
+      <p>Another paragraph goes here.</p>
+    </div>
+  </body>
+</html>
+#+end_src
+
+Otros elementos pueden ser usados como elementos de bloque o elementos de linea.
+- APPLET : Applet de java enbebido.
+- IFRAME : Marco en linea.
+- INS : Texto insertado.
+- MAP : Mapa de imágenes.
+- OBJECT : Objeto enbebido
+- SCRIPT : Script dentro de un documento html.
+
+#+begin_quote
+Los elementos de linea no pueden contener ningún elemento de bloque.
+#+end_quote
+
+** El elemento =<form>=
+- Son usados para obtener información del usuario.
+
+#+begin_src html
+<body>
+  <form>
+  </form>
+</body>
+#+end_src
+
+Podemos utilizar el atributo =action= para apuntar a otra pagina web despues de que el usuario termine el formulario.
+
+#+begin_src html
+<form action="https://www.google.com">
+</form>
+#+end_src
+
+*** Los atributos =method= y =name=
+- El atributo =method= especifica que tipo de petición HTTP (=GET= o =POST=) sera utilizada para cuando el formulario sea mandado.
+
+#+begin_src html
+<form action="url" method="GET">
+#+end_src
+
+#+begin_quote
+Cuando usas =GET=, la información que mandes sera visible en la url de la pagina.
+#+end_quote
+
+#+begin_src html
+<form action="url" method="POST">
+#+end_src
+
+#+begin_quote
+Se usa =POST= cuando se quiere mejor seguridad porque la información no es visible en la url
+#+end_quote
+
+Para obtener datos del usuario debemos de tener los elementos, como pueden ser campos de texto.
+
+#+begin_src html
+<form>
+  <input type="text" name="username" /><br />
+  <input type="password" name="password" />
+</form>
+#+end_src
+
+*** Elementos de los =form=
+- Si ponemos el tipo de input a =radio= el usuario puede seleccionar solo una de las opciones.
+
+#+begin_src html
+<input type="radio" name="gender" value="male" /> Male
+<br />
+<input type="radio" name="gender" value="female" /> Female
+<br />
+#+end_src
+
+- El tipo =checkbox= permite al usuario elegir más de una opción.
+
+#+begin_src html
+<input type="checkbox" name="gender" value="male" /> Male
+<br />
+<input type="checkbox" name="gender" value="female" /> Female
+<br />
+#+end_src
+
+- También tenemos un tipo =submit= que es un botón para mandar los datos.
+
+#+begin_src html
+<input type="submit" value="submit" />
+#+end_src
+
+
+** Colores HTML
+- Se usa una escala hexadecimal.
+- Son mostrados en una conbinación de rojo (R), verde (G) y azul (B).
+- Los valores hexadecimales son escritos usando el =#= y la conbinación de 3 o 6 valores hexadecimales.
+
+*** Fondo y colores de letra
+- Podemos usar el atributo =bgcolor= para cambiar el fondo.
+- Podemos usar el atributo =color= dentro de la tag =<font>= para cambiar el color de la letra.
+
+#+begin_src html
+<html>
+    <head>
+        <title>first page</title>
+    </head>
+    <body bgcolor="#000099">
+        <h1>
+            <font color="#FFFFFF"> White headline </font>
+        </h1>
+    </body>
+</html>
+#+end_src
+
+** La etiqueta =<frame>=
+- Una pagina puede ser dividida en marcos.
+- La etiqueta =<fame>= define una ventana especifica dentro de un =<frameset>=.
+- Cada =frame= puede tener diferentes atributos, como borde, scroll, la habilidad de cambiar de tamaño, etc.
+- El elemento =<fameset>= especifica el número de columnas o filas o el tamaño en píxeles
+
+#+begin_src html
+<frameset cols="100, 25%, *"></frameset>
+<frameset rows="100, 25%, *"></frameset>
+#+end_src
+
+#+begin_quote
+=Frameset= no esta soportado en html 5
+#+end_quote
+
+*** Trabajando con =frames=
+- Usamos el atributo =<noresize>= para especificar que el usuario no puede cambiar el tamaño de un frame.
+
+#+begin_src html
+<frame noresize="noresize">
+#+end_src
+
+ - El elemento =<noframes>= provee una manera a los navegadores que no soportan frames.
+
+#+begin_src html
+<frameset cols="25%,50%,25%">
+  <frame src="a.htm" />
+  <frame src="b.htm" />
+  <frame src="c.htm" />
+  <noframes>Frames not supported!</noframes>
+</frameset>
+#+end_src
+
+#+begin_quote
+=<frame>= no esta soportado en html 5
+#+end_quote
+
+* HTML 5
+- Al principio del documento va la declaración.
+
+#+begin_src html
+<!DOCTYPE HTML>
+#+end_src
+
+- Despues va el charset.
+
+#+begin_src html
+<meta charset="UTF-8">
+#+end_src
+
+#+begin_quote
+El charset por defecto es UTF-8
+#+end_quote
+
+** Modelos de contenido
+HTML introduce 7 modelos de contenido principales.
+
+- Metadata
+  + La configuración de la presentación o el comportamiento del contenido.
+  + Normalmente son los elementos que van dentro de =<head>=.
+  + =<base>, <link>, <meta>, <noscript>, <script>, <style>, <title>=
+- Embedded
+  + Contenido que importa otros recursos dentro del documento.
+  + =<audio>, <video>, <canvas>, <ifame>, <img>, <math>, <object>, <svg>=
+- Interactive
+  + Contenidos diseñados para que el usuario interactue con ellos.
+  + =<a>, <audio>, <video>, <button>, <details>, <embeded>, <iframe>, <img>, <input>, <label>, <object>, <select>, <textarea>=
+- Heading
+  + Definen una cabecera de una sección.
+  + =<h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <hgroup>=
+- Phrasing
+  + Elementos de linea en común con html 4.
+  + =<img>, <span>, <strong>, <label>, <br />, <small>, <sub>=, etc
+- Flow
+  + Contiene la mayoría de los elementos html 5 que estan en el documento.
+- Sectioning
+  + Define el alcance de headers, contenido, footers, etc.
+  + =<article>, <aside>, <nav>, <section>=
+
+** Estructura de la pagina en HTML5
+
+#+begin_example
+
+                      +------------------------------+
+                      |           <header>           |
+                      | Contiene cosas como logos    |
+                      +------------------------------+
+                      +------------------------------+
+                      |             <nav>            |
+                      | Contiene cosas relacionadas  |
+                      | con la navegación del sitio  |
+                      +------------------------------+
+ +-------------------------------------+ +-----------------------------------------+
+ |             <article>               | |                                         |
+ |  Contenido principal de la pagina   | |                <aside>                  |
+ |                                     | |                                         |
+ |  +-------------------------------+  | | Contiene información extra relacionada  |
+ |  |          <section>            |  | | con la pagina como links                |
+ |  | Sección dividida de la pagina |  | |                                         |
+ |  | principal                     |  | |                                         |
+ |  +-------------------------------+  | |                                         |
+ |                                     | +-----------------------------------------+
+ +-------------------------------------+
+   +--------------------------------------------------------------------------+
+   |                                <footer>                                  |
+   |informacion sobre copyright, politica de privacidad, terminos de uso, etc |
+   +--------------------------------------------------------------------------+
+#+end_example
+
+#+begin_quote
+Puede que no utilices todos los elementos, depende de la estructura de la página.
+#+end_quote
+
+** La etiqueta =<header>=
+- El elemento =<header>= puede ser usado dentro del =<body>=.
+
+#+begin_quote
+El elemento =<header>= es diferente que =<head>=.
+#+end_quote
+
+#+begin_src html
+<!DOCTYPE HTML>
+<html>
+  <head></head>
+  <body>
+    <header>
+      <h1> EL header más importante <h1>
+    </header>
+  </body>
+</html>
+#+end_src
+
+
+** El elemento =<footer>=
+- Normalmente nos referimos a la parte de abajo de la página como footer.
+- Donde podemos encontrar:
+  + Información de contacto.
+  + Política de privacidad.
+  + Iconos de redes sociales.
+  + Términos de servicio.
+  + Información de copyright.
+
+#+begin_src html
+<footer></footer>
+#+end_src
+
+** El elemento =<nav>=
+- Esta etiqueta representa una sección que es usada para poner links a otras páginas o a ciertas partes de la misma página.
+
+#+begin_src html
+<nav>
+  <ul>
+    <li><a href="#">Home</li>
+    <li><a href="#">Services</li>
+    <li><a href="#">About us</li>
+  </ul>
+</nav>
+#+end_src
+
+#+begin_quote
+En este ejemplo tenemos enlaces de navegación a diferentes secciones de la página
+#+end_quote
+
+** El elemento =<article>=
+- Es una pieza de contenido autocontenido que puede ser usada de manera separada a los diferentes elementos de la página.
+- Podría ser un Post de un foro, una revista o un articulo de periódico, un comentario, un widget interactivo o cualquier otro contenido independiente.
+- Este elemento remplaza el =<div>= que se usaba en html4 junto con una clase o id.
+
+#+begin_src html
+<article>
+  <h1> El titulo del articulo <h1>
+  <p> Contenido </p>
+</article>
+#+end_src
+
+** El elemento =<section>=
+- Es un contenedor lógico dentro de una pagina o articulo.
+- Pueden ser usados para dividir contenido dentro de un articulo.
+- Cada =<section>= debería de ser identificada con un header.
+
+#+begin_src html
+<article>
+  <h1> Welcome </h1>
+  <section>
+    <h1> Heading </h1>
+    <p> Contenido o imagen </p>
+  </section>
+</article>
+#+end_src
+
+** El elemento =<aside>=
+- Es un contenido secundario que puede considerarse separado pero relacionado a el contenido principal.
+- Este tipo de contenido es representado regularmente en /sidebars/.
+- Cuando =<aside>= esta dentro de =<article>= el contenido debe de estar relacionado al del articulo.
+
+#+begin_src html
+<article>
+  <h1> Regalos para todos </h1>
+  <p> Este es el mejor lugar para elegir regalos </p>
+  <aside>
+    <p> Los regalos seran entregados dentro de 24hrs despues del pedido </p>
+  </aside>
+</article>
+#+end_src
+
+** Audio en la web
+- Hay dos maneras de especificar el URL del audio.
+
+#+begin_src html
+<audio src="audio.mp3" controls>
+  Audio element not supported by your browser
+</audio>
+#+end_src
+
+#+begin_src html
+<audio controls>
+  <source src="audio.mp3" type="audio/mpeg">
+  <source src="audio.ogg" type="audio/ogg">
+</audio>
+#+end_src
+
+- El bloque audio crea un reproductor de audio dentro de la pagina web.
+
+*** Atributos de audio
+- =controls= :: Especifica que los controles de audio deben ser mostrados (Play/pause).
+- =autoplay= :: Especifica que el audio debe de ser reproducido en cuanto este listo.
+- =loop= :: Especifica que el audio debe de reproducirse otra vez cuando termine.
+
+#+begin_src html
+<audio controls autoplay loop>
+#+end_src
+
+#+begin_quote
+Formatos soportados: MP3, OGG, WAV.
+#+end_quote
+
+** Vídeos en HTML
+- Es similar a audio.
+
+#+begin_src html
+<video controls>
+  <source src="video.mp4" type="video/mp4">
+  <source src="video.ogg" type="video/ogg">
+  Video is not suported in your browser.
+</video>
+#+end_src
+
+#+begin_quote
+Video comparte los mismos atributos que audio
+#+end_quote
+
+#+begin_quote
+Formatos soportados: MP4, OGG, WebM.
+#+end_quote
+
+** Barras de progreso
+- El elemento =<progress>= provee barras de progreso.
+- Pueden ser usadas en cualquier lugar dentro del =<body>=.
+
+*** Atributos de las barras de progreso
+- =value= :: Especifica el valor de la tarea realizado.
+- =max= :: Especifica el valor máximo de la tarea a realizar.
+
+#+begin_src html
+Status: <progress min="0" max="100" value="35">
+</progress>
+#+end_src
+
+#+begin_quote
+Se usa en conjunto con JavaScript para mostrar el porcentaje dinámico.
+#+end_quote
+
+** Almacenamiento Web
+- Con HTML5, sitios web pueden guardar datos en la computadora local del usuario.
+- Ventajas del almacenamiento web:
+  + Más seguro.
+  + Más rápido.
+  + Puedes almacenar más datos.
+  + Etc.
+
+#+begin_quote
+Almacenamiento local es por dominio, Solo las paginas de un dominio especifico pueden acceder a el almacenamiento de ese dominio.
+#+end_quote
+
+*** Tipos de Objetos de almacenamiento Web
+- Hay dos tipos de almacenamiento web:
+  + =sessionStorage()=
+    - Es destruido una vez el usuario cierra el navegador.
+  + =localStroage()=
+    - Guarda datos sin fecha de vencimiento.
+
+*** Trabajando con valores.
+- La información es guardada en forma de diccionario (key/value).
+
+*Guardando un valor.*
+
+#+begin_src javascript
+localStroage.setItem("key1", "Value");
+#+end_src
+
+*Obteniendo un valor.*
+
+#+begin_src javascript
+//Esto imprimira el valor
+alert(localStroage.getItem("key1"));
+#+end_src
+
+*Eliminando un valor.*
+
+#+begin_src javascript
+localStroage.removeItem("Key1");
+#+end_src
+
+*Eliminando todos los valores.*
+
+#+begin_src javascript
+localStroage.clear();
+#+end_src
+
+#+begin_quote
+La misma sintaxis aplica para =sessionStorage=.
+#+end_quote
+
+** API de geolocalización
+- Sirve para obtener la localización geográfica del usuario.
+- Por privacidad, esta opción tiene que ser aprobada por el usuario.
+
+#+begin_src javascript
+navigator.geolocation.getCurrentPosition();
+#+end_src
+
+- Parametros:
+  + =showLocation= (Mandatorio): Define el método que recibe la información.
+  + =errorHandler= (Opcional): Define un método que es llamado cuando ocurre un error.
+  + =Options= (Opcional): Define una serie de opciones para recibir la información.
+
+*** Presentando los datos
+- Los datos pueden ser presentados de dos formas:
+- Geodetic:
+  + Se refiere a datos de latitud y longitud.
+- Civic:
+  + Una forma más casual y leible por cualquier persona.
+
+** Haciendo elementos /Draggables/
+- Permite que un elemento pueda moverse y cambiarse de posición con el cursor.
+- Para hacerlo /draggable/ solo pon el atributo de ese mismo nombre a =true=.
+
+#+begin_src html
+<img draggable="true" />
+#+end_src
+
+#+begin_quote
+Cualquier elemento puede ser /draggable/
+#+end_quote
+
+La API de HTML5 de /drag and drop/ se maneja por eventos.
+
+#+begin_src javascript
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+   </script>
+   </head>
+<body>
+
+   <div id="box" ondrop="drop(event)"
+   ondragover="allowDrop(event)"
+   style="border:1px solid black;
+   width:200px; height:200px"></div>
+
+   <img id="image" src="sample.jpg" draggable="true"
+   ondragstart="drag(event)" width="150" height="50" alt="" />
+
+</body>
+</html>
+#+end_src
+
+*** Lo que se va a mover
+- Cuando un elemento es arrastrado con el mause, el atributo =ondragstart=, llama a la función =drag()= que especifica que se va a mover.
+- El método =dataTransfer.setData()= pone el tipo de dato y el valor de los elementos a mover.
+
+#+begin_src javascript
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+#+end_src
+
+#+begin_quote
+El tipo de dato es "text" y el valor es el ID del elemento a mover, "image".
+#+end_quote
+
+*** A donde ponerlo
+- El atributo =ondragover= especifica donde el objeto puede ser soltado.
+  + Por defecto, datos y elementos no pueden ser soltados dentro de otros.
+    - Debemos prevenir el manejo por defecto de los elementos.
+  + Esto se hace llamando al método =preventDefault()= para el evento =ondragover=.
+
+*** Hacer el Drop
+- Cuando el objeto es soltado, ocurre el evento /drop/.
+- En el ejemplo el atributo =ondrop= llama a la función =drop()=.
+
+#+begin_src javascript
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+#+end_src
+
+- El método =preventDefault()= previene el el manejo por defecto del evento.
+- Los datos de el elemento pueden obtenerse con =dataTransfer.getData()=.
+  + Estos datos seria el ID del elemento movido ="image"=.
+- El elemento movido es añadido al final del evento /drop/, usando la función =appendChild()=.
+
+** SVG
