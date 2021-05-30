@@ -690,7 +690,7 @@ Define un tipo de dato para objetos, pero no es un objeto.
   + Cuando instancias un objeto, los datos de este son guardados en la /heap/ mientras que la dirección de memoria de la heap es guardada en el /stack/.
 
 #+attr_html: :alt  :align center :class img
-[[file:images/SS-01.png][img]]
+[[./images/SS-01.png]]
 
 - =Stack= :: Es usado para asignación de memoria estática, eso incluye a todas tus variables como x.
 - =Heap= :: Es usada para asignación de memoria dinámica, eso incluye objetos /custom/ que podrían necesitar más memoria durante la ejecución de un programa.
