@@ -594,3 +594,162 @@ static void Main()
 #+end_src
 
 *** Pasando por Output
+- Parecidos a pasar por referencia.
+  + La diferencia esta en que estos transfieren datos fuera del método (como un return).
+- Son útiles para retornar varios valores de un método.
+- Son denotados por la palabra =out=.
+
+#+begin_src csharp
+static void GetValues(out int x, out int y) // <---
+    {
+        x = 5;
+        y = 10;
+    }
+static void Main()
+    {
+        int a, b;
+        GetValues(out a, out b);
+        // Ahora a = 5 y b = 10
+    }
+#+end_src
+
+#+begin_quote
+Las variables deben de estar inicializadas, pero no tener ningún valor.
+#+end_quote
+
+** Sobrecarga
+- La Sobrecarga de métodos es cuando dos métodos tienen el mismo nombre pero diferentes parametros.
+
+#+begin_src csharp
+void Print(int a)
+    {
+        Console.WriteLine("Value: " + a);
+    }
+void Print(double a)
+    {
+        Console.WriteLine("Value: " + a);
+    }
+#+end_src
+
+#+begin_quote
+Con la sobrecarga podemos tener una misma función que funcione con =int= y con =double=.
+#+end_quote
+
+- Cuando se hace sobrecarga, la definición de los métodos debe diferir en su tipo o numero de argumentos.
+  + Cuando se llame, esta llamada llegara a la implementación que coincida con lo que se da.
+- Todos los métodos deben coincidir en el tipo de retorno que tienen.
+
+** Recursividad
+- Es un método que se llama a si mismo.
+- Un ejemplo puede ser el calculo del factorial de un número.
+  + num * num-1 hasta 1.
+
+#+begin_src csharp
+static int Fact(int num)
+    {
+        if (num == 1) {
+            return 1;
+        }
+        return num * Fact(num-1);
+    }
+#+end_src
+
+* Clases y objetos
+** Clases
+- En la programación orientada a objetos una clase es un tipo de dato que define un conjunto de:
+  + Variables y métodos para un objeto declarado.
+- Una clase es como un plano.
+  + Define datos y comportamientos para un tipo.
+
+#+begin_src csharp
+class MiPrimeraClase
+    {
+        //variables, métodos, etc.
+    }
+#+end_src
+
+#+begin_quote
+Define un tipo de dato para objetos, pero no es un objeto.
+#+end_quote
+
+** Objetos
+- Una clase puede usarse para declarar múltiples objetos.
+- Un objeto es llamado también es llamado una instancia de una clase.
+- Cada objeto tiene sus propias características, llamadas atributos.
+  + Las cuales son heredadas de la clase de la cual es instancia.
+
+** Valor y tipos de referencia
+*** Tipos de Valor
+- C# tiene dos formas de guardar valores, por referencia y por valor.
+- Los tipos de dato predeterminados son usados para declarar variables que son tipos de valor.
+  + Su valor es guardado en la memoria en un lugar llamado /stack/ (la pila).
+*** Tipos de referencia.
+- El tipo de referencia es usado para guardar objetos.
+  + Como por ejemplo cuando instancias un objeto es guardado como un tipo de referencia.
+- Estos son guardados en una parte de la memoria llamada /heap/ (Montículo).
+  + Cuando instancias un objeto, los datos de este son guardados en la /heap/ mientras que la dirección de memoria de la heap es guardada en el /stack/.
+
+#+attr_html: :alt  :align center :class img
+[[file:images/SS-01.png][img]]
+
+- =Stack= :: Es usado para asignación de memoria estática, eso incluye a todas tus variables como x.
+- =Heap= :: Es usada para asignación de memoria dinámica, eso incluye objetos /custom/ que podrían necesitar más memoria durante la ejecución de un programa.
+
+** Clases
+#+begin_src csharp
+class Person
+    {
+        int age;
+        string name;
+        public void SayHi()
+            {
+                Console.WriteLine("Hola");
+            }
+    }
+#+end_src
+
+- En el código de arriba tenemos una clase Persona.
+  + Tiene las variables =age= y =name=, asi como el método =SayHi=.
+- Podemos incluir =access modifiers= (modificadores de acceso), también llamados =members= (miembros).
+  + Son palabras claves usadas para especificar la accesibilidad a un miembro.
+  + Un miembro definido como público puede se accedido desde afuera de la clase.
+    - Por eso es que =SayHi()= es público.
+
+#+begin_src csharp
+class Person {
+    int age;
+    string name;
+    public void SayHi() {
+        Console.WriteLine("Hi");
+    }
+}
+static void Main(string[] args)
+{
+    Person p1 = new Person();
+    p1.SayHi();
+}
+#+end_src
+
+
+- El operador =new=, instancia al objeto y retorna una referencia de este a su posición en la heap.
+- El código de arriba instancia un objeto tipo =Person= llamado =p1= y lo usa para llamar al método público =SayHi()=.
+
+#+begin_src csharp
+class Dog
+{
+    public string name;
+    public int age;
+}
+static void Main(string[] args)
+{
+    Dog bob = new Dog();
+    bob.name = "Bobby";
+    bob.age = 3;
+
+    Console.WriteLine(bob.age);
+}
+#+end_src
+
+- Podemos acceder a los miembros públicos de una clase, en el ejemplo las variables nombre y edad.
+
+** Encapsulación

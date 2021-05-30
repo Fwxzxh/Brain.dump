@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>C#</title>
-<!-- 2021-05-19 Wed 22:47 -->
+<!-- 2021-05-30 Sun 12:48 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -231,6 +231,17 @@ $(function() {
 <li><a href="#sec-3-3">3.3. Llamando a métodos</a></li>
 <li><a href="#sec-3-4">3.4. Parametros</a></li>
 <li><a href="#sec-3-5">3.5. Pasando argumentos</a></li>
+<li><a href="#sec-3-6">3.6. Sobrecarga</a></li>
+<li><a href="#sec-3-7">3.7. Recursividad</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Clases y objetos</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Clases</a></li>
+<li><a href="#sec-4-2">4.2. Objetos</a></li>
+<li><a href="#sec-4-3">4.3. Valor y tipos de referencia</a></li>
+<li><a href="#sec-4-4">4.4. Clases</a></li>
+<li><a href="#sec-4-5">4.5. Encapsulación</a></li>
 </ul>
 </li>
 </ul>
@@ -1325,13 +1336,316 @@ El método <code>Sqrt()</code> no cambia el valor de la variable, trabaja con el
 
 <div id="outline-container-sec-3-5-2" class="outline-4">
 <h4 id="sec-3-5-2"><span class="section-number-4">3.5.2</span> Pasando por Output</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<ul class="org-ul">
+<li>Parecidos a pasar por referencia.
+<ul class="org-ul">
+<li>La diferencia esta en que estos transfieren datos fuera del método (como un return).
+</li>
+</ul>
+</li>
+<li>Son útiles para retornar varios valores de un método.
+</li>
+<li>Son denotados por la palabra <code>out</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">GetValues</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">int</span> x, <span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">int</span> y<span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;---</span>
+    <span style="color: #61bfff;">{</span>
+        x = <span style="color: #bd93f9; font-weight: bold;">5</span>;
+        y = <span style="color: #bd93f9; font-weight: bold;">10</span>;
+    <span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">()</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #bd93f9;">int</span> a, b;
+        <span style="color: #50fa7b;">GetValues</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">a</span>, <span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">b</span><span style="color: #ff79c6;">)</span>;
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Ahora a = 5 y b = 10</span>
+    <span style="color: #61bfff;">}</span>
+</pre>
 </div>
+
+<blockquote>
+<p>
+Las variables deben de estar inicializadas, pero no tener ningún valor.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> Sobrecarga</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>La Sobrecarga de métodos es cuando dos métodos tienen el mismo nombre pero diferentes parametros.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> a<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Value: "</span> + a<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+<span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">double</span> a<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Value: "</span> + a<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Con la sobrecarga podemos tener una misma función que funcione con <code>int</code> y con <code>double</code>.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Cuando se hace sobrecarga, la definición de los métodos debe diferir en su tipo o numero de argumentos.
+<ul class="org-ul">
+<li>Cuando se llame, esta llamada llegara a la implementación que coincida con lo que se da.
+</li>
+</ul>
+</li>
+<li>Todos los métodos deben coincidir en el tipo de retorno que tienen.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> Recursividad</h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li>Es un método que se llama a si mismo.
+</li>
+<li>Un ejemplo puede ser el calculo del factorial de un número.
+<ul class="org-ul">
+<li>num * num-1 hasta 1.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Fact</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> num<span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>num == <span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+            <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">1</span>;
+        <span style="color: #ff79c6;">}</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> num * <span style="color: #50fa7b;">Fact</span><span style="color: #ff79c6;">(</span>num-<span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Clases y objetos</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Clases</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>En la programación orientada a objetos una clase es un tipo de dato que define un conjunto de:
+<ul class="org-ul">
+<li>Variables y métodos para un objeto declarado.
+</li>
+</ul>
+</li>
+<li>Una clase es como un plano.
+<ul class="org-ul">
+<li>Define datos y comportamientos para un tipo.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">MiPrimeraClase</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">variables, m&#233;todos, etc.</span>
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Define un tipo de dato para objetos, pero no es un objeto.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Objetos</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Una clase puede usarse para declarar múltiples objetos.
+</li>
+<li>Un objeto es llamado también es llamado una instancia de una clase.
+</li>
+<li>Cada objeto tiene sus propias características, llamadas atributos.
+<ul class="org-ul">
+<li>Las cuales son heredadas de la clase de la cual es instancia.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Valor y tipos de referencia</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-sec-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> Tipos de Valor</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<ul class="org-ul">
+<li>C# tiene dos formas de guardar valores, por referencia y por valor.
+</li>
+<li>Los tipos de dato predeterminados son usados para declarar variables que son tipos de valor.
+<ul class="org-ul">
+<li>Su valor es guardado en la memoria en un lugar llamado <i>stack</i> (la pila).
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> Tipos de referencia.</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<ul class="org-ul">
+<li>El tipo de referencia es usado para guardar objetos.
+<ul class="org-ul">
+<li>Como por ejemplo cuando instancias un objeto es guardado como un tipo de referencia.
+</li>
+</ul>
+</li>
+<li>Estos son guardados en una parte de la memoria llamada <i>heap</i> (Montículo).
+<ul class="org-ul">
+<li>Cuando instancias un objeto, los datos de este son guardados en la <i>heap</i> mientras que la dirección de memoria de la heap es guardada en el <i>stack</i>.
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<a href="images/SS-01.png" align="center" class="img">img</a>
+</p>
+
+<dl class="org-dl">
+<dt> <code>Stack</code> </dt><dd>Es usado para asignación de memoria estática, eso incluye a todas tus variables como x.
+</dd>
+<dt> <code>Heap</code> </dt><dd>Es usada para asignación de memoria dinámica, eso incluye objetos <i>custom</i> que podrían necesitar más memoria durante la ejecución de un programa.
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Clases</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #bd93f9;">int</span> age;
+        <span style="color: #bd93f9;">string</span> name;
+        <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span>
+            <span style="color: #ff79c6;">{</span>
+                Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Hola"</span><span style="color: #50fa7b;">)</span>;
+            <span style="color: #ff79c6;">}</span>
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>En el código de arriba tenemos una clase Persona.
+<ul class="org-ul">
+<li>Tiene las variables <code>age</code> y <code>name</code>, asi como el método <code>SayHi</code>.
+</li>
+</ul>
+</li>
+<li>Podemos incluir <code>access modifiers</code> (modificadores de acceso), también llamados <code>members</code> (miembros).
+<ul class="org-ul">
+<li>Son palabras claves usadas para especificar la accesibilidad a un miembro.
+</li>
+<li>Un miembro definido como público puede se accedido desde afuera de la clase.
+<ul class="org-ul">
+<li>Por eso es que <code>SayHi()</code> es público.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span> age;
+    <span style="color: #bd93f9;">string</span> name;
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Hi"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> args<span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Person</span> p1 = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Person</span><span style="color: #ff79c6;">()</span>;
+    p1.<span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+
+<ul class="org-ul">
+<li>El operador <code>new</code>, instancia al objeto y retorna una referencia de este a su posición en la heap.
+</li>
+<li>El código de arriba instancia un objeto tipo <code>Person</code> llamado <code>p1</code> y lo usa para llamar al método público <code>SayHi()</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> name;
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> age;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> args<span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Dog</span> bob = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Dog</span><span style="color: #ff79c6;">()</span>;
+    bob.name = <span style="color: #f1fa8c;">"Bobby"</span>;
+    bob.age = <span style="color: #bd93f9; font-weight: bold;">3</span>;
+
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>bob.age<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Podemos acceder a los miembros públicos de una clase, en el ejemplo las variables nombre y edad.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Encapsulación</h3>
 </div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-05-19 Wed 22:47</p>
+<p class="date">Created: 2021-05-30 Sun 12:48</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>

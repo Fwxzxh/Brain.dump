@@ -50,7 +50,7 @@ Mi propio rincón con enfoque tipo [[https://learnxinyminutes.com/][Learn X in Y
 #+end_quote
 - [[file:Lenguajes/SQL.org][SQL]] (heavy)
 - [[file:Lenguajes/html.org][HTML]]
-- A
+- [[file:Lenguajes/Csharp/Csharp.org][C#]]
 
 * Teoría
 #+begin_quote
