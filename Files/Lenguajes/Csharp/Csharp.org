@@ -753,3 +753,869 @@ static void Main(string[] args)
 - Podemos acceder a los miembros públicos de una clase, en el ejemplo las variables nombre y edad.
 
 ** Encapsulación
+- En programación se refiere a restringir el acceso a ciertas partes de una clase.
+  + Es llamado también =information hiding=.
+  + Nos permite ocultar detalles de una clase.
+- C# nos da las siguientes modificadores de acceso:
+  + =public=.
+    - Hace un miembro accesible desde fuera de la clase.
+  + =private=.
+    - Hace los miembros accesibles solo dentro de la clase y los oculta fuera de esta.
+  + =protected=.
+  + =internal=.
+  + =protected internal=.
+
+#+begin_src csharp
+class BankAccount {
+    private double balance=0;
+    public void Deposit(double n) {
+        balance += n;
+    }
+    public void Withdraw(double n) {
+        balance -= n;
+    }
+    public double GetBalance() {
+        return balance;
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        BankAccount b = new BankAccount();
+        b.Deposit(199);
+        b.Withdraw(42);
+        Console.WriteLine(b.GetBalance());
+    }
+}
+#+end_src
+
+- Usamos encapsulación para ocultar la variable =balance=.
+- Aun así podemos acceder a =balance= mediante los métodos =Deposit()=, =Withdraw()= y =GetBalance()=.
+  + Así podemos tener el control sobre lo que pasa con la variable =balance= y aplicar distintas verificaciones sobre lo que queremos hacer.
+- La encapsulación nos permite:
+  + Controlar la manera en la que se accede a los datos o en la que se modifican.
+  + Podemos extender el código de una manera más segura y limpia a nuevos requerimientos.
+
+** Constructores
+- Es un miembro especial de una clase que se ejecuta cuando se crea un nuevo objeto de esta clase.
+- Tienen el mismo nombre que la clase, son públicos y no tienen ningún retorno.
+
+#+begin_src csharp
+class Person
+{
+  private int age;
+  public Person()
+  {
+    Console.WriteLine("Hi there");
+  }
+}
+#+end_src
+
+- Esto es útil cuando necesitamos que el objeto sea creado con ciertos parametros.
+  + Por default no tienen parametros, pero si se necesitan pueden agregarse.
+
+#+begin_src csharp
+class Person
+{
+    private int age;
+    private string name;
+    public Person(string nm)
+    {
+        name = nm;
+    }
+    public string getName()
+    {
+        return name;
+    }
+}
+static void Main(string[] args)
+{
+    Person p = new Person("David");
+    Console.WriteLine(p.getName());
+}
+#+end_src
+
+#+begin_quote
+En el ejemplo creamos un objeto pasándole un argumento al constructor.
+#+end_quote
+
+** Propiedades
+- Es una buena práctica encapsular los miembros de una clase y proveer acceso a ellos solo cuando es necesario.
+- Una propiedad es un miembro que provee un mecanismo flexible para leer, escribir o computar el valor de un campo privado.
+  + Estas pueden ser usadas como miembros públicos pero incluyen métodos llamados =accessors=.
+    - Estos incluyen declaraciones que podemos usar para obtener /get/ (leer o computar) o /set/ (escribir) un campo en especifico.
+
+#+begin_src csharp
+class Person {
+    private string name; //campo
+
+    public string Name // Propiedad
+        {
+            get { return name; }
+            set { name = value; }
+        }
+}
+#+end_src
+
+- En el ejemplo, la clase =Person= tiene una propiedad llamada =Name= que tiene un =set= y un =get= para acceder a el campo =name=.
+
+#+begin_quote
+=value= representa el valor que le asignemos a una propiedad usando =set=.
+#+end_quote
+
+#+begin_quote
+Se le puede llamar a una propiedad con cualquier nombre pero la convención es que las propiedades tengan el mismo nombre que el campo peo con mayúscula en la primera letra.
+#+end_quote
+
+Una vez la propiedad es definida podemos usarla para asignar o leer del miembro.
+
+#+begin_src csharp
+static void Main(string[] args)
+    {
+        Person p = new Person;
+        p.Name = "Bob";
+        Console.WriteLine(p.Name);
+    }
+#+end_src
+
+#+begin_quote
+Se accede a la propiedad por su nombre, como cualquier miembro público de la clase.
+#+end_quote
+
+- Podemos tener una propiedad con solo un =get= y sin un =set= o hacer la propiedad privada.
+- Las propiedades nos permiten tener la opción de controlar la lógica de acceder a una variable.
+
+#+begin_src csharp
+class Person {
+    private int age=0;
+    public int Age;
+    {
+        get { return age; }
+        set {
+            if (value > 0) {
+                age = value;
+            }
+        }
+    }
+}
+#+end_src
+
+#+begin_quote
+En el ejemplo verificamos que el valor que le asignemos a =age= sea mayor a 0.
+#+end_quote
+
+** Propiedades auto implementadas.
+- Cuando no necesitas ninguna lógica las propiedades, C# provee una manera rápida para declarar miembros privados a través de sus propiedades.
+
+#+begin_src csharp
+public string Name { get; set; }
+#+end_src
+
+- Esta es la llamada propiedad auto-implementada.
+- Usándola ya no necesitamos declarar el campo privado por separado.
+
+#+begin_src csharp
+class Person {
+    public string Name { get; set; }
+}
+static void Main(string[] args)
+    {
+        Person p = new Person;
+        p.Name = "Bob";
+        Console.WriteLine(p.Name);
+    }
+// Imprime Bob
+#+end_src
+
+* Arreglos y Cadenas
+** Arreglos
+- También llamados /Arrays/.
+- C# provee numerosas clases para guardar y manipular datos.
+- Es una colección de elementos del *mismo tipo*.
+
+#+begin_src csharp
+// declaración de un array
+int [ ] myArray;
+#+end_src
+
+#+begin_quote
+Con esto declaramos un arreglo de enteros.
+#+end_quote
+
+- Pero sabiendo que los arreglos son objetos, debemos declararlos como tal.
+
+#+begin_src csharp
+int [ ] myArray = new int[5];
+#+end_src
+
+#+begin_quote
+Con esto instanciamos un arreglo de enteros con 5 espacios dentro de el.
+#+end_quote
+
+- Despues de crear un arreglo podemos asignar valores en un índice especifico.
+
+#+begin_src csharp
+int [ ] myArray = new int[5];
+myArray[0] = 23
+#+end_src
+
+#+begin_quote
+Aquí asignamos el número 23 en la posición 0 del arreglo.
+#+end_quote
+
+- En C# los arreglos empiezan en 0.
+
+#+begin_src csharp
+string [ ] names = new string[3] {"Jhon", "Cena", "Jose"};
+#+end_src
+
+#+begin_quote
+Podemos asignar valores iniciales a un arreglo se esta forma.
+#+end_quote
+
+- Si asignamos valores iniciales podemos omitir el número de elementos que son en la declaración.
+- Incluso podemos omitir el operador new.
+
+#+begin_src csharp
+string [ ] names = {"Jhon", "Cena", "Jose"};
+#+end_src
+
+- Para acceder a los elementos del arreglo solo tenemos que especificar el número de índice que tiene el elemento.
+
+#+begin_src csharp
+Console.WriteLine(names[2]);
+#+end_src
+
+** Usando arreglos en ciclos
+- A veces es necesario iterar sobre los elementos de un arreglo.
+
+#+begin_src csharp
+int[ ] a = new int[10];
+
+for (int k = 0; k < 10; k++) {
+  a[k] = k*2;
+}
+#+end_src
+
+- Esto se puede lograr de manera fácil y rápida con un ciclo =for=.
+#+begin_src csharp
+for (int k = 0; k < 10; k++) {
+    Console.WriteLine(a[k]);
+}
+#+end_src
+
+*** El ciclo =foreach=
+- El ciclo =foreach= nos da una manera más fácil de acceder a los elementos de un arreglo.
+
+#+begin_src csharp
+foreach (int k in a) {
+    Console.WriteLine(k);
+}
+#+end_src
+
+#+begin_quote
+Este es el equivalente de el ejemplo anterior con un ciclo =for=.
+#+end_quote
+
+- Este itera sobre el arreglo, y asigna el valor del elemento actual a =k=.
+
+#+begin_quote
+El tipo de dato dentro del =foreach= debe de coincidir con el tipo de los elementos del arreglo.
+#+end_quote
+
+#+begin_src csharp
+// a veces se usa la parlabra var dentro del foreach
+foreach (var k in a) {
+    //aaaaaa
+}
+#+end_src
+
+- Esto se hace para que el compilador determine el tipo de dato apropiado automáticamente.
+
+** Arreglos multidimencionales
+- Los arreglos pueden tener mútltipes dimensiones.
+
+#+begin_src csharp
+int [ , ] x = new int[3,4];
+#+end_src
+
+#+begin_quote
+Esto es una matriz de 3x4.
+#+end_quote
+
+** Arreglos dentados
+- También llamados /jagged arrays/.
+- Es básicamente un arreglo en el cual sus elementos son arreglos.
+
+#+begin_src csharp
+int [][] = jaggedArr = new int[3][];
+#+end_src
+
+#+begin_quote
+Tenemos un arreglo de una sola dimensión, con 3 elementos, los cuales son arreglos de una sola dimensión.
+#+end_quote
+
+#+begin_src csharp
+int[ ][ ] jaggedArr = new int[ ][ ]
+{
+  new int[ ] {1,8,2,7,9},
+  new int[ ] {2,4,6},
+  new int[ ] {33,42}
+};
+#+end_src
+
+#+begin_quote
+Si queremos tener valores iniciales, podemos declarar el mismo arreglo de esta manera.
+#+end_quote
+
+#+begin_src csharp
+int x = jaggedArr[2][1]; //42
+#+end_src
+
+#+begin_quote
+Podemos acceder a los elementos del arreglo de esta manera.
+#+end_quote
+
+** Propiedades de los arreglos y métodos
+*** Propiedades de los arreglos
+- La clase de =array= nos da distintas propiedades y métodos para trabajar con ella.
+  + Por ejemplo las propiedades =Length= y =Rank= nos dejan saber la longitud y las dimensiones de un arreglo respectivamente.
+  + Algunos métodos que nos da la clase =array= son: =Max=, =Min=, =Sum= que nos retornan el elemento máximo, mínimo y la suma de todos los elementos
+     respectivamente.
+
+** Trabajando con cadenas
+*** Cadenas
+- Es común pensar en las cadenas de caracteres como un arreglo de caracteres, pero en C# son objetos.
+- Cuando creas una cadena en C#, instancias un objeto de la clase =string=.
+- Tenemos unas cuantas propiedades y métodos útiles para trabajar con cadenas.
+  + =Length=: Nos retorna la longitud de una cadena.
+  + =IndexOf(value)=: Retorna el índice del la primera ocurrencia al valor dado.
+  + =Insert(index, value)=: Inserta el valor dado en la posición dada.
+  + =Remove(index)=: Remueve todos los caracteres de la cadena desde el índice especificado.
+  + =Substring(index, lenth)=: Retorna una porción de la cadena, con desde el índice y por la longitud dada.
+  + =Contains(value)=: Retorna =True= si la cadena contiene el valor especificado.
+- También podemos acceder a los elementos de una cadena por su índice, como si fuera un arreglo.
+
+#+begin_src csharp
+static void Main(string[] args)
+        {
+            string text = "This is some text about a dog. The word dog appears in this text a number of times. This is the end.";
+            text = text.Replace("dog", "cat");
+            text = text.Substring(0, text.IndexOf(".")+1);
+
+            Console.WriteLine(text);
+        }
+#+end_src
+
+#+begin_quote
+C# tiene muchos métodos para trabajar con cadenas.
+#+end_quote
+
+* Más sobre clases
+** Destructores
+- Así como los constructores son usados cuando una clase es instanciada los destructores son usados cuando una clase es destruida o borrada.
+- Los destructores tienes las siguientes características:
+  + Una clase solo puede tener un solo destructor.
+  + Los destructores no pueden ser llamados, son llamados automáticamente.
+  + No toman parametros o modificadores.
+  + El nombre de el destructor tiene que ser el mismo que el de la clase con un =~= antes del nombre.
+
+#+begin_src csharp
+class Dog {
+    ~Dog()
+        {
+            //Código
+        }
+}
+#+end_src
+
+#+begin_quote
+Son útiles para liberar recursos cuando sales del programa, ejemplos pueden ser: cerrando archivos, liberar memoria, etc.
+#+end_quote
+
+#+begin_src csharp
+class Dog
+{
+    public Dog() {
+        Console.WriteLine("Constructor");
+    }
+    ~Dog() {
+        Console.WriteLine("Destructor");
+    }
+}
+static void Main(string[] args)
+{
+    Dog d = new Dog();
+}
+#+end_src
+
+#+begin_quote
+En este ejemplo, cuando instanciamos el objeto el programa imprime "Constructor" y cuando el programa termina,
+el objeto es borrado y el destructor imprime "Destructor".
+#+end_quote
+
+** Miembros estáticos
+- Todos los miembros de una clase (variables, propiedades, métodos) pueden ser declarados como =static= (estáticos).
+  + Esto hace que los miembros pertenezcan a la clase en vez de pertenecer al objeto individual.
+    - No importa cuantos objetos de la clase son creados, solo hay una copia del miembro estático.
+
+#+begin_src csharp
+class Cat {
+    public static int count=0;
+    public Cat() {
+        count++;
+    }
+}
+#+end_src
+
+#+begin_quote
+No importa cuantos objetos =Cat= instanciemos, =count= siempre sera el mismo para todos estos.
+#+end_quote
+
+- Debido a su naturaleza global, estos miembros pueden ser accedidos directamente usando el nombre de la clase.
+
+#+begin_src csharp
+class Cat {
+    public static int count=0;
+    public Cat() {
+        count++;
+    }
+}
+static void Main(string[] args)
+    {
+        Cat c1 = new Cat();
+        Cat c2 = new Cat();
+
+        Console.WriteLine(Cat.count()); // 2
+    }
+#+end_src
+
+#+begin_quote
+En el ejemplo accedemos a la variable =count= con el nombre de la clase y no el de las instancias, y esta variable es la misma en todas las instancias de =Cat=.
+#+end_quote
+
+#+begin_quote
+Se debe acceder a los miembros estáticos con el nombre de la clase siempre.
+#+end_quote
+
+*El mismo concepto se aplica a los métodos estáticos.*
+
+#+begin_src csharp
+class Dog {
+    public static void Bark() {
+        Console.WriteLine("Woof");
+    }
+}
+static void Main(string[] args)
+    {
+        Dog.Bark();
+    }
+#+end_src
+
+#+begin_quote
+Métodos estáticos solo pueden acceder a miembros estáticos.
+#+end_quote
+
+#+begin_quote
+El método =Main= es estático, y es el punto de entrada de cualquier programa, entonces cualquier método llamado directamente desde el Main tiene que ser estático.
+#+end_quote
+
+- Las constantes son estáticas por definición.
+
+#+begin_src csharp
+class Math {
+    public const int ONE = 1;
+}
+#+end_src
+
+*** Constructores estáticos
+- Los constructores pueden ser declarados estáticos para inicializar miembros estáticos de la clase.
+
+#+begin_src csharp
+class SomeClass {
+    public static int x { get; set; }
+    public static int y { get; set; }
+
+    static SomeClass() {
+        x = 10;
+        y = 10;
+    }
+}
+#+end_src
+
+#+begin_quote
+El constructor sera llamado cuando intentemos acceder a =SomeClass.X= o =SomeClass.Y=.
+#+end_quote
+
+*** Clases estáticas
+- Una clase puede ser declarada como estática.
+  + Solo puede contener miembros estáticos.
+- No se puede instanciar un objeto de una clase estática, ya que solo una instancia puede existir en el programa.
+- Son útiles para combinar propiedades lógicas y métodos.
+  + La clase =Math= es un buen ejemplo.
+
+#+begin_src csharp
+Console.WriteLine(Math.Pow(2, 3));
+#+end_src
+
+#+begin_quote
+Podemos acceder a la clase =Math= usando el nombre de la clase, sin declarar un objeto
+#+end_quote
+
+**** Ejemplos
+
+La clase =Array= tiene algunos métodos estáticos para manipular arrelgos.
+
+#+begin_src csharp
+int[] arr = {1, 2, 3, 4};
+
+Array.Reverse(arr);
+//arr = {4, 3, 2, 1}
+
+Array.Sort(arr);
+//arr = {1, 2, 3, 4}
+#+end_src
+
+La clase =String= también los tiene.
+
+#+begin_src csharp
+string s1 = "some text";
+string s2 = "another text";
+
+String.Concat(s1, s2); // combines the two strings
+
+String.Equals(s1, s2); // returns false
+#+end_src
+
+#+begin_quote
+La clase =Console= También es otro ejemplo de una clase estática.
+#+end_quote
+
+** =This= & =readonly=
+*** =This=
+- La palabra =This= es usada dentro de una clase y se refiere a la instancia actual de la clase.
+  + Al objeto actual.
+- Se usa comúnmente para distinguir los miembros de la clase de otros datos como.
+  + Parametros locales o formales de un método.
+
+#+begin_src csharp
+class Person {
+    private string name;
+    public Person(string name) {
+        this.name = name;
+    }
+}
+#+end_src
+
+#+begin_quote
+Aquí, =this.name= representa el miembro de la clase y =name= el nombre el parametro del constructor.
+#+end_quote
+
+#+begin_quote
+Otro uso común de =this= es para pasar la instancia actual a un método como un parametro: =ShowPersonInfo(this);=
+#+end_quote
+
+*** El modificador =readonly=
+- Previene que un miembro de una clase sea modificado despues de la construcción.
+  + Esto significa que solo puede ser modificado cuando lo declaras desde un constructor.
+
+#+begin_src csharp
+class Person {
+    private readonly string name = "John";
+    public Person(string name) {
+        this.name = name;
+    }
+}
+#+end_src
+
+#+begin_quote
+Si intentamos modificar el campo =name= en algún otro lugar tendremos un error.
+#+end_quote
+
+- =readonly= y =const= son parecidos pero tienen ciertas diferencias.
+  + Una campo =const= debe de ser inicializado con un valor y =readonly= no.
+  + Un campo =readonly= puede ser cambiado en un constructor, el =const= no.
+  + Un campo =readonly= puede ser asignado a un valor que es el resultado de un calculo, =const= no.
+
+** Indexadores
+- Permiten a objetos ser indexados como si fueran un arreglo.
+- Un ejemplo es la clase =String=, la cual es un arreglo de objetos tipo =Char= implementando un indexadores para que podamos acceder a los elementos.
+
+#+begin_src csharp
+string str = "Hello World";
+char x = str[4];
+Console.WriteLine(x);
+#+end_src
+
+- La declaración de un indexador es similar a una propiedad.
+
+#+begin_src csharp
+class Clients {
+    private string[] names = new string[10];
+
+    public string this[int index] {
+        get {
+            return names[index];
+        }
+        set {
+            names[index] = value;
+        }
+    }
+}
+#+end_src
+
+- Todos los indexadores necesitan un índice.
+- Se usan =get= y =set= para definir un indexador.
+  + La diferencia es que los indexadores retornan o ponen un valor particular de la instancia del objeto.
+- Son definidos con la palabra =this=.
+  + Esto para obtener o poner el elemento de la instancia.
+
+#+begin_src csharp
+Clients c = new Clients();
+c[0] = "Dave";
+c[1] = "Bob";
+
+Console.WriteLine(c[1]);
+#+end_src
+
+#+begin_quote
+Se usan indexadores típicamente si la clase representa una lista, colección o un arreglo de objetos.
+#+end_quote
+
+** Sobrecarga de Operadores
+- La mayoría de los operadores en C# puede ser sobrecargados.
+  + Esto significa que pueden ser redefinidos para que hagan otras cosas.
+- Por ejemplo, podemos redefinir el comportamiento de =+= en una clase.
+
+#+begin_src csharp
+class Box {
+    public int Height {get; set;}
+    public int Width {get; set;}
+    public Box(int h, int w) {
+        Height = h;
+        Width = w;
+    }
+}
+static void Main(string[] args) {
+    Box b1 = new Box(14, 3);
+    Box b2 = new Box(5, 7);
+}
+#+end_src
+
+Teniendo dos objetos tipo =Box= si quisiéramos sumarlos para tener un objeto =Box= más grande haríamos.
+
+#+begin_src csharp
+Box b3 = b1 + b2;
+#+end_src
+
+#+begin_quote
+Este comportamiento lo lograriamos a través de la sobrecarga de operadores.
+#+end_quote
+
+- Son métodos con nombres especiales, donde la palabra =operator= va antes que el operador a definir.
+- Similar a cualquier otro método, tienen tipos de retorno y una lista de parametros.
+
+#+begin_src csharp
+public static Box operator+ (Box a, Box b) {
+    int h = a.Height + b.Height;
+    int w = a.Width + b.Width;
+    Box res = new Box(h, w);
+    return res;
+}
+#+end_src
+
+#+begin_quote
+En el ejemplo estamos sobrecargando el operador =+= para objetos de nuestra clase =Box=.
+#+end_quote
+
+#+begin_quote
+Todos los operadores sobrecargados deben ser estáticos.
+#+end_quote
+
+#+begin_src csharp
+class Box {
+    public int Height { get; set; }
+    public int Width { get; set; }
+    public Box(int h, int w) {
+        Height = h;
+        Width = w;
+    }
+    public static Box operator+(Box a, Box b) {
+        int h = a.Height + b.Height;
+        int w = a.Width + b.Width;
+        Box res = new Box(h, w);
+        return res;
+    }
+}
+
+static void Main(string[] args)
+{
+    Box b1 = new Box(14, 3);
+    Box b2 = new Box(5, 7);
+    Box b3 = b1 + b2;
+
+    Console.WriteLine(b3.Height);// 19
+    Console.WriteLine(b3.Width);// 10
+}
+#+end_src
+
+#+begin_quote
+Podemos sobrecargar todos los operadores aritméticos y de comparación.
+#+end_quote
+
+* Herencia y polimorfismo
+** Herencia
+- Nos permite definir una clase basada en otra clase.
+- La clase que hereda sus propiedades a otra es llamada *clase base*.
+  + La clase a la que se hereda es llamada *clase derivada*.
+- Podemos definir una clase =Animal= con ciertas propiedades y usarla para construir las clases =Perro= y =Gato=.
+  + Estas heredan todas las propiedades de la clase animal y pueden tener sus propias propiedades.
+
+#+begin_src csharp
+class Animal {
+    public int Legs {get; set;}
+    public int Age {get; set;}
+}
+#+end_src
+
+#+begin_quote
+Podemos tener nuestra clase =Animal= que será nuestra clase base.
+#+end_quote
+
+#+begin_src csharp
+class Dog : Animal {
+    public Dog() {
+        Legs = 4;
+    }
+    public void Bark() {
+        Console.Write("Woof");
+    }
+}
+#+end_src
+
+#+begin_quote
+Y con ella crear nuestra clase =Dog=, usando sus miembros y agregando unos propios de la clase nueva.
+#+end_quote
+
+- Debemos definir la clase y con dos puntos después del nombre definir la clase base de nuestra clase.
+- Todos los miembros públicos de la clase =Animal= se vuelven miembros públicos de la clase =Dog=, incluyendo métodos.
+
+#+begin_src csharp
+static void Main(string[] args)
+    {
+        Dog d = new Dog();
+        Console.WriteLine(d.legs); // 4
+        d.Bark();
+    }
+#+end_src
+
+#+begin_quote
+Esto nos permite reusar código ya escrito sin necesidad de reescribir.
+#+end_quote
+
+#+begin_quote
+C# no soporta herencia múltiple, asi que no puedes heredar de varias clases al mismo tiempo.
+
+Sin embargo, puedes usar *interfaces* para implementar herencia múltiple.
+#+end_quote
+
+** Miembros protegidos
+- El modificador =protected= es parecido a =private=.
+  + La diferencia es que =protected= puede ser accedido desde las clases derivadas.
+
+#+begin_src csharp
+class Person {
+    protected int Age {get; set;}
+    protected string Name {get; set;}
+}
+
+class Student : Person {
+    public Student(string nm) {
+        Name = nm;
+    }
+    public void Speak() {
+        Console.Write("Name: " + Name);
+    }
+}
+
+static void Main(string[] args)
+{
+    Student s = new Student("David");
+    s.Speak(); // Name: David
+}
+#+end_src
+
+#+begin_quote
+En el ejemplo podemos acceder y modificar la propiedad =name=, desde la clase derivada.
+#+end_quote
+
+#+begin_src csharp
+static void Main(string[] args)
+{
+    Student s = new Student("David");
+    s.Name = "Bob"; // Error!
+}
+#+end_src
+
+#+begin_quote
+Si intentamos acceder a ella desde afuera de la clase obtendremos un error.
+#+end_quote
+
+** Sellado
+- Podemos prevenir a las clases de heredar sus miembros usando el modificador =sealed=.
+
+#+begin_src csharp
+sealed class Animal {
+    //some code
+}
+class Dog : Animal { } //Error
+
+static void Main(string[] args)
+{
+
+}
+#+end_src
+
+** Constructor y destructor de la clase derivada.
+- Cada que se instancia un objeto se llama a su constructor y cada que se destruye se llama a su destructor.
+- Con la herencia, la clase heredada no hereda el constructor y el destructor de la clase base.
+  + Así que debes definir siempre unos nuevos cada que creas una clase heredada
+
+#+begin_src csharp
+class Animal {
+    public Animal() {
+        Console.WriteLine("Animal created");
+    }
+    ~Animal() {
+        Console.WriteLine("Animal deleted");
+    }
+}
+
+class Dog: Animal {
+    public Dog() {
+        Console.WriteLine("Dog created :D");
+    }
+    ~Dog() {
+        Console.WriteLine("Dog deleted :c");
+    }
+}
+
+static void Main(string[] args)
+{
+    Dog d = new Dog();
+}
+// Resultando en:
+//Animal created
+//Dog created
+//Dog deleted
+//Animal deleted
+#+end_src
+
+#+begin_quote
+Cuando se crea el objeto =Dog= llamamos primero a el constructor de la clase =Animal= y después al de la clase =Dog=, y con los destructores pasa lo mismo.
+#+end_quote
+
+** Poliformismo
+- La palabra significa "Tener muchas formas".
+- Significa que un método puede tener muchas implementaciones diferentes.
