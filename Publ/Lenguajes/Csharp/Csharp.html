@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>C#</title>
-<!-- 2021-06-03 Thu 15:40 -->
+<!-- 2021-06-12 Sat 20:16 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -273,6 +273,10 @@ $(function() {
 <li><a href="#sec-7-3">7.3. Sellado</a></li>
 <li><a href="#sec-7-4">7.4. Constructor y destructor de la clase derivada.</a></li>
 <li><a href="#sec-7-5">7.5. Poliformismo</a></li>
+<li><a href="#sec-7-6">7.6. Clases abstractas</a></li>
+<li><a href="#sec-7-7">7.7. Interfaces</a></li>
+<li><a href="#sec-7-8">7.8. Clases anidadas</a></li>
+<li><a href="#sec-7-9">7.9. <code>namespaces</code></a></li>
 </ul>
 </li>
 </ul>
@@ -3100,14 +3104,489 @@ Cuando se crea el objeto <code>Dog</code> llamamos primero a el constructor de l
 </li>
 <li>Significa que un método puede tener muchas implementaciones diferentes.
 </li>
+<li>Suponiendo que nuestro programa tiene un método <code>Draw</code>, y que necesitamos dibujar muchas formas diferentes.
+<ul class="org-ul">
+<li>Podemos usar polimorfismo para llamar al método <code>Draw</code> correcto de cualquier clase derivada.
+</li>
+<li>Estos métodos deben de llevar la palabra <code>virtual</code> en la clase base.
+</li>
 </ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">virtual</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Console.<span style="color: #50fa7b;">Write</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Base Draw"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+La palabra <code>virtual</code>, permite al método ser sobre escrito en la clase derivada.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Los métodos virtuales nos permiten trabajar con grupos de objetos relacionados en una manera uniforme.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;-- Llevan la palabra override en la clase derivada.</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">draw a circle...</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Rectangle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">draw a rectangle...</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Rect Draw"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Ahora podemos usar el método para sobre escribirlo y adecuarlo a lo que necesitamos.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
+    <span style="color: #61bfff;">{</span>
+        <span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
+        c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+
+        <span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">r</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Rectangle</span><span style="color: #ff79c6;">()</span>;
+        r.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+    <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Cada instancia llama a su propio método <code>Draw</code> gracias al polimorfismo.
+</p>
+</blockquote>
+
+<p>
+Para resumir, el polimorfismo es una manera de llamar al mismo método para diferentes objetos y generar resultados diferentes
+basados en el tipo de objeto, esto se logra mediante métodos virtuales en la clase base.
+</p>
+
+
+<p>
+Para implementar esto, creamos objetos del tipo de la clase base pero los instanciamos con el tipo de la clase derivada.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #61bfff;">()</span>;
+</pre>
+</div>
+
+<p>
+Podríamos solo instanciar cada objeto con su tipo y llamar a su método también.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">Circle</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #61bfff;">()</span>;
+c.<span style="color: #50fa7b;">Draw</span><span style="color: #61bfff;">()</span>;
+</pre>
+</div>
+
+<p>
+Pero, hacerlo con polimorfismo nos trae algunas ventajas.
+</p>
+<ul class="org-ul">
+<li>Nos permite tratar a los objetos de la misma manera.
+<ul class="org-ul">
+<li>Debido a que todos son objetos tipo <code>Shape</code>, es más fácil mantenerlos y trabajar con ellos.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-6" class="outline-3">
+<h3 id="sec-7-6"><span class="section-number-3">7.6</span> Clases abstractas</h3>
+<div class="outline-text-3" id="text-7-6">
+<ul class="org-ul">
+<li>Así como el polimorfismo es logrado con métodos virtuales que son <code>overridden</code> en la clase derivada.
+</li>
+<li>En algunas situaciones no es necesario que el método virtual tenga una definición separada de la clase base.
+</li>
+<li>Estos métodos son definidos usando la palabra <code>abstract</code>.
+<ul class="org-ul">
+<li>Con esto se especifica que las clases derivadas deben definir ese método por su cuenta.
+<ul class="org-ul">
+<li>No puedes crear objetos de una clase que tiene métodos abstractos, por esa misma razón, la clase misma debe de ser abstracta.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El método <code>Draw</code> es abstracto, entonces no tiene cuerpo, no lo necesita puedes terminar la linea con un <code>;</code>.
+</li>
+<li>Y la clase debe de ser abstracta porque tiene un método abstracto.
+</li>
+</ul>
+
+<p>
+Una clase abstracta se hace para ser la base de otras clases, actúa como una plantilla para otras clases.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Rectangle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Rect Draw"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
+    c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Circle Draw</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Ahora teniendo la clase abstracta, podemos usarla y definir su propio método <code>Draw</code>.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Las clases abstractas tienen las siguientes características:
+<ul class="org-ul">
+<li>No pueden ser instanciadas.
+</li>
+<li>Puede contener métodos abstractos y <code>accesors</code>.
+</li>
+<li>Una clase no abstracta derribada de una clase abstracta debe de implementaciones de todos los miembros heredados.
+</li>
+</ul>
+</li>
+</ul>
+
+<blockquote>
+<p>
+No es posible modificar una clase abstracta con la palabra <code>sealed</code>, porque son contrarios.
+</p>
+
+
+<p>
+El modificador <code>sealed</code> previene una clase de ser heredada y el modificador <code>abstract</code> requiere que una clase sea heredada.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-7-7" class="outline-3">
+<h3 id="sec-7-7"><span class="section-number-3">7.7</span> Interfaces</h3>
+<div class="outline-text-3" id="text-7-7">
+<ul class="org-ul">
+<li>Una interfaz es una clase completamente abstracta, que contiene <b>solo</b> miembros abstractos.
+</li>
+<li>Es declarada usando la palabra <code>interface</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">interface</span> <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Todos los miembros de la interfaz son abstractos por defecto, así que no hay necesidad de poner la palabra.
+</li>
+<li>Las interfaces son públicas (por defecto), pero pueden ser privadas o protegidas.
+</li>
+</ul>
+
+<blockquote>
+<p>
+Es común usar la letra &rsquo;I&rsquo; mayúscula al inicio del nombre de la interfaz.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Pueden contener propiedades, métodos, etc, pero no pueden contener campos (variables).
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Cuando una clase implementa una interfaz, debe implementar o definir todos sus métodos.
+<ul class="org-ul">
+<li>El termino &ldquo;Implementar una interfaz&rdquo;, es usado para describir el proceso de, crear una clase basada en una interfaz.
+</li>
+</ul>
+</li>
+<li>La interfaz describe solamente que es lo que debe de hacer una clase.
+<ul class="org-ul">
+<li>La clase implementando la interfaz debe definir como cumplir esos comportamientos.
+</li>
+</ul>
+</li>
+<li>La sintaxis para implementar una interfaz es la misma que para derivar una clase.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">interface</span> <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">IShape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
+    c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+La palabra <code>override</code> no es necesaria cuando implementas una interfaz.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>¿Porque usar interfaces en lugar de clases abstractas?
+<ul class="org-ul">
+<li>Una clase puede heredar de una sola clase base, pero puede implementar muchas interfaces.
+</li>
+</ul>
+</li>
+<li>Usando interfaces puedes incluir comportamientos de distintas clases en una clase.
+<ul class="org-ul">
+<li>Para implementar muchas interfaces estas se separan usando comas cuando creas la clase.
+<ul class="org-ul">
+<li><code>class A : IShape, IAnimal, etc...</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-7-7-1" class="outline-4">
+<h4 id="sec-7-7-1"><span class="section-number-4">7.7.1</span> Implementación por defecto</h4>
+<div class="outline-text-4" id="text-7-7-1">
+<ul class="org-ul">
+<li>La implementación por defecto en una interfaz nos permite escribir una implementación de cualquier método.
+</li>
+<li>Esto es útil cuando necesitamos proveer una sola implementación para un funcionamiento común.
+</li>
+</ul>
+
+<p>
+Digamos que queremos añadir una nueva funcionalidad común a una interfaz ya existente, la cual es implementada
+por muchas clases.
+</p>
+
+<p>
+Sin la implementación por defecto (antes de C# 8), esta operación provocaría errores, porque el método que agregamos
+no esta implementado en la clase, la implementación por defecto resuelve este problema.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">interface</span> <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Finish</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Done!"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">IShape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
+    c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Circle Draw</span>
+    c.<span style="color: #50fa7b;">Finish</span><span style="color: #ff79c6;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Done!</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Agregamos el método <code>Finish()</code> con la implementación por defecto en nuestra interfaz, y la llamamos sin implementarla en la clase <code>Circle</code>.
+</li>
+</ul>
+
+<blockquote>
+<p>
+Métodos con la implementación por defecto pueden ser sobre escritos libremente dentro de la clase que implementa esa interfaz.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-8" class="outline-3">
+<h3 id="sec-7-8"><span class="section-number-3">7.8</span> Clases anidadas</h3>
+<div class="outline-text-3" id="text-7-8">
+<ul class="org-ul">
+<li>C# soporta clases anidadas.
+<ul class="org-ul">
+<li>Una clase que es miembro de otra clase.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Car</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>;
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Car</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">nm</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        name = nm;
+        <span style="color: #bd93f9;">Motor</span> <span style="color: #ffc9e8;">m</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Motor</span><span style="color: #50fa7b;">()</span>;
+    <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Motor</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">some code</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La clase <code>Motor</code> esta dentro de la clase <code>Car</code> y puede ser usada de la misma manera a otros miembros de la clase.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-7-9" class="outline-3">
+<h3 id="sec-7-9"><span class="section-number-3">7.9</span> <code>namespaces</code></h3>
+<div class="outline-text-3" id="text-7-9">
+<p>
+Cuando creas un proyecto, tiene una estructura parecida a la siguiente.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Collections</span>.<span style="color: #ffc9e8;">Generic</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Linq</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Text</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Threading</span>.<span style="color: #ffc9e8;">Tasks</span>;
+
+<span style="color: #ff79c6; font-style: italic;">namespace</span> <span style="color: #ffc9e8;">Learn</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Program</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ffb86c;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Todo el Programa esta dentro de un <code>namespace</code>
+<ul class="org-ul">
+<li>Declaran un ámbito (scope) que contiene un conjunto de objetos relacionados.
+</li>
+<li>Se pueden usar para organizar elementos de código.
+<ul class="org-ul">
+<li>Puesdes definir tus propios <code>namespaces</code> y usarlos en tu programa.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>La palabra <code>using</code> declara que el programa esta usando un <code>namespace</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>;
+<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hi"</span><span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+El <code>namespace</code> <code>System</code> es donde la clase <code>Console</code> esta declarada.
+</p>
+</blockquote>
+
+<p>
+Si no usamos <code>using</code> tenemos que especificar el <code>namespace</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp">System.Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hi"</span><span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+El .NET Framework usa <code>namespaces</code> para organizar sus clases, siendo <code>System</code> un ejemplo de esto.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Declarar tus propios <code>namespaces</code> puede ayudar a agrupar tus clases y métodos en proyectos grandes.
+</p>
+</blockquote>
 </div>
 </div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-06-03 Thu 15:40</p>
+<p class="date">Created: 2021-06-12 Sat 20:16</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>

@@ -1619,3 +1619,291 @@ Cuando se crea el objeto =Dog= llamamos primero a el constructor de la clase =An
 ** Poliformismo
 - La palabra significa "Tener muchas formas".
 - Significa que un método puede tener muchas implementaciones diferentes.
+- Suponiendo que nuestro programa tiene un método =Draw=, y que necesitamos dibujar muchas formas diferentes.
+  + Podemos usar polimorfismo para llamar al método =Draw= correcto de cualquier clase derivada.
+  + Estos métodos deben de llevar la palabra =virtual= en la clase base.
+
+#+begin_src csharp
+class Shape {
+    public virtual void Draw() {
+        Console.Write("Base Draw");
+    }
+}
+#+end_src
+
+#+begin_quote
+La palabra =virtual=, permite al método ser sobre escrito en la clase derivada.
+#+end_quote
+
+#+begin_quote
+Los métodos virtuales nos permiten trabajar con grupos de objetos relacionados en una manera uniforme.
+#+end_quote
+
+#+begin_src csharp
+class Circle : Shape {
+    public override void Draw() { // <-- Llevan la palabra override en la clase derivada.
+        // draw a circle...
+        Console.WriteLine("Circle Draw");
+    }
+}
+class Rectangle : Shape {
+    public override void Draw() {
+        // draw a rectangle...
+        Console.WriteLine("Rect Draw");
+    }
+}
+#+end_src
+
+#+begin_quote
+Ahora podemos usar el método para sobre escribirlo y adecuarlo a lo que necesitamos.
+#+end_quote
+
+#+begin_src csharp
+static void main(string[] args)
+    {
+        Shape c = new Circle();
+        c.Draw();
+
+        Shape r = new Rectangle();
+        r.Draw();
+    }
+#+end_src
+
+#+begin_quote
+Cada instancia llama a su propio método =Draw= gracias al polimorfismo.
+#+end_quote
+
+Para resumir, el polimorfismo es una manera de llamar al mismo método para diferentes objetos y generar resultados diferentes
+basados en el tipo de objeto, esto se logra mediante métodos virtuales en la clase base.
+
+
+Para implementar esto, creamos objetos del tipo de la clase base pero los instanciamos con el tipo de la clase derivada.
+
+#+begin_src csharp
+Shape c = new Circle();
+#+end_src
+
+Podríamos solo instanciar cada objeto con su tipo y llamar a su método también.
+
+#+begin_src csharp
+Circle c = new Circle();
+c.Draw();
+#+end_src
+
+Pero, hacerlo con polimorfismo nos trae algunas ventajas.
+- Nos permite tratar a los objetos de la misma manera.
+  + Debido a que todos son objetos tipo =Shape=, es más fácil mantenerlos y trabajar con ellos.
+
+** Clases abstractas
+- Así como el polimorfismo es logrado con métodos virtuales que son =overridden= en la clase derivada.
+- En algunas situaciones no es necesario que el método virtual tenga una definición separada de la clase base.
+- Estos métodos son definidos usando la palabra =abstract=.
+  + Con esto se especifica que las clases derivadas deben definir ese método por su cuenta.
+    - No puedes crear objetos de una clase que tiene métodos abstractos, por esa misma razón, la clase misma debe de ser abstracta.
+
+#+begin_src csharp
+abstract class Shape {
+    public abstract void Draw();
+}
+#+end_src
+
+- El método =Draw= es abstracto, entonces no tiene cuerpo, no lo necesita puedes terminar la linea con un =;=.
+- Y la clase debe de ser abstracta porque tiene un método abstracto.
+
+Una clase abstracta se hace para ser la base de otras clases, actúa como una plantilla para otras clases.
+
+#+begin_src csharp
+abstract class Shape {
+    public abstract void Draw();
+}
+class Circle : Shape {
+    public override void Draw() {
+        Console.WriteLine("Circle Draw");
+    }
+}
+class Rectangle : Shape {
+    public override void Draw() {
+        Console.WriteLine("Rect Draw");
+    }
+}
+static void Main(string[] args)
+{
+    Shape c = new Circle();
+    c.Draw(); // Circle Draw
+}
+#+end_src
+
+#+begin_quote
+Ahora teniendo la clase abstracta, podemos usarla y definir su propio método =Draw=.
+#+end_quote
+
+- Las clases abstractas tienen las siguientes características:
+  + No pueden ser instanciadas.
+  + Puede contener métodos abstractos y =accesors=.
+  + Una clase no abstracta derribada de una clase abstracta debe de implementaciones de todos los miembros heredados.
+
+#+begin_quote
+No es posible modificar una clase abstracta con la palabra =sealed=, porque son contrarios.
+
+
+El modificador =sealed= previene una clase de ser heredada y el modificador =abstract= requiere que una clase sea heredada.
+#+end_quote
+
+** Interfaces
+- Una interfaz es una clase completamente abstracta, que contiene *solo* miembros abstractos.
+- Es declarada usando la palabra =interface=.
+
+#+begin_src csharp
+public interface IShape {
+    void Draw();
+}
+#+end_src
+
+- Todos los miembros de la interfaz son abstractos por defecto, así que no hay necesidad de poner la palabra.
+- Las interfaces son públicas (por defecto), pero pueden ser privadas o protegidas.
+
+#+begin_quote
+Es común usar la letra 'I' mayúscula al inicio del nombre de la interfaz.
+#+end_quote
+
+#+begin_quote
+Pueden contener propiedades, métodos, etc, pero no pueden contener campos (variables).
+#+end_quote
+
+- Cuando una clase implementa una interfaz, debe implementar o definir todos sus métodos.
+  + El termino "Implementar una interfaz", es usado para describir el proceso de, crear una clase basada en una interfaz.
+- La interfaz describe solamente que es lo que debe de hacer una clase.
+  + La clase implementando la interfaz debe definir como cumplir esos comportamientos.
+- La sintaxis para implementar una interfaz es la misma que para derivar una clase.
+
+#+begin_src csharp
+public interface IShape {
+    void Draw();
+}
+
+class Circle : IShape {
+    public void Draw() {
+        Console.WriteLine("Circle Draw");
+    }
+}
+
+static void Main(string[] args) {
+    IShape c = new Circle();
+    c.Draw();
+}
+#+end_src
+
+#+begin_quote
+La palabra =override= no es necesaria cuando implementas una interfaz.
+#+end_quote
+
+- ¿Porque usar interfaces en lugar de clases abstractas?
+  + Una clase puede heredar de una sola clase base, pero puede implementar muchas interfaces.
+- Usando interfaces puedes incluir comportamientos de distintas clases en una clase.
+  + Para implementar muchas interfaces estas se separan usando comas cuando creas la clase.
+    - =class A : IShape, IAnimal, etc...=
+
+*** Implementación por defecto
+- La implementación por defecto en una interfaz nos permite escribir una implementación de cualquier método.
+- Esto es útil cuando necesitamos proveer una sola implementación para un funcionamiento común.
+
+Digamos que queremos añadir una nueva funcionalidad común a una interfaz ya existente, la cual es implementada
+por muchas clases.
+
+Sin la implementación por defecto (antes de C# 8), esta operación provocaría errores, porque el método que agregamos
+no esta implementado en la clase, la implementación por defecto resuelve este problema.
+
+#+begin_src csharp
+public interface IShape {
+    void Draw();
+    void Finish() {
+        Console.WriteLine("Done!");
+    }
+}
+class Circle : IShape {
+    public void Draw() {
+        Console.WriteLine("Circle Draw");
+    }
+}
+static void Main(string[] args)
+{
+    IShape c = new Circle();
+    c.Draw(); // Circle Draw
+    c.Finish(); // Done!
+}
+#+end_src
+
+- Agregamos el método =Finish()= con la implementación por defecto en nuestra interfaz, y la llamamos sin implementarla en la clase =Circle=.
+
+#+begin_quote
+Métodos con la implementación por defecto pueden ser sobre escritos libremente dentro de la clase que implementa esa interfaz.
+#+end_quote
+
+** Clases anidadas
+- C# soporta clases anidadas.
+  + Una clase que es miembro de otra clase.
+
+#+begin_src csharp
+class Car {
+    string name;
+    public Car(string nm) {
+        name = nm;
+        Motor m = new Motor();
+    }
+    public class Motor {
+        // some code
+    }
+}
+#+end_src
+
+- La clase =Motor= esta dentro de la clase =Car= y puede ser usada de la misma manera a otros miembros de la clase.
+
+
+** =namespaces=
+Cuando creas un proyecto, tiene una estructura parecida a la siguiente.
+
+#+begin_src csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Learn {
+    class Program {
+        static void Main(string[] args) {
+
+        }
+    }
+}
+#+end_src
+
+- Todo el Programa esta dentro de un =namespace=
+  + Declaran un ámbito (scope) que contiene un conjunto de objetos relacionados.
+  + Se pueden usar para organizar elementos de código.
+    - Puesdes definir tus propios =namespaces= y usarlos en tu programa.
+- La palabra =using= declara que el programa esta usando un =namespace=.
+
+#+begin_src csharp
+using System;
+// ...
+Console.WriteLine("Hi");
+#+end_src
+
+#+begin_quote
+El =namespace= =System= es donde la clase =Console= esta declarada.
+#+end_quote
+
+Si no usamos =using= tenemos que especificar el =namespace=.
+
+#+begin_src csharp
+System.Console.WriteLine("Hi");
+#+end_src
+
+#+begin_quote
+El .NET Framework usa =namespaces= para organizar sus clases, siendo =System= un ejemplo de esto.
+#+end_quote
+
+#+begin_quote
+Declarar tus propios =namespaces= puede ayudar a agrupar tus clases y métodos en proyectos grandes.
+#+end_quote
