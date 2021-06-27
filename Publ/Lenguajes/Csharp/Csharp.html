@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>C#</title>
-<!-- 2021-06-12 Sat 20:16 -->
+<!-- 2021-06-27 Sun 17:45 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -277,6 +277,23 @@ $(function() {
 <li><a href="#sec-7-7">7.7. Interfaces</a></li>
 <li><a href="#sec-7-8">7.8. Clases anidadas</a></li>
 <li><a href="#sec-7-9">7.9. <code>namespaces</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. <code>Structs</code>, <code>Enums</code>, Excepciones &amp; Archivos</a>
+<ul class="nav">
+<li><a href="#sec-8-1">8.1. <code>Structs</code></a></li>
+<li><a href="#sec-8-2">8.2. <code>Enums</code></a></li>
+<li><a href="#sec-8-3">8.3. Manejo de excepciones</a></li>
+<li><a href="#sec-8-4">8.4. Trabajando con archivos</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9. Genéricos</a>
+<ul class="nav">
+<li><a href="#sec-9-1">9.1. Genéricos</a></li>
+<li><a href="#sec-9-2">9.2. Métodos Genéricos</a></li>
+<li><a href="#sec-9-3">9.3. Clases genéricas</a></li>
+<li><a href="#sec-9-4">9.4. Colecciones</a></li>
+<li><a href="#sec-9-5">9.5. <code>List</code> y <code>BitArray</code></a></li>
 </ul>
 </li>
 </ul>
@@ -1732,7 +1749,7 @@ Define un tipo de dato para objetos, pero no es un objeto.
         <span style="color: #bd93f9;">BankAccount</span> <span style="color: #ffc9e8;">b</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">BankAccount</span><span style="color: #50fa7b;">()</span>;
         b.<span style="color: #50fa7b;">Deposit</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">199</span><span style="color: #50fa7b;">)</span>;
         b.<span style="color: #50fa7b;">Withdraw</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #50fa7b;">)</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span>b.<span style="color: #50fa7b;">GetBalance</span><span style="color: #ffb86c;">()</span><span style="color: #50fa7b;">)</span>;
+        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span>b.<span style="color: #50fa7b;">GetBalance</span><span style="color: #bd93f9;">()</span><span style="color: #50fa7b;">)</span>;
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
 </pre>
@@ -1907,9 +1924,9 @@ Se accede a la propiedad por su nombre, como cualquier miembro público de la cl
     <span style="color: #ff79c6;">{</span>
         <span style="color: #ff79c6; font-style: italic;">get</span> <span style="color: #50fa7b;">{</span> <span style="color: #ff79c6; font-style: italic;">return</span> age; <span style="color: #50fa7b;">}</span>
         <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffb86c;">(</span><span style="color: #8be9fd;">value</span> &gt; <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #ffb86c;">)</span> <span style="color: #ffb86c;">{</span>
+            <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #bd93f9;">(</span><span style="color: #8be9fd;">value</span> &gt; <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">{</span>
                 age = <span style="color: #8be9fd;">value</span>;
-            <span style="color: #ffb86c;">}</span>
+            <span style="color: #bd93f9;">}</span>
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
@@ -2705,10 +2722,10 @@ Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bff
 
     <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ff79c6; font-style: italic;">this</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9;">int</span> index<span style="color: #ff79c6;">]</span> <span style="color: #ff79c6;">{</span>
         <span style="color: #ff79c6; font-style: italic;">get</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ff79c6; font-style: italic;">return</span> names<span style="color: #ffb86c;">[</span>index<span style="color: #ffb86c;">]</span>;
+            <span style="color: #ff79c6; font-style: italic;">return</span> names<span style="color: #bd93f9;">[</span>index<span style="color: #bd93f9;">]</span>;
         <span style="color: #50fa7b;">}</span>
         <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
-            names<span style="color: #ffb86c;">[</span>index<span style="color: #ffb86c;">]</span> = <span style="color: #8be9fd;">value</span>;
+            names<span style="color: #bd93f9;">[</span>index<span style="color: #bd93f9;">]</span> = <span style="color: #8be9fd;">value</span>;
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
@@ -3520,7 +3537,7 @@ Cuando creas un proyecto, tiene una estructura parecida a la siguiente.
 
 <span style="color: #ff79c6; font-style: italic;">namespace</span> <span style="color: #ffc9e8;">Learn</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Program</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ffb86c;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">string</span><span style="color: #bd93f9;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
 
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
@@ -3583,10 +3600,659 @@ Declarar tus propios <code>namespaces</code> puede ayudar a agrupar tus clases y
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> <code>Structs</code>, <code>Enums</code>, Excepciones &amp; Archivos</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> <code>Structs</code></h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>Es un tipo de valor que es usado típicamente para encapsular pequeños grupos de variables relacionadas.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #bd93f9;">book</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">title</span>;
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">price</span>;
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">author</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Comparten la mayoría de las sintaxis con las clases, pero están más limitadas que estas.
+</li>
+<li>Los <code>structs</code> pueden ser instanciados sin usar el operador <code>new</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Book</span> <span style="color: #ffc9e8;">b</span>;
+    b.title = <span style="color: #f1fa8c;">"Test"</span>;
+    b.price = <span style="color: #bd93f9; font-weight: bold;">5.99</span>;
+    b.author = <span style="color: #f1fa8c;">"David"</span>;
+
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>b.title<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+No soportan herencia y no pueden contener métodos virtuales.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><code>structs</code> pueden contener:
+<ul class="org-ul">
+<li>Métodos.
+</li>
+<li>Propiedades.
+</li>
+<li>Indexadores.
+</li>
+<li>Etc.
+</li>
+</ul>
+</li>
+<li>No pueden contener constructores por defecto (Constructores sin parametros).
+<ul class="org-ul">
+<li>Pero pueden contener constructores que toman parametros.
+<ul class="org-ul">
+<li>Si los usan, la palabra <code>new</code> es necesaria para instanciarlos de manera similar a una clase.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #bd93f9;">Point</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>;
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span>;
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Point</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">this</span>.x = x;
+        <span style="color: #ff79c6; font-style: italic;">this</span>.y = y;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Point</span> <span style="color: #ffc9e8;">p</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Point</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">10</span>, <span style="color: #bd93f9; font-weight: bold;">15</span><span style="color: #ff79c6;">)</span>;
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>p.x<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-8-1-1" class="outline-4">
+<h4 id="sec-8-1-1"><span class="section-number-4">8.1.1</span> <code>Structs</code> vs Clases</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<ul class="org-ul">
+<li>Las clases son usadas para modelar comportamientos más complejos o datos que están destinados a ser modificados después de que se crea el objeto.
+</li>
+<li>Los <code>structs</code> son mejores para estructuras de datos pequeñas que contienen datos que no están destinados a cambiar después de crearse.
+
+<blockquote>
+<p>
+Todos los tipos de datos por defecto en C# son <code>structs</code> (int, double, bool, char, etc).
+</p>
+</blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> <code>Enums</code></h3>
+<div class="outline-text-3" id="text-8-2">
+<ul class="org-ul">
+<li>La parabra <code>enum</code> es usada para declarar una enumeración.
+<ul class="org-ul">
+<li>Un tipo que consiste de un conjunto de constantes llamadas la lista del enumerador.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">Days</span> <span style="color: #61bfff;">{</span><span style="color: #ffc9e8;">Sun</span>, <span style="color: #ffc9e8;">Mon</span>, <span style="color: #ffc9e8;">Tue</span>, <span style="color: #ffc9e8;">Wed</span>, <span style="color: #ffc9e8;">Thu</span>, <span style="color: #ffc9e8;">Fri</span>, <span style="color: #ffc9e8;">Sat</span><span style="color: #61bfff;">}</span>;
+</pre>
+</div>
+
+<p>
+Puedes también asignar tus propios valores al <code>enum</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">Days</span> <span style="color: #61bfff;">{</span><span style="color: #ffc9e8;">Sun</span>, <span style="color: #ffc9e8;">Mon</span>, <span style="color: #ffc9e8;">Tue</span>=<span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #ffc9e8;">Wed</span>, <span style="color: #ffc9e8;">Thu</span>, <span style="color: #ffc9e8;">Fri</span>, <span style="color: #ffc9e8;">Sat</span><span style="color: #61bfff;">}</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>En el ejemplo de arriba, la enumeración empieza desde 0, siendo 1 Mon, y Tue 4 Wed 5 y asi, respetando los valores dados.
+</li>
+<li>Podemos acceder a los elementos de un <code>enum</code> con la sintaxis de punto.
+</li>
+<li>Para asignar los valores de un enum a variables necesitamos especificar el tipo entre parentesis.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">Days</span> <span style="color: #61bfff;">{</span><span style="color: #ffc9e8;">Sun</span>, <span style="color: #ffc9e8;">Mon</span>, <span style="color: #ffc9e8;">Tue</span>, <span style="color: #ffc9e8;">Wed</span>, <span style="color: #ffc9e8;">Thu</span>, <span style="color: #ffc9e8;">Fri</span>, <span style="color: #ffc9e8;">Sat</span><span style="color: #61bfff;">}</span>;
+
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>Days.Tue;
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+<code>enums</code> definen variables que pertenecen a un conjunto fijo, como lo pueden ser los meses del año o los días de la semana.
+</p>
+</blockquote>
+
+<p>
+Estos son usados en conjunto con <code>switch</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">TrafficLights</span> <span style="color: #61bfff;">{</span> <span style="color: #ffc9e8;">Green</span>, <span style="color: #ffc9e8;">Red</span>, <span style="color: #ffc9e8;">Yellow</span> <span style="color: #61bfff;">}</span>;
+
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">TrafficLights</span> <span style="color: #ffc9e8;">x</span> = TrafficLights.Red;
+    <span style="color: #ff79c6; font-style: italic;">switch</span> <span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">case</span> TrafficLights.Green:
+            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Go!"</span><span style="color: #50fa7b;">)</span>;
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+        <span style="color: #ff79c6; font-style: italic;">case</span> TrafficLights.Red:
+            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Stop!"</span><span style="color: #50fa7b;">)</span>;
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+        <span style="color: #ff79c6; font-style: italic;">case</span> TrafficLights.Yellow:
+            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Go faster!"</span><span style="color: #50fa7b;">)</span>;
+            <span style="color: #ff79c6; font-style: italic;">break</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3"><span class="section-number-3">8.3</span> Manejo de excepciones</h3>
+<div class="outline-text-3" id="text-8-3">
+<ul class="org-ul">
+<li>Una excepción es un problema que ocurre durante la ejecución de un programa.
+<ul class="org-ul">
+<li>Estas causan que el programa termine de manera anormal.
+</li>
+</ul>
+</li>
+<li>Estas pueden suceder por muchas razones, desde datos inválidos hasta fallas de lógica.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[]</span> <span style="color: #ffc9e8;">arr</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[]</span> <span style="color: #61bfff;">{</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">6</span>, <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #61bfff;">}</span>;
+Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>arr<span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+Este código causara una excepción porque estamos intentando acceder a un valor que no existe.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>C# nos provee una manera de manejar estas excepciones con un <code>try-catch</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">arr</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ff79c6;">{</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">6</span>, <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">}</span>;
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>arr<span style="color: #50fa7b;">[</span><span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">catch</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Exeption</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">Writeline</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Un error ha ocurrido."</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El código que puede detonar una excepción se pone dentro del bloque <code>try</code>.
+<ul class="org-ul">
+<li>Si una excepción ocurre, se ejecuta el bloque <code>catch</code> sin que el programa pare de manera abrupta.
+</li>
+</ul>
+</li>
+<li>Dentro del bloque <code>catch</code> entre parentesis se pone el tipo de excepción que queremos manejar, pero podemos usar la palabra <code>Exeption</code> para manejar cualquier excepción.
+</li>
+<li>La excepción 
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">arr</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ff79c6;">{</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">6</span>, <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">}</span>;
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>arr<span style="color: #50fa7b;">[</span><span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">catch</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Exeption</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">Writeline</span><span style="color: #ff79c6;">(</span>e.Message<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3-1" class="outline-4">
+<h4 id="sec-8-3-1"><span class="section-number-4">8.3.1</span> Manejando diferentes excepciones</h4>
+<div class="outline-text-4" id="text-8-3-1">
+<ul class="org-ul">
+<li>Podemos incluir diferentes bloques <code>catch</code> para cada <code>try</code> para tener comportamientos personalizados para cada exceppción.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span>;
+<span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
+    x = Convert.<span style="color: #50fa7b;">ToInt32</span><span style="color: #ff79c6;">(</span>Console.<span style="color: #50fa7b;">Read</span><span style="color: #50fa7b;">()</span><span style="color: #ff79c6;">)</span>;
+    y = Convert.<span style="color: #50fa7b;">ToInt32</span><span style="color: #ff79c6;">(</span>Console.<span style="color: #50fa7b;">Read</span><span style="color: #50fa7b;">()</span><span style="color: #ff79c6;">)</span>;
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x / y<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">catch</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">DivideByZeroException</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Cannot divide by 0"</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">catch</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Exception</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"An error occurred"</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Las excepciones son muy útiles cuando manejamos input del usuario para validar la información que es dada al programa.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3-2" class="outline-4">
+<h4 id="sec-8-3-2"><span class="section-number-4">8.3.2</span> <code>Finally</code></h4>
+<div class="outline-text-4" id="text-8-3-2">
+<ul class="org-ul">
+<li><code>finally</code> es un bloque que pone al final de los bloques <code>catch</code> y siempre se ejecuta, sin importar si una excepción ocurre o no.
+</li>
+<li>Es útil para cerrar archivos o conexiones, ya que siempre se tienen que cerrar sin importar si un error ocurre o no.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">result</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
+<span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num1</span> = <span style="color: #bd93f9; font-weight: bold;">8</span>;
+<span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num2</span> = <span style="color: #bd93f9; font-weight: bold;">4</span>;
+<span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
+    result = num1 / num2;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">catch</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">DivideByZeroException</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Error"</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">finally</span> <span style="color: #61bfff;">{</span>
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>result<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4"><span class="section-number-3">8.4</span> Trabajando con archivos</h3>
+<div class="outline-text-3" id="text-8-4">
+<ul class="org-ul">
+<li>El <code>namespace</code> <code>System.IO</code> tiene varias clases para trabajar con archivos.
+</li>
+<li>La clase <code>File</code> es una de ellos.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">str</span> = <span style="color: #f1fa8c;">"Some text"</span>;
+File.<span style="color: #50fa7b;">WriteAllText</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"test.txt"</span>, str<span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El método <code>WriteAllText</code> crea un archivo en la ruta especificada y escribe su contenido en el.
+<ul class="org-ul">
+<li>Si el archivo existe lo sobre escribe.
+</li>
+</ul>
+</li>
+<li>Podemos Leer el contenido de un archivo usando <code>ReadAllText</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">text</span> = File.<span style="color: #50fa7b;">ReadAllText</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"test.txt"</span><span style="color: #61bfff;">)</span>;
+Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>text<span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La clase File tiene también otros métodos.
+<ul class="org-ul">
+<li><code>AppendAllText()</code>
+</li>
+<li><code>Create()</code>
+</li>
+<li><code>Delete()</code>
+</li>
+<li><code>Exists()</code>
+</li>
+<li><code>Copy()</code>
+</li>
+<li><code>Move()</code>
+</li>
+</ul>
+</li>
+<li>Todos estos métodos cierran el archivo cuando terminan de ejecutarse.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Genéricos</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Genéricos</h3>
+<div class="outline-text-3" id="text-9-1">
+<ul class="org-ul">
+<li>Los genéricos nos permiten rehusar código con diferentes tipos.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Swap</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">b</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">temp</span> = a;
+    a = b;
+    b = temp;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+En el código de arriba tenemos un método que cambia de lugar dos valores.
+</p>
+</blockquote>
+
+<p>
+Este código solo funciona con enteros, si queremos usarlo con otros tipos deberemos sobrecargarlo con todos los tipos que querramos usarlo.
+</p>
+
+<ul class="org-ul">
+<li>Con los genéricos podemos definir un tipo de dato genérico.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Swap</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">b</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">temp</span> = a;
+    a = b;
+    b = temp;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+<code>T</code> es el nombre de nuestro tipo genérico y se define con <code>&lt;T&gt;</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> Métodos Genéricos</h3>
+<div class="outline-text-3" id="text-9-2">
+<ul class="org-ul">
+<li>Ahora podemos definir nuestro método <code>Swap</code> con diferentes tipos de datos.
+</li>
+<li>Cuando llamemos a un método genérico debemos de especificar el tipo de dato con el que vamos a trabajar.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Swap</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">b</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">temp</span> = a;
+    a = b;
+    b = temp;
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span> = <span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #ffc9e8;">b</span> = <span style="color: #bd93f9; font-weight: bold;">9</span>;
+    <span style="color: #50fa7b;">Swap</span><span style="color: #ff79c6;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">b</span><span style="color: #ff79c6;">)</span>;
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a+<span style="color: #f1fa8c;">" "</span>+b<span style="color: #ff79c6;">)</span>;
+
+    <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #f1fa8c;">"Hello"</span>;
+    <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">y</span> = <span style="color: #f1fa8c;">"World"</span>;
+    <span style="color: #50fa7b;">Swap</span><span style="color: #ff79c6;">&lt;</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">x</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">y</span><span style="color: #ff79c6;">)</span>;
+    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x+<span style="color: #f1fa8c;">" "</span>+y<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Podemos tener múltiples parametros de diferente tipo en un método genérico usando <code>&lt;T,U&gt;</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3"><span class="section-number-3">9.3</span> Clases genéricas</h3>
+<div class="outline-text-3" id="text-9-3">
+<ul class="org-ul">
+<li>Los tipos genéricos también pueden ser usados con clases.
+</li>
+<li>El uso más común para clases genéricas es con collecciones de elementos.
+<ul class="org-ul">
+<li>En estos las operaciones básicas como suma o resta se hacen sin importar que tipo de elemento sea.
+</li>
+</ul>
+</li>
+<li>Podemos hacer una implementación de una pila genérica.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">index</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
+    <span style="color: #bd93f9;">T</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">innerArray</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">T</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #ff79c6;">]</span>;
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Push</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">item</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        innerArray<span style="color: #50fa7b;">[</span>index++<span style="color: #50fa7b;">]</span> = item;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">Pop</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> innerArray<span style="color: #50fa7b;">[</span>--index<span style="color: #50fa7b;">]</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">Get</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">k</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">return</span> innerArray<span style="color: #50fa7b;">[</span>k<span style="color: #50fa7b;">]</span>; <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Nuestra implementación de una pila genérica guarda elementos de cualquier tipo.
+</li>
+<li>Así que podemos crear objetos de nuestra clase genérica.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">intStack</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;()</span>;
+<span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">string</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">strStack</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">string</span><span style="color: #61bfff;">&gt;()</span>;
+<span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">Person</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">PersonStack</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">Person</span><span style="color: #61bfff;">&gt;()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9-4" class="outline-3">
+<h3 id="sec-9-4"><span class="section-number-3">9.4</span> Colecciones</h3>
+<div class="outline-text-3" id="text-9-4">
+<ul class="org-ul">
+<li>Son usadas para agrupar objetos relacionados entre si.
+</li>
+<li>A diferencia de un arreglo, estos son dinámicos.
+</li>
+<li>Típicamente incluyen métodos para agregar, remover o contar los elementos dentro de ellas.
+</li>
+<li>Se puede iterar a través de ellas con <code>for</code>, <code>foreach</code>.
+</li>
+<li>Como son clases, debes de declarar una instancia de esta antes de añadir elementos a esta.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">List</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">li</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">List</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;()</span>;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-9-4-1" class="outline-4">
+<h4 id="sec-9-4-1"><span class="section-number-4">9.4.1</span> Colecciones genéricas</h4>
+<div class="outline-text-4" id="text-9-4-1">
+<ul class="org-ul">
+<li>Son el tipo de colección a usar siempre que todos los elementos sean del mismo tipo.
+</li>
+<li>El <code>namespace</code> <code>System.Collections.Generic</code> incluye las siguentes collecciones genéricas.
+<ul class="org-ul">
+<li><code>List&lt;T&gt;</code>
+</li>
+<li><code>Dictionary&lt;TKey,TValue&gt;</code>
+</li>
+<li><code>SortedList&lt;TKey,TValue&gt;</code>
+</li>
+<li><code>Stack&lt;T&gt;</code>
+</li>
+<li><code>Queue&lt;T&gt;</code>
+</li>
+<li><code>Hashset&lt;T&gt;</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-9-4-2" class="outline-4">
+<h4 id="sec-9-4-2"><span class="section-number-4">9.4.2</span> Colecciones no genéricas</h4>
+<div class="outline-text-4" id="text-9-4-2">
+<ul class="org-ul">
+<li>Guardan elementos que son de tipo <code>Object</code>.
+</li>
+<li>Pueden ser más lentas que las genéricas.
+</li>
+<li>El <code>namespace</code> <code>System.Collections</code> incluye las siguentes collecciones no genéricas.
+<ul class="org-ul">
+<li><code>ArrayList</code>
+</li>
+<li><code>SortedList</code>
+</li>
+<li><code>Stack</code>
+</li>
+<li><code>Queue</code>
+</li>
+<li><code>Hashtable</code>
+</li>
+<li><code>BitArray</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9-5" class="outline-3">
+<h3 id="sec-9-5"><span class="section-number-3">9.5</span> <code>List</code> y <code>BitArray</code></h3>
+<div class="outline-text-3" id="text-9-5">
+<ul class="org-ul">
+<li>Una lista es similar a un arreglo, pero en esta los elementos pueden ser agregados y removidos de manera dinámica.
+</li>
+<li>Requiere que todos los elementos sean del mismo tipo.
+</li>
+<li>Incluye los siguientes métodos:
+<dl class="org-dl">
+<dt> <code>Count</code> </dt><dd>Obtiene el número de elementos que contiene la lista.
+</dd>
+<dt> <code>Add</code> </dt><dd>Añade un elemento al final de la lista.
+</dd>
+<dt> <code>RemoveAt(int index)</code> </dt><dd>Remueve un elemento en el índice dado.
+</dd>
+<dt> <code>Sort()</code> </dt><dd>Ordena los elementos de la lista.
+</dd>
+<dt> <code>Capacity</code> </dt><dd>Obtiene el número de elementos que la lista puede tener antes de cambiar de tamaño.
+</dd>
+<dt> <code>Clear()</code> </dt><dd>Remueve los elementos de la lista.
+</dd>
+<dt> <code>TrimExess()</code> </dt><dd>Pone la capacidad de la lista a el número actual de elementos, útil para reducir memoria.
+</dd>
+<dt> <code>AddRange(IEnumerable coll)</code> </dt><dd>Añade los elementos de una collección con los elementos del mismo tipo de la lista al final de esta.
+</dd>
+<dt> <code>Insert(int i, T t)</code> </dt><dd>Inserta el elemento t en el índice i.
+</dd>
+<dt> <code>Remove(T t)</code> </dt><dd>Remueve la primera ocurrencia de el elemento t en la lista.
+</dd>
+<dt> RemoveRange(int i, int count) </dt><dd>Remueve un rango de elementos de la lista.
+</dd>
+<dt> <code>Contains(T t)</code> </dt><dd>Retorna <code>true</code> si el elemento especificado existe en la lista.
+</dd>
+<dt> <code>Reverse()</code> </dt><dd>Invierte el orden de los elementos en la lista.
+</dd>
+<dt> <code>ToArray()</code> </dt><dd>Copia los elementos de la lista en un nuevo arreglo.
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-06-12 Sat 20:16</p>
+<p class="date">Created: 2021-06-27 Sun 17:45</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
