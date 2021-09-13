@@ -2235,12 +2235,12 @@ List<int> li = new List<int>();
 *** Colecciones genéricas
 - Son el tipo de colección a usar siempre que todos los elementos sean del mismo tipo.
 - El =namespace= =System.Collections.Generic= incluye las siguentes collecciones genéricas.
-  + =List<T>=
-  + =Dictionary<TKey,TValue>=
-  + =SortedList<TKey,TValue>=
-  + =Stack<T>=
-  + =Queue<T>=
-  + =Hashset<T>=
+  + =List<T>.=
+  + =Dictionary<TKey,TValue>.=
+  + =SortedList<TKey,TValue>.=
+  + =Stack<T>.=
+  + =Queue<T>.=
+  + =Hashset<T>.=
 
 *** Colecciones no genéricas
 - Guardan elementos que son de tipo =Object=.
@@ -2271,3 +2271,39 @@ List<int> li = new List<int>();
   + =Contains(T t)= :: Retorna =true= si el elemento especificado existe en la lista.
   + =Reverse()= :: Invierte el orden de los elementos en la lista.
   + =ToArray()= :: Copia los elementos de la lista en un nuevo arreglo.
+
+*** =SortedList=
+- Es una colección de valores tipo llave/valor.
+  + Son ordenados por la llave.
+  + La llave puede ser usada para acceder al valor.
+- Requiere que los elementos llave/valor sean del mismo tipo.
+- Las llaves no pueden repetirse.
+- Incluye los siguientes métodos.
+
+*** =BitArray=
+- Son una colección de bits.
+  + Sus valores pueden ser 0 o 1.
+- Normalmente son usados para representar un grupo de banderas booleanas.
+- Contiene las siguentes propiedades y métodos:
+  + =Count= :: Obtiene el número de bits en el arreglo.
+  + =IsReadOnly= :: Obtiene un valor indicando si el =BitArray= es de solo lectura.
+  + =SetAll(bool value)= :: Pone todos los valores del arreglo en un valor especifico.
+  + =And(BitArray ba)= :: Aplica un =and= al =BitArray= dado con el valor =ba=.
+    - También puedes hacer =Or, Xor=.
+  + =Not()= :: Invierte los valores del =BitArray=.
+- Los =BitArray= pueden usarse para el procesamiento de imágenes.
+
+** =Stack= y =Queue=
+- Una pila (stack) es una lista tipo *last in, first out* (LIFO).
+- Insertar un elemento a un stack es llamado =pushing=.
+- Quitar un elemento del stack es llamado =pop=.
+  + Esto solo puede hacerse en la parte superior del stack.
+
+** =HashSet=
+- Es un conjunto de valores únicos.
+- Estos son diferentes a otras colecciones porque solo son un conjunto de valores, no tienen índice.
+
+
+#+begin_quote
+Los HashSet proveen un alto rendimiento, en la busqueda, adición y eliminación de elementos, puede ser usada para implementar otras estructuras de datos.
+#+end_quote

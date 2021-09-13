@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>C#</title>
-<!-- 2021-06-27 Sun 17:45 -->
+<!-- 2021-09-12 Sun 21:23 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -294,6 +294,8 @@ $(function() {
 <li><a href="#sec-9-3">9.3. Clases genéricas</a></li>
 <li><a href="#sec-9-4">9.4. Colecciones</a></li>
 <li><a href="#sec-9-5">9.5. <code>List</code> y <code>BitArray</code></a></li>
+<li><a href="#sec-9-6">9.6. <code>Stack</code> y <code>Queue</code></a></li>
+<li><a href="#sec-9-7">9.7. <code>HashSet</code></a></li>
 </ul>
 </li>
 </ul>
@@ -4158,17 +4160,17 @@ Podemos tener múltiples parametros de diferente tipo en un método genérico us
 </li>
 <li>El <code>namespace</code> <code>System.Collections.Generic</code> incluye las siguentes collecciones genéricas.
 <ul class="org-ul">
-<li><code>List&lt;T&gt;</code>
+<li><code>List&lt;T&gt;.</code>
 </li>
-<li><code>Dictionary&lt;TKey,TValue&gt;</code>
+<li><code>Dictionary&lt;TKey,TValue&gt;.</code>
 </li>
-<li><code>SortedList&lt;TKey,TValue&gt;</code>
+<li><code>SortedList&lt;TKey,TValue&gt;.</code>
 </li>
-<li><code>Stack&lt;T&gt;</code>
+<li><code>Stack&lt;T&gt;.</code>
 </li>
-<li><code>Queue&lt;T&gt;</code>
+<li><code>Queue&lt;T&gt;.</code>
 </li>
-<li><code>Hashset&lt;T&gt;</code>
+<li><code>Hashset&lt;T&gt;.</code>
 </li>
 </ul>
 </li>
@@ -4247,13 +4249,108 @@ Podemos tener múltiples parametros de diferente tipo en un método genérico us
 </li>
 </ul>
 </div>
+
+<div id="outline-container-sec-9-5-1" class="outline-4">
+<h4 id="sec-9-5-1"><span class="section-number-4">9.5.1</span> <code>SortedList</code></h4>
+<div class="outline-text-4" id="text-9-5-1">
+<ul class="org-ul">
+<li>Es una colección de valores tipo llave/valor.
+<ul class="org-ul">
+<li>Son ordenados por la llave.
+</li>
+<li>La llave puede ser usada para acceder al valor.
+</li>
+</ul>
+</li>
+<li>Requiere que los elementos llave/valor sean del mismo tipo.
+</li>
+<li>Las llaves no pueden repetirse.
+</li>
+<li>Incluye los siguientes métodos.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-9-5-2" class="outline-4">
+<h4 id="sec-9-5-2"><span class="section-number-4">9.5.2</span> <code>BitArray</code></h4>
+<div class="outline-text-4" id="text-9-5-2">
+<ul class="org-ul">
+<li>Son una colección de bits.
+<ul class="org-ul">
+<li>Sus valores pueden ser 0 o 1.
+</li>
+</ul>
+</li>
+<li>Normalmente son usados para representar un grupo de banderas booleanas.
+</li>
+<li>Contiene las siguentes propiedades y métodos:
+<dl class="org-dl">
+<dt> <code>Count</code> </dt><dd>Obtiene el número de bits en el arreglo.
+</dd>
+<dt> <code>IsReadOnly</code> </dt><dd>Obtiene un valor indicando si el <code>BitArray</code> es de solo lectura.
+</dd>
+<dt> <code>SetAll(bool value)</code> </dt><dd>Pone todos los valores del arreglo en un valor especifico.
+</dd>
+<dt> <code>And(BitArray ba)</code> </dt><dd>Aplica un <code>and</code> al <code>BitArray</code> dado con el valor <code>ba</code>.
+<ul class="org-ul">
+<li>También puedes hacer <code>Or, Xor</code>.
+</li>
+</ul>
+</dd>
+<dt> <code>Not()</code> </dt><dd>Invierte los valores del <code>BitArray</code>.
+</dd>
+</dl>
+</li>
+<li>Los <code>BitArray</code> pueden usarse para el procesamiento de imágenes.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9-6" class="outline-3">
+<h3 id="sec-9-6"><span class="section-number-3">9.6</span> <code>Stack</code> y <code>Queue</code></h3>
+<div class="outline-text-3" id="text-9-6">
+<ul class="org-ul">
+<li>Una pila (stack) es una lista tipo <b>last in, first out</b> (LIFO).
+</li>
+<li>Insertar un elemento a un stack es llamado <code>pushing</code>.
+</li>
+<li>Quitar un elemento del stack es llamado <code>pop</code>.
+<ul class="org-ul">
+<li>Esto solo puede hacerse en la parte superior del stack.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-9-7" class="outline-3">
+<h3 id="sec-9-7"><span class="section-number-3">9.7</span> <code>HashSet</code></h3>
+<div class="outline-text-3" id="text-9-7">
+<ul class="org-ul">
+<li>Es un conjunto de valores únicos.
+</li>
+<li>Estos son diferentes a otras colecciones porque solo son un conjunto de valores, no tienen índice.
+</li>
+</ul>
+
+
+<blockquote>
+<p>
+Los HashSet proveen un alto rendimiento, en la busqueda, adición y eliminación de elementos, puede ser usada para implementar otras estructuras de datos.
+</p>
+</blockquote>
+</div>
 </div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-06-27 Sun 17:45</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2021-09-12 Sun 21:23</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.50 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
 </body>
