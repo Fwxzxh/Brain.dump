@@ -1,1 +1,236 @@
 #+TITLE: Go
+
+* Basics
+** Hello world
+
+#+begin_src go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello world")
+}
+#+end_src
+
+#+RESULTS:
+: Hello world
+
+** Paquetes
+- Todo programa de go esta hecho de paquetes (=package=).
+- Siempre se empieza con el paquete =main=.
+
+#+begin_src go
+package main
+#+end_src
+
+** =Imports=
+- Además del paquete =main=.
+  + Go tiene diferentes paquetes que pueden ser importados.
+- El más común es el paquete =fmt=.
+  + =fmt= es por la palabra =format=, y nos da la habilidad de hacer =Imput= y =Output= de manera fácil.
+
+#+begin_src go
+import (
+	"fmt"
+	"math"
+)
+#+end_src
+
+#+begin_quote
+Se pueden importar varios paquetes a la vez poniéndolos entre paréntesis.
+#+end_quote
+
+- Cada paquete tiene palabras claves las cuales pueden ser usadas después de importar el paquete.
+  + Cada una de estas palabras siempre empieza con mayúscula.
+- En el ejemplo de arriba accedimos a la palabra clave (método) =Println=.
+  + Este escribe texto en la consola.
+
+#+begin_quote
+Similar a otros lenguajes =func main()= es el punto de entrada del programa.
+#+end_quote
+
+** Comentarios
+- Podemos poner en nuestro código comentarios.
+  + Esto se hace poniendo =//=, para un comentario de una sola linea.
+  + Los comentarios multilínea se hacen rodeando el texto con =/* */=.
+
+#+begin_src go
+// comentario de una sola linea
+fmt.Println("go go go go!")
+/* comentario
+   multilínea */
+#+end_src
+
+* Conceptos básicos
+** Variables
+- Se usan para guardar valores.
+- Se usa la palabra clave =var= para declararlas.
+
+#+begin_src go
+var i int // var <nombre de la variable> <tipo>
+#+end_src
+
+#+begin_src go
+var i int = 8 // var <nombe> <tipo> = <valor de la variable>
+fmt.print(i)
+#+end_src
+
+- También podemos asignar múltiples variables en una sola linea.
+- Go tiene inferencia de tipos.
+  + Esto significa que Go puede adivinar el tipo de la variable si a esta le es asignada un valor.
+
+#+begin_src go
+var i, j = 69, 42 // Go sabe que i y j son int (enteros)
+#+end_src
+
+- Go soporta asignación corta de variables.
+
+#+begin_src go
+i := 8
+x, y, z := 1, 2, 3
+#+end_src
+
+#+begin_quote
+Este operador automáticamente define e inicializa las variables.
+#+end_quote
+
+** Tipos de datos
+- Los tipos de dato más comunes en go son:
+  + =float32=
+  + =float64=
+  + =string=
+  + =bool=
+
+#+begin_quote
+La diferencia entre =float32= y =float64= es la precisión, =float64= representara el número con mayor precisión en los decimales.
+#+end_quote
+
+- Go también posee =zero values= (valores cero).
+  + Son variables que son inicializadas sin un valor y toman el valor 0 de ese valor.
+    - 0 para los entero.
+    - =false= para los booleanos.
+    - =""= para los =strings=.
+
+** Constantes
+- Las constantes son valores que no pueden cambiar su valor inicial.
+- Son declaradas como las variables pero usando la palabra clave =const=.
+- No pueden ser declaradas con la sintaxis =:.
+
+#+begin_src go
+const pi = 3.14
+#+end_src
+
+** Obteniendo =input=
+- Necesitamos el paquete =fmt=.
+
+#+begin_src go
+var input string
+fmt.Scanln(&input)
+
+fmt.Println(input)
+#+end_src
+
+#+begin_quote
+El carácter =&= es usado para retornar la dirección de la variable.
+#+end_quote
+
+#+begin_src go
+var input int
+fmt.Scanln(&input)
+
+fmt.Println(input)
+#+end_src
+
+#+begin_quote
+En este ejemplo como declaramos la variable =input= como =int= go convertirá el input a un =int=.
+#+end_quote
+
+** =if/else=
+- Se usa para hacer decisiones.
+
+#+begin_src go
+x := 69
+
+if x != 69 {
+	fmt.Println("Not funny!")
+}
+else {
+	fmt.Println("Maybe funny!")
+}
+#+end_src
+
+#+begin_quote
+El código dentro de los corchetes no correrá a menos que la condición se cumpla.
+#+end_quote
+
+- Es posible declarar una variable en el =if= si es que lo necesitas.
+
+#+begin_src go
+if x := 42; x > 18 { // se usa el ; para separar las dos operaciones.
+	fmt.Println("Sup!")
+}
+else {
+	fmt.Println("Sup'n!")
+}
+#+end_src
+
+** =switch=
+- Un =switch= es una manera más corta de hacer una secuencia de =if/else=.
+
+#+begin_src go
+num := 3
+
+switch num {
+case 1:
+	fmt.Println("1")
+case 2:
+	fmt.Println("2")
+case 3:
+	fmt.Println("3")
+default:
+	fmt.Println(num)
+}
+#+end_src
+
+- también podemos usar condiciones en los =case=.
+
+#+begin_src go
+num := 3
+
+switch num {
+	case num > 0 && x < 10:
+	fmt.Println("algo")
+	case num > 10:
+	fmt.Println("otra cosa")
+}
+#+end_src
+
+#+begin_quote
+Al igual que los =if/else=, el =switch= puede tener una declaración de variable antes de las expresiones condicionales.
+#+end_quote
+
+** ciclos
+- El único ciclo en Go es el ciclo =for=.
+  + Este se compone de el inicio, la condición y el incremento.
+
+#+begin_src go
+for i := 0; i < 5 ; i++ {
+	fmt.Println(i)
+}
+#+end_src
+
+- Sin embargo podemos omitir el inicio y el incremento para hacerlo parecido a un =while=.
+
+#+begin_src go
+sum := 1
+res := 0
+
+for sum < = 1000 {
+	res += sum
+	sum ++
+}
+fmt.Println(res)
+#+end_src
+
+* Funciones
