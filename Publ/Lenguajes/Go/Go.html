@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Go</title>
-<!-- 2021-09-20 Mon 22:02 -->
+<!-- 2021-10-07 Thu 23:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -214,7 +214,23 @@ $(function() {
 <li><a href="#sec-2-7">2.7. ciclos</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. Funciones</a></li>
+<li><a href="#sec-3">3. Funciones</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Introducción a funciones</a></li>
+<li><a href="#sec-3-2">3.2. Argumentos</a></li>
+<li><a href="#sec-3-3">3.3. Argumentos múltiples</a></li>
+<li><a href="#sec-3-4">3.4. <code>return</code></a></li>
+<li><a href="#sec-3-5">3.5. Múltiples <code>return</code></a></li>
+<li><a href="#sec-3-6">3.6. <code>Defer</code></a></li>
+<li><a href="#sec-3-7">3.7. Múltiples <code>defer</code></a></li>
+<li><a href="#sec-3-8">3.8. Alcance</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Punteros y <code>structs</code></a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Punteros</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -645,11 +661,284 @@ fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(<
 
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> Funciones</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Introducción a funciones</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Nos permiten definir un bloque de código que podemos llamar después.
+</li>
+<li>Nos permiten reusar código.
+</li>
+<li>se usa la palabra <code>func</code> para definir funciones.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"hello"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Hemos definido una función llamada <code>welcome</code> que imprime <code>Hello</code> en la consola.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">()</span>
+    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">()</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Ahora podemos llamar a esa función cuantas veces queramos.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Argumentos</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Son una manera de pasarle información a las funciones.
+</li>
+<li>Los argumentos se comportan como una variable dentro de el cuerpo de la función.
+</li>
+<li>Cuando llamemos a esta función debemos darle los argumentos que le hayamos puesto a la función.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">name</span> <span style="color: #bd93f9;">string</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"hello,"</span><span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #ffc9e8;">name</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"david"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"james"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+En go el tipo del argumento va después de el nombre del argumento.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Argumentos múltiples</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Para hacer que una función acepte múltiples argumentos usamos comas.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">a</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">b</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">a</span><span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #ffc9e8;">b</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #50fa7b;">sum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">5</span>,<span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Si todos los argumentos son del mismo tipo podemos definir el tipo en el último ej. <code>sum(a, b, c int)</code>
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> <code>return</code></h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>A veces vamos a querer que nuestras funciones retornen valores.
+</li>
+<li>Para eso ocupamos la palabra <code>return</code>.
+<ul class="org-ul">
+<li>Este termina la función y retorna el valor dado.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #bd93f9;">int</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ffc9e8;">y</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">sum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Debemos definir el tipo de dato del retorno fuera de los argumentos de la función, en este caso es <code>int</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Múltiples <code>return</code></h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>En go podemos retornar múltiples valores de una función.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">swap</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span>, <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffc9e8;">y</span>, <span style="color: #ffc9e8;">x</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Al igual que retornando un solo valor, debemos declarar los tipos de los valores a retornar.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> <code>Defer</code></h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>La palabra <code>defer</code> se asegura de que una función es llamada solo después de que la función en la que se encuentra termine o retorne.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"welcome"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">defer</span> <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">()</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hey"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+En este caso, no se llama a <code>welcome</code> hasta que se haya terminado de ejecutar <code>fmt.Println("Hey")</code>.
+</p>
+
+<blockquote>
+<p>
+<code>defer</code> es usado normalmente para limpiar recursos, por ejemplo para liberar memoria usada por el código como archivos, conexiones, etc.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> Múltiples <code>defer</code></h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li>Si se usan múltiples <code>defer</code>, estas serán ejecutadas en orden <code>last-in-first-out</code>.
+<ul class="org-ul">
+<li>Tal como si fueran una pila.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"start"</span><span style="color: #ff79c6;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">5</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">defer</span> <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">i</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"end"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-8" class="outline-3">
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> Alcance</h3>
+<div class="outline-text-3" id="text-3-8">
+<ul class="org-ul">
+<li>El alcance (scope) es el donde una variable puede ser usada.
+</li>
+<li>Hay dos alcances principales en go <code>local</code> y <code>global</code>.
+</li>
+<li>Una variable definida en una función es local, su alcance existe solo dentro de esa función, afuera no existe.
+</li>
+<li>Una variable definida fuera de la función es llamada global y pueden ser usadas en todo el <code>package</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span> <span style="color: #6272a4; font-style: italic;">// global</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">test</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">9</span> <span style="color: #6272a4; font-style: italic;">// local</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Variables globales son normalmente consideradas mala práctica, es mejor pasar variables como argumentos.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Punteros y <code>structs</code></h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Punteros</h3>
+</div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-09-20 Mon 22:02</p>
+<p class="date">Created: 2021-10-07 Thu 23:25</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.50 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>
