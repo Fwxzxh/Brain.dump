@@ -234,3 +234,177 @@ fmt.Println(res)
 #+end_src
 
 * Funciones
+** Introducción a funciones
+- Nos permiten definir un bloque de código que podemos llamar después.
+- Nos permiten reusar código.
+- se usa la palabra =func= para definir funciones.
+
+#+begin_src go
+func welcome() {
+	fmt.Println("hello")
+}
+#+end_src
+
+#+begin_quote
+Hemos definido una función llamada =welcome= que imprime =Hello= en la consola.
+#+end_quote
+
+#+begin_src go
+func main() {
+	welcome()
+	welcome()
+}
+#+end_src
+
+#+begin_quote
+Ahora podemos llamar a esa función cuantas veces queramos.
+#+end_quote
+
+** Argumentos
+- Son una manera de pasarle información a las funciones.
+- Los argumentos se comportan como una variable dentro de el cuerpo de la función.
+- Cuando llamemos a esta función debemos darle los argumentos que le hayamos puesto a la función.
+
+#+begin_src go
+func welcome(name string) {
+	fmt.Println("hello,"+name)
+}
+
+func main() {
+	welcome("david")
+	welcome("james")
+}
+#+end_src
+
+#+begin_quote
+En go el tipo del argumento va después de el nombre del argumento.
+#+end_quote
+
+** Argumentos múltiples
+- Para hacer que una función acepte múltiples argumentos usamos comas.
+
+#+begin_src go
+func sum(a int, b int) {
+	fmt.Println(a+b)
+}
+
+func main() {
+	sum(5,5)
+}
+#+end_src
+
+#+begin_quote
+Si todos los argumentos son del mismo tipo podemos definir el tipo en el último ej. =sum(a, b, c int)=
+#+end_quote
+
+** =return=
+- A veces vamos a querer que nuestras funciones retornen valores.
+- Para eso ocupamos la palabra =return=.
+  + Este termina la función y retorna el valor dado.
+
+#+begin_src go
+func sum(x, y int) int {
+	return x + y
+}
+
+func main() {
+	result := sum(4, 5)
+}
+#+end_src
+
+#+begin_quote
+Debemos definir el tipo de dato del retorno fuera de los argumentos de la función, en este caso es =int=.
+#+end_quote
+
+** Múltiples =return=
+- En go podemos retornar múltiples valores de una función.
+
+#+begin_src go
+func swap(x, y int) (int, int) {
+	return y, x
+}
+#+end_src
+
+#+begin_quote
+Al igual que retornando un solo valor, debemos declarar los tipos de los valores a retornar.
+#+end_quote
+
+** =Defer=
+- La palabra =defer= se asegura de que una función es llamada solo después de que la función en la que se encuentra termine o retorne.
+
+#+begin_src go
+import "fmt"
+
+func welcome() {
+	fmt.Println("welcome")
+}
+
+func main() {
+	defer welcome()
+	fmt.Println("Hey")
+}
+#+end_src
+
+#+RESULTS:
+: Hey
+: welcome
+
+En este caso, no se llama a =welcome= hasta que se haya terminado de ejecutar =fmt.Println("Hey")=.
+
+#+begin_quote
+=defer= es usado normalmente para limpiar recursos, por ejemplo para liberar memoria usada por el código como archivos, conexiones, etc.
+#+end_quote
+
+** Múltiples =defer=
+- Si se usan múltiples =defer=, estas serán ejecutadas en orden =last-in-first-out=.
+  + Tal como si fueran una pila.
+
+#+begin_src go
+import "fmt"
+
+func main() {
+	fmt.Println("start")
+
+	for i := 0; i < 5; i++ {
+		defer fmt.Println(i)
+	}
+
+	fmt.Println("end")
+}
+
+#+end_src
+
+#+RESULTS:
+: start
+: end
+: 4
+: 3
+: 2
+: 1
+: 0
+
+** Alcance
+- El alcance (scope) es el donde una variable puede ser usada.
+- Hay dos alcances principales en go =local= y =global=.
+- Una variable definida en una función es local, su alcance existe solo dentro de esa función, afuera no existe.
+- Una variable definida fuera de la función es llamada global y pueden ser usadas en todo el =package=.
+
+#+begin_src go
+var x = 8 // global
+
+func test() {
+	var y = 9 // local
+	fmt.Println(x)
+}
+
+func main() {
+	fmt.Println(x)
+}
+#+end_src
+
+#+begin_quote
+Variables globales son normalmente consideradas mala práctica, es mejor pasar variables como argumentos.
+#+end_quote
+
+* Punteros y =structs=
+** Punteros
