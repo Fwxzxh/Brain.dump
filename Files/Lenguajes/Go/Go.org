@@ -3,7 +3,7 @@
 * Basics
 ** Hello world
 
-#+begin_src go
+#+begin_src go :exports both
 package main
 
 import "fmt"
@@ -332,7 +332,7 @@ Al igual que retornando un solo valor, debemos declarar los tipos de los valores
 ** =Defer=
 - La palabra =defer= se asegura de que una función es llamada solo después de que la función en la que se encuentra termine o retorne.
 
-#+begin_src go
+#+begin_src go :results both
 import "fmt"
 
 func welcome() {
@@ -359,7 +359,7 @@ En este caso, no se llama a =welcome= hasta que se haya terminado de ejecutar =f
 - Si se usan múltiples =defer=, estas serán ejecutadas en orden =last-in-first-out=.
   + Tal como si fueran una pila.
 
-#+begin_src go
+#+begin_src go :exports both
 import "fmt"
 
 func main() {
