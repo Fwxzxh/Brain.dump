@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Go</title>
-<!-- 2021-10-07 Thu 23:30 -->
+<!-- 2021-10-17 Sun 20:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -229,6 +229,10 @@ $(function() {
 <li><a href="#sec-4">4. Punteros y <code>structs</code></a>
 <ul class="nav">
 <li><a href="#sec-4-1">4.1. Punteros</a></li>
+<li><a href="#sec-4-2">4.2. Pasando punteros a funciones</a></li>
+<li><a href="#sec-4-3">4.3. <code>Structs</code></a></li>
+<li><a href="#sec-4-4">4.4. Punteros a <code>Structs</code></a></li>
+<li><a href="#sec-4-5">4.5. Métodos</a></li>
 </ul>
 </li>
 </ul>
@@ -947,12 +951,489 @@ Variables globales son normalmente consideradas mala práctica, es mejor pasar v
 <div class="outline-text-2" id="text-4">
 </div><div id="outline-container-sec-4-1" class="outline-3">
 <h3 id="sec-4-1"><span class="section-number-3">4.1</span> Punteros</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Todos los valores que definimos en nuestro programa son guardados en la memoria y tienen su dirección de memoria única.
+</li>
+<li>Los punteros son variables especiales que guardan la dirección de memoria de un valor.
+</li>
+<li>En go nos referimos a un puntero con <code>*</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #bd93f9;">int</span>
+</pre>
+</div>
+
+<p>
+p es un puntero a un valor tipo <code>int</code>.
+</p>
+
+<blockquote>
+<p>
+Los punteros permiten pasar referencias a valores en tu programa.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>A los punteros les asignaos una dirección de memoria usando el operador <code>&amp;</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
+<span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+</pre>
+</div>
+
+<p>
+Ahora <code>p</code> es un puntero y mantiene la dirección de memoria de x.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">p</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+0xc000018100
+</pre>
+
+
+<p>
+Si queremos acceder al valor de el puntero, podemos usar el operador <code>*</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">p</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+El operador <code>*</code> puede ser usado para cambiar el valor de la dirección de memoria que del puntero.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+
+  <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">p</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+8
+8
+</pre>
+
+
+<blockquote>
+<p>
+Somos capaces de  cambiar el valor de x usando el puntero <code>p</code>.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Pasando punteros a funciones</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Para leer texto de la consola hemos usado punteros.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">input</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Scanln</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">input</span><span style="color: #ff79c6;">)</span>
+
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">input</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Aquí pasábamos la dirección de memoria de la variable <code>input</code> a la función <code>Scanln</code>.
+</p>
+</blockquote>
+
+<p>
+Podemos pasar punteros como parametros de una función.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">change</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">val</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">change_ptr</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
+
+  <span style="color: #50fa7b;">change</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+
+  <span style="color: #50fa7b;">change_ptr</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+42
+8
+</pre>
+
+
+<ul class="org-ul">
+<li>La función <code>change()</code> toma como parametro un <code>int</code> y cambia su valor.
+</li>
+<li>La función <code>change_ptr()</code> hace lo mismo, pero toma como argumento un puntero a un <code>int</code>.
+</li>
+</ul>
+
+<blockquote>
+<p>
+La <code>change()</code> no cambio el valor de x porque el argumento es una copia de x y <code>change_ptr()</code> si lo cambio porque le pasamos la dirección de memoria de x.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> <code>Structs</code></h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Go no soporta clases, en su lugar tiene <code>structs</code>.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">type</span> <span style="color: #bd93f9;">Contact</span> <span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #8be9fd; font-style: italic;">age</span>  <span style="color: #bd93f9;">int</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Nuestro contacto tiene dos campos, nombre y edad.
+</p>
+
+<p>
+Ahora podemos crear un nuevo contacto.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contract</span><span style="color: #61bfff;">{</span> <span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span> <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+<code>x</code> es ahora un <code>struct</code> que ha sido inicializado con los valores anteriores.
+</p>
+
+<p>
+También podemos darle el nombre de los campos a la hora de crearlo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">{</span><span style="color: #8be9fd; font-style: italic;">name</span>: <span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd; font-style: italic;">age</span>: <span style="color: #8be9fd;">42</span><span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Podemos acceder a los campos del <code>struct</code> de la siguiente manera.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">type</span> <span style="color: #bd93f9;">Contact</span> <span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #bd93f9;">int</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
+
+  <span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+8
+James
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Punteros a <code>Structs</code></h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+De manera similar a punteros simples, podemos hacer punteros a <code>structs</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #61bfff;">}</span>
+<span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">type</span> <span style="color: #bd93f9;">Contact</span> <span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #bd93f9;">int</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">p</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+42
+</pre>
+
+
+<blockquote>
+<p>
+Podríamos acceder a <code>p</code> con <code>(*p).age</code> pero go nos permite hacerlo con solo <code>p.age</code>.
+</p>
+</blockquote>
+
+<p>
+También podemos usar punteros cuando creamos un nuevo <code>struct</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">type</span> <span style="color: #bd93f9;">Contact</span> <span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #bd93f9;">int</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"John"</span>, <span style="color: #8be9fd;">15</span><span style="color: #ff79c6;">}</span>
+
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">p</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+John
+</pre>
+
+
+<p>
+Ahora <code>p</code> es un puntero a el <code>struct</code> que se acaba de crear.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Métodos</h3>
+<div class="outline-text-3" id="text-4-5">
+<ul class="org-ul">
+<li>Podemos agregarle funcionalidad a nuestros <code>structs</code> añadiendoles métodos.
+</li>
+<li>Los métodos son simplemente funciones con un argumento recibidor adicional.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+El argumento recibidor va entre el nombre del método y la palabra <code>func</code>.
+</p>
+</blockquote>
+
+<p>
+Después de definir un método podemos acceder a el con la sintaxis punto.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">type</span> <span style="color: #bd93f9;">Contact</span> <span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #bd93f9;">int</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
+  <span style="color: #ffc9e8;">x</span>.<span style="color: #50fa7b; font-style: italic;">welcome</span><span style="color: #ff79c6;">()</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Como los métodos son solo funciones con un argumento recibidor, podemos alcanzar la misma funcionalidad usando una función regular que toma un <code>struct</code> como parametro.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">type</span> <span style="color: #bd93f9;">Contact</span> <span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #bd93f9;">int</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
+  <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+James
+42
+</pre>
+
+
+<p>
+En el caso de que necesitemos cambiar los datos del <code>struct</code> en un método podemos usar punteros.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">increase</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">val</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">ptr</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">val</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+El método <code>increase()</code> usa un puntero como argumento y puede modificar el campo de <code>age</code> del <code>struct</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
+
+<span style="color: #ff79c6; font-style: italic;">type</span> <span style="color: #bd93f9;">Contact</span> <span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #bd93f9;">string</span>
+  <span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #bd93f9;">int</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">increase</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">val</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">ptr</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">val</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
+  <span style="color: #ffc9e8;">x</span>.<span style="color: #50fa7b; font-style: italic;">increase</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">8</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+50
+</pre>
+</div>
 </div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-10-07 Thu 23:30</p>
+<p class="date">Created: 2021-10-17 Sun 20:32</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.50 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
 </div>
 </footer>

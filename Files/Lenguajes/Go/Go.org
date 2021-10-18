@@ -408,3 +408,349 @@ Variables globales son normalmente consideradas mala práctica, es mejor pasar v
 
 * Punteros y =structs=
 ** Punteros
+- Todos los valores que definimos en nuestro programa son guardados en la memoria y tienen su dirección de memoria única.
+- Los punteros son variables especiales que guardan la dirección de memoria de un valor.
+- En go nos referimos a un puntero con =*=.
+
+#+begin_src go
+var p *int
+#+end_src
+
+p es un puntero a un valor tipo =int=.
+
+#+begin_quote
+Los punteros permiten pasar referencias a valores en tu programa.
+#+end_quote
+
+- A los punteros les asignaos una dirección de memoria usando el operador =&=.
+
+#+begin_src go
+x := 42
+p := &x
+#+end_src
+
+Ahora =p= es un puntero y mantiene la dirección de memoria de x.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+func main() {
+  x := 42
+  p := &x
+  fmt.Println(p)
+}
+#+end_src
+
+#+RESULTS:
+: 0xc0000ba000
+
+Si queremos acceder al valor de el puntero, podemos usar el operador =*=.
+
+#+begin_src go
+package main
+
+import "fmt"
+
+func main() {
+  x := 42
+  p := &x
+  fmt.Println(*p)
+}
+#+end_src
+
+#+RESULTS:
+: 42
+
+El operador =*= puede ser usado para cambiar el valor de la dirección de memoria que del puntero.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+func main() {
+  x := 42
+  p := &x
+
+  *p = 8
+  fmt.Println(*p)
+  fmt.Println(x)
+}
+#+end_src
+
+#+RESULTS:
+: 8
+: 8
+
+#+begin_quote
+Somos capaces de  cambiar el valor de x usando el puntero =p=.
+#+end_quote
+
+** Pasando punteros a funciones
+- Para leer texto de la consola hemos usado punteros.
+
+#+begin_src go
+package main
+
+import "fmt"
+
+func main() {
+  var input string
+  fmt.Scanln(&input)
+
+  fmt.Println(input)
+}
+#+end_src
+
+#+begin_quote
+Aquí pasábamos la dirección de memoria de la variable =input= a la función =Scanln=.
+#+end_quote
+
+Podemos pasar punteros como parametros de una función.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+func change(val int) {
+  val = 8
+}
+
+func change_ptr(ptr *int) {
+  *ptr = 8
+}
+
+func main() {
+  x := 42
+
+  change(x)
+  fmt.Println(x)
+
+  change_ptr(&x)
+  fmt.Println(x)
+}
+#+end_src
+
+#+RESULTS:
+: 42
+: 8
+
+- La función =change()= toma como parametro un =int= y cambia su valor.
+- La función =change_ptr()= hace lo mismo, pero toma como argumento un puntero a un =int=.
+
+#+begin_quote
+La =change()= no cambio el valor de x porque el argumento es una copia de x y =change_ptr()= si lo cambio porque le pasamos la dirección de memoria de x.
+#+end_quote
+
+** =Structs=
+- Go no soporta clases, en su lugar tiene =structs=.
+
+#+begin_src go
+type Contact struct {
+  name string
+  age  int
+}
+#+end_src
+
+Nuestro contacto tiene dos campos, nombre y edad.
+
+Ahora podemos crear un nuevo contacto.
+
+#+begin_src go
+x := Contract{ "James", 42 }
+#+end_src
+
+=x= es ahora un =struct= que ha sido inicializado con los valores anteriores.
+
+También podemos darle el nombre de los campos a la hora de crearlo.
+
+#+begin_src go
+x := Contact{name: "James", age: 42}
+#+end_src
+
+Podemos acceder a los campos del =struct= de la siguiente manera.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+type Contact struct {
+  name string
+  age int
+}
+
+func main() {
+  x := Contact{"James", 42}
+
+  x.age = 8
+  fmt.Println(x.age)
+  fmt.Println(x.name)
+}
+#+end_src
+
+#+RESULTS:
+: 8
+: James
+
+** Punteros a =Structs=
+De manera similar a punteros simples, podemos hacer punteros a =structs=.
+
+#+begin_src go
+x := Contact{"James", 42}
+p := &x
+#+end_src
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+type Contact struct {
+  name string
+  age int
+}
+
+func main() {
+  x := Contact{"James", 42}
+  p := &x
+
+  fmt.Println(p.age)
+}
+#+end_src
+
+#+RESULTS:
+: 42
+
+#+begin_quote
+Podríamos acceder a =p= con =(*p).age= pero go nos permite hacerlo con solo =p.age=.
+#+end_quote
+
+También podemos usar punteros cuando creamos un nuevo =struct=.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+type Contact struct {
+  name string
+  age int
+}
+
+func main() {
+  p := &Contact{"John", 15}
+
+  fmt.Println(p.name)
+}
+#+end_src
+
+#+RESULTS:
+: John
+
+Ahora =p= es un puntero a el =struct= que se acaba de crear.
+
+** Métodos
+- Podemos agregarle funcionalidad a nuestros =structs= añadiendoles métodos.
+- Los métodos son simplemente funciones con un argumento recibidor adicional.
+
+#+begin_src go
+func (x Contact) welcome() {
+  fmt.Println(x.name)
+  fmt.Println(x.age)
+}
+#+end_src
+
+#+begin_quote
+El argumento recibidor va entre el nombre del método y la palabra =func=.
+#+end_quote
+
+Después de definir un método podemos acceder a el con la sintaxis punto.
+
+#+begin_src go
+package main
+
+import "fmt"
+
+type Contact struct {
+  name string
+  age int
+}
+
+func (x Contact) welcome() {
+  fmt.Println(x.name)
+  fmt.Println(x.age)
+}
+
+func main() {
+  x := Contact{"James", 42}
+  x.welcome()
+}
+#+end_src
+
+#+RESULTS:
+: James
+: 42
+
+Como los métodos son solo funciones con un argumento recibidor, podemos alcanzar la misma funcionalidad usando una función regular que toma un =struct= como parametro.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+type Contact struct {
+  name string
+  age int
+}
+
+func welcome(x Contact) {
+  fmt.Println(x.name)
+  fmt.Println(x.age)
+}
+func main() {
+  x := Contact{"James", 42}
+  welcome(x)
+}
+#+end_src
+
+#+RESULTS:
+: James
+: 42
+
+En el caso de que necesitemos cambiar los datos del =struct= en un método podemos usar punteros.
+
+#+begin_src go
+func (ptr *Contact) increase(val int) {
+  ptr.age += val
+}
+#+end_src
+
+El método =increase()= usa un puntero como argumento y puede modificar el campo de =age= del =struct=.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+type Contact struct {
+  name string
+  age int
+}
+
+func (ptr *Contact) increase(val int) {
+  ptr.age += val
+}
+
+func main() {
+  x := Contact{"James", 42}
+  x.increase(8)
+  fmt.Println(x.age)
+}
+#+end_src
+
+#+RESULTS:
+: 50
