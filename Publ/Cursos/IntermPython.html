@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Python Intermedio</title>
-<!-- 2021-04-18 Sun 22:04 -->
+<!-- 2022-01-25 Tue 18:52 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -285,10 +285,10 @@ MathJax.Hub.Config({
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">apllyTwice</span><span style="color: #61bfff;">(</span>func, arg<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">apllyTwice</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">func</span>, <span style="color: #ffc9e8;">arg</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #ff79c6;">(</span>arg<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addFive</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addFive</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">return</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span>
 
 <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">apllyTwice</span><span style="color: #61bfff;">(</span>addFive, <span style="color: #8be9fd;">10</span><span style="color: #61bfff;">)</span>
@@ -333,14 +333,14 @@ reduciendo el numero de veces que esta es llamada.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pureFunct</span><span style="color: #61bfff;">(</span>x, y<span style="color: #61bfff;">)</span>: <span style="color: #6272a4; font-style: italic;"># todo ocurre dentro de la funci&#243;n.</span>
-    temp <span style="color: #ff79c6; font-style: italic;">=</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>y
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pureFunct</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span><span style="color: #61bfff;">)</span>: <span style="color: #6272a4; font-style: italic;"># todo ocurre dentro de la funci&#243;n.</span>
+    <span style="color: #ffc9e8;">temp</span> <span style="color: #ff79c6; font-style: italic;">=</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>y
     <span style="color: #ff79c6; font-style: italic;">return</span> temp<span style="color: #ff79c6; font-style: italic;">/</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>x <span style="color: #ff79c6; font-style: italic;">+</span> y<span style="color: #61bfff;">)</span>
 
 
 
-someList <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[]</span> <span style="color: #6272a4; font-style: italic;"># tiene efectos secundarios ya que modificamos cosas afuera de esas funciones.</span>
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">impureFunct</span><span style="color: #61bfff;">(</span>args<span style="color: #61bfff;">)</span>:
+<span style="color: #ffc9e8;">someList</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[]</span> <span style="color: #6272a4; font-style: italic;"># tiene efectos secundarios ya que modificamos cosas afuera de esas funciones.</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">impureFunct</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>:
     someList.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">append</span><span style="color: #61bfff;">(</span>args<span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -363,10 +363,10 @@ someList <span style="color: #ff79c6; font-style: italic;">=</span> <span style=
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">myFunc</span><span style="color: #61bfff;">(</span>f, arg<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">myFunc</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">f</span>, <span style="color: #ffc9e8;">arg</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">f</span><span style="color: #61bfff;">(</span>arg<span style="color: #61bfff;">)</span>
 
-<span style="color: #bd93f9; font-weight: bold;">myFunc</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>x<span style="color: #ff79c6; font-style: italic;">*</span>x, <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9; font-weight: bold;">myFunc</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> <span style="color: #ffc9e8;">x</span>: <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">*</span>x<span style="color: #ff79c6; font-style: italic;">*</span>x, <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -379,12 +379,12 @@ Solo pueden hacer operaciones que requieren de una sola expresión.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #6272a4; font-style: italic;"># named function</span>
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">polynomial</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">polynomial</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">return</span> x<span style="color: #ff79c6; font-style: italic;">**</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span><span style="color: #ff79c6; font-style: italic;">*</span>x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">4</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">polynomial</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 
 <span style="color: #6272a4; font-style: italic;"># lambda</span>
-<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: x<span style="color: #ff79c6; font-style: italic;">**</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span><span style="color: #ff79c6; font-style: italic;">*</span>x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> <span style="color: #ffc9e8;">x</span>: x<span style="color: #ff79c6; font-style: italic;">**</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span><span style="color: #ff79c6; font-style: italic;">*</span>x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -402,15 +402,15 @@ Solo pueden hacer operaciones que requieren de una sola expresión.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addFive</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">addFive</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">return</span> x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span>
 
-nums <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
-result <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">map</span><span style="color: #ff79c6;">(</span>addFive, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">nums</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
+<span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">map</span><span style="color: #ff79c6;">(</span>addFive, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 
 <span style="color: #6272a4; font-style: italic;"># o usando una lambda</span>
-nums <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
-result <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">map</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span>, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">nums</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
+<span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">map</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> <span style="color: #ffc9e8;">x</span>: x <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">5</span>, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -426,27 +426,11 @@ result <span style="color: #ff79c6; font-style: italic;">=</span> <span style="c
 
 <div class="org-src-container">
 
-<pre class="src src-python">nums <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
-res <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">filter</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> x: x <span style="color: #ff79c6; font-style: italic;">%</span> <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">==</span><span style="color: #8be9fd;">0</span>, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">nums</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">11</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">44</span>, <span style="color: #8be9fd;">55</span><span style="color: #61bfff;">]</span>
+<span style="color: #ffc9e8;">res</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">filter</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> <span style="color: #ffc9e8;">x</span>: x <span style="color: #ff79c6; font-style: italic;">%</span> <span style="color: #8be9fd;">2</span><span style="color: #ff79c6; font-style: italic;">==</span><span style="color: #8be9fd;">0</span>, nums<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 <span style="color: #ff79c6; font-style: italic;">return</span> res
 </pre>
 </div>
-
-<table class="table table-striped table-bordered table-hover table-condensed">
-
-
-<colgroup>
-<col  class="right">
-
-<col  class="right">
-</colgroup>
-<tbody>
-<tr>
-<td class="text-right">22</td>
-<td class="text-right">44</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 
@@ -465,12 +449,12 @@ res <span style="color: #ff79c6; font-style: italic;">=</span> <span style="colo
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">countDown</span><span style="color: #61bfff;">()</span>:
-    i <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">5</span>
+    <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">5</span>
     <span style="color: #ff79c6; font-style: italic;">while</span> i <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">0</span>:
         <span style="color: #ff79c6; font-style: italic;">yield</span> i
-        i <span style="color: #ff79c6; font-style: italic;">-=</span> <span style="color: #8be9fd;">1</span>
+        <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">-=</span> <span style="color: #8be9fd;">1</span>
 
-<span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">countDown</span><span style="color: #61bfff;">()</span>:
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">countDown</span><span style="color: #61bfff;">()</span>:
     <span style="color: #ff79c6; font-style: italic;">return</span> i
 </pre>
 </div>
@@ -492,7 +476,7 @@ res <span style="color: #ff79c6; font-style: italic;">=</span> <span style="colo
     <span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #ffb86c;">True</span>:
         <span style="color: #ff79c6; font-style: italic;">yield</span> <span style="color: #8be9fd;">7</span>
 
-<span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">infiniteSevens</span><span style="color: #61bfff;">()</span>:
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">infiniteSevens</span><span style="color: #61bfff;">()</span>:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>i<span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -510,8 +494,8 @@ Básicamente, los generadores nos permiten declarar funciones que se comportan c
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">numbers</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
-    <span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">numbers</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">if</span> i <span style="color: #ff79c6; font-style: italic;">%</span> <span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span>:
             <span style="color: #ff79c6; font-style: italic;">yield</span> i
 
@@ -539,7 +523,7 @@ Usar generadores da mejor rendimiento el cual es resultado de la evaluación per
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">decor</span><span style="color: #61bfff;">(</span>func<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">decor</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">func</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">wrap</span><span style="color: #61bfff;">()</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"========="</span><span style="color: #61bfff;">)</span>
         <span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #61bfff;">()</span>
@@ -549,7 +533,7 @@ Usar generadores da mejor rendimiento el cual es resultado de la evaluación per
 <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printText</span><span style="color: #61bfff;">()</span>:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #61bfff;">)</span>
 
-decorated <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">decor</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">printText</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">decorated</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">decor</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">printText</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span>
 <span style="color: #bd93f9; font-weight: bold;">decorated</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
@@ -576,7 +560,7 @@ de esa manera siempre tendríamos <code>printText</code> &ldquo;más algo&rdquo;
 
 <div class="org-src-container">
 
-<pre class="src src-python">printText <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">decor</span><span style="color: #61bfff;">(</span>printText<span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">printText</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">decor</span><span style="color: #61bfff;">(</span>printText<span style="color: #61bfff;">)</span>
 <span style="color: #bd93f9; font-weight: bold;">printText</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
@@ -593,7 +577,7 @@ Python provee soporte para hacer wrap de cualquier función precediendo la decla
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">decor</span><span style="color: #61bfff;">(</span>func<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">decor</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">func</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">wrap</span><span style="color: #61bfff;">()</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"============"</span><span style="color: #61bfff;">)</span>
         <span style="color: #bd93f9; font-weight: bold;">func</span><span style="color: #61bfff;">()</span>
@@ -640,7 +624,7 @@ Un buen ejemplo de recursión es el factorial.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">factorial</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">factorial</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">if</span> x <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">1</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">1</span>
     <span style="color: #ff79c6; font-style: italic;">else</span>:
@@ -663,13 +647,13 @@ Un buen ejemplo de recursión es el factorial.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEven</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isEven</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">if</span> x <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">True</span>
     <span style="color: #ff79c6; font-style: italic;">else</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">isOdd</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>
 
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isOdd</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>:
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">isOdd</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">not</span> <span style="color: #bd93f9; font-weight: bold;">isEven</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -688,7 +672,7 @@ Un buen ejemplo de recursión es el factorial.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">function</span><span style="color: #61bfff;">(</span>named_arg, <span style="color: #ff79c6; font-style: italic;">*</span>args<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">function</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">named_arg</span>, <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>named_arg<span style="color: #61bfff;">)</span>
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">*</span>args<span style="color: #61bfff;">)</span>
 
@@ -724,7 +708,7 @@ Un buen ejemplo de recursión es el factorial.
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">myFunc</span><span style="color: #61bfff;">(</span>x, y<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #8be9fd;">7</span>, <span style="color: #ff79c6; font-style: italic;">*</span>args, <span style="color: #ff79c6; font-style: italic;">**</span>kwargs<span style="color: #61bfff;">)</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">myFunc</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #8be9fd;">7</span>, <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">args</span>, <span style="color: #ff79c6; font-style: italic;">**</span><span style="color: #ffc9e8;">kwargs</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>kwargs<span style="color: #61bfff;">)</span>
 
 <span style="color: #bd93f9; font-weight: bold;">myFunc</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">6</span>, <span style="color: #bd93f9; font-weight: bold;">a</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #8be9fd;">7</span>, <span style="color: #bd93f9; font-weight: bold;">b</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #8be9fd;">8</span><span style="color: #61bfff;">)</span>
@@ -768,13 +752,13 @@ Los argumentos dados en <code>kwargs</code>, no son los mismos que se incluyen e
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> cat:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, color, legs<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">legs</span> <span style="color: #ff79c6; font-style: italic;">=</span> legs
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">color</span>, <span style="color: #ffc9e8;">legs</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">legs</span> <span style="color: #ff79c6; font-style: italic;">=</span> legs
 
-felix <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"ginger"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
-rover <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">car</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"blue"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
-stumpy <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"brown"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">felix</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"ginger"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">rover</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">car</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"blue"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">stumpy</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"brown"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -813,11 +797,11 @@ Usamos esta clase para crear tres objetos tipo <code>cat</code> con diferentes a
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> cat:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, color, legs<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">legs</span> <span style="color: #ff79c6; font-style: italic;">=</span> legs
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">color</span>, <span style="color: #ffc9e8;">legs</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">legs</span> <span style="color: #ff79c6; font-style: italic;">=</span> legs
 
-felix <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"ginger"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">felix</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">cat</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"ginger"</span>, <span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>felix.<span style="color: #8be9fd; font-style: italic;">color</span><span style="color: #61bfff;">)</span>
 <span style="color: #6272a4; font-style: italic;"># Nos imprimir&#237;a, ginger</span>
 </pre>
@@ -850,9 +834,9 @@ El método <code>__init__</code> es llamado también constructor.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> dog:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, color<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">name</span>, <span style="color: #ffc9e8;">color</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
 
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Woof!"</span><span style="color: #61bfff;">)</span>
@@ -860,7 +844,7 @@ El método <code>__init__</code> es llamado también constructor.
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">barkColor</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Wooof!"</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># podemos acceder a los argumentos del constructor con self</span>
 
-fido <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"fido"</span>, <span style="color: #f1fa8c;">"brown"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">fido</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"fido"</span>, <span style="color: #f1fa8c;">"brown"</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>fido.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #61bfff;">)</span>
 fido.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</span><span style="color: #61bfff;">()</span>
 </pre>
@@ -889,9 +873,9 @@ Los atributos de una clase son compartidos por todas las instancias de esta clas
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> animal:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, color<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">name</span>, <span style="color: #ffc9e8;">color</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
 
 <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">cat</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">animal</span><span style="color: #61bfff;">)</span>:
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">purr</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
@@ -901,7 +885,7 @@ Los atributos de una clase son compartidos por todas las instancias de esta clas
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Woof!"</span><span style="color: #61bfff;">)</span>
 
-fido <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Fido"</span>, <span style="color: #f1fa8c;">"brown"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">fido</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Fido"</span>, <span style="color: #f1fa8c;">"brown"</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>fido.<span style="color: #8be9fd; font-style: italic;">color</span><span style="color: #61bfff;">)</span>
 fido.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</span><span style="color: #61bfff;">()</span>
 </pre>
@@ -917,9 +901,9 @@ fido.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> wolf:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, color<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">name</span>, <span style="color: #ffc9e8;">color</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">color</span> <span style="color: #ff79c6; font-style: italic;">=</span> color
 
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Grr!"</span><span style="color: #61bfff;">)</span>
@@ -928,7 +912,7 @@ fido.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">bark</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Woof!"</span><span style="color: #61bfff;">)</span>
 
-husky <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Max"</span>, <span style="color: #f1fa8c;">"grey"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">husky</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">dog</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Max"</span>, <span style="color: #f1fa8c;">"grey"</span><span style="color: #61bfff;">)</span>
 husky.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">bark</span><span style="color: #61bfff;">()</span>
 <span style="color: #6272a4; font-style: italic;"># retornaria: Woof!</span>
 </pre>
@@ -989,15 +973,15 @@ Podemos referirnos a la clase padre de una instancia con la función <code>super
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> vector2D:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, x, y<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> x
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> y
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__add__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, other<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> x
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> y
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__add__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">other</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">x</span> <span style="color: #ff79c6; font-style: italic;">+</span> other.<span style="color: #8be9fd; font-style: italic;">x</span>, <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">y</span> <span style="color: #ff79c6; font-style: italic;">+</span> other.<span style="color: #8be9fd; font-style: italic;">y</span><span style="color: #61bfff;">)</span>
 
-first <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>
-second <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">9</span><span style="color: #61bfff;">)</span>
-result <span style="color: #ff79c6; font-style: italic;">=</span> first <span style="color: #ff79c6; font-style: italic;">+</span> second
+<span style="color: #ffc9e8;">first</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">second</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vector2D</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">9</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">=</span> first <span style="color: #ff79c6; font-style: italic;">+</span> second
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>result.<span style="color: #8be9fd; font-style: italic;">x</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>result.<span style="color: #8be9fd; font-style: italic;">y</span><span style="color: #61bfff;">)</span>
 </pre>
@@ -1057,15 +1041,15 @@ Sin embargo si en x no se ha implementado el método <code>__add__</code> y x &a
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> specialString:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, cont<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">cont</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
 
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__truediv__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, other<span style="color: #61bfff;">)</span>:
-        line <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"="</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #61bfff;">(</span>other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__truediv__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">other</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ffc9e8;">line</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"="</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #61bfff;">(</span>other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">)</span>
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"</span><span style="color: #ff79c6; font-style: italic;">\n</span><span style="color: #f1fa8c;">"</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">join</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span>, line, other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 
-spam <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">)</span>
-hello <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">spam</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">hello</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span> <span style="color: #61bfff;">(</span>spam <span style="color: #ff79c6; font-style: italic;">/</span> hello<span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -1109,17 +1093,17 @@ Si <code>__ne__</code> no esta implementado, retorna el opuesto de <code>__eq__<
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> specialString:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, cont<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">cont</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
 
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__gt__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, other<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">for</span> index <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #ff79c6;">)</span><span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>:
-            result <span style="color: #ff79c6; font-style: italic;">=</span> other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>:index<span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"&gt;"</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span>
-            result <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #f1fa8c;">"&gt;"</span> <span style="color: #ff79c6; font-style: italic;">+</span> other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>index:<span style="color: #61bfff;">]</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__gt__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">other</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">index</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #ff79c6;">)</span><span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>:
+            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">=</span> other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>:index<span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"&gt;"</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span>
+            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #f1fa8c;">"&gt;"</span> <span style="color: #ff79c6; font-style: italic;">+</span> other.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>index:<span style="color: #61bfff;">]</span>
             <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>result<span style="color: #61bfff;">)</span>
 
-spam <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">)</span>
-spam <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"eggs"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">spam</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">spam</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">specialString</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"eggs"</span><span style="color: #61bfff;">)</span>
 spam <span style="color: #ff79c6; font-style: italic;">&gt;</span> eggs
 </pre>
 </div>
@@ -1165,17 +1149,17 @@ Hay muchos más tipos de métodos mágicos como <code>__call__</code> para llama
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">import</span> random
 
 <span style="color: #ff79c6; font-style: italic;">class</span> vagueList:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, cont<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">cont</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> cont
 
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__getitem__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, index<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__getitem__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">index</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #61bfff;">[</span>index <span style="color: #ff79c6; font-style: italic;">+</span> random.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">randint</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">]</span>
 
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__len__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> random.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">randint</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">cont</span><span style="color: #ff79c6;">)</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #8be9fd;">2</span><span style="color: #61bfff;">)</span>
 
 
-vague_list <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vagueList</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"A"</span>, <span style="color: #f1fa8c;">"B"</span>, <span style="color: #f1fa8c;">"C"</span>, <span style="color: #f1fa8c;">"D"</span>, <span style="color: #f1fa8c;">"E"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">vague_list</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">vagueList</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"A"</span>, <span style="color: #f1fa8c;">"B"</span>, <span style="color: #f1fa8c;">"C"</span>, <span style="color: #f1fa8c;">"D"</span>, <span style="color: #f1fa8c;">"E"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>vague_list<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>vague_list<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>vague_list<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
@@ -1228,10 +1212,10 @@ y ser presentados al usuario con una <b>interfaz</b> estandar y limpia.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> queue:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, contents<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_hiddenList</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span>contents<span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">contents</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">_hiddenList</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">list</span><span style="color: #61bfff;">(</span>contents<span style="color: #61bfff;">)</span>
 
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">push</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, value<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">push</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">value</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_hiddenList</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">insert</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span>, value<span style="color: #61bfff;">)</span>
 
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pop</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
@@ -1241,7 +1225,7 @@ y ser presentados al usuario con una <b>interfaz</b> estandar y limpia.
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Queue({})"</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">format</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_hiddenList</span><span style="color: #61bfff;">)</span>
 
 
-queue <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Queue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">queue</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Queue</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>queue<span style="color: #61bfff;">)</span>
 queue.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">push</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>queue<span style="color: #61bfff;">)</span>
@@ -1284,11 +1268,11 @@ En el código de arriba, <code>_hiddenList</code> esta marcado como privado, per
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> spam:
-    __egg <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
+    <span style="color: #ffc9e8;">__egg</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">printEgg</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">__egg</span><span style="color: #61bfff;">)</span>
 
-s <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">spam</span><span style="color: #61bfff;">()</span>
+<span style="color: #ffc9e8;">s</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">spam</span><span style="color: #61bfff;">()</span>
 s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">printEgg</span><span style="color: #61bfff;">()</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>s.<span style="color: #8be9fd; font-style: italic;">_spam__egg</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>s.<span style="color: #8be9fd; font-style: italic;">__egg</span><span style="color: #61bfff;">)</span>
@@ -1335,21 +1319,21 @@ AttributeError: 'spam' object has no attribute '__egg'
 
 <span style="color: #6272a4; font-style: italic;"># random Person</span>
 <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span>:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, name, age<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> age
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">name</span>, <span style="color: #ffc9e8;">age</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> name
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> age
 
     <span style="color: #bd93f9; font-weight: bold;">@classmethod</span>
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">fromBirthYear</span><span style="color: #61bfff;">(</span>cls, name, birthYear<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">fromBirthYear</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">cls</span>, <span style="color: #ffc9e8;">name</span>, <span style="color: #ffc9e8;">birthYear</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">cls</span><span style="color: #61bfff;">(</span>name, date.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">today</span><span style="color: #ff79c6;">()</span>.<span style="color: #8be9fd; font-style: italic;">year</span> <span style="color: #ff79c6; font-style: italic;">-</span> birthYear<span style="color: #61bfff;">)</span>
 
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">display</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">name</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"'s age is: "</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ffb86c; font-weight: bold;">str</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 
-person <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Person</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Adam'</span>, <span style="color: #8be9fd;">19</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">person</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">Person</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Adam'</span>, <span style="color: #8be9fd;">19</span><span style="color: #61bfff;">)</span>
 person.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">display</span><span style="color: #61bfff;">()</span>
 
-person1 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9;">Person</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">fromBirthYear</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'John'</span>,  <span style="color: #8be9fd;">1985</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">person1</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9;">Person</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">fromBirthYear</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'John'</span>,  <span style="color: #8be9fd;">1985</span><span style="color: #61bfff;">)</span>
 person1.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">display</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
@@ -1386,19 +1370,19 @@ Los nombres <code>self</code> y <code>cls</code>, son solo convenciones, pueden 
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> pizza:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, toppings<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">toppings</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
 
     <span style="color: #bd93f9; font-weight: bold;">@staticmethod</span>
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">validateTopping</span><span style="color: #61bfff;">(</span>topping<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">validateTopping</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">topping</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">if</span> topping <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #f1fa8c;">"pineapple"</span>:
             <span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9; font-weight: bold;">ValueError</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"No pineapples!"</span><span style="color: #61bfff;">)</span>
         <span style="color: #ff79c6; font-style: italic;">else</span>:
             <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">True</span>
 
-ingredients <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"cheese"</span>, <span style="color: #f1fa8c;">"onions"</span>, <span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">]</span>
-<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffb86c; font-weight: bold;">all</span><span style="color: #61bfff;">(</span>pizza.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">validateTopping</span><span style="color: #ff79c6;">(</span>i<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">for</span> i <span style="color: #ff79c6; font-style: italic;">in</span> ingredients<span style="color: #61bfff;">)</span>:
-    <span style="color: #bd93f9;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span>ingredients<span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">ingredients</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"cheese"</span>, <span style="color: #f1fa8c;">"onions"</span>, <span style="color: #f1fa8c;">"spam"</span><span style="color: #61bfff;">]</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffb86c; font-weight: bold;">all</span><span style="color: #61bfff;">(</span>pizza.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">validateTopping</span><span style="color: #ff79c6;">(</span>i<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">in</span> ingredients<span style="color: #61bfff;">)</span>:
+    <span style="color: #ffc9e8;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span>ingredients<span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1425,16 +1409,16 @@ Los Métodos estáticos se comportan como funciones normales, pero puedes llamar
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> pizza:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, toppings<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">toppings</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
 
     <span style="color: #bd93f9; font-weight: bold;">@property</span>
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pineappleAllowed</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">False</span>
 
-<span style="color: #bd93f9;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"cheese"</span>, <span style="color: #f1fa8c;">"tomato"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"cheese"</span>, <span style="color: #f1fa8c;">"tomato"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span><span style="color: #61bfff;">)</span>
-<span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span>
+<span style="color: #bd93f9;">Pizza</span>.<span style="color: #ffc9e8; font-style: italic;">pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span>
 </pre>
 </div>
 
@@ -1468,26 +1452,26 @@ AttributeError: can't set attribute
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">class</span> pizza:
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, toppings<span style="color: #61bfff;">)</span>:
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
-        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">False</span>
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">__init__</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">toppings</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">toppings</span> <span style="color: #ff79c6; font-style: italic;">=</span> toppings
+        <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">_pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">False</span>
 
     <span style="color: #bd93f9; font-weight: bold;">@property</span>
     <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pineappleAllowed</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_pineappleAllowed</span>
 
     <span style="color: #bd93f9; font-weight: bold;">@pineappleAllowed.</span><span style="color: #8be9fd; font-weight: bold; font-style: italic;">setter</span>
-    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pineappleAllowed</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, value<span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">pineappleAllowed</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">self</span>, <span style="color: #ffc9e8;">value</span><span style="color: #61bfff;">)</span>:
         <span style="color: #ff79c6; font-style: italic;">if</span> value:
-            password <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">input</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Enter the password: "</span><span style="color: #61bfff;">)</span>
+            <span style="color: #ffc9e8;">password</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">input</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Enter the password: "</span><span style="color: #61bfff;">)</span>
             <span style="color: #ff79c6; font-style: italic;">if</span> password <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #f1fa8c;">"Sw0rdf1sh!"</span>:
-                <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #8be9fd; font-style: italic;">_pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> value
+                <span style="color: #ff79c6; font-style: italic;">self</span>.<span style="color: #ffc9e8; font-style: italic;">_pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> value
             <span style="color: #ff79c6; font-style: italic;">else</span>:
                 <span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9; font-weight: bold;">ValueError</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Alert! Intruder!"</span><span style="color: #61bfff;">)</span>
 
-<span style="color: #bd93f9;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Cheese"</span>, <span style="color: #f1fa8c;">"tomato"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">Pizza</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">pizza</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Cheese"</span>, <span style="color: #f1fa8c;">"tomato"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span><span style="color: #61bfff;">)</span>
-<span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span> <span style="color: #6272a4; font-style: italic;"># al cambiar de la propiedad nos pide la contrase&#241;a del setter</span>
+<span style="color: #bd93f9;">Pizza</span>.<span style="color: #ffc9e8; font-style: italic;">pineappleAllowed</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span> <span style="color: #6272a4; font-style: italic;"># al cambiar de la propiedad nos pide la contrase&#241;a del setter</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Pizza</span>.<span style="color: #8be9fd; font-style: italic;">pineappleAllowed</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -1513,8 +1497,8 @@ True
 
 <div class="org-src-container">
 
-<pre class="src src-python">num1 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
-num2 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">num1</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
+<span style="color: #ffc9e8;">num2</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>num1<span style="color: #ff79c6; font-style: italic;">/</span>num2<span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -1561,8 +1545,8 @@ y el código en el bloque <code>except</code> es ejecutado.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
-    num1 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
-    num2 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
+    <span style="color: #ffc9e8;">num1</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span>
+    <span style="color: #ffc9e8;">num2</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span>
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>num1<span style="color: #ff79c6; font-style: italic;">/</span>num2<span style="color: #61bfff;">)</span>
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Done"</span><span style="color: #61bfff;">)</span>
 <span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">ZeroDivisionError</span>: <span style="color: #6272a4; font-style: italic;"># si ocurre la excepci&#243;n ZeroDivisionError</span>
@@ -1586,7 +1570,7 @@ Debido a division con zero
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
-    variable <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span>
+    <span style="color: #ffc9e8;">variable</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span>
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>variable <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"hello"</span><span style="color: #61bfff;">)</span>
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>variable <span style="color: #ff79c6; font-style: italic;">/</span> <span style="color: #8be9fd;">2</span><span style="color: #61bfff;">)</span>
 <span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">ZeroDivisionError</span>:
@@ -1605,7 +1589,7 @@ Un bloque <code>except</code> sin una excepción especificada se detonara con cu
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
-    word <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"spam"</span>
+    <span style="color: #ffc9e8;">word</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"spam"</span>
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>word <span style="color: #ff79c6; font-style: italic;">/</span> <span style="color: #8be9fd;">0</span><span style="color: #61bfff;">)</span>
 <span style="color: #ff79c6; font-style: italic;">except</span>:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"An error occurred"</span><span style="color: #61bfff;">)</span>
@@ -1701,7 +1685,7 @@ el archivo al final no importa que.
 
 <div class="org-src-container">
 
-<pre class="src src-python">num <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">102</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">num</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">102</span>
 <span style="color: #ff79c6; font-style: italic;">if</span> num <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">100</span>:
   <span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9;">ValueError</span>
 </pre>
@@ -1727,7 +1711,7 @@ Necesitas especificar el tipo de excepción que se va a levantar.
 
 <div class="org-src-container">
 
-<pre class="src src-python">name <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"123"</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"123"</span>
 <span style="color: #ff79c6; font-style: italic;">raise</span> <span style="color: #bd93f9; font-weight: bold;">NameError</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Invalid Name"</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -1757,7 +1741,7 @@ NameError: Invalid name!
 
 <div class="org-src-container">
 
-<pre class="src src-python">myfile <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span><span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">myfile</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1795,7 +1779,7 @@ Despues de que un archivo ha sido abierto y usado, debe ser cerrado con la funci
 
 <div class="org-src-container">
 
-<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
@@ -1812,8 +1796,8 @@ file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close<
 
 <div class="org-src-container">
 
-<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
-cont <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #61bfff;">()</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">cont</span> <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #61bfff;">()</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>cont<span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 </pre>
@@ -1834,7 +1818,7 @@ El código de arriba imprime el contenido del archivo.
 
 <div class="org-src-container">
 
-<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprime los primeros 5 caracteres</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">7</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprime los siguientes 7 caracteres</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprime lo restante del archivo</span>
@@ -1853,8 +1837,8 @@ file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close<
 
 <div class="org-src-container">
 
-<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
-<span style="color: #ff79c6; font-style: italic;">for</span> line <span style="color: #ff79c6; font-style: italic;">in</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">readlines</span><span style="color: #61bfff;">()</span>:
+<pre class="src src-python"><span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">line</span> <span style="color: #ff79c6; font-style: italic;">in</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">readlines</span><span style="color: #61bfff;">()</span>:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>line<span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 </pre>
@@ -1867,8 +1851,8 @@ file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close<
 
 <div class="org-src-container">
 
-<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
-<span style="color: #ff79c6; font-style: italic;">for</span> line <span style="color: #ff79c6; font-style: italic;">in</span> file:
+<pre class="src src-python"><span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">line</span> <span style="color: #ff79c6; font-style: italic;">in</span> file:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>line<span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 </pre>
@@ -1886,7 +1870,7 @@ file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close<
 
 <div class="org-src-container">
 
-<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">write</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"This has been written"</span><span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 </pre>
@@ -1903,7 +1887,7 @@ file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close<
 
 <div class="org-src-container">
 
-<pre class="src src-python">file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"a"</span><span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"filename.txt"</span>, <span style="color: #f1fa8c;">"a"</span><span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">write</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"</span><span style="color: #ff79c6; font-style: italic;">\n</span><span style="color: #f1fa8c;">This has been added in a new line"</span><span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 </pre>
@@ -1916,9 +1900,9 @@ file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close<
 
 <div class="org-src-container">
 
-<pre class="src src-python">msg <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Hello world!"</span>
-file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"newfile.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
-bytesWritten <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">write</span><span style="color: #61bfff;">(</span>msg<span style="color: #61bfff;">)</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">msg</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Hello world!"</span>
+<span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"newfile.txt"</span>, <span style="color: #f1fa8c;">"w"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">bytesWritten</span> <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">write</span><span style="color: #61bfff;">(</span>msg<span style="color: #61bfff;">)</span>
 file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
@@ -1941,8 +1925,8 @@ Para escribir algo que no sea un string, debe de convertirse a un string primero
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">try</span>:
-    file <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span>
-    conf <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #61bfff;">()</span>
+    <span style="color: #ffc9e8;">file</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ffc9e8;">conf</span> <span style="color: #ff79c6; font-style: italic;">=</span> file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #61bfff;">()</span>
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>conf<span style="color: #61bfff;">)</span>
 <span style="color: #ff79c6; font-style: italic;">finally</span>:
     file.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
@@ -1960,7 +1944,7 @@ Para escribir algo que no sea un string, debe de convertirse a un string primero
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">with</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">as</span> f:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">with</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">as</span> <span style="color: #ffc9e8;">f</span>:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>f.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -1976,8 +1960,8 @@ El archivo es automáticamente cerrado al final del bloque <code>with</code>.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-04-18 Sun 22:04</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2022-01-25 Tue 18:52</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>

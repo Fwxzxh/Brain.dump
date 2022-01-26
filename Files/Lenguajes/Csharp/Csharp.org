@@ -2303,7 +2303,6 @@ List<int> li = new List<int>();
 - Es un conjunto de valores únicos.
 - Estos son diferentes a otras colecciones porque solo son un conjunto de valores, no tienen índice.
 
-
 #+begin_quote
 Los HashSet proveen un alto rendimiento, en la busqueda, adición y eliminación de elementos, puede ser usada para implementar otras estructuras de datos.
 #+end_quote

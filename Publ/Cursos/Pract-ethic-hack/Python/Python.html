@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Python</title>
-<!-- 2021-03-30 Tue 07:17 -->
+<!-- 2022-01-25 Tue 18:52 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -244,8 +244,8 @@ interprete de python.
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"hello, world!"</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'hello, world!'</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'</span><span style="color: #ff79c6; font-style: italic;">\n</span><span style="color: #f1fa8c;">'</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># salto de linea</span>
-<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #8995ba; font-style: italic;">"""hellooo,</span>
-<span style="color: #8995ba; font-style: italic;">world"""</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># hacky multiline string</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c; font-style: italic;">"""</span><span style="color: #8995ba; font-style: italic;">hellooo,</span>
+<span style="color: #8995ba; font-style: italic;">world</span><span style="color: #f1fa8c; font-style: italic;">"""</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># hacky multiline string</span>
 
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"This string is "</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #f1fa8c;">"awesome"</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#conatenation</span>
 </pre>
@@ -288,20 +288,20 @@ Python es muy bueno para trabajar con números.
 <pre class="src src-python"><span style="color: #6272a4; font-style: italic;">#! /bin/python</span>
 
 <span style="color: #6272a4; font-style: italic;">#variables y m&#233;todos</span>
-quote <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"All is fair in love and war."</span> <span style="color: #6272a4; font-style: italic;"># variable</span>
+<span style="color: #ffc9e8;">quote</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"All is fair in love and war."</span> <span style="color: #6272a4; font-style: italic;"># variable</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>quote.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">upper</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># hacemos el string mayus con un el m&#233;todo upper()</span>
 
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #ff79c6;">(</span>quote<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 
-name <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Health"</span> <span style="color: #6272a4; font-style: italic;">#string str()</span>
-age <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">30</span> <span style="color: #6272a4; font-style: italic;"># integer int()</span>
-gpa <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3.7</span> <span style="color: #6272a4; font-style: italic;"># float float()</span>
+<span style="color: #ffc9e8;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Health"</span> <span style="color: #6272a4; font-style: italic;">#string str()</span>
+<span style="color: #ffc9e8;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">30</span> <span style="color: #6272a4; font-style: italic;"># integer int()</span>
+<span style="color: #ffc9e8;">gpa</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3.7</span> <span style="color: #6272a4; font-style: italic;"># float float()</span>
 
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffb86c; font-weight: bold;">int</span><span style="color: #ff79c6;">(</span>gpa<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># con esto quitaremos los decimales de la variable gpa haciendolo un integer</span>
 
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"My name is "</span><span style="color: #ff79c6; font-style: italic;">+</span> name <span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #f1fa8c;">"and I am "</span><span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ffb86c; font-weight: bold;">str</span><span style="color: #ff79c6;">(</span>age<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #f1fa8c;">"years old."</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#solo podremos concatenar strings</span>
 
-age <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #8be9fd;">1</span> <span style="color: #6272a4; font-style: italic;"># age + 1, equivalente a `age = age + 1`</span>
+<span style="color: #ffc9e8;">age</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #8be9fd;">1</span> <span style="color: #6272a4; font-style: italic;"># age + 1, equivalente a `age = age + 1`</span>
 </pre>
 </div>
 </div>
@@ -317,28 +317,28 @@ Como pequeños trozos de código que podemos llamar cuando necesitemos.
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">who_am_i</span><span style="color: #61bfff;">()</span>: <span style="color: #6272a4; font-style: italic;"># definimos una funci&#243;n</span>
-<span style="background-color: #373844;"> </span>   name <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Health"</span>
-<span style="background-color: #373844;"> </span>   age <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">30</span>
-<span style="background-color: #373844;"> </span>   gpa <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3.7</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"My name is "</span><span style="color: #ff79c6; font-style: italic;">+</span> name <span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #f1fa8c;">"and I am "</span><span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ffb86c; font-weight: bold;">str</span><span style="color: #ff79c6;">(</span>age<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #f1fa8c;">"years old."</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ffc9e8;">name</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Health"</span>
+    <span style="color: #ffc9e8;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">30</span>
+    <span style="color: #ffc9e8;">gpa</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3.7</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"My name is "</span><span style="color: #ff79c6; font-style: italic;">+</span> name <span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #f1fa8c;">"and I am "</span><span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ffb86c; font-weight: bold;">str</span><span style="color: #ff79c6;">(</span>age<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #f1fa8c;">"years old."</span><span style="color: #61bfff;">)</span>
 
 <span style="color: #bd93f9; font-weight: bold;">who_am_i</span><span style="color: #61bfff;">()</span> <span style="color: #6272a4; font-style: italic;"># llamamos a la funci&#243;n</span>
 
 <span style="color: #6272a4; font-style: italic;">#a&#241;adiendo par&#225;metros</span>
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">add_one_hundred</span><span style="color: #61bfff;">(</span>num<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>num <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">100</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">add_one_hundred</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">num</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>num <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">100</span><span style="color: #61bfff;">)</span>
 
 <span style="color: #bd93f9; font-weight: bold;">add_one_hundred</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">100</span><span style="color: #61bfff;">)</span>
 
 <span style="color: #6272a4; font-style: italic;">#m&#250;ltiples par&#225;metros</span>
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">add</span><span style="color: #61bfff;">(</span>x,y<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>x<span style="color: #ff79c6; font-style: italic;">+</span>y<span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">add</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>,<span style="color: #ffc9e8;">y</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>x<span style="color: #ff79c6; font-style: italic;">+</span>y<span style="color: #61bfff;">)</span>
 
 <span style="color: #bd93f9; font-weight: bold;">add</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span>,<span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>
 
 
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">multiply</span><span style="color: #61bfff;">(</span>x,y<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #61bfff;">(</span>x<span style="color: #ff79c6; font-style: italic;">*</span>y<span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># aqu&#237; retornamos el resultado, para que otra funci&#243;n o m&#233;todo pueda usarlo</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">multiply</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>,<span style="color: #ffc9e8;">y</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #61bfff;">(</span>x<span style="color: #ff79c6; font-style: italic;">*</span>y<span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># aqu&#237; retornamos el resultado, para que otra funci&#243;n o m&#233;todo pueda usarlo</span>
 
 print<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">multiply</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">7</span>,<span style="color: #8be9fd;">7</span><span style="color: #ff79c6;">)</span>
 </pre>
@@ -351,10 +351,10 @@ print<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-wei
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 
-<pre class="src src-python">bool1 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span>
-bool2 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #8be9fd;">3</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">9</span> <span style="color: #6272a4; font-style: italic;">#True</span>
-bool3 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">False</span>
-bool4 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #8be9fd;">3</span> <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #8be9fd;">9</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">bool1</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">True</span>
+<span style="color: #ffc9e8;">bool2</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #8be9fd;">3</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">9</span> <span style="color: #6272a4; font-style: italic;">#True</span>
+<span style="color: #ffc9e8;">bool3</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffb86c;">False</span>
+<span style="color: #ffc9e8;">bool4</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #8be9fd;">3</span> <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #8be9fd;">9</span>
 
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>bool1, bool2, bool3, bool4<span style="color: #61bfff;">)</span>
 <span style="color: #6272a4; font-style: italic;"># True True False False</span>
@@ -369,17 +369,17 @@ bool4 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="co
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 
-<pre class="src src-python">greater_than <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span>      <span style="color: #6272a4; font-style: italic;">#all true</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">greater_than</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span>      <span style="color: #6272a4; font-style: italic;">#all true</span>
 less_than <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">7</span>
 greater_than_equal <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">7</span>
 less_than_equal_to <span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #8be9fd;">7</span>
 
-test_and <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#true</span>
-test_and2 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#false</span>
-test_or <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">or</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#true</span>
-test_or2 <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">or</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#true</span>
+<span style="color: #ffc9e8;">test_and</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#true</span>
+<span style="color: #ffc9e8;">test_and2</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#false</span>
+<span style="color: #ffc9e8;">test_or</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">or</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#true</span>
+<span style="color: #ffc9e8;">test_or2</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">7</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">or</span> <span style="color: #61bfff;">(</span><span style="color: #8be9fd;">5</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">7</span><span style="color: #61bfff;">)</span>  <span style="color: #6272a4; font-style: italic;">#true</span>
 
-test_not <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">not</span> <span style="color: #ffb86c;">True</span> <span style="color: #6272a4; font-style: italic;">#false</span>
+<span style="color: #ffc9e8;">test_not</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">not</span> <span style="color: #ffb86c;">True</span> <span style="color: #6272a4; font-style: italic;">#false</span>
 </pre>
 </div>
 </div>
@@ -390,21 +390,21 @@ test_not <span style="color: #ff79c6; font-style: italic;">=</span> <span style=
 <div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">drink</span><span style="color: #61bfff;">(</span>money<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">if</span> money <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">2</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"You've got yourself a drink"</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">else</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"NO drink for you"</span>
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">drink</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">money</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">if</span> money <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">2</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"You've got yourself a drink"</span>
+    <span style="color: #ff79c6; font-style: italic;">else</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"NO drink for you"</span>
 
-<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">alcohol</span><span style="color: #61bfff;">(</span>age,money<span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>age <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">21</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span>money <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"We're getting a drink!"</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">elif</span> <span style="color: #61bfff;">(</span>age <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">21</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span>money <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Come back with more money"</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">elif</span> <span style="color: #61bfff;">(</span>age <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">21</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span>money <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Nice Try, kid!"</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">else</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"You're too poor and too young"</span>
+<span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">alcohol</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">age</span>,<span style="color: #ffc9e8;">money</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>age <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">21</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span>money <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"We're getting a drink!"</span>
+    <span style="color: #ff79c6; font-style: italic;">elif</span> <span style="color: #61bfff;">(</span>age <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">21</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span>money <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Come back with more money"</span>
+    <span style="color: #ff79c6; font-style: italic;">elif</span> <span style="color: #61bfff;">(</span>age <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">21</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #61bfff;">(</span>money <span style="color: #ff79c6; font-style: italic;">&gt;=</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Nice Try, kid!"</span>
+    <span style="color: #ff79c6; font-style: italic;">else</span>:
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"You're too poor and too young"</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">drink</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">3</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">alcohol</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">21</span>,<span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 </pre>
@@ -422,7 +422,7 @@ Listas mutables
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #6272a4; font-style: italic;">#list - have brackets []</span>
-movies <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"When Harry Met Sally"</span>,<span style="color: #f1fa8c;">"The Hangover"</span>,<span style="color: #f1fa8c;">"The Perks of Being a Wallflower"</span>,<span style="color: #f1fa8c;">"The exorcist"</span><span style="color: #61bfff;">]</span>
+<span style="color: #ffc9e8;">movies</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"When Harry Met Sally"</span>,<span style="color: #f1fa8c;">"The Hangover"</span>,<span style="color: #f1fa8c;">"The Perks of Being a Wallflower"</span>,<span style="color: #f1fa8c;">"The exorcist"</span><span style="color: #61bfff;">]</span>
 
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>movies<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">0</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># el primer elemento es el 0</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>movies<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span>:<span style="color: #8be9fd;">3</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># los items del 1 al 3</span>
@@ -447,7 +447,7 @@ Listas no mutables
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #6272a4; font-style: italic;">#Tuples - Do not change, ()</span>
-grades<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"a"</span>,<span style="color: #f1fa8c;">"b"</span>,<span style="color: #f1fa8c;">"c"</span>,<span style="color: #f1fa8c;">"d"</span>,<span style="color: #f1fa8c;">"f"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ffc9e8;">grades</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"a"</span>,<span style="color: #f1fa8c;">"b"</span>,<span style="color: #f1fa8c;">"c"</span>,<span style="color: #f1fa8c;">"d"</span>,<span style="color: #f1fa8c;">"f"</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>grades<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span><span style="color: #ff5555; font-weight: bold;">)</span>
 </pre>
 </div>
@@ -479,31 +479,31 @@ grades<span style="color: #ff79c6; font-style: italic;">=</span><span style="col
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 
-<pre class="src src-python">my_name <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Health"</span>
+<pre class="src src-python"><span style="color: #ffc9e8;">my_name</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Health"</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>my_name<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">0</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprimimos solo la primera letra</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>my_name<span style="color: #ff79c6;">[</span><span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># imprimimos solo la &#250;ltima letra</span>
 
-sentence <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"This is a sentence"</span>
+<span style="color: #ffc9e8;">sentence</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"This is a sentence"</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>sentence<span style="color: #ff79c6;">[</span>:<span style="color: #8be9fd;">4</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 
-sentence_join <span style="color: #ff79c6; font-style: italic;">=</span> sentence.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">split</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">" "</span><span style="color: #61bfff;">)</span><span style="color: #6272a4; font-style: italic;"># separamos el string en cada " "</span>
+<span style="color: #ffc9e8;">sentence_join</span> <span style="color: #ff79c6; font-style: italic;">=</span> sentence.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">split</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">" "</span><span style="color: #61bfff;">)</span><span style="color: #6272a4; font-style: italic;"># separamos el string en cada " "</span>
 
-sentence_join <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">' '</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">join</span><span style="color: #61bfff;">(</span>sentence_join<span style="color: #61bfff;">)</span><span style="color: #6272a4; font-style: italic;"># unimos la oraci&#243;n de nuevo</span>
+<span style="color: #ffc9e8;">sentence_join</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">' '</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">join</span><span style="color: #61bfff;">(</span>sentence_join<span style="color: #61bfff;">)</span><span style="color: #6272a4; font-style: italic;"># unimos la oraci&#243;n de nuevo</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>sentence_join<span style="color: #61bfff;">)</span>
 
-quote <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"he said, </span><span style="color: #ff79c6; font-style: italic;">\"</span><span style="color: #f1fa8c;">give me all your money</span><span style="color: #ff79c6; font-style: italic;">\"</span><span style="color: #f1fa8c;">"</span> <span style="color: #6272a4; font-style: italic;"># \ hace que ignore los carateres</span>
+<span style="color: #ffc9e8;">quote</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"he said, </span><span style="color: #ff79c6; font-style: italic;">\"</span><span style="color: #f1fa8c;">give me all your money</span><span style="color: #ff79c6; font-style: italic;">\"</span><span style="color: #f1fa8c;">"</span> <span style="color: #6272a4; font-style: italic;"># \ hace que ignore los carateres</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>quote<span style="color: #61bfff;">)</span>
 
-too_much_space<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"            hello       "</span>
+<span style="color: #ffc9e8;">too_much_space</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"            hello       "</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>too_much_space.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">strip</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span><span style="color: #6272a4; font-style: italic;"># quita los espacios, el " " viene inplicito, le posemos dar cualquier arg</span>
 
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"a"</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #f1fa8c;">"Apple"</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;"># FALSE</span>
 
-letter <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"A"</span>
-word <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Apple"</span>
+<span style="color: #ffc9e8;">letter</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"A"</span>
+<span style="color: #ffc9e8;">word</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Apple"</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>letter.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">lower</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6; font-style: italic;">in</span> world.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">lower</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span><span style="color: #6272a4; font-style: italic;"># improved</span>
 
-movie<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"The Hangover"</span>
+<span style="color: #ffc9e8;">movie</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #f1fa8c;">"The Hangover"</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"My favorite movie is "</span><span style="color: #ff79c6; font-style: italic;">+</span>movie<span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #f1fa8c;">"."</span><span style="color: #61bfff;">)</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"My favorite movie is {}."</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">format</span><span style="color: #ff79c6;">(</span>movie<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span><span style="color: #6272a4; font-style: italic;">#usando un placeholder</span>
 </pre>
@@ -516,12 +516,12 @@ movie<span style="color: #ff79c6; font-style: italic;">=</span><span style="colo
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #6272a4; font-style: italic;">#Diccionarios - key/value {}</span>
-drink<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"White Russian"</span>:<span style="color: #8be9fd;">7</span>, <span style="color: #f1fa8c;">"Old Fashion"</span>: <span style="color: #8be9fd;">10</span>, <span style="color: #f1fa8c;">"Lemon Drop"</span>: <span style="color: #8be9fd;">8</span><span style="color: #61bfff;">}</span><span style="color: #6272a4; font-style: italic;">#drink=key price=value</span>
+<span style="color: #ffc9e8;">drink</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"White Russian"</span>:<span style="color: #8be9fd;">7</span>, <span style="color: #f1fa8c;">"Old Fashion"</span>: <span style="color: #8be9fd;">10</span>, <span style="color: #f1fa8c;">"Lemon Drop"</span>: <span style="color: #8be9fd;">8</span><span style="color: #61bfff;">}</span><span style="color: #6272a4; font-style: italic;">#drink=key price=value</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>drink<span style="color: #61bfff;">)</span>
-employees<span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"Finance"</span>:<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"bob"</span>,<span style="color: #f1fa8c;">"Linda"</span>,<span style="color: #f1fa8c;">"Tina"</span><span style="color: #ff79c6;">]</span>, <span style="color: #f1fa8c;">"IT"</span>:<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Gene"</span>,<span style="color: #f1fa8c;">"Louse"</span>,<span style="color: #f1fa8c;">"Teddy"</span><span style="color: #ff79c6;">]</span>, <span style="color: #f1fa8c;">"HR"</span>:<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Jimmy"</span>,<span style="color: #f1fa8c;">"Mort"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">}</span>
+<span style="color: #ffc9e8;">employees</span><span style="color: #ff79c6; font-style: italic;">=</span><span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"Finance"</span>:<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"bob"</span>,<span style="color: #f1fa8c;">"Linda"</span>,<span style="color: #f1fa8c;">"Tina"</span><span style="color: #ff79c6;">]</span>, <span style="color: #f1fa8c;">"IT"</span>:<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Gene"</span>,<span style="color: #f1fa8c;">"Louse"</span>,<span style="color: #f1fa8c;">"Teddy"</span><span style="color: #ff79c6;">]</span>, <span style="color: #f1fa8c;">"HR"</span>:<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Jimmy"</span>,<span style="color: #f1fa8c;">"Mort"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">}</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>employees<span style="color: #61bfff;">)</span>
 
-employees<span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"Legal"</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"Mr. Frond"</span><span style="color: #61bfff;">]</span><span style="color: #6272a4; font-style: italic;"># add a new key: value pair</span>
+employees<span style="color: #61bfff;">[</span><span style="color: #ffc9e8;">"Legal"</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #f1fa8c;">"Mr. Frond"</span><span style="color: #61bfff;">]</span><span style="color: #6272a4; font-style: italic;"># add a new key: value pair</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>employees<span style="color: #61bfff;">)</span>
 
 employees.<span style="color: #8be9fd; font-style: italic;">update</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"Sales"</span>: <span style="color: #50fa7b;">[</span><span style="color: #f1fa8c;">"Andie"</span>,<span style="color: #f1fa8c;">"Ollie"</span><span style="color: #50fa7b;">]</span><span style="color: #6272a4; font-style: italic;">#same</span>
@@ -529,7 +529,7 @@ employees.<span style="color: #8be9fd; font-style: italic;">update</span><span s
 
 drink<span style="color: #50fa7b;">[</span><span style="color: #f1fa8c;">"White Russian"</span><span style="color: #50fa7b;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
 
-<span style="color: #ff79c6; font-style: italic;">print</span><span style="color: #50fa7b;">(</span>drink.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">get</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"White Russian"</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">print</span><span style="color: #50fa7b;">(</span>drink.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">get</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"White Russian"</span><span style="color: #bd93f9;">)</span>
 </pre>
 </div>
 </div>
@@ -548,10 +548,10 @@ creamos un nuevo archivo
 
 <span style="color: #ff79c6; font-style: italic;">import</span> socket
 
-<span style="color: #8be9fd;">HOST</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">`127.0.0.1`</span><span style="color: #6272a4; font-style: italic;">#local host</span>
-<span style="color: #8be9fd;">PORT</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7777</span>
+<span style="color: #ffc9e8;">HOST</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">`127.0.0.1`</span><span style="color: #6272a4; font-style: italic;">#local host</span>
+<span style="color: #ffc9e8;">PORT</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">7777</span>
 
-s <span style="color: #ff79c6; font-style: italic;">=</span> socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">socket</span><span style="color: #61bfff;">(</span>socket.<span style="color: #8be9fd; font-style: italic;">AF_INET</span>, socket.<span style="color: #8be9fd; font-style: italic;">SOCK_STREAM</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#Declaramos todo en s.</span>
+<span style="color: #ffc9e8;">s</span> <span style="color: #ff79c6; font-style: italic;">=</span> socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">socket</span><span style="color: #61bfff;">(</span>socket.<span style="color: #8be9fd; font-style: italic;">AF_INET</span>, socket.<span style="color: #8be9fd; font-style: italic;">SOCK_STREAM</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#Declaramos todo en s.</span>
 <span style="color: #6272a4; font-style: italic;"># AF_INET = IPv4, SOCK_STREAM = PORT</span>
 s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">connect</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">HOST</span>, <span style="color: #8be9fd;">PORT</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
 
@@ -577,10 +577,10 @@ Terrible pero funcional scaner de puertos
 
 <span style="color: #6272a4; font-style: italic;">#define our target</span>
 <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #61bfff;">(</span>sys.<span style="color: #8be9fd; font-style: italic;">argv</span><span style="color: #61bfff;">)</span><span style="color: #ff79c6; font-style: italic;">==</span><span style="color: #8be9fd;">2</span>:
-<span style="background-color: #373844;"> </span>   target<span style="color: #ff79c6; font-style: italic;">=</span>socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">gethostbyname</span><span style="color: #61bfff;">(</span>sys.<span style="color: #8be9fd; font-style: italic;">argv</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#Translating hostname to IPv4</span>
+    <span style="color: #ffc9e8;">target</span><span style="color: #ff79c6; font-style: italic;">=</span>socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">gethostbyname</span><span style="color: #61bfff;">(</span>sys.<span style="color: #8be9fd; font-style: italic;">argv</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#Translating hostname to IPv4</span>
 <span style="color: #ff79c6; font-style: italic;">else</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Invalid amount of arguments. "</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Syntax: python scaner.py &lt;ip&gt;"</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Invalid amount of arguments. "</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Syntax: python scaner.py &lt;ip&gt;"</span><span style="color: #61bfff;">)</span>
 
 <span style="color: #6272a4; font-style: italic;">#adding a pretty banner</span>
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"-"</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #8be9fd;">30</span><span style="color: #61bfff;">)</span>
@@ -589,24 +589,24 @@ Terrible pero funcional scaner de puertos
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"-"</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #8be9fd;">30</span><span style="color: #61bfff;">)</span>
 
 <span style="color: #ff79c6; font-style: italic;">try</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">for</span> port <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">50</span>,<span style="color: #8be9fd;">85</span><span style="color: #61bfff;">)</span>:<span style="color: #6272a4; font-style: italic;">#esto no es bueno, tarda mucho, add concurrencia</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   s <span style="color: #ff79c6; font-style: italic;">=</span> socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">socket</span><span style="color: #61bfff;">(</span>socket.<span style="color: #8be9fd; font-style: italic;">AF_INET</span>, socket.<span style="color: #8be9fd; font-style: italic;">SOCK_STREAM</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">setdefaulttimeout</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   result <span style="color: #ff79c6; font-style: italic;">=</span> s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">connect_ex</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span>target,port<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#returns an error indicator</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ff79c6; font-style: italic;">if</span> result <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span>:
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Port {} is open"</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">format</span><span style="color: #ff79c6;">(</span>port<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   <span style="background-color: #373844;"> </span>   s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">port</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">50</span>,<span style="color: #8be9fd;">85</span><span style="color: #61bfff;">)</span>:<span style="color: #6272a4; font-style: italic;">#esto no es bueno, tarda mucho, add concurrencia</span>
+        <span style="color: #ffc9e8;">s</span> <span style="color: #ff79c6; font-style: italic;">=</span> socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">socket</span><span style="color: #61bfff;">(</span>socket.<span style="color: #8be9fd; font-style: italic;">AF_INET</span>, socket.<span style="color: #8be9fd; font-style: italic;">SOCK_STREAM</span><span style="color: #61bfff;">)</span>
+        socket.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">setdefaulttimeout</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>
+        <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">=</span> s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">connect_ex</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">(</span>target,port<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">#returns an error indicator</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> result <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span>:
+            <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Port {} is open"</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">format</span><span style="color: #ff79c6;">(</span>port<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+        s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">close</span><span style="color: #61bfff;">()</span>
 <span style="color: #ff79c6; font-style: italic;">except</span> <span style="color: #bd93f9;">KeyboardInterrupt</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"</span><span style="color: #ff79c6; font-style: italic;">\n</span><span style="color: #f1fa8c;">Exiting program. "</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   sys.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">exit</span><span style="color: #61bfff;">()</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"</span><span style="color: #ff79c6; font-style: italic;">\n</span><span style="color: #f1fa8c;">Exiting program. "</span><span style="color: #61bfff;">)</span>
+    sys.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">exit</span><span style="color: #61bfff;">()</span>
 
 <span style="color: #ff79c6; font-style: italic;">except</span> socket.<span style="color: #8be9fd; font-style: italic;">gaierror</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hostname could not be resolved"</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   sys.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">exit</span><span style="color: #61bfff;">()</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hostname could not be resolved"</span><span style="color: #61bfff;">)</span>
+    sys.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">exit</span><span style="color: #61bfff;">()</span>
 
 <span style="color: #ff79c6; font-style: italic;">except</span> socket.<span style="color: #8be9fd; font-style: italic;">error</span>:
-<span style="background-color: #373844;"> </span>   <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Couldn't connect to server"</span><span style="color: #61bfff;">)</span>
-<span style="background-color: #373844;"> </span>   sys.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">exit</span><span style="color: #61bfff;">()</span>
+    <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Couldn't connect to server"</span><span style="color: #61bfff;">)</span>
+    sys.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">exit</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
 </div>
@@ -615,8 +615,8 @@ Terrible pero funcional scaner de puertos
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-03-30 Tue 07:17</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2022-01-25 Tue 18:52</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>
