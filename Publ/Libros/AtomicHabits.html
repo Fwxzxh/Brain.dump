@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Atomic Habits</title>
+<!-- 2022-01-30 Sun 21:51 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Fundamentos</a></li>
+<li><a href="#sec-2">2. Las tres capas del cambio de comportamiento</a></li>
+<li><a href="#sec-3">3. los cuatro pasos de la formación de hábitos</a></li>
+<li><a href="#sec-4">4. Las cuatro leyes de el cambio de comportamiento</a></li>
+<li><a href="#sec-5">5. Hazlo Obvio</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Intenciones de implementación</a></li>
+<li><a href="#sec-5-2">5.2. Apilamiento de hábitos</a></li>
+<li><a href="#sec-5-3">5.3. Tarjeta de mando de hábitos</a></li>
+<li><a href="#sec-5-4">5.4. Señalar y llamar.</a></li>
+<li><a href="#sec-5-5">5.5. Hazlo invisible</a></li>
+<li><a href="#sec-5-6">5.6. La función del comportamiento</a></li>
+<li><a href="#sec-5-7">5.7. La influencia de la visión</a></li>
+<li><a href="#sec-5-8">5.8. Entorno &gt; Disciplina</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Hazlo atractivo</a>
+<ul class="nav">
+<li><a href="#sec-6-1">6.1. La obsoleta utilidad de la dopamina</a></li>
+<li><a href="#sec-6-2">6.2. Realidad exagerada</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Atomic Habits</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Fundamentos</h2>
+<div class="outline-text-2" id="text-1">
+<dl class="org-dl">
+<dt> Habito </dt><dd>Es una rutina o comportamiento que se hace tan regularmente que se convierte en automático. Desde una perspectiva biológica,
+su propósito es ahorrar energía descargando el esfuerzo cognitivo de pensar en tareas repetitivas del consciente al inconsciente.
+</dd>
+</dl>
+
+<p>
+Cuando los hábitos se usan de manera efectiva, estos te permiten convertirte en quien quieras en la vida.
+Un hábito de lectura diaria eventualmente te convertirá en experto, un hábito de ejercicio diario eventualmente te hará fuerte.
+</p>
+
+<p>
+La parte difícil es apegarte al hábito por suficiente tiempo para que obtengas beneficios, un 1% de mejora cada día por un año resulta en un 37x de mejora.
+</p>
+
+<p>
+El 1% inicial es difícil de ver, pero después de un tiempo se convierte en astronómico. Todas las cosas grandes vienen de inicios pequeños.
+</p>
+
+<p>
+Las redes sociales están llenas de publicaciones celebrando los logros de los individuos, sin mostrar los cientos de horas de trabajo que les tomo llegar a donde están.
+</p>
+
+<p>
+Debemos cambiar nuestro enfoque de los logros a la trayectoria.
+</p>
+<ul class="org-ul">
+<li>El hombre más fuerte del mundo se volverá débil si deja de usar sus musculos.
+</li>
+<li>El hombre más brillante se volverá tonto si deja de usar su cerebro.
+</li>
+</ul>
+
+<blockquote>
+<p>
+No importa donde estabas ayer, si no hacia adonde apuntas hoy.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Trayectoria &gt; Logros.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Las tres capas del cambio de comportamiento</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Para hacer nuevos hábitos efectivamente, necesitas estar consciente de las tres capas del cambio de comportamiento.
+</p>
+<ol class="org-ol">
+<li>Identidad
+</li>
+<li>Proceso
+</li>
+<li>Resultado
+</li>
+</ol>
+
+<p>
+La identidad es en lo que tu crees, el proceso es lo que tu haces y el resultado es lo que tu obtienes.
+</p>
+
+<p>
+La razón por la que la mayoría de personas se quedan cortas con sus aspiraciones en la vida es porque solo se enfocan en
+los resultados, sin considerar los sistemas que llevan a estos.
+</p>
+
+<p>
+Decirte a ti mismo &ldquo;yo quiero ser rico&rdquo; o &ldquo;yo quiero perder peso&rdquo; no contribuye a ninguno.
+</p>
+
+<p>
+Solo modificando tu <b>identidad</b> y tu <b>proceso</b> puedes cambiar tu comportamiento y obtener tus resultados deseados.
+</p>
+
+<p>
+Para cambiar tu identidad, empieza a preguntarte el como alguien con tu identidad deseada se comporta.
+</p>
+
+<p>
+Si quieres convertirte en un emprendedor, pregúntate &ldquo;¿Cuál es el tipo de persona que se convierte en un emprendedor?&rdquo;
+Empieza a actuar como tu identidad deseada y eventualmente te convertirás en esta.
+</p>
+
+<blockquote>
+<p>
+Cada acción que tomas es un voto para el tipo de persona que deseas convertirte.
+</p>
+</blockquote>
+
+<p>
+Solo decirte a ti mismo que vas a empezar a hacer algo no es una manera efectiva de cambiar tu comportamiento.
+</p>
+
+<p>
+Nuestros cerebros son máquinas de conservación de energía, constantemente analizando el ambiente buscando maneras de
+maximizar los resultados y recompensas inmediatas mientras gastamos la mínima energía posible.
+</p>
+
+<p>
+Un proceso efectivo es manipular tu ambiente para que la energía necesaria para la conducta deseada sea menos que para la conducta no deseada.
+</p>
+
+<p>
+Es duro comer sano si tu refrigerado esta lleno de barras de chocolate. Pero si el refrigerador esta lleno de frutas y vegetales
+Comer una barra de chocolate requiere un viaje al supermercado.
+</p>
+
+<blockquote>
+<p>
+Cada meta esta condenada a fallar si va en contra de la naturaleza humana.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> los cuatro pasos de la formación de hábitos</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Hay cuatro pasos relacionados en la formación de cada hábito:
+</p>
+<dl class="org-dl">
+<dt> El Disparador </dt><dd>Es la señal inicial que dispara el comportamiento (por ejemplo el ver un chocolate).
+</dd>
+<dt> El deseo </dt><dd>Es la acción de querer cambiar tu estado actual, probocado por el disparador.
+</dd>
+<dt> La respuesta </dt><dd>Es la conducta que se hace para satisfacer el deseo (por ejemplo comer el chocolate).
+</dd>
+<dt> La recompensa </dt><dd>Es el resultado de la respuesta (El subidón de azúcar de comer el chocolate).
+</dd>
+</dl>
+
+<p>
+Si a alguna conducta le falta alguno de los pasos de arriba, no se volverá un hábito.
+</p>
+
+<p>
+Si remueves el disparador, el hábito no empezará. Si reduces el deseo no estarás tan motivado a actuar.
+Si no respondes, no habrá respuesta, y si no hay recomienza o no es suficiente no repetirás esa conducta.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Las cuatro leyes de el cambio de comportamiento</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Las cuatro leyes del cambio de comportamiento son un conjunto de principios para construir hábitos, estas son:
+</p>
+<ol class="org-ol">
+<li>Hazlo obvio &#x2013;&gt; Disparador.
+</li>
+<li>Hazlo atractivo &#x2013;&gt; Deseo.
+</li>
+<li>Hazlo fácil &#x2013;&gt; Respuesta.
+</li>
+<li>Hazlo satisfactorio &#x2013;&gt; Recompensa.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Hazlo Obvio</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Para construir nuevos hábitos de manera efectiva, haz el disparador totalmente obvio.
+</p>
+
+<p>
+Si quieres empezar a correr todas las mañanas, pon tus tenis junto a tu cama la noche anterior, así la primera cosa
+que verás será tus tenis, dando la señal a tu cerebro que es hora de hacer ejercicio.
+</p>
+
+<p>
+si quieres hacer un hábito de leer antes de dormir, pon un libro en tu almohada cada mañana, cuando sea hora de dormir,
+el libro estará allí esperando por ti.
+</p>
+
+<p>
+Debes diseñar tu entorno alrededor de los hábitos que deseas desarrollar.
+</p>
+
+<blockquote>
+<p>
+Entre más claras y consistentes sean los disparadores en tu entorno, más probable sera que desarrolles el hábito relacionado
+con ese disparador.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Intenciones de implementación</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Las intenciones de implementación son usadas para aumentar la probabilidad de llevar a acabo un hábito.
+</p>
+
+<p>
+La idea es eliminar la ambigüedad que rodea los detalles de un hábito (el cuando y el como).
+</p>
+
+<p>
+El formato de una intención de implementación es:
+</p>
+
+<blockquote>
+<p>
+Yo haré [comportamiento] a las [Tiempo] en [lugar].
+</p>
+</blockquote>
+
+<p>
+Por ejemplo:
+</p>
+<ul class="org-ul">
+<li>Yo escribiré a las 9 AM en la oficina de mi casa.
+</li>
+<li>Yo jugaré basketball a las 6 PM en la universidad.
+</li>
+<li>Yo leeré a las 9 PM en mi balcón.
+</li>
+</ul>
+
+<p>
+Es útil escribir una lista de intenciones de implementación para todos los hábitos que deseas desarrollar
+y ponlos en un lugar donde los puedas ver todos los días.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Apilamiento de hábitos</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+El apilamiento de hábitos es una técnica en la que consistentemente haces un acción después de otra.
+</p>
+
+<p>
+La técnica hace uso del efecto Diderot; un fenómeno humano donde una compra lleva a otra (Ej: comprar un nuevo escritorio te lleva a
+comprar otro teclado, mouse y monitor).
+</p>
+
+<p>
+Funciona encadenando hábitos, si tienes el hábito de tomar café cada mañana pero también quieres desarrollar el hábito de
+escribir. Puedes usar el apilamiento de hábitos afirmando &ldquo;Después de hacer el café, me sentaré en mi escritorio y escribiré&rdquo;.
+</p>
+
+<p>
+La idea es atar la conducta deseada a algo que ya haces.
+</p>
+
+<p>
+El formato es:
+</p>
+
+<blockquote>
+<p>
+Después de [hábito actual] haré [nuevo hábito].
+</p>
+</blockquote>
+
+<p>
+Podemos pensar en el apilamiento de hábitos como las conexiones entre las intenciones de implementación.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Tarjeta de mando de hábitos</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Necesitas estar al tanto de tus hábitos actuales antes de que puedas cambiarlos. La tarjeta de mando de hábitos es un sistema
+para identificar y categorizar tus hábitos existentes como:
+</p>
+
+<ul class="org-ul">
+<li>Malos
+</li>
+<li>Neutrales
+</li>
+<li>Buenos
+</li>
+</ul>
+
+<p>
+Para crearla, solo tienes que escribir todo lo que haces en el día, (Ej: levantarse, ver el celular, hacer café, Bañarte, etc.).
+</p>
+
+<p>
+Ejemplo:
+</p>
+<ul class="org-ul">
+<li>Levantarte &#x2013;&gt; Neutral.
+</li>
+<li>Ver el celular &#x2013;&gt; Malo.
+</li>
+<li>Hacer café &#x2013;&gt; Neutral.
+</li>
+<li>Bañarte &#x2013;&gt; Bueno.
+</li>
+</ul>
+
+<p>
+Para determinar si un hábito es bueno o malo, pregúntate si te está ayudando a convertirte en el tipo de persona que quieres ser.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> Señalar y llamar.</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+Señalar y llamar (Pointing and calling) es una técnica que consiste en apuntar a objetos y decir en voz alta comandos.
+</p>
+
+<p>
+Esta técnica ha demostrado reducir errores en un 85% y accidentes en un 30% y es una de las responsables de que el sistema de
+metro de tokyo sea tan seguro.
+</p>
+
+<p>
+Es tan efectiva porque eleva el nivel de conciencia de un hábito no consciente a uno más consciente.
+</p>
+
+<p>
+Es debido a que los operadores deben usar sus ojos, manos, boca y oídos para señalar y llamar, es más probable que se den cuenta
+de algún problema antes de que salga algo mal.
+</p>
+
+<p>
+A veces estamos tan acostumbrados a hacer lo que siempre hacemos que nunca nos paramos a pensar en si es correcto hacerlo.
+Muchas de nuestras fallas son atribuibles a nuestra falta de conciencia en este sentido.
+</p>
+
+<p>
+Uno de nuestros más grandes retos en la encadenación de hábitos, es mantener conciencia de lo que realmente estamos haciendo.
+La tarjeta de mando de hábitos nos ayuda a eso, a estar más conscientes de nuestro comportamiento.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> Hazlo invisible</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+Para romper un hábito, debemos remover el disparador asociado a ese hábito en tu entorno,
+esto es lo contrario de la primera ley del cambio de comportamiento.
+</p>
+
+<blockquote>
+<p>
+&ldquo;Hazlo obvio&rdquo; &#x2013;&gt; &ldquo;Hazlo invisible&rdquo;
+</p>
+</blockquote>
+
+<p>
+Para ver menos youtube, desinstala la aplicación de tu teléfono, para comer menos azúcar, esconde todo lo dulce de tu refrigerador.
+</p>
+
+<p>
+El propósito de hacerlo invisible es eliminar las veces en las que una conducta se inicia sin que se quiera.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-6" class="outline-3">
+<h3 id="sec-5-6"><span class="section-number-3">5.6</span> La función del comportamiento</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+El comportamiento es una función de una persona en su entorno
+</p>
+
+<div class="latex">
+<p>
+\(B = f(P, E)\)
+</p>
+
+</div>
+
+<p>
+En resumen, nuestro comportamiento resulta de la combinación de nuestros rasgos personales y el entorno que habitamos.
+</p>
+
+<p>
+Nosotros reaccionamos de manera diferente que otros en el mismo entorno dependiendo de nuestras relaciones con el ambiente.
+</p>
+
+<p>
+cuando intentas desarrollar un nuevo hábito en un entorno familiar, tienes que enfrentarte a los hábitos que ya has desarrollado
+en ese entorno.
+</p>
+
+<p>
+Es más difícil desarrollar un hábito de lectura en el área donde juegas videojuegos que en un lugar nuevo.
+</p>
+
+<p>
+No puedes tan fácilmente modificar la \(P\) (rasgos Personales) en la ecuación, pero puedes cambiar la \(E\) (Entorno).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-7" class="outline-3">
+<h3 id="sec-5-7"><span class="section-number-3">5.7</span> La influencia de la visión</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+El humano promedio tiene 11 millones de receptores en su cuerpo, 10 millones de ellos dedicados a la vista.
+</p>
+
+<p>
+Es por esto que los disparadores visuales en nuestro entorno son los más efectivos al influenciar nuestra conducta.
+</p>
+
+<p>
+Cuando diseñemos nuestro entorno, debemos hacer los disparadores de buenos hábitos muy visibles y los disparadores de malos
+hábitos invisibles.
+</p>
+
+<blockquote>
+<p>
+Un pequeño cambio en lo que podemos ver puede llevar a un gran cambio en lo que hacemos.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-5-8" class="outline-3">
+<h3 id="sec-5-8"><span class="section-number-3">5.8</span> Entorno &gt; Disciplina</h3>
+<div class="outline-text-3" id="text-5-8">
+<p>
+Durante la guerra de Vietnam se descubrió que el 35&amp; de los soldados de Estados Unidos probaron la heroína y el 20% eran adictos.
+Sin embargo, cuando regresaron solo el 5% se volvió a convertir en adictos dentro de un año y solo el 12% recayó en los siguientes
+tres años.
+</p>
+
+<p>
+Esto contradijo la creencia en ese tiempo que la adicción a la heroína era permanente e irreversible.
+</p>
+
+<p>
+En todo el país, el 90% de los consumidores de heroína vuelven a ser adictos cuando regresan a casa después de la rehabilitación.
+</p>
+
+<p>
+En la presencia de un nuevo y radical cambio de entorno desprovisto de los disparadores asociados con su adicción los soldados
+dejaron la heroína casi de la noche a la mañana.
+</p>
+
+<p>
+las personas &ldquo;disciplinadas&rdquo; no poseen una fuerza de voluntad heroica y autocontrol, en su lugar ellos estructuran sus vidas en una
+manera que reduce su exposición a tentaciones negativas.
+</p>
+
+<p>
+Es más fácil practicar la autocontención cuando no tienes que usarla tan seguido.
+</p>
+
+<p>
+Cualquiera puede hacerse &ldquo;disciplinado&rdquo; si diseñan su entorno de manera que los disparadores asociados con
+malos hábitos son invisibles y los disparadores asociados con buenos hábitos son claros y abundantes.
+</p>
+
+<p>
+Todos tenemos una cantidad finita de fuerza de voluntad. Entre más practicamos la autocontención, menos seremos capaces de de
+resistir la siguiente tentación.
+</p>
+
+<blockquote>
+<p>
+El autocontrol es una estrategia a corto plazo, el diseño de tu entorno es una a largo plazo.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Hazlo atractivo</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+La segunda ley del cambio de comportamiento es &ldquo;Hazlo atractivo&rdquo;.
+</p>
+
+<p>
+Entre más atractiva sea una oportunidad, es más probable que se convierta en un hábito.
+</p>
+</div>
+
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> La obsoleta utilidad de la dopamina</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+La dopamina es el químico en nuestro cerebro que nos causa el sentimiento de placer.
+</p>
+
+<p>
+La dopamina liberada por comer comidas densas en calorías y de tener sexo motivo a nuestros antepasados a hacer acciones
+que eran esenciales para la supervivencia de la raza humana.
+</p>
+
+<p>
+Pero, ya no vivimos en un entorno de recursos escasos. Teneos los cerebros de nuestros ancestros, pero
+tentaciones que ellos nunca podrían haber imaginado.
+</p>
+
+<p>
+No es sorpresa que el 40% de los adultos en Estados Unidos sean obesos, la comida es abundante,
+sin embargo nuestros cerebros siguen buscándola como si fuera sagrada.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Realidad exagerada</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Todos los animales, nosotros incluidos, tienen ciertas conductas innatas dadas por la evolución.
+</p>
+
+<p>
+La gaviota argéntea americana picotean al punto rojo el pico de los padres cuando están hambrientos, dando la señal
+a los padres para que alimente a sus hijos, investigadores han descubierto que exponiendo a los bebes de gaviota
+a picos artificiales con puntos rojos extremadamente grandes provocaban que los polluelos picoteen como locos.
+</p>
+
+<p>
+Esto se conoce como un estimulo supernormal, un estimulo exagerado que crea una fuerte reacción a la criatura,
+La industria moderna esta llena de estímulos supernormales que sobrepasan nuestros instintos primitivos y nos motivan
+a consumir.
+</p>
+
+<p>
+La comida chatarra tiene más azúcar que lo que podrían nuestros antepasados comer esto sobrepasa el sistema de recompensa
+de nuestro cerebro, Los videojuegos tienen más estímulos visuales que los que podríamos encontrar en la naturaleza,
+Nuestro entorno moderno esta lleno de versiones exageradas de la realidad que sobrepasan nuestros sentidos.
+</p>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-01-30 Sun 21:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

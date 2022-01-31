@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-03-30 Tue 07:17 -->
+<!-- 2022-01-30 Sun 21:51 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -564,8 +564,8 @@ punrtero a la izquierda o a la derecha. ## Implementación en código
 
     <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
     <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">offer</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">T</span> elem<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isFull</span><span style="color: #61bfff;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Queue is full"</span><span style="color: #61bfff;">)</span>;
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isFull</span><span style="color: #bd93f9;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Queue is full"</span><span style="color: #bd93f9;">)</span>;
       <span style="color: #50fa7b;">}</span>
       data<span style="color: #50fa7b;">[</span>rear++<span style="color: #50fa7b;">]</span> = elem;
       rear = <span style="color: #50fa7b;">adjustIndex</span><span style="color: #50fa7b;">(</span>rear, data.length<span style="color: #50fa7b;">)</span>;
@@ -574,8 +574,8 @@ punrtero a la izquierda o a la derecha. ## Implementación en código
     <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
     <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">SuppressWarnings</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"unchecked"</span><span style="color: #ff79c6;">)</span>
     <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">poll</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Queue is empty"</span><span style="color: #61bfff;">)</span>;
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isEmpty</span><span style="color: #bd93f9;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Queue is empty"</span><span style="color: #bd93f9;">)</span>;
       <span style="color: #50fa7b;">}</span>
       front = <span style="color: #50fa7b;">adjustIndex</span><span style="color: #50fa7b;">(</span>front, data.length<span style="color: #50fa7b;">)</span>;
       <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">T</span><span style="color: #50fa7b;">)</span> data<span style="color: #50fa7b;">[</span>front++<span style="color: #50fa7b;">]</span>;
@@ -584,8 +584,8 @@ punrtero a la izquierda o a la derecha. ## Implementación en código
     <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
     <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">SuppressWarnings</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"unchecked"</span><span style="color: #ff79c6;">)</span>
     <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">peek</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isEmpty</span><span style="color: #61bfff;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Queue is empty"</span><span style="color: #61bfff;">)</span>;
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span><span style="color: #50fa7b;">isEmpty</span><span style="color: #bd93f9;">()</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">RuntimeException</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Queue is empty"</span><span style="color: #bd93f9;">)</span>;
       <span style="color: #50fa7b;">}</span>
       front = <span style="color: #50fa7b;">adjustIndex</span><span style="color: #50fa7b;">(</span>front, data.length<span style="color: #50fa7b;">)</span>;
       <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">T</span><span style="color: #50fa7b;">)</span> data<span style="color: #50fa7b;">[</span>front<span style="color: #50fa7b;">]</span>;
@@ -617,8 +617,8 @@ punrtero a la izquierda o a la derecha. ## Implementación en código
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-03-30 Tue 07:17</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2022-01-30 Sun 21:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>

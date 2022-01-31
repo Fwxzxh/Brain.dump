@@ -1,0 +1,279 @@
+#+title: Atomic Habits
+
+* Fundamentos
+- Habito ::
+  Es una rutina o comportamiento que se hace tan regularmente que se convierte en automático. Desde una perspectiva biológica,
+  su propósito es ahorrar energía descargando el esfuerzo cognitivo de pensar en tareas repetitivas del consciente al inconsciente.
+
+Cuando los hábitos se usan de manera efectiva, estos te permiten convertirte en quien quieras en la vida.
+Un hábito de lectura diaria eventualmente te convertirá en experto, un hábito de ejercicio diario eventualmente te hará fuerte.
+
+La parte difícil es apegarte al hábito por suficiente tiempo para que obtengas beneficios, un 1% de mejora cada día por un año resulta en un 37x de mejora.
+
+El 1% inicial es difícil de ver, pero después de un tiempo se convierte en astronómico. Todas las cosas grandes vienen de inicios pequeños.
+
+Las redes sociales están llenas de publicaciones celebrando los logros de los individuos, sin mostrar los cientos de horas de trabajo que les tomo llegar a donde están.
+
+Debemos cambiar nuestro enfoque de los logros a la trayectoria.
+- El hombre más fuerte del mundo se volverá débil si deja de usar sus musculos.
+- El hombre más brillante se volverá tonto si deja de usar su cerebro.
+
+#+begin_quote
+No importa donde estabas ayer, si no hacia adonde apuntas hoy.
+#+end_quote
+
+#+begin_quote
+Trayectoria > Logros.
+#+end_quote
+
+* Las tres capas del cambio de comportamiento
+Para hacer nuevos hábitos efectivamente, necesitas estar consciente de las tres capas del cambio de comportamiento.
+1. Identidad
+2. Proceso
+3. Resultado
+
+La identidad es en lo que tu crees, el proceso es lo que tu haces y el resultado es lo que tu obtienes.
+
+La razón por la que la mayoría de personas se quedan cortas con sus aspiraciones en la vida es porque solo se enfocan en
+los resultados, sin considerar los sistemas que llevan a estos.
+
+Decirte a ti mismo "yo quiero ser rico" o "yo quiero perder peso" no contribuye a ninguno.
+
+Solo modificando tu *identidad* y tu *proceso* puedes cambiar tu comportamiento y obtener tus resultados deseados.
+
+Para cambiar tu identidad, empieza a preguntarte el como alguien con tu identidad deseada se comporta.
+
+Si quieres convertirte en un emprendedor, pregúntate "¿Cuál es el tipo de persona que se convierte en un emprendedor?"
+Empieza a actuar como tu identidad deseada y eventualmente te convertirás en esta.
+
+#+begin_quote
+Cada acción que tomas es un voto para el tipo de persona que deseas convertirte.
+#+end_quote
+
+Solo decirte a ti mismo que vas a empezar a hacer algo no es una manera efectiva de cambiar tu comportamiento.
+
+Nuestros cerebros son máquinas de conservación de energía, constantemente analizando el ambiente buscando maneras de
+maximizar los resultados y recompensas inmediatas mientras gastamos la mínima energía posible.
+
+Un proceso efectivo es manipular tu ambiente para que la energía necesaria para la conducta deseada sea menos que para la conducta no deseada.
+
+Es duro comer sano si tu refrigerado esta lleno de barras de chocolate. Pero si el refrigerador esta lleno de frutas y vegetales
+Comer una barra de chocolate requiere un viaje al supermercado.
+
+#+begin_quote
+Cada meta esta condenada a fallar si va en contra de la naturaleza humana.
+#+end_quote
+
+* los cuatro pasos de la formación de hábitos
+
+Hay cuatro pasos relacionados en la formación de cada hábito:
+- El Disparador ::
+  Es la señal inicial que dispara el comportamiento (por ejemplo el ver un chocolate).
+- El deseo ::
+  Es la acción de querer cambiar tu estado actual, probocado por el disparador.
+- La respuesta ::
+  Es la conducta que se hace para satisfacer el deseo (por ejemplo comer el chocolate).
+- La recompensa ::
+  Es el resultado de la respuesta (El subidón de azúcar de comer el chocolate).
+
+Si a alguna conducta le falta alguno de los pasos de arriba, no se volverá un hábito.
+
+Si remueves el disparador, el hábito no empezará. Si reduces el deseo no estarás tan motivado a actuar.
+Si no respondes, no habrá respuesta, y si no hay recomienza o no es suficiente no repetirás esa conducta.
+
+* Las cuatro leyes de el cambio de comportamiento
+Las cuatro leyes del cambio de comportamiento son un conjunto de principios para construir hábitos, estas son:
+1. Hazlo obvio --> Disparador.
+2. Hazlo atractivo --> Deseo.
+3. Hazlo fácil --> Respuesta.
+4. Hazlo satisfactorio --> Recompensa.
+
+* Hazlo Obvio
+Para construir nuevos hábitos de manera efectiva, haz el disparador totalmente obvio.
+
+Si quieres empezar a correr todas las mañanas, pon tus tenis junto a tu cama la noche anterior, así la primera cosa
+que verás será tus tenis, dando la señal a tu cerebro que es hora de hacer ejercicio.
+
+si quieres hacer un hábito de leer antes de dormir, pon un libro en tu almohada cada mañana, cuando sea hora de dormir,
+el libro estará allí esperando por ti.
+
+Debes diseñar tu entorno alrededor de los hábitos que deseas desarrollar.
+
+#+begin_quote
+Entre más claras y consistentes sean los disparadores en tu entorno, más probable sera que desarrolles el hábito relacionado
+con ese disparador.
+#+end_quote
+
+** Intenciones de implementación
+Las intenciones de implementación son usadas para aumentar la probabilidad de llevar a acabo un hábito.
+
+La idea es eliminar la ambigüedad que rodea los detalles de un hábito (el cuando y el como).
+
+El formato de una intención de implementación es:
+
+#+begin_quote
+Yo haré [comportamiento] a las [Tiempo] en [lugar].
+#+end_quote
+
+Por ejemplo:
+- Yo escribiré a las 9 AM en la oficina de mi casa.
+- Yo jugaré basketball a las 6 PM en la universidad.
+- Yo leeré a las 9 PM en mi balcón.
+
+Es útil escribir una lista de intenciones de implementación para todos los hábitos que deseas desarrollar
+y ponlos en un lugar donde los puedas ver todos los días.
+
+** Apilamiento de hábitos
+El apilamiento de hábitos es una técnica en la que consistentemente haces un acción después de otra.
+
+La técnica hace uso del efecto Diderot; un fenómeno humano donde una compra lleva a otra (Ej: comprar un nuevo escritorio te lleva a
+comprar otro teclado, mouse y monitor).
+
+Funciona encadenando hábitos, si tienes el hábito de tomar café cada mañana pero también quieres desarrollar el hábito de
+escribir. Puedes usar el apilamiento de hábitos afirmando "Después de hacer el café, me sentaré en mi escritorio y escribiré".
+
+La idea es atar la conducta deseada a algo que ya haces.
+
+El formato es:
+
+#+begin_quote
+Después de [hábito actual] haré [nuevo hábito].
+#+end_quote
+
+Podemos pensar en el apilamiento de hábitos como las conexiones entre las intenciones de implementación.
+
+** Tarjeta de mando de hábitos
+Necesitas estar al tanto de tus hábitos actuales antes de que puedas cambiarlos. La tarjeta de mando de hábitos es un sistema
+para identificar y categorizar tus hábitos existentes como:
+
+- Malos
+- Neutrales
+- Buenos
+
+Para crearla, solo tienes que escribir todo lo que haces en el día, (Ej: levantarse, ver el celular, hacer café, Bañarte, etc.).
+
+Ejemplo:
+- Levantarte --> Neutral.
+- Ver el celular --> Malo.
+- Hacer café --> Neutral.
+- Bañarte --> Bueno.
+
+Para determinar si un hábito es bueno o malo, pregúntate si te está ayudando a convertirte en el tipo de persona que quieres ser.
+
+** Señalar y llamar.
+Señalar y llamar (Pointing and calling) es una técnica que consiste en apuntar a objetos y decir en voz alta comandos.
+
+Esta técnica ha demostrado reducir errores en un 85% y accidentes en un 30% y es una de las responsables de que el sistema de
+metro de tokyo sea tan seguro.
+
+Es tan efectiva porque eleva el nivel de conciencia de un hábito no consciente a uno más consciente.
+
+Es debido a que los operadores deben usar sus ojos, manos, boca y oídos para señalar y llamar, es más probable que se den cuenta
+de algún problema antes de que salga algo mal.
+
+A veces estamos tan acostumbrados a hacer lo que siempre hacemos que nunca nos paramos a pensar en si es correcto hacerlo.
+Muchas de nuestras fallas son atribuibles a nuestra falta de conciencia en este sentido.
+
+Uno de nuestros más grandes retos en la encadenación de hábitos, es mantener conciencia de lo que realmente estamos haciendo.
+La tarjeta de mando de hábitos nos ayuda a eso, a estar más conscientes de nuestro comportamiento.
+
+** Hazlo invisible
+Para romper un hábito, debemos remover el disparador asociado a ese hábito en tu entorno,
+esto es lo contrario de la primera ley del cambio de comportamiento.
+
+#+begin_quote
+"Hazlo obvio" --> "Hazlo invisible"
+#+end_quote
+
+Para ver menos youtube, desinstala la aplicación de tu teléfono, para comer menos azúcar, esconde todo lo dulce de tu refrigerador.
+
+El propósito de hacerlo invisible es eliminar las veces en las que una conducta se inicia sin que se quiera.
+
+** La función del comportamiento
+El comportamiento es una función de una persona en su entorno
+
+#+begin_latex
+$B = f(P, E)$
+#+end_latex
+
+En resumen, nuestro comportamiento resulta de la combinación de nuestros rasgos personales y el entorno que habitamos.
+
+Nosotros reaccionamos de manera diferente que otros en el mismo entorno dependiendo de nuestras relaciones con el ambiente.
+
+cuando intentas desarrollar un nuevo hábito en un entorno familiar, tienes que enfrentarte a los hábitos que ya has desarrollado
+en ese entorno.
+
+Es más difícil desarrollar un hábito de lectura en el área donde juegas videojuegos que en un lugar nuevo.
+
+No puedes tan fácilmente modificar la $P$ (rasgos Personales) en la ecuación, pero puedes cambiar la $E$ (Entorno).
+
+** La influencia de la visión
+El humano promedio tiene 11 millones de receptores en su cuerpo, 10 millones de ellos dedicados a la vista.
+
+Es por esto que los disparadores visuales en nuestro entorno son los más efectivos al influenciar nuestra conducta.
+
+Cuando diseñemos nuestro entorno, debemos hacer los disparadores de buenos hábitos muy visibles y los disparadores de malos
+hábitos invisibles.
+
+#+begin_quote
+Un pequeño cambio en lo que podemos ver puede llevar a un gran cambio en lo que hacemos.
+#+end_quote
+
+** Entorno > Disciplina
+Durante la guerra de Vietnam se descubrió que el 35& de los soldados de Estados Unidos probaron la heroína y el 20% eran adictos.
+Sin embargo, cuando regresaron solo el 5% se volvió a convertir en adictos dentro de un año y solo el 12% recayó en los siguientes
+tres años.
+
+Esto contradijo la creencia en ese tiempo que la adicción a la heroína era permanente e irreversible.
+
+En todo el país, el 90% de los consumidores de heroína vuelven a ser adictos cuando regresan a casa después de la rehabilitación.
+
+En la presencia de un nuevo y radical cambio de entorno desprovisto de los disparadores asociados con su adicción los soldados
+dejaron la heroína casi de la noche a la mañana.
+
+las personas "disciplinadas" no poseen una fuerza de voluntad heroica y autocontrol, en su lugar ellos estructuran sus vidas en una
+manera que reduce su exposición a tentaciones negativas.
+
+Es más fácil practicar la autocontención cuando no tienes que usarla tan seguido.
+
+Cualquiera puede hacerse "disciplinado" si diseñan su entorno de manera que los disparadores asociados con
+malos hábitos son invisibles y los disparadores asociados con buenos hábitos son claros y abundantes.
+
+Todos tenemos una cantidad finita de fuerza de voluntad. Entre más practicamos la autocontención, menos seremos capaces de de
+resistir la siguiente tentación.
+
+#+begin_quote
+El autocontrol es una estrategia a corto plazo, el diseño de tu entorno es una a largo plazo.
+#+end_quote
+
+* Hazlo atractivo
+La segunda ley del cambio de comportamiento es "Hazlo atractivo".
+
+Entre más atractiva sea una oportunidad, es más probable que se convierta en un hábito.
+
+** La obsoleta utilidad de la dopamina
+La dopamina es el químico en nuestro cerebro que nos causa el sentimiento de placer.
+
+La dopamina liberada por comer comidas densas en calorías y de tener sexo motivo a nuestros antepasados a hacer acciones
+que eran esenciales para la supervivencia de la raza humana.
+
+Pero, ya no vivimos en un entorno de recursos escasos. Teneos los cerebros de nuestros ancestros, pero
+tentaciones que ellos nunca podrían haber imaginado.
+
+No es sorpresa que el 40% de los adultos en Estados Unidos sean obesos, la comida es abundante,
+sin embargo nuestros cerebros siguen buscándola como si fuera sagrada.
+
+** Realidad exagerada
+Todos los animales, nosotros incluidos, tienen ciertas conductas innatas dadas por la evolución.
+
+La gaviota argéntea americana picotean al punto rojo el pico de los padres cuando están hambrientos, dando la señal
+a los padres para que alimente a sus hijos, investigadores han descubierto que exponiendo a los bebes de gaviota
+a picos artificiales con puntos rojos extremadamente grandes provocaban que los polluelos picoteen como locos.
+
+Esto se conoce como un estimulo supernormal, un estimulo exagerado que crea una fuerte reacción a la criatura,
+La industria moderna esta llena de estímulos supernormales que sobrepasan nuestros instintos primitivos y nos motivan
+a consumir.
+
+La comida chatarra tiene más azúcar que lo que podrían nuestros antepasados comer esto sobrepasa el sistema de recompensa
+de nuestro cerebro, Los videojuegos tienen más estímulos visuales que los que podríamos encontrar en la naturaleza,
+Nuestro entorno moderno esta lleno de versiones exageradas de la realidad que sobrepasan nuestros sentidos.

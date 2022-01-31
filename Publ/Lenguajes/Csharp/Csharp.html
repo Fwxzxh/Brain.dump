@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>C#</title>
-<!-- 2021-09-12 Sun 21:23 -->
+<!-- 2022-01-30 Sun 21:51 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -377,7 +377,7 @@ Un rango de tareas de programación comunes.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">myAge</span>;
+<pre class="src src-csharp">int myAge;
 </pre>
 </div>
 
@@ -395,7 +395,7 @@ Una linea de código que completa una acción es llamada declaración y terminan
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">myAge</span> = <span style="color: #bd93f9; font-weight: bold;">18</span>;
+<pre class="src src-csharp">int myAge = 18;
 </pre>
 </div>
 </div>
@@ -461,7 +461,7 @@ valores <code>char</code> son definidos con comillas simples y <code>string</cod
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hola Mundo!"</span><span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">Console.WriteLine("Hola Mundo!");
 </pre>
 </div>
 
@@ -472,10 +472,10 @@ valores <code>char</code> son definidos con comillas simples y <code>string</cod
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #bd93f9; font-weight: bold;">10</span>;
-<span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">y</span> = <span style="color: #bd93f9; font-weight: bold;">20</span>;
+<pre class="src src-csharp">int x = 10;
+double y = 20;
 
-Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"x = {0}; y = {1}"</span>, x, y<span style="color: #61bfff;">)</span>;
+Console.WriteLine("x = {0}; y = {1}", x, y);
 </pre>
 </div>
 
@@ -497,7 +497,7 @@ Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bff
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">yourInput = Console.<span style="color: #50fa7b;">ReadLine</span><span style="color: #61bfff;">()</span>;
+<pre class="src src-csharp">yourInput = Console.ReadLine();
 </pre>
 </div>
 
@@ -548,7 +548,7 @@ Esto siempre retorna un <code>string</code>.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">num</span> = <span style="color: #bd93f9; font-weight: bold;">15</span>;
+<pre class="src src-csharp">var num = 15;
 </pre>
 </div>
 
@@ -561,9 +561,9 @@ Esto siempre retorna un <code>string</code>.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Esto dar&#225; un error!</span>
-<span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">num</span>;
-num = <span style="color: #bd93f9; font-weight: bold;">15</span>;
+<pre class="src src-csharp">// Esto dará un error!
+var num;
+num = 15;
 </pre>
 </div>
 
@@ -585,8 +585,8 @@ Es buena práctica declarar tus variables con su tipo de dato y usar <code>var</
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Ejemplo</span>
-<span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">PI</span> = <span style="color: #bd93f9; font-weight: bold;">3.14</span>;
+<pre class="src src-csharp">//Ejemplo
+const double PI = 3.14;
 </pre>
 </div>
 
@@ -635,7 +635,7 @@ x %= 2; // equivalente a x = x % 2;
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">x++; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">equivalente a x = x + 1;</span>
+<pre class="src src-csharp">x++; // equivalente a x = x + 1;
 </pre>
 </div>
 </div>
@@ -651,8 +651,8 @@ x %= 2; // equivalente a x = x % 2;
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">++x; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">prefijo</span>
-x++; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">postfijo</span>
+<pre class="src src-csharp">++x; // prefijo
+x++; // postfijo
 </pre>
 </div>
 
@@ -665,17 +665,17 @@ x++; <span style="color: #6272a4; font-style: italic;">// </span><span style="co
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #bd93f9; font-weight: bold;">3</span>;
-<span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span> = ++x;
-<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">x es 4, y es 4</span>
+<pre class="src src-csharp">int x = 3;
+int y = ++x;
+// x es 4, y es 4
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #bd93f9; font-weight: bold;">3</span>;
-<span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span> = x++;
-<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">x es 4, y es 3</span>
+<pre class="src src-csharp">int x = 3;
+int y = x++;
+// x es 4, y es 3
 </pre>
 </div>
 
@@ -702,10 +702,10 @@ Esto también funciona con el operador de decremento <code>-</code>, siendo x&#x
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>x &gt; y<span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"x es m&#225;s grande que y"</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">if (x &gt; y)
+    {
+        Console.WriteLine("x es más grande que y");
+    }
 </pre>
 </div>
 </div>
@@ -732,14 +732,14 @@ Esto también funciona con el operador de decremento <code>-</code>, siendo x&#x
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>x &gt; y<span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"x es m&#225;s grande que y"</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">else</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"y es m&#225;s grande que x"</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">if (x &gt; y)
+    {
+        Console.WriteLine("x es más grande que y");
+    }
+else
+    {
+        Console.WriteLine("y es más grande que x");
+    }
 </pre>
 </div>
 
@@ -750,22 +750,22 @@ Esto también funciona con el operador de decremento <code>-</code>, siendo x&#x
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span> x <span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">algo</span>
-    <span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span> y <span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">otra cosa</span>
-    <span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span> z <span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">aaaaaa</span>
-    <span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">else</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">final</span>
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">if ( x )
+    {
+        // algo
+    }
+else if ( y )
+    {
+        // otra cosa
+    }
+else if ( z )
+    {
+        //aaaaaa
+    }
+else
+    {
+        //final
+    }
 </pre>
 </div>
 </div>
@@ -784,22 +784,22 @@ Esto también funciona con el operador de decremento <code>-</code>, siendo x&#x
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num</span> = <span style="color: #bd93f9; font-weight: bold;">3</span>;
-<span style="color: #ff79c6; font-style: italic;">switch</span> <span style="color: #61bfff;">(</span>num<span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #bd93f9; font-weight: bold;">1</span>:
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"one"</span><span style="color: #ff79c6;">)</span>;
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
-        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #bd93f9; font-weight: bold;">2</span>:
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"two"</span><span style="color: #ff79c6;">)</span>;
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
-        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #bd93f9; font-weight: bold;">3</span>:
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Three"</span><span style="color: #ff79c6;">)</span>;
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
-        <span style="color: #ff79c6; font-style: italic;">default</span>:
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"No es uno, dos o tres"</span><span style="color: #ff79c6;">)</span>;
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">int num = 3;
+switch (num)
+    {
+        case 1:
+            Console.WriteLine("one");
+            break;
+        case 2:
+            Console.WriteLine("two");
+            break;
+        case 3:
+            Console.WriteLine("Three");
+            break;
+        default:
+            Console.WriteLine("No es uno, dos o tres");
+            break;
+    }
 </pre>
 </div>
 
@@ -845,12 +845,12 @@ El bloque <code>default</code> solo se ejecuta si no se cumple ninguno de los <c
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num</span> = <span style="color: #bd93f9; font-weight: bold;">1</span>;
-<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>num &lt; <span style="color: #bd93f9; font-weight: bold;">6</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>num<span style="color: #ff79c6;">)</span>;
+<pre class="src src-csharp">int num = 1;
+while (num &lt; 6)
+    {
+        Console.WriteLine(num);
         num++;
-    <span style="color: #61bfff;">}</span>
+    }
 </pre>
 </div>
 
@@ -872,10 +872,10 @@ El código anterior imprime los números del 1 al 5.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span>init; condition; increment<span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">code</span>
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">for (init; condition; increment)
+    {
+        //code
+    }
 </pre>
 </div>
 
@@ -885,10 +885,10 @@ El código anterior imprime los números del 1 al 5.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #bd93f9; font-weight: bold;">10</span>; x &lt; <span style="color: #bd93f9; font-weight: bold;">15</span>; x++<span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Value of x: {0}"</span>, x<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">for (int x = 10; x &lt; 15; x++)
+    {
+        Console.WriteLine("Value of x: {0}", x);
+    }
 </pre>
 </div>
 
@@ -901,12 +901,12 @@ El código anterior imprime los números del 1 al 5.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #bd93f9; font-weight: bold;">10</span>;
-<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span> ; x &gt; <span style="color: #bd93f9; font-weight: bold;">10</span> ; <span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
-        x -= <span style="color: #bd93f9; font-weight: bold;">3</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">int x = 10;
+for ( ; x &gt; 10 ; )
+    {
+        Console.WriteLine(x);
+        x -= 3;
+    }
 </pre>
 </div>
 
@@ -928,11 +928,11 @@ El código anterior imprime los números del 1 al 5.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>;
-<span style="color: #ff79c6; font-style: italic;">do</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>;
+<pre class="src src-csharp">int a = 0;
+do {
+    Console.WriteLine(a);
     a++;
-<span style="color: #61bfff;">}</span> <span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>a &lt; <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">)</span>;
+} while (a &lt; 5);
 </pre>
 </div>
 </div>
@@ -948,15 +948,15 @@ El código anterior imprime los números del 1 al 5.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>;
-<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>num &lt; <span style="color: #bd93f9; font-weight: bold;">20</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>num == <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #ff79c6;">)</span>
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
+<pre class="src src-csharp">int num = 0;
+while (num &lt; 20)
+    {
+        if (num == 5)
+            break;
 
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>num<span style="color: #ff79c6;">)</span>;
+        Console.WriteLine(num);
         num++;
-    <span style="color: #61bfff;">}</span>
+    }
 </pre>
 </div>
 
@@ -973,12 +973,12 @@ En el bloque de anterior, el <code>while</code> parará cuando <code>num</code> 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">i</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>; i &lt; <span style="color: #bd93f9; font-weight: bold;">10</span>; i++<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>i == <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #ff79c6;">)</span>
-        <span style="color: #ff79c6; font-style: italic;">continue</span>;
+<pre class="src src-csharp">for (int i = 0; i &lt; 10; i++) {
+    if (i == 5)
+        continue;
 
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>i<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+    Console.WriteLine(i);
+}
 </pre>
 </div>
 </div>
@@ -996,11 +996,11 @@ En el bloque de anterior, el <code>while</code> parará cuando <code>num</code> 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span> = <span style="color: #bd93f9; font-weight: bold;">42</span>;
-<span style="color: #bd93f9;">doubel</span> <span style="color: #ffc9e8;">money</span> = <span style="color: #bd93f9; font-weight: bold;">540</span>;
-<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>age &gt; <span style="color: #bd93f9; font-weight: bold;">18</span> &amp;&amp; money &gt; <span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Welkome"</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">int age = 42;
+doubel money = 540;
+if (age &gt; 18 &amp;&amp; money &gt; 100) {
+    Console.WriteLine("Welkome");
+}
 </pre>
 </div>
 </div>
@@ -1018,7 +1018,7 @@ En el bloque de anterior, el <code>while</code> parará cuando <code>num</code> 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">Expr1 ? <span style="color: #bd93f9;">Expr2</span> : Expr3;
+<pre class="src src-csharp">Expr1 ? Expr2 : Expr3;
 </pre>
 </div>
 
@@ -1035,10 +1035,10 @@ En el bloque de anterior, el <code>while</code> parará cuando <code>num</code> 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span> = <span style="color: #bd93f9; font-weight: bold;">42</span>;
-<span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">msg</span>;
-msg = <span style="color: #61bfff;">(</span>age &gt;= <span style="color: #bd93f9; font-weight: bold;">18</span><span style="color: #61bfff;">)</span> ? <span style="color: #f1fa8c;">"Welcome"</span> : <span style="color: #f1fa8c;">"Sorry"</span>;
-Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>msg<span style="color: #61bfff;">)</span>
+<pre class="src src-csharp">int age = 42;
+string msg;
+msg = (age &gt;= 18) ? "Welcome" : "Sorry";
+Console.WriteLine(msg)
 </pre>
 </div>
 </div>
@@ -1098,20 +1098,20 @@ Todo programa de C# tiene al menos un método, el método <code>Main</code>.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #61bfff;">&lt;</span>tipo de dato <span style="color: #bd93f9;">de</span> <span style="color: #ffc9e8;">retorno</span><span style="color: #61bfff;">&gt;</span> <span style="color: #50fa7b;">name</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">type1</span> <span style="color: #ffc9e8;">part1</span>, <span style="color: #bd93f9;">type2</span> <span style="color: #ffc9e8;">part2</span>, ..., <span style="color: #bd93f9;">typeN</span> <span style="color: #ffc9e8;">partN</span><span style="color: #61bfff;">){</span>
-    <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Bloque de c&#243;digo..</span>
-    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6;">&lt;</span>tipo <span style="color: #bd93f9;">de</span> <span style="color: #ffc9e8;">dato</span><span style="color: #ff79c6;">&gt;</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">&lt;tipo de dato de retorno&gt; name(type1 part1, type2 part2, ..., typeN partN){
+    //Bloque de código..
+    return &lt;tipo de dato&gt;
+}
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Sqr</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">result</span> = x * x;
-        <span style="color: #ff79c6; font-style: italic;">return</span> result;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">int Sqr(int x)
+    {
+        int result = x * x;
+        return result;
+    }
 </pre>
 </div>
 
@@ -1127,15 +1127,15 @@ Todo programa de C# tiene al menos un método, el método <code>Main</code>.
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">SayHi</span><span style="color: #61bfff;">()</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hello"</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static void SayHi()
+    {
+        Console.WriteLine("Hello");
+    }
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span>;
-    <span style="color: #61bfff;">}</span>
+static void Main(string[] args)
+    {
+        SayHi();
+    }
 </pre>
 </div>
 
@@ -1159,10 +1159,10 @@ Aquí declaramos un método y lo llamamos desde <code>Main</code>, la palabra <c
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">void Print(int x)
+    {
+        Console.WriteLine(x);
+    }
 </pre>
 </div>
 
@@ -1174,15 +1174,15 @@ Las declaraciones de parametros son similares a las declaraciones de variables; 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">void Print(int x)
+    {
+        Console.WriteLine(x);
+    }
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #50fa7b;">Print</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+static void Main(string[] args)
+    {
+        Print(42);
+    }
 </pre>
 </div>
 
@@ -1203,10 +1203,10 @@ Ahora podemos llamar a nuestro método y pasarle argumentos.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Sum</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">return</span> x + y;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">int Sum(int x, int y)
+    {
+        return x + y;
+    }
 </pre>
 </div>
 
@@ -1218,16 +1218,16 @@ Los métodos retornan valores con la palabra <code>return</code>.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Sum</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">return</span> x + y;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">int Sum(int x, int y)
+    {
+        return x + y;
+    }
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        suma = <span style="color: #50fa7b;">Sum</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span>, <span style="color: #bd93f9; font-weight: bold;">45</span><span style="color: #ff79c6;">)</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>suma<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+static void Main(string[] args)
+    {
+        suma = Sum(42, 45);
+        Console.WriteLine(suma);
+    }
 </pre>
 </div>
 
@@ -1251,16 +1251,16 @@ Podemos asignar parametros múltiples cuando llamamos al método, separandolos c
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Pow</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span>=<span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">result</span> = <span style="color: #bd93f9; font-weight: bold;">1</span>;
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">i</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>; i &lt; y; i++<span style="color: #ff79c6;">)</span>
-        <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">static int Pow(int x, int y=2)
+    {
+    int result = 1;
+    for (int i = 0; i &lt; y; i++)
+        {
             result *= x;
-        <span style="color: #ff79c6;">}</span>
+        }
 
-    <span style="color: #ff79c6; font-style: italic;">return</span> result;
-    <span style="color: #61bfff;">}</span>
+    return result;
+    }
 </pre>
 </div>
 
@@ -1272,11 +1272,11 @@ El método <code>Pow</code> asigna un valor por defecto de 2 al parametro y.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">Pow</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">4</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">Pow</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">4</span>,<span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static void Main(string[] args)
+    {
+        Console.WriteLine(Pow(4));
+        Console.WriteLine(Pow(4,3));
+    }
 </pre>
 </div>
 </div>
@@ -1294,16 +1294,16 @@ El método <code>Pow</code> asigna un valor por defecto de 2 al parametro y.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Are</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">h</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">w</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">return</span> h * w;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static int Are(int h, int w)
+    {
+        return h * w;
+    }
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">res</span> = <span style="color: #50fa7b;">Area</span><span style="color: #ff79c6;">(</span>w: <span style="color: #bd93f9; font-weight: bold;">5</span>, h: <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">)</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>res<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+static void Main(string[] args)
+    {
+        int res = Area(w: 5, h: 8);
+        Console.WriteLine(res);
+    }
 </pre>
 </div>
 </div>
@@ -1330,16 +1330,16 @@ El método <code>Pow</code> asigna un valor por defecto de 2 al parametro y.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Sqrt</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
+<pre class="src src-csharp">static void Sqrt(int x)
+    {
         x = x * x;
-    <span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">()</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span> = <span style="color: #bd93f9; font-weight: bold;">3</span>;
-        <span style="color: #50fa7b;">Sqrt</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">imprime 3</span>
-    <span style="color: #61bfff;">}</span>
+    }
+static void Main()
+    {
+        int a = 3;
+        Sqrt(a);
+        Console.WriteLine(a); // imprime 3
+    }
 </pre>
 </div>
 
@@ -1373,16 +1373,16 @@ El método <code>Sqrt()</code> no cambia el valor de la variable, trabaja con el
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Sqrt</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;---</span>
-    <span style="color: #61bfff;">{</span>
+<pre class="src src-csharp">static void Sqrt(ref int x) // &lt;---
+    {
         x = x * x;
-    <span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">()</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span> = <span style="color: #bd93f9; font-weight: bold;">3</span>;
-        <span style="color: #50fa7b;">Sqrt</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">a</span><span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;---</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">imprime 9</span>
-    <span style="color: #61bfff;">}</span>
+    }
+static void Main()
+    {
+        int a = 3;
+        Sqrt(ref a); // &lt;---
+        Console.WriteLine(a); // imprime 9
+    }
 </pre>
 </div>
 </div>
@@ -1406,17 +1406,17 @@ El método <code>Sqrt()</code> no cambia el valor de la variable, trabaja con el
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">GetValues</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;---</span>
-    <span style="color: #61bfff;">{</span>
-        x = <span style="color: #bd93f9; font-weight: bold;">5</span>;
-        y = <span style="color: #bd93f9; font-weight: bold;">10</span>;
-    <span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">()</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ffc9e8;">b</span>;
-        <span style="color: #50fa7b;">GetValues</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">a</span>, <span style="color: #ff79c6; font-style: italic;">out</span> <span style="color: #bd93f9;">b</span><span style="color: #ff79c6;">)</span>;
-        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Ahora a = 5 y b = 10</span>
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static void GetValues(out int x, out int y) // &lt;---
+    {
+        x = 5;
+        y = 10;
+    }
+static void Main()
+    {
+        int a, b;
+        GetValues(out a, out b);
+        // Ahora a = 5 y b = 10
+    }
 </pre>
 </div>
 
@@ -1439,14 +1439,14 @@ Las variables deben de estar inicializadas, pero no tener ningún valor.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Value: "</span> + a<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
-<span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">a</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Value: "</span> + a<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">void Print(int a)
+    {
+        Console.WriteLine("Value: " + a);
+    }
+void Print(double a)
+    {
+        Console.WriteLine("Value: " + a);
+    }
 </pre>
 </div>
 
@@ -1485,13 +1485,13 @@ Con la sobrecarga podemos tener una misma función que funcione con <code>int</c
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #50fa7b;">Fact</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>num == <span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-            <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">1</span>;
-        <span style="color: #ff79c6;">}</span>
-        <span style="color: #ff79c6; font-style: italic;">return</span> num * <span style="color: #50fa7b;">Fact</span><span style="color: #ff79c6;">(</span>num-<span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static int Fact(int num)
+    {
+        if (num == 1) {
+            return 1;
+        }
+        return num * Fact(num-1);
+    }
 </pre>
 </div>
 </div>
@@ -1521,10 +1521,10 @@ Con la sobrecarga podemos tener una misma función que funcione con <code>int</c
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">MiPrimeraClase</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">variables, m&#233;todos, etc.</span>
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class MiPrimeraClase
+    {
+        //variables, métodos, etc.
+    }
 </pre>
 </div>
 
@@ -1611,15 +1611,15 @@ Define un tipo de dato para objetos, pero no es un objeto.
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span>;
-        <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>;
-        <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span>
-            <span style="color: #ff79c6;">{</span>
-                Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Hola"</span><span style="color: #50fa7b;">)</span>;
-            <span style="color: #ff79c6;">}</span>
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Person
+    {
+        int age;
+        string name;
+        public void SayHi()
+            {
+                Console.WriteLine("Hola");
+            }
+    }
 </pre>
 </div>
 
@@ -1646,18 +1646,18 @@ Define un tipo de dato para objetos, pero no es un objeto.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span>;
-    <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Hi"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Person</span> <span style="color: #ffc9e8;">p1</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Person</span><span style="color: #ff79c6;">()</span>;
-    p1.<span style="color: #50fa7b;">SayHi</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Person {
+    int age;
+    string name;
+    public void SayHi() {
+        Console.WriteLine("Hi");
+    }
+}
+static void Main(string[] args)
+{
+    Person p1 = new Person();
+    p1.SayHi();
+}
 </pre>
 </div>
 
@@ -1671,19 +1671,19 @@ Define un tipo de dato para objetos, pero no es un objeto.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Dog</span> <span style="color: #ffc9e8;">bob</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Dog</span><span style="color: #ff79c6;">()</span>;
-    bob.name = <span style="color: #f1fa8c;">"Bobby"</span>;
-    bob.age = <span style="color: #bd93f9; font-weight: bold;">3</span>;
+<pre class="src src-csharp">class Dog
+{
+    public string name;
+    public int age;
+}
+static void Main(string[] args)
+{
+    Dog bob = new Dog();
+    bob.name = "Bobby";
+    bob.age = 3;
 
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>bob.age<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+    Console.WriteLine(bob.age);
+}
 </pre>
 </div>
 
@@ -1732,28 +1732,28 @@ Define un tipo de dato para objetos, pero no es un objeto.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">BankAccount</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">balance</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Deposit</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">n</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">class BankAccount {
+    private double balance=0;
+    public void Deposit(double n) {
         balance += n;
-    <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Withdraw</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">n</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    }
+    public void Withdraw(double n) {
         balance -= n;
-    <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">double</span> <span style="color: #50fa7b;">GetBalance</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">return</span> balance;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Program</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">string</span><span style="color: #50fa7b;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6;">{</span>
-        <span style="color: #bd93f9;">BankAccount</span> <span style="color: #ffc9e8;">b</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">BankAccount</span><span style="color: #50fa7b;">()</span>;
-        b.<span style="color: #50fa7b;">Deposit</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">199</span><span style="color: #50fa7b;">)</span>;
-        b.<span style="color: #50fa7b;">Withdraw</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #50fa7b;">)</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span>b.<span style="color: #50fa7b;">GetBalance</span><span style="color: #bd93f9;">()</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    }
+    public double GetBalance() {
+        return balance;
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        BankAccount b = new BankAccount();
+        b.Deposit(199);
+        b.Withdraw(42);
+        Console.WriteLine(b.GetBalance());
+    }
+}
 </pre>
 </div>
 
@@ -1790,14 +1790,14 @@ Define un tipo de dato para objetos, pero no es un objeto.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span>
-<span style="color: #61bfff;">{</span>
-  <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span>;
-  <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Person</span><span style="color: #ff79c6;">()</span>
-  <span style="color: #ff79c6;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Hi there"</span><span style="color: #50fa7b;">)</span>;
-  <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Person
+{
+  private int age;
+  public Person()
+  {
+    Console.WriteLine("Hi there");
+  }
+}
 </pre>
 </div>
 
@@ -1812,24 +1812,24 @@ Define un tipo de dato para objetos, pero no es un objeto.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span>;
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Person</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">nm</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">class Person
+{
+    private int age;
+    private string name;
+    public Person(string nm)
+    {
         name = nm;
-    <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #50fa7b;">getName</span><span style="color: #ff79c6;">()</span>
-    <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">return</span> name;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Person</span> <span style="color: #ffc9e8;">p</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Person</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"David"</span><span style="color: #ff79c6;">)</span>;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>p.<span style="color: #50fa7b;">getName</span><span style="color: #50fa7b;">()</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+    }
+    public string getName()
+    {
+        return name;
+    }
+}
+static void Main(string[] args)
+{
+    Person p = new Person("David");
+    Console.WriteLine(p.getName());
+}
 </pre>
 </div>
 
@@ -1861,15 +1861,15 @@ En el ejemplo creamos un objeto pasándole un argumento al constructor.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>; <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">campo</span>
+<pre class="src src-csharp">class Person {
+    private string name; //campo
 
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Name</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Propiedad</span>
-        <span style="color: #ff79c6;">{</span>
-            <span style="color: #ff79c6; font-style: italic;">get</span> <span style="color: #50fa7b;">{</span> <span style="color: #ff79c6; font-style: italic;">return</span> name; <span style="color: #50fa7b;">}</span>
-            <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span> name = <span style="color: #8be9fd;">value</span>; <span style="color: #50fa7b;">}</span>
-        <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    public string Name // Propiedad
+        {
+            get { return name; }
+            set { name = value; }
+        }
+}
 </pre>
 </div>
 
@@ -1896,12 +1896,12 @@ Una vez la propiedad es definida podemos usarla para asignar o leer del miembro.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">Person</span> <span style="color: #ffc9e8;">p</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Person</span>;
-        p.Name = <span style="color: #f1fa8c;">"Bob"</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>p.Name<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static void Main(string[] args)
+    {
+        Person p = new Person;
+        p.Name = "Bob";
+        Console.WriteLine(p.Name);
+    }
 </pre>
 </div>
 
@@ -1920,18 +1920,18 @@ Se accede a la propiedad por su nombre, como cualquier miembro público de la cl
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">age</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Age</span>;
-    <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">get</span> <span style="color: #50fa7b;">{</span> <span style="color: #ff79c6; font-style: italic;">return</span> age; <span style="color: #50fa7b;">}</span>
-        <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #bd93f9;">(</span><span style="color: #8be9fd;">value</span> &gt; <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">{</span>
-                age = <span style="color: #8be9fd;">value</span>;
-            <span style="color: #bd93f9;">}</span>
-        <span style="color: #50fa7b;">}</span>
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Person {
+    private int age=0;
+    public int Age;
+    {
+        get { return age; }
+        set {
+            if (value &gt; 0) {
+                age = value;
+            }
+        }
+    }
+}
 </pre>
 </div>
 
@@ -1953,7 +1953,7 @@ En el ejemplo verificamos que el valor que le asignemos a <code>age</code> sea m
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Name</span> <span style="color: #61bfff;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">public string Name { get; set; }
 </pre>
 </div>
 
@@ -1966,16 +1966,16 @@ En el ejemplo verificamos que el valor que le asignemos a <code>age</code> sea m
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Name</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">Person</span> <span style="color: #ffc9e8;">p</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Person</span>;
-        p.Name = <span style="color: #f1fa8c;">"Bob"</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>p.Name<span style="color: #ff79c6;">)</span>;
-    <span style="color: #61bfff;">}</span>
-<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Imprime Bob</span>
+<pre class="src src-csharp">class Person {
+    public string Name { get; set; }
+}
+static void Main(string[] args)
+    {
+        Person p = new Person;
+        p.Name = "Bob";
+        Console.WriteLine(p.Name);
+    }
+// Imprime Bob
 </pre>
 </div>
 </div>
@@ -1999,8 +1999,8 @@ En el ejemplo verificamos que el valor que le asignemos a <code>age</code> sea m
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">declaraci&#243;n de un array</span>
-<span style="color: #bd93f9;">int</span> <span style="color: #61bfff;">[</span> <span style="color: #61bfff;">]</span> <span style="color: #ffc9e8;">myArray</span>;
+<pre class="src src-csharp">// declaración de un array
+int [ ] myArray;
 </pre>
 </div>
 
@@ -2017,7 +2017,7 @@ Con esto declaramos un arreglo de enteros.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #61bfff;">[</span> <span style="color: #61bfff;">]</span> <span style="color: #ffc9e8;">myArray</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">]</span>;
+<pre class="src src-csharp">int [ ] myArray = new int[5];
 </pre>
 </div>
 
@@ -2034,8 +2034,8 @@ Con esto instanciamos un arreglo de enteros con 5 espacios dentro de el.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #61bfff;">[</span> <span style="color: #61bfff;">]</span> <span style="color: #ffc9e8;">myArray</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">]</span>;
-myArray<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">]</span> = <span style="color: #bd93f9; font-weight: bold;">23</span>
+<pre class="src src-csharp">int [ ] myArray = new int[5];
+myArray[0] = 23
 </pre>
 </div>
 
@@ -2052,7 +2052,7 @@ Aquí asignamos el número 23 en la posición 0 del arreglo.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #61bfff;">[</span> <span style="color: #61bfff;">]</span> <span style="color: #ffc9e8;">names</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">string</span><span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #61bfff;">]</span> <span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"Jhon"</span>, <span style="color: #f1fa8c;">"Cena"</span>, <span style="color: #f1fa8c;">"Jose"</span><span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">string [ ] names = new string[3] {"Jhon", "Cena", "Jose"};
 </pre>
 </div>
 
@@ -2071,7 +2071,7 @@ Podemos asignar valores iniciales a un arreglo se esta forma.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #61bfff;">[</span> <span style="color: #61bfff;">]</span> <span style="color: #ffc9e8;">names</span> = <span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"Jhon"</span>, <span style="color: #f1fa8c;">"Cena"</span>, <span style="color: #f1fa8c;">"Jose"</span><span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">string [ ] names = {"Jhon", "Cena", "Jose"};
 </pre>
 </div>
 
@@ -2082,7 +2082,7 @@ Podemos asignar valores iniciales a un arreglo se esta forma.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">names</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">Console.WriteLine(names[2]);
 </pre>
 </div>
 </div>
@@ -2098,11 +2098,11 @@ Podemos asignar valores iniciales a un arreglo se esta forma.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span> <span style="color: #61bfff;">]</span> <span style="color: #ffc9e8;">a</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">10</span><span style="color: #61bfff;">]</span>;
+<pre class="src src-csharp">int[ ] a = new int[10];
 
-<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">k</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>; k &lt; <span style="color: #bd93f9; font-weight: bold;">10</span>; k++<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-  a<span style="color: #ff79c6;">[</span>k<span style="color: #ff79c6;">]</span> = k*<span style="color: #bd93f9; font-weight: bold;">2</span>;
-<span style="color: #61bfff;">}</span>
+for (int k = 0; k &lt; 10; k++) {
+  a[k] = k*2;
+}
 </pre>
 </div>
 
@@ -2112,9 +2112,9 @@ Podemos asignar valores iniciales a un arreglo se esta forma.
 </ul>
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">k</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>; k &lt; <span style="color: #bd93f9; font-weight: bold;">10</span>; k++<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a<span style="color: #50fa7b;">[</span>k<span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">for (int k = 0; k &lt; 10; k++) {
+    Console.WriteLine(a[k]);
+}
 </pre>
 </div>
 </div>
@@ -2129,9 +2129,9 @@ Podemos asignar valores iniciales a un arreglo se esta forma.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">foreach</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">k</span> <span style="color: #ff79c6; font-style: italic;">in</span> a<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>k<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">foreach (int k in a) {
+    Console.WriteLine(k);
+}
 </pre>
 </div>
 
@@ -2154,10 +2154,10 @@ El tipo de dato dentro del <code>foreach</code> debe de coincidir con el tipo de
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">a veces se usa la parlabra var dentro del foreach</span>
-<span style="color: #ff79c6; font-style: italic;">foreach</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">k</span> <span style="color: #ff79c6; font-style: italic;">in</span> a<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">aaaaaa</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">// a veces se usa la parlabra var dentro del foreach
+foreach (var k in a) {
+    //aaaaaa
+}
 </pre>
 </div>
 
@@ -2179,7 +2179,7 @@ El tipo de dato dentro del <code>foreach</code> debe de coincidir con el tipo de
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #61bfff;">[</span> , <span style="color: #61bfff;">]</span> x = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">3</span>,<span style="color: #bd93f9; font-weight: bold;">4</span><span style="color: #61bfff;">]</span>;
+<pre class="src src-csharp">int [ , ] x = new int[3,4];
 </pre>
 </div>
 
@@ -2203,7 +2203,7 @@ Esto es una matriz de 3x4.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #61bfff;">[][]</span> = jaggedArr = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #61bfff;">][]</span>;
+<pre class="src src-csharp">int [][] = jaggedArr = new int[3][];
 </pre>
 </div>
 
@@ -2215,12 +2215,12 @@ Tenemos un arreglo de una sola dimensión, con 3 elementos, los cuales son arreg
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span> <span style="color: #61bfff;">][</span> <span style="color: #61bfff;">]</span> <span style="color: #ffc9e8;">jaggedArr</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[</span> <span style="color: #61bfff;">][</span> <span style="color: #61bfff;">]</span>
-<span style="color: #61bfff;">{</span>
-  <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[</span> <span style="color: #ff79c6;">]</span> <span style="color: #ff79c6;">{</span><span style="color: #bd93f9; font-weight: bold;">1</span>,<span style="color: #bd93f9; font-weight: bold;">8</span>,<span style="color: #bd93f9; font-weight: bold;">2</span>,<span style="color: #bd93f9; font-weight: bold;">7</span>,<span style="color: #bd93f9; font-weight: bold;">9</span><span style="color: #ff79c6;">}</span>,
-  <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[</span> <span style="color: #ff79c6;">]</span> <span style="color: #ff79c6;">{</span><span style="color: #bd93f9; font-weight: bold;">2</span>,<span style="color: #bd93f9; font-weight: bold;">4</span>,<span style="color: #bd93f9; font-weight: bold;">6</span><span style="color: #ff79c6;">}</span>,
-  <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[</span> <span style="color: #ff79c6;">]</span> <span style="color: #ff79c6;">{</span><span style="color: #bd93f9; font-weight: bold;">33</span>,<span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">int[ ][ ] jaggedArr = new int[ ][ ]
+{
+  new int[ ] {1,8,2,7,9},
+  new int[ ] {2,4,6},
+  new int[ ] {33,42}
+};
 </pre>
 </div>
 
@@ -2232,7 +2232,7 @@ Si queremos tener valores iniciales, podemos declarar el mismo arreglo de esta m
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = jaggedArr<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #61bfff;">][</span><span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #61bfff;">]</span>; <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">42</span>
+<pre class="src src-csharp">int x = jaggedArr[2][1]; //42
 </pre>
 </div>
 
@@ -2298,14 +2298,14 @@ respectivamente.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-        <span style="color: #61bfff;">{</span>
-            <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">text</span> = <span style="color: #f1fa8c;">"This is some text about a dog. The word dog appears in this text a number of times. This is the end."</span>;
-            text = text.<span style="color: #50fa7b;">Replace</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"dog"</span>, <span style="color: #f1fa8c;">"cat"</span><span style="color: #ff79c6;">)</span>;
-            text = text.<span style="color: #50fa7b;">Substring</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">0</span>, text.<span style="color: #50fa7b;">IndexOf</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"."</span><span style="color: #50fa7b;">)</span>+<span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #ff79c6;">)</span>;
+<pre class="src src-csharp">static void Main(string[] args)
+        {
+            string text = "This is some text about a dog. The word dog appears in this text a number of times. This is the end.";
+            text = text.Replace("dog", "cat");
+            text = text.Substring(0, text.IndexOf(".")+1);
 
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>text<span style="color: #ff79c6;">)</span>;
-        <span style="color: #61bfff;">}</span>
+            Console.WriteLine(text);
+        }
 </pre>
 </div>
 
@@ -2344,12 +2344,12 @@ C# tiene muchos métodos para trabajar con cadenas.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span> <span style="color: #61bfff;">{</span>
-    ~<span style="color: #50fa7b;">Dog</span><span style="color: #ff79c6;">()</span>
-        <span style="color: #ff79c6;">{</span>
-            <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">C&#243;digo</span>
-        <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Dog {
+    ~Dog()
+        {
+            //Código
+        }
+}
 </pre>
 </div>
 
@@ -2361,19 +2361,19 @@ Son útiles para liberar recursos cuando sales del programa, ejemplos pueden ser
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Dog</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Constructor"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-    ~<span style="color: #50fa7b;">Dog</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Destructor"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Dog</span> <span style="color: #ffc9e8;">d</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Dog</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Dog
+{
+    public Dog() {
+        Console.WriteLine("Constructor");
+    }
+    ~Dog() {
+        Console.WriteLine("Destructor");
+    }
+}
+static void Main(string[] args)
+{
+    Dog d = new Dog();
+}
 </pre>
 </div>
 
@@ -2404,12 +2404,12 @@ el objeto es borrado y el destructor imprime &ldquo;Destructor&rdquo;.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Cat</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">count</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Cat</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">class Cat {
+    public static int count=0;
+    public Cat() {
         count++;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    }
+}
 </pre>
 </div>
 
@@ -2426,19 +2426,19 @@ No importa cuantos objetos <code>Cat</code> instanciemos, <code>count</code> sie
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Cat</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">count</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Cat</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">class Cat {
+    public static int count=0;
+    public Cat() {
         count++;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">Cat</span> <span style="color: #ffc9e8;">c1</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Cat</span><span style="color: #ff79c6;">()</span>;
-        <span style="color: #bd93f9;">Cat</span> <span style="color: #ffc9e8;">c2</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Cat</span><span style="color: #ff79c6;">()</span>;
+    }
+}
+static void Main(string[] args)
+    {
+        Cat c1 = new Cat();
+        Cat c2 = new Cat();
 
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>Cat.<span style="color: #50fa7b;">count</span><span style="color: #50fa7b;">()</span><span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">2</span>
-    <span style="color: #61bfff;">}</span>
+        Console.WriteLine(Cat.count()); // 2
+    }
 </pre>
 </div>
 
@@ -2460,15 +2460,15 @@ Se debe acceder a los miembros estáticos con el nombre de la clase siempre.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Bark</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Woof"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        Dog.<span style="color: #50fa7b;">Bark</span><span style="color: #ff79c6;">()</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Dog {
+    public static void Bark() {
+        Console.WriteLine("Woof");
+    }
+}
+static void Main(string[] args)
+    {
+        Dog.Bark();
+    }
 </pre>
 </div>
 
@@ -2491,9 +2491,9 @@ El método <code>Main</code> es estático, y es el punto de entrada de cualquier
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Math</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">ONE</span> = <span style="color: #bd93f9; font-weight: bold;">1</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Math {
+    public const int ONE = 1;
+}
 </pre>
 </div>
 </div>
@@ -2508,15 +2508,15 @@ El método <code>Main</code> es estático, y es el punto de entrada de cualquier
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">SomeClass</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+<pre class="src src-csharp">class SomeClass {
+    public static int x { get; set; }
+    public static int y { get; set; }
 
-    <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #50fa7b;">SomeClass</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        x = <span style="color: #bd93f9; font-weight: bold;">10</span>;
-        y = <span style="color: #bd93f9; font-weight: bold;">10</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    static SomeClass() {
+        x = 10;
+        y = 10;
+    }
+}
 </pre>
 </div>
 
@@ -2550,7 +2550,7 @@ El constructor sera llamado cuando intentemos acceder a <code>SomeClass.X</code>
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>Math.<span style="color: #50fa7b;">Pow</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">2</span>, <span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">Console.WriteLine(Math.Pow(2, 3));
 </pre>
 </div>
 
@@ -2568,13 +2568,13 @@ La clase <code>Array</code> tiene algunos métodos estáticos para manipular arr
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[]</span> <span style="color: #ffc9e8;">arr</span> = <span style="color: #61bfff;">{</span><span style="color: #bd93f9; font-weight: bold;">1</span>, <span style="color: #bd93f9; font-weight: bold;">2</span>, <span style="color: #bd93f9; font-weight: bold;">3</span>, <span style="color: #bd93f9; font-weight: bold;">4</span><span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">int[] arr = {1, 2, 3, 4};
 
-Array.<span style="color: #50fa7b;">Reverse</span><span style="color: #61bfff;">(</span>arr<span style="color: #61bfff;">)</span>;
-<span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">arr = {4, 3, 2, 1}</span>
+Array.Reverse(arr);
+//arr = {4, 3, 2, 1}
 
-Array.<span style="color: #50fa7b;">Sort</span><span style="color: #61bfff;">(</span>arr<span style="color: #61bfff;">)</span>;
-<span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">arr = {1, 2, 3, 4}</span>
+Array.Sort(arr);
+//arr = {1, 2, 3, 4}
 </pre>
 </div>
 
@@ -2584,12 +2584,12 @@ La clase <code>String</code> también los tiene.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">s1</span> = <span style="color: #f1fa8c;">"some text"</span>;
-<span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">s2</span> = <span style="color: #f1fa8c;">"another text"</span>;
+<pre class="src src-csharp">string s1 = "some text";
+string s2 = "another text";
 
-String.<span style="color: #50fa7b;">Concat</span><span style="color: #61bfff;">(</span>s1, s2<span style="color: #61bfff;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">combines the two strings</span>
+String.Concat(s1, s2); // combines the two strings
 
-String.<span style="color: #50fa7b;">Equals</span><span style="color: #61bfff;">(</span>s1, s2<span style="color: #61bfff;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">returns false</span>
+String.Equals(s1, s2); // returns false
 </pre>
 </div>
 
@@ -2626,12 +2626,12 @@ La clase <code>Console</code> También es otro ejemplo de una clase estática.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Person</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">this</span>.name = name;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Person {
+    private string name;
+    public Person(string name) {
+        this.name = name;
+    }
+}
 </pre>
 </div>
 
@@ -2663,12 +2663,12 @@ Otro uso común de <code>this</code> es para pasar la instancia actual a un mét
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ff79c6; font-style: italic;">readonly</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">"John"</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Person</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">this</span>.name = name;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Person {
+    private readonly string name = "John";
+    public Person(string name) {
+        this.name = name;
+    }
+}
 </pre>
 </div>
 
@@ -2706,9 +2706,9 @@ Si intentamos modificar el campo <code>name</code> en algún otro lugar tendremo
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">str</span> = <span style="color: #f1fa8c;">"Hello World"</span>;
-<span style="color: #bd93f9;">char</span> <span style="color: #ffc9e8;">x</span> = str<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">4</span><span style="color: #61bfff;">]</span>;
-Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>x<span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">string str = "Hello World";
+char x = str[4];
+Console.WriteLine(x);
 </pre>
 </div>
 
@@ -2719,18 +2719,18 @@ Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bff
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Clients</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">names</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">10</span><span style="color: #ff79c6;">]</span>;
+<pre class="src src-csharp">class Clients {
+    private string[] names = new string[10];
 
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ff79c6; font-style: italic;">this</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9;">int</span> index<span style="color: #ff79c6;">]</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">get</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ff79c6; font-style: italic;">return</span> names<span style="color: #bd93f9;">[</span>index<span style="color: #bd93f9;">]</span>;
-        <span style="color: #50fa7b;">}</span>
-        <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
-            names<span style="color: #bd93f9;">[</span>index<span style="color: #bd93f9;">]</span> = <span style="color: #8be9fd;">value</span>;
-        <span style="color: #50fa7b;">}</span>
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    public string this[int index] {
+        get {
+            return names[index];
+        }
+        set {
+            names[index] = value;
+        }
+    }
+}
 </pre>
 </div>
 
@@ -2753,11 +2753,11 @@ Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bff
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">Clients</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Clients</span><span style="color: #61bfff;">()</span>;
-c<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">]</span> = <span style="color: #f1fa8c;">"Dave"</span>;
-c<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #61bfff;">]</span> = <span style="color: #f1fa8c;">"Bob"</span>;
+<pre class="src src-csharp">Clients c = new Clients();
+c[0] = "Dave";
+c[1] = "Bob";
 
-Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>c<span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>;
+Console.WriteLine(c[1]);
 </pre>
 </div>
 
@@ -2785,18 +2785,18 @@ Se usan indexadores típicamente si la clase representa una lista, colección o 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Box</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Height</span> <span style="color: #ff79c6;">{</span><span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>;<span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Width</span> <span style="color: #ff79c6;">{</span><span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>;<span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Box</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">h</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">w</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">class Box {
+    public int Height {get; set;}
+    public int Width {get; set;}
+    public Box(int h, int w) {
         Height = h;
         Width = w;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">b1</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Box</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">14</span>, <span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">b2</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Box</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">5</span>, <span style="color: #bd93f9; font-weight: bold;">7</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+    }
+}
+static void Main(string[] args) {
+    Box b1 = new Box(14, 3);
+    Box b2 = new Box(5, 7);
+}
 </pre>
 </div>
 
@@ -2806,7 +2806,7 @@ Teniendo dos objetos tipo <code>Box</code> si quisiéramos sumarlos para tener u
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">b3</span> = b1 + b2;
+<pre class="src src-csharp">Box b3 = b1 + b2;
 </pre>
 </div>
 
@@ -2825,12 +2825,12 @@ Este comportamiento lo lograriamos a través de la sobrecarga de operadores.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">Box</span> <span style="color: #ff79c6; font-style: italic;">operator</span>+ <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ffc9e8;">Box</span> b<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">h</span> = a.Height + b.Height;
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">w</span> = a.Width + b.Width;
-    <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">res</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Box</span><span style="color: #ff79c6;">(</span>h, w<span style="color: #ff79c6;">)</span>;
-    <span style="color: #ff79c6; font-style: italic;">return</span> res;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">public static Box operator+ (Box a, Box b) {
+    int h = a.Height + b.Height;
+    int w = a.Width + b.Width;
+    Box res = new Box(h, w);
+    return res;
+}
 </pre>
 </div>
 
@@ -2848,30 +2848,30 @@ Todos los operadores sobrecargados deben ser estáticos.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Box</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Height</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Width</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Box</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">h</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">w</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">class Box {
+    public int Height { get; set; }
+    public int Width { get; set; }
+    public Box(int h, int w) {
         Height = h;
         Width = w;
-    <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">Box</span> <span style="color: #ff79c6; font-style: italic;">operator</span>+<span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">b</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">h</span> = a.Height + b.Height;
-        <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">w</span> = a.Width + b.Width;
-        <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">res</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Box</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">h</span>, <span style="color: #bd93f9;">w</span><span style="color: #50fa7b;">)</span>;
-        <span style="color: #ff79c6; font-style: italic;">return</span> res;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    }
+    public static Box operator+(Box a, Box b) {
+        int h = a.Height + b.Height;
+        int w = a.Width + b.Width;
+        Box res = new Box(h, w);
+        return res;
+    }
+}
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">b1</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Box</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">14</span>, <span style="color: #bd93f9; font-weight: bold;">3</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">b2</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Box</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">5</span>, <span style="color: #bd93f9; font-weight: bold;">7</span><span style="color: #ff79c6;">)</span>;
-    <span style="color: #bd93f9;">Box</span> <span style="color: #ffc9e8;">b3</span> = b1 + b2;
+static void Main(string[] args)
+{
+    Box b1 = new Box(14, 3);
+    Box b2 = new Box(5, 7);
+    Box b3 = b1 + b2;
 
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>b3.Height<span style="color: #ff79c6;">)</span>;<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">19</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>b3.Width<span style="color: #ff79c6;">)</span>;<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">10</span>
-<span style="color: #61bfff;">}</span>
+    Console.WriteLine(b3.Height);// 19
+    Console.WriteLine(b3.Width);// 10
+}
 </pre>
 </div>
 
@@ -2909,10 +2909,10 @@ Podemos sobrecargar todos los operadores aritméticos y de comparación.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Animal</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Legs</span> <span style="color: #ff79c6;">{</span><span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>;<span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Age</span> <span style="color: #ff79c6;">{</span><span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>;<span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Animal {
+    public int Legs {get; set;}
+    public int Age {get; set;}
+}
 </pre>
 </div>
 
@@ -2924,14 +2924,14 @@ Podemos tener nuestra clase <code>Animal</code> que será nuestra clase base.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span> : <span style="color: #bd93f9;">Animal</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Dog</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Legs = <span style="color: #bd93f9; font-weight: bold;">4</span>;
-    <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Bark</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">Write</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Woof"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Dog : Animal {
+    public Dog() {
+        Legs = 4;
+    }
+    public void Bark() {
+        Console.Write("Woof");
+    }
+}
 </pre>
 </div>
 
@@ -2950,12 +2950,12 @@ Y con ella crear nuestra clase <code>Dog</code>, usando sus miembros y agregando
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">Dog</span> <span style="color: #ffc9e8;">d</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Dog</span><span style="color: #ff79c6;">()</span>;
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>d.legs<span style="color: #ff79c6;">)</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">4</span>
-        d.<span style="color: #50fa7b;">Bark</span><span style="color: #ff79c6;">()</span>;
-    <span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static void Main(string[] args)
+    {
+        Dog d = new Dog();
+        Console.WriteLine(d.legs); // 4
+        d.Bark();
+    }
 </pre>
 </div>
 
@@ -2991,25 +2991,25 @@ Sin embargo, puedes usar <b>interfaces</b> para implementar herencia múltiple.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">protected</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Age</span> <span style="color: #ff79c6;">{</span><span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>;<span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">protected</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Name</span> <span style="color: #ff79c6;">{</span><span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>;<span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Person {
+    protected int Age {get; set;}
+    protected string Name {get; set;}
+}
 
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Student</span> : <span style="color: #bd93f9;">Person</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Student</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">nm</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+class Student : Person {
+    public Student(string nm) {
         Name = nm;
-    <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Speak</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">Write</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Name: "</span> + Name<span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    }
+    public void Speak() {
+        Console.Write("Name: " + Name);
+    }
+}
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Student</span> <span style="color: #ffc9e8;">s</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Student</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"David"</span><span style="color: #ff79c6;">)</span>;
-    s.<span style="color: #50fa7b;">Speak</span><span style="color: #ff79c6;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Name: David</span>
-<span style="color: #61bfff;">}</span>
+static void Main(string[] args)
+{
+    Student s = new Student("David");
+    s.Speak(); // Name: David
+}
 </pre>
 </div>
 
@@ -3021,11 +3021,11 @@ En el ejemplo podemos acceder y modificar la propiedad <code>name</code>, desde 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Student</span> <span style="color: #ffc9e8;">s</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Student</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"David"</span><span style="color: #ff79c6;">)</span>;
-    s.Name = <span style="color: #f1fa8c;">"Bob"</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Error!</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">static void Main(string[] args)
+{
+    Student s = new Student("David");
+    s.Name = "Bob"; // Error!
+}
 </pre>
 </div>
 
@@ -3047,15 +3047,15 @@ Si intentamos acceder a ella desde afuera de la clase obtendremos un error.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">sealed</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Animal</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">some code</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span> : <span style="color: #bd93f9;">Animal</span> <span style="color: #61bfff;">{</span> <span style="color: #61bfff;">}</span> <span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Error</span>
+<pre class="src src-csharp">sealed class Animal {
+    //some code
+}
+class Dog : Animal { } //Error
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
+static void Main(string[] args)
+{
 
-<span style="color: #61bfff;">}</span>
+}
 </pre>
 </div>
 </div>
@@ -3077,33 +3077,33 @@ Si intentamos acceder a ella desde afuera de la clase obtendremos un error.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Animal</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Animal</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Animal created"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-    ~<span style="color: #50fa7b;">Animal</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Animal deleted"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Animal {
+    public Animal() {
+        Console.WriteLine("Animal created");
+    }
+    ~Animal() {
+        Console.WriteLine("Animal deleted");
+    }
+}
 
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Dog</span>: <span style="color: #bd93f9;">Animal</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Dog</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Dog created :D"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-    ~<span style="color: #50fa7b;">Dog</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Dog deleted :c"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+class Dog: Animal {
+    public Dog() {
+        Console.WriteLine("Dog created :D");
+    }
+    ~Dog() {
+        Console.WriteLine("Dog deleted :c");
+    }
+}
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Dog</span> <span style="color: #ffc9e8;">d</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Dog</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Resultando en:</span>
-<span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Animal created</span>
-<span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Dog created</span>
-<span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Dog deleted</span>
-<span style="color: #6272a4; font-style: italic;">//</span><span style="color: #6272a4; font-style: italic;">Animal deleted</span>
+static void Main(string[] args)
+{
+    Dog d = new Dog();
+}
+// Resultando en:
+//Animal created
+//Dog created
+//Dog deleted
+//Animal deleted
 </pre>
 </div>
 
@@ -3135,11 +3135,11 @@ Cuando se crea el objeto <code>Dog</code> llamamos primero a el constructor de l
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">virtual</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">Write</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Base Draw"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Shape {
+    public virtual void Draw() {
+        Console.Write("Base Draw");
+    }
+}
 </pre>
 </div>
 
@@ -3157,18 +3157,18 @@ Los métodos virtuales nos permiten trabajar con grupos de objetos relacionados 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;-- Llevan la palabra override en la clase derivada.</span>
-        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">draw a circle...</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Rectangle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">draw a rectangle...</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Rect Draw"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">class Circle : Shape {
+    public override void Draw() { // &lt;-- Llevan la palabra override en la clase derivada.
+        // draw a circle...
+        Console.WriteLine("Circle Draw");
+    }
+}
+class Rectangle : Shape {
+    public override void Draw() {
+        // draw a rectangle...
+        Console.WriteLine("Rect Draw");
+    }
+}
 </pre>
 </div>
 
@@ -3180,14 +3180,14 @@ Ahora podemos usar el método para sobre escribirlo y adecuarlo a lo que necesit
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-    <span style="color: #61bfff;">{</span>
-        <span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
-        c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
+<pre class="src src-csharp">static void main(string[] args)
+    {
+        Shape c = new Circle();
+        c.Draw();
 
-        <span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">r</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Rectangle</span><span style="color: #ff79c6;">()</span>;
-        r.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
-    <span style="color: #61bfff;">}</span>
+        Shape r = new Rectangle();
+        r.Draw();
+    }
 </pre>
 </div>
 
@@ -3209,7 +3209,7 @@ Para implementar esto, creamos objetos del tipo de la clase base pero los instan
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #61bfff;">()</span>;
+<pre class="src src-csharp">Shape c = new Circle();
 </pre>
 </div>
 
@@ -3219,8 +3219,8 @@ Podríamos solo instanciar cada objeto con su tipo y llamar a su método tambié
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">Circle</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #61bfff;">()</span>;
-c.<span style="color: #50fa7b;">Draw</span><span style="color: #61bfff;">()</span>;
+<pre class="src src-csharp">Circle c = new Circle();
+c.Draw();
 </pre>
 </div>
 
@@ -3260,9 +3260,9 @@ Pero, hacerlo con polimorfismo nos trae algunas ventajas.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">abstract class Shape {
+    public abstract void Draw();
+}
 </pre>
 </div>
 
@@ -3279,24 +3279,24 @@ Una clase abstracta se hace para ser la base de otras clases, actúa como una pl
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">abstract</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Rectangle</span> : <span style="color: #bd93f9;">Shape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Rect Draw"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Shape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
-    c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Circle Draw</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">abstract class Shape {
+    public abstract void Draw();
+}
+class Circle : Shape {
+    public override void Draw() {
+        Console.WriteLine("Circle Draw");
+    }
+}
+class Rectangle : Shape {
+    public override void Draw() {
+        Console.WriteLine("Rect Draw");
+    }
+}
+static void Main(string[] args)
+{
+    Shape c = new Circle();
+    c.Draw(); // Circle Draw
+}
 </pre>
 </div>
 
@@ -3344,9 +3344,9 @@ El modificador <code>sealed</code> previene una clase de ser heredada y el modif
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">interface</span> <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">public interface IShape {
+    void Draw();
+}
 </pre>
 </div>
 
@@ -3388,20 +3388,20 @@ Pueden contener propiedades, métodos, etc, pero no pueden contener campos (vari
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">interface</span> <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">public interface IShape {
+    void Draw();
+}
 
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+class Circle : IShape {
+    public void Draw() {
+        Console.WriteLine("Circle Draw");
+    }
+}
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">IShape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
-    c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
-<span style="color: #61bfff;">}</span>
+static void Main(string[] args) {
+    IShape c = new Circle();
+    c.Draw();
+}
 </pre>
 </div>
 
@@ -3453,23 +3453,23 @@ no esta implementado en la clase, la implementación por defecto resuelve este p
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">interface</span> <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>;
-    <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Finish</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Done!"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Circle</span> : <span style="color: #bd93f9;">IShape</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Circle Draw"</span><span style="color: #50fa7b;">)</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span>
-<span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">IShape</span> <span style="color: #ffc9e8;">c</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Circle</span><span style="color: #ff79c6;">()</span>;
-    c.<span style="color: #50fa7b;">Draw</span><span style="color: #ff79c6;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Circle Draw</span>
-    c.<span style="color: #50fa7b;">Finish</span><span style="color: #ff79c6;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Done!</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">public interface IShape {
+    void Draw();
+    void Finish() {
+        Console.WriteLine("Done!");
+    }
+}
+class Circle : IShape {
+    public void Draw() {
+        Console.WriteLine("Circle Draw");
+    }
+}
+static void Main(string[] args)
+{
+    IShape c = new Circle();
+    c.Draw(); // Circle Draw
+    c.Finish(); // Done!
+}
 </pre>
 </div>
 
@@ -3501,16 +3501,16 @@ Métodos con la implementación por defecto pueden ser sobre escritos libremente
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Car</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">name</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Car</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">nm</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+<pre class="src src-csharp">class Car {
+    string name;
+    public Car(string nm) {
         name = nm;
-        <span style="color: #bd93f9;">Motor</span> <span style="color: #ffc9e8;">m</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Motor</span><span style="color: #50fa7b;">()</span>;
-    <span style="color: #ff79c6;">}</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Motor</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">some code</span>
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+        Motor m = new Motor();
+    }
+    public class Motor {
+        // some code
+    }
+}
 </pre>
 </div>
 
@@ -3531,19 +3531,19 @@ Cuando creas un proyecto, tiene una estructura parecida a la siguiente.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>;
-<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Collections</span>.<span style="color: #ffc9e8;">Generic</span>;
-<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Linq</span>;
-<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Text</span>;
-<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Threading</span>.<span style="color: #ffc9e8;">Tasks</span>;
+<pre class="src src-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-<span style="color: #ff79c6; font-style: italic;">namespace</span> <span style="color: #ffc9e8;">Learn</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Program</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">string</span><span style="color: #bd93f9;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+namespace Learn {
+    class Program {
+        static void Main(string[] args) {
 
-        <span style="color: #50fa7b;">}</span>
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+        }
+    }
+}
 </pre>
 </div>
 
@@ -3566,9 +3566,9 @@ Cuando creas un proyecto, tiene una estructura parecida a la siguiente.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>;
-<span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
-Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hi"</span><span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">using System;
+// ...
+Console.WriteLine("Hi");
 </pre>
 </div>
 
@@ -3584,7 +3584,7 @@ Si no usamos <code>using</code> tenemos que especificar el <code>namespace</code
 
 <div class="org-src-container">
 
-<pre class="src src-csharp">System.Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hi"</span><span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">System.Console.WriteLine("Hi");
 </pre>
 </div>
 
@@ -3616,11 +3616,11 @@ Declarar tus propios <code>namespaces</code> puede ayudar a agrupar tus clases y
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #bd93f9;">book</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">title</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">double</span> <span style="color: #ffc9e8;">price</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">author</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">struct book {
+    public string title;
+    public double price;
+    public string author;
+}
 </pre>
 </div>
 
@@ -3633,14 +3633,14 @@ Declarar tus propios <code>namespaces</code> puede ayudar a agrupar tus clases y
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Book</span> <span style="color: #ffc9e8;">b</span>;
-    b.title = <span style="color: #f1fa8c;">"Test"</span>;
-    b.price = <span style="color: #bd93f9; font-weight: bold;">5.99</span>;
-    b.author = <span style="color: #f1fa8c;">"David"</span>;
+<pre class="src src-csharp">static void main(string[] args) {
+    Book b;
+    b.title = "Test";
+    b.price = 5.99;
+    b.author = "David";
 
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>b.title<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+    Console.WriteLine(b.title);
+}
 </pre>
 </div>
 
@@ -3677,18 +3677,18 @@ No soportan herencia y no pueden contener métodos virtuales.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">struct</span> <span style="color: #bd93f9;">Point</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span>;
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">Point</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">y</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">this</span>.x = x;
-        <span style="color: #ff79c6; font-style: italic;">this</span>.y = y;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">Point</span> <span style="color: #ffc9e8;">p</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Point</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">10</span>, <span style="color: #bd93f9; font-weight: bold;">15</span><span style="color: #ff79c6;">)</span>;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>p.x<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">struct Point {
+    public int x;
+    public int y;
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+public void Main(string[] args) {
+    Point p = new Point(10, 15);
+    Console.WriteLine(p.x);
+}
 </pre>
 </div>
 </div>
@@ -3726,7 +3726,7 @@ Todos los tipos de datos por defecto en C# son <code>structs</code> (int, double
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">Days</span> <span style="color: #61bfff;">{</span><span style="color: #ffc9e8;">Sun</span>, <span style="color: #ffc9e8;">Mon</span>, <span style="color: #ffc9e8;">Tue</span>, <span style="color: #ffc9e8;">Wed</span>, <span style="color: #ffc9e8;">Thu</span>, <span style="color: #ffc9e8;">Fri</span>, <span style="color: #ffc9e8;">Sat</span><span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
 </pre>
 </div>
 
@@ -3736,7 +3736,7 @@ Puedes también asignar tus propios valores al <code>enum</code>.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">Days</span> <span style="color: #61bfff;">{</span><span style="color: #ffc9e8;">Sun</span>, <span style="color: #ffc9e8;">Mon</span>, <span style="color: #ffc9e8;">Tue</span>=<span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #ffc9e8;">Wed</span>, <span style="color: #ffc9e8;">Thu</span>, <span style="color: #ffc9e8;">Fri</span>, <span style="color: #ffc9e8;">Sat</span><span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">enum Days {Sun, Mon, Tue=4, Wed, Thu, Fri, Sat};
 </pre>
 </div>
 
@@ -3751,12 +3751,12 @@ Puedes también asignar tus propios valores al <code>enum</code>.
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">Days</span> <span style="color: #61bfff;">{</span><span style="color: #ffc9e8;">Sun</span>, <span style="color: #ffc9e8;">Mon</span>, <span style="color: #ffc9e8;">Tue</span>, <span style="color: #ffc9e8;">Wed</span>, <span style="color: #ffc9e8;">Thu</span>, <span style="color: #ffc9e8;">Fri</span>, <span style="color: #ffc9e8;">Sat</span><span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>Days.Tue;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+static void Main(string[] args) {
+    int x = (int)Days.Tue;
+    Console.WriteLine(x);
+}
 </pre>
 </div>
 
@@ -3772,22 +3772,22 @@ Estos son usados en conjunto con <code>switch</code>
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">enum</span> <span style="color: #bd93f9;">TrafficLights</span> <span style="color: #61bfff;">{</span> <span style="color: #ffc9e8;">Green</span>, <span style="color: #ffc9e8;">Red</span>, <span style="color: #ffc9e8;">Yellow</span> <span style="color: #61bfff;">}</span>;
+<pre class="src src-csharp">enum TrafficLights { Green, Red, Yellow };
 
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">TrafficLights</span> <span style="color: #ffc9e8;">x</span> = TrafficLights.Red;
-    <span style="color: #ff79c6; font-style: italic;">switch</span> <span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">case</span> TrafficLights.Green:
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Go!"</span><span style="color: #50fa7b;">)</span>;
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
-        <span style="color: #ff79c6; font-style: italic;">case</span> TrafficLights.Red:
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Stop!"</span><span style="color: #50fa7b;">)</span>;
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
-        <span style="color: #ff79c6; font-style: italic;">case</span> TrafficLights.Yellow:
-            Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Go faster!"</span><span style="color: #50fa7b;">)</span>;
-            <span style="color: #ff79c6; font-style: italic;">break</span>;
-    <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+static void Main(string[] args) {
+    TrafficLights x = TrafficLights.Red;
+    switch (x) {
+        case TrafficLights.Green:
+            Console.WriteLine("Go!");
+            break;
+        case TrafficLights.Red:
+            Console.WriteLine("Stop!");
+            break;
+        case TrafficLights.Yellow:
+            Console.WriteLine("Go faster!");
+            break;
+    }
+}
 </pre>
 </div>
 </div>
@@ -3809,8 +3809,8 @@ Estos son usados en conjunto con <code>switch</code>
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[]</span> <span style="color: #ffc9e8;">arr</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">[]</span> <span style="color: #61bfff;">{</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">6</span>, <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #61bfff;">}</span>;
-Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>arr<span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">int[] arr = new int[] {4, 6, 8};
+Console.WriteLine(arr[8]);
 </pre>
 </div>
 
@@ -3827,13 +3827,13 @@ Este código causara una excepción porque estamos intentando acceder a un valor
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">arr</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ff79c6;">{</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">6</span>, <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">}</span>;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>arr<span style="color: #50fa7b;">[</span><span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">catch</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Exeption</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">Writeline</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Un error ha ocurrido."</span><span style="color: #ff79c6;">)</span>
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">try {
+    int[] arr = new int[] {4, 6, 8};
+    Console.WriteLine(arr[8]);
+}
+catch(Exeption e) {
+    Console.Writeline("Un error ha ocurrido.")
+}
 </pre>
 </div>
 
@@ -3852,13 +3852,13 @@ Este código causara una excepción porque estamos intentando acceder a un valor
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">arr</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">[]</span> <span style="color: #ff79c6;">{</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">6</span>, <span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #ff79c6;">}</span>;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>arr<span style="color: #50fa7b;">[</span><span style="color: #bd93f9; font-weight: bold;">8</span><span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">catch</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Exeption</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">Writeline</span><span style="color: #ff79c6;">(</span>e.Message<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">try {
+    int[] arr = new int[] {4, 6, 8};
+    Console.WriteLine(arr[8]);
+}
+catch(Exeption e) {
+    Console.Writeline(e.Message);
+}
 </pre>
 </div>
 </div>
@@ -3873,18 +3873,18 @@ Este código causara una excepción porque estamos intentando acceder a un valor
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span>;
-<span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
-    x = Convert.<span style="color: #50fa7b;">ToInt32</span><span style="color: #ff79c6;">(</span>Console.<span style="color: #50fa7b;">Read</span><span style="color: #50fa7b;">()</span><span style="color: #ff79c6;">)</span>;
-    y = Convert.<span style="color: #50fa7b;">ToInt32</span><span style="color: #ff79c6;">(</span>Console.<span style="color: #50fa7b;">Read</span><span style="color: #50fa7b;">()</span><span style="color: #ff79c6;">)</span>;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x / y<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">catch</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">DivideByZeroException</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Cannot divide by 0"</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">catch</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Exception</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"An error occurred"</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+<pre class="src src-csharp">int x, y;
+try {
+    x = Convert.ToInt32(Console.Read());
+    y = Convert.ToInt32(Console.Read());
+    Console.WriteLine(x / y);
+}
+catch (DivideByZeroException e) {
+    Console.WriteLine("Cannot divide by 0");
+}
+catch(Exception e) {
+    Console.WriteLine("An error occurred");
+}
 </pre>
 </div>
 
@@ -3908,18 +3908,18 @@ Las excepciones son muy útiles cuando manejamos input del usuario para validar 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">result</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
-<span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num1</span> = <span style="color: #bd93f9; font-weight: bold;">8</span>;
-<span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">num2</span> = <span style="color: #bd93f9; font-weight: bold;">4</span>;
-<span style="color: #ff79c6; font-style: italic;">try</span> <span style="color: #61bfff;">{</span>
+<pre class="src src-csharp">int result=0;
+int num1 = 8;
+int num2 = 4;
+try {
     result = num1 / num2;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">catch</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">DivideByZeroException</span> <span style="color: #ffc9e8;">e</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Error"</span><span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">finally</span> <span style="color: #61bfff;">{</span>
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>result<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+}
+catch (DivideByZeroException e) {
+    Console.WriteLine("Error");
+}
+finally {
+    Console.WriteLine(result);
+}
 </pre>
 </div>
 </div>
@@ -3938,8 +3938,8 @@ Las excepciones son muy útiles cuando manejamos input del usuario para validar 
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">str</span> = <span style="color: #f1fa8c;">"Some text"</span>;
-File.<span style="color: #50fa7b;">WriteAllText</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"test.txt"</span>, str<span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">string str = "Some text";
+File.WriteAllText("test.txt", str);
 </pre>
 </div>
 
@@ -3956,8 +3956,8 @@ File.<span style="color: #50fa7b;">WriteAllText</span><span style="color: #61bff
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">text</span> = File.<span style="color: #50fa7b;">ReadAllText</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"test.txt"</span><span style="color: #61bfff;">)</span>;
-Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bfff;">(</span>text<span style="color: #61bfff;">)</span>;
+<pre class="src src-csharp">string text = File.ReadAllText("test.txt");
+Console.WriteLine(text);
 </pre>
 </div>
 
@@ -3998,11 +3998,11 @@ Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #61bff
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Swap</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">b</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">temp</span> = a;
+<pre class="src src-csharp">static void Swap(ref int a, ref int b) {
+    int temp = a;
     a = b;
     b = temp;
-<span style="color: #61bfff;">}</span>
+}
 </pre>
 </div>
 
@@ -4023,11 +4023,11 @@ Este código solo funciona con enteros, si queremos usarlo con otros tipos deber
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Swap</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">b</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">temp</span> = a;
+<pre class="src src-csharp">static void Swap&lt;T&gt;(ref T a, ref T b) {
+    T temp = a;
     a = b;
     b = temp;
-<span style="color: #61bfff;">}</span>
+}
 </pre>
 </div>
 
@@ -4051,21 +4051,21 @@ Este código solo funciona con enteros, si queremos usarlo con otros tipos deber
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Swap</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">b</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">temp</span> = a;
+<pre class="src src-csharp">static void Swap&lt;T&gt;(ref T a, ref T b) {
+    T temp = a;
     a = b;
     b = temp;
-<span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">static</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Main</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">args</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">a</span> = <span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #ffc9e8;">b</span> = <span style="color: #bd93f9; font-weight: bold;">9</span>;
-    <span style="color: #50fa7b;">Swap</span><span style="color: #ff79c6;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">a</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">b</span><span style="color: #ff79c6;">)</span>;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>a+<span style="color: #f1fa8c;">" "</span>+b<span style="color: #ff79c6;">)</span>;
+}
+static void Main(string[] args) {
+    int a = 4, b = 9;
+    Swap&lt;int&gt;(ref a, ref b);
+    Console.WriteLine(a+" "+b);
 
-    <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #f1fa8c;">"Hello"</span>;
-    <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">y</span> = <span style="color: #f1fa8c;">"World"</span>;
-    <span style="color: #50fa7b;">Swap</span><span style="color: #ff79c6;">&lt;</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">&gt;(</span><span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">x</span>, <span style="color: #ff79c6; font-style: italic;">ref</span> <span style="color: #bd93f9;">y</span><span style="color: #ff79c6;">)</span>;
-    Console.<span style="color: #50fa7b;">WriteLine</span><span style="color: #ff79c6;">(</span>x+<span style="color: #f1fa8c;">" "</span>+y<span style="color: #ff79c6;">)</span>;
-<span style="color: #61bfff;">}</span>
+    string x = "Hello";
+    string y = "World";
+    Swap&lt;string&gt;(ref x, ref y);
+    Console.WriteLine(x+" "+y);
+}
 </pre>
 </div>
 
@@ -4095,20 +4095,20 @@ Podemos tener múltiples parametros de diferente tipo en un método genérico us
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">index</span>=<span style="color: #bd93f9; font-weight: bold;">0</span>;
-    <span style="color: #bd93f9;">T</span><span style="color: #ff79c6;">[]</span> <span style="color: #ffc9e8;">innerArray</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">T</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #ff79c6;">]</span>;
+<pre class="src src-csharp">class Stack&lt;T&gt; {
+    int index=0;
+    T[] innerArray = new T[100];
 
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Push</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">T</span> <span style="color: #ffc9e8;">item</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
-        innerArray<span style="color: #50fa7b;">[</span>index++<span style="color: #50fa7b;">]</span> = item;
-    <span style="color: #ff79c6;">}</span>
+    public void Push(T item) {
+        innerArray[index++] = item;
+    }
 
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">Pop</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">return</span> innerArray<span style="color: #50fa7b;">[</span>--index<span style="color: #50fa7b;">]</span>;
-    <span style="color: #ff79c6;">}</span>
+    public T Pop() {
+        return innerArray[--index];
+    }
 
-    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">Get</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">k</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">return</span> innerArray<span style="color: #50fa7b;">[</span>k<span style="color: #50fa7b;">]</span>; <span style="color: #ff79c6;">}</span>
-<span style="color: #61bfff;">}</span>
+    public T Get(int k) { return innerArray[k]; }
+}
 </pre>
 </div>
 
@@ -4121,9 +4121,9 @@ Podemos tener múltiples parametros de diferente tipo en un método genérico us
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">intStack</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;()</span>;
-<span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">string</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">strStack</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">string</span><span style="color: #61bfff;">&gt;()</span>;
-<span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">Person</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">PersonStack</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Stack</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">Person</span><span style="color: #61bfff;">&gt;()</span>;
+<pre class="src src-csharp">Stack&lt;int&gt; intStack = new Stack&lt;int&gt;();
+Stack&lt;string&gt; strStack = new Stack&lt;string&gt;();
+Stack&lt;Person&gt; PersonStack = new Stack&lt;Person&gt;();
 </pre>
 </div>
 </div>
@@ -4147,7 +4147,7 @@ Podemos tener múltiples parametros de diferente tipo en un método genérico us
 
 <div class="org-src-container">
 
-<pre class="src src-csharp"><span style="color: #bd93f9;">List</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">li</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">List</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">&gt;()</span>;
+<pre class="src src-csharp">List&lt;int&gt; li = new List&lt;int&gt;();
 </pre>
 </div>
 </div>
@@ -4337,7 +4337,6 @@ Podemos tener múltiples parametros de diferente tipo en un método genérico us
 </li>
 </ul>
 
-
 <blockquote>
 <p>
 Los HashSet proveen un alto rendimiento, en la busqueda, adición y eliminación de elementos, puede ser usada para implementar otras estructuras de datos.
@@ -4349,8 +4348,8 @@ Los HashSet proveen un alto rendimiento, en la busqueda, adición y eliminación
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-09-12 Sun 21:23</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.50 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2022-01-30 Sun 21:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>

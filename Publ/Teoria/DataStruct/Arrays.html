@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2021-03-30 Tue 07:17 -->
+<!-- 2022-01-30 Sun 21:51 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -404,372 +404,11 @@ basada en O, lo cual significa el el primer elemento esta en el indice
 
 <div class="org-src-container">
 
-<pre class="src src-java">  /**
-   * A doubly linked list implementation.
-   *
-   * @author William Fiset, william.alexandre.fiset@gmail.com
-   */
-  package com.williamfiset.algorithms.datastructures.linkedlist;
-
-  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
-    private int size = 0;
-    private Node&lt;T&gt; head = null;
-    private Node&lt;T&gt; tail = null;
-
-    // Internal node class to represent data
-    private static class Node&lt;T&gt; {
-      private T data;
-      private Node&lt;T&gt; prev, next;
-
-      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
-        this.data = data;
-        this.prev = prev;
-        this.next = next;
-      }
-
-      @Override
-      public String toString() {
-        return data.toString();
-      }
-    }
-
-    // Empty this linked list, O(n)
-    public void clear() {
-      Node&lt;T&gt; trav = head;
-      while (trav != null) {
-        Node&lt;T&gt; next = trav.next;
-        trav.prev = trav.next = null;
-        trav.data = null;
-        trav = next;
-      }
-      head = tail = trav = null;
-      size = 0;
-    }
-
-    // Return the size of this linked list
-    public int size() {
-      return size;
-    }
-
-    // Is this linked list empty?
-    public boolean isEmpty() {
-      return size() == 0;
-    }
-
-    // Add an element to the tail of the linked list, O(1)
-    public void add(T elem) {
-      addLast(elem);
-    }
-
-    // Add a node to the tail of the linked list, O(1)
-    public void addLast(T elem) {
-      if (isEmpty()) {
-        head = tail = new Node&lt;T&gt;(elem, null, null);
-      } else {
-        tail.next = new Node&lt;T&gt;(elem, tail, null);
-        tail = tail.next;
-      }
-      size++;
-    }
-
-    // Add an element to the beginning of this linked list, O(1)
-    public void addFirst(T elem) {
-      if (isEmpty()) {
-        head = tail = new Node&lt;T&gt;(elem, null, null);
-      } else {
-        head.prev = new Node&lt;T&gt;(elem, null, head);
-        head = head.prev;
-      }
-      size++;
-    }
-
-    // Add an element at a specified index
-    public void addAt(int index, T data) throws Exception {
-      if (index &lt; 0) {
-        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
-      }
-      if (index == 0) {
-        addFirst(data);
-        return;
-      }
-
-      if (index == size) {
-        addLast(data);
-        return;
-      }
-
-      Node&lt;T&gt; temp = head;
-      for (int i = 0; i &lt; index - 1; i++) {
-        temp = temp.next;
-      }
-      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
-      temp.next.prev = newNode;
-      temp.next = newNode;
-
-      size++;
-    }
-
-    // Check the value of the first node if it exists, O(1)
-    public T peekFirst() {
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-      return head.data;
-    }
-
-    // Check the value of the last node if it exists, O(1)
-    public T peekLast() {
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-      return tail.data;
-    }
-
-    // Remove the first value at the head of the linked list, O(1)
-    public T removeFirst() {
-      // Can't remove data from an empty list
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-
-      // Extract the data at the head and move
-      // the head pointer forwards one node
-      T data = head.data;
-      head = head.next;
-      --size;
-
-      // If the list is empty set the tail to null
-      if (isEmpty()) tail = null;
-
-      // Do a memory cleanup of the previous node
-      else head.prev = null;
-
-      // Return the data that was at the first node we just removed
-      return data;
-    }
-
-    // Remove the last value at the tail of the linked list, O(1)
-    public T removeLast() {
-      // Can't remove data from an empty list
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-
-      // Extract the data at the tail and move
-      // the tail pointer backwards one node
-      T data = tail.data;
-      tail = tail.prev;
-      --size;
-
-      // If the list is now empty set the head to null
-      if (isEmpty()) head = null;
-
-      // Do a memory clean of the node that was just removed
-      else tail.next = null;
-
-      // Return the data that was in the last node we just removed
-      return data;
-    }
-
-    // Remove an arbitrary node from the linked list, O(1)
-    private T remove(Node&lt;T&gt; node) {
-      // If the node to remove is somewhere either at the
-      // head or the tail handle those independently
-      if (node.prev == null) return removeFirst();
-      if(node.next == null) return removeLast();
-
-      // Make the pointers of adjacent nodes skip over 'node'
-      node.next.prev = node.prev;
-      node.prev.next = node.next;
-
-      // Temporarily store the data we want to return
-      T data = node.data;
-
-      // Memory cleanup
-      node.data = null;
-      node = node.prev = node.next = null;
-
-      --size;
-
-      // Return the data in the node we just removed
-      return data;
-    }
-
-    // Remove a node at a particular index, O(n)
-    public T removeAt(int index) {
-      // Make sure the index provided is valid
-      if (index &lt; 0 || index &gt;= size) {
-        throw new IllegalArgumentException();
-      }
-
-      int i;
-      Node&lt;T&gt; trav;
-
-      // Search from the front of the list
-      if (index &lt; size / 2) {
-        for (i = 0, trav = head; i != index; i++) {
-          trav = trav.next;
-        }
-        // Search from the back of the list
-      } else
-        for (i = size - 1, trav = tail; i != index; i--) {
-          trav = trav.prev;
-        }
-
-      return remove(trav);
-    }
-
-    // Remove a particular value in the linked list, O(n)
-    public boolean remove(Object obj) {
-      Node&lt;T&gt; trav = head;
-
-      // Support searching for null
-      if (obj == null) {
-        for (trav = head; trav != null; trav = trav.next) {
-          if (trav.data == null) {
-            remove(trav);
-            return true;
-          }
-        }
-        // Search for non null object
-      } else {
-        for (trav = head; trav != null; trav = trav.next) {
-          if (obj.equals(trav.data)) {
-            remove(trav);
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-
-    // Find the index of a particular value in the linked list, O(n)
-    public int indexOf(Object obj) {
-      int index = 0;
-      Node&lt;T&gt; trav = head;
-
-      // Support searching for null
-      if (obj == null) {
-        for (; trav != null; trav = trav.next, index++) {
-          if (trav.data == null) {
-            return index;
-          }
-        }
-        // Search for non null object
-      } else
-        for (; trav != null; trav = trav.next, index++) {
-          if (obj.equals(trav.data)) {
-            return index;
-          }
-        }
-
-      return -1;
-    }
-
-    // Check is a value is contained within the linked list
-    public boolean contains(Object obj) {
-      return indexOf(obj) != -1;
-    }
-
-    @Override
-    public java.util.Iterator&lt;T&gt; iterator() {
-      return new java.util.Iterator&lt;T&gt;() {
-        private Node&lt;T&gt; trav = head;
-
-        @Override
-        public boolean hasNext() {
-          return trav != null;
-        }
-
-        @Override
-        public T next() {
-          T data = trav.data;
-          trav = trav.next;
-          return data;
-        }
-
-        @Override
-        public void remove() {
-          throw new UnsupportedOperationException();
-        }
-      };
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
-      Node&lt;T&gt; trav = head;
-      while (trav != null) {
-        sb.append(trav.data);
-        if (trav.next != null) {
-          sb.append(<span style="color: #f1fa8c;">", "</span>);
-        }
-        trav = trav.next;
-      }
-      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
-      return sb.toString();
-    }
-  }   //Let S be a Stack
-  For bracket in bracket_string:
-      rev = getReversedBracket(bracket)
-
-      If isLeftBracket(bracket):
-          S.push(bracket)
-      
-      Else If S.isEmply() or S.pop() != rev:
-          return false //invalid
-
-  return S.isEmpty() //Valid if S is emply   /**
-   * A linked list implementation of a stack
-   *
-   * @author William Fiset, william.alexandre.fiset@gmail.com
-   */
-  package com.williamfiset.algorithms.datastructures.stack;
-
-  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
-
-    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
-
-    // Create an empty stack
-    public ListStack() {}
-
-    // Create a Stack with an initial element
-    public ListStack(T firstElem) {
-      push(firstElem);
-    }
-
-    // Return the number of elements in the stack
-    public int size() {
-      return list.size();
-    }
-
-    // Check if the stack is empty
-    public boolean isEmpty() {
-      return size() == 0;
-    }
-
-    // Push an element on the stack
-    public void push(T elem) {
-      list.addLast(elem);
-    }
-
-    // Pop an element off the stack
-    // Throws an error is the stack is empty
-    public T pop() {
-      if (isEmpty()) throw new java.util.EmptyStackException();
-      return list.removeLast();
-    }
-
-    // Peek the top of the stack without removing an element
-    // Throws an exception if the stack is empty
-    public T peek() {
-      if (isEmpty()) throw new java.util.EmptyStackException();
-      return list.peekLast();
-    }
-
-    // Allow users to iterate through the stack using an iterator
-    @Override
-    public java.util.Iterator&lt;T&gt; iterator() {
-      return list.iterator();
-    }
-  }A[0] = 44
-A[1] = 12
-A[4] = 6
-A[7] = 9
-A[9] =&gt; index out of bounds!
+<pre class="src src-java"><span style="color: #8be9fd;">A</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">]</span> = <span style="color: #8be9fd;">44</span>
+<span style="color: #8be9fd;">A</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> = <span style="color: #8be9fd;">12</span>
+<span style="color: #8be9fd;">A</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">4</span><span style="color: #61bfff;">]</span> = <span style="color: #8be9fd;">6</span>
+<span style="color: #8be9fd;">A</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">7</span><span style="color: #61bfff;">]</span> = <span style="color: #8be9fd;">9</span>
+<span style="color: #8be9fd;">A</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">9</span><span style="color: #61bfff;">]</span> =&gt; <span style="color: #bd93f9;">index</span> out of bounds!
 </pre>
 </div>
 </div>
@@ -785,375 +424,10 @@ Los array dinámicos pueden crecer y decrecer en su tamaño
 
 <div class="org-src-container">
 
-<pre class="src src-java">  /**
-   * A doubly linked list implementation.
-   *
-   * @author William Fiset, william.alexandre.fiset@gmail.com
-   */
-  package com.williamfiset.algorithms.datastructures.linkedlist;
-
-  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
-    private int size = 0;
-    private Node&lt;T&gt; head = null;
-    private Node&lt;T&gt; tail = null;
-
-    // Internal node class to represent data
-    private static class Node&lt;T&gt; {
-      private T data;
-      private Node&lt;T&gt; prev, next;
-
-      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
-        this.data = data;
-        this.prev = prev;
-        this.next = next;
-      }
-
-      @Override
-      public String toString() {
-        return data.toString();
-      }
-    }
-
-    // Empty this linked list, O(n)
-    public void clear() {
-      Node&lt;T&gt; trav = head;
-      while (trav != null) {
-        Node&lt;T&gt; next = trav.next;
-        trav.prev = trav.next = null;
-        trav.data = null;
-        trav = next;
-      }
-      head = tail = trav = null;
-      size = 0;
-    }
-
-    // Return the size of this linked list
-    public int size() {
-      return size;
-    }
-
-    // Is this linked list empty?
-    public boolean isEmpty() {
-      return size() == 0;
-    }
-
-    // Add an element to the tail of the linked list, O(1)
-    public void add(T elem) {
-      addLast(elem);
-    }
-
-    // Add a node to the tail of the linked list, O(1)
-    public void addLast(T elem) {
-      if (isEmpty()) {
-        head = tail = new Node&lt;T&gt;(elem, null, null);
-      } else {
-        tail.next = new Node&lt;T&gt;(elem, tail, null);
-        tail = tail.next;
-      }
-      size++;
-    }
-
-    // Add an element to the beginning of this linked list, O(1)
-    public void addFirst(T elem) {
-      if (isEmpty()) {
-        head = tail = new Node&lt;T&gt;(elem, null, null);
-      } else {
-        head.prev = new Node&lt;T&gt;(elem, null, head);
-        head = head.prev;
-      }
-      size++;
-    }
-
-    // Add an element at a specified index
-    public void addAt(int index, T data) throws Exception {
-      if (index &lt; 0) {
-        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
-      }
-      if (index == 0) {
-        addFirst(data);
-        return;
-      }
-
-      if (index == size) {
-        addLast(data);
-        return;
-      }
-
-      Node&lt;T&gt; temp = head;
-      for (int i = 0; i &lt; index - 1; i++) {
-        temp = temp.next;
-      }
-      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
-      temp.next.prev = newNode;
-      temp.next = newNode;
-
-      size++;
-    }
-
-    // Check the value of the first node if it exists, O(1)
-    public T peekFirst() {
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-      return head.data;
-    }
-
-    // Check the value of the last node if it exists, O(1)
-    public T peekLast() {
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-      return tail.data;
-    }
-
-    // Remove the first value at the head of the linked list, O(1)
-    public T removeFirst() {
-      // Can't remove data from an empty list
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-
-      // Extract the data at the head and move
-      // the head pointer forwards one node
-      T data = head.data;
-      head = head.next;
-      --size;
-
-      // If the list is empty set the tail to null
-      if (isEmpty()) tail = null;
-
-      // Do a memory cleanup of the previous node
-      else head.prev = null;
-
-      // Return the data that was at the first node we just removed
-      return data;
-    }
-
-    // Remove the last value at the tail of the linked list, O(1)
-    public T removeLast() {
-      // Can't remove data from an empty list
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-
-      // Extract the data at the tail and move
-      // the tail pointer backwards one node
-      T data = tail.data;
-      tail = tail.prev;
-      --size;
-
-      // If the list is now empty set the head to null
-      if (isEmpty()) head = null;
-
-      // Do a memory clean of the node that was just removed
-      else tail.next = null;
-
-      // Return the data that was in the last node we just removed
-      return data;
-    }
-
-    // Remove an arbitrary node from the linked list, O(1)
-    private T remove(Node&lt;T&gt; node) {
-      // If the node to remove is somewhere either at the
-      // head or the tail handle those independently
-      if (node.prev == null) return removeFirst();
-      if(node.next == null) return removeLast();
-
-      // Make the pointers of adjacent nodes skip over 'node'
-      node.next.prev = node.prev;
-      node.prev.next = node.next;
-
-      // Temporarily store the data we want to return
-      T data = node.data;
-
-      // Memory cleanup
-      node.data = null;
-      node = node.prev = node.next = null;
-
-      --size;
-
-      // Return the data in the node we just removed
-      return data;
-    }
-
-    // Remove a node at a particular index, O(n)
-    public T removeAt(int index) {
-      // Make sure the index provided is valid
-      if (index &lt; 0 || index &gt;= size) {
-        throw new IllegalArgumentException();
-      }
-
-      int i;
-      Node&lt;T&gt; trav;
-
-      // Search from the front of the list
-      if (index &lt; size / 2) {
-        for (i = 0, trav = head; i != index; i++) {
-          trav = trav.next;
-        }
-        // Search from the back of the list
-      } else
-        for (i = size - 1, trav = tail; i != index; i--) {
-          trav = trav.prev;
-        }
-
-      return remove(trav);
-    }
-
-    // Remove a particular value in the linked list, O(n)
-    public boolean remove(Object obj) {
-      Node&lt;T&gt; trav = head;
-
-      // Support searching for null
-      if (obj == null) {
-        for (trav = head; trav != null; trav = trav.next) {
-          if (trav.data == null) {
-            remove(trav);
-            return true;
-          }
-        }
-        // Search for non null object
-      } else {
-        for (trav = head; trav != null; trav = trav.next) {
-          if (obj.equals(trav.data)) {
-            remove(trav);
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-
-    // Find the index of a particular value in the linked list, O(n)
-    public int indexOf(Object obj) {
-      int index = 0;
-      Node&lt;T&gt; trav = head;
-
-      // Support searching for null
-      if (obj == null) {
-        for (; trav != null; trav = trav.next, index++) {
-          if (trav.data == null) {
-            return index;
-          }
-        }
-        // Search for non null object
-      } else
-        for (; trav != null; trav = trav.next, index++) {
-          if (obj.equals(trav.data)) {
-            return index;
-          }
-        }
-
-      return -1;
-    }
-
-    // Check is a value is contained within the linked list
-    public boolean contains(Object obj) {
-      return indexOf(obj) != -1;
-    }
-
-    @Override
-    public java.util.Iterator&lt;T&gt; iterator() {
-      return new java.util.Iterator&lt;T&gt;() {
-        private Node&lt;T&gt; trav = head;
-
-        @Override
-        public boolean hasNext() {
-          return trav != null;
-        }
-
-        @Override
-        public T next() {
-          T data = trav.data;
-          trav = trav.next;
-          return data;
-        }
-
-        @Override
-        public void remove() {
-          throw new UnsupportedOperationException();
-        }
-      };
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
-      Node&lt;T&gt; trav = head;
-      while (trav != null) {
-        sb.append(trav.data);
-        if (trav.next != null) {
-          sb.append(<span style="color: #f1fa8c;">", "</span>);
-        }
-        trav = trav.next;
-      }
-      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
-      return sb.toString();
-    }
-  }   //Let S be a Stack
-  For bracket in bracket_string:
-      rev = getReversedBracket(bracket)
-
-      If isLeftBracket(bracket):
-          S.push(bracket)
-      
-      Else If S.isEmply() or S.pop() != rev:
-          return false //invalid
-
-  return S.isEmpty() //Valid if S is emply   /**
-   * A linked list implementation of a stack
-   *
-   * @author William Fiset, william.alexandre.fiset@gmail.com
-   */
-  package com.williamfiset.algorithms.datastructures.stack;
-
-  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
-
-    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
-
-    // Create an empty stack
-    public ListStack() {}
-
-    // Create a Stack with an initial element
-    public ListStack(T firstElem) {
-      push(firstElem);
-    }
-
-    // Return the number of elements in the stack
-    public int size() {
-      return list.size();
-    }
-
-    // Check if the stack is empty
-    public boolean isEmpty() {
-      return size() == 0;
-    }
-
-    // Push an element on the stack
-    public void push(T elem) {
-      list.addLast(elem);
-    }
-
-    // Pop an element off the stack
-    // Throws an error is the stack is empty
-    public T pop() {
-      if (isEmpty()) throw new java.util.EmptyStackException();
-      return list.removeLast();
-    }
-
-    // Peek the top of the stack without removing an element
-    // Throws an exception if the stack is empty
-    public T peek() {
-      if (isEmpty()) throw new java.util.EmptyStackException();
-      return list.peekLast();
-    }
-
-    // Allow users to iterate through the stack using an iterator
-    @Override
-    public java.util.Iterator&lt;T&gt; iterator() {
-      return list.iterator();
-    }
-  }A[0] = 44
-A[1] = 12
-A[4] = 6
-A[7] = 9
-A[9] =&gt; index out of bounds!A = [34,4]
-A.add(-1)   A = [34,4,-7]
-A.add(34)   A = [34,4,-7,34]
-A.remove(4) A = [34,-7,34]
+<pre class="src src-java"><span style="color: #8be9fd;">A</span> = <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">34</span>,<span style="color: #8be9fd;">4</span><span style="color: #61bfff;">]</span>
+<span style="color: #8be9fd;">A</span>.<span style="color: #50fa7b;">add</span><span style="color: #61bfff;">(</span>-<span style="color: #8be9fd;">1</span><span style="color: #61bfff;">)</span>   <span style="color: #8be9fd;">A</span> = <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">34</span>,<span style="color: #8be9fd;">4</span>,-<span style="color: #8be9fd;">7</span><span style="color: #61bfff;">]</span>
+<span style="color: #8be9fd;">A</span>.<span style="color: #50fa7b;">add</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">34</span><span style="color: #61bfff;">)</span>   <span style="color: #8be9fd;">A</span> = <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">34</span>,<span style="color: #8be9fd;">4</span>,-<span style="color: #8be9fd;">7</span>,<span style="color: #8be9fd;">34</span><span style="color: #61bfff;">]</span>
+<span style="color: #8be9fd;">A</span>.<span style="color: #50fa7b;">remove</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">4</span><span style="color: #61bfff;">)</span> <span style="color: #8be9fd;">A</span> = <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">34</span>,-<span style="color: #8be9fd;">7</span>,<span style="color: #8be9fd;">34</span><span style="color: #61bfff;">]</span>
 </pre>
 </div>
 </div>
@@ -1184,503 +458,135 @@ original al nuevo.
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 
-<pre class="src src-java">  /**
-   * A doubly linked list implementation.
-   *
-   * @author William Fiset, william.alexandre.fiset@gmail.com
-   */
-  package com.williamfiset.algorithms.datastructures.linkedlist;
-
-  public class DoublyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
-    private int size = 0;
-    private Node&lt;T&gt; head = null;
-    private Node&lt;T&gt; tail = null;
-
-    // Internal node class to represent data
-    private static class Node&lt;T&gt; {
-      private T data;
-      private Node&lt;T&gt; prev, next;
-
-      public Node(T data, Node&lt;T&gt; prev, Node&lt;T&gt; next) {
-        this.data = data;
-        this.prev = prev;
-        this.next = next;
-      }
-
-      @Override
-      public String toString() {
-        return data.toString();
-      }
-    }
-
-    // Empty this linked list, O(n)
-    public void clear() {
-      Node&lt;T&gt; trav = head;
-      while (trav != null) {
-        Node&lt;T&gt; next = trav.next;
-        trav.prev = trav.next = null;
-        trav.data = null;
-        trav = next;
-      }
-      head = tail = trav = null;
-      size = 0;
-    }
-
-    // Return the size of this linked list
-    public int size() {
-      return size;
-    }
-
-    // Is this linked list empty?
-    public boolean isEmpty() {
-      return size() == 0;
-    }
-
-    // Add an element to the tail of the linked list, O(1)
-    public void add(T elem) {
-      addLast(elem);
-    }
-
-    // Add a node to the tail of the linked list, O(1)
-    public void addLast(T elem) {
-      if (isEmpty()) {
-        head = tail = new Node&lt;T&gt;(elem, null, null);
-      } else {
-        tail.next = new Node&lt;T&gt;(elem, tail, null);
-        tail = tail.next;
-      }
-      size++;
-    }
-
-    // Add an element to the beginning of this linked list, O(1)
-    public void addFirst(T elem) {
-      if (isEmpty()) {
-        head = tail = new Node&lt;T&gt;(elem, null, null);
-      } else {
-        head.prev = new Node&lt;T&gt;(elem, null, head);
-        head = head.prev;
-      }
-      size++;
-    }
-
-    // Add an element at a specified index
-    public void addAt(int index, T data) throws Exception {
-      if (index &lt; 0) {
-        throw new Exception(<span style="color: #f1fa8c;">"Illegal Index"</span>);
-      }
-      if (index == 0) {
-        addFirst(data);
-        return;
-      }
-
-      if (index == size) {
-        addLast(data);
-        return;
-      }
-
-      Node&lt;T&gt; temp = head;
-      for (int i = 0; i &lt; index - 1; i++) {
-        temp = temp.next;
-      }
-      Node&lt;T&gt; newNode = new Node&lt;&gt;(data, temp, temp.next);
-      temp.next.prev = newNode;
-      temp.next = newNode;
-
-      size++;
-    }
-
-    // Check the value of the first node if it exists, O(1)
-    public T peekFirst() {
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-      return head.data;
-    }
-
-    // Check the value of the last node if it exists, O(1)
-    public T peekLast() {
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-      return tail.data;
-    }
-
-    // Remove the first value at the head of the linked list, O(1)
-    public T removeFirst() {
-      // Can't remove data from an empty list
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-
-      // Extract the data at the head and move
-      // the head pointer forwards one node
-      T data = head.data;
-      head = head.next;
-      --size;
-
-      // If the list is empty set the tail to null
-      if (isEmpty()) tail = null;
-
-      // Do a memory cleanup of the previous node
-      else head.prev = null;
-
-      // Return the data that was at the first node we just removed
-      return data;
-    }
-
-    // Remove the last value at the tail of the linked list, O(1)
-    public T removeLast() {
-      // Can't remove data from an empty list
-      if (isEmpty()) throw new RuntimeException(<span style="color: #f1fa8c;">"Empty list"</span>);
-
-      // Extract the data at the tail and move
-      // the tail pointer backwards one node
-      T data = tail.data;
-      tail = tail.prev;
-      --size;
-
-      // If the list is now empty set the head to null
-      if (isEmpty()) head = null;
-
-      // Do a memory clean of the node that was just removed
-      else tail.next = null;
-
-      // Return the data that was in the last node we just removed
-      return data;
-    }
-
-    // Remove an arbitrary node from the linked list, O(1)
-    private T remove(Node&lt;T&gt; node) {
-      // If the node to remove is somewhere either at the
-      // head or the tail handle those independently
-      if (node.prev == null) return removeFirst();
-      if(node.next == null) return removeLast();
-
-      // Make the pointers of adjacent nodes skip over 'node'
-      node.next.prev = node.prev;
-      node.prev.next = node.next;
-
-      // Temporarily store the data we want to return
-      T data = node.data;
-
-      // Memory cleanup
-      node.data = null;
-      node = node.prev = node.next = null;
-
-      --size;
-
-      // Return the data in the node we just removed
-      return data;
-    }
-
-    // Remove a node at a particular index, O(n)
-    public T removeAt(int index) {
-      // Make sure the index provided is valid
-      if (index &lt; 0 || index &gt;= size) {
-        throw new IllegalArgumentException();
-      }
-
-      int i;
-      Node&lt;T&gt; trav;
-
-      // Search from the front of the list
-      if (index &lt; size / 2) {
-        for (i = 0, trav = head; i != index; i++) {
-          trav = trav.next;
-        }
-        // Search from the back of the list
-      } else
-        for (i = size - 1, trav = tail; i != index; i--) {
-          trav = trav.prev;
-        }
-
-      return remove(trav);
-    }
-
-    // Remove a particular value in the linked list, O(n)
-    public boolean remove(Object obj) {
-      Node&lt;T&gt; trav = head;
-
-      // Support searching for null
-      if (obj == null) {
-        for (trav = head; trav != null; trav = trav.next) {
-          if (trav.data == null) {
-            remove(trav);
-            return true;
-          }
-        }
-        // Search for non null object
-      } else {
-        for (trav = head; trav != null; trav = trav.next) {
-          if (obj.equals(trav.data)) {
-            remove(trav);
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-
-    // Find the index of a particular value in the linked list, O(n)
-    public int indexOf(Object obj) {
-      int index = 0;
-      Node&lt;T&gt; trav = head;
-
-      // Support searching for null
-      if (obj == null) {
-        for (; trav != null; trav = trav.next, index++) {
-          if (trav.data == null) {
-            return index;
-          }
-        }
-        // Search for non null object
-      } else
-        for (; trav != null; trav = trav.next, index++) {
-          if (obj.equals(trav.data)) {
-            return index;
-          }
-        }
-
-      return -1;
-    }
-
-    // Check is a value is contained within the linked list
-    public boolean contains(Object obj) {
-      return indexOf(obj) != -1;
-    }
-
-    @Override
-    public java.util.Iterator&lt;T&gt; iterator() {
-      return new java.util.Iterator&lt;T&gt;() {
-        private Node&lt;T&gt; trav = head;
-
-        @Override
-        public boolean hasNext() {
-          return trav != null;
-        }
-
-        @Override
-        public T next() {
-          T data = trav.data;
-          trav = trav.next;
-          return data;
-        }
-
-        @Override
-        public void remove() {
-          throw new UnsupportedOperationException();
-        }
-      };
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append(<span style="color: #f1fa8c;">"[ "</span>);
-      Node&lt;T&gt; trav = head;
-      while (trav != null) {
-        sb.append(trav.data);
-        if (trav.next != null) {
-          sb.append(<span style="color: #f1fa8c;">", "</span>);
-        }
-        trav = trav.next;
-      }
-      sb.append(<span style="color: #f1fa8c;">" ]"</span>);
-      return sb.toString();
-    }
-  }   //Let S be a Stack
-  For bracket in bracket_string:
-      rev = getReversedBracket(bracket)
-
-      If isLeftBracket(bracket):
-          S.push(bracket)
-      
-      Else If S.isEmply() or S.pop() != rev:
-          return false //invalid
-
-  return S.isEmpty() //Valid if S is emply   /**
-   * A linked list implementation of a stack
-   *
-   * @author William Fiset, william.alexandre.fiset@gmail.com
-   */
-  package com.williamfiset.algorithms.datastructures.stack;
-
-  public class ListStack&lt;T&gt; implements Iterable&lt;T&gt;, Stack&lt;T&gt; {
-
-    private java.util.LinkedList&lt;T&gt; list = new java.util.LinkedList&lt;T&gt;();
-
-    // Create an empty stack
-    public ListStack() {}
-
-    // Create a Stack with an initial element
-    public ListStack(T firstElem) {
-      push(firstElem);
-    }
-
-    // Return the number of elements in the stack
-    public int size() {
-      return list.size();
-    }
-
-    // Check if the stack is empty
-    public boolean isEmpty() {
-      return size() == 0;
-    }
-
-    // Push an element on the stack
-    public void push(T elem) {
-      list.addLast(elem);
-    }
-
-    // Pop an element off the stack
-    // Throws an error is the stack is empty
-    public T pop() {
-      if (isEmpty()) throw new java.util.EmptyStackException();
-      return list.removeLast();
-    }
-
-    // Peek the top of the stack without removing an element
-    // Throws an exception if the stack is empty
-    public T peek() {
-      if (isEmpty()) throw new java.util.EmptyStackException();
-      return list.peekLast();
-    }
-
-    // Allow users to iterate through the stack using an iterator
-    @Override
-    public java.util.Iterator&lt;T&gt; iterator() {
-      return list.iterator();
-    }
-  }A[0] = 44
-A[1] = 12
-A[4] = 6
-A[7] = 9
-A[9] =&gt; index out of bounds!A = [34,4]
-A.add(-1)   A = [34,4,-7]
-A.add(34)   A = [34,4,-7,34]
-A.remove(4) A = [34,-7,34]/**
-* A generic dynamic array implementation
-*
-* @author William Fiset, william.alexandre.fiset@gmail.com
-*/
-package com.williamfiset.algorithms.datastructures.dynamicarray;
-
-    @SuppressWarnings(<span style="color: #f1fa8c;">"unchecked"</span>)
-    public class DynamicArray&lt;T&gt; implements Iterable&lt;T&gt; {
-
-    private T[] arr;
-    private int len = 0; // length user thinks array is
-    private int capacity = 0; // Actual array size
-
-    public DynamicArray() {
-      this(16);
-    }
-
-    public DynamicArray(int capacity) {
-      if (capacity &lt; 0) throw new IllegalArgumentException(<span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity);
-      this.capacity = capacity;
-      arr = (T[]) new Object[capacity];
-    }
-
-    public int size() {
-      return len;
-    }
-
-    public boolean isEmpty() {
-      return size() == 0;
-    }
-
-    public T get(int index) {
-      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
-      return arr[index];
-    }
-
-    public void set(int index, T elem) {
-      if (index &gt;= len || index &lt; 0) throw new IndexOutOfBoundsException();
-      arr[index] = elem;
-    }
-
-    public void clear() {
-      for (int i = 0; i &lt; len; i++) arr[i] = null;
-      len = 0;
-    }
-
-    public void add(T elem) {
-
-      // Time to resize!
-      if (len + 1 &gt;= capacity) {
-        if (capacity == 0) capacity = 1;
-        else capacity *= 2; // double the size
-        T[] new_arr = (T[]) new Object[capacity];
-        for (int i = 0; i &lt; len; i++) new_arr[i] = arr[i];
-        arr = new_arr; // arr has extra nulls padded
-      }
-
-      arr[len++] = elem;
-    }
-
-    // Removes an element at the specified index in this array.
-    public T removeAt(int rm_index) {
-      if (rm_index &gt;= len || rm_index &lt; 0) throw new IndexOutOfBoundsException();
-      T data = arr[rm_index];
-      T[] new_arr = (T[]) new Object[len - 1];
-      for (int i = 0, j = 0; i &lt; len; i++, j++)
-        if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
-        else new_arr[j] = arr[i];
+<pre class="src src-java"><span style="color: #6272a4; font-style: italic;">/**</span>
+<span style="color: #6272a4; font-style: italic;">* A generic dynamic array implementation</span>
+<span style="color: #6272a4; font-style: italic;">*</span>
+<span style="color: #6272a4; font-style: italic;">* @author William Fiset, william.alexandre.fiset@gmail.com</span>
+<span style="color: #6272a4; font-style: italic;">*/</span>
+<span style="color: #ff79c6; font-style: italic;">package</span> com.williamfiset.algorithms.datastructures.dynamicarray;
+
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">SuppressWarnings</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"unchecked"</span><span style="color: #61bfff;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">DynamicArray</span><span style="color: #61bfff;">&lt;</span><span style="color: #8be9fd;">T</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ff79c6; font-style: italic;">implements</span> <span style="color: #bd93f9;">Iterable</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">&gt;</span> <span style="color: #61bfff;">{</span>
+
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">T</span><span style="color: #ff79c6;">[]</span> arr;
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ffb86c;">int</span> len = <span style="color: #8be9fd;">0</span>; <span style="color: #6272a4; font-style: italic;">// length user thinks array is</span>
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ffb86c;">int</span> capacity = <span style="color: #8be9fd;">0</span>; <span style="color: #6272a4; font-style: italic;">// Actual array size</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">DynamicArray</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ffb86c;">this</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">16</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">DynamicArray</span><span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">int</span> capacity<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>capacity &lt; <span style="color: #8be9fd;">0</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">IllegalArgumentException</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Illegal Capacity: "</span> + capacity<span style="color: #50fa7b;">)</span>;
+      <span style="color: #ffb86c;">this</span>.capacity = capacity;
+      arr = <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">T</span><span style="color: #bd93f9;">[]</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Object</span><span style="color: #50fa7b;">[</span>capacity<span style="color: #50fa7b;">]</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">size</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> len;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">boolean</span> <span style="color: #50fa7b;">isEmpty</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">size</span><span style="color: #50fa7b;">()</span> == <span style="color: #8be9fd;">0</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">get</span><span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">int</span> index<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>index &gt;= len || index &lt; <span style="color: #8be9fd;">0</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">IndexOutOfBoundsException</span><span style="color: #50fa7b;">()</span>;
+      <span style="color: #ff79c6; font-style: italic;">return</span> arr<span style="color: #50fa7b;">[</span>index<span style="color: #50fa7b;">]</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">set</span><span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">int</span> index, <span style="color: #bd93f9;">T</span> elem<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>index &gt;= len || index &lt; <span style="color: #8be9fd;">0</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">IndexOutOfBoundsException</span><span style="color: #50fa7b;">()</span>;
+      arr<span style="color: #50fa7b;">[</span>index<span style="color: #50fa7b;">]</span> = elem;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">clear</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">int</span> i = <span style="color: #8be9fd;">0</span>; i &lt; len; i++<span style="color: #50fa7b;">)</span> arr<span style="color: #50fa7b;">[</span>i<span style="color: #50fa7b;">]</span> = <span style="color: #ffb86c;">null</span>;
+      len = <span style="color: #8be9fd;">0</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">add</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">T</span> elem<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+
+      <span style="color: #6272a4; font-style: italic;">// Time to resize!</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>len + <span style="color: #8be9fd;">1</span> &gt;= capacity<span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #bd93f9;">(</span>capacity == <span style="color: #8be9fd;">0</span><span style="color: #bd93f9;">)</span> capacity = <span style="color: #8be9fd;">1</span>;
+        <span style="color: #ff79c6; font-style: italic;">else</span> capacity *= <span style="color: #8be9fd;">2</span>; <span style="color: #6272a4; font-style: italic;">// double the size</span>
+        <span style="color: #bd93f9;">T</span><span style="color: #bd93f9;">[]</span> new_arr = <span style="color: #bd93f9;">(</span><span style="color: #bd93f9;">T</span><span style="color: #61bfff;">[]</span><span style="color: #bd93f9;">)</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Object</span><span style="color: #bd93f9;">[</span>capacity<span style="color: #bd93f9;">]</span>;
+        <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #bd93f9;">(</span><span style="color: #ffb86c;">int</span> i = <span style="color: #8be9fd;">0</span>; i &lt; len; i++<span style="color: #bd93f9;">)</span> new_arr<span style="color: #bd93f9;">[</span>i<span style="color: #bd93f9;">]</span> = arr<span style="color: #bd93f9;">[</span>i<span style="color: #bd93f9;">]</span>;
+        arr = new_arr; <span style="color: #6272a4; font-style: italic;">// arr has extra nulls padded</span>
+      <span style="color: #50fa7b;">}</span>
+
+      arr<span style="color: #50fa7b;">[</span>len++<span style="color: #50fa7b;">]</span> = elem;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// Removes an element at the specified index in this array.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">removeAt</span><span style="color: #ff79c6;">(</span><span style="color: #ffb86c;">int</span> rm_index<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>rm_index &gt;= len || rm_index &lt; <span style="color: #8be9fd;">0</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">IndexOutOfBoundsException</span><span style="color: #50fa7b;">()</span>;
+      <span style="color: #bd93f9;">T</span> data = arr<span style="color: #50fa7b;">[</span>rm_index<span style="color: #50fa7b;">]</span>;
+      <span style="color: #bd93f9;">T</span><span style="color: #50fa7b;">[]</span> new_arr = <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">T</span><span style="color: #bd93f9;">[]</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Object</span><span style="color: #50fa7b;">[</span>len - <span style="color: #8be9fd;">1</span><span style="color: #50fa7b;">]</span>;
+      <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">int</span> i = <span style="color: #8be9fd;">0</span>, j = <span style="color: #8be9fd;">0</span>; i &lt; len; i++, j++<span style="color: #50fa7b;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>i == rm_index<span style="color: #50fa7b;">)</span> j--; <span style="color: #6272a4; font-style: italic;">// Skip over rm_index by fixing j temporarily</span>
+        <span style="color: #ff79c6; font-style: italic;">else</span> new_arr<span style="color: #50fa7b;">[</span>j<span style="color: #50fa7b;">]</span> = arr<span style="color: #50fa7b;">[</span>i<span style="color: #50fa7b;">]</span>;
       arr = new_arr;
       capacity = --len;
-      return data;
-    }
+      <span style="color: #ff79c6; font-style: italic;">return</span> data;
+    <span style="color: #ff79c6;">}</span>
 
-    public boolean remove(Object obj) {
-      int index = indexOf(obj);
-      if (index == -1) return false;
-      removeAt(index);
-      return true;
-    }
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">boolean</span> <span style="color: #50fa7b;">remove</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Object</span> obj<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ffb86c;">int</span> index = <span style="color: #50fa7b;">indexOf</span><span style="color: #50fa7b;">(</span>obj<span style="color: #50fa7b;">)</span>;
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>index == -<span style="color: #8be9fd;">1</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">false</span>;
+      <span style="color: #50fa7b;">removeAt</span><span style="color: #50fa7b;">(</span>index<span style="color: #50fa7b;">)</span>;
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffb86c;">true</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    public int indexOf(Object obj) {
-      for (int i = 0; i &lt; len; i++) {
-        if (obj == null) {
-          if (arr[i] == null) return i;
-        } else {
-          if (obj.equals(arr[i])) return i;
-        }
-      }
-      return -1;
-    }
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">indexOf</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Object</span> obj<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #50fa7b;">(</span><span style="color: #ffb86c;">int</span> i = <span style="color: #8be9fd;">0</span>; i &lt; len; i++<span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #bd93f9;">(</span>obj == <span style="color: #ffb86c;">null</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">{</span>
+          <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>arr<span style="color: #ff79c6;">[</span>i<span style="color: #ff79c6;">]</span> == <span style="color: #ffb86c;">null</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">return</span> i;
+        <span style="color: #bd93f9;">}</span> <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #bd93f9;">{</span>
+          <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>obj.<span style="color: #50fa7b;">equals</span><span style="color: #ff79c6;">(</span>arr<span style="color: #50fa7b;">[</span>i<span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">return</span> i;
+        <span style="color: #bd93f9;">}</span>
+      <span style="color: #50fa7b;">}</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> -<span style="color: #8be9fd;">1</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    public boolean contains(Object obj) {
-      return indexOf(obj) != -1;
-    }
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">boolean</span> <span style="color: #50fa7b;">contains</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Object</span> obj<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #50fa7b;">indexOf</span><span style="color: #50fa7b;">(</span>obj<span style="color: #50fa7b;">)</span> != -<span style="color: #8be9fd;">1</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    // Iterator is still fast but not as fast as iterative for loop
-    @Override
-    public java.util.Iterator&lt;T&gt; iterator() {
-      return new java.util.Iterator&lt;T&gt;() {
-        int index = 0;
+    <span style="color: #6272a4; font-style: italic;">// Iterator is still fast but not as fast as iterative for loop</span>
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">java</span>.<span style="color: #bd93f9;">util</span>.<span style="color: #bd93f9;">Iterator</span><span style="color: #ff79c6;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #ff79c6;">&gt;</span> <span style="color: #50fa7b;">iterator</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">java</span>.<span style="color: #bd93f9;">util</span>.<span style="color: #bd93f9;">Iterator</span><span style="color: #50fa7b;">&lt;</span><span style="color: #bd93f9;">T</span><span style="color: #50fa7b;">&gt;()</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #ffb86c;">int</span> index = <span style="color: #8be9fd;">0</span>;
 
-        @Override
-        public boolean hasNext() {
-          return index &lt; len;
-        }
+        <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+        <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">boolean</span> <span style="color: #50fa7b;">hasNext</span><span style="color: #bd93f9;">()</span> <span style="color: #bd93f9;">{</span>
+          <span style="color: #ff79c6; font-style: italic;">return</span> index &lt; len;
+        <span style="color: #bd93f9;">}</span>
 
-        @Override
-        public T next() {
-          return arr[index++];
-        }
+        <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+        <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">T</span> <span style="color: #50fa7b;">next</span><span style="color: #bd93f9;">()</span> <span style="color: #bd93f9;">{</span>
+          <span style="color: #ff79c6; font-style: italic;">return</span> arr<span style="color: #61bfff;">[</span>index++<span style="color: #61bfff;">]</span>;
+        <span style="color: #bd93f9;">}</span>
 
-        @Override
-        public void remove() {
-          throw new UnsupportedOperationException();
-        }
-      };
-    }
+        <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+        <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">remove</span><span style="color: #bd93f9;">()</span> <span style="color: #bd93f9;">{</span>
+          <span style="color: #ff79c6; font-style: italic;">throw</span> <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">UnsupportedOperationException</span><span style="color: #61bfff;">()</span>;
+        <span style="color: #bd93f9;">}</span>
+      <span style="color: #50fa7b;">}</span>;
+    <span style="color: #ff79c6;">}</span>
 
-    @Override
-    public String toString() {
-      if (len == 0) return <span style="color: #f1fa8c;">"[]"</span>;
-      else {
-        StringBuilder sb = new StringBuilder(len).append(<span style="color: #f1fa8c;">"["</span>);
-        for (int i = 0; i &lt; len - 1; i++) sb.append(arr[i] + <span style="color: #f1fa8c;">", "</span>);
-        return sb.append(arr[len - 1] + <span style="color: #f1fa8c;">"]"</span>).toString();
-      }
-    }
-}
+    <span style="color: #ff79c6; font-style: italic;">@</span><span style="color: #bd93f9; font-weight: bold;">Override</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">String</span> <span style="color: #50fa7b;">toString</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+      <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>len == <span style="color: #8be9fd;">0</span><span style="color: #50fa7b;">)</span> <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"[]"</span>;
+      <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #50fa7b;">{</span>
+        <span style="color: #bd93f9;">StringBuilder</span> sb = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">StringBuilder</span><span style="color: #bd93f9;">(</span>len<span style="color: #bd93f9;">)</span>.<span style="color: #50fa7b;">append</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"["</span><span style="color: #bd93f9;">)</span>;
+        <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #bd93f9;">(</span><span style="color: #ffb86c;">int</span> i = <span style="color: #8be9fd;">0</span>; i &lt; len - <span style="color: #8be9fd;">1</span>; i++<span style="color: #bd93f9;">)</span> sb.<span style="color: #50fa7b;">append</span><span style="color: #bd93f9;">(</span>arr<span style="color: #61bfff;">[</span>i<span style="color: #61bfff;">]</span> + <span style="color: #f1fa8c;">", "</span><span style="color: #bd93f9;">)</span>;
+        <span style="color: #ff79c6; font-style: italic;">return</span> sb.<span style="color: #50fa7b;">append</span><span style="color: #bd93f9;">(</span>arr<span style="color: #61bfff;">[</span>len - <span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> + <span style="color: #f1fa8c;">"]"</span><span style="color: #bd93f9;">)</span>.<span style="color: #50fa7b;">toString</span><span style="color: #bd93f9;">()</span>;
+      <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
 </pre>
 </div>
 </div>
@@ -1689,8 +595,8 @@ package com.williamfiset.algorithms.datastructures.dynamicarray;
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-03-30 Tue 07:17</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2022-01-30 Sun 21:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>

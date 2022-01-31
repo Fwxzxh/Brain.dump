@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Introducción a SQL</title>
-<!-- 2021-03-30 Tue 07:17 -->
+<!-- 2022-01-30 Sun 21:51 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -703,7 +703,7 @@ Para mostrar solo los valores diferentes de las columnas usamos la palabra reser
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">--Muestra solo los valores diferentes(unicos)</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">--</span><span style="color: #6272a4; font-style: italic;">Muestra solo los valores diferentes(unicos)</span>
 <span style="color: #ff79c6; font-style: italic;">SELECT</span>
     <span style="color: #ff79c6; font-style: italic;">DISTINCT</span> department_id
 <span style="color: #ff79c6; font-style: italic;">FROM</span>
@@ -738,7 +738,7 @@ El <code>SELECT</code> puede contener expreciones con los operadores <code>+, -,
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- Podemos usar p&#225;rentes&#237;s para cambiar la procedencia de los operadores</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- </span><span style="color: #6272a4; font-style: italic;">Podemos usar p&#225;rentes&#237;s para cambiar la procedencia de los operadores</span>
 <span style="color: #ff79c6; font-style: italic;">SELECT</span>
     <span style="color: #61bfff;">(</span>salary+<span style="color: #bd93f9; font-weight: bold;">300</span><span style="color: #61bfff;">)</span>*<span style="color: #bd93f9; font-weight: bold;">12</span>
 <span style="color: #ff79c6; font-style: italic;">FROM</span>
@@ -756,7 +756,7 @@ En <b>Oracle</b>, la función <code>NVL</code> permite convertir un valor nulo a
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- NVL(columna,valor a dar a los nulos)</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- </span><span style="color: #6272a4; font-style: italic;">NVL(columna,valor a dar a los nulos)</span>
 <span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name,
     salary*<span style="color: #bd93f9; font-weight: bold;">12</span>,
@@ -778,7 +778,7 @@ Se pueden concatenar cadenas o columnas con el operador <code>|| o +</code> (dep
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- Nombre apellido</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- </span><span style="color: #6272a4; font-style: italic;">Nombre apellido</span>
 <span style="color: #ff79c6; font-style: italic;">SELECT</span>
     last_name||<span style="color: #f1fa8c;">' '</span>||first_name
 <span style="color: #ff79c6; font-style: italic;">FROM</span>
@@ -2290,7 +2290,7 @@ Los grupos que coincidan con la condición <code>HAVING</code> serán mostrados.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- Estructura --</span>
+<pre class="src src-sql"><span style="color: #6272a4; font-style: italic;">-- </span><span style="color: #6272a4; font-style: italic;">Estructura --</span>
 <span style="color: #ff79c6; font-style: italic;">SELECT</span>
     <span style="color: #ff79c6; font-style: italic;">column</span>, funci&#243;n_de_grupo<span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">column</span><span style="color: #61bfff;">)</span>
 <span style="color: #ff79c6; font-style: italic;">FROM</span>
@@ -2861,7 +2861,7 @@ Puedes describir la estructura de la vista usando el comando <code>DESCRIBE</cod
 Enter <span style="color: #ff79c6; font-style: italic;">value</span> <span style="color: #ff79c6; font-style: italic;">for</span> employee_num: <span style="color: #bd93f9; font-weight: bold;">7369</span>
 
 EMPNO ENAME SAL  DEPTNO
-<span style="color: #6272a4; font-style: italic;">----- ----- --- --------</span>
+<span style="color: #6272a4; font-style: italic;">----- </span><span style="color: #6272a4; font-style: italic;">----- --- --------</span>
 <span style="color: #bd93f9; font-weight: bold;">7369</span>  SMITH <span style="color: #bd93f9; font-weight: bold;">800</span>       <span style="color: #bd93f9; font-weight: bold;">20</span>
 
 <span style="color: #ff79c6; font-style: italic;">SQL</span>&gt; define oficio=Analista
@@ -3442,8 +3442,8 @@ a la fila de cualquier otra fila.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2021-03-30 Tue 07:17</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="http://orgmode.org">Org-mode</a> 9.5)</p>
+<p class="date">Created: 2022-01-30 Sun 21:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>
