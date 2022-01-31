@@ -26,7 +26,7 @@ Los archivos originales de este sitio pueden encontrarse en mi [[https://github.
 Notas y sobre libros que le leído últimamente.
 #+end_quote
 - Sistemas Operativos (S. Tanenbaum)
-- Atomic Habits (James Clear)
+- [[file:Libros/AtomicHabits.org][Atomic Habits (James Clear)]]
 
 * Cursos
 #+begin_quote
