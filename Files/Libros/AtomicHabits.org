@@ -79,7 +79,7 @@ Hay cuatro pasos relacionados en la formación de cada hábito:
 Si a alguna conducta le falta alguno de los pasos de arriba, no se volverá un hábito.
 
 Si remueves el disparador, el hábito no empezará. Si reduces el deseo no estarás tan motivado a actuar.
-Si no respondes, no habrá respuesta, y si no hay recomienza o no es suficiente no repetirás esa conducta.
+Si no respondes, no habrá respuesta, y si no hay recompensa o no es suficiente no repetirás esa conducta.
 
 * Las cuatro leyes de el cambio de comportamiento
 Las cuatro leyes del cambio de comportamiento son un conjunto de principios para construir hábitos, estas son:
@@ -277,3 +277,92 @@ a consumir.
 La comida chatarra tiene más azúcar que lo que podrían nuestros antepasados comer esto sobrepasa el sistema de recompensa
 de nuestro cerebro, Los videojuegos tienen más estímulos visuales que los que podríamos encontrar en la naturaleza,
 Nuestro entorno moderno esta lleno de versiones exageradas de la realidad que sobrepasan nuestros sentidos.
+
+** La anticipación impulsa la acción
+Los hábitos son ciclos impulsados por dopamina. Dentro de los cuatro pasos relacionados con la formación de hábitos
+(Disparador, Deseo, respuesta, recompensa), pasamos por dos picos de dopamina.
+
+Uno durante la fase del deseo y otro en la fase de la recompensa.
+
+Es el primero el que nos impulsa a actuar, la anticipación de la recompensa impulsa nuestra acciones, no la recompensa en si.
+
+Adicionalmente, nuestros cerebros tienen más circuitos dedicados a querer recompensas que a gustarnos recompensas.
+
+Es por esto que la investigación que llevas acabo antes de comprar un producto que tu quieres comprar te trae más
+alergia que el producto en si.
+
+** Agrupación de tentaciones
+La agrupación de tentaciones es una estrategia que usa el poder motivador de la anticipación para maximizar la probabilidad
+de hacer un buen hábito.
+
+Algunos hábitos como comer sano o leer tienen recompensas inmediatas mediocres. con la agrupación de tentaciones, tu juntas
+un buen hábito con alguno otro que tu disfrutas, haciendo que tu cerebro asocie el bueno hábito con la recompensa del hábito
+que disfrutas.
+
+Cuando esto se hace suficientes veces, sentiras un pico de dopamina en la fase del deseo de tu buen hábito, en anticipación
+del hábito que tu disfrutas.
+
+Por ejemplo, Solo escuchar podcast en el gym, asociará el buen hábito del ejercicio con el agradable hábito de escuchar
+tu podcast favorito.
+
+La agrupación de tentaciones generalmente tiene la siguiente forma:
+
+#+begin_quote
+Despues de [Hábito que yo necesito], yo haré [hábito que quiero].
+#+end_quote
+
+- Después de estar en la bicicleta estática, yo empezaré a escuchar mi podcast favorito.
+- Después de terminar mi tarea, jugaré mi videojuego favorito.
+- Después de que abra el libro que estoy leyendo, yo tomaré una taza de café.
+
+** Aprovechar el deseo de pertenencia
+Los humanos somos seres sociales con un innato deseo de pertenencia. Este deseo innato es un artefacto de nuestra evolución
+como especie; antiguos humanos que pertenecían a un grupo tenían más posibilidades de supervivencia.
+
+Nosotros comunicamos este deseo de pertenecer a través de la imitación, en particular nosotros imitamos tres grupos de gente:
+1. Los cercano (la familia).
+2. Los muchos (las personas en la sociedad).
+3. Los poderosos (personas con estatus y prestigio).
+
+En el primer grupo nosotros imitamos los que están más cercanos a nosotros. Entre más cercano seas a alguien, es más
+probable que nosotros imitemos sus comportamientos. como Jim Rohn dice:
+
+#+begin_quote
+Tu eres el promedio de las 5 personas con las que pasas más tiempo.
+#+end_quote
+
+Un estudio rastreo a 12 mil personas por 32 años encontró que las probabilidades de alguien de volverse obeso se incrementan
+con un 57% si tienen un amigo que se hizo obeso. en el otro lado del espectro, grupos de gente excepcional seguido obtienen
+resultados excepcionales, por ejemplo la "Pay pal mafia".
+
+Uno de las cosas más efectivas que puedes hacer para formar mejores hábitos es unirte a una cultura donde la conducta deseada
+sea la conducta normal.
+
+#+begin_quote
+Rodéate de personas que ya tienen los hábitos que tu deseas desarrollar.
+#+end_quote
+
+El segundo grupo que imitamos es la sociedad. Esta imitación a larga escala puede ser observada a través de la moda o
+música popular, Un famoso experimento que ilustra la presión de la sociedad fue hecho por el psicólogo Solomon Ash.
+En el experimento, un sujeto de prueba sería puesto en una sala llena de actores, a los cuales se les dará una dos tarjetas
+con lineas de diferente longitud, los sujetos se les pregunto que identificaran que linea tenia la misma longitud en ambas
+tarjetas y los actores señalarían a propósito una respuesta incorrecta.
+
+Cuando el sujeto de pruebas estaba solo en la sala con otro actor, ellos señalarían la respuesta correcta, pero mientras más
+actores estuvieran en la sala y señalaran la misma respuesta errónea, el sujeto de pruebas empezararia a señalar la misma
+respuesta errónea en orden de conformarse.
+
+La lección aprendida es que el comportamiento normal de la tribu, normalmente sobrepasa la conducta deseada del individuo.
+
+Nosotros preferimos decir algo que sabemos que esta mal para encajar. Hacemos esto porque la recompensa de encajar
+es a veces más grande que la de estar en lo correcto.
+
+El último grupo de personas que imitamos es a los poderosos. Hacemos esto esperando que nuestra imitación nos traiga el
+prestigio y el poder que este grupo tiene.
+
+El deseo por el prestigio y el poder esta en las raíces de nuestra evolución como especie; Individuos con más poder y estatus
+tienen más acceso a recursos, y por consiguiente más posibilidades de sobrevivir y encontrar un compañero.
+
+Si un comportamiento puede darnos aprobación, respeto y elogios, lo encontramos atractivo.
+
+** Motivos Subyacentes
