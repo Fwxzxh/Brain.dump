@@ -39,6 +39,7 @@ Apuntes sobre distintos cursos que he tomado.
 - [[file:Cursos/BuenasPracticas.org][Buenas Practicas para escritura de código]]
 - [[file:Cursos/BashScripting.org][Bash scripting]]
 - [[file:Cursos/IntermPython.org][Intermediate Python]]
+- [[file:Cursos/MvvmWpfXaml.org][Mvvm Wpf xaml]]
 
 * Notas generales
 #+begin_quote

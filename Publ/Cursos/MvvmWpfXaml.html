@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Wpf mvvm Xaml Course</title>
+<!-- 2022-02-04 Fri 22:23 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Recursos</a></li>
+<li><a href="#sec-2">2. MVVM</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Funcionamiento</a></li>
+<li><a href="#sec-2-2">2.2. El <code>Model</code></a></li>
+<li><a href="#sec-2-3">2.3. La <code>View</code></a></li>
+<li><a href="#sec-2-4">2.4. El <code>ViewModel</code></a></li>
+<li><a href="#sec-2-5">2.5. <code>INotifyPropertyChanged</code></a></li>
+<li><a href="#sec-2-6">2.6. <code>ICommand</code></a></li>
+<li><a href="#sec-2-7">2.7. la clase <code>ObservableCollection</code></a></li>
+<li><a href="#sec-2-8">2.8. <code>IValueConverter</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. XAML</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Definir pantalla de inicio</a></li>
+<li><a href="#sec-3-2">3.2. Lanzando, abriendo y cerrando ventanas</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Estilos</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Static Resources</a></li>
+<li><a href="#sec-4-2">4.2. Estilos para toda la aplicación</a></li>
+<li><a href="#sec-4-3">4.3. Estilos implícitos</a></li>
+<li><a href="#sec-4-4">4.4. Estilos Explícitos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Wpf mvvm Xaml Course</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Recursos</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://github.com/Carlos487/awesome-wpf">Awesome WPF</a>
+</li>
+<li>aa
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> MVVM</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Significa Model, View, ViewModel.
+</li>
+<li>En el Model tenemos las clases que modelan los datos de nuestra aplicación.
+</li>
+<li>En el View, tenemos las vistas o las pantallas (UI) de nuestra aplicación.
+</li>
+<li>En el ViewModel tenemos la lógica de la UI y conecta al Model y al ViewModel.
+</li>
+<li>Lo común es tenerlo en carpetas separadas, pero también pueden estar en proyectos separados.
+</li>
+<li>Esto nos ayuda a tener una aplicación más fácil de mantener, de extender y testear.
+</li>
+<li>Se basa en el Binding.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Funcionamiento</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>El <code>View</code>, obtiene información mediante el <code>DataBinding</code> y recibe notificaciones del <code>ViewModel</code>.
+</li>
+<li>EL <code>ViewModel</code> manda actualizaciones al <code>Model</code> y recibe notificaciones del <code>Model</code>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> El <code>Model</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Tiene el modelo de los datos.
+</li>
+<li>Contiene la lógica de negocio y de validación.
+</li>
+<li>Todo tipo de clases en general.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> La <code>View</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>El código de lo que se ve en la pantalla.
+</li>
+<li><code>Code behind</code> limitado, sin lógica de negocio.
+</li>
+<li>Obtiene datos del <code>ViewModel</code> a través de <code>bindings</code> o métodos.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> El <code>ViewModel</code></h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Intermediario entre el <code>View</code> y el <code>Model</code>.
+</li>
+<li>Contiene la lógica del <code>View</code>.
+</li>
+<li>Provee datos desde el <code>Model</code> a la <code>View</code>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> <code>INotifyPropertyChanged</code></h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Es una interfaz que podemos implementar para saber cuando el valor de una propiedad ha cambiado
+</p>
+
+<p>
+Cuando dos propiedades se les hizo <code>Binding</code>, ambas reciben la notificación:
+</p>
+<ul class="org-ul">
+<li>El <code>View</code> se mantiene actualizado con los valores del <code>Modelo</code> (<code>OneWay</code>).
+</li>
+<li>El <code>Model</code> se mantiene actualizado con los valores de la <code>View</code> y viceversa. (<code>TwoWay</code>)
+</li>
+</ul>
+
+<p>
+Funciona de la siguiente manera:
+</p>
+<ol class="org-ol">
+<li>La clase que representa el <code>ViewModel</code> implementa la interfaz <code>INotifyPropertyChanged</code>.
+</li>
+<li>Cambios a una propiedad disparan un evento.
+</li>
+<li>Propiedades que hicieron <code>Binding</code> a esa propiedad responden al evento actualizándose.
+</li>
+</ol>
+</div>
+
+<div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> Ejemplo:</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+Hacemos que nuestra clase que va a funcionar como el <code>ViewModel</code> implemente la interfaz.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">WeatherViewModel</span> : <span style="color: #bd93f9;">INotifyPropertyChanged</span> <span style="color: #61bfff;">{</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">El evento que vamos a levantar cada que una propiedad cambie.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">event</span> <span style="color: #bd93f9;">PropertyChangedEventHandler</span>? <span style="color: #ffc9e8;">PropertyChanged</span>;
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">El m&#233;todo que usaremos para lanzar el evento.</span>
+    <span style="color: #ff79c6;">[</span><span style="color: #ffc9e8;">NotifyPropertyChangedInvocator</span><span style="color: #ff79c6;">]</span>
+    <span style="color: #ff79c6; font-style: italic;">protected</span> <span style="color: #ff79c6; font-style: italic;">virtual</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">OnPropertyChanged</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">[</span><span style="color: #ffc9e8;">CallerMemberName</span><span style="color: #50fa7b;">]</span> <span style="color: #bd93f9;">string</span>? propertyName = <span style="color: #8be9fd;">null</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        PropertyChanged?.<span style="color: #50fa7b;">Invoke</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6; font-style: italic;">this</span>, <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">PropertyChangedEventArgs</span><span style="color: #bd93f9;">(</span><span style="color: #bd93f9;">propertyName</span><span style="color: #bd93f9;">)</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Entonces podemos hacer nuestras propiedades reaccionar a los cambios.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">WeatherViewModel</span> : <span style="color: #bd93f9;">INotifyPropertyChanged</span> <span style="color: #61bfff;">{</span>
+
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">string</span>? <span style="color: #ffc9e8;">_query</span>;
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span>? <span style="color: #ffc9e8;">Query</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">get</span> =&gt; _query;
+        <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
+            _query = <span style="color: #8be9fd;">value</span>;
+            <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">el OnPropertyChanged viene de implementar la interfaz INotifyPropertyChanged</span>
+            <span style="color: #50fa7b;">OnPropertyChanged</span><span style="color: #bd93f9;">(</span><span style="color: #50fa7b;">nameof</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">Query</span><span style="color: #61bfff;">)</span><span style="color: #bd93f9;">)</span>;
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">El evento que vamos a levantar cada que una propiedad cambie.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">event</span> <span style="color: #bd93f9;">PropertyChangedEventHandler</span>? <span style="color: #ffc9e8;">PropertyChanged</span>;
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">El m&#233;todo que usaremos para lanzar el evento.</span>
+    <span style="color: #ff79c6;">[</span><span style="color: #ffc9e8;">NotifyPropertyChangedInvocator</span><span style="color: #ff79c6;">]</span>
+    <span style="color: #ff79c6; font-style: italic;">protected</span> <span style="color: #ff79c6; font-style: italic;">virtual</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">OnPropertyChanged</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">[</span><span style="color: #ffc9e8;">CallerMemberName</span><span style="color: #50fa7b;">]</span> <span style="color: #bd93f9;">string</span>? propertyName = <span style="color: #8be9fd;">null</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        PropertyChanged?.<span style="color: #50fa7b;">Invoke</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6; font-style: italic;">this</span>, <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">PropertyChangedEventArgs</span><span style="color: #bd93f9;">(</span><span style="color: #bd93f9;">propertyName</span><span style="color: #bd93f9;">)</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Una vez hecho eso podemos usar nuestra propiedad en el <code>View</code> y hacer <code>Binding</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">El binding va a la propiedad llamada Query,</span>
+<span style="color: #6272a4; font-style: italic;">El modo TwoWay es para que se actualice la propiedad y el campo de texto al mismo tiempo si cambia alguno de los dos,</span>
+<span style="color: #6272a4; font-style: italic;">El Update SourceTrigger se usa para Poner en que condiciones se hace el update.</span><span style="color: #6272a4; font-style: italic;">  --&gt;</span>
+&lt;<span style="color: #50fa7b;">TextBox</span> <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"5 5"</span>
+            <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding Query,</span>
+<span style="color: #f1fa8c;">            Mode=TwoWay,</span>
+<span style="color: #f1fa8c;">            UpdateSourceTrigger=PropertyChanged}"</span>/&gt;
+</pre>
+</div>
+
+<p>
+Con esto nuestra propiedad siempre se mantendrá actualizada.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> <code>ICommand</code></h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+Más información <a href="https://www.c-sharpcorner.com/UploadFile/20c06b/icommand-and-relaycommand-in-wpf/">aquí</a>
+Es la propiedad que usaremos para reemplazar eventos en el patrón <code>MVVM</code>.
+</p>
+
+<p>
+Los comandos pueden mover algo de la lógica del <code>Code behind</code> al <code>ViewModel</code>, esto tiene ventajas:
+</p>
+<ul class="org-ul">
+<li>Limpia la capa del <code>View</code>.
+</li>
+<li>Permite reutilizarlos entre ventanas.
+</li>
+</ul>
+
+<p>
+Existe como una propiedad para los botones.
+</p>
+<ul class="org-ul">
+<li>Lo cual lo vuelve un remplazo perfecto para <code>Event Handlers</code>.
+</li>
+</ul>
+
+<p>
+Funciona de la siguiente manera:
+</p>
+<ol class="org-ol">
+<li>El <code>ViewModel</code> implementa la interfaz <code>ICommand</code>.
+</li>
+<li>La funcionalidad es agregada al método <code>Execute</code>.
+</li>
+<li>Validaciones opcionales pueden ser agregadas en el método <code>CanExecute</code>.
+</li>
+<li>El comando es asignado.
+</li>
+</ol>
+
+<p>
+Podemos crear el comando en una clase afuera de nuestro <code>ViewModel</code> como en el siguiente ejemplo.
+</p>
+
+<p>
+Primero deberíamos de crear el método en nuestro <code>ViewModel</code> que deseamos ejecutar con el comando
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">async</span> <span style="color: #bd93f9;">Task</span> <span style="color: #50fa7b;">MakeQuery</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>Query != <span style="color: #8be9fd;">null</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">cities</span> = <span style="color: #ff79c6; font-style: italic;">await</span> AccuWeatherHelper.<span style="color: #50fa7b;">GetCities</span><span style="color: #50fa7b;">(</span>Query<span style="color: #50fa7b;">)</span>;
+
+        Cities.<span style="color: #50fa7b;">Clear</span><span style="color: #50fa7b;">()</span>;
+        <span style="color: #ff79c6; font-style: italic;">foreach</span> <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">city</span> <span style="color: #ff79c6; font-style: italic;">in</span> cities<span style="color: #50fa7b;">)</span>
+            Cities.<span style="color: #50fa7b;">Add</span><span style="color: #50fa7b;">(</span>city<span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Después dentro del directorio <code>ViewModel</code> Podemos crear una carpeta llamada <code>Commands</code> y allí agregar la clase en
+la que implementaremos la interfaz <code>ICommand</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">SearchCommand</span> : <span style="color: #bd93f9;">ICommand</span> <span style="color: #61bfff;">{</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">propiedad del tipo del VM.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">WeatherViewModel</span> <span style="color: #ffc9e8;">WeatherVm</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Constructor, obtiene la clase del VM al que pertenece.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">SearchCommand</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">WeatherViewModel</span> <span style="color: #ffc9e8;">viewModel</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        WeatherVm = viewModel;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">M&#233;todo que verifica si se puede ejecutar el comando (opcional).</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">bool</span> <span style="color: #50fa7b;">CanExecute</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">object</span>? <span style="color: #ffc9e8;">parameter</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">query</span> = parameter <span style="color: #ff79c6; font-style: italic;">as</span> <span style="color: #bd93f9;">string</span>;
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9; font-weight: bold;">!</span><span style="color: #bd93f9;">string</span>.<span style="color: #50fa7b;">IsNullOrWhiteSpace</span><span style="color: #50fa7b;">(</span>query<span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">M&#233;todo que ejecuta el commando dado de alta en VM.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">async</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">Execute</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">object</span>? <span style="color: #ffc9e8;">parameter</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">await</span> WeatherVm.<span style="color: #50fa7b;">MakeQuery</span><span style="color: #50fa7b;">()</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">se encarga de actualizar el valor que se chequea.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">event</span> <span style="color: #bd93f9;">EventHandler</span>? <span style="color: #ffc9e8;">CanExecuteChanged</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Evento que se triguerea cuando cambia el parametro que se manda al canExecute</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Dice que hacer con el valor cuando este cambia</span>
+        add =&gt; CommandManager.RequerySuggested += <span style="color: #8be9fd;">value</span>;
+        remove =&gt; CommandManager.RequerySuggested -= <span style="color: #8be9fd;">value</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Ahora podemos hacer <code>Binding</code> en el <code>View</code> para ejecutar el comando, pero antes necesitamos crear una propiedad
+en el <code>ViewModel</code> para que nuestro <code>View</code> pueda verla.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">WeatherViewModel</span> : <span style="color: #bd93f9;">INotifyPropertyChanged</span> <span style="color: #61bfff;">{</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Creamos nuestra propedad con el nobre y el tipo de nuestro comando.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">SearchCommand</span> <span style="color: #ffc9e8;">SearchCommand</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">El m&#233;todo que ejecutar&#225; el comando.</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">async</span> <span style="color: #bd93f9;">Task</span> <span style="color: #50fa7b;">MakeQuery</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>Query != <span style="color: #8be9fd;">null</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">cities</span> = <span style="color: #ff79c6; font-style: italic;">await</span> AccuWeatherHelper.<span style="color: #50fa7b;">GetCities</span><span style="color: #bd93f9;">(</span>Query<span style="color: #bd93f9;">)</span>;
+
+            Cities.<span style="color: #50fa7b;">Clear</span><span style="color: #bd93f9;">()</span>;
+            <span style="color: #ff79c6; font-style: italic;">foreach</span> <span style="color: #bd93f9;">(</span><span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">city</span> <span style="color: #ff79c6; font-style: italic;">in</span> cities<span style="color: #bd93f9;">)</span>
+                Cities.<span style="color: #50fa7b;">Add</span><span style="color: #bd93f9;">(</span>city<span style="color: #bd93f9;">)</span>;
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Necesitamos Crear un constructor en nuestro ViewModel</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">WeatherViewModel</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Necesitamos instanciar nuestro comando desde el constructor del ViewModel,</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Esto porque el constructor de nuestra clase SearchCommand, tiene como parametro</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Un objeto tipo WheatherViewModel.</span>
+        SearchCommand = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">SearchCommand</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6; font-style: italic;">this</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Ahora podemos hacer <code>Binding</code> en el <code>View</code> Libremente.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">El command se hace el binding a una propiedad del VM,</span>
+<span style="color: #6272a4; font-style: italic;">La propiedad se inicializa desde el constructor del VM,</span>
+<span style="color: #6272a4; font-style: italic;">La propiedad es una clase que implementa la interfaz ICommand,</span>
+<span style="color: #6272a4; font-style: italic;">El CommandParameter es el par&#225;metro que se le va a mandar al commando,</span>
+<span style="color: #6272a4; font-style: italic;">Se hizo el binding a la propiedad Query del VM la cual manda una se&#241;al cuando cambia,</span>
+<span style="color: #6272a4; font-style: italic;">Y se maneja en evento CanExecuteChanged el cual viene de la interfaz ICommand</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+&lt;<span style="color: #50fa7b;">Button</span> <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"5 5"</span>
+        <span style="color: #ffc9e8;">Command</span>=<span style="color: #f1fa8c;">"{Binding SearchCommand}"</span>
+        <span style="color: #ffc9e8;">CommandParameter</span>=<span style="color: #f1fa8c;">"{Binding Query}"</span>
+        <span style="color: #ffc9e8;">Content</span>=<span style="color: #f1fa8c;">"Search"</span>/&gt;
+</pre>
+</div>
+
+<p>
+El argumento <code>CommandParameter</code> sirve para mandar un argumento opcional al comando, en caso de que sea necesario.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> la clase <code>ObservableCollection</code></h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+Una <code>ObservableCollection</code> es una lista que esta al pendiente de cambios.
+</p>
+
+<p>
+Funciona de la siguiente manera:
+</p>
+<ol class="org-ol">
+<li>necesitamos una clase que herede de la clase <code>ObservableCollection&lt;T&gt;</code>.
+</li>
+<li>Esa clase ya habrá implementado la interfaz <code>INotifyPropertyChanged</code>.
+</li>
+<li>Se establece una <code>Binding Source</code>.
+</li>
+<li>Se actualiza la UI.
+</li>
+</ol>
+
+<p>
+Primero necesitamos una propiedad de tipo <code>ObservableCollection</code> en nuestro ViewModel.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp">    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">ObservableCollection</span><span style="color: #61bfff;">&lt;</span><span style="color: #bd93f9;">City</span><span style="color: #61bfff;">&gt;</span> <span style="color: #ffc9e8;">Cities</span> <span style="color: #61bfff;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Esta propiedad ya implementa la <code>INotifyPropertyChanged</code> así que no necesitamos nada más
+</p>
+
+<p>
+Ahora debemos inicializar la lista en el constructor ya que si esta lista es inicializada otra vez, el <code>Binding</code> se pierde.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">WeatherViewModel</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    SearchCommand = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">SearchCommand</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">this</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Inicalizamos la ObservableCollecition</span>
+    Cities = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">ObservableCollection</span><span style="color: #ff79c6;">&lt;</span><span style="color: #bd93f9;">City</span><span style="color: #ff79c6;">&gt;()</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Siempre que queramos limpiar o rellenar la lista debemos limpiarla y rellenarla elemento por elemento o el <code>Binding</code> se
+perderá.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">async</span> <span style="color: #bd93f9;">Task</span> <span style="color: #50fa7b;">MakeQuery</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>Query != <span style="color: #8be9fd;">null</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">cities</span> = <span style="color: #ff79c6; font-style: italic;">await</span> AccuWeatherHelper.<span style="color: #50fa7b;">GetCities</span><span style="color: #50fa7b;">(</span>Query<span style="color: #50fa7b;">)</span>;
+
+        Cities.<span style="color: #50fa7b;">Clear</span><span style="color: #50fa7b;">()</span>; <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Limpiamos la lista</span>
+        <span style="color: #ff79c6; font-style: italic;">foreach</span> <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">city</span> <span style="color: #ff79c6; font-style: italic;">in</span> cities<span style="color: #50fa7b;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Agregamos elemento por elemento.</span>
+            Cities.<span style="color: #50fa7b;">Add</span><span style="color: #50fa7b;">(</span>city<span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Ahora podemos hacer <code>Binding</code> en el <code>View</code> para mostrar la lista.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Desde la view hacemos binding a una propiedad del vm como ItemsSource,</span>
+<span style="color: #6272a4; font-style: italic;">y hacemos binding Del SelectedValue a una propiedad del vm</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+&lt;<span style="color: #50fa7b;">ListView</span> <span style="color: #ffc9e8;">ItemsSource</span>=<span style="color: #f1fa8c;">"{Binding Cities}"</span>
+          <span style="color: #ffc9e8;">SelectedValue</span>=<span style="color: #f1fa8c;">"{Binding SelectedCity}"</span>&gt;
+    &lt;<span style="color: #50fa7b;">ListView.ItemTemplate</span>&gt;
+        &lt;<span style="color: #50fa7b;">DataTemplate</span>&gt;
+            &lt;<span style="color: #50fa7b;">Grid</span>&gt;
+                <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Como ItemsSource fue definido en la listView, nuestro data context es ese,</span>
+<span style="color: #6272a4; font-style: italic;">                asi que podemos acceder a los elementos de ese dataContext</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+                &lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding LocalizedName}"</span>/&gt;
+            &lt;/<span style="color: #50fa7b;">Grid</span>&gt;
+        &lt;/<span style="color: #50fa7b;">DataTemplate</span>&gt;
+    &lt;/<span style="color: #50fa7b;">ListView.ItemTemplate</span>&gt;
+&lt;/<span style="color: #50fa7b;">ListView</span>&gt;
+</pre>
+</div>
+
+<p>
+El argumento <code>SelectedValue</code>, es otra propiedad que podemos usar si queremos saber que Valor esta siendo seleccionado de
+la lista, Aquí creamos una propiedad llamada <code>SelectedCity</code> para guardar este valor.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> <code>IValueConverter</code></h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+Más información <a href="https://www.wpf-tutorial.com/es/39/ligado-de-datos/conversion-de-valores-con-ivalueconverter/">aquí</a>
+</p>
+
+<p>
+Nos permite:
+</p>
+<ul class="org-ul">
+<li>Cambiar el <code>Model</code> a lo que la <code>View</code> necesita.
+</li>
+<li>Cambiando entradas en la <code>View</code> para el <code>Model</code>.
+</li>
+</ul>
+
+<p>
+Funciona de la siguiente manera:
+</p>
+<ol class="org-ol">
+<li>Una clase implementa la interfaz <code>IValueConverter</code>.
+</li>
+<li>El método <code>Convert</code> convierte el <code>Modelo</code> a la <code>View</code>.
+</li>
+<li>El método <code>ConvertBack</code> convierte el <code>View</code> a la <code>Model</code>
+</li>
+</ol>
+
+<p>
+Primero deberíamos crear una carpeta dentro de nuestro <code>ViewModel</code> llamada <code>Converters</code> y crear una nueva clase
+que implemente la interfaz <code>IValueConverter</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">BoolToRainConverter</span> : <span style="color: #bd93f9;">IValueConverter</span> <span style="color: #61bfff;">{</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">object</span> <span style="color: #50fa7b;">Convert</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">object</span> <span style="color: #8be9fd;">value</span>, <span style="color: #bd93f9;">Type</span> <span style="color: #ffc9e8;">targetType</span>, <span style="color: #bd93f9;">object</span> <span style="color: #ffc9e8;">parameter</span>, <span style="color: #bd93f9;">CultureInfo</span> <span style="color: #ffc9e8;">culture</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">isRaining</span> = <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">bool</span><span style="color: #50fa7b;">)</span> <span style="color: #8be9fd;">value</span>;
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>isRaining<span style="color: #50fa7b;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Currently raining"</span>;
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #f1fa8c;">"Currently not raining"</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">object</span> <span style="color: #50fa7b;">ConvertBack</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">object</span> <span style="color: #8be9fd;">value</span>, <span style="color: #bd93f9;">Type</span> <span style="color: #ffc9e8;">targetType</span>, <span style="color: #bd93f9;">object</span> <span style="color: #ffc9e8;">parameter</span>, <span style="color: #bd93f9;">CultureInfo</span> <span style="color: #ffc9e8;">culture</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">isRaining</span> = <span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">string</span><span style="color: #50fa7b;">)</span> <span style="color: #8be9fd;">value</span>;
+
+        <span style="color: #ff79c6; font-style: italic;">return</span> isRaining == <span style="color: #f1fa8c;">"Currently raining"</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Ahora debemos agregar nuestro convertidor a la <code>View</code>
+</p>
+
+<p>
+Primero debemos agregar el <code>namespace</code> donde esta nuestro convertidor en el <code>View</code>, en este caso lo llamamos <code>converter</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">Window</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Class</span>=<span style="color: #f1fa8c;">"WeatherApp.View.WeatherWindow"</span>
+        <span style="color: #ffb86c;">xmlns</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">x</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">mc</span>=<span style="color: #f1fa8c;">"http://schemas.openxmlformats.org/markup-compatibility/2006"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">d</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/expression/blend/2008"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">vm</span>=<span style="color: #f1fa8c;">"clr-namespace:WeatherApp.ViewModel"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">converters</span>=<span style="color: #f1fa8c;">"clr-namespace:WeatherApp.ViewModel.ValueConverters"</span>
+        <span style="color: #ffb86c;">mc</span>:<span style="color: #ffc9e8;">Ignorable</span>=<span style="color: #f1fa8c;">"d"</span>
+        <span style="color: #ffc9e8;">Title</span>=<span style="color: #f1fa8c;">"WeatherWindow"</span> <span style="color: #ffc9e8;">Height</span>=<span style="color: #f1fa8c;">"600"</span> <span style="color: #ffc9e8;">Width</span>=<span style="color: #f1fa8c;">"400"</span>&gt;
+
+      <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">...</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+
+&lt;/<span style="color: #50fa7b;">Window</span>&gt;
+</pre>
+</div>
+
+<p>
+Después debemos agregar el recurso a la <code>View</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Declaramos los recursos de la ventana,</span>
+<span style="color: #6272a4; font-style: italic;">La clase WeatherViewModel y declaramos el namespace vm arriba con el namespace del vm</span><span style="color: #6272a4; font-style: italic;">  --&gt;</span>
+&lt;<span style="color: #50fa7b;">Window.Resources</span>&gt;
+    &lt;<span style="color: #ffb86c;">vm</span>:<span style="color: #50fa7b;">WeatherViewModel</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"Vm"</span>/&gt;
+    <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Declaramos nuestro convertidor</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+    &lt;<span style="color: #ffb86c;">converters</span>:<span style="color: #50fa7b;">BoolToRainConverter</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"BoolToRain"</span>/&gt;
+&lt;/<span style="color: #50fa7b;">Window.Resources</span>&gt;
+</pre>
+</div>
+
+<p>
+Ahora podemos Usar el convertidor donde lo necesitemos.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Usamos un convertidor a&#241;adiendo el namespace, el recurso en window.resources</span>
+<span style="color: #6272a4; font-style: italic;">y lo llamamos como se muestra abajo.</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+&lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding HasPrecipitation, Converter={StaticResource BoolToRain}}"</span>
+            <span style="color: #ffc9e8;">Foreground</span>=<span style="color: #f1fa8c;">"#f4f4f8"</span>
+            <span style="color: #ffc9e8;">FontSize</span>=<span style="color: #f1fa8c;">"16"</span>
+            <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"20 0"</span>/&gt;
+</pre>
+</div>
+<p>
+El convertidor tomara el <code>Bool</code> que hicimos <code>Binding</code> en <code>HasPrecipitation</code> y lo pasara por el convertidor dando un resultado.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> XAML</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Definir pantalla de inicio</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Para definir que pantalla se debe de abrir al iniciar nuestra aplicación debemos de modificar nuestro <code>App.xaml</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">Application</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Class</span>=<span style="color: #f1fa8c;">"WeatherApp.App"</span>
+             <span style="color: #ffb86c;">xmlns</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+             <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">x</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml"</span>
+             <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">local</span>=<span style="color: #f1fa8c;">"clr-namespace:WeatherApp"</span>
+             <span style="color: #ffc9e8;">StartupUri</span>=<span style="color: #f1fa8c;">"View/WeatherWindow.xaml"</span>&gt;
+    &lt;<span style="color: #50fa7b;">Application.Resources</span>&gt;
+
+    &lt;/<span style="color: #50fa7b;">Application.Resources</span>&gt;
+&lt;/<span style="color: #50fa7b;">Application</span>&gt;
+</pre>
+</div>
+
+<p>
+Tenemos que modificar el argumento <code>StartupUri</code> en el cual pondremos la ruta a nuestra pantalla.
+</p>
+
+<p>
+En este caso Nuestra pantalla esta en una carpeta llamada <code>View</code> y se llama <code>WheatherWindow.xaml</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Lanzando, abriendo y cerrando ventanas</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Para abrir una nueva ventana tenemos que instanciar una nueva instancia de la nueva ventana
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">newContactWindow</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">NewContact</span><span style="color: #61bfff;">()</span>;
+newContactWindow.<span style="color: #50fa7b;">ShowDialog</span><span style="color: #61bfff;">()</span>;
+</pre>
+</div>
+
+<p>
+Si usamos el método <code>ShowDialog</code> la nueva ventana bloqueara la ventana anterior, por el contrario si usamos
+el método <code>Show</code> abrirá la nueva pestaña y podremos hacer cosas en la nueva pestaña y en la anterior.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Estilos</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Podemos estilizar cada componente de nuestra aplicación, pero lo ideal es usar recursos estáticos (static resources).
+</li>
+<li>Esto para poder tener estilos empaquetados y poderlos modificar y reutilizar en diferentes partes de nuestra aplicación.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Static Resources</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Podemos definir los recursos que va a utilizar nuestra pantalla actual declarando
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">window.Resources</span>&gt;
+  <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Recursos</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+&lt;/<span style="color: #50fa7b;">Window.Resources</span>&gt;
+</pre>
+</div>
+
+<p>
+Por ejemplo podemos declarar un <code>solidColorBrush</code> dentro de nuestros recursos estáticos.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">window.Resources</span>&gt;
+  &lt;<span style="color: #50fa7b;">SolidColorBrush</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">key</span>=<span style="color: #f1fa8c;">"numbersColor"</span> <span style="color: #ffc9e8;">Color</span>=<span style="color: #f1fa8c;">"#444444"</span>/&gt;
+  &lt;<span style="color: #50fa7b;">SolidColorBrush</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">key</span>=<span style="color: #f1fa8c;">"operatorsColor"</span> <span style="color: #ffc9e8;">Color</span>=<span style="color: #f1fa8c;">"Orange"</span>/&gt;
+&lt;/<span style="color: #50fa7b;">Window.Resources</span>&gt;
+</pre>
+</div>
+
+<p>
+Y podemos llamarlos de la siguiente manera&gt;
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">Button</span> <span style="color: #ffc9e8;">Content</span>=<span style="color: #f1fa8c;">"+/-"</span>
+        <span style="color: #ffc9e8;">Background</span>=<span style="color: #f1fa8c;">"{StaticResource numbersColor}"</span>
+        <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Name</span>=<span style="color: #f1fa8c;">"SignButton"</span>
+        <span style="color: #ffc9e8;">Grid.Row</span>=<span style="color: #f1fa8c;">"1"</span>
+        <span style="color: #ffc9e8;">Grid.Column</span>=<span style="color: #f1fa8c;">"1"</span>/&gt;
+</pre>
+</div>
+
+<p>
+Esto puede aplicar para cualquier tipo de recurso estático, no solo Estilos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Estilos para toda la aplicación</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Para tener estilos en toda la aplicación debemos de definirlos en el archivo <code>App.xaml</code>.
+</li>
+</ul>
+
+<p>
+El <code>App.xaml</code> debería lucir así por defecto.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">Application</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Class</span>=<span style="color: #f1fa8c;">"Calculadora.App"</span>
+             <span style="color: #ffb86c;">xmlns</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+             <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">x</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml"</span>
+             <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">local</span>=<span style="color: #f1fa8c;">"clr-namespace:Calculadora"</span>
+             <span style="color: #ffc9e8;">StartupUri</span>=<span style="color: #f1fa8c;">"MainWindow.xaml"</span>&gt;
+    &lt;<span style="color: #50fa7b;">Application.Resources</span>&gt;
+
+    &lt;/<span style="color: #50fa7b;">Application.Resources</span>&gt;
+&lt;/<span style="color: #50fa7b;">Application</span>&gt;
+</pre>
+</div>
+
+<p>
+Entonces podríamos tener nuestro archivo así para tener los mismos estilos.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">Application</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Class</span>=<span style="color: #f1fa8c;">"Calculadora.App"</span>
+             <span style="color: #ffb86c;">xmlns</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+             <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">x</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml"</span>
+             <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">local</span>=<span style="color: #f1fa8c;">"clr-namespace:Calculadora"</span>
+             <span style="color: #ffc9e8;">StartupUri</span>=<span style="color: #f1fa8c;">"MainWindow.xaml"</span>&gt;
+    &lt;<span style="color: #50fa7b;">Application.Resources</span>&gt;
+          <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Con los estilos que teniamos antes</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+         &lt;<span style="color: #50fa7b;">SolidColorBrush</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"numbersColors"</span>
+                         <span style="color: #ffc9e8;">Color</span>=<span style="color: #f1fa8c;">"#444444"</span>/&gt;
+
+        &lt;<span style="color: #50fa7b;">SolidColorBrush</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"operatorsColor"</span>
+                         <span style="color: #ffc9e8;">Color</span>=<span style="color: #f1fa8c;">"Orange"</span>/&gt;
+
+        &lt;<span style="color: #50fa7b;">SolidColorBrush</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"foregroundColor"</span>
+                         <span style="color: #ffc9e8;">Color</span>=<span style="color: #f1fa8c;">"White"</span>/&gt;
+
+    &lt;/<span style="color: #50fa7b;">Application.Resources</span>&gt;
+&lt;/<span style="color: #50fa7b;">Application</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Estilos implícitos</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Podemos definir estilos que se aplican a cierto tipo de elementos
+</p>
+
+<p>
+Dentro de nuestra etiqueta <code>Application.Resources</code> en <code>App.xaml</code> podemos
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Este estilo se aplicara a los Botones</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+&lt;<span style="color: #50fa7b;">Style</span> <span style="color: #ffc9e8;">TargetType</span>=<span style="color: #f1fa8c;">"Button"</span>&gt;
+    <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Cada setter es para una propiedad</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"Foreground"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"White"</span>/&gt;
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"FontSize"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"25"</span>/&gt;
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"Margin"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"5"</span>/&gt;
+&lt;/<span style="color: #50fa7b;">Style</span>&gt;
+</pre>
+</div>
+
+<p>
+También podemos sobrescribir este estilo en el elemento que deseemos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Estilos Explícitos</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+Podemos definir estilos que son llamados por su nombre y solo se aplican si lo decimos explicitamente
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Este estilo se aplicara a los Botones y se llama con el nombre de numberButtonStyle</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">La diferencia es que declaramos una key con el parametro x:Key=""</span><span style="color: #6272a4; font-style: italic;">  --&gt;</span>
+&lt;<span style="color: #50fa7b;">Style</span> <span style="color: #ffc9e8;">TargetType</span>=<span style="color: #f1fa8c;">"Button"</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"numberButtonStyle"</span>&gt;
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"Foreground"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"White"</span>/&gt;
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"FontSize"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"25"</span>/&gt;
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"Margin"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"5"</span>/&gt;
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"Background"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"{StaticResource numbersColors}"</span>/&gt;
+&lt;/<span style="color: #50fa7b;">Style</span>&gt;
+</pre>
+</div>
+
+<p>
+Ahora podemos usar este estilo donde queramos haciendo uso de argumento <code>Style</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Declaramos que es un Recurso estatico y ponemos la key del estilo</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+&lt;<span style="color: #50fa7b;">Button</span> <span style="color: #ffc9e8;">Content</span>=<span style="color: #f1fa8c;">"8"</span>
+        <span style="color: #ffc9e8;">Style</span>=<span style="color: #f1fa8c;">"{StaticResource numberButtonStyle}"</span>
+        <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Name</span>=<span style="color: #f1fa8c;">"EightButton"</span>
+        <span style="color: #ffc9e8;">Click</span>=<span style="color: #f1fa8c;">"NumberButton_Click"</span>
+        <span style="color: #ffc9e8;">Grid.Row</span>=<span style="color: #f1fa8c;">"2"</span>
+        <span style="color: #ffc9e8;">Grid.Column</span>=<span style="color: #f1fa8c;">"1"</span>/&gt;
+</pre>
+</div>
+
+<p>
+Otra cosa que podemos hacer es basar unos estilos en otros.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+<span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Usamos el argumento BasedOn y linkeamos el Recurso estatico asi heredamos los compomentes del estilo deseado</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+&lt;<span style="color: #50fa7b;">Style</span> <span style="color: #ffc9e8;">TargetType</span>=<span style="color: #f1fa8c;">"Button"</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"operatorButtonStyle"</span> <span style="color: #ffc9e8;">BasedOn</span>=<span style="color: #f1fa8c;">"{StaticResource numberButtonStyle}"</span>&gt;
+    &lt;<span style="color: #50fa7b;">Setter</span> <span style="color: #ffc9e8;">Property</span>=<span style="color: #f1fa8c;">"Background"</span> <span style="color: #ffc9e8;">Value</span>=<span style="color: #f1fa8c;">"{StaticResource operatorsColor}"</span>/&gt;
+&lt;/<span style="color: #50fa7b;">Style</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-02-04 Fri 22:23</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>
