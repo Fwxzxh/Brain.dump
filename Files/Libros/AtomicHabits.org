@@ -366,3 +366,186 @@ tienen más acceso a recursos, y por consiguiente más posibilidades de sobreviv
 Si un comportamiento puede darnos aprobación, respeto y elogios, lo encontramos atractivo.
 
 ** Motivos Subyacentes
+Cada comportamiento tiene un deseo superficial y un motivo oculto más profundo.
+
+Por ejemplo, Un deseo superficial podría ser "Quiero una rebanada de pizza". el motivo oculto de esto sería el deseo de obtener
+comida y bebida.
+
+Otros motivos ocultos podrían ser:
+- Conservar energía.
+- Encontrar el amor y reproducirse.
+- Conseguir aceptación social y aprobación.
+- Reducir la incertidumbre.
+- Obtener estatus y prestigio.
+
+Nuestros deseos son manifestaciones arbitrarias de un motivo subyacente más profundo, nuestros cerebros no evolucionaron
+con un deseo de fumar cigarrillos, ver instagram o jugar videojuegos. Estos son solo manifestaciones de nuestros motivos ocultos
+
+Los productos de hoy en día no crean nuevas motivaciones, se cuelgan de los motivos subyacentes profundos de el comportamiento
+humano.
+
+- Encontrar el amor y reproducirte = Usar Tinder.
+- Conectar y hacer lazos con otros = Buscar en Facebook.
+- Obtener aceptación social y aprobación = Postear en Instagram.
+- Reducir la incertidumbre = Buscar cosas en Google.
+- Obtener estatus y preferimos = Jugar videojuegos.
+
+Nuestros hábitos son soluciones modernas a antiguos deseos.
+
+** Predicativo, no reactivo
+Nuestro comportamiento depende fuertemente en como *nosotros* interpretamos los eventos que nos suceden,
+no necesariamente la verdad objetiva de los eventos en si mismos.
+
+Dos personas podrían experimentar el mismo evento, pero reaccionar de maneras completamente diferentes. Esto es porque
+justo después de reaccionar al evento, ambos individuos hacen diferentes /predicciones/ sobre el resultado de sus acciones.
+Estas predicciones están basadas en experiencias pasadas y diferentes puntos de vista del mundo.
+
+En respuesta a ofrecer un cigarrillo, una persona podría predecir que fumarlo hará que su ansiedad baje, mientras que
+otro podría predecir que fumar creara un hedor e incrementará sus posibilidades de obtener cáncer de pulmón.
+
+La diferencia entre estas predicciones es lo que hace que un individuo fume y el otro no.
+
+** Hazlo desagradable
+El inverso de la segunda ley de el cambio de comportamiento es "Hazlo desagradable".
+
+Para romper un mal hábito, necesitas eliminar el deseo por ese hábito. Esto se puede hacer en dos maneras:
+1. Exponiendo lo mal que el hábito aborda el motivo subyacente que causo su formación.
+2. Reemplazando el mal hábito con un buen hábito que aborde de mejor manera el motivo subyacente.
+
+Como se ha mencionado previamente, hábitos son solo intentos de abordar el motivo subyacente de la conducta humana.
+
+Para romper un mal hábito, analiza como la conducta asociada con este hábito lo aborda, por ejemplo, alguien que
+fuma para calmar sus nervios podría analizar su hábito y darse cuenta que fumar no calma sus nervios, los destruye.
+
+Describir claramente las consecuencias negativas de tus malos hábitos ayudara a hacerlos lo más desagradable posible,
+además, buscar un buen hábito que aborde el mismo motivo subyacente que el mal hábito.
+
+En el caso de fumar para calmar los nervios, una alternativa saludable podría ser, correr, lo cual es bueno para la salud y para
+el sistema cardiovascular.
+
+** Disfrutando hábitos difíciles
+Cambios sutiles en la mentalidad pueden tener efectos profundos sobre como interpretamos el mundo.
+
+En lugar de decirte a ti mismo lo que "tienes" que hacer, dite a ti mismo lo que "obtienes" de hacerlo.
+
+Este sutil cambio en lo que dices, cambia la interpretación del hábito, resaltando como la conducta es una oportunidad en lugar
+de una carga. Decirte a ti mismo "Debo ir al gym" implica sutilmente que ir al gym es una carga y una experiencia dolorosa e
+inconveniente, pero si te dices a ti mismo, "Puedo ir al gym" implica que ir al gym es una oportunidad positiva para mejorar
+nuestra propia salud mental y física.
+
+#+begin_quote
+"Debo" -> "Puedo"
+#+end_quote
+
+* Hazlo fácil
+La tercera ley del cambio de comportamiento es "Hazlo fácil", comportamientos fáciles requieren menos motivación para actuar y
+son más probables de ser hechos de manera consistente
+
+** Cantidad sobre Calidad
+Un profesor en la universidad de florida dividió su clase de fotografía en dos grupos: el grupo de la calidad y el grupo de la cantidad.
+Al grupo de la cantidad se le dijo que serian evaluados solamente con la cantidad de trabajo que produzcan; entre más fotos tomen,
+mayor será su calificación que recibirán. A el grupo de la calidad se le dijo que serian evaluados con la calidad de su trabajo;
+este grupo solo necesitaba entregar una sola foto por el semestre entero. Al final del semestre, el profesor se sorprendió al descubrir que todas las fotos de la mayor calidad habían sido entregadas por el grupo de la cantidad.
+
+A través del semestre, el grupo de la calidad estuvo constantemente con diferentes técnicas, mejorando incrementalmente la calidad
+de sus fotos, mientras que el grupo de la calidad, solo la paso especulando sobre como debería de ser la "foto perfecta".
+
+La técnica iterativa del grupo de la cantidad produjo mejores resultados que la especulación y las teorías del grupo de la calidad.
+
+#+begin_quote
+Si quieres masterizar un hábito, la clave es empezar con la repetición, no con la perfección.
+#+end_quote
+
+#+begin_quote
+Lo perfecto es el enemigo de lo bueno
+- Voltarie
+#+end_quote
+
+** Movimiento vs Acción
+- Movimiento es cuando tu estas planeando, haciendo estrategias o aprendiendo.
+- Acción es cuando estas haciendo el comportamiento que de verdad da resultados.
+
+Leer un libro sobre programación es movimiento, Hacer ejercicio es Acción.
+
+Estamos atraídos al movimiento, porque nos da la ilusión de progreso sin el riesgo de fallar. Acción es más difícil
+que el Movimiento, pero también es más remunerador.
+
+** Neuroplasticidad
+
+#+begin_quote
+Las neuronas que se disparan juntas, permanecerán conectadas.
+- Donald Hebb
+#+end_quote
+
+Entre más repitas una actividad, la estructura de tu cerebro más cambiará para volverse más eficiente en esa actividad.
+
+Esto es gracias a un fenómeno llamado neuroplasticidad: la habilidad del cerebro de modificarse y adaptarse en estructura y
+función en respuesta a experiencias.
+
+Mientras repites algún comportamiento, las conexiones entre neuronas asociadas con ese comportamiento se fortalecen. Esta repetición
+lleva a claros cambios físicos en el cerebro. Por ejemplo el cerebelo (un componente del cerebro que es critico para tener movimientos
+musculares precisos) es mucho más grande en músicos que en no-músicos.
+
+** ¿Cuanto toma crear nuevos hábitos?
+Hábitos son formados a través de repeticiones, no tiempo.
+
+La /cantidad/ de tiempo que haz hecho un hábito es menos importante que /cuantas/ veces haz hecho ese hábito.
+
+llegará un punto donde has hecho tantas repeticiones de una conducta en particular que ya no tienes que pensar sobre cada paso
+involucrado en el.
+
+Esto es conocido como el punto de la automatización.
+
+Llegar a este punto y por consiguiente formar un hábito, es dependiente de cuantas repeticiones has hecho, no cuanto tiempo llevas
+haciendo esa acción.
+
+** La ley del menor esfuerzo
+Nuestros cerebros son máquinas de conservación de energía, constantemente buscando por maneras de minimizar la cantidad de
+esfuerzo que se necesita. Cuando decidimos entre dos opciones similares, las personas eventualmente gravitaran hacia la más
+fácil.
+
+Nuestros cerebros han evolucionado para preservar energía y evitar los gastos cada que sea posible.
+
+Esta es la razón por la cual decirte a ti mismo "Inténtalo más duro" es raramente efectivo para desarrollar nuevos hábitos;
+Va en contra de la naturaleza humana.
+
+** Eliminando la fricción
+Cada hábito es un obstáculo para obtener lo que realmente quieres. Hacer ejercicio es un obstáculo para ponerte en forma.
+Escribir es un obstáculo para pensar claramente. No quieres el hábito en si mismo, quieres lo que el hábito te trae.
+
+Entre más grande el obstáculo, más fricción hay entre tu y tu estado deseado. La llave para crear nuevos hábitos es
+reducir la fricción lo más que se pueda.
+
+Tratar de hacer hábitos difíciles con motivación es equivalente a forzar más agua que la que puede salir del grifo.
+En su lugar, diseña tu entorno para reducir la fricción asociada con hacer tus hábitos.
+
+Tienes más posibilidades de comer sano si tu refrigerador esta lleno de carne y vegetales a la vez que está vació de azúcar.
+
+Eliminar la fricción asociada con tus hábitos te permite hacer más con menos tiempo y esfuerzo. Piensa en sumar por restar.
+
+** Prepararte para el siguiente uso
+Prepara tu entorno para hacer un hábito en particular antes de tiempo.
+
+Si quieres empezar a ir al gym todas las mañanas, prepara tus cosas la noche anterior. Si quieres comer más sano, Limpia
+y pre-corta tus frutas y vegetales. Si tu quieres leer antes de ir a la cama, deja el libro en tu almohada cada mañana.
+
+Preparar tu entorno para performar tus hábitos sirve como un recordatorio y como un mecanismo para hacer el hábito lo más
+conveniente posible.
+
+** Momentos decisivos
+Cada día nos entramos momentos decisivos que nos traen un impacto desproporcionado. Elegir entre pedir comida o cocinar.
+Elegir entre ir al gym o ir a casa a ver tv. Elegir entre estudiar o jugar videojuegos.
+
+Estas decisiones de fracción de segundo resultan en resultados que consumen horas de nuestro tiempo y cambian drásticamente
+el curso de nuestros días.
+
+#+begin_quote
+La diferencia entre un /buen día/ y un /mal día/ son los resultados de las decisiones que tomamos en momentos decisivos.
+#+end_quote
+
+** La regla de los 2 minutos
+Cuando empiezas un nuevo hábito, debería de tomar 2 minutos o menos.
+
+A veces nos comprometemos en exceso con los nuevos hábitos desde el principio. Nos prometemos que vamos a correr 5k diario,
+o leer por una hora. Pero cuando el tiempo de hacer nuestro nuevo hábito llega, nos sentimos abrumados por los elevados objetivos
+que nos hemos fijado y acabamos por no hacer nada.

@@ -1,8 +1,9 @@
-#+title: Wpf mvvm Xaml Course
+#+title: WPF MVVM XAML Course
+#+startup: fold 2
 
 * Recursos
 - [[https://github.com/Carlos487/awesome-wpf][Awesome WPF]]
-- aa
+- [[https:www.wpf-tutorial.com][WpfTutorial]]
 
 * MVVM
 - Significa Model, View, ViewModel.
@@ -117,6 +118,7 @@ Funciona de la siguiente manera:
 3. Validaciones opcionales pueden ser agregadas en el método =CanExecute=.
 4. El comando es asignado.
 
+*** Ejemplo
 Podemos crear el comando en una clase afuera de nuestro =ViewModel= como en el siguiente ejemplo.
 
 Primero deberíamos de crear el método en nuestro =ViewModel= que deseamos ejecutar con el comando
@@ -228,6 +230,7 @@ Funciona de la siguiente manera:
 3. Se establece una =Binding Source=.
 4. Se actualiza la UI.
 
+*** Ejemplo
 Primero necesitamos una propiedad de tipo =ObservableCollection= en nuestro ViewModel.
 #+begin_src csharp
     public ObservableCollection<City> Cities { get; set; }
@@ -279,7 +282,6 @@ y hacemos binding Del SelectedValue a una propiedad del vm -->
 El argumento =SelectedValue=, es otra propiedad que podemos usar si queremos saber que Valor esta siendo seleccionado de
 la lista, Aquí creamos una propiedad llamada =SelectedCity= para guardar este valor.
 
-
 ** =IValueConverter=
 Más información [[https://www.wpf-tutorial.com/es/39/ligado-de-datos/conversion-de-valores-con-ivalueconverter/][aquí]]
 
@@ -292,6 +294,7 @@ Funciona de la siguiente manera:
 2. El método =Convert= convierte el =Modelo= a la =View=.
 3. El método =ConvertBack= convierte el =View= a la =Model=
 
+*** Ejemplo
 Primero deberíamos crear una carpeta dentro de nuestro =ViewModel= llamada =Converters= y crear una nueva clase
 que implemente la interfaz =IValueConverter=.
 
@@ -354,6 +357,270 @@ y lo llamamos como se muestra abajo. -->
 #+end_src
 El convertidor tomara el =Bool= que hicimos =Binding= en =HasPrecipitation= y lo pasara por el convertidor dando un resultado.
 
+** Código Ejemplo
+App ejemplo de los conceptos usados:
+
+Archivo =WheatherWindow.xaml=, el =View= de la aplicación:
+#+begin_src xml
+<Window x:Class="WeatherApp.View.WeatherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:WeatherApp.ViewModel"
+        xmlns:converters="clr-namespace:WeatherApp.ViewModel.ValueConverters"
+        mc:Ignorable="d"
+        Title="WeatherWindow" Height="600" Width="400">
+    <!-- aaa -->
+
+    <!-- Declaramos los recursos de la ventana,
+    La clase WeatherViewModel y declaramos el namespace vm arriba con el namespace del vm  -->
+    <Window.Resources>
+        <vm:WeatherViewModel x:Key="Vm"/>
+        <!-- Declaramos nuestro convertidor -->
+        <converters:BoolToRainConverter x:Key="BoolToRain"/>
+    </Window.Resources>
+
+    <!-- Podemos declarar un contexto de datos para el binding de los elementos
+    dentro de el elemento, le pasamos el nombre del recurso dado arriba. -->
+    <Grid DataContext="{StaticResource Vm}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Panel principal -->
+        <StackPanel Margin="20">
+            <TextBlock Text="Search for a city:"
+                       Margin="5 0"/>
+
+            <!-- El binding va a la propiedad llamada Query,
+            El modo TwoWay es para que se actualice la propiedad y el campo de texto al mismo tiempo,
+            El Update SourceTrigger se usa para Poner en que condiciones se hace el update.  -->
+            <TextBox Margin="5 5"
+                     Text="{Binding Query,
+                     Mode=TwoWay,
+                     UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!-- El command se hace el binding a una propiedad del VM,
+            La propiedad se inicializa desde el constructor del VM,
+            La propiedad es una clase que implementa la interfaz ICommand,
+            El CommandParameter es el parámetro que se le va a mandar al commando,
+            Se hizo el binding a la propiedad Query del VM la cual manda una señal cuando cambia,
+            Y se maneja en evento CanExecuteChanged el cual viene de la interfaz ICommand -->
+            <Button Margin="5 5"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding Query}"
+                    Content="Search"/>
+
+            <!-- Desde la view hacemos binding a una propiedad del vm como ItemsSource,
+            y hacemos binding Del SelectedItem a una propiedad del vm -->
+            <ListView ItemsSource="{Binding Cities}"
+                      SelectedValue="{Binding SelectedCity}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <!-- Como ItemsSource fue definido en la listView, nuestro data context es ese,
+                            asi que podemos acceder a los elementos de ese dataContext -->
+                            <TextBlock Text="{Binding LocalizedName}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+
+        <!-- Aquí se declaro un data context para este cacho de la grid,
+        el binding se hizo a una propiedad compleja De tipo nombre CurrentConditions,
+        para hacer binding a los elementos de esta propiedad en otros lados -->
+        <Grid Grid.Row="1"
+              Background="#4392f1"
+              DataContext="{Binding CurrentConditions}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="0 10">
+                <TextBlock DataContext="{StaticResource Vm}"
+                           Text="{Binding SelectedCity.LocalizedName}"
+                           Foreground="#f4f4f8"
+                           FontSize="20"
+                           Margin="20 0"/>
+
+                <!-- WeatherText es un campo parte de la propiedad CurrentConditions -->
+                <TextBlock Text="{Binding WeatherText}"
+                           Foreground="#f4f4f8"
+                           FontSize="18"
+                           Margin="20 0"/>
+
+                <!-- Usamos un convertidor añadiendo el namespace, el recurso en window.resources
+                y lo llamamos como se muestra abajo. -->
+                <TextBlock Text="{Binding HasPrecipitation,
+                Converter={StaticResource BoolToRain}}"
+                           Foreground="#f4f4f8"
+                           FontSize="16"
+                           Margin="20 0"/>
+            </StackPanel>
+            <TextBlock Grid.Column="1"
+                       VerticalAlignment="Center"
+                       Text="{Binding Temperature.Metric.Value, StringFormat={}{0}°C}"
+                       Foreground="#f4f4f8"
+                       FontSize="30"
+                       Margin="20 0"/>
+        </Grid>
+    </Grid>
+</Window>
+#+end_src
+
+Archivo =WheatherViewModel=, el =ViewModel= de la aplicación:
+#+begin_src csharp
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows;
+using WeatherApp.Annotations;
+using WeatherApp.Model;
+using WeatherApp.ViewModel.Commands;
+using WeatherApp.ViewModel.Helpers;
+
+namespace WeatherApp.ViewModel;
+
+public class WeatherViewModel : INotifyPropertyChanged {
+
+    private string? _query;
+
+    public string? Query {
+        get => _query;
+        set {
+            _query = value;
+            // el OnPropertyChanged viene de implementar la interfaz INotifyPropertyChanged
+            OnPropertyChanged(nameof(Query));
+        }
+    }
+
+    private CurrentConditions _currentConditions;
+
+    public CurrentConditions CurrentConditions {
+        get => _currentConditions;
+        set {
+            _currentConditions = value;
+            OnPropertyChanged(nameof(CurrentConditions));
+        }
+    }
+
+    public ObservableCollection<City> Cities { get; set; }
+
+    private City _selectedCity;
+
+    public City SelectedCity {
+        get => _selectedCity;
+
+        set {
+            _selectedCity = value;
+            OnPropertyChanged(nameof(SelectedCity));
+            GetCurrentConditions();
+        }
+    }
+
+    public SearchCommand SearchCommand { get; set; }
+
+    public WeatherViewModel() {
+
+        // Asignamos valores solo para previsualizarlos en el preview
+        if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) {
+            SelectedCity = new City {
+                LocalizedName = "New york"
+            };
+            CurrentConditions = new CurrentConditions {
+                WeatherText = "Partly Cloudy",
+                Temperature = new Temperature {
+                    Metric = new Units {
+                        Value = "21"
+                    }
+                }
+            };
+        }
+
+        SearchCommand = new SearchCommand(this);
+        Cities = new ObservableCollection<City>();
+    }
+
+    private async void GetCurrentConditions() {
+        Query = string.Empty;
+        Cities.Clear();
+
+        CurrentConditions = await AccuWeatherHelper.GetCurrentConditions(SelectedCity.Key);
+    }
+
+    public async Task MakeQuery() {
+        if (Query != null) {
+            var cities = await AccuWeatherHelper.GetCities(Query);
+
+            Cities.Clear();
+            foreach (var city in cities)
+                Cities.Add(city);
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    [NotifyPropertyChangedInvocator]
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+#+end_src
+
+Archivo =City.cs= El =Model= de la aplicación (Cada clase debería de ir en su propio archivo)
+#+begin_src csharp
+namespace WeatherApp.Model;
+
+public class Area
+{
+    public string ID { get; set; }
+    public string LocalizedName { get; set; }
+}
+
+public class City
+{
+    public int Version { get; set; }
+    public string Key { get; set; }
+    public string Type { get; set; }
+    public int Rank { get; set; }
+    public string LocalizedName { get; set; }
+    public City Country { get; set; }
+    public City AdministrativeArea { get; set; }
+}
+
+public class Units
+{
+    public string Value { get; set; }
+    public string Unit { get; set; }
+    public int UnitType { get; set; }
+}
+
+public class Temperature
+{
+    public Units Metric { get; set; }
+    public Units Imperial { get; set; }
+}
+
+public class CurrentConditions
+{
+    public DateTime LocalObservationDateTime { get; set; }
+    public int EpochTime { get; set; }
+    public string WeatherText { get; set; }
+    public int WeatherIcon { get; set; }
+    public bool HasPrecipitation { get; set; }
+    public object PrecipitationType { get; set; }
+    public bool IsDayTime { get; set; }
+    public Temperature Temperature { get; set; }
+    public string MobileLink { get; set; }
+    public string Link { get; set; }
+}
+#+end_src
 
 * XAML
 ** Definir pantalla de inicio

@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Wpf mvvm Xaml Course</title>
-<!-- 2022-02-04 Fri 22:23 -->
+<title>WPF MVVM XAML Course</title>
+<!-- 2022-02-08 Tue 20:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -206,6 +206,7 @@ $(function() {
 <li><a href="#sec-2-6">2.6. <code>ICommand</code></a></li>
 <li><a href="#sec-2-7">2.7. la clase <code>ObservableCollection</code></a></li>
 <li><a href="#sec-2-8">2.8. <code>IValueConverter</code></a></li>
+<li><a href="#sec-2-9">2.9. Código Ejemplo</a></li>
 </ul>
 </li>
 <li><a href="#sec-3">3. XAML</a>
@@ -225,7 +226,7 @@ $(function() {
 </ul>
 </div>
 </nav>
-</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Wpf mvvm Xaml Course</h1>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">WPF MVVM XAML Course</h1>
 
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> Recursos</h2>
@@ -233,7 +234,7 @@ $(function() {
 <ul class="org-ul">
 <li><a href="https://github.com/Carlos487/awesome-wpf">Awesome WPF</a>
 </li>
-<li>aa
+<li><a href="https:www.wpf-tutorial.com">WpfTutorial</a>
 </li>
 </ul>
 </div>
@@ -459,7 +460,11 @@ Funciona de la siguiente manera:
 <li>El comando es asignado.
 </li>
 </ol>
+</div>
 
+<div id="outline-container-sec-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> Ejemplo</h4>
+<div class="outline-text-4" id="text-2-6-1">
 <p>
 Podemos crear el comando en una clase afuera de nuestro <code>ViewModel</code> como en el siguiente ejemplo.
 </p>
@@ -584,6 +589,7 @@ El argumento <code>CommandParameter</code> sirve para mandar un argumento opcion
 </p>
 </div>
 </div>
+</div>
 
 <div id="outline-container-sec-2-7" class="outline-3">
 <h3 id="sec-2-7"><span class="section-number-3">2.7</span> la clase <code>ObservableCollection</code></h3>
@@ -605,7 +611,11 @@ Funciona de la siguiente manera:
 <li>Se actualiza la UI.
 </li>
 </ol>
+</div>
 
+<div id="outline-container-sec-2-7-1" class="outline-4">
+<h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> Ejemplo</h4>
+<div class="outline-text-4" id="text-2-7-1">
 <p>
 Primero necesitamos una propiedad de tipo <code>ObservableCollection</code> en nuestro ViewModel.
 </p>
@@ -679,7 +689,7 @@ la lista, Aquí creamos una propiedad llamada <code>SelectedCity</code> para gua
 </p>
 </div>
 </div>
-
+</div>
 
 <div id="outline-container-sec-2-8" class="outline-3">
 <h3 id="sec-2-8"><span class="section-number-3">2.8</span> <code>IValueConverter</code></h3>
@@ -709,7 +719,11 @@ Funciona de la siguiente manera:
 <li>El método <code>ConvertBack</code> convierte el <code>View</code> a la <code>Model</code>
 </li>
 </ol>
+</div>
 
+<div id="outline-container-sec-2-8-1" class="outline-4">
+<h4 id="sec-2-8-1"><span class="section-number-4">2.8.1</span> Ejemplo</h4>
+<div class="outline-text-4" id="text-2-8-1">
 <p>
 Primero deberíamos crear una carpeta dentro de nuestro <code>ViewModel</code> llamada <code>Converters</code> y crear una nueva clase
 que implemente la interfaz <code>IValueConverter</code>.
@@ -798,6 +812,290 @@ El convertidor tomara el <code>Bool</code> que hicimos <code>Binding</code> en <
 </div>
 </div>
 
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> Código Ejemplo</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+App ejemplo de los conceptos usados:
+</p>
+
+<p>
+Archivo <code>WheatherWindow.xaml</code>, el <code>View</code> de la aplicación:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #ff79c6; font-style: italic;">xml</span> <span style="color: #8995ba; font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="color: #50fa7b;">Window</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Class</span>=<span style="color: #f1fa8c;">"WeatherApp.View.WeatherWindow"</span>
+        <span style="color: #ffb86c;">xmlns</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">x</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/winfx/2006/xaml"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">mc</span>=<span style="color: #f1fa8c;">"http://schemas.openxmlformats.org/markup-compatibility/2006"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">d</span>=<span style="color: #f1fa8c;">"http://schemas.microsoft.com/expression/blend/2008"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">vm</span>=<span style="color: #f1fa8c;">"clr-namespace:WeatherApp.ViewModel"</span>
+        <span style="color: #ffb86c;">xmlns</span>:<span style="color: #ffc9e8;">converters</span>=<span style="color: #f1fa8c;">"clr-namespace:WeatherApp.ViewModel.ValueConverters"</span>
+        <span style="color: #ffb86c;">mc</span>:<span style="color: #ffc9e8;">Ignorable</span>=<span style="color: #f1fa8c;">"d"</span>
+        <span style="color: #ffc9e8;">Title</span>=<span style="color: #f1fa8c;">"WeatherWindow"</span> <span style="color: #ffc9e8;">Height</span>=<span style="color: #f1fa8c;">"600"</span> <span style="color: #ffc9e8;">Width</span>=<span style="color: #f1fa8c;">"400"</span>&gt;
+    <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">aaa</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+
+    <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Declaramos los recursos de la ventana,</span>
+<span style="color: #6272a4; font-style: italic;">    La clase WeatherViewModel y declaramos el namespace vm arriba con el namespace del vm</span><span style="color: #6272a4; font-style: italic;">  --&gt;</span>
+    &lt;<span style="color: #50fa7b;">Window.Resources</span>&gt;
+        &lt;<span style="color: #ffb86c;">vm</span>:<span style="color: #50fa7b;">WeatherViewModel</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"Vm"</span>/&gt;
+        <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Declaramos nuestro convertidor</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+        &lt;<span style="color: #ffb86c;">converters</span>:<span style="color: #50fa7b;">BoolToRainConverter</span> <span style="color: #ffb86c;">x</span>:<span style="color: #ffc9e8;">Key</span>=<span style="color: #f1fa8c;">"BoolToRain"</span>/&gt;
+    &lt;/<span style="color: #50fa7b;">Window.Resources</span>&gt;
+
+    <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Podemos declarar un contexto de datos para el binding de los elementos</span>
+<span style="color: #6272a4; font-style: italic;">    dentro de el elemento, le pasamos el nombre del recurso dado arriba.</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+    &lt;<span style="color: #50fa7b;">Grid</span> <span style="color: #ffc9e8;">DataContext</span>=<span style="color: #f1fa8c;">"{StaticResource Vm}"</span>&gt;
+        &lt;<span style="color: #50fa7b;">Grid.RowDefinitions</span>&gt;
+            &lt;<span style="color: #50fa7b;">RowDefinition</span> <span style="color: #ffc9e8;">Height</span>=<span style="color: #f1fa8c;">"*"</span>/&gt;
+            &lt;<span style="color: #50fa7b;">RowDefinition</span> <span style="color: #ffc9e8;">Height</span>=<span style="color: #f1fa8c;">"auto"</span>/&gt;
+        &lt;/<span style="color: #50fa7b;">Grid.RowDefinitions</span>&gt;
+
+        <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Panel principal</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+        &lt;<span style="color: #50fa7b;">StackPanel</span> <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"20"</span>&gt;
+            &lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"Search for a city:"</span>
+                       <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"5 0"</span>/&gt;
+
+            <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">El binding va a la propiedad llamada Query,</span>
+<span style="color: #6272a4; font-style: italic;">            El modo TwoWay es para que se actualice la propiedad y el campo de texto al mismo tiempo,</span>
+<span style="color: #6272a4; font-style: italic;">            El Update SourceTrigger se usa para Poner en que condiciones se hace el update.</span><span style="color: #6272a4; font-style: italic;">  --&gt;</span>
+            &lt;<span style="color: #50fa7b;">TextBox</span> <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"5 5"</span>
+                     <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding Query,</span>
+<span style="color: #f1fa8c;">                     Mode=TwoWay,</span>
+<span style="color: #f1fa8c;">                     UpdateSourceTrigger=PropertyChanged}"</span>/&gt;
+
+            <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">El command se hace el binding a una propiedad del VM,</span>
+<span style="color: #6272a4; font-style: italic;">            La propiedad se inicializa desde el constructor del VM,</span>
+<span style="color: #6272a4; font-style: italic;">            La propiedad es una clase que implementa la interfaz ICommand,</span>
+<span style="color: #6272a4; font-style: italic;">            El CommandParameter es el par&#225;metro que se le va a mandar al commando,</span>
+<span style="color: #6272a4; font-style: italic;">            Se hizo el binding a la propiedad Query del VM la cual manda una se&#241;al cuando cambia,</span>
+<span style="color: #6272a4; font-style: italic;">            Y se maneja en evento CanExecuteChanged el cual viene de la interfaz ICommand</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+            &lt;<span style="color: #50fa7b;">Button</span> <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"5 5"</span>
+                    <span style="color: #ffc9e8;">Command</span>=<span style="color: #f1fa8c;">"{Binding SearchCommand}"</span>
+                    <span style="color: #ffc9e8;">CommandParameter</span>=<span style="color: #f1fa8c;">"{Binding Query}"</span>
+                    <span style="color: #ffc9e8;">Content</span>=<span style="color: #f1fa8c;">"Search"</span>/&gt;
+
+            <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Desde la view hacemos binding a una propiedad del vm como ItemsSource,</span>
+<span style="color: #6272a4; font-style: italic;">            y hacemos binding Del SelectedItem a una propiedad del vm</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+            &lt;<span style="color: #50fa7b;">ListView</span> <span style="color: #ffc9e8;">ItemsSource</span>=<span style="color: #f1fa8c;">"{Binding Cities}"</span>
+                      <span style="color: #ffc9e8;">SelectedValue</span>=<span style="color: #f1fa8c;">"{Binding SelectedCity}"</span>&gt;
+                &lt;<span style="color: #50fa7b;">ListView.ItemTemplate</span>&gt;
+                    &lt;<span style="color: #50fa7b;">DataTemplate</span>&gt;
+                        &lt;<span style="color: #50fa7b;">Grid</span>&gt;
+                            <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Como ItemsSource fue definido en la listView, nuestro data context es ese,</span>
+<span style="color: #6272a4; font-style: italic;">                            asi que podemos acceder a los elementos de ese dataContext</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+                            &lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding LocalizedName}"</span>/&gt;
+                        &lt;/<span style="color: #50fa7b;">Grid</span>&gt;
+                    &lt;/<span style="color: #50fa7b;">DataTemplate</span>&gt;
+                &lt;/<span style="color: #50fa7b;">ListView.ItemTemplate</span>&gt;
+            &lt;/<span style="color: #50fa7b;">ListView</span>&gt;
+
+        &lt;/<span style="color: #50fa7b;">StackPanel</span>&gt;
+
+        <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Aqu&#237; se declaro un data context para este cacho de la grid,</span>
+<span style="color: #6272a4; font-style: italic;">        el binding se hizo a una propiedad compleja De tipo nombre CurrentConditions,</span>
+<span style="color: #6272a4; font-style: italic;">        para hacer binding a los elementos de esta propiedad en otros lados</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+        &lt;<span style="color: #50fa7b;">Grid</span> <span style="color: #ffc9e8;">Grid.Row</span>=<span style="color: #f1fa8c;">"1"</span>
+              <span style="color: #ffc9e8;">Background</span>=<span style="color: #f1fa8c;">"#4392f1"</span>
+              <span style="color: #ffc9e8;">DataContext</span>=<span style="color: #f1fa8c;">"{Binding CurrentConditions}"</span>&gt;
+            &lt;<span style="color: #50fa7b;">Grid.ColumnDefinitions</span>&gt;
+                &lt;<span style="color: #50fa7b;">ColumnDefinition</span> <span style="color: #ffc9e8;">Width</span>=<span style="color: #f1fa8c;">"*"</span>/&gt;
+                &lt;<span style="color: #50fa7b;">ColumnDefinition</span> <span style="color: #ffc9e8;">Width</span>=<span style="color: #f1fa8c;">"Auto"</span>/&gt;
+            &lt;/<span style="color: #50fa7b;">Grid.ColumnDefinitions</span>&gt;
+
+            &lt;<span style="color: #50fa7b;">StackPanel</span> <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"0 10"</span>&gt;
+                &lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">DataContext</span>=<span style="color: #f1fa8c;">"{StaticResource Vm}"</span>
+                           <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding SelectedCity.LocalizedName}"</span>
+                           <span style="color: #ffc9e8;">Foreground</span>=<span style="color: #f1fa8c;">"#f4f4f8"</span>
+                           <span style="color: #ffc9e8;">FontSize</span>=<span style="color: #f1fa8c;">"20"</span>
+                           <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"20 0"</span>/&gt;
+
+                <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">WeatherText es un campo parte de la propiedad CurrentConditions</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+                &lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding WeatherText}"</span>
+                           <span style="color: #ffc9e8;">Foreground</span>=<span style="color: #f1fa8c;">"#f4f4f8"</span>
+                           <span style="color: #ffc9e8;">FontSize</span>=<span style="color: #f1fa8c;">"18"</span>
+                           <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"20 0"</span>/&gt;
+
+                <span style="color: #6272a4; font-style: italic;">&lt;!-- </span><span style="color: #6272a4; font-style: italic;">Usamos un convertidor a&#241;adiendo el namespace, el recurso en window.resources</span>
+<span style="color: #6272a4; font-style: italic;">                y lo llamamos como se muestra abajo.</span><span style="color: #6272a4; font-style: italic;"> --&gt;</span>
+                &lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding HasPrecipitation,</span>
+<span style="color: #f1fa8c;">                Converter={StaticResource BoolToRain}}"</span>
+                           <span style="color: #ffc9e8;">Foreground</span>=<span style="color: #f1fa8c;">"#f4f4f8"</span>
+                           <span style="color: #ffc9e8;">FontSize</span>=<span style="color: #f1fa8c;">"16"</span>
+                           <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"20 0"</span>/&gt;
+            &lt;/<span style="color: #50fa7b;">StackPanel</span>&gt;
+            &lt;<span style="color: #50fa7b;">TextBlock</span> <span style="color: #ffc9e8;">Grid.Column</span>=<span style="color: #f1fa8c;">"1"</span>
+                       <span style="color: #ffc9e8;">VerticalAlignment</span>=<span style="color: #f1fa8c;">"Center"</span>
+                       <span style="color: #ffc9e8;">Text</span>=<span style="color: #f1fa8c;">"{Binding Temperature.Metric.Value, StringFormat={}{0}&#176;C}"</span>
+                       <span style="color: #ffc9e8;">Foreground</span>=<span style="color: #f1fa8c;">"#f4f4f8"</span>
+                       <span style="color: #ffc9e8;">FontSize</span>=<span style="color: #f1fa8c;">"30"</span>
+                       <span style="color: #ffc9e8;">Margin</span>=<span style="color: #f1fa8c;">"20 0"</span>/&gt;
+        &lt;/<span style="color: #50fa7b;">Grid</span>&gt;
+    &lt;/<span style="color: #50fa7b;">Grid</span>&gt;
+&lt;/<span style="color: #50fa7b;">Window</span>&gt;
+</pre>
+</div>
+
+<p>
+Archivo <code>WheatherViewModel</code>, el <code>ViewModel</code> de la aplicación:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Collections</span>.<span style="color: #ffc9e8;">ObjectModel</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">ComponentModel</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Runtime</span>.<span style="color: #ffc9e8;">CompilerServices</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Threading</span>.<span style="color: #ffc9e8;">Tasks</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">System</span>.<span style="color: #ffc9e8;">Windows</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">WeatherApp</span>.<span style="color: #ffc9e8;">Annotations</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">WeatherApp</span>.<span style="color: #ffc9e8;">Model</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">WeatherApp</span>.<span style="color: #ffc9e8;">ViewModel</span>.<span style="color: #ffc9e8;">Commands</span>;
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ffc9e8;">WeatherApp</span>.<span style="color: #ffc9e8;">ViewModel</span>.<span style="color: #ffc9e8;">Helpers</span>;
+
+<span style="color: #ff79c6; font-style: italic;">namespace</span> <span style="color: #ffc9e8;">WeatherApp</span>.<span style="color: #ffc9e8;">ViewModel</span>;
+
+<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">WeatherViewModel</span> : <span style="color: #bd93f9;">INotifyPropertyChanged</span> <span style="color: #61bfff;">{</span>
+
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">string</span>? <span style="color: #ffc9e8;">_query</span>;
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span>? <span style="color: #ffc9e8;">Query</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">get</span> =&gt; _query;
+        <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
+            _query = <span style="color: #8be9fd;">value</span>;
+            <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">el OnPropertyChanged viene de implementar la interfaz INotifyPropertyChanged</span>
+            <span style="color: #50fa7b;">OnPropertyChanged</span><span style="color: #bd93f9;">(</span><span style="color: #50fa7b;">nameof</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">Query</span><span style="color: #61bfff;">)</span><span style="color: #bd93f9;">)</span>;
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">CurrentConditions</span> <span style="color: #ffc9e8;">_currentConditions</span>;
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">CurrentConditions</span> <span style="color: #ffc9e8;">CurrentConditions</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">get</span> =&gt; _currentConditions;
+        <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
+            _currentConditions = <span style="color: #8be9fd;">value</span>;
+            <span style="color: #50fa7b;">OnPropertyChanged</span><span style="color: #bd93f9;">(</span><span style="color: #50fa7b;">nameof</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">CurrentConditions</span><span style="color: #61bfff;">)</span><span style="color: #bd93f9;">)</span>;
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">ObservableCollection</span><span style="color: #ff79c6;">&lt;</span><span style="color: #bd93f9;">City</span><span style="color: #ff79c6;">&gt;</span> <span style="color: #ffc9e8;">Cities</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #bd93f9;">City</span> <span style="color: #ffc9e8;">_selectedCity</span>;
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">City</span> <span style="color: #ffc9e8;">SelectedCity</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">get</span> =&gt; _selectedCity;
+
+        <span style="color: #ff79c6; font-style: italic;">set</span> <span style="color: #50fa7b;">{</span>
+            _selectedCity = <span style="color: #8be9fd;">value</span>;
+            <span style="color: #50fa7b;">OnPropertyChanged</span><span style="color: #bd93f9;">(</span><span style="color: #50fa7b;">nameof</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">SelectedCity</span><span style="color: #61bfff;">)</span><span style="color: #bd93f9;">)</span>;
+            <span style="color: #50fa7b;">GetCurrentConditions</span><span style="color: #bd93f9;">()</span>;
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">SearchCommand</span> <span style="color: #ffc9e8;">SearchCommand</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #50fa7b;">WeatherViewModel</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Asignamos valores solo para previsualizarlos en el preview</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>DesignerProperties.<span style="color: #50fa7b;">GetIsInDesignMode</span><span style="color: #bd93f9;">(</span><span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">DependencyObject</span><span style="color: #61bfff;">()</span><span style="color: #bd93f9;">)</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+            SelectedCity = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">City</span> <span style="color: #bd93f9;">{</span>
+                <span style="color: #ffc9e8;">LocalizedName</span> = <span style="color: #f1fa8c;">"New york"</span>
+            <span style="color: #bd93f9;">}</span>;
+            CurrentConditions = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">CurrentConditions</span> <span style="color: #bd93f9;">{</span>
+                <span style="color: #ffc9e8;">WeatherText</span> = <span style="color: #f1fa8c;">"Partly Cloudy"</span>,
+                <span style="color: #ffc9e8;">Temperature</span> = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Temperature</span> <span style="color: #61bfff;">{</span>
+                    Metric = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">Units</span> <span style="color: #ff79c6;">{</span>
+                        <span style="color: #ffc9e8;">Value</span> = <span style="color: #f1fa8c;">"21"</span>
+                    <span style="color: #ff79c6;">}</span>
+                <span style="color: #61bfff;">}</span>
+            <span style="color: #bd93f9;">}</span>;
+        <span style="color: #50fa7b;">}</span>
+
+        SearchCommand = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">SearchCommand</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6; font-style: italic;">this</span><span style="color: #50fa7b;">)</span>;
+        Cities = <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">ObservableCollection</span><span style="color: #50fa7b;">&lt;</span><span style="color: #bd93f9;">City</span><span style="color: #50fa7b;">&gt;()</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ff79c6; font-style: italic;">async</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">GetCurrentConditions</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        Query = <span style="color: #bd93f9;">string</span>.Empty;
+        Cities.<span style="color: #50fa7b;">Clear</span><span style="color: #50fa7b;">()</span>;
+
+        CurrentConditions = <span style="color: #ff79c6; font-style: italic;">await</span> AccuWeatherHelper.<span style="color: #50fa7b;">GetCurrentConditions</span><span style="color: #50fa7b;">(</span>SelectedCity.Key<span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">async</span> <span style="color: #bd93f9;">Task</span> <span style="color: #50fa7b;">MakeQuery</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>Query != <span style="color: #8be9fd;">null</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">cities</span> = <span style="color: #ff79c6; font-style: italic;">await</span> AccuWeatherHelper.<span style="color: #50fa7b;">GetCities</span><span style="color: #bd93f9;">(</span>Query<span style="color: #bd93f9;">)</span>;
+
+            Cities.<span style="color: #50fa7b;">Clear</span><span style="color: #bd93f9;">()</span>;
+            <span style="color: #ff79c6; font-style: italic;">foreach</span> <span style="color: #bd93f9;">(</span><span style="color: #bd93f9;">var</span> <span style="color: #ffc9e8;">city</span> <span style="color: #ff79c6; font-style: italic;">in</span> cities<span style="color: #bd93f9;">)</span>
+                Cities.<span style="color: #50fa7b;">Add</span><span style="color: #bd93f9;">(</span>city<span style="color: #bd93f9;">)</span>;
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">event</span> <span style="color: #bd93f9;">PropertyChangedEventHandler</span>? <span style="color: #ffc9e8;">PropertyChanged</span>;
+
+    <span style="color: #ff79c6;">[</span><span style="color: #ffc9e8;">NotifyPropertyChangedInvocator</span><span style="color: #ff79c6;">]</span>
+    <span style="color: #ff79c6; font-style: italic;">protected</span> <span style="color: #ff79c6; font-style: italic;">virtual</span> <span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">OnPropertyChanged</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">[</span><span style="color: #ffc9e8;">CallerMemberName</span><span style="color: #50fa7b;">]</span> <span style="color: #bd93f9;">string</span>? propertyName = <span style="color: #8be9fd;">null</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        PropertyChanged?.<span style="color: #50fa7b;">Invoke</span><span style="color: #50fa7b;">(</span><span style="color: #ff79c6; font-style: italic;">this</span>, <span style="color: #ff79c6; font-style: italic;">new</span> <span style="color: #bd93f9;">PropertyChangedEventArgs</span><span style="color: #bd93f9;">(</span><span style="color: #bd93f9;">propertyName</span><span style="color: #bd93f9;">)</span><span style="color: #50fa7b;">)</span>;
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Archivo <code>City.cs</code> El <code>Model</code> de la aplicación (Cada clase debería de ir en su propio archivo)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-csharp"><span style="color: #ff79c6; font-style: italic;">namespace</span> <span style="color: #ffc9e8;">WeatherApp</span>.<span style="color: #ffc9e8;">Model</span>;
+
+<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Area</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">ID</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">LocalizedName</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">City</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Version</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Key</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Type</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">Rank</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">LocalizedName</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">City</span> <span style="color: #ffc9e8;">Country</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">City</span> <span style="color: #ffc9e8;">AdministrativeArea</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Units</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Value</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Unit</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">UnitType</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Temperature</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">Units</span> <span style="color: #ffc9e8;">Metric</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">Units</span> <span style="color: #ffc9e8;">Imperial</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">CurrentConditions</span>
+<span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">DateTime</span> <span style="color: #ffc9e8;">LocalObservationDateTime</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">EpochTime</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">WeatherText</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">int</span> <span style="color: #ffc9e8;">WeatherIcon</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">bool</span> <span style="color: #ffc9e8;">HasPrecipitation</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">object</span> <span style="color: #ffc9e8;">PrecipitationType</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">bool</span> <span style="color: #ffc9e8;">IsDayTime</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">Temperature</span> <span style="color: #ffc9e8;">Temperature</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">MobileLink</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+    <span style="color: #ff79c6; font-style: italic;">public</span> <span style="color: #bd93f9;">string</span> <span style="color: #ffc9e8;">Link</span> <span style="color: #ff79c6;">{</span> <span style="color: #ff79c6; font-style: italic;">get</span>; <span style="color: #ff79c6; font-style: italic;">set</span>; <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
 
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> XAML</h2>
@@ -1060,7 +1358,7 @@ Otra cosa que podemos hacer es basar unos estilos en otros.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-02-04 Fri 22:23</p>
+<p class="date">Created: 2022-02-08 Tue 20:01</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
