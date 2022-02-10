@@ -549,3 +549,63 @@ Cuando empiezas un nuevo hábito, debería de tomar 2 minutos o menos.
 A veces nos comprometemos en exceso con los nuevos hábitos desde el principio. Nos prometemos que vamos a correr 5k diario,
 o leer por una hora. Pero cuando el tiempo de hacer nuestro nuevo hábito llega, nos sentimos abrumados por los elevados objetivos
 que nos hemos fijado y acabamos por no hacer nada.
+
+La regla de los dos minutos arregla este problema al hacer uso de el hecho de que es más fácil continuar lo que estas haciendo que
+empezar a hacer algo nuevo.
+
+La parte más difícil de hacer un nuevo comportamiento es iniciarlo. Haciendo un nuevo hábito lo más pequeño posible, incrementas la probabilidad
+de hacerlo en primer lugar.
+
+En lugar de comprometerte a una hora de lectura diaria al día, comprométete a una página. Será más posible que empieces a leer y eventualmente
+leerás más.
+
+Recuerda que algo es mejor que nada. hacer 10 abdominales es mejor que no hacer ninguna. Leer 1 página es mejor que leer 0.
+
+#+begin_quote
+La acción no importa que tan pequeña sea, es infinitamente superior a la inacción.
+#+end_quote
+
+** Ritualiza el proceso
+Entre más ritualices el inicio de un proceso, más posibilidades tienes de entrar en un estado de /flow/ en hacer ese proceso.
+
+Ejemplos de esto incluyen jugadores de basketball que hacen el mismo ritual antes de que hagan un tiro libre.
+
+** Hazlo difícil
+
+#+begin_quote
+A veces el éxito es menos sobre hacer buenos hábitos fácil y más sobre hacer malos hábitos difíciles.
+- James Clear
+#+end_quote
+
+El contrario de la tercera ley del cambio de comportamiento es "Hazlo difícil".
+
+Haz tus malos hábitos difíciles haciendo uso de dispositivos de compromiso: acciones que haces en el presente que controlan como te comportas
+en el futuro.
+
+Un buen ejemplo de un dispositivo de compromiso es pagar por adelantado, incentivandote a seguir con cualquier servicio que pagaste
+ya que no hacerlo tiene un costo asociado.
+
+** Acciones puntuales con recompensas a largo plazo
+Hay algunas acciones puntuales que puedes hacer que producen resultados a largo plazo consistentes.
+
+- Comprar platos más pequeños para reducir ingesta calorifica.
+- Comprar un colchón cómodo para incrementar la calidad del sueño.
+- Apagar las notificaciones par reducir distracciones.
+- Conseguir un perro para incrementar la compañía en tu vida.
+- Comprar una silla de alta calidad o un /standing desk/ para mejorar tu postura.
+
+Hacer algunas de estas acciones como sea posible es una manera fácil de impactar de manera positiva tu futuro.
+
+* Hazlo satisfactorio
+La cuarta ley de el cambio de comportamiento es "Hazlo satisfactorio".
+
+Es más probable que tu repitas un comportamiento si la experiencia es placentera.
+
+Las tres leyes anteriores "Hazlo obvio" "Hazlo atractivo" "Hazlo fácil" incrementan la posibilidad de que un comportamiento se lleve acabo.
+La cuarta ley incrementa la posibilidad de que un comportamiento sea repetido.
+
+** Entorno de retorno inmediato a entorno de retorno retardado
+Los humanos hemos existido por aproximadamente 200 mil años. y al principio de los 195 mil años (97.5% de nuestra existencia),
+habitamos un entorno de retorno inmediato. Nuestros pensamientos y acciones estaban concentradas exclusivamente en el presente.
+
+Nuestros principales problemas eran del estilo de ¿Que comer? ¿Donde dormir? y ¿como evitar depredadores?.
