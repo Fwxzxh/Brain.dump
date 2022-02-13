@@ -608,4 +608,109 @@ La cuarta ley incrementa la posibilidad de que un comportamiento sea repetido.
 Los humanos hemos existido por aproximadamente 200 mil años. y al principio de los 195 mil años (97.5% de nuestra existencia),
 habitamos un entorno de retorno inmediato. Nuestros pensamientos y acciones estaban concentradas exclusivamente en el presente.
 
-Nuestros principales problemas eran del estilo de ¿Que comer? ¿Donde dormir? y ¿como evitar depredadores?.
+Nuestros principales problemas eran del estilo de ¿Que comer? ¿Donde dormir? y ¿como evitar depredadores?. Nuestro
+salvaje entorno necesitaba que nos concentraramos en resultados inmediatos de nuestras acciones.
+
+Esto ha cambiado a un entorno de resultados retrasados. Un entorno donde los resultados de nuestras acciones podrían no llegar
+en días, meses, semanas o incluso años.
+
+Trabajamos hoy, pero no nos pagan hasta dentro de dos semanas, Estudiamos ahora pero no nos graduaremos hasta dentro de 4 años.
+
+Innovaciones en ciencia y tecnología han mi nuestro riesgo inmediato y han hecho que actuar en favor de nuestro futuro sea una
+necesidad.
+
+El problema es que el cambio en nuestro entorno ha sucedido más rápido de lo que nuestro cerebros se pueden adaptar. Hemos
+evolucionado para preferir recompensas que son garantizadas en el presente sobre recompensas garantizadas en el futuro.
+
+Este es el porque depender de fuerza de voluntad para tomar la mejor decisión no funciona. Es la naturaleza humana gravitar hacia la
+opción que nos da satisfacción inmediata.
+
+** La paradoja de la gratificación inmediata
+Malos hábitos casi siempre se sienten bien en el momento pero mal en el futuro. Al contrario, los buenos hábitos se sienten
+mal o difíciles en el presente pero bien en el futuro.
+
+Se siente bien emborracharse el viernes en la noche, pero la mañana siguiente se siente como un martirio. Una rutina pesada del gym
+puede ser difícil en el momento pero te hace sentir calmado y revitalizado después.
+
+Siempre tienes que ser critico con conductas que te dan gratificación inmediata, porque es probable que sean perjudiciales en un futuro.
+
+#+begin_quote
+Casi siempre ocurre que cuando la consecuencia inmediata es favorable, las consecuencias posteriores son desastrosas y viceversa
+- Fréderic bastiat
+#+end_quote
+
+** El camino menos transitado
+La abundancia de recursos en la sociedad moderna junto con la llegada del /smartphone/ nos ha convertido en demonios desesperados por
+dopamina.
+
+Nosotros constantemente buscamos gratificación inmediata en forma de bocadillos azucarados o /likes/ en redes sociales y nuestro
+entorno es capaz de proveernos ambos de manera indefinida. Pero el camino menos transitado, y más gratificante es el camino
+de la gratificación con retraso.
+
+Individuos que pueden tolerar la gratificación con retraso son mejores respondiendo al estrés, tienen menos niveles de abuso de
+substancias y son menos propensos de ser obesos.
+
+El camino menos transitado, es el que requiere preservar a través de las dificultades del presente, sabiendo que te harán
+mejor en el futuro.
+
+** Date un capricho
+Algunos de los hábitos más poderosos, como leer y ejercitarse, puede tomar meses en dar resultados notorios.
+Para combatir la desmotivación y prolongar tu paciencia termina tus hábitos difíciles con un comportamiento que encuentres
+satisfactorio. Como por ejemplo recompensandote con un smoothie después de una sección de ejercicio.
+
+La única cosa que debes de tener en mente es que la recompensa debe reforzar la identidad que esta asociada con el hábito.
+Un smoothie saludable refuerza la identidad creada por hacer ejercicio; una persona saludable.
+
+Esta recompensa solo será necesaria hasta que empieces a alcanzar las recompensas a largo plazo de tus buenos hábitos.
+
+** Lleva registro de tu progreso
+El progreso es la forma más efectiva de motivación. Usa un registro de hábitos para registrar tu progreso y mantener la motivación
+de tus hábitos. Los indicadores visuales en aplicaciones de registro de hábitos harán los progresos más disfrutable.
+
+Estos disparadores visuales hacen el acto de hacer y mantener un hábito sea más satisfactorio.
+
+Aplicaciones de registro de hábitos también actúan como motivación para días en los que no quieras hacer tu hábito ya que
+hacerlo hará que tu racha termine.
+
+Por último, el registro de hábitos mueve tu atención de la meta final a el proceso que te llevará allí.
+
+** Nunca falles dos veces.
+Un truco mental simple para mantener hábitos es decirte a ti mismo que nunca fallaras dos veces.
+
+La vida esta llena de sorpresas y habrán situaciones en las cuales inevitablemente no puedas hacer tu hábito un día.
+El truco es no dejar que este descuido te detenga. La creación de hábitos no es un todo o nada.
+Cuando falles en hacer un hábito un día, concéntrate en no fallar al siguiente vez.
+
+Esta bien saltarte el gym de vez en cuando, pero no dejes que suceda dos veces seguidas.
+
+** Malo > nada
+Una mala rutina de ejercicio es infinitamente mejor que ninguna rutina. De hecho los días donde haces un hábito y no tienes ganas
+son los más importantes. Al hacerlo, te identificas a ti mismo como el tipo de persona que realiza un hábito X en las buenas y
+en las malas.
+
+Cualquiera puede hacer ejercicio cuando están bien descansados y se sienten con energía. Pero requiere un compromiso especial
+ir al gym con dos horas de sueño.
+
+Celebra los días en los que no tienes ganas de hacer un hábito, nos proveen de una oportunidad para fortalecer tu identidad
+deseada como ninguna otra.
+
+** Métricas ingenuas
+
+#+begin_quote
+Cuando una métrica se convierte en un objetivo, deja de ser una buena medición
+- Charles Goodheart
+#+end_quote
+
+Cuando se trata de llevar el registro de hábitos, mantén la imagen general de todo en mente. Si te obsesionas con las mediciones de
+tus hábitos puede que pierdas de vista la razón por la cual estas haciendo ese hábito en primer lugar.
+
+Elegir el peso como una medida de salud puede tener efectos no inadvertidos, particularmente si tienes comportamientos no sanos como
+tomar píldoras para bajar de peso o no comer para perderlo.
+
+Recuerda el porque de hacer tu hábito en primer lugar y no te obsesiones con las métricas.
+
+** Hazlo insatisfactorio
+El inverso de la cuarta ley de el cambio de comportamiento es hazlo insatisfactorio.
+
+Entre más dolorosa sea un comportamiento, más posibilidades hay de que sea evitado. El truco para parar nuestros malos hábitos es hacer
+que sus consecuencias ocurran lo más pronto posible.
