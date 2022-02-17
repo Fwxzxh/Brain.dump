@@ -27,6 +27,7 @@ Notas y sobre libros que le leído últimamente.
 #+end_quote
 - Sistemas Operativos (S. Tanenbaum)
 - [[file:Libros/AtomicHabits.org][Atomic Habits (James Clear)]]
+- [[file:Libros/HeadFirstC/HeadFirstC.org][Head First C (David Griffith & Dawn Griffiths)]]
 
 * Cursos
 #+begin_quote
@@ -46,6 +47,7 @@ Apuntes sobre distintos cursos que he tomado.
 Notas sobre algunas cosas interesantes (para mi)
 #+end_quote
 - [[file:Notas/NotasVarias.org][Notas varias]]
+
 * Lenguajes
 #+begin_quote
 Mi propio rincón con enfoque tipo [[https://learnxinyminutes.com/][Learn X in Y miutes]].

@@ -26,7 +26,7 @@ No importa donde estabas ayer, si no hacia adonde apuntas hoy.
 Trayectoria > Logros.
 #+end_quote
 
-* Las tres capas del cambio de comportamiento
+** Las tres capas del cambio de comportamiento
 Para hacer nuevos hábitos efectivamente, necesitas estar consciente de las tres capas del cambio de comportamiento.
 1. Identidad
 2. Proceso
@@ -57,14 +57,14 @@ maximizar los resultados y recompensas inmediatas mientras gastamos la mínima e
 
 Un proceso efectivo es manipular tu ambiente para que la energía necesaria para la conducta deseada sea menos que para la conducta no deseada.
 
-Es duro comer sano si tu refrigerado esta lleno de barras de chocolate. Pero si el refrigerador esta lleno de frutas y vegetales
+Es duro comer sano si tu refrigerador esta lleno de barras de chocolate. Pero si el refrigerador esta lleno de frutas y vegetales
 Comer una barra de chocolate requiere un viaje al supermercado.
 
 #+begin_quote
 Cada meta esta condenada a fallar si va en contra de la naturaleza humana.
 #+end_quote
 
-* los cuatro pasos de la formación de hábitos
+** los cuatro pasos de la formación de hábitos
 
 Hay cuatro pasos relacionados en la formación de cada hábito:
 - El Disparador ::
@@ -81,7 +81,7 @@ Si a alguna conducta le falta alguno de los pasos de arriba, no se volverá un h
 Si remueves el disparador, el hábito no empezará. Si reduces el deseo no estarás tan motivado a actuar.
 Si no respondes, no habrá respuesta, y si no hay recompensa o no es suficiente no repetirás esa conducta.
 
-* Las cuatro leyes de el cambio de comportamiento
+** Las cuatro leyes de el cambio de comportamiento
 Las cuatro leyes del cambio de comportamiento son un conjunto de principios para construir hábitos, estas son:
 1. Hazlo obvio --> Disparador.
 2. Hazlo atractivo --> Deseo.
@@ -220,7 +220,7 @@ Un pequeño cambio en lo que podemos ver puede llevar a un gran cambio en lo que
 #+end_quote
 
 ** Entorno > Disciplina
-Durante la guerra de Vietnam se descubrió que el 35& de los soldados de Estados Unidos probaron la heroína y el 20% eran adictos.
+Durante la guerra de Vietnam se descubrió que el 35% de los soldados de Estados Unidos probaron la heroína y el 20% eran adictos.
 Sin embargo, cuando regresaron solo el 5% se volvió a convertir en adictos dentro de un año y solo el 12% recayó en los siguientes
 tres años.
 
@@ -836,6 +836,6 @@ menos susceptible es al cambio.
 #+begin_quote
 Los hombres nacen suaves y flexibles; muertos, son rígidos y duros. Las plantas nacen tiernas y flexibles;
 muertas, son frágiles y secas. Así, quien es rígido e inflexible es un discípulo de la muerte.
-Quien es blando y flexible es un discípulo de la vida. Los duros y rígidos se romperán. El blando y flexible prevalecerá".
+Quien es blando y flexible es un discípulo de la vida. Los duros y rígidos se romperán. El blando y flexible prevalecerá.
 - Lau Tzu
 #+end_quote
