@@ -1,3 +1,499 @@
 #+TITLE: Head First C
 
 * Getting started with C
+** but what does a complete C program look like?
+- Para crear un programa necesitas escribir tu código en un archivo
+  - Normalmente terminan con la extensión =.c=.
+- Normalmente empiezan con un comentario.
+  - Este describe el propósito del código o programa
+- Luego viene la sección de =imports=
+  - C es un lenguaje muy pequeño y casi no puede hacer nada sin el uso de librerías externas
+  - Necesitas decirle al compilador que código externo usar con el uso de =header files=
+  - Un header común es =stdio.h= este contiene código que permite leer y escribir datos de
+    la terminal
+- Lo ultimo que verás en un archivo de c serán las funciones
+  - Todo el código en C corre dentro de funciones.
+  - La función más importante es llamada =main()=.
+    - Esta es el punto de inicio de todo el código en tu programa
+
+#+begin_src c
+/*
+ ,* Program to calculate the number of cards in the shoe.
+ ,* This code is released under the Vegas Public License.
+ ,* (c)2014, The College Blackjack Team.
+ ,*/
+
+#include <stdio.h>
+
+int main () {
+    int decks;
+    puts("Enter a number of decks");
+    scanf("%i", &decks);
+    if (decks < 1) {
+        puts("That is not a valid number of decks");
+        return 1
+    }
+    printf("There are %i cards\n", (decks * 52));
+    return 0
+}
+#+end_src
+
+*** La función =main=
+- La computadora empezará a correr el programa desde la función main
+  - El nombre es importante, debe de llamarse =main()=.
+- Esta tiene un tipo de retorno =return type= de entero (=int=).
+  - Esto es porque la computadora necesita tener un método de saber si tu programa ejecuto sin errores.
+    - La computadora sabe esto verificando el valor de retorno de la función =main=.
+  - Si el programa retorna 0, significa que el programa se ejecuto sin errores.
+  - Si le dices que retorne algún otro número, significa que hubo un problema.
+- El nombre de la función se escribe después del tipo de retorno.
+  - Si la función =main= necesitará algún parametro estos irían entre los parentesis =()=.
+  - Después viene el cuerpo de la función, el cual debe estar entre llaves ={}=.
+
+*** La función =printf=
+- Es usada para mostrar texto formateado en la terminal.
+- Reemplaza caracteres de formato con los valores de las variables.
+
+
+#+begin_src c
+printf("%s says the count is %s", "ben", 21);
+#+end_src
+
+- =%s= será insertado como un =string=.
+- =%i= será insertado como un =int=.
+- Y estos van en orden junto con los otros parametros
+  - ="ben"= siendo un =string=.
+  - =21= siendo un =int=.
+
+*** Ejemplo
+#+begin_src c
+// Program to evaluate face values.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    char card_name[3];
+    puts("Enter the card_name: ");
+    scanf("%2s", card_name); // leemos 2 caracteres
+    int val = 0;
+    if (card_name[0] == 'K') { // Obtenemos el primer caracter de card_name
+        val = 10;
+    } else if (card_name[0] == 'Q') {
+        val = 10;
+    } else if (card_name[0] == 'J') {
+        val = 10;
+    } else if (card_name[0] == 'A') {
+        val = 11;
+    } else {
+        val = atoi(card_name);
+    }
+
+
+    printf("The card value is: %i\n" val);
+    return 0;
+}
+#+end_src
+
+** But How do you run the program?
+- C es un lenguaje compilado
+  - Esto significa que necesitas convertir (compilar) el código a código maquina.
+  - Para hacer esto necesitas un programa llamado compilador.
+  - Uno de los más populares es gcc.
+
+
+Suponiendo que se guardo el programa anterior con el nombre =cards.c=:
+- Necesitamos escribir:
+  - =gcc cards.c -o cards=
+    - Esto dice: compila el archivo =cards.c= en un ejecutable llamado =cards=.
+  - ahora podemos correr el programa escribiendo =./cards=.
+- Podemos compilar y correr nuestro código en un solo comando haciendo:
+  - =gcc cards.c -o cards && ./cards=
+    - el =&&= básicamente dice "si se completa con éxito, haz esto otro".
+    - En un sistema windows podrías necesitar escribir =cards= solamente en lugar de =./cards=.
+
+*** Teoría de =Strings=
+C no tiene soporte para =strings= por defecto (esto porque es de más bajo nivel que otros lenguajes),
+así que tenemos que usar un arreglo de caracteres para simular un =string=.
+
+- Los =strings= son en esencia un arreglo de caracteres individuales.
+- De esta manera podemos referirnos a los caracteres de un =string= con su índice.
+
+C al ser de más bajo nivel que otros lenguajes no siempre puede saber el que tan largo un arreglo es.
+
+Si C va a escribir algo en la pantalla, necesita saber en donde termina este =string=, y lo hace usando
+un *carácter centinela*.
+
+Este carácter es un carácter al final del =string= que tiene el valor =\0=.
+Entonces cuando escribe carácter por carácter se va a detener cuando encuentre este centinela.
+
+#+begin_quote
+Se suele referir a este como  el caracter =null=.
+#+end_quote
+
+Si tenemos =s = "shatner"= C lo guarda en la memoria como =shatner\0=
+
+Esta es la razón por la que en nuestro código usamos =char card_name[3];=.
+Vamos a leer 2 caracteres, pero ponemos que nuestro arreglo es de 3 porque hacemos espacio para el centinela.
+
+**** =string literals= y arreglos
+
+- Los arreglos son numerados desde el 0 y no desde el 1 porque:
+  - El índice en C es un =offset= una compensación.
+    - La computadora va a guardar caracteres en bytes consecutivos de memoria.
+    - La computadora puede usar este índice para calcular la posición de un carácter en la memoria.
+      - Si =c[0]= esta en la posición de memoria =1000000=, C puede calcular que =c[96]= esta en =1000000 + 96=.
+- Debemos usar comillas simples =''= para los caracteres individuales y las comillas dobles =""= para los =strings literals=.
+  - Podemos usar estos como =strings= normales, pero estos son inmutables.
+    - Entonces no podemos cambiar el contenido de estos una vez son creados.
+      - Si lo hacemos obtendremos un error al compilar.
+
+*** Painless Operations
+En C, el símbolo de igual (=) es usado para asignaciones. pero un doble igual es usado para verificar igualdad.
+Pero tambien lo podemos usar para hacer operaciones
+
+#+begin_src c
+teeth = 4; // asignación
+teeth == 4; // igualdad
+teeth += 2; // Sumar dos a teeth
+teeth -+ 2; // Sestar dos a teeth
+theeth ++; // Incrementar teeth 1
+theeth --; // Decrementar teeth 1
+#+end_src
+
+** Dos tipos de comandos
+Hasta ahora cada comando que se ha visto cae en una de dos categorías:
+
+*** Haz algo
+La mayoría de los comandos en C son expresiones. Estos *hacen* cosas y nos *dicen* cosas.
+
+#+begin_src c
+split_hand(); // <- expresión simple
+#+end_src
+
+A veces agrupamos expresiones juntas para crear un *bloque* y estos están entre llaves.
+
+#+begin_src c
+{
+    deal_first_card();
+    deal_second_card();
+    cards_in_hand = 2;
+}
+#+end_src
+
+*** Haz algo *solo si* algo más es verdadero
+Expresiones de control como el =if= verifican una condición antes de correr el código.
+
+#+begin_src c
+if (value_of_hand <= 16) // Condición
+    hit(); // Esta expresión correrá si la condición es verdadera.
+else
+    stand(); // Corre esta expresión si la condición es falsa.
+#+end_src
+
+Si una expresión =if= necesita hacer más de una cosa, podemos agregar las llaves para hacer un bloque
+
+#+begin_src c
+if (dealer_card == 5) {
+    double_down();
+    hit();
+}
+#+end_src
+
+** There's more to booleans than equals
+Hay ocasiones en las cuales queremos ver si varios elementos son verdaderos
+
+*** =&&= verifica si dos condiciones son verdaderas
+El operador =&&= retorna verdadero, solo si *ambas* condiciones dadas son verdaderas.
+
+#+begin_src c
+if ((dealer_up_card == 6) && (hand == 11))
+    double_down();
+#+end_src
+
+Si la primera condición es verdadera, entonces se evalúa la segunda. Si este no fuera el caso,
+la computadora no evalúa la segunda.
+
+*** =||= Evalúa si una de las condiciones es verdadera
+El operador =or= (=||=) retorna verdadero si *cualquiera* de las condiciones dadas es verdadera.
+
+#+begin_src c
+if (cupcakes_in_fridge || chips_on_table)
+    eat_food();
+#+end_src
+
+*** =!=  Invierte el resultado de la condición
+=!=  es el operador =not=, este invierte el resultado de una condición.
+
+#+begin_src c
+if (!brad_on_phone)
+    answer_phone();
+#+end_src
+
+*** booleanos
+En C los valores booleanos son representados con números, Para C el número 0 es falso y cualquier
+número que no sea 0 es tratado como verdadero.
+
+Así que código como el siguiente funciona.
+
+#+begin_src c
+int people_moshing = 35;
+if (people_moshing)
+    take_off_glases();
+#+end_src
+
+En C también podemos usar =|= y =&= en lugar de =||= y =&&=, pero estos *siempre* evalúan ambas condiciones, mientras que
+los otros puede saltarse evaluar la segunda condición.
+
+Los operadores =| y &= existen porque hacen operaciones de bit a bit en los bits individuales de un número
+por ejemplo:
+
+=6 & 4= es igual a 4 ya que si verificamos que bits binarios tienen en común 6 (110 en binario) y 4 (100 en binario) obtenemos (100).
+
+** Pulling the ol' switcheroo
+A veces cuando escribimos lógica condicional, necesitamos verificar el valor de la misma variable
+más de una vez, para evitar tener muchos =if= tenemos el =switch=
+
+#+begin_src c
+switch (train) {
+    case 37:
+        winnings = winnings + 50;
+        break;
+    case 65:
+        winnings = winnings + 80;
+        break;
+    case 12:
+        winnings = winnings + 20;
+        break;
+    default:
+        winnings = 0;
+}
+#+end_src
+
+Cuando la computadora llega a un =switch= verifica el valor que se le dio y busca un caso que se sea igual.
+Cuando lo encuentra, corre *todo* el código que sigue partir de allí en adelante hasta que se encuentre un =break=
+
+No debemos olvidar poner =breaks= cuando los necesitamos porque nuestro código podría no funcionar como queremos.
+
+** Sometimes once is not enough
+*** Usando ciclos =while= en C
+Ciclos son un tipo especial de sentencias de control. Un ciclo decide cuantas veces una pieza de código
+será ejecutada.
+
+El ciclo más básico de C es el ciclo =while=. Este ejecuta código una vez tras otra mientras una condición
+sea verdadera.
+
+#+begin_src c
+while (<some condition>) { // <- Verifica la condición antes de correr el bloque
+    // Haz algo aqui // <- Si hay una sola linea en el cuerpo no necesitas las llaves.
+} // <- Cuando la computadora llega al final del bloque vuelve a verificar si la condicón es verdadera.
+#+end_src
+
+*** =do while=
+Hay una variación de el ciclo =while= que verifica la condición del loop después de ejecutar el codigo.
+
+Por lo tanto el código es ejecutado al menos una vez.
+
+#+begin_src c
+do {
+    // Algo
+} while (have_not_won);
+#+end_src
+
+** Los ciclos a veces siguen la misma estructura
+- Hacer algo simple antes del ciclo, como poner un contador
+- Tener una condición simple en el ciclo.
+- Hacer algo al final del ciclo, como actualizar un contador.
+
+#+begin_src c
+int counter = 1;
+while (counter < 11) {
+    printf("%i green bottles, hanging on a wall\n", counter);
+    counter++;
+}
+#+end_src
+
+*** El ciclo =for=
+Los diseñadores de c crearon el ciclo =for= para hacer esta estructura más consisa.
+
+Este es el mismo ejemplo de arriba con un ciclo =for=
+
+#+begin_src c
+int counter;
+for (counter = 1; counter < 11; counter++){
+    printf("%i green bottles, hanging on a wall\n", counter);
+}
+#+end_src
+
+En el ciclo =for= inicializamos la variable del ciclo (=counter=1=).
+Damos una condición que debe de ser verificada (=counter < 11=)
+en cada iteración y tenemos un código que va a ser ejecutado al final (=counter++=).
+
+** Usas un =break= para salir
+Puedes crear ciclos que verifican una condición al inicio o al final de un bloque de código.
+Pero también podemos salir del ciclo con la palabra =break=.
+
+#+begin_src c
+while (feeling_hungry) {
+    eat_cake();
+    if (fealing_queasy) {
+        // Salimos del ciclo
+        break; // El break te saca del ciclo inmediatamente
+    }
+    drink_coffee();
+}
+#+end_src
+
+Los =breaks= te sacan del ciclo saltándose todo el código que siga dentro del bloque del ciclo.
+
+*** Usamos =continue= para continuar
+Si queremos saltarnos todo el código que sigue en el bloque e ir a la siguiente iteración.
+
+#+begin_src c
+while (feeling_hungry) {
+    eat_cake();
+    if (fealing_queasy) {
+        // Salimos del ciclo
+        continue; // lo usuamos para regresar al inicio del bloque de código
+    }
+    drink_coffee();
+}
+#+end_src
+
+** Escribiendo funciones
+Casi todas las funciones en C siguen el mismo formato, por ejemplo
+
+#+begin_src c
+#include <stdio.h>
+
+int larger (int a, int b) { // <- Recibe dos argumentos a y b
+    if (a > b)
+        return a;
+    return b;
+    }
+
+int main () {
+    int greatest = larger(100, 1000);
+    printf("%i is the largest!\n", greatest);
+    return 0;
+    }
+#+end_src
+
+- La función =larger= es diferente a =main= porque recibe dos argumentos.
+  - Un argumento es una variable local (solo pertenece ese bloque de código) que obtiene su valor de cuando se llama.
+  - La función =larger= toma como argumentos a y b que son enteros y estos deben de ser dados siempre.
+
+*** Funciones =void=
+A veces necesitamos crear funciones que no tienen nada útil que retornar, para esto esta el tipo =void=.
+Con este nuestras funciones no tienen que tener un =return=.
+
+#+begin_src c
+void complain() {
+    puts("I'm really not happy"); // :c
+}
+#+end_src
+
+En C la palabra =void= significa "no importa", cuando tu le digas al compilador que no te importa retornar un valor
+en tu función, no necesitaras un =return=.
+
+*** Encadenando sentencias
+Casi todo en C tiene un valor de retorno, no solo llamadas a funciones. De hecho cosas como asignaciones tienen valores
+de retorno. Por ejemplo
+
+#+begin_src c
+x = 4;
+#+end_src
+
+Asigna el número 4 a una variable. la parte interesante es que la expresión =x = 4= en *si misma* tiene el valor que será asignado
+4.
+
+Esto es importante porque significa que puedes encadenar asignaciones.
+
+#+begin_src c
+y = (x = 4); // Ahora y es 4 también.
+y = x = 4; // lo mismo que arriba.
+#+end_src
+
+Se usan sentencias encadenadas para asignar variables que tienen el mismo valor.
+
+* What are you pointing at?
+El lenguaje C te da mucho más control sobre como tu programa usa la memoria de la computadora de lo normal, es necesario
+saber como C maneja la memoria.
+** El código en C incluye Punteros
+Un *puntero* es solo la dirección de una pieza de información en la memoria.
+
+Los punteros son usados por unas cuantas razones:
+1. En lugar de pasar un copia de los datos, solo pasas el puntero de donde esta la información en memoria.
+2. Podríamos querer que dos trozos de código trabajen con la misma pieza de información en lugar de con una copia.
+
+** Escarbando en la memoria.
+Cada vez que se declara una variable, la computadora crea espacio en algún lugar de la memoria para estos datos.
+
+Si declaras una variable dentro de la función =main= la computadora la guardará en una sección de la memoria llamada
+la pila (=stack=).
+
+Si una variable es declarada afuera de *cualquier* función será guardada en la sección global (=globals=) de la memoria.
+
+La computadora podría asignar la dirección de memoria de 4,100,000 en la pila para la variable x, si en la variable x
+guardamos un 4 este se va a guardar en la misma dirección de memoria.
+
+Podemos saber la dirección de memoria de una variable con el operador =&=.
+
+#+begin_src c
+printf("x is stored at %p\n", &n); // &p es usado para dar formato a direcciones.
+#+end_src
+
+
+Dandonos algo como esto.
+
+#+begin_example
+x is stored at 0x3E8FA0
+#+end_example
+
+=0x3E8FA0= es 4,100,000 en formato hexadecimal (base 16).
+
+Esta seria la dirección de memoria en donde se guarda nuestra variable, se le llaman punteros porque apuntan a la variable
+en memoria.
+
+
+** Usando punteros de memoria
+Hay 3 cosas que debes de saber para usar punteros para leer y escribir datos.
+*** Obtener la dirección de memoria
+Podemos obtener la dirección de memoria de una variable con el operador =&=.
+
+#+begin_src c
+int x = 4;
+printf("x lives at %p\n", &x);
+#+end_src
+
+Pero ya que podemos acceder a la dirección de memoria debemos guardarla en algún lado,
+para eso necesitamos una *variable puntero*.
+
+Una variable puntero es una variable que guarda una dirección de memoria.
+
+Cuando declaramos una variable puntero, debemos decir de que tipo de dato esta guardado en esa dirección de memoria.
+
+#+begin_src c
+int *addres_of_x;
+#+end_src
+
+*** Leer los contenidos de la variable
+Cuando ya tienes la dirección de memoria guardada, querrás leer la información que esta allí, lo haces con el operador =*=.
+
+#+begin_src c
+int value_stored = *addres_of_x;
+#+end_src
+
+El operador =*= y =&= son opuestos.
+
+El operador =&= toma un pedazo de datos y te dice donde están guardados. Y el operador =*= toma una dirección y te dice
+que esta guardado allí.
+
+Los punteros a veces son llamados /referencias/, el operador =*= se dice que deferencia una asignación.
+
+*** Cambiar el contenido de una dirección
+Si tienes una variable puntero y quieres cambiar la información de la dirección podemos usar el operador =*= de nuevo.
+
+#+begin_src c
+*addres_of_x = 99;
+#+end_src

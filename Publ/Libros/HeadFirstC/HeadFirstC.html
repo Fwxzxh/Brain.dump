@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Head First C</title>
-<!-- 2022-02-17 Thu 00:45 -->
+<!-- 2022-02-25 Fri 01:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -195,7 +195,26 @@ $(function() {
 <div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
-<li><a href="#sec-1">1. Getting started with C</a></li>
+<li><a href="#sec-1">1. Getting started with C</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. but what does a complete C program look like?</a></li>
+<li><a href="#sec-1-2">1.2. But How do you run the program?</a></li>
+<li><a href="#sec-1-3">1.3. Dos tipos de comandos</a></li>
+<li><a href="#sec-1-4">1.4. There&rsquo;s more to booleans than equals</a></li>
+<li><a href="#sec-1-5">1.5. Pulling the ol&rsquo; switcheroo</a></li>
+<li><a href="#sec-1-6">1.6. Sometimes once is not enough</a></li>
+<li><a href="#sec-1-7">1.7. Los ciclos a veces siguen la misma estructura</a></li>
+<li><a href="#sec-1-8">1.8. Usas un <code>break</code> para salir</a></li>
+<li><a href="#sec-1-9">1.9. Escribiendo funciones</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. What are you pointing at?</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. El código en C incluye Punteros</a></li>
+<li><a href="#sec-2-2">2.2. Escarbando en la memoria.</a></li>
+<li><a href="#sec-2-3">2.3. Usando punteros de memoria</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -203,11 +222,954 @@ $(function() {
 
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> Getting started with C</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> but what does a complete C program look like?</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Para crear un programa necesitas escribir tu código en un archivo
+<ul class="org-ul">
+<li>Normalmente terminan con la extensión <code>.c</code>.
+</li>
+</ul>
+</li>
+<li>Normalmente empiezan con un comentario.
+<ul class="org-ul">
+<li>Este describe el propósito del código o programa
+</li>
+</ul>
+</li>
+<li>Luego viene la sección de <code>imports</code>
+<ul class="org-ul">
+<li>C es un lenguaje muy pequeño y casi no puede hacer nada sin el uso de librerías externas
+</li>
+<li>Necesitas decirle al compilador que código externo usar con el uso de <code>header files</code>
+</li>
+<li>Un header común es <code>stdio.h</code> este contiene código que permite leer y escribir datos de
+la terminal
+</li>
+</ul>
+</li>
+<li>Lo ultimo que verás en un archivo de c serán las funciones
+<ul class="org-ul">
+<li>Todo el código en C corre dentro de funciones.
+</li>
+<li>La función más importante es llamada <code>main()</code>.
+<ul class="org-ul">
+<li>Esta es el punto de inicio de todo el código en tu programa
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #6272a4; font-style: italic;">/*</span>
+<span style="color: #6272a4; font-style: italic;"> * Program to calculate the number of cards in the shoe.</span>
+<span style="color: #6272a4; font-style: italic;"> * This code is released under the Vegas Public License.</span>
+<span style="color: #6272a4; font-style: italic;"> * (c)2014, The College Blackjack Team.</span>
+<span style="color: #6272a4; font-style: italic;"> */</span>
+
+<span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;stdio.h&gt;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span> <span style="color: #61bfff; background-color: #282a36;">()</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">decks</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">puts</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"Enter a number of decks"</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">scanf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"%i"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>decks<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>decks <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">1</span><span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; background-color: #282a36;">{</span>
+        <span style="color: #bd93f9; font-weight: bold;">puts</span><span style="color: #50fa7b; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"That is not a valid number of decks"</span><span style="color: #50fa7b; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">1</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"There are %i cards\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #50fa7b; background-color: #282a36;">(</span>decks <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #8be9fd;">52</span><span style="color: #50fa7b; background-color: #282a36;">)</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> La función <code>main</code></h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>La computadora empezará a correr el programa desde la función main
+<ul class="org-ul">
+<li>El nombre es importante, debe de llamarse <code>main()</code>.
+</li>
+</ul>
+</li>
+<li>Esta tiene un tipo de retorno <code>return type</code> de entero (<code>int</code>).
+<ul class="org-ul">
+<li>Esto es porque la computadora necesita tener un método de saber si tu programa ejecuto sin errores.
+<ul class="org-ul">
+<li>La computadora sabe esto verificando el valor de retorno de la función <code>main</code>.
+</li>
+</ul>
+</li>
+<li>Si el programa retorna 0, significa que el programa se ejecuto sin errores.
+</li>
+<li>Si le dices que retorne algún otro número, significa que hubo un problema.
+</li>
+</ul>
+</li>
+<li>El nombre de la función se escribe después del tipo de retorno.
+<ul class="org-ul">
+<li>Si la función <code>main</code> necesitará algún parametro estos irían entre los parentesis <code>()</code>.
+</li>
+<li>Después viene el cuerpo de la función, el cual debe estar entre llaves <code>{}</code>.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> La función <code>printf</code></h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li>Es usada para mostrar texto formateado en la terminal.
+</li>
+<li>Reemplaza caracteres de formato con los valores de las variables.
+</li>
+</ul>
+
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"%s says the count is %s"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #f1fa8c;">"ben"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #8be9fd;">21</span><span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>%s</code> será insertado como un <code>string</code>.
+</li>
+<li><code>%i</code> será insertado como un <code>int</code>.
+</li>
+<li>Y estos van en orden junto con los otros parametros
+<ul class="org-ul">
+<li><code>"ben"</code> siendo un <code>string</code>.
+</li>
+<li><code>21</code> siendo un <code>int</code>.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Ejemplo</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #6272a4; font-style: italic;">// Program to evaluate face values.</span>
+
+<span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;stdio.h&gt;</span>
+<span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;stdlib.h&gt;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">card_name</span><span style="color: #ff79c6; background-color: #282a36;">[</span><span style="color: #8be9fd;">3</span><span style="color: #ff79c6; background-color: #282a36;">]</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">puts</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"Enter the card_name: "</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">scanf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"%2s"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> card_name<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// leemos 2 caracteres</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>card_name<span style="color: #50fa7b; background-color: #282a36;">[</span><span style="color: #8be9fd;">0</span><span style="color: #50fa7b; background-color: #282a36;">]</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">'K'</span><span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; background-color: #282a36;">{</span> <span style="color: #6272a4; font-style: italic;">// Obtenemos el primer caracter de card_name</span>
+        <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span> <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>card_name<span style="color: #50fa7b; background-color: #282a36;">[</span><span style="color: #8be9fd;">0</span><span style="color: #50fa7b; background-color: #282a36;">]</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">'Q'</span><span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; background-color: #282a36;">{</span>
+        <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span> <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>card_name<span style="color: #50fa7b; background-color: #282a36;">[</span><span style="color: #8be9fd;">0</span><span style="color: #50fa7b; background-color: #282a36;">]</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">'J'</span><span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; background-color: #282a36;">{</span>
+        <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span> <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>card_name<span style="color: #50fa7b; background-color: #282a36;">[</span><span style="color: #8be9fd;">0</span><span style="color: #50fa7b; background-color: #282a36;">]</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">'A'</span><span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; background-color: #282a36;">{</span>
+        <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">11</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span> <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; background-color: #282a36;">{</span>
+        <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">atoi</span><span style="color: #50fa7b; background-color: #282a36;">(</span>card_name<span style="color: #50fa7b; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span>
+
+
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"The card value is: %i\n"</span> val<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> But How do you run the program?</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>C es un lenguaje compilado
+<ul class="org-ul">
+<li>Esto significa que necesitas convertir (compilar) el código a código maquina.
+</li>
+<li>Para hacer esto necesitas un programa llamado compilador.
+</li>
+<li>Uno de los más populares es gcc.
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>
+Suponiendo que se guardo el programa anterior con el nombre <code>cards.c</code>:
+</p>
+<ul class="org-ul">
+<li>Necesitamos escribir:
+<ul class="org-ul">
+<li><code>gcc cards.c -o cards</code>
+<ul class="org-ul">
+<li>Esto dice: compila el archivo <code>cards.c</code> en un ejecutable llamado <code>cards</code>.
+</li>
+</ul>
+</li>
+<li>ahora podemos correr el programa escribiendo <code>./cards</code>.
+</li>
+</ul>
+</li>
+<li>Podemos compilar y correr nuestro código en un solo comando haciendo:
+<ul class="org-ul">
+<li><code>gcc cards.c -o cards &amp;&amp; ./cards</code>
+<ul class="org-ul">
+<li>el <code>&amp;&amp;</code> básicamente dice &ldquo;si se completa con éxito, haz esto otro&rdquo;.
+</li>
+<li>En un sistema windows podrías necesitar escribir <code>cards</code> solamente en lugar de <code>./cards</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Teoría de <code>Strings</code></h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+C no tiene soporte para <code>strings</code> por defecto (esto porque es de más bajo nivel que otros lenguajes),
+así que tenemos que usar un arreglo de caracteres para simular un <code>string</code>.
+</p>
+
+<ul class="org-ul">
+<li>Los <code>strings</code> son en esencia un arreglo de caracteres individuales.
+</li>
+<li>De esta manera podemos referirnos a los caracteres de un <code>string</code> con su índice.
+</li>
+</ul>
+
+<p>
+C al ser de más bajo nivel que otros lenguajes no siempre puede saber el que tan largo un arreglo es.
+</p>
+
+<p>
+Si C va a escribir algo en la pantalla, necesita saber en donde termina este <code>string</code>, y lo hace usando
+un <b>carácter centinela</b>.
+</p>
+
+<p>
+Este carácter es un carácter al final del <code>string</code> que tiene el valor <code>\0</code>.
+Entonces cuando escribe carácter por carácter se va a detener cuando encuentre este centinela.
+</p>
+
+<blockquote>
+<p>
+Se suele referir a este como  el caracter <code>null</code>.
+</p>
+</blockquote>
+
+<p>
+Si tenemos <code>s = "shatner"</code> C lo guarda en la memoria como <code>shatner\0</code>
+</p>
+
+<p>
+Esta es la razón por la que en nuestro código usamos <code>char card_name[3];</code>.
+Vamos a leer 2 caracteres, pero ponemos que nuestro arreglo es de 3 porque hacemos espacio para el centinela.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-2-1-1" name="sec-1-2-1-1"></a><code>string literals</code> y arreglos<br ><div class="outline-text-5" id="text-1-2-1-1">
+<ul class="org-ul">
+<li>Los arreglos son numerados desde el 0 y no desde el 1 porque:
+<ul class="org-ul">
+<li>El índice en C es un <code>offset</code> una compensación.
+<ul class="org-ul">
+<li>La computadora va a guardar caracteres en bytes consecutivos de memoria.
+</li>
+<li>La computadora puede usar este índice para calcular la posición de un carácter en la memoria.
+<ul class="org-ul">
+<li>Si <code>c[0]</code> esta en la posición de memoria <code>1000000</code>, C puede calcular que <code>c[96]</code> esta en <code>1000000 + 96</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Debemos usar comillas simples <code>''</code> para los caracteres individuales y las comillas dobles <code>""</code> para los <code>strings literals</code>.
+<ul class="org-ul">
+<li>Podemos usar estos como <code>strings</code> normales, pero estos son inmutables.
+<ul class="org-ul">
+<li>Entonces no podemos cambiar el contenido de estos una vez son creados.
+<ul class="org-ul">
+<li>Si lo hacemos obtendremos un error al compilar.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Painless Operations</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+En C, el símbolo de igual (=) es usado para asignaciones. pero un doble igual es usado para verificar igualdad.
+Pero tambien lo podemos usar para hacer operaciones
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffc9e8;">teeth</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">4</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// asignaci&#243;n</span>
+teeth <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">4</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// igualdad</span>
+<span style="color: #ffc9e8;">teeth</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #8be9fd;">2</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Sumar dos a teeth</span>
+teeth <span style="color: #ff79c6; font-style: italic;">-+</span> <span style="color: #8be9fd;">2</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Sestar dos a teeth</span>
+<span style="color: #ffc9e8;">theeth</span> <span style="color: #ff79c6; font-style: italic;">++</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Incrementar teeth 1</span>
+<span style="color: #ffc9e8;">theeth</span> <span style="color: #ff79c6; font-style: italic;">--</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Decrementar teeth 1</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Dos tipos de comandos</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Hasta ahora cada comando que se ha visto cae en una de dos categorías:
+</p>
+</div>
+
+<div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Haz algo</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+La mayoría de los comandos en C son expresiones. Estos <b>hacen</b> cosas y nos <b>dicen</b> cosas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #bd93f9; font-weight: bold;">split_hand</span><span style="color: #61bfff; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// &lt;- expresi&#243;n simple</span>
+</pre>
+</div>
+
+<p>
+A veces agrupamos expresiones juntas para crear un <b>bloque</b> y estos están entre llaves.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">deal_first_card</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">deal_second_card</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ffc9e8;">cards_in_hand</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">2</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Haz algo <b>solo si</b> algo más es verdadero</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+Expresiones de control como el <code>if</code> verifican una condición antes de correr el código.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff; background-color: #282a36;">(</span>value_of_hand <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #8be9fd;">16</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #6272a4; font-style: italic;">// Condici&#243;n</span>
+    <span style="color: #bd93f9; font-weight: bold;">hit</span><span style="color: #61bfff; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Esta expresi&#243;n correr&#225; si la condici&#243;n es verdadera.</span>
+<span style="color: #ff79c6; font-style: italic;">else</span>
+    <span style="color: #bd93f9; font-weight: bold;">stand</span><span style="color: #61bfff; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Corre esta expresi&#243;n si la condici&#243;n es falsa.</span>
+</pre>
+</div>
+
+<p>
+Si una expresión <code>if</code> necesita hacer más de una cosa, podemos agregar las llaves para hacer un bloque
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff; background-color: #282a36;">(</span>dealer_card <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">5</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">double_down</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">hit</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> There&rsquo;s more to booleans than equals</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Hay ocasiones en las cuales queremos ver si varios elementos son verdaderos
+</p>
+</div>
+
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> <code>&amp;&amp;</code> verifica si dos condiciones son verdaderas</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+El operador <code>&amp;&amp;</code> retorna verdadero, solo si <b>ambas</b> condiciones dadas son verdaderas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ff79c6; background-color: #282a36;">(</span>dealer_up_card <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">6</span><span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; font-style: italic;">&amp;&amp;</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>hand <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">11</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #61bfff; background-color: #282a36;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">double_down</span><span style="color: #61bfff; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+Si la primera condición es verdadera, entonces se evalúa la segunda. Si este no fuera el caso,
+la computadora no evalúa la segunda.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> <code>||</code> Evalúa si una de las condiciones es verdadera</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+El operador <code>or</code> (<code>||</code>) retorna verdadero si <b>cualquiera</b> de las condiciones dadas es verdadera.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff; background-color: #282a36;">(</span>cupcakes_in_fridge <span style="color: #ff79c6; font-style: italic;">||</span> chips_on_table<span style="color: #61bfff; background-color: #282a36;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">eat_food</span><span style="color: #61bfff; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3"><span class="section-number-4">1.4.3</span> <code>!</code>  Invierte el resultado de la condición</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+<code>!</code>  es el operador <code>not</code>, este invierte el resultado de una condición.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ff79c6; font-style: italic;">!</span>brad_on_phone<span style="color: #61bfff; background-color: #282a36;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">answer_phone</span><span style="color: #61bfff; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4"><span class="section-number-4">1.4.4</span> booleanos</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+En C los valores booleanos son representados con números, Para C el número 0 es falso y cualquier
+número que no sea 0 es tratado como verdadero.
+</p>
+
+<p>
+Así que código como el siguiente funciona.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">people_moshing</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">35</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff; background-color: #282a36;">(</span>people_moshing<span style="color: #61bfff; background-color: #282a36;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">take_off_glases</span><span style="color: #61bfff; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+En C también podemos usar <code>|</code> y <code>&amp;</code> en lugar de <code>||</code> y <code>&amp;&amp;</code>, pero estos <b>siempre</b> evalúan ambas condiciones, mientras que
+los otros puede saltarse evaluar la segunda condición.
+</p>
+
+<p>
+Los operadores <code>| y &amp;</code> existen porque hacen operaciones de bit a bit en los bits individuales de un número
+por ejemplo:
+</p>
+
+<p>
+<code>6 &amp; 4</code> es igual a 4 ya que si verificamos que bits binarios tienen en común 6 (110 en binario) y 4 (100 en binario) obtenemos (100).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Pulling the ol&rsquo; switcheroo</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+A veces cuando escribimos lógica condicional, necesitamos verificar el valor de la misma variable
+más de una vez, para evitar tener muchos <code>if</code> tenemos el <code>switch</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">switch</span> <span style="color: #61bfff; background-color: #282a36;">(</span>train<span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #8be9fd;">37</span>:
+        <span style="color: #ffc9e8;">winnings</span> <span style="color: #ff79c6; font-style: italic;">=</span> winnings <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">50</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+        <span style="color: #ff79c6; font-style: italic;">break</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #8be9fd;">65</span>:
+        <span style="color: #ffc9e8;">winnings</span> <span style="color: #ff79c6; font-style: italic;">=</span> winnings <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">80</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+        <span style="color: #ff79c6; font-style: italic;">break</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #8be9fd;">12</span>:
+        <span style="color: #ffc9e8;">winnings</span> <span style="color: #ff79c6; font-style: italic;">=</span> winnings <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #8be9fd;">20</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+        <span style="color: #ff79c6; font-style: italic;">break</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">default</span>:
+        <span style="color: #ffc9e8;">winnings</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+Cuando la computadora llega a un <code>switch</code> verifica el valor que se le dio y busca un caso que se sea igual.
+Cuando lo encuentra, corre <b>todo</b> el código que sigue partir de allí en adelante hasta que se encuentre un <code>break</code>
+</p>
+
+<p>
+No debemos olvidar poner <code>breaks</code> cuando los necesitamos porque nuestro código podría no funcionar como queremos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Sometimes once is not enough</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> Usando ciclos <code>while</code> en C</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+Ciclos son un tipo especial de sentencias de control. Un ciclo decide cuantas veces una pieza de código
+será ejecutada.
+</p>
+
+<p>
+El ciclo más básico de C es el ciclo <code>while</code>. Este ejecuta código una vez tras otra mientras una condición
+sea verdadera.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ff79c6; font-style: italic;">&lt;</span>some condition<span style="color: #ff79c6; font-style: italic;">&gt;</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span> <span style="color: #6272a4; font-style: italic;">// &lt;- Verifica la condici&#243;n antes de correr el bloque</span>
+    <span style="color: #6272a4; font-style: italic;">// Haz algo aqui // &lt;- Si hay una sola linea en el cuerpo no necesitas las llaves.</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span> <span style="color: #6272a4; font-style: italic;">// &lt;- Cuando la computadora llega al final del bloque vuelve a verificar si la condic&#243;n es verdadera.</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2"><span class="section-number-4">1.6.2</span> <code>do while</code></h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+Hay una variación de el ciclo <code>while</code> que verifica la condición del loop después de ejecutar el codigo.
+</p>
+
+<p>
+Por lo tanto el código es ejecutado al menos una vez.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">do</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// Algo</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span> <span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff; background-color: #282a36;">(</span>have_not_won<span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Los ciclos a veces siguen la misma estructura</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>Hacer algo simple antes del ciclo, como poner un contador
+</li>
+<li>Tener una condición simple en el ciclo.
+</li>
+<li>Hacer algo al final del ciclo, como actualizar un contador.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">counter</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff; background-color: #282a36;">(</span>counter <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">11</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"%i green bottles, hanging on a wall\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> counter<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ffc9e8;">counter</span><span style="color: #ff79c6; font-style: italic;">++</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-1" class="outline-4">
+<h4 id="sec-1-7-1"><span class="section-number-4">1.7.1</span> El ciclo <code>for</code></h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+Los diseñadores de c crearon el ciclo <code>for</code> para hacer esta estructura más consisa.
+</p>
+
+<p>
+Este es el mismo ejemplo de arriba con un ciclo <code>for</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">counter</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ffc9e8;">counter</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> counter <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">11</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #ffc9e8;">counter</span><span style="color: #ff79c6; font-style: italic;">++</span><span style="color: #61bfff; background-color: #282a36;">){</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"%i green bottles, hanging on a wall\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> counter<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+En el ciclo <code>for</code> inicializamos la variable del ciclo (<code>counter=1</code>).
+Damos una condición que debe de ser verificada (<code>counter &lt; 11</code>)
+en cada iteración y tenemos un código que va a ser ejecutado al final (<code>counter++</code>).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> Usas un <code>break</code> para salir</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+Puedes crear ciclos que verifican una condición al inicio o al final de un bloque de código.
+Pero también podemos salir del ciclo con la palabra <code>break</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff; background-color: #282a36;">(</span>feeling_hungry<span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">eat_cake</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>fealing_queasy<span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; background-color: #282a36;">{</span>
+        <span style="color: #6272a4; font-style: italic;">// Salimos del ciclo</span>
+        <span style="color: #ff79c6; font-style: italic;">break</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// El break te saca del ciclo inmediatamente</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span>
+    <span style="color: #bd93f9; font-weight: bold;">drink_coffee</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+Los <code>breaks</code> te sacan del ciclo saltándose todo el código que siga dentro del bloque del ciclo.
+</p>
+</div>
+
+<div id="outline-container-sec-1-8-1" class="outline-4">
+<h4 id="sec-1-8-1"><span class="section-number-4">1.8.1</span> Usamos <code>continue</code> para continuar</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+Si queremos saltarnos todo el código que sigue en el bloque e ir a la siguiente iteración.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff; background-color: #282a36;">(</span>feeling_hungry<span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">eat_cake</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>fealing_queasy<span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #ff79c6; background-color: #282a36;">{</span>
+        <span style="color: #6272a4; font-style: italic;">// Salimos del ciclo</span>
+        <span style="color: #ff79c6; font-style: italic;">continue</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// lo usuamos para regresar al inicio del bloque de c&#243;digo</span>
+    <span style="color: #ff79c6; background-color: #282a36;">}</span>
+    <span style="color: #bd93f9; font-weight: bold;">drink_coffee</span><span style="color: #ff79c6; background-color: #282a36;">()</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> Escribiendo funciones</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+Casi todas las funciones en C siguen el mismo formato, por ejemplo
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;stdio.h&gt;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">larger</span> <span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">a</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">b</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span> <span style="color: #6272a4; font-style: italic;">// &lt;- Recibe dos argumentos a y b</span>
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6; background-color: #282a36;">(</span>a <span style="color: #ff79c6; font-style: italic;">&gt;</span> b<span style="color: #ff79c6; background-color: #282a36;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">return</span> a<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> b<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #61bfff; background-color: #282a36;">}</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span> <span style="color: #61bfff; background-color: #282a36;">()</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">greatest</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">larger</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #8be9fd;">100</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #8be9fd;">1000</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"%i is the largest!\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> greatest<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La función <code>larger</code> es diferente a <code>main</code> porque recibe dos argumentos.
+<ul class="org-ul">
+<li>Un argumento es una variable local (solo pertenece ese bloque de código) que obtiene su valor de cuando se llama.
+</li>
+<li>La función <code>larger</code> toma como argumentos a y b que son enteros y estos deben de ser dados siempre.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-9-1" class="outline-4">
+<h4 id="sec-1-9-1"><span class="section-number-4">1.9.1</span> Funciones <code>void</code></h4>
+<div class="outline-text-4" id="text-1-9-1">
+<p>
+A veces necesitamos crear funciones que no tienen nada útil que retornar, para esto esta el tipo <code>void</code>.
+Con este nuestras funciones no tienen que tener un <code>return</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">complain</span><span style="color: #61bfff; background-color: #282a36;">()</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">puts</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"I'm really not happy"</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// :c</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+En C la palabra <code>void</code> significa &ldquo;no importa&rdquo;, cuando tu le digas al compilador que no te importa retornar un valor
+en tu función, no necesitaras un <code>return</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9-2" class="outline-4">
+<h4 id="sec-1-9-2"><span class="section-number-4">1.9.2</span> Encadenando sentencias</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<p>
+Casi todo en C tiene un valor de retorno, no solo llamadas a funciones. De hecho cosas como asignaciones tienen valores
+de retorno. Por ejemplo
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">4</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+Asigna el número 4 a una variable. la parte interesante es que la expresión <code>x = 4</code> en <b>si misma</b> tiene el valor que será asignado
+</p>
+<ol class="org-ol">
+<li></li>
+</ol>
+
+<p>
+Esto es importante porque significa que puedes encadenar asignaciones.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">4</span><span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Ahora y es 4 tambi&#233;n.</span>
+<span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">4</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// lo mismo que arriba.</span>
+</pre>
+</div>
+
+<p>
+Se usan sentencias encadenadas para asignar variables que tienen el mismo valor.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> What are you pointing at?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+El lenguaje C te da mucho más control sobre como tu programa usa la memoria de la computadora de lo normal, es necesario
+saber como C maneja la memoria.
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> El código en C incluye Punteros</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Un <b>puntero</b> es solo la dirección de una pieza de información en la memoria.
+</p>
+
+<p>
+Los punteros son usados por unas cuantas razones:
+</p>
+<ol class="org-ol">
+<li>En lugar de pasar un copia de los datos, solo pasas el puntero de donde esta la información en memoria.
+</li>
+<li>Podríamos querer que dos trozos de código trabajen con la misma pieza de información en lugar de con una copia.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Escarbando en la memoria.</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Cada vez que se declara una variable, la computadora crea espacio en algún lugar de la memoria para estos datos.
+</p>
+
+<p>
+Si declaras una variable dentro de la función <code>main</code> la computadora la guardará en una sección de la memoria llamada
+la pila (<code>stack</code>).
+</p>
+
+<p>
+Si una variable es declarada afuera de <b>cualquier</b> función será guardada en la sección global (<code>globals</code>) de la memoria.
+</p>
+
+<p>
+La computadora podría asignar la dirección de memoria de 4,100,000 en la pila para la variable x, si en la variable x
+guardamos un 4 este se va a guardar en la misma dirección de memoria.
+</p>
+
+<p>
+Podemos saber la dirección de memoria de una variable con el operador <code>&amp;</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"x is stored at %p\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>n<span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// &amp;p es usado para dar formato a direcciones.</span>
+</pre>
+</div>
+
+
+<p>
+Dandonos algo como esto.
+</p>
+
+<pre class="example">
+x is stored at 0x3E8FA0
+</pre>
+
+<p>
+<code>0x3E8FA0</code> es 4,100,000 en formato hexadecimal (base 16).
+</p>
+
+<p>
+Esta seria la dirección de memoria en donde se guarda nuestra variable, se le llaman punteros porque apuntan a la variable
+en memoria.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Usando punteros de memoria</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Hay 3 cosas que debes de saber para usar punteros para leer y escribir datos.
+</p>
+</div>
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> Obtener la dirección de memoria</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Podemos obtener la dirección de memoria de una variable con el operador <code>&amp;</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">4</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"x lives at %p\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>x<span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+Pero ya que podemos acceder a la dirección de memoria debemos guardarla en algún lado,
+para eso necesitamos una <b>variable puntero</b>.
+</p>
+
+<p>
+Una variable puntero es una variable que guarda una dirección de memoria.
+</p>
+
+<p>
+Cuando declaramos una variable puntero, debemos decir de que tipo de dato esta guardado en esa dirección de memoria.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">int</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">addres_of_x</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> Leer los contenidos de la variable</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Cuando ya tienes la dirección de memoria guardada, querrás leer la información que esta allí, lo haces con el operador <code>*</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">value_stored</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">*</span>addres_of_x<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+El operador <code>*</code> y <code>&amp;</code> son opuestos.
+</p>
+
+<p>
+El operador <code>&amp;</code> toma un pedazo de datos y te dice donde están guardados. Y el operador <code>*</code> toma una dirección y te dice
+que esta guardado allí.
+</p>
+
+<p>
+Los punteros a veces son llamados <i>referencias</i>, el operador <code>*</code> se dice que deferencia una asignación.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3"><span class="section-number-4">2.3.3</span> Cambiar el contenido de una dirección</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Si tienes una variable puntero y quieres cambiar la información de la dirección podemos usar el operador <code>*</code> de nuevo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">addres_of_x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">99</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-02-17 Thu 00:45</p>
+<p class="date">Created: 2022-02-25 Fri 01:49</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

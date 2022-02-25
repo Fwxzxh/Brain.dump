@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Brain.dump()</title>
+<title>Fundamentos de ingeniería de software</title>
 <!-- 2022-02-25 Fri 01:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -192,213 +192,186 @@ $(function() {
 </head>
 <body>
 <div id="content" class="container">
-<div class="row"><div class="col-md-12"><h1 class="title">Brain.dump()</h1>
-
-<figure>
-<p><img src="brain.png" class="img-responsive" alt="brain.png" align="left" style="margin-right:10px">
-</p>
-</figure>
-
-<p>
-Este es mi pequeño <i>Personal Knowledge Management System</i> en el cuál guardo
-todo lo que a mi cerebro le da pereza recordar, además de una que otra cosa más.
-</p>
-
-<blockquote>
-<p>
-“Personal knowledge management (PKM) is a collection of processes that a person uses to gather, classify,
-store, search, retrieve and share knowledge in their daily activities (Grundspenkis 2007)
-and the way in which these processes support work activities (Wright 2005).
-It is a response to the idea that knowledge workers need to be responsible for their own growth and learning (Smedley 2009).
-It is a bottom-up approach to knowledge management (KM) (Pollard 2008).” <a href="https://en.wikipedia.org/wiki/Personal_knowledge_management">Wikipedia</a>
-</p>
-</blockquote>
-
-<p>
-Emacs ha generado este sitio con la ayuda del glorioso Org-mode y <a href="https://github.com/marsmining/ox-twbs">ox-twbs</a>.
-Los archivos originales de este sitio pueden encontrarse en mi <a href="https://github.com/Fwxzxh/Brain.dump">GitHub</a>.
-</p>
-
-<hr >
-
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">libros</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
-<p>
-Notas y sobre libros que le leído últimamente.
-</p>
-</blockquote>
-<ul class="org-ul">
-<li>Sistemas Operativos (S. Tanenbaum)
-</li>
-<li><a href="Libros/AtomicHabits.html">Atomic Habits (James Clear)</a>
-</li>
-<li><a href="Libros/HeadFirstC/HeadFirstC.html">Head First C (David Griffith &amp; Dawn Griffiths)</a>
-</li>
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Cómo funcionan los correos electrónicos</a></li>
+<li><a href="#sec-2">2. Qué es un <code>system on a chip</code></a></li>
+<li><a href="#sec-3">3. Qué son Bits y bytes</a></li>
+<li><a href="#sec-4">4. Como funcionan los circuitos electrónicos</a></li>
 </ul>
 </div>
-</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Fundamentos de ingeniería de software</h1>
 
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Cursos</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Cómo funcionan los correos electrónicos</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-Apuntes sobre distintos cursos que he tomado.
+En orden:
 </p>
-</blockquote>
+<ol class="org-ol">
+<li>Señal del teclado al presionar enter.
+</li>
+<li>Tarjeta madre
+</li>
+<li>CPU
+</li>
+<li>Sistema operativo (Drivers)
+</li>
+<li>Navegador de internet (recibe el enter)
+</li>
+<li>Evento del Navegador (en javascript)
+</li>
+<li>Javascript va a encapsular todo en una API
+<ol class="org-ol">
+<li>Aplication Program Interface - una interfaz para computadoras.
+</li>
+<li>AJAX - Asyncronous JavaScript and XML.
 <ul class="org-ul">
-<li><a href="Cursos/WirelessEssentials/WirelessEssentialsMOC.html">Cisco Wireless Essentials</a> (TODO)
+<li>Podemos enviar cualquier cosa que queramos a un servidor sin recargar la página.
 </li>
-<li><a href="Cursos/Pract-ethic-hack/main.html">Practical Ethical Hacking</a>
-</li>
-<li><a href="Cursos/PythonDataStructures.html">Python Data Structures</a>
-</li>
-<li><a href="Cursos/TecnicalWriting.html">Tectical writing</a>
-</li>
-<li><a href="Cursos/BuenasPracticas.html">Buenas Practicas para escritura de código</a>
-</li>
-<li><a href="Cursos/BashScripting.html">Bash scripting</a>
-</li>
-<li><a href="Cursos/IntermPython.html">Intermediate Python</a>
-</li>
-<li><a href="Cursos/MvvmWpfXaml.html">Mvvm Wpf xaml</a>
-</li>
-<li><a href="Cursos/FundIngSoftware.html">Fundamentos Ing. de Software</a>
+<li>Ecapsulan JSON
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Notas generales</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
-<p>
-Notas sobre algunas cosas interesantes (para mi)
-</p>
-</blockquote>
+</li>
+<li>JSON - JavaScript Object Notation
+</li>
+<li>REST - Representational State Transfer
 <ul class="org-ul">
-<li><a href="Notas/NotasVarias.html">Notas varias</a>
+<li>El método de envio
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Lenguajes</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
-<p>
-Mi propio rincón con enfoque tipo <a href="https://learnxinyminutes.com/">Learn X in Y miutes</a>.
-</p>
-</blockquote>
+</li>
+<li>HTTP - Hypertext transfer protocol
 <ul class="org-ul">
-<li><a href="Lenguajes/SQL.html">SQL</a> (heavy)
-</li>
-<li><a href="Lenguajes/html.html">HTML</a>
-</li>
-<li><a href="Lenguajes/Csharp/Csharp.html">C#</a>
-</li>
-<li><a href="Lenguajes/Go/Go.html">Go</a>
-</li>
-<li><a href="Lenguajes/Fsharp/Fsharp.html">F#</a>
+<li>Protocolo de transferencia.
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Teoría</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
-<p>
-Teoría pura y <del>dura</del>.
-</p>
-</blockquote>
+</li>
+</ol>
+</li>
+<li>URLs
+<ol class="org-ol">
+<li><code>https://gmail.com/evias_email</code>
+</li>
+<li>https - Llave de cifrado con el servidor, permite una conexión segura.
+</li>
+<li>gmail.com - Dominio
 <ul class="org-ul">
-<li><a href="Teoria/DataStruct/DataStructures.html">Estructuras de datos</a>
+<li>DNS - Domain Name Server
 <ul class="org-ul">
-<li><a href="Teoria/DataStruct/Stack.html">Stack</a>
-</li>
-<li><a href="Teoria/DataStruct/Arrays.html">Arrays</a>
-</li>
-<li><a href="Teoria/DataStruct/Queues.html">Queues</a>
-</li>
-<li><a href="Teoria/DataStruct/PriorityQueues.html">Priority Queues</a>
-</li>
-<li><a href="Teoria/DataStruct/LinkedLists.html">Linked Lists</a>
-</li>
-<li><a href="Teoria/DataStruct/UnionFind.html">Union find</a>
+<li>Una base de datos que liga una IP a un nombre de dominio.
 </li>
 </ul>
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Anime-Manga</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
-<p>
-Porque soy un weeb de <i>cultura</i>.
-</p>
-</blockquote>
+</li>
+<li><code>/envias_email</code> - La instrución al servidor.
+</li>
+</ol>
+</li>
+<li>Servidor - Corriendo en Linux
+<ol class="org-ol">
+<li>Ethernet
+</li>
+<li>TCP/IP
+</li>
+<li>HTTP
+</li>
+<li>Servidores web (ngix, apache)
+</li>
+<li>Lenguaje de programación (java)
+</li>
+</ol>
+</li>
+<li>Base de datos
+<ol class="org-ol">
+<li>MySql, Postgres, Oracle
+</li>
+</ol>
+</li>
+<li>Servidor de correo
 <ul class="org-ul">
-<li>monas chinas
+<li>Protocolos de correo
+<ul class="org-ul">
+<li>SMTP - Simple Mail Transfer Protocol
+</li>
+<li>POP3 - Post Office Protocol
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Otras cosas</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
-<p>
-categorizar todo da <del>mucha</del> pereza.
-</p>
-</blockquote>
+</li>
+<li>Servidores de correo
 <ul class="org-ul">
-<li><a href="Otros/Recursos.html">Recursos</a>
+<li>PostFix
 </li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Personal</h2>
-<div class="outline-text-2" id="text-">
-<blockquote>
-<p>
-Notas literarias
-</p>
-</blockquote>
-<ul class="org-ul">
-<li>Salud
 </li>
 </ul>
+</li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-sec-" class="outline-2">
-<h2 id="sec-">Knowledge</h2>
-<div class="outline-text-2" id="text-">
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Qué es un <code>system on a chip</code></h2>
+<div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>Linux
+<li>La combinación de los diferentes componentes que hacen una computadora
+</li>
+<li>Se compone de:
 <ul class="org-ul">
-<li><a href="Knowledge/Linux/Rices.html">Cool things</a>
+<li>Bios: Arranca nuestro sistema.
 </li>
-<li><a href="Knowledge/Linux/Linux.html">Linux</a>
+<li>Ram: Se encarga de guardar rápidamente todos los datos a los que queremos acceder.
 </li>
-<li><a href="Knowledge/Linux/Emacs.html">Emacs</a>
+<li>CPU: Se encarga de procesar todo por dentro
+</li>
+<li>Chip de Radio: Controla las señales, wifi, bluetooh o celular.
+</li>
+<li>GPU: Se encarga de hacer la representación gráfica de nuestro sistema.
+</li>
+<li>Pelifericos: Es el medio entre nosotros y el sistema.
+</li>
+<li>Batería: Da energía al sistema y contiene su propio controlador.
 </li>
 </ul>
 </li>
 </ul>
 </div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Qué son Bits y bytes</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Todo viene de las ondas eléctricas.
+</li>
+<li>Descubrimos que podemos modularlas y usarlas para transmitir información
+</li>
+<li>Modulandolas podemos usarlas para representar 0s y 1s
+<ul class="org-ul">
+<li>Estos son los bits, las partes altas y bajas de las ondas.
+</li>
+</ul>
+</li>
+<li>IBM en los 50 definió el concepto de byte.
+<ul class="org-ul">
+<li>Un byte fue definido con 8 espacios (8 bits)
+</li>
+</ul>
+</li>
+<li>Bit: Unidad mínima de información 0s y 1s.
+</li>
+<li>Bytes: Compuestos por 8 Bits, cada uno tiene un valor posicional y corresponde a uno de los 8 primeros lugares
+de una tabla de sistema binario.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Como funcionan los circuitos electrónicos</h2>
 </div>
 </div></div></div>
 <footer id="postamble" class="">

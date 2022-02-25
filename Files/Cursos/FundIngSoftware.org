@@ -1,0 +1,65 @@
+#+TITLE: Fundamentos de ingeniería de software
+
+* Cómo funcionan los correos electrónicos
+En orden:
+1. Señal del teclado al presionar enter.
+2. Tarjeta madre
+3. CPU
+4. Sistema operativo (Drivers)
+5. Navegador de internet (recibe el enter)
+6. Evento del Navegador (en javascript)
+7. Javascript va a encapsular todo en una API
+   1. Aplication Program Interface - una interfaz para computadoras.
+   2. AJAX - Asyncronous JavaScript and XML.
+      - Podemos enviar cualquier cosa que queramos a un servidor sin recargar la página.
+      - Ecapsulan JSON
+   3. JSON - JavaScript Object Notation
+   4. REST - Representational State Transfer
+      - El método de envio
+   5. HTTP - Hypertext transfer protocol
+      - Protocolo de transferencia.
+8. URLs
+   1. =https://gmail.com/evias_email=
+   2. https - Llave de cifrado con el servidor, permite una conexión segura.
+   3. gmail.com - Dominio
+      - DNS - Domain Name Server
+        - Una base de datos que liga una IP a un nombre de dominio.
+   4. =/envias_email= - La instrución al servidor.
+9. Servidor - Corriendo en Linux
+   1. Ethernet
+   2. TCP/IP
+   3. HTTP
+   4. Servidores web (ngix, apache)
+   5. Lenguaje de programación (java)
+10. Base de datos
+    1. MySql, Postgres, Oracle
+11. Servidor de correo
+    - Protocolos de correo
+      - SMTP - Simple Mail Transfer Protocol
+      - POP3 - Post Office Protocol
+    - Servidores de correo
+      - PostFix
+
+* Qué es un =system on a chip=
+- La combinación de los diferentes componentes que hacen una computadora
+- Se compone de:
+  - Bios: Arranca nuestro sistema.
+  - Ram: Se encarga de guardar rápidamente todos los datos a los que queremos acceder.
+  - CPU: Se encarga de procesar todo por dentro
+  - Chip de Radio: Controla las señales, wifi, bluetooh o celular.
+  - GPU: Se encarga de hacer la representación gráfica de nuestro sistema.
+  - Pelifericos: Es el medio entre nosotros y el sistema.
+  - Batería: Da energía al sistema y contiene su propio controlador.
+
+* Qué son Bits y bytes
+- Todo viene de las ondas eléctricas.
+- Descubrimos que podemos modularlas y usarlas para transmitir información
+- Modulandolas podemos usarlas para representar 0s y 1s
+  - Estos son los bits, las partes altas y bajas de las ondas.
+- IBM en los 50 definió el concepto de byte.
+  - Un byte fue definido con 8 espacios (8 bits)
+- Bit: Unidad mínima de información 0s y 1s.
+- Bytes: Compuestos por 8 Bits, cada uno tiene un valor posicional y corresponde a uno de los 8 primeros lugares
+  de una tabla de sistema binario.
+
+* Como funcionan los circuitos electrónicos

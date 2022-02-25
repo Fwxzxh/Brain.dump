@@ -41,6 +41,7 @@ Apuntes sobre distintos cursos que he tomado.
 - [[file:Cursos/BashScripting.org][Bash scripting]]
 - [[file:Cursos/IntermPython.org][Intermediate Python]]
 - [[file:Cursos/MvvmWpfXaml.org][Mvvm Wpf xaml]]
+- [[file:Cursos/FundIngSoftware.org][Fundamentos Ing. de Software]]
 
 * Notas generales
 #+begin_quote
