@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Head First C</title>
-<!-- 2022-02-25 Fri 01:49 -->
+<!-- 2022-03-03 Thu 00:51 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -189,6 +189,32 @@ $(function() {
     $('.bs-docs-sidebar').affix();
 });
 </script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
 </head>
 <body>
 <div id="content" class="container">
@@ -213,6 +239,10 @@ $(function() {
 <li><a href="#sec-2-1">2.1. El código en C incluye Punteros</a></li>
 <li><a href="#sec-2-2">2.2. Escarbando en la memoria.</a></li>
 <li><a href="#sec-2-3">2.3. Usando punteros de memoria</a></li>
+<li><a href="#sec-2-4">2.4. Como pasar un <code>string</code> a una función</a></li>
+<li><a href="#sec-2-5">2.5. Variables arreglos son parecidos a los punteros</a></li>
+<li><a href="#sec-2-6">2.6. Ejemplo: Dating Game</a></li>
+<li><a href="#sec-2-7">2.7. Pero variables arreglo no son como punteros</a></li>
 </ul>
 </li>
 </ul>
@@ -1162,6 +1192,221 @@ Si tienes una variable puntero y quieres cambiar la información de la direcció
 <pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">addres_of_x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">99</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
 </pre>
 </div>
+
+<p>
+Solo debemos de tener en cuenta de usar el operador <code>*</code> del lado izquierdo del asignamiento.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Como pasar un <code>string</code> a una función</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Ya podemos pasar argumentos simples como enteros y booleanos, pero que pasa si queremos pasar algo más complejo,
+como un <code>string</code>.
+</p>
+
+<p>
+Los <code>strings</code> son cadenas de caracteres, así que podemos hacer lo siguiente:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">fortune_cookie</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">msg</span><span style="color: #ff79c6; background-color: #282a36;">[]</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"Message reads: %s\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> msg<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+
+<span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">quote</span><span style="color: #61bfff; background-color: #282a36;">[]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Cookies make you fat :c"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #bd93f9; font-weight: bold;">fortune_cookie</span><span style="color: #61bfff; background-color: #282a36;">(</span>quote<span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> Honey, who shrank the string?</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+C tiene un operador llamado <code>sizeof</code> que puede decirte cuantos bytes de espacio algo tiene en memoria.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ff79c6; font-style: italic;">sizeof</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ffb86c;">int</span><span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// &lt;- 4</span>
+<span style="color: #ff79c6; font-style: italic;">sizeof</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"Turtles!"</span><span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// 9 ya que son 8 caracteres m&#225;s el \0.</span>
+</pre>
+</div>
+
+<p>
+Algo extraño pasará si vemos la longitud de un <code>string</code> que pasamos a una función
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">fortune_cookie</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">msg</span><span style="color: #ff79c6; background-color: #282a36;">[]</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"Message reads: %s\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> msg<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"msg occupies %i bytes\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ff79c6; font-style: italic;">sizeof</span><span style="color: #50fa7b; background-color: #282a36;">(</span>msg<span style="color: #50fa7b; background-color: #282a36;">)</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Nos puede dar 4 u 8 bytes</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Variables arreglos son parecidos a los punteros</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Cuando creamos una variable arreglo, puede ser usada como un puntero al inicio de el arreglo en memoria.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">quote</span><span style="color: #61bfff; background-color: #282a36;">[]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"Cookies make you fat"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+La variable <code>quote</code> representará la dirección del primer carácter en el <code>string</code>.
+</p>
+
+<p>
+La computadora, apartara el espacio en el <code>stack</code> para cada uno de los caracteres en el <code>string</code> más el carácter <code>\0</code>,
+pero también asociará la dirección del primer carácter con la variable <code>quote</code>.
+</p>
+
+<p>
+Cada vez que llamemos a esa variable la computadora la <b>sustituirá con la dirección del primer carácter</b>, en el
+<code>string</code>.
+</p>
+
+<p>
+La variable arreglo es como un puntero.
+</p>
+
+<blockquote>
+<p>
+printf(&ldquo;The quote string is stored at: %p\n&rdquo;, quote); // Podemos usar quote como un puntero aunque sea un array
+</p>
+</blockquote>
+
+<p>
+Dando algo como esto:
+</p>
+
+<pre class="example">
+The quote string is stored at: 0x7fff69d4bdd7
+</pre>
+</div>
+
+<div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> Así que a nuestra función se le paso un puntero.</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+Esta es la razón porque <code>sizeof</code> nos daba un valor no esperado, estaba recibiendo un puntero.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">void</span> <span style="color: #50fa7b;">fortune_cookie</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">msg</span><span style="color: #ff79c6; background-color: #282a36;">[]</span><span style="color: #61bfff; background-color: #282a36;">)</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"Message reads: %s\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> msg<span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// msg apunta al mensaje.</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"msg occupies %i bytes\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ff79c6; font-style: italic;">sizeof</span><span style="color: #50fa7b; background-color: #282a36;">(</span>msg<span style="color: #50fa7b; background-color: #282a36;">)</span><span style="color: #ff79c6; background-color: #282a36;">)</span> <span style="color: #6272a4; font-style: italic;">// Nos dara&#225; el tama&#241;o del puntero</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+En un sistema operativo de 32 bits, un puntero usa 4 bytes y en uno de 64 toma 8 bytes de memoria.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-5-2" class="outline-4">
+<h4 id="sec-2-5-2"><span class="section-number-4">2.5.2</span> Operadores y funciones</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+<code>sizeof</code> es un operador, la diferencia entre un operador y una función es que el primero es compilado a una secuencia
+de instrucciones por el compilador. pero si el código llama a una función tiene que saltar a una pieza separada de
+código.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Ejemplo: Dating Game</h3>
+<div class="outline-text-3" id="text-2-6">
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;stdio.h&gt;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span> <span style="color: #61bfff; background-color: #282a36;">()</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">contestants</span><span style="color: #ff79c6; background-color: #282a36;">[]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; background-color: #282a36;">{</span><span style="color: #8be9fd;">1</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #8be9fd;">2</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #8be9fd;">3</span><span style="color: #ff79c6; background-color: #282a36;">}</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Creamos el arreglo con 3 elementos</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">choice</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffc9e8;">contestants</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// creamos una variable puntero apuntando al arreglo</span>
+    <span style="color: #ffc9e8;">contestants</span><span style="color: #ff79c6; background-color: #282a36;">[</span><span style="color: #8be9fd;">0</span><span style="color: #ff79c6; background-color: #282a36;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">2</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ffc9e8;">contestants</span><span style="color: #ff79c6; background-color: #282a36;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6; background-color: #282a36;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> contestants<span style="color: #ff79c6; background-color: #282a36;">[</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6; background-color: #282a36;">]</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ffc9e8;">contestants</span><span style="color: #ff79c6; background-color: #282a36;">[</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6; background-color: #282a36;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ff79c6; font-style: italic;">*</span>choice<span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// al leer la informaci&#243;n del puntero obtendremos el primer elemento del array.</span>
+    <span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #ff79c6; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"I'm going to pick contestant number %i\n"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> contestants<span style="color: #50fa7b; background-color: #282a36;">[</span><span style="color: #8be9fd;">2</span><span style="color: #50fa7b; background-color: #282a36;">]</span><span style="color: #ff79c6; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// ser&#225; el 2</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Pero variables arreglo no son como punteros</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+Podemos usar los arreglos como punteros pero hay algunas diferencias.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">s</span><span style="color: #61bfff; background-color: #282a36;">[]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"How big is it?"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ffb86c;">char</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">t</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffc9e8;">s</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7-1" class="outline-4">
+<h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> <code>sizeof(array)</code> es un el tamaño del arreglo</h4>
+<div class="outline-text-4" id="text-2-7-1">
+<p>
+Ya vimos que si hacemos <code>sizeof</code> de un arreglo obtendremos 4 u 8, pero si hacemos lo mismo con un arreglo,
+C nos dará el tamaño de ese arreglo
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">char</span> <span style="color: #ffc9e8;">s</span><span style="color: #61bfff; background-color: #282a36;">[]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"How b .."</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ff79c6; font-style: italic;">sizeof</span><span style="color: #61bfff; background-color: #282a36;">(</span>s<span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Nos dara la longitud del array</span>
+<span style="color: #ffb86c;">char</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffc9e8;">s</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ff79c6; font-style: italic;">sizeof</span><span style="color: #61bfff; background-color: #282a36;">(</span>p<span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Nos dar&#225; 4 u 8;</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-7-2" class="outline-4">
+<h4 id="sec-2-7-2"><span class="section-number-4">2.7.2</span> La dirección del arreglo es la dirección del arreglo</h4>
+<div class="outline-text-4" id="text-2-7-2">
+<p>
+Una variable puntero es <i>solo</i> una variable que guarda una dirección de memoria, pero si usamos el operador
+<code>&amp;</code> en un arreglo, el resultado es el arreglo en si mismo.
+</p>
+
+<pre class="example">
+&amp;s == s &amp;t != t
+</pre>
+
+<p>
+<code>&amp;s</code> es la dirección del arreglo <code>s</code>, y <code>&amp;t</code> es la dirección de la variable <code>t</code>
+</p>
 </div>
 </div>
 </div>
@@ -1169,7 +1414,7 @@ Si tienes una variable puntero y quieres cambiar la información de la direcció
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-02-25 Fri 01:49</p>
+<p class="date">Created: 2022-03-03 Thu 00:51</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

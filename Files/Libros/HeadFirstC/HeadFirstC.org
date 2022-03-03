@@ -497,3 +497,129 @@ Si tienes una variable puntero y quieres cambiar la información de la direcció
 #+begin_src c
 *addres_of_x = 99;
 #+end_src
+
+Solo debemos de tener en cuenta de usar el operador =*= del lado izquierdo del asignamiento.
+
+** Como pasar un =string= a una función
+Ya podemos pasar argumentos simples como enteros y booleanos, pero que pasa si queremos pasar algo más complejo,
+como un =string=.
+
+Los =strings= son cadenas de caracteres, así que podemos hacer lo siguiente:
+
+#+begin_src c
+void fortune_cookie(char msg[]) {
+    printf("Message reads: %s\n", msg);
+}
+
+char quote[] = "Cookies make you fat :c";
+fortune_cookie(quote);
+#+end_src
+
+*** Honey, who shrank the string?
+C tiene un operador llamado =sizeof= que puede decirte cuantos bytes de espacio algo tiene en memoria.
+
+#+begin_src c
+sizeof(int); // <- 4
+sizeof("Turtles!"); // 9 ya que son 8 caracteres más el \0.
+#+end_src
+
+Algo extraño pasará si vemos la longitud de un =string= que pasamos a una función
+
+#+begin_src c
+void fortune_cookie(char msg[]) {
+    printf("Message reads: %s\n", msg);
+    printf("msg occupies %i bytes\n", sizeof(msg)); // Nos puede dar 4 u 8 bytes
+}
+#+end_src
+
+
+** Variables arreglos son parecidos a los punteros
+Cuando creamos una variable arreglo, puede ser usada como un puntero al inicio de el arreglo en memoria.
+
+#+begin_src c
+char quote[] = "Cookies make you fat";
+#+end_src
+
+La variable =quote= representará la dirección del primer carácter en el =string=.
+
+La computadora, apartara el espacio en el =stack= para cada uno de los caracteres en el =string= más el carácter =\0=,
+pero también asociará la dirección del primer carácter con la variable =quote=.
+
+Cada vez que llamemos a esa variable la computadora la *sustituirá con la dirección del primer carácter*, en el
+=string=.
+
+La variable arreglo es como un puntero.
+
+#+begin_quote c
+printf("The quote string is stored at: %p\n", quote); // Podemos usar quote como un puntero aunque sea un array
+#+end_quote
+
+Dando algo como esto:
+
+#+begin_example
+The quote string is stored at: 0x7fff69d4bdd7
+#+end_example
+
+*** Así que a nuestra función se le paso un puntero.
+Esta es la razón porque =sizeof= nos daba un valor no esperado, estaba recibiendo un puntero.
+
+#+begin_src c
+void fortune_cookie(char msg[]) {
+    printf("Message reads: %s\n", msg); // msg apunta al mensaje.
+    printf("msg occupies %i bytes\n", sizeof(msg)) // Nos daraá el tamaño del puntero
+}
+#+end_src
+
+En un sistema operativo de 32 bits, un puntero usa 4 bytes y en uno de 64 toma 8 bytes de memoria.
+
+
+*** Operadores y funciones
+=sizeof= es un operador, la diferencia entre un operador y una función es que el primero es compilado a una secuencia
+de instrucciones por el compilador. pero si el código llama a una función tiene que saltar a una pieza separada de
+código.
+
+** Ejemplo: Dating Game
+
+#+begin_src c
+#include <stdio.h>
+
+int main () {
+    int contestants[] = {1, 2, 3}; // Creamos el arreglo con 3 elementos
+    int *choice = contestants; // creamos una variable puntero apuntando al arreglo
+    contestants[0] = 2;
+    contestants[1] = contestants[2];
+    contestants[2] = *choice; // al leer la información del puntero obtendremos el primer elemento del array.
+    printf("I'm going to pick contestant number %i\n", contestants[2]); // será el 2
+    return 0;
+    }
+#+end_src
+
+** Pero variables arreglo no son como punteros
+Podemos usar los arreglos como punteros pero hay algunas diferencias.
+
+#+begin_src c
+char s[] = "How big is it?";
+char *t = s;
+#+end_src
+
+*** =sizeof(array)= es un el tamaño del arreglo
+Ya vimos que si hacemos =sizeof= de un arreglo obtendremos 4 u 8, pero si hacemos lo mismo con un arreglo,
+C nos dará el tamaño de ese arreglo
+
+#+begin_src c
+char s[] = "How b ..";
+sizeof(s); // Nos dara la longitud del array
+char *p = s;
+sizeof(p); // Nos dará 4 u 8;
+#+end_src
+
+
+*** La dirección del arreglo es la dirección del arreglo
+Una variable puntero es /solo/ una variable que guarda una dirección de memoria, pero si usamos el operador
+=&= en un arreglo, el resultado es el arreglo en si mismo.
+
+#+begin_example
+&s == s &t != t
+#+end_example
+
+=&s= es la dirección del arreglo =s=, y =&t= es la dirección de la variable =t=
