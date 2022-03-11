@@ -623,3 +623,354 @@ Una variable puntero es /solo/ una variable que guarda una dirección de memoria
 #+end_example
 
 =&s= es la dirección del arreglo =s=, y =&t= es la dirección de la variable =t=
+
+*** Una variable arreglo no puede apuntar a ningún otro lado
+Cuando creamos un arreglo, la computadora asignará el espacio de memoria para guardar el
+arreglo, pero no guardará /ninguna/ memoria para guardar la variable arreglo.
+
+La computadora solo guarda la dirección de memoria al inicio del arreglo.
+
+*** Pointer decay
+Debido a estas diferencias debemos de ser cuidadosos al asignar arreglos a variables puntero.
+
+Si asignamos un arreglo a una variable puntero, entonces la variable solo tendrá la *dirección*
+del arreglo.
+
+El puntero no sabe nada sobre el tamaño del arreglo, así que se perdió un poco de información.
+
+A esto se le llama /pointer decay/ (deterioro de puntero)
+
+Cada vez que pasamos un arreglo a una función, deterioramos el arreglo a un puntero,
+
+Esto es inevitable, así que debemos saber donde hay deterioros así en nuestro código para
+evitar bugs.
+
+** Porque los arreglos realmente empiezan en 0
+Una variable arreglo puede ser usada como un puntero al primer elemento en un arreglo.
+
+Eso significa que puedes leer el primer elemento de un arreglo usando los corchetes =[]= o usando
+el operador =*=.
+
+#+begin_src c
+int drinks[] = {4, 2, 3};
+// Todas estas lineas son equivalentes
+printf("1st order: %i drinks\n", drinks[0]);
+printf("1st order: %i drinks\n", *drinks);
+#+end_src
+
+Pero porque las direcciones son solo un número, eso significa que podemos hacer /aritmética de punteros/
+y /sumar/ valores a una variable puntero para encontrar la siguiente dirección.
+
+En este caso, podemos usar los corchetes para leer el elemento con índice 2 o añadir 2 a la dirección del primer
+elemento.
+
+#+begin_src c
+printf("3rd order: %i drinks\n", drinks[2]);
+printf("3rd order: %i drinks\n", *(drinks + 2));
+#+end_src
+
+En general, las dos expresiones son equivalentes, es por eso que los arreglos empiezan en 0, El índice
+es solo el número que se le agrega al puntero para encontrar la dirección del elemento.
+
+** Los punteros tienen tipos
+La razón por lo que la aritmética de punteros tiene truco, es porque si tu sumas 1 a un puntero de caracteres,
+el puntero apuntará ahora a el siguiente carácter es porque un carácter ocupa *1 byte de memoria*.
+
+Si tenemos un puntero tipo =int=, estos usualmente toman 4 bytes de espacio, así que si sumamos 1 a un puntero
+tipo =int=, el código sumará 4 bytes a la dirección de memoria.
+
+Los tipos en los punteros sirven para que el compilador sepa cuando ajustar la aritmética de punteros.
+
+así que podemos hacer cosas como estas:
+
+#+begin_src c
+int doses[] = { 1, 3, 2, 1000 };
+// Todos los ejemplos de abajo son equivalentes.
+doses[3] == *(doses + 3) == *(3 + doses) == 3[doses]
+#+end_src
+
+** Usando punteros para entrada de datos
+Ya sabemos usar =scanf= para leer del teclado.
+
+#+begin_src c
+char name[40];
+printf("Enter your name: ");
+scanf("%39s", name); // el %39 hace que solo leamos 39 caracteres ya que el 40 es \0
+#+end_src
+
+=scanf= funciona cuando le damos una variable arreglo.
+
+Funciones que necesitan actualizar una variable no necesitan el valor de la variable en si, si no su *dirección*.
+
+*** Introduciendo números con =scanf=
+Para meter datos en un campo numérico le pasamos el puntero a una variable numérica.
+
+#+begin_src c
+int age;
+printf("Enter your age: ");
+scanf("%i", &age); // %i significa que leeremos números enteros, y le pasamos la dirección de memoria de la variable.
+#+end_src
+
+También podemos usar =scanf= para leer más de una pieza de información al mismo tiempo.
+
+#+begin_src c
+char fist_name[20];
+char last_name[20];
+printf("Enter first and last name: ");
+scanf("%19 %19", first_name, last_name); // Lee el primer nombre, luego un espacio y después el segundo nombre
+printf("First: %s last: %s\n", firt_name, last_name);
+#+end_src
+
+** Se cuidadoso con =scanf=
+=scanf= puede causar desbordamientos si no le ponemos un límite, como en el siguiente ejemplo.
+
+#+begin_src c
+char food[5]; // Guardamos 5 caracteres
+printf("Enter favorite food: ");
+scanf("%s", food); // No ponemos limite en la cantidad de caracteres a leer
+printf("Favorite food: %s\n", food);
+#+end_src
+
+Si en el código de arriba, damos una respuesta de más de 5 caracteres nuestro programa crasheara ya que =scanf=
+escribe más allá de los 5 caracteres asignados para el arreglo =food=.
+
+A esto se le llama =buffer overflow= y puede crashear nuestro programa o crear bugs.
+
+** =fgets()= como alternativa a =scanf=
+=fgets= es una función parecida a =scanf=, pero a diferencia de =scanf= debemos darle una longitud máxima.
+
+#+begin_src c
+char foodp[5];
+printf("Enter favorite food: ");
+fgets(food, sizeof(food), stdin);
+#+end_src
+
+=fgets= toma, un puntero, después el tamaño máximo a leer, y después de donde leer estos datos, en este caso de decimos =stdin=
+que es =standard input= o que lea del teclado.
+
+*** Usando =sizeof= con =fgets=
+En el código de arriba usamos =sizeof= para dar el tamaño.
+
+Debemos de ser cuidadosos con esto, ya que =sizeof= nos da la cantidad de espacio ocupado por una variable.
+
+En el ejemplo, usamos =sizeof= porque usado en un arreglo nos da el tamaño del arreglo, si =food= fuera un puntero normal
+a una variable =sizeof= nos daría el tamaño del puntero.
+
+#+begin_src c
+printf("Enter favorite food: ");
+fgets(food, 5, stdin);
+#+end_src
+
+Generalmente cuando queremos leer datos estructurados usamos =scanf= y si queremos leer un solo string sin estructura es más conveniente usar =fgets=.
+
+** En memoria
+
+Si tenemos un código como este:
+
+#+begin_src c
+#include <stdio.h>
+
+int main() {
+    char *cards = "JQK";
+    char a_card = cards[2];
+    cards[2] = cards[1];
+    cards[1] = cards[0];
+    cards[0] = cards[2];
+    cards[2] = cards[1];
+    cards[1] = a_card;
+    puts(cards);
+    return 0;
+}
+#+end_src
+
+obtendremos un error al correr el código, esto porque =cards= es un puntero a un =string= literal, y estos son inmutables.
+
+Lo que podríamos hacer es crear un arreglo con este =string= para que podamos modificarlo.
+
+#+begin_src c
+char cards[] = "JQK";
+#+end_src
+
+Para entender que pasa debemos saber como c y la computadora manejan la memoria.
+
+*** La computadora carga el =string= literal
+Cuando la computadora carga el programa en memoria, pone todas las constantes en un bloque de memoria inmutable,
+allí es donde esta "JQK".
+
+Esta sección es de solo lectura.
+
+*** El programa crea la variable =cards= en el =stack=.
+El =stack= (la pila), es la sección de memoria que la computadora usa para variables locales.
+
+Las variables localese son variables dentro de funciones, la variable =cards= estará allí.
+
+*** La variable =cards= le es asignada la dirección de memoria de "JQK"
+la variable =cards= contiene la dirección de memoria del =string= "JQK".
+
+Esta dirección de memoria pertenece a la memoria de solo lectura.
+
+*** La computadora trata de cambiar el =string=
+Cuando el programa intenta cambiar el contenido de el =string= al cual apunta la
+variable =cards= no puede, es de solo lectura.
+
+** Si vas a cambiar un =string=, haz una copia
+Siempre que queramos cambiar los contenidos de un =string= debemos cambiar una copia.
+
+Para crear una copia, creamos un nuevo =string= como un arreglo.
+
+#+begin_src c
+char cards[] = "JQK";
+#+end_src
+
+***  =cards[]= o =cards*=
+Si vemos una declaración así, que significa realmente?
+
+#+begin_src c
+char cards[]
+#+end_src
+
+Depende de donde la veamos.
+
+Si es una declaración de variable normal, Entonces significa que =cards= es un arreglo,
+y debemos asignarle un valor inmediatamente ya que no le dimos el tamaño:
+
+#+begin_src c
+int my_function() {
+    char cards[] = "JQK";
+}
+#+end_src
+
+Pero si =cards= es declarado como un argumento de una función, significa que =cards= es un puntero.
+
+#+begin_src c
+void stack_deck(char cards[]) { // <- cards es un puntrero
+    // .....
+}
+
+void stack_deck(char *cards) { // Estas dos funciones son equivalentes.
+    // ...
+}
+#+end_src
+
+** Que sucede en memoria
+Con el nuevo código, nuestro programa manejara la memoria de manera diferente.
+
+*** La computadora carga el =string= literal
+La computadora carga el programa y guarada "JQK" en la memoria de solo lectura.
+
+*** El programa crea un nuevo arreglo en el =stack=
+Declaramos un arreglo, así que nuestro programa creara uno del tamaño
+necesario para guardar el =string= "JQK".
+
+*** El programa inicializa el arreglo
+Además de asignar el espacio la computadora también copia el contenido del =string=
+literal "JQK".
+
+** Recordando como funciona la memoria
+*** =Stack= (pila)
+Esta sección de memoria es usada para guardar variables locales.
+
+Cada vez que llamamos a una función, todas las variables son creadas en el =stack=.
+
+Se llama =stack= porque funciona como una pila, las variables son añadidas una a una cuando
+se entras a una función y son retiradas de este cuando sales.
+
+*** =Heap= (montículo)
+La =heap= es para memoria dinámica, datos que son creados cuando el programa esta corriendo
+y se quedan allí por un tiempo.
+
+
+*** Globales
+Una variable global son variables que viven afuera de las funciones, y por lo tanto
+son visibles para todas ellas.
+
+Estas son creadas cuando el programa corre al principio y pueden ser editadas.
+
+*** Constantes
+Las constantes también son creadas cuando el programa corre al principio,
+pero están en memoria de solo lectura.
+
+*** Código
+La mayoría de los sistemas operativos ponen el código en las direcciones de memoria
+más bajas.
+
+El segmento de código es de solo lectura. Esta es la parte de la memoria
+donde el código ensamblado se carga.
+
+* Teoría de =strings=
+Ya sabemos que los =strings= en C son solo arreglos de caracteres, pero para hacer cosas
+útiles con ellos necesitamos =string.h=.
+
+Este es parte de la librería estándar de C y se dedica a la manipulación de =strings=.
+
+** Creando un arreglo de arreglos
+En una situación donde queremos guardar muchos strings podemos usar un arreglo de arreglos.
+Sabiendo que cada =string= es un array de caracteres.
+
+#+begin_src c
+char tracks[][80] = {
+    "I left my heart in Harvard Med School",
+    "Newark, Newark - a wonderful town",
+    "Dancing with dork",
+    "From here to maternity",
+};
+#+end_src
+
+En el código anterior, el primer par de corchetes representa el arreglo de todos
+los =strings=, y el segundo es la cantidad de caracteres que tiene cada =string=.
+
+De esta manera podemos encontrar un =string= arbitrario así:
+
+#+begin_src c
+tracks[4] -> "The girl from Iwo Jima"
+#+end_src
+
+pero también podemos obtener los caracteres individuales de cada =string=
+de la siguiente manera:
+
+#+begin_src c
+tracks[4][6] -> 'r'
+#+end_src
+
+** Encontrando =strings= que contienen una búsqueda
+La librería estándar de C es un conjunto de código que obtienes al instalar un compilador
+de C. La librería de código hace cosas útiles como abrir archivos, hacer matemáticas o
+manejar memoria.
+
+Esta librería esta dividida en muchas secciones, cada una tiene un *header* (cabecera).
+
+Esta cabecera lista todas las funciones que viven en una sección particular de la librería.
+
+Hemos usado la cabecera =stdio.h= que contiene funciones para la entrada/salida de datos,
+como =printf= y =scanf=.
+
+La librería estándar contiene código para procesar y manipular =strings=,
+para acceder a este debemos de agregarla al inicio de nuestro programa de la siguiente
+manera:
+
+#+begin_src c
+#include <stdio.h>
+#include <string.h> // <- Agregamos esta linea para usar sus funciones.
+#+end_src
+
+** Usando la función =strstr()=
+Digamos que queremos buscar la palabra "fun" en "dysfunctional":
+
+#+begin_src c
+strstr("dysfunctional", "fun");
+#+end_src
+
+La función buscará el segundo =string= en el primero, cuando lo encuentre retorna la dirección
+del =string= en memoria.
+
+Si =strstr= no puede encontrar el =string= retornará el valor 0.
+
+Ya que 0 para C es equivalente a =false=, podemos usar esta función para verificar la
+existencia de un =string= dentro de otro.
+
+#+begin_src c
+char s0[] = "dysfunctional";
+char s1[] = "fun";
+if (strstr(s0, s1))
+    puts("I found the fun in dysfunctional");
+#+end_src
