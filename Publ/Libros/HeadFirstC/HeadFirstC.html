@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Head First C</title>
-<!-- 2022-03-11 Fri 01:17 -->
+<!-- 2022-03-23 Wed 22:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -259,6 +259,15 @@ MathJax.Hub.Config({
 <li><a href="#sec-3-1">3.1. Creando un arreglo de arreglos</a></li>
 <li><a href="#sec-3-2">3.2. Encontrando <code>strings</code> que contienen una búsqueda</a></li>
 <li><a href="#sec-3-3">3.3. Usando la función <code>strstr()</code></a></li>
+<li><a href="#sec-3-4">3.4. Arreglo de arreglos vs arreglo de punteros</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Haz una cosa y hazla bien</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Pequeñas herramientas pueden resolver problemas grandes</a></li>
+<li><a href="#sec-4-2">4.2. Errores estándar</a></li>
+<li><a href="#sec-4-3">4.3. Por defecto el error estándar es mandado a la pantalla.</a></li>
+<li><a href="#sec-4-4">4.4. <code>fprintf()</code> imprime un <code>stream</code> de datos.</a></li>
 </ul>
 </li>
 </ul>
@@ -2089,11 +2098,111 @@ existencia de un <code>string</code> dentro de otro.
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Arreglo de arreglos vs arreglo de punteros</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Otra opción a un arreglo de arreglos, es un arreglo de punteros, este es un arreglo de
+direcciones de memoria, este es útil para crear un una lista de <code>strings</code> literales.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #ffb86c;">char</span> <span style="color: #ff79c6; font-style: italic;">*</span>names_for_dog<span style="color: #61bfff; background-color: #282a36;">[]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff; background-color: #282a36;">{</span><span style="color: #f1fa8c;">"Bowser"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #f1fa8c;">"Bonza"</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #f1fa8c;">"Snodgrass"</span><span style="color: #61bfff; background-color: #282a36;">}</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Haz una cosa y hazla bien</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Cada sistema operativo incluye herramientas pequeñas.
+</p>
+
+<p>
+Pequeñas herramientas escritas en C hacen pequeñas tareas especializadas a lo largo del sistema operativo.
+</p>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Pequeñas herramientas pueden resolver problemas grandes</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+La mayoría de sistemas operativos vienen con un gran conjunto de pequeñas herramientas que puedes usar desde
+la terminal (como linux), cuando tenemos un problema grande que debemos resolver, podemos partirlo en una
+serie de pequeños problemas y escribir una serie de pequeñas herramientas para resolverlos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Errores estándar</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+La salida estándar es la manera por defecto de salida de datos de un programa, pero no nos deja manejar
+errores de manera flexible.
+</p>
+
+<p>
+Para esto tenemos el error estándar, este es una segunda salida de datos creada para el manejo de errores.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Por defecto el error estándar es mandado a la pantalla.</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+El sistema operativo crea el error estándar al mismo tiempo y de la misma manera que la salida estándar.
+</p>
+
+<p>
+Esto significa que cuando redireccionamos la salida estándar de nuestro programa para que podamos redirigir
+la salida a un archivo,  el error estándar seguirá mandando los errores a la pantalla.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> <code>fprintf()</code> imprime un <code>stream</code> de datos.</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+Ya sabemos que <code>printf()</code> manda información a la salida estándar, pero lo que no sabemos es que <code>printf()</code> es
+una versión de otra función más general llamada <code>fprint()</code>.
+</p>
+
+<p>
+Los dos ejemplos siguientes son equivalentes:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #bd93f9; font-weight: bold;">printf</span><span style="color: #61bfff; background-color: #282a36;">(</span><span style="color: #f1fa8c;">"I like Tultles"</span><span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// Cuando llamamos a printf en realidad llamamos a fprintf</span>
+<span style="color: #bd93f9; font-weight: bold;">fprintf</span><span style="color: #61bfff; background-color: #282a36;">(</span>stdout<span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #f1fa8c;">"I like Tultles"</span><span style="color: #61bfff; background-color: #282a36;">)</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// stdout es la salida est&#225;ndar</span>
+</pre>
+</div>
+
+<p>
+Esta función nos permite elegir a donde queremos mandar el texto, podemos usar la <code>stdout</code> (salida estándar)
+o la <code>stderr</code> (error estándar).
+</p>
+
+<p>
+También existe <code>fscanf</code> que es la función que es llamada cuando usamos <code>scanf</code>, allí leemos de <code>stdin</code> (entrada estándar).
+</p>
+
+<p>
+Así como podemos redirigir la salida de nuestro programa a un archivo de texto haciendo <code>./programa &gt; text.txt</code>,
+podemos redirigir el error estándar haciendo <code>./programa 2&gt; text.txt</code>
+</p>
+</div>
+</div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-03-11 Fri 01:17</p>
+<p class="date">Created: 2022-03-23 Wed 22:49</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

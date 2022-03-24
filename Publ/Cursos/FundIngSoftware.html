@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Fundamentos de ingeniería de software</title>
-<!-- 2022-02-25 Fri 01:49 -->
+<!-- 2022-03-23 Wed 22:48 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -195,18 +195,53 @@ $(function() {
 <div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
-<li><a href="#sec-1">1. Cómo funcionan los correos electrónicos</a></li>
-<li><a href="#sec-2">2. Qué es un <code>system on a chip</code></a></li>
-<li><a href="#sec-3">3. Qué son Bits y bytes</a></li>
-<li><a href="#sec-4">4. Como funcionan los circuitos electrónicos</a></li>
+<li><a href="#sec-1">1. Computación, procesadores y memoria</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Cómo funcionan los correos electrónicos</a></li>
+<li><a href="#sec-1-2">1.2. Qué es un <code>system on a chip</code></a></li>
+<li><a href="#sec-1-3">1.3. Qué son Bits y bytes</a></li>
+<li><a href="#sec-1-4">1.4. Como funcionan los circuitos electrónicos</a></li>
+<li><a href="#sec-1-5">1.5. Procesadores y arquitecturas de CPU</a></li>
+<li><a href="#sec-1-6">1.6. Qué es la memoria RAM y cómo funcionan los discos duros.</a></li>
+<li><a href="#sec-1-7">1.7. GPUs</a></li>
+<li><a href="#sec-1-8">1.8. Pelifericos y sistemas de entrada de información</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Cómo funciona Internet</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Introducción a las redes, protocolos e internet</a></li>
+<li><a href="#sec-2-2">2.2. Puertos y protocolos de red</a></li>
+<li><a href="#sec-2-3">2.3. Qué es una dirección IP y el protocolo de internet</a></li>
+<li><a href="#sec-2-4">2.4. Cables Submarinos, antenas y satélites en internet</a></li>
+<li><a href="#sec-2-5">2.5. Qué es un dominio, DNS o Domain Name System</a></li>
+<li><a href="#sec-2-6">2.6. Cómo los ISP hacen Quality of Service QoS</a></li>
+<li><a href="#sec-2-7">2.7. Cómo funciona la velocidad en internet</a></li>
+<li><a href="#sec-2-8">2.8. Qué es el modelo Cliente/Servidor</a></li>
+<li><a href="#sec-2-9">2.9. Cómo funciona realmente un sitio web.</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Sistemas Operativos</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Permisos, niveles de procesos y privilegios de ejecución</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Archivos y estructuras de datos</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Metadatos, cabeceras y extensiones de archivos</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
 </div><div class="col-md-9 col-md-pull-3"><h1 class="title">Fundamentos de ingeniería de software</h1>
 
+
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Cómo funcionan los correos electrónicos</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Computación, procesadores y memoria</h2>
 <div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Cómo funcionan los correos electrónicos</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 En orden:
 </p>
@@ -313,9 +348,9 @@ En orden:
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Qué es un <code>system on a chip</code></h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Qué es un <code>system on a chip</code></h3>
+<div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>La combinación de los diferentes componentes que hacen una computadora
 </li>
@@ -341,9 +376,9 @@ En orden:
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Qué son Bits y bytes</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Qué son Bits y bytes</h3>
+<div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Todo viene de las ondas eléctricas.
 </li>
@@ -370,13 +405,668 @@ de una tabla de sistema binario.
 </div>
 </div>
 
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Como funcionan los circuitos electrónicos</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Son la base de la tecnología moderna.
+</li>
+<li>La electricidad es un flujo constante de electrones y se mide en voltaje y amperaje.
+<ul class="org-ul">
+<li>Los voltios son la fuerza que mueve la electricidad por un cable.
+<ul class="org-ul">
+<li>Moviéndola del negativo de una batería al positivo.
+</li>
+<li>El negativo también se conoce como polo a tierra (ground).
+</li>
+<li>Podemos pensar en el voltaje como la presión de agua de una tubería.
+</li>
+</ul>
+</li>
+<li>El ohmio representa la resistencia que se opone a la electricidad.
+</li>
+<li>El amperio representa la intensidad de corriente o cuanta corriente pasa por un circuito.
+</li>
+</ul>
+</li>
+<li>Podemos crear movimiento con un motor eléctrico.
+<ul class="org-ul">
+<li>Por dentro tiene electro imanes, los cuales se repelen en un anillo metálico
+rotando sobre su propio eje.
+</li>
+</ul>
+</li>
+<li>La electricidad se vuelve sonido cuando haces vibrar una membrana al ritmo de una onda eléctrica.
+</li>
+<li>Un circuito digital convierte las ondas eléctricas en 0s y 1s.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Procesadores y arquitecturas de CPU</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>los procesadores son los cerebros de las computadoras.
+<ul class="org-ul">
+<li>Tienen Ghz que son la cantidad de operaciones que pueden hacer por minuto.
+</li>
+<li>Tienen Cores que son la cantidad de operaciones paralelas que pueden realizar.
+</li>
+<li>Estan hechas de silicio.
+</li>
+</ul>
+</li>
+<li>Las CPUs requieren información.
+<ul class="org-ul">
+<li>La información primero viene de la BIOS que es un pequeño sistema operativo de arranque.
+</li>
+<li>Lo primero que hace es verificar que cosas estan conectadas a la computadora.
+<ul class="org-ul">
+<li>Disco duro, teclado, mouse.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>El Sistema operativo se carga a la memoria RAM.
+<ul class="org-ul">
+<li>La memoria RAM es más rápida que la del disco duro.
+</li>
+<li>La memoria RAM es volátil, se borra cada que se pierde la electricidad.
+</li>
+</ul>
+</li>
+<li>Las pantallas requieren de una GPU.
+<ul class="org-ul">
+<li>Las GPU son chips que están hechas para procesar gráficos den manera eficiente.
+</li>
+<li>Es buena para hacer procesos en paralelo.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Qué es la memoria RAM y cómo funcionan los discos duros.</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>Disco duro
+<ul class="org-ul">
+<li>Memoria persistente.
+</li>
+<li>Guarda archivos de manera secuencial.
+</li>
+<li>Se guardan de manera estructurada.
+<ul class="org-ul">
+<li>Sistemas de archivos (dados por el sistema operativo).
+</li>
+</ul>
+</li>
+<li>En la cabecera de el sistema de archivos tenemos un índice.
+<ul class="org-ul">
+<li>Tiene una lista de archivos y las direcciones en donde están.
+</li>
+</ul>
+</li>
+<li>Cuando borramos archivos, solo eliminamos la entrada de ese archivo en la cabecera.
+</li>
+</ul>
+</li>
+<li>Memoria cache.
+<ul class="org-ul">
+<li>La memoria más rápida de la computadora.
+</li>
+<li>Esta en la CPU.
+</li>
+<li>Aquí se guardan cosas esenciales para el CPU.
+</li>
+</ul>
+</li>
+<li>RAM.
+<ul class="org-ul">
+<li>Allí vive el sistema operativo junto con los archivos que están en uso.
+</li>
+<li>La CPU siempre sabe donde esta todo, son las direcciones de memoria.
+<ul class="org-ul">
+<li>Es muy rápida.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Las conexiones entre los componentes se llaman bus de datos.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> GPUs</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>La GPU se encarga de los gráficos en la computadora.
+</li>
+<li>Tiene su propia RAM (VRAM), GHz y cores.
+<ul class="org-ul">
+<li>Generalmente no tienen tantos GHz como el CPU.
+</li>
+<li>Tienen mucho más cores que la CPU.
+<ul class="org-ul">
+<li>Esto les ayuda a representar los pixeles de la pantalla.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>También cuentan con Operadores 3D y Codecs para optimizar algunas operaciones gráficas.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> Pelifericos y sistemas de entrada de información</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>El kernel es la parte más importante del Sistema Operativo.
+<ul class="org-ul">
+<li>Es lo primero que se carga a la RAM y carga todo el hardware de la computadora.
+</li>
+<li>Contiene los Drivers para comunicarse con los pelifericos.
+</li>
+</ul>
+</li>
+<li>Los sistemas operativos tienen diferentes anillos de acceso.
+<ul class="org-ul">
+<li>0: Kernel
+</li>
+<li>1: Drivers
+</li>
+<li>2: Drivers especializados
+</li>
+<li>3: Apps
+</li>
+</ul>
+</li>
+<li>Entre Más alto sea el número, tienen menos permisos.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Cómo funciona Internet</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Introducción a las redes, protocolos e internet</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Ethernet: cable de red
+</li>
+<li>IP (Internet Protocol): matricula que te define dentro de una red.
+</li>
+<li>Switch (Conmutador): Aparato que conecta varios dispositivos a una red mediante Ethernet.
+</li>
+<li>Router (Enrutador): Aparato que interconecta varios dispositivos, se encarga de enrutar cada paquete
+de datos dentro de una red.
+</li>
+<li>DHPC: Protocolo que asigna dinámicamente una IP en una red.
+</li>
+<li>Dirección MAC: identificador único que esta grabado en la interfaz de red de cada dispositivo.
+<ul class="org-ul">
+<li>Los dispositivos con más de una interfaz tienen más de una mac.
+</li>
+</ul>
+</li>
+<li>Modem: Aparato que convierte las señales digitales a analógicas y viceversa.
+</li>
+<li>ISP: (Internet Service Provider) Proveedor de servicio de internet.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Puertos y protocolos de red</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Podemos tener diferentes IPs.
+<ul class="org-ul">
+<li>Tenemos una IP interna, la cual nos identifica en nuestra red.
+<ul class="org-ul">
+<li>Los routers Deciden que IP obtenemos en la red local.
+</li>
+</ul>
+</li>
+<li>Tenemos una IP pública, la cual nos identifica en internet.
+</li>
+</ul>
+</li>
+<li>Tenemos una IP que apunta a la IP de nuestro dispositivo.
+<ul class="org-ul">
+<li>127.0.0.1 también llamada <code>localhost</code>.
+</li>
+</ul>
+</li>
+<li>También tenemos una IP LAN.
+<ul class="org-ul">
+<li>Esa apunta a la IP de nuestra red.
+</li>
+<li>Generalmente es 192.168.0.XXX
+</li>
+</ul>
+</li>
+<li>Cada uno de los números de las IPs identifica cuantas subredes podemos tener.
+</li>
+<li>Generalmente las IPs que terminan en 255 se usan para broadcast.
+</li>
+<li>Tenemos redes internas de la computadora con puertos.
+<ul class="org-ul">
+<li>Tenemos 65,535, puertos:
+<ul class="org-ul">
+<li>Dos bytes disponibles para definir puertos
+</li>
+</ul>
+</li>
+<li>Los puertos del 1 al 1024, son puertos reservados para el sistema operativo.
+</li>
+<li>El protocolo HTTP tiene asignado el puerto 80.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Qué es una dirección IP y el protocolo de internet</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Una IP 192.168.10.50.
+<ul class="org-ul">
+<li>Tiene 4 bytes (cada numero).
+<ul class="org-ul">
+<li>32 Bits.
+</li>
+<li>Hablando de su representación binaria.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mascaras de red:
+<ul class="org-ul">
+<li>Nos indica que bytes de la IP no pueden y si pueden cambiar dentro de una red.
+</li>
+<li>Hay clases:
+<ul class="org-ul">
+<li>Clase A: 255.0.0.0
+</li>
+<li>Clase B: 255.255.0.0
+</li>
+<li>Clase C: 255.255.255.0
+</li>
+</ul>
+</li>
+<li>También hay mascaras variables.
+</li>
+<li>Nos números indican que bytes pueden cambiar, en este caso el 255 indica que ningún
+byte puede cambiar para la IP.
+</li>
+</ul>
+</li>
+<li><code>Gateway</code>:
+<ul class="org-ul">
+<li>La IP del router de la red.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Cables Submarinos, antenas y satélites en internet</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Internet funciona globalmente con cables submarinos.
+</li>
+<li>Las ISP son las que conectan nuestras casas a el internet.
+</li>
+<li>Los que conectan a los países/continentes se llaman IXP (internet exchange points).
+</li>
+<li>Los ISP se conectan a los cables submarinos mediante los IXP.
+<ul class="org-ul">
+<li>Dandonos acceso a internet.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Qué es un dominio, DNS o Domain Name System</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Servidores que tienen una base de datos la cual indica a que nombre o dirección
+corresponde una IP.
+</li>
+<li>Hay muchos Servidores distribuidos por el mundo, y tienen copias de la base de datos.
+</li>
+<li>También tienen subdominios.
+<ul class="org-ul">
+<li>Por ejemplo las versiones móviles de diferentes sitios.
+</li>
+</ul>
+</li>
+<li>También tienen los nombres para los emails.
+</li>
+<li>MXRecord:
+<ul class="org-ul">
+<li>Donde se encuentra la IP de un servidor de email.
+</li>
+</ul>
+</li>
+<li>Se tiene una copia local de los DNS en cada PC.
+<ul class="org-ul">
+<li>Allí por ejemplo se guarda localhost para que sea 127.0.0.1.
+<ul class="org-ul">
+<li>Podríamos cambiarlo a otra ip allí.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Cómo los ISP hacen Quality of Service QoS</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>Los ISP crean prioridad en la red.
+<ul class="org-ul">
+<li>También dependiendo de el tipo de trafico le dan prioridad o no.
+</li>
+</ul>
+</li>
+<li>Se le llama Throtling tamién.
+</li>
+<li>Van regulando la velocidad de ciertos sitios dentro de la red.
+<ul class="org-ul">
+<li>Todo para el usuario final.
+</li>
+</ul>
+</li>
+<li>Para saltarse estos problemas se inventaron los CDNs.
+<ul class="org-ul">
+<li>Content delivery network.
+</li>
+<li>Replican archivos estáticos por todo el mundo.
+</li>
+<li>Para que los archivos internos esten más cerca del usuario final.
+</li>
+<li>Están conectados o en los IXP.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Cómo funciona la velocidad en internet</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Conectarnos a internet es como pasar agua por un tubo.
+</li>
+<li>10 Mbps.
+<ul class="org-ul">
+<li>Mega bits, 10/8 = 1.25 MB/s
+</li>
+<li>Es la cantidad de agua que cabe en la &rsquo;tuberia&rsquo;
+</li>
+</ul>
+</li>
+<li>El ping es cuanto tarda la conexión en establecerse.
+<ul class="org-ul">
+<li>Se mide en ms.
+</li>
+<li>Es la velocidad real de la conexión.
+</li>
+<li>Es lo que tarda un bit para llegar de un lugar a otro.
+</li>
+<li>Seria la presión del tubo de agua.
+</li>
+</ul>
+</li>
+<li>Podemos entender la velocidad minima comparandola con la velocidad de la luz.
+<ul class="org-ul">
+<li>La luz viaja 300 km/ms (kilometros/Milisegundo).
+</li>
+<li>Si hay 9344 km desde Mountain View a Madrid.
+<ul class="org-ul">
+<li>El ping Minimo posible es de 31.14 ms.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Las ISP venden el ancho de banda, La cantidad de bytes que pueden viajar al mismo tiempo.
+<ul class="org-ul">
+<li>AKA: El tamaño de la tubería.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Qué es el modelo Cliente/Servidor</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>Frontend
+<ul class="org-ul">
+<li>Es lo que un usuario ve de un sitio web.
+</li>
+</ul>
+</li>
+<li>Backend
+<ul class="org-ul">
+<li>Son las acciones que se realizan cuando interactuamos con la página web.
+</li>
+<li>Involucra conexiones a bases de datos y todo lo que ocurre en el servidor.
+</li>
+</ul>
+</li>
+<li>El modelo Cliente/Servidor es la relación que existe entre el frontend y el backend.
+<ul class="org-ul">
+<li>Cliente (Navegador que lee HTML, CSS y JS).
+</li>
+<li>El Backend recibe una solicitud y toma desiciones en base a ella.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> Cómo funciona realmente un sitio web.</h3>
+<div class="outline-text-3" id="text-2-9">
+<ul class="org-ul">
+<li>Cuando entramos a un sitio web:
+<ol class="org-ol">
+<li>Primero le preguntamos al DNS del sistema operativo si tiene la ip para ese dominio.
+<ul class="org-ul">
+<li>Si no lo tiene le pregunta a un servidor DNS remoto
+</li>
+</ul>
+</li>
+<li>Usamos una request HTTP GET.
+<ul class="org-ul">
+<li>La cual la recibe el Servidor en el puerto 80.
+</li>
+</ul>
+</li>
+<li>El servidor nos responde la petición.
+<ul class="org-ul">
+<li>Nos da un 200 OK o un 404, dependiendo de lo que pase.
+</li>
+<li>Se le llama HTTP Response.
+</li>
+</ul>
+</li>
+<li><code>Assets Request</code>
+<ul class="org-ul">
+<li>Volvemos al punto 1.
+</li>
+<li>Obtenemos imágenes y otras cosas que necesita la pag web.
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Cookies
+<ul class="org-ul">
+<li>Son variables.
+</li>
+<li>Se pegan al request y en las response.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Sistemas Operativos</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Permisos, niveles de procesos y privilegios de ejecución</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Los permisos son los siguientes:
+<ul class="org-ul">
+<li>R: Read
+</li>
+<li>W: Write
+</li>
+<li>X: Execute
+</li>
+</ul>
+</li>
+<li>Podemos dar permisos con el comando <code>chmod</code>
+<ul class="org-ul">
+<li>Podemos dar los permisos de manera numérica.
+<ul class="org-ul">
+<li>En *nix hay diferentes grupos para los permisos.
+<ul class="org-ul">
+<li>Dueño del archivo
+</li>
+<li>Grupo.
+</li>
+<li>Todos los usuarios.
+</li>
+</ul>
+</li>
+<li>Podemos manejar los permisos de manera numérica.
+<ul class="org-ul">
+<li>777, Sería darle todos los permisos a todos los grupos.
+<ul class="org-ul">
+<li>cada dígito, corresponde a los permisos de un grupo.
+<ul class="org-ul">
+<li>y cada dígito esta formado por 3 bits binarios que corresponden a:
+<ul class="org-ul">
+<li>4,2,1
+<ul class="org-ul">
+<li>Si tenemos los 3 bits en 1, suman 7 (111) == 777j
+</li>
+<li>Si tenemos solo el primero es 4 (100) 4
+</li>
+<li>Si tenemos el primero y el último (101) 5
+</li>
+<li>Cada dígito, corresponde a R,W,X en ese orden.
+</li>
+</ul>
+</li>
+<li>Damos 3 números (9 bits) ya que cada uno representa los permisos de un grupo.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Como funcionan los circuitos electrónicos</h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> Archivos y estructuras de datos</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Metadatos, cabeceras y extensiones de archivos</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Los metadatos:
+<ul class="org-ul">
+<li>Son datos estructurados que describen el contenido y otras características de un archivo o datos.
+</li>
+</ul>
+</li>
+<li>Cuando abrimos un archivo binario en un editor de texto.
+<ul class="org-ul">
+<li>Veremos caracteres raros, que representan el código binario.
+</li>
+<li>Hay editores especiales para editar binario.
+</li>
+</ul>
+</li>
+<li>Un sistema operativo lee la cabecera del archivo para saber que hacer con un archivo.
+<ul class="org-ul">
+<li>Cuando no se puede se usan <code>mime types</code>.
+<ul class="org-ul">
+<li>Originalmente fue hecho para email.
+</li>
+<li>Tiene dos partes.
+<ul class="org-ul">
+<li>La primera es el tipo de archivo
+</li>
+<li>El segundo es el formato.
+</li>
+<li>EJ: image/jpeg, text/html,
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-02-25 Fri 01:49</p>
+<p class="date">Created: 2022-03-23 Wed 22:48</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

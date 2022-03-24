@@ -974,3 +974,49 @@ char s1[] = "fun";
 if (strstr(s0, s1))
     puts("I found the fun in dysfunctional");
 #+end_src
+
+** Arreglo de arreglos vs arreglo de punteros
+Otra opción a un arreglo de arreglos, es un arreglo de punteros, este es un arreglo de
+direcciones de memoria, este es útil para crear un una lista de =strings= literales.
+
+#+begin_src c
+char *names_for_dog[] = {"Bowser", "Bonza", "Snodgrass"};
+#+end_src
+
+* Haz una cosa y hazla bien
+Cada sistema operativo incluye herramientas pequeñas.
+
+Pequeñas herramientas escritas en C hacen pequeñas tareas especializadas a lo largo del sistema operativo.
+** Pequeñas herramientas pueden resolver problemas grandes
+La mayoría de sistemas operativos vienen con un gran conjunto de pequeñas herramientas que puedes usar desde
+la terminal (como linux), cuando tenemos un problema grande que debemos resolver, podemos partirlo en una
+serie de pequeños problemas y escribir una serie de pequeñas herramientas para resolverlos.
+
+** Errores estándar
+La salida estándar es la manera por defecto de salida de datos de un programa, pero no nos deja manejar
+errores de manera flexible.
+
+Para esto tenemos el error estándar, este es una segunda salida de datos creada para el manejo de errores.
+** Por defecto el error estándar es mandado a la pantalla.
+El sistema operativo crea el error estándar al mismo tiempo y de la misma manera que la salida estándar.
+
+Esto significa que cuando redireccionamos la salida estándar de nuestro programa para que podamos redirigir
+la salida a un archivo,  el error estándar seguirá mandando los errores a la pantalla.
+** =fprintf()= imprime un =stream= de datos.
+Ya sabemos que =printf()= manda información a la salida estándar, pero lo que no sabemos es que =printf()= es
+una versión de otra función más general llamada =fprint()=.
+
+Los dos ejemplos siguientes son equivalentes:
+
+#+begin_src c
+printf("I like Tultles"); // Cuando llamamos a printf en realidad llamamos a fprintf
+fprintf(stdout, "I like Tultles"); // stdout es la salida estándar
+#+end_src
+
+Esta función nos permite elegir a donde queremos mandar el texto, podemos usar la =stdout= (salida estándar)
+o la =stderr= (error estándar).
+
+También existe =fscanf= que es la función que es llamada cuando usamos =scanf=, allí leemos de =stdin= (entrada estándar).
+
+Así como podemos redirigir la salida de nuestro programa a un archivo de texto haciendo =./programa > text.txt=,
+podemos redirigir el error estándar haciendo =./programa 2> text.txt=
