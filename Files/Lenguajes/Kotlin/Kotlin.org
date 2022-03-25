@@ -1,0 +1,160 @@
+#+TITLE: Kotlin
+
+* Introducción
+** Qué es la JVM
+- =Java virtual Machine=.
+- La JVM funciona como punto medio entre el código que escribimos y
+  lo que entiende el sistema operativo.
+- La JVM lee el bytecode que resulta de nuestro código.
+- Java también produce bytecode.
+  - Podemos utilizar java y kotlin al mismo tiempo porque ambos se convierten a bytecode.
+
+* Conceptos Básicos
+** Jerarquía de archivos de un proyecto de kotlin
+- Carpeta =Gradle=
+  - Nos permite gestionar las dependencias de nuestro proyecto y compilar nuestro proyecto.
+- Carpeta =Build=
+  - En la cual se encuentra todo nuestro código compilado previamente por gradle
+- Carpeta =src=
+  - En la que se encuentra nuestro código.
+- Carpeta =Test=.
+  - Es en la que se encuentran todos los Test de nuestra aplicación.
+- Archivo =build.gradle.kts=
+  - La configuración de nuestro proyecto.
+    - Dependencias.
+    - Versión de kotlin.
+  - Archivo =gradle.properties=
+    - Nos permite declarar propiedades de proyecto
+  - Ejecutables =gradlew= y =gradlew.bat=
+    - Ejecutables de gradle para diferentes plataformas.
+  - Archivo =settings.gradle.kts=
+    - Donde especificamos las propiedades del proyecto.
+      - Como el nombre.
+
+** Introducción
+- Es consiso, seguro y pragmático
+- Diseñado para interoperar con código en java.
+- Puede ser usado en todos los lugares donde se usa java.
+- Google anuncio que el desarrollo de android es "kotlin first".
+
+** Hello World
+- La función =main= es el punto de entrada de cada programa de kotlin.
+-
+
+#+begin_src kotlin
+fun main(args : Array<String>) {
+    println("Hello World")
+}
+#+end_src
+
+** Tipos de datos
+- Cada valor debe de tener un tipo.
+- Algunos de los más usados son:
+  - =int= : números enteros.
+  - =Double= : números decimales.
+  - =Char= : Representan un carácter.
+  - =Boolean= : Representan *verdadero* o *falso*
+- El tipo de dato =String= es usado para representar texto (cadenas de caracteres).
+  - Los =String= van delimitados con comillas dobles.
+  - Podemos usar =\n= para crear un salto de línea.
+
+#+begin_src kotlin
+println("A \n B \n C \n")
+#+end_src
+
+#+begin_example
+A
+B
+C
+#+end_example
+
+** Variables
+- Son usadas para guardar datos.
+- Cada variable tiene un tipo, que define el tipo de la variable.
+- Se declaran usando la palabra =var=.
+
+#+begin_src kotlin
+var num : Int = 42
+#+end_src
+
+Con esto tenemos una variable de llamada =num= de tipo =Int= que vale 42.
+
+Ahora podríamos imprimir el resultado usando =println=.
+
+#+begin_src kotlin
+num = 8 // Podemos cambiar el valor de num
+println(num)
+#+end_src
+
+También podemos declarar variables usando la palabra =val=.
+
+#+begin_src kotlin
+val course : String = "Kotlin"
+println(course)
+#+end_src
+
+La diferencia es que las variables declaradas con =val= no se pueden cambiar, son inmutables.
+
+** Inferencia de tipos
+- Kotlin soporta inferencia de tipos.
+  - Esto le permite adivinar el tipo de la variable con el valor que se le asigna.
+  - Esto nos permite saltarnos la definición de tipos.
+
+#+begin_src kotlin
+val name = "James"
+var num = 42
+#+end_src
+
+** Operadores
+- Kotlin soporta todos los operadores aritméticos comunes.
+
+#+begin_src kotlin
+var num1 = 8
+var num2 = 34
+
+println(num1 + num2)
+println(num1 - num2)
+println(num1 * num2)
+println(num1 / num2)
+println(num1 % num2)
+#+end_src
+
+También podemos usar el operador de =+= para concatenar =strings=.
+
+** Operadores de asignación
+Podemos convinar el operador de asignación ===  junto con operadores aritméticos para hacer ambas operaciones.
+
+Por ejemplo =a+=b= es equivalente a =a = a+b=.
+
+#+begin_src kotlin
+var num = 4
+num *= 5
+
+println(num)
+#+end_src
+
+Kotlin también soporta los operadores de incremento y decremento =++= y =--=.
+
+#+begin_src kotlin
+var num = 8
+num++
+println(num)
+#+end_src
+
+Los operadores de incremento y decremento tienen dos versiones:
+- =prefix=
+  - Antes del nombre de la variable
+  - Este incrementa la variable y luego usa el número.
+- =posfix=
+  - Después del nombre de la variable
+  - Este usa el valor de la variable primero y luego lo incrementa.
+
+** Operadores de comparación
+- Kotlin contiene todos los operadores de comparación comunes.
+
+#+begin_src kotlin
+var age = 18
+println(age >= 16)
+#+end_src
+
+** Comentarios

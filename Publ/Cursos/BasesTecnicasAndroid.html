@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Curso de Bases Técnicas de Android</title>
+<!-- 2022-03-25 Fri 01:07 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Android</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Introducción a android</a></li>
+<li><a href="#sec-1-2">1.2. Retos de desarrollo en android</a></li>
+<li><a href="#sec-1-3">1.3. Tipos de dispositivos Android y soporte</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Componentes de una aplicación</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. <code>Activity</code></a></li>
+<li><a href="#sec-2-2">2.2. <code>Fragments</code></a></li>
+<li><a href="#sec-2-3">2.3. <code>Intent</code></a></li>
+<li><a href="#sec-2-4">2.4. <code>Services</code></a></li>
+<li><a href="#sec-2-5">2.5. <code>Broadcast</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Curso de Bases Técnicas de Android</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Android</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introducción a android</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Sistema operativo basado en el kernel de Linux
+</li>
+<li>Creado por google.
+</li>
+<li>Código abierto.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Retos de desarrollo en android</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Disponibilidad.
+<ul class="org-ul">
+<li>Las plataformas a las cuales queremos llegar.
+</li>
+<li>Fragmentación de dispositivos.
+</li>
+<li>Versonamiento de sistemas operativos.
+</li>
+<li>DPIs de las pantallas.
+</li>
+</ul>
+</li>
+<li>Rendimiento.
+<ul class="org-ul">
+<li>Consumo del CPU y uso de memoria.
+</li>
+</ul>
+</li>
+<li>Calidad.
+<ul class="org-ul">
+<li>La aplicación haga lo que dice que hace.
+</li>
+<li>Debemos de conocer bien el sistema operativo para evitar sorpresas.
+</li>
+<li>Métricas de diseño.
+</li>
+<li>Workflow.
+</li>
+<li>Testing.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Tipos de dispositivos Android y soporte</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Compatibilidad
+<ul class="org-ul">
+<li>Compatibilidad con el dispositivo.
+<ul class="org-ul">
+<li>Hay mucha variedad de hardware.
+</li>
+<li>Características de hardware.
+</li>
+<li>Versión de android.
+</li>
+<li>Configuración de pantalla.
+</li>
+</ul>
+</li>
+<li>Compatibilidad con la aplicación.
+</li>
+<li>Debemos especificar dos versiones de API con la aplicación.
+<ul class="org-ul">
+<li><code>minSdkVersion</code>
+<ul class="org-ul">
+<li>La versión mínima de android que soportaremos.
+</li>
+</ul>
+</li>
+<li><code>targetSdKVersion</code>
+<ul class="org-ul">
+<li>La versión objetivo de android que queremos soportar.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Componentes de una aplicación</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <code>Activity</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Es una pantalla de una aplicación.
+</li>
+<li>Se compone de:
+<ul class="org-ul">
+<li>Es una clase de java que herede de la clase <code>activity</code>.
+</li>
+<li>El <code>layout</code> (La Interfaz gráfica).
+</li>
+</ul>
+</li>
+<li>Ciclo de vida de una actividad.
+<ol class="org-ol">
+<li>La actividad es creada con el método <code>onCreate()</code>.
+<ul class="org-ul">
+<li>Recibe el estado de la actividad anterior como estado.
+<ul class="org-ul">
+<li>De tipo <code>Bundle</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Pasamos al estado <code>Started</code> con el método <code>onStart()</code>.
+<ul class="org-ul">
+<li>Esto es cuando la actividad está por ser mostrada.
+</li>
+</ul>
+</li>
+<li>Llegamos al estado <code>Resumed</code> con el método <code>onResume()</code>.
+<ul class="org-ul">
+<li>Esto es cuando la actividad ya es visible.
+</li>
+</ul>
+</li>
+<li>Podemos llegar a un estado <code>Paused</code> con el método <code>onPause()</code>.
+<ul class="org-ul">
+<li>En este estado otra actividad tiene el focus de la aplicación.
+</li>
+</ul>
+</li>
+<li>Podemos llegar al estado <code>Stopped</code> con el método <code>onStop()</code>.
+<ul class="org-ul">
+<li>La actividad ya no es visible.
+</li>
+<li>Esto pasa cuando por ejemplo presionamos el botón de home.
+</li>
+<li>Podemos regresar de este estado a <code>Started</code> con el método <code>onRestart()</code>
+</li>
+</ul>
+</li>
+<li>Al final llegamos a el estado <code>Destroyed</code> con el método <code>onDestroy()</code>
+<ul class="org-ul">
+<li>Esto pasa cuando por ejemplo presionamos el botón de back en el dispositivo.
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <code>Fragments</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Todas las aplicaciones tiene una barra inferior o una barra superior.
+<ul class="org-ul">
+<li>Funcionan a partir de un concepto llamado <code>fragments</code>.
+<ul class="org-ul">
+<li>Son un tipo de contenedor que tienen una parte de la FUI.
+</li>
+</ul>
+</li>
+<li>Usamos ciertas clases para manejarlos.
+<ul class="org-ul">
+<li><code>FragmentManager</code>
+<ul class="org-ul">
+<li>Manejar los <code>fragments</code>
+</li>
+<li>Junto con nuestra librería de soporte.
+</li>
+</ul>
+</li>
+<li><code>Transacciones</code>
+<ul class="org-ul">
+<li>Todas las acciones que podemos realizar con los <code>fragments</code>
+</li>
+</ul>
+</li>
+<li><code>Commits</code>
+<ul class="org-ul">
+<li>Cada que se hace una transacción, se hace un <code>commit</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> <code>Intent</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Es muy común tener un flujo de navegación o de ventanas en una aplicación.
+<ul class="org-ul">
+<li>Es decir, más de una <code>activity</code> conectadas entre si.
+</li>
+</ul>
+</li>
+<li>los <code>Intent</code> nos ayudan a unir los componentes de una aplicación.
+</li>
+<li>Podemos tener dos casos:
+<ul class="org-ul">
+<li>Unir varios <code>activity</code>.
+<ul class="org-ul">
+<li>Estos son <code>intent</code> explícitos.
+</li>
+</ul>
+</li>
+<li>Unir <code>activitys</code> que viven en diferentes aplicaciones.
+<ul class="org-ul">
+<li><code>intent</code> implícitos.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Todos los componentes de android están aislados.
+<ul class="org-ul">
+<li>Con los <code>intent</code> permitimos la comunicación entre diferentes partes de una apeo.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> <code>Services</code></h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Los servicios nos permiten hacer cosas cuando la aplicación no esta corriendo.
+<ul class="org-ul">
+<li>O para ejecutar tareas en segundo plano.
+</li>
+</ul>
+</li>
+<li>Se arrancan a partir de las <code>activity</code>.
+</li>
+<li>Se crean con el método <code>onStartCommand()</code>.
+</li>
+<li>Tipos de servicios:
+<ul class="org-ul">
+<li>En primer plano:
+<ul class="org-ul">
+<li>Es un servicio que realiza una tarea que el usuario puede notar.
+</li>
+<li>Estos continúan ejecutándose incluso si el usuario deja de interactuar con la aplicación.
+</li>
+</ul>
+</li>
+<li>En segundo plano:
+<ul class="org-ul">
+<li>Este realiza una tarea que el usuario no nota directamente.
+</li>
+<li>Son servicios en segundo plano.
+</li>
+</ul>
+</li>
+<li>Enlace (<code>Bind</code>)
+<ul class="org-ul">
+<li>Podemos enlazar un servicio con <code>onBind()</code> y des enlazarlo con <code>onUnbind()</code>.
+</li>
+<li>Un servicio es de enlace cuando un componente de la app se vincula a el con el método <code>bindService()</code>
+</li>
+<li>Este ofrece una interfaz cliente-servidor que permite que los componentes interactúen con el
+servicio.
+<ul class="org-ul">
+<li>Permitiendo comunicación con distintos procesos (IPC).
+</li>
+</ul>
+</li>
+<li>Este solo se ejecuta mientras otro componente de la app este enlazado a el.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> <code>Broadcast</code></h3>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-03-25 Fri 01:07</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>
