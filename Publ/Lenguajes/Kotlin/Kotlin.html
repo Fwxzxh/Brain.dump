@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Kotlin</title>
-<!-- 2022-03-25 Fri 01:07 -->
+<!-- 2022-03-27 Sun 20:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -212,6 +212,42 @@ $(function() {
 <li><a href="#sec-2-8">2.8. Operadores de asignación</a></li>
 <li><a href="#sec-2-9">2.9. Operadores de comparación</a></li>
 <li><a href="#sec-2-10">2.10. Comentarios</a></li>
+<li><a href="#sec-2-11">2.11. Entrada</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Flujo de control</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. <code>if</code></a></li>
+<li><a href="#sec-3-2">3.2. <code>esle if</code></a></li>
+<li><a href="#sec-3-3">3.3. Expresiones condicionales</a></li>
+<li><a href="#sec-3-4">3.4. <code>when</code></a></li>
+<li><a href="#sec-3-5">3.5. Combinando operadores</a></li>
+<li><a href="#sec-3-6">3.6. Ciclos <code>while</code></a></li>
+<li><a href="#sec-3-7">3.7. <code>break</code> y <code>continue</code></a></li>
+<li><a href="#sec-3-8">3.8. Arreglos</a></li>
+<li><a href="#sec-3-9">3.9. Ciclos <code>for</code></a></li>
+<li><a href="#sec-3-10">3.10. Rangos</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Funciones</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Funciones</a></li>
+<li><a href="#sec-4-2">4.2. Definiendo funciones</a></li>
+<li><a href="#sec-4-3">4.3. Argumentos de funciones</a></li>
+<li><a href="#sec-4-4">4.4. Retornando de las funciones</a></li>
+<li><a href="#sec-4-5">4.5. Funciones anónimas</a></li>
+<li><a href="#sec-4-6">4.6. <code>Foreach</code></a></li>
+<li><a href="#sec-4-7">4.7. Funciones de orden superior</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. OOP</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Clases y Objetos</a></li>
+<li><a href="#sec-5-2">5.2. Constructores</a></li>
+<li><a href="#sec-5-3">5.3. <code>Getters</code> y <code>Setters</code></a></li>
+<li><a href="#sec-5-4">5.4. Funciones de clase</a></li>
+<li><a href="#sec-5-5">5.5. Herencia</a></li>
+<li><a href="#sec-5-6">5.6. Modificadores de Visibilidad</a></li>
 </ul>
 </li>
 </ul>
@@ -565,12 +601,1081 @@ println<span style="color: #61bfff;">(</span>age &gt;= <span style="color: #bd93
 
 <div id="outline-container-sec-2-10" class="outline-3">
 <h3 id="sec-2-10"><span class="section-number-3">2.10</span> Comentarios</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+Los comentarios son texto explicatorio que usamos para describir nuestro código.
+</p>
+
+<p>
+Un comentario de una sola linea empieza con <code>//</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">my first kotlin program</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span>args : <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">declaring a name variable</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">"Amy"</span>
+    println<span style="color: #ff79c6;">(</span>name<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Si necesitamos comentarios más largos podemos usar comentarios multilinea.
+</p>
+
+<p>
+Estos abarcan todo lo que pongamos entre <code>/*</code> y <code>*/</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span>args : <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">/* </span><span style="color: #6272a4; font-style: italic;">this is a multiline coment</span>
+<span style="color: #6272a4; font-style: italic;">     The program declares a string and outputs it */</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">"Amy"</span>
+    println<span style="color: #ff79c6;">(</span>name<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-11" class="outline-3">
+<h3 id="sec-2-11"><span class="section-number-3">2.11</span> Entrada</h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
+Podemos tomar valores como entrada usando el método <code>readLine()</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span> = readLine<span style="color: #61bfff;">()</span>
+println<span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"You entered "</span> + age<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+<code>readLine()</code> retorna la entrada como un <code>string</code>
+</p>
+
+<p>
+Si queremos convertir la entrada a un <code>Int</code> debemos usar la función <code>toInt()</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">a</span> = readLine<span style="color: #61bfff;">()</span>!!.toInt<span style="color: #61bfff;">()</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">b</span> = readLine<span style="color: #61bfff;">()</span>!!.toInt<span style="color: #61bfff;">()</span>
+println<span style="color: #61bfff;">(</span>a + b<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+El código de arriba lee dos entradas, las convierte en enteros e imprime la suma.
+</p>
+
+<p>
+El operador <code>!!</code> es llamado el <code>not-null assertion operator</code>, esto lo que hace es que asume que la operación
+anterior (readLine) no es nula, esto es necesario para que <code>toInt</code> funcione.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Flujo de control</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> <code>if</code></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+El operador <code>if</code> nos permite correr un bloque de código si una condición se cumple.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>condition<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Some code to run</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La condición en los paréntesis debe ser una operación booleana.
+</li>
+<li>Si la condición retorna <code>true</code>, el código dentro del bloque se ejecuta.
+</li>
+<li>Si la condición retorna <code>false</code>, el código dentro del bloque no se ejecuta.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span> = <span style="color: #bd93f9; font-weight: bold;">24</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>age &gt;= <span style="color: #bd93f9; font-weight: bold;">18</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Welcome"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> <code>esle if</code></h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Podemos verificar varias condiciones encadenando bloques <code>else if</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">num</span> = -7
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>num &gt; <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Positive"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>num &lt; <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Negative"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Zero"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Expresiones condicionales</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Podemos usar <code>if</code> para asignar valores a variables, así como un operador ternario.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">num</span> = -7
+<span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">result</span> = <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>num &gt; <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #61bfff;">)</span> <span style="color: #f1fa8c;">"Positive"</span> <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #f1fa8c;">"Negative"</span>
+println<span style="color: #61bfff;">(</span>result<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> <code>when</code></h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Si hay muchas condicionales podemos usar la expresión <code>when</code> como si fuera un <code>switch</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">num</span> = -7
+
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">result</span> = <span style="color: #ff79c6; font-style: italic;">when</span> <span style="color: #61bfff;">{</span>
+    num &gt; <span style="color: #bd93f9; font-weight: bold;">0</span> -&gt; <span style="color: #f1fa8c;">"Positive"</span>
+    num &lt; <span style="color: #bd93f9; font-weight: bold;">0</span> -&gt; <span style="color: #f1fa8c;">"Negative"</span>
+    <span style="color: #ff79c6; font-style: italic;">else</span> -&gt; <span style="color: #f1fa8c;">"Zero"</span>
+<span style="color: #61bfff;">}</span>
+println<span style="color: #61bfff;">(</span>result<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+Se compone de varias condicionales seguidas de una flecha y un resultado.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Combinando operadores</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Podemos combinar diferentes condiciones usando operadores lógicos.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">num</span> = <span style="color: #bd93f9; font-weight: bold;">42</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>num &gt;= <span style="color: #bd93f9; font-weight: bold;">18</span> &amp;&amp; num &lt;= <span style="color: #bd93f9; font-weight: bold;">60</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Yes"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Ambas condiciones deben de ser verdaderas para que el operador <code>&amp;&amp;</code> retorne <code>true</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">"Jhon"</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>name == <span style="color: #f1fa8c;">"Jon"</span> || name == <span style="color: #f1fa8c;">"Jhon"</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hi there"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+similarmente el operador <code>or</code> <code>||</code>  puede ser usado para verificar si una de las condiciones
+es <code>true</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> Ciclos <code>while</code></h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Un ciclo <code>while</code> es usado cuando deseas repetir un bloque de código siempre y cuando una condición sea
+verdadera.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">i</span> = <span style="color: #bd93f9; font-weight: bold;">1</span>
+
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>i &lt;= <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hello"</span><span style="color: #ff79c6;">)</span>
+    i++
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Cada ciclo de un ciclo es llamado iteración.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">sum</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">i</span> = <span style="color: #bd93f9; font-weight: bold;">1</span>
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>i &lt; <span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    sum += i
+    i++
+<span style="color: #61bfff;">}</span>
+println<span style="color: #61bfff;">(</span>sum<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> <code>break</code> y <code>continue</code></h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+La palabra <code>break</code> puede ser usada para parar un ciclo de manera prematura.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">sum</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">i</span> = <span style="color: #bd93f9; font-weight: bold;">1</span>
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>i &lt;= <span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    sum += <span style="color: #bd93f9; font-weight: bold;">1</span>
+    i++
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>sum &gt; <span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">break</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+println<span style="color: #61bfff;">(</span>sum<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+De manera similar a <code>break,</code> <code>continue</code> se salta la iteración actual del ciclo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">sum</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">i</span> = <span style="color: #bd93f9; font-weight: bold;">1</span>
+<span style="color: #ff79c6; font-style: italic;">while</span> <span style="color: #61bfff;">(</span>i &lt;= <span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    i++
+    <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ff79c6;">(</span>i%2 != <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">continue</span>
+    <span style="color: #ff79c6;">}</span>
+    sum += <span style="color: #bd93f9; font-weight: bold;">1</span>
+<span style="color: #61bfff;">}</span>
+println<span style="color: #61bfff;">(</span>sum<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+El código de arriba salta los números pares en el ciclo.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-8" class="outline-3">
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> Arreglos</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+Un arreglo nos permite guardar múltiples valores en una variable.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">contacts</span> = arrayOf<span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Jhon"</span>, <span style="color: #f1fa8c;">"James"</span>, <span style="color: #f1fa8c;">"Amy"</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+El arreglo es declarado usando la función <code>arrayOf</code> la cual contiene sus valores separados
+por comas.
+</p>
+
+<p>
+Cada elemento del arreglo tiene un índice, que es usado para acceder al elemento.
+</p>
+
+<p>
+Los índices empiezan por el número 0
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">contacts</span> = arrayOf<span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Jhon"</span>, <span style="color: #f1fa8c;">"James"</span>, <span style="color: #f1fa8c;">"Amy"</span><span style="color: #61bfff;">)</span>
+println<span style="color: #61bfff;">(</span>contacts<span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Amy</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-9" class="outline-3">
+<h3 id="sec-3-9"><span class="section-number-3">3.9</span> Ciclos <code>for</code></h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+A veces trabajando con arreglos necesitamos iterar sobre los elementos, para esto
+son útiles los ciclos <code>for</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">nums</span> = arrayOf<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">2</span>, <span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">6</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span>x <span style="color: #ff79c6; font-style: italic;">in</span> nums<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+También podemos usar un ciclo <code>for</code> para iterar sobre un <code>string</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">"James"</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span>x <span style="color: #ff79c6; font-style: italic;">in</span> name<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Esto es posible ya que los <code>strings</code> son similares a un arreglo de caracteres,
+También podemos acceder a las posiciones de un <code>string</code> como si fuera un arreglo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">"James"</span>
+println<span style="color: #61bfff;">(</span>name<span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">a</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-10" class="outline-3">
+<h3 id="sec-3-10"><span class="section-number-3">3.10</span> Rangos</h3>
+<div class="outline-text-3" id="text-3-10">
+<p>
+Kotlin permite crear rangos de valores de manera fácil.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span>i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">2</span>..<span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span>i<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+<code>2..5</code> crea un rango de valores del 2 al 5.
+</p>
+
+<p>
+También podemos crear un rango de caracteres.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span>x <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #f1fa8c;">'a'</span>..<span style="color: #f1fa8c;">'e'</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+También podemos verificar si un valor esta en un rango usando el operador <code>in</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">x</span> = <span style="color: #bd93f9; font-weight: bold;">42</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span>x <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">15</span>..<span style="color: #bd93f9; font-weight: bold;">100</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Yes"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Con este operador podemos verificar si un valor esta presente en un arreglo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">x</span> = arrayOf<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">8</span>, <span style="color: #bd93f9; font-weight: bold;">9</span>, <span style="color: #bd93f9; font-weight: bold;">42</span>, <span style="color: #bd93f9; font-weight: bold;">111</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span> <span style="color: #ff79c6; font-style: italic;">in</span> x<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Yes"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+También podemos iterar en un rango el cual no incluye el elemento final con la función <code>until</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #61bfff;">(</span>i <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">1</span> until <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">El 5 quedaria excluido del rango.</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Funciones</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Funciones</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Es un grupo de código que es usado para hacer una tarea.
+</li>
+<li>El nombre enfrente de los parentesis es el nombre de la función y lo que se pone entre ellos son los
+argumentos de la función.
+</li>
+<li>Un ejemplo es la función <code>println()</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Definiendo funciones</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Podemos definir nuestras propias funciones con la palabra <code>fun</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hey there"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Después de definirla podemos llamarla de la siguiente manera.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span>args : <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    welcome<span style="color: #ff79c6;">()</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Argumentos de funciones</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Los argumentos le dan entradas a nuestras funciones.
+</p>
+
+<p>
+por ejemplo si quisiéramos pasarle a una función un parametro nombre
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">(</span>name : <span style="color: #bd93f9;">String</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hello "</span> + name<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Nuestra función toma un argumento nombre de tipo <code>String</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span>args : <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    welcome<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Amy"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Retornando de las funciones</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+A veces necesitaremos que las funciones retornen un valor para guardarlo en una variable.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">result</span> = sum <span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">8</span>, <span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+Para lograr esto debemos definir el tipo de retorno en la función <code>sum</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span>x : <span style="color: #bd93f9;">Int</span>, y : <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span>: <span style="color: #bd93f9;">Int</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ff79c6;">(</span>x+y<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Nuestra función <code>sum</code> toma dos argumentos tipo entero y retorna un entero.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Funciones anónimas</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+No todas las funciones tienen un nombre, en algunos casos una función hace una tarea
+muy simple con su <code>input</code>.
+</p>
+
+<p>
+Estos son casos en los que es mejor usar una función anónima.
+</p>
+
+<p>
+Podemos definir la función anterior <code>sum</code> como una función anónima.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">f</span>: <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Int</span>, <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> -&gt; <span style="color: #bd93f9;">Int</span> = <span style="color: #61bfff;">{</span>a, b -&gt; a + b<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Nuestra función toma dos enteros y retorna un entero eso es <code>(Int, Int) -&gt; Int</code>, los parentesis definen
+los tipos de nuestra entrada y la flecha define el tipo de la salida.
+</p>
+
+<p>
+Ahora que ya tenemos una función anónima podemos asignarla a una variable y usarla en nuestro código.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">f</span>: <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Int</span>, <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> -&gt; <span style="color: #bd93f9;">Int</span> = <span style="color: #61bfff;">{</span>a, b -&gt; a + b<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">result</span> = f<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">8</span>, <span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #61bfff;">)</span>
+println<span style="color: #61bfff;">(</span>result<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+En el código anterior asignamos la función anónima a la variable <code>f</code> y la usamos.
+</p>
+
+<blockquote>
+<p>
+También podemos acortar la función anónima saltandonos el tipo de retorno ya que kotlin puede adivinarlo por si mismo.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> <code>Foreach</code></h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+A veces debemos iterar sobre los items de un arreglo, para esto kotlin provee la función <code>foreach</code>.
+</p>
+
+<p>
+Esta toma una función, definiendo una acción a realizar para cada elemento.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span> <span style="color: #61bfff;">(</span>args: <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">arr</span> = arrayOf<span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">1</span>, <span style="color: #bd93f9; font-weight: bold;">3</span>, <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #ff79c6;">)</span>
+    arr.foreach <span style="color: #ff79c6;">{</span>
+        item -&gt; println<span style="color: #50fa7b;">(</span>item * <span style="color: #bd93f9; font-weight: bold;">4</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+En el código de arriba llamamos a cada elemento del arreglo <code>item</code> e imprimimos el valor multiplicandolo por 4.
+</p>
+
+<p>
+la función <code>foreach</code> es llamada con el nombre el arreglo usando la notación de punto y debe de seguir de una función.
+</p>
+
+<p>
+Kotlin también provee la palabra <code>it</code>, esto nos permitiría acortar el código de arriba:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span> <span style="color: #61bfff;">(</span>args: <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">arr</span> = arrayOf<span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">1</span>, <span style="color: #bd93f9; font-weight: bold;">3</span>, <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #ff79c6;">)</span>
+    arr.foreach <span style="color: #ff79c6;">{</span>
+        println<span style="color: #50fa7b;">(</span><span style="color: #ff79c6; font-style: italic;">it</span> * <span style="color: #bd93f9; font-weight: bold;">4</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-7" class="outline-3">
+<h3 id="sec-4-7"><span class="section-number-3">4.7</span> Funciones de orden superior</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+Una función puede tomar como argumento otra función, estas son llamadas funciones de orden superior.
+</p>
+
+<p>
+Esto es útil cuando queremos cambiar el comportamiento de una función
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">apply</span><span style="color: #61bfff;">(</span>x:<span style="color: #bd93f9;">Int</span>, action:<span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Int</span><span style="color: #ff79c6;">)</span> -&gt; <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> : <span style="color: #bd93f9;">Int</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> action<span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+<code>apply</code> es una función de orden superior que toma un entero y una función llamada <code>action</code> con sus argumentos.
+</p>
+
+<p>
+Después llama a <code>action</code> con un argumento y retorna el resultado.
+</p>
+
+<p>
+Ahora podemos llamar a <code>apply</code> y pasarle diferentes funciones anónimas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin">println<span style="color: #61bfff;">(</span>apply<span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #50fa7b;">{</span>x -&gt; x*<span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #50fa7b;">}</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+println<span style="color: #61bfff;">(</span>apply<span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #50fa7b;">{</span>x -&gt; x/<span style="color: #bd93f9; font-weight: bold;">2</span><span style="color: #50fa7b;">}</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+En nuestras funciones anónimas no necesitamos definir el tipo de sus argumentos, porque kotlin
+los adivina automáticamente.
+</p>
+
+<p>
+Kotlin tiene muchas funciones de orden superior ya definidas.
+</p>
+
+<p>
+Un ejemplo es <code>filter()</code> es una función que toma un arreglo y una función booleana y retorna los elementos
+que dan <code>true</code> a una condición.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">arr</span> = arrayOf<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">42</span>, <span style="color: #bd93f9; font-weight: bold;">3</span>, <span style="color: #bd93f9; font-weight: bold;">10</span>, <span style="color: #bd93f9; font-weight: bold;">6</span>, <span style="color: #bd93f9; font-weight: bold;">4</span>, <span style="color: #bd93f9; font-weight: bold;">1</span><span style="color: #61bfff;">)</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">res</span> = arr.filter<span style="color: #61bfff;">(</span><span style="color: #ff79c6;">{</span><span style="color: #ff79c6; font-style: italic;">it</span> &gt; <span style="color: #bd93f9; font-weight: bold;">5</span><span style="color: #ff79c6;">}</span><span style="color: #61bfff;">)</span>
+println<span style="color: #61bfff;">(</span>res<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+El código de arriba solo imprimirá los números que sean mayores a 5.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> OOP</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Clases y Objetos</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+En kotlin definimos una clase con la palabra <code>class</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">""</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Esta clase tiene dos propiedades: <code>name</code> y <code>age</code>.
+</p>
+
+<blockquote>
+<p>
+Una propiedad es una variable definida dentro de una clase.
+</p>
+</blockquote>
+
+<p>
+Cuando tenemos una clase definida, podemos crear objetos de esa clase.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">u1</span> = <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">()</span>
+u1.name = <span style="color: #f1fa8c;">"James"</span>
+u1.age = <span style="color: #bd93f9; font-weight: bold;">42</span>
+</pre>
+</div>
+
+<p>
+En el código de arriba <code>u1</code> es un objeto de tipo <code>User</code>.
+</p>
+
+<p>
+Podemos acceder a las propiedades usando la sintaxis de punto junto al nombre de la propiedad.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Constructores</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Un constructor permite inicializar propiedades cuando los objetos son creados.
+</p>
+
+<p>
+Un constructor es definido usando los parentesis de la definición de la clase.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">name</span>:<span style="color: #bd93f9;">String</span>, <span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">age</span>:<span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">stuff</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Ahora cuando creemos un objeto tipo <code>User</code> debemos pasarle los valores para <code>name</code> y <code>age</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">u1</span> = <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #61bfff;">)</span>
+println<span style="color: #61bfff;">(</span>u1.name<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+De manera similar a los argumentos de una función, podemos pasarles valores por defecto para los argumentos.
+</p>
+</blockquote>
+
+<p>
+Kotlin nos permite crear clases con más de un constructor usando la palabra <code>constructor</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">""</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>
+
+    <span style="color: #ff79c6; font-style: italic;">constructor</span><span style="color: #ff79c6;">(</span>nm: <span style="color: #bd93f9;">String</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        name = nm
+    <span style="color: #ff79c6;">}</span>
+
+    <span style="color: #ff79c6; font-style: italic;">constructor</span><span style="color: #ff79c6;">(</span>nm: <span style="color: #bd93f9;">String</span>, a: <span style="color: #bd93f9;">Int</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        name = nm
+        age = a
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Los constructores se son como funciones tomando argumentos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> <code>Getters</code> y <code>Setters</code></h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Hasta ahora hemos accedido a las propiedades de manera directa.
+</p>
+
+<p>
+Pero podemos modificar como accedemos a una propiedad, podemos poner <code>getters</code> y <code>setters</code> para una propiedad.
+</p>
+
+<p>
+Un <code>getter</code> define como accedemos a una propiedad y un <code>setter</code> define como escribimos o modificamos esa propiedad.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">""</span>
+
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>
+        <span style="color: #ff79c6; font-style: italic;">get</span><span style="color: #ff79c6;">()</span> = <span style="color: #ff79c6; font-style: italic;">field</span>
+
+        <span style="color: #ff79c6; font-style: italic;">set</span><span style="color: #ff79c6;">(</span>value<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+            <span style="color: #ff79c6; font-style: italic;">field</span> = value
+        <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+En el código de arriba definimos un <code>getter</code> y un <code>setter</code> para la propiedad <code>age</code>.
+</p>
+
+<p>
+Se ocupa la palabra reservada <code>field</code> para referirnos a la propiedad de la cual es el <code>getter</code> o <code>setter</code> y la palabra
+<code>value</code> se refiere al valor que queremos guardar en la propiedad.
+</p>
+
+<p>
+En este caso, es un <code>getter</code> y un <code>setter</code> por defecto, esto significa que no hay una lógica detrás de como accedemos o
+modificamos la propiedad.
+</p>
+
+<p>
+Ahora podemos modificar la lógica del <code>getter</code> y <code>setter</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span> = <span style="color: #f1fa8c;">""</span>
+
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span> = <span style="color: #bd93f9; font-weight: bold;">0</span>
+       <span style="color: #ff79c6; font-style: italic;">get</span> <span style="color: #ff79c6;">()</span>  = <span style="color: #ff79c6; font-style: italic;">field</span> - <span style="color: #bd93f9; font-weight: bold;">1</span>
+
+       <span style="color: #ff79c6; font-style: italic;">set</span><span style="color: #ff79c6;">(</span>value<span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+           <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>value &gt; <span style="color: #bd93f9; font-weight: bold;">0</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+               <span style="color: #ff79c6; font-style: italic;">field</span> = <span style="color: #bd93f9; font-weight: bold;">18</span>
+           <span style="color: #50fa7b;">}</span>
+           <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #50fa7b;">{</span>
+               <span style="color: #ff79c6; font-style: italic;">field</span> = value
+           <span style="color: #50fa7b;">}</span>
+       <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+En el código de arriba, definimos un <code>getter</code> para el campo de <code>age</code> para que retorne la edad - 1.
+</p>
+
+<p>
+El <code>setter</code> esta definido para poner el número de 18 en caso de que el valor dado sea negativo.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> Funciones de clase</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+Una clase puede tener funciones, las cuales definen su comportamiento.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span>: <span style="color: #bd93f9;">String</span>, <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span>: <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">login</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        println<span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Login from user"</span> + name<span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span>args: <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">u</span> = <span style="color: #bd93f9;">User</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #bd93f9; font-weight: bold;">42</span><span style="color: #ff79c6;">)</span>
+    u.login<span style="color: #ff79c6;">()</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Las funciones también pueden ser llamadas usando la sintaxis del punto.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span>: <span style="color: #bd93f9;">String</span>, <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span>: <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">isAdult</span><span style="color: #ff79c6;">()</span>: <span style="color: #bd93f9;">Boolean</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #50fa7b;">(</span>age &gt;= <span style="color: #bd93f9; font-weight: bold;">18</span><span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">true</span>
+        <span style="color: #50fa7b;">}</span>
+        <span style="color: #ff79c6; font-style: italic;">else</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">false</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+justo como otras funciones, podemos pasarle argumentos a estas.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> Herencia</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+La herencia nos permite crear clases basadas en otras clases, heredando sus funciones.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">open</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span>: <span style="color: #bd93f9;">String</span>, <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span>: <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Admin</span><span style="color: #61bfff;">(</span>name: <span style="color: #bd93f9;">String</span>, age: <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span>: <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span>name, age<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Moderator</span><span style="color: #61bfff;">(</span>name: <span style="color: #bd93f9;">String</span>, age: <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span>: <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span>name, age<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+<code>Admin</code> y <code>Moderator</code> son clases que heredan de la clase <code>User</code>, Usamos dos puntos para definir la clase de la cual heredaremos
+Ambas clases usan el constructor para inicializar sus propiedades.
+</p>
+
+<p>
+La palabra <code>open</code> es necesaria para poder heredar, ya que por defecto todas las clases son <code>final</code>.
+</p>
+
+<p>
+Las clase heredadas pueden tener sus propias propiedades y funciones.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">open</span> <span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span>: <span style="color: #bd93f9;">String</span>, <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span>: <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">Moderator</span><span style="color: #61bfff;">(</span>name: <span style="color: #bd93f9;">String</span>, age: <span style="color: #bd93f9;">Int</span>, <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">country</span>: <span style="color: #bd93f9;">String</span><span style="color: #61bfff;">)</span>: <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span>name, age<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span>args: <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">b</span> = <span style="color: #bd93f9;">Moderator</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Amy"</span>, <span style="color: #bd93f9; font-weight: bold;">23</span>, <span style="color: #f1fa8c;">"USA"</span><span style="color: #ff79c6;">)</span>
+    println<span style="color: #ff79c6;">(</span>b.country<span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-6" class="outline-3">
+<h3 id="sec-5-6"><span class="section-number-3">5.6</span> Modificadores de Visibilidad</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+Kotlin provee modificadores de visibilidad para restringir el acceso a propiedades y métodos
+</p>
+<ul class="org-ul">
+<li><b>public</b>: Visible en todos lados.
+</li>
+<li><b>protected</b>: Visible solo para las sublclases.
+</li>
+<li><b>private</b>: no visible desde afuera.
+
+<p>
+Por defecto todas las propiedades y métodos son públicos.
+</p>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">User</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">name</span>:<span style="color: #bd93f9;">String</span>, <span style="color: #ff79c6; font-style: italic;">private</span> <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">age</span>: <span style="color: #bd93f9;">Int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">...</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">(</span>args: <span style="color: #bd93f9;">Array&lt;String&gt;</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">u1</span> = <span style="color: #bd93f9;">User</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Amy"</span>, <span style="color: #bd93f9; font-weight: bold;">23</span><span style="color: #ff79c6;">)</span>
+    println<span style="color: #ff79c6;">(</span>u1.age<span style="color: #ff79c6;">)</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Esto dar&#225; un error ya que age es privado</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Esto permite asegurarnos de que no modifiquen la propiedad directamente.
+</p>
+</blockquote>
+</div>
 </div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-03-25 Fri 01:07</p>
+<p class="date">Created: 2022-03-27 Sun 20:25</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

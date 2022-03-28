@@ -104,3 +104,90 @@
     - Este solo se ejecuta mientras otro componente de la app este enlazado a el.
 
 ** =Broadcast=
+- Transmisiones.
+- Conocidos también  como =broadcast receivers=
+- Estos están siempre alerta a lo que pasa en el sistema operativo.
+- archivo =Android Manifest=
+  - Tiene declarado todo lo que tenga que ver con el sistema operativo.
+  - La capa que tiene contacto con el dispositivo.
+  - Si quiero que mi app tenga acceso a algo, el tiene que estar declarado aqui.
+  - Es el puente entre tu aplicación y el hardware.
+  - Aquí se definen los =broadcast=.
+    - Aquí ponemos escuchas para diferentes eventos del dispositivo.
+      - EJ: batería baja, Llamada entrante, Carga conectada, etc.
+- Debemos heredar de la clase =broadcastReceiver=.
+
+* Desarrollo
+** Qué es y como funciona =gradle=
+- Es una herramienta que facilita la construcción de aplicaciones.
+- Genera el sistema de archivos del proyecto.
+- Gestiona dependencias.
+- Genera archivos ejecutables.
+- Esta basado en el lenguaje =groovy=.
+  - Es un lenguaje de dominio (un lenguaje diseñado para usarlo en un solo ámbito).
+- archivo =build.gradle=
+  - Dependencias del proyecto.
+  - Compilación del código.
+  - Empaquetado.
+
+** Generación de un APK
+- El compilador convierte el código a bytecode.
+  - Este bytecode es diferente al que podrías encontrarte para java.
+    - Tiene la extensión =.dex= en lugar de ser =.jar=.
+- Gradle empaqueta los archivos =.dex= junto con todos los otros archivos que tu aplicación necesita.
+  - Generando con esto un =.apk=.
+- Gradle Firma este APK on una =key=.
+- Los APK generados pueden ser de =debug= o de =release=.
+
+** =Google Play Services=
+- Google proporciona servicios como autentificación o analiticas.
+  - Para esto ocupamos los servicios de google play.
+
+* Almacenamiento
+** Niveles de almacenamiento y tipos
+- Almacenamiento Interno.
+- Almacenamiento Externo.
+- =Shared preferences=.
+  - Modelo de datos primitivos con formato xml.
+  - Vive en la APK.
+- Bases de datos
+  - Se pueden guardar dentro de la APK o dentro del almacenamiento.
+- =WebService=.
+  - Guardas datos en un servidor externo mediante internet.
+
+** =File= y =shared preferences=
+- File
+  - Crea un archivo de cualquier tipo.
+  - Trabaja con la clase =file=.
+- =Shared Preferences=
+  - Datos sencillos.
+  - Funciona con XML.
+  - Necesitamos una =key= y un valor.
+    - En forma de pares.
+  - Se almacena dentro de la aplicación.
+
+** =Content Providers=, Bases de datos y =Network=
+- Las bases de datos se utilizan con =sqlite=.
+  - Estos datos viven hasta que la aplicación es desinstalada.
+  - Solo son accesibles para la aplicación.
+- =Content providers=.
+  - Almacenamiento que pueden usar todas las apps.
+  - Funcionan como una base de datos.
+  - La aplicación de contactos funciona con esto.
+- =Network=
+  - Usamos una conexión a internet.
+  - Mandamos los datos a un servidor remoto.
+  - Siempre debe de estar conectado para tener persistencia.
+
+* =Testing= y =UI Test=
+- El =testing= es necesario para asegurar la calidad de tu aplicación.
+- Hay diferentes tipos de pruebas:
+  - Pruebas de unidad local (unitarias).
+    - Son pequeños =tests= automatizados para probar pequeñas partes del código.
+  - Pruebas instrumentadas.
+    - Son pruebas donde integras los test anteriores.
+    - Aquí testeamos que varios módulos funcionen bien en conjunto.
+  - Pruebas de interfaz de usuario.
+    - Se enfocan en el flujo de la interfaz de usuario.
+    - Con esto nos aseguramos que las tareas que realizará el usuario funcionen como se esperan.
+

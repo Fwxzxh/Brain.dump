@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Curso de Bases Técnicas de Android</title>
-<!-- 2022-03-25 Fri 01:07 -->
+<!-- 2022-03-27 Sun 20:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -211,6 +211,21 @@ $(function() {
 <li><a href="#sec-2-5">2.5. <code>Broadcast</code></a></li>
 </ul>
 </li>
+<li><a href="#sec-3">3. Desarrollo</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Qué es y como funciona <code>gradle</code></a></li>
+<li><a href="#sec-3-2">3.2. Generación de un APK</a></li>
+<li><a href="#sec-3-3">3.3. <code>Google Play Services</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Almacenamiento</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Niveles de almacenamiento y tipos</a></li>
+<li><a href="#sec-4-2">4.2. <code>File</code> y <code>shared preferences</code></a></li>
+<li><a href="#sec-4-3">4.3. <code>Content Providers</code>, Bases de datos y <code>Network</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. <code>Testing</code> y <code>UI Test</code></a></li>
 </ul>
 </div>
 </nav>
@@ -522,12 +537,264 @@ servicio.
 
 <div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5"><span class="section-number-3">2.5</span> <code>Broadcast</code></h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Transmisiones.
+</li>
+<li>Conocidos también  como <code>broadcast receivers</code>
+</li>
+<li>Estos están siempre alerta a lo que pasa en el sistema operativo.
+</li>
+<li>archivo <code>Android Manifest</code>
+<ul class="org-ul">
+<li>Tiene declarado todo lo que tenga que ver con el sistema operativo.
+</li>
+<li>La capa que tiene contacto con el dispositivo.
+</li>
+<li>Si quiero que mi app tenga acceso a algo, el tiene que estar declarado aqui.
+</li>
+<li>Es el puente entre tu aplicación y el hardware.
+</li>
+<li>Aquí se definen los <code>broadcast</code>.
+<ul class="org-ul">
+<li>Aquí ponemos escuchas para diferentes eventos del dispositivo.
+<ul class="org-ul">
+<li>EJ: batería baja, Llamada entrante, Carga conectada, etc.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Debemos heredar de la clase <code>broadcastReceiver</code>.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Desarrollo</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Qué es y como funciona <code>gradle</code></h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Es una herramienta que facilita la construcción de aplicaciones.
+</li>
+<li>Genera el sistema de archivos del proyecto.
+</li>
+<li>Gestiona dependencias.
+</li>
+<li>Genera archivos ejecutables.
+</li>
+<li>Esta basado en el lenguaje <code>groovy</code>.
+<ul class="org-ul">
+<li>Es un lenguaje de dominio (un lenguaje diseñado para usarlo en un solo ámbito).
+</li>
+</ul>
+</li>
+<li>archivo <code>build.gradle</code>
+<ul class="org-ul">
+<li>Dependencias del proyecto.
+</li>
+<li>Compilación del código.
+</li>
+<li>Empaquetado.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Generación de un APK</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>El compilador convierte el código a bytecode.
+<ul class="org-ul">
+<li>Este bytecode es diferente al que podrías encontrarte para java.
+<ul class="org-ul">
+<li>Tiene la extensión <code>.dex</code> en lugar de ser <code>.jar</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Gradle empaqueta los archivos <code>.dex</code> junto con todos los otros archivos que tu aplicación necesita.
+<ul class="org-ul">
+<li>Generando con esto un <code>.apk</code>.
+</li>
+</ul>
+</li>
+<li>Gradle Firma este APK on una <code>key</code>.
+</li>
+<li>Los APK generados pueden ser de <code>debug</code> o de <code>release</code>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> <code>Google Play Services</code></h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Google proporciona servicios como autentificación o analiticas.
+<ul class="org-ul">
+<li>Para esto ocupamos los servicios de google play.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Almacenamiento</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Niveles de almacenamiento y tipos</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Almacenamiento Interno.
+</li>
+<li>Almacenamiento Externo.
+</li>
+<li><code>Shared preferences</code>.
+<ul class="org-ul">
+<li>Modelo de datos primitivos con formato xml.
+</li>
+<li>Vive en la APK.
+</li>
+</ul>
+</li>
+<li>Bases de datos
+<ul class="org-ul">
+<li>Se pueden guardar dentro de la APK o dentro del almacenamiento.
+</li>
+</ul>
+</li>
+<li><code>WebService</code>.
+<ul class="org-ul">
+<li>Guardas datos en un servidor externo mediante internet.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <code>File</code> y <code>shared preferences</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>File
+<ul class="org-ul">
+<li>Crea un archivo de cualquier tipo.
+</li>
+<li>Trabaja con la clase <code>file</code>.
+</li>
+</ul>
+</li>
+<li><code>Shared Preferences</code>
+<ul class="org-ul">
+<li>Datos sencillos.
+</li>
+<li>Funciona con XML.
+</li>
+<li>Necesitamos una <code>key</code> y un valor.
+<ul class="org-ul">
+<li>En forma de pares.
+</li>
+</ul>
+</li>
+<li>Se almacena dentro de la aplicación.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> <code>Content Providers</code>, Bases de datos y <code>Network</code></h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Las bases de datos se utilizan con <code>sqlite</code>.
+<ul class="org-ul">
+<li>Estos datos viven hasta que la aplicación es desinstalada.
+</li>
+<li>Solo son accesibles para la aplicación.
+</li>
+</ul>
+</li>
+<li><code>Content providers</code>.
+<ul class="org-ul">
+<li>Almacenamiento que pueden usar todas las apps.
+</li>
+<li>Funcionan como una base de datos.
+</li>
+<li>La aplicación de contactos funciona con esto.
+</li>
+</ul>
+</li>
+<li><code>Network</code>
+<ul class="org-ul">
+<li>Usamos una conexión a internet.
+</li>
+<li>Mandamos los datos a un servidor remoto.
+</li>
+<li>Siempre debe de estar conectado para tener persistencia.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> <code>Testing</code> y <code>UI Test</code></h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>El <code>testing</code> es necesario para asegurar la calidad de tu aplicación.
+</li>
+<li>Hay diferentes tipos de pruebas:
+<ul class="org-ul">
+<li>Pruebas de unidad local (unitarias).
+<ul class="org-ul">
+<li>Son pequeños <code>tests</code> automatizados para probar pequeñas partes del código.
+</li>
+</ul>
+</li>
+<li>Pruebas instrumentadas.
+<ul class="org-ul">
+<li>Son pruebas donde integras los test anteriores.
+</li>
+<li>Aquí testeamos que varios módulos funcionen bien en conjunto.
+</li>
+</ul>
+</li>
+<li>Pruebas de interfaz de usuario.
+<ul class="org-ul">
+<li>Se enfocan en el flujo de la interfaz de usuario.
+</li>
+<li>Con esto nos aseguramos que las tareas que realizará el usuario funcionen como se esperan.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-03-25 Fri 01:07</p>
+<p class="date">Created: 2022-03-27 Sun 20:25</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

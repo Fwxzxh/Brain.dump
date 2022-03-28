@@ -158,3 +158,660 @@ println(age >= 16)
 #+end_src
 
 ** Comentarios
+Los comentarios son texto explicatorio que usamos para describir nuestro código.
+
+Un comentario de una sola linea empieza con =//=.
+
+#+begin_src kotlin
+// my first kotlin program
+fun main(args : Array<String>) {
+    // declaring a name variable
+    var name = "Amy"
+    println(name)
+}
+#+end_src
+
+Si necesitamos comentarios más largos podemos usar comentarios multilinea.
+
+Estos abarcan todo lo que pongamos entre =/*= y =*/=.
+
+#+begin_src kotlin
+fun main(args : Array<String>) {
+    /* this is a multiline coment
+     The program declares a string and outputs it */
+    var name = "Amy"
+    println(name)
+}
+#+end_src
+
+** Entrada
+Podemos tomar valores como entrada usando el método =readLine()=.
+
+#+begin_src kotlin
+var age = readLine()
+println("You entered " + age)
+#+end_src
+
+=readLine()= retorna la entrada como un =string=
+
+Si queremos convertir la entrada a un =Int= debemos usar la función =toInt()=
+
+#+begin_src kotlin
+var a = readLine()!!.toInt()
+var b = readLine()!!.toInt()
+println(a + b)
+#+end_src
+
+El código de arriba lee dos entradas, las convierte en enteros e imprime la suma.
+
+El operador =!!= es llamado el =not-null assertion operator=, esto lo que hace es que asume que la operación
+anterior (readLine) no es nula, esto es necesario para que =toInt= funcione.
+
+* Flujo de control
+** =if=
+El operador =if= nos permite correr un bloque de código si una condición se cumple.
+
+#+begin_src kotlin
+if (condition) {
+    // Some code to run
+}
+#+end_src
+
+- La condición en los paréntesis debe ser una operación booleana.
+- Si la condición retorna =true=, el código dentro del bloque se ejecuta.
+- Si la condición retorna =false=, el código dentro del bloque no se ejecuta.
+
+#+begin_src kotlin
+var age = 24
+if (age >= 18) {
+    println("Welcome")
+}
+#+end_src
+
+** =esle if=
+Podemos verificar varias condiciones encadenando bloques =else if=
+
+#+begin_src kotlin
+val num = -7
+if (num > 0) {
+    println("Positive")
+}
+else if (num < 0) {
+    println("Negative")
+}
+else {
+    println("Zero")
+}
+#+end_src
+
+** Expresiones condicionales
+Podemos usar =if= para asignar valores a variables, así como un operador ternario.
+
+#+begin_src kotlin
+val num = -7
+val result = if (num > 0) "Positive" else "Negative"
+println(result)
+#+end_src
+
+** =when=
+Si hay muchas condicionales podemos usar la expresión =when= como si fuera un =switch=
+
+#+begin_src kotlin
+var num = -7
+
+var result = when {
+    num > 0 -> "Positive"
+    num < 0 -> "Negative"
+    else -> "Zero"
+}
+println(result)
+#+end_src
+
+Se compone de varias condicionales seguidas de una flecha y un resultado.
+
+** Combinando operadores
+Podemos combinar diferentes condiciones usando operadores lógicos.
+
+#+begin_src kotlin
+var num = 42
+if (num >= 18 && num <= 60) {
+    println("Yes")
+}
+#+end_src
+
+Ambas condiciones deben de ser verdaderas para que el operador =&&= retorne =true=.
+
+#+begin_src kotlin
+var name = "Jhon"
+if (name == "Jon" || name == "Jhon") {
+    println("Hi there")
+}
+#+end_src
+
+similarmente el operador =or= =||=  puede ser usado para verificar si una de las condiciones
+es =true=.
+
+** Ciclos =while=
+Un ciclo =while= es usado cuando deseas repetir un bloque de código siempre y cuando una condición sea
+verdadera.
+
+#+begin_src kotlin
+var i = 1
+
+while (i <= 5) {
+    println("Hello")
+    i++
+}
+#+end_src
+
+#+begin_quote
+Cada ciclo de un ciclo es llamado iteración.
+#+end_quote
+
+#+begin_src kotlin
+var sum = 0
+var i = 1
+while (i < 100) {
+    sum += i
+    i++
+}
+println(sum)
+#+end_src
+
+** =break= y =continue=
+La palabra =break= puede ser usada para parar un ciclo de manera prematura.
+
+#+begin_src kotlin
+var sum = 0
+var i = 1
+while (i <= 100) {
+    sum += 1
+    i++
+    if (sum > 100) {
+        break
+    }
+}
+println(sum)
+#+end_src
+
+De manera similar a =break,= =continue= se salta la iteración actual del ciclo.
+
+#+begin_src kotlin
+var sum = 0
+var i = 1
+while (i <= 100) {
+    i++
+    if (i%2 != 0) {
+        continue
+    }
+    sum += 1
+}
+println(sum)
+#+end_src
+
+El código de arriba salta los números pares en el ciclo.
+
+** Arreglos
+Un arreglo nos permite guardar múltiples valores en una variable.
+
+#+begin_src kotlin
+var contacts = arrayOf("Jhon", "James", "Amy")
+#+end_src
+
+El arreglo es declarado usando la función =arrayOf= la cual contiene sus valores separados
+por comas.
+
+Cada elemento del arreglo tiene un índice, que es usado para acceder al elemento.
+
+Los índices empiezan por el número 0
+
+#+begin_src kotlin
+var contacts = arrayOf("Jhon", "James", "Amy")
+println(contacts[2]) // Amy
+#+end_src
+
+** Ciclos =for=
+A veces trabajando con arreglos necesitamos iterar sobre los elementos, para esto
+son útiles los ciclos =for=.
+
+#+begin_src kotlin
+var nums = arrayOf(2, 4, 6)
+for (x in nums) {
+    println(x)
+}
+#+end_src
+
+También podemos usar un ciclo =for= para iterar sobre un =string=
+
+#+begin_src kotlin
+val name = "James"
+for (x in name) {
+    println(x)
+}
+#+end_src
+
+Esto es posible ya que los =strings= son similares a un arreglo de caracteres,
+También podemos acceder a las posiciones de un =string= como si fuera un arreglo.
+
+#+begin_src kotlin
+val name = "James"
+println(name[1]) // a
+#+end_src
+
+** Rangos
+Kotlin permite crear rangos de valores de manera fácil.
+
+#+begin_src kotlin
+for (i in 2..5) {
+    println(i)
+}
+#+end_src
+
+=2..5= crea un rango de valores del 2 al 5.
+
+También podemos crear un rango de caracteres.
+
+#+begin_src kotlin
+for (x in 'a'..'e') {
+    println(x)
+}
+#+end_src
+
+También podemos verificar si un valor esta en un rango usando el operador =in=.
+
+#+begin_src kotlin
+val x = 42
+if (x in 15..100) {
+    println("Yes")
+}
+#+end_src
+
+Con este operador podemos verificar si un valor esta presente en un arreglo.
+
+#+begin_src kotlin
+val x = arrayOf(8, 9, 42, 111)
+if (42 in x) {
+    println("Yes")
+}
+#+end_src
+
+También podemos iterar en un rango el cual no incluye el elemento final con la función =until=.
+
+#+begin_src kotlin
+for (i in 1 until 5) {
+    // El 5 quedaria excluido del rango.
+}
+#+end_src
+
+* Funciones
+** Funciones
+- Es un grupo de código que es usado para hacer una tarea.
+- El nombre enfrente de los parentesis es el nombre de la función y lo que se pone entre ellos son los
+  argumentos de la función.
+- Un ejemplo es la función =println()=
+
+** Definiendo funciones
+Podemos definir nuestras propias funciones con la palabra =fun=.
+
+#+begin_src kotlin
+fun welcome() {
+    println("Hey there")
+}
+#+end_src
+
+Después de definirla podemos llamarla de la siguiente manera.
+
+#+begin_src kotlin
+fun main(args : Array<String>) {
+    welcome()
+}
+#+end_src
+
+** Argumentos de funciones
+Los argumentos le dan entradas a nuestras funciones.
+
+por ejemplo si quisiéramos pasarle a una función un parametro nombre
+
+#+begin_src kotlin
+fun welcome(name : String) {
+    println("Hello " + name)
+}
+#+end_src
+
+Nuestra función toma un argumento nombre de tipo =String=
+
+#+begin_src kotlin
+fun main(args : Array<String>) {
+    welcome("Amy")
+}
+#+end_src
+
+** Retornando de las funciones
+A veces necesitaremos que las funciones retornen un valor para guardarlo en una variable.
+
+#+begin_src kotlin
+var result = sum (8, 42)
+#+end_src
+
+Para lograr esto debemos definir el tipo de retorno en la función =sum=.
+
+#+begin_src kotlin
+fun sum(x : Int, y : Int): Int {
+    return (x+y)
+}
+#+end_src
+
+Nuestra función =sum= toma dos argumentos tipo entero y retorna un entero.
+
+** Funciones anónimas
+No todas las funciones tienen un nombre, en algunos casos una función hace una tarea
+muy simple con su =input=.
+
+Estos son casos en los que es mejor usar una función anónima.
+
+Podemos definir la función anterior =sum= como una función anónima.
+
+#+begin_src kotlin
+val f: (Int, Int) -> Int = {a, b -> a + b}
+#+end_src
+
+Nuestra función toma dos enteros y retorna un entero eso es =(Int, Int) -> Int=, los parentesis definen
+los tipos de nuestra entrada y la flecha define el tipo de la salida.
+
+Ahora que ya tenemos una función anónima podemos asignarla a una variable y usarla en nuestro código.
+
+#+begin_src kotlin
+val f: (Int, Int) -> Int = {a, b -> a + b}
+var result = f(8, 42)
+println(result)
+#+end_src
+
+En el código anterior asignamos la función anónima a la variable =f= y la usamos.
+
+#+begin_quote
+También podemos acortar la función anónima saltandonos el tipo de retorno ya que kotlin puede adivinarlo por si mismo.
+#+end_quote
+
+** =Foreach=
+A veces debemos iterar sobre los items de un arreglo, para esto kotlin provee la función =foreach=.
+
+Esta toma una función, definiendo una acción a realizar para cada elemento.
+
+#+begin_src kotlin
+fun main (args: Array<String>) {
+    var arr = arrayOf(1, 3, 5)
+    arr.foreach {
+        item -> println(item * 4)
+    }
+}
+#+end_src
+
+En el código de arriba llamamos a cada elemento del arreglo =item= e imprimimos el valor multiplicandolo por 4.
+
+la función =foreach= es llamada con el nombre el arreglo usando la notación de punto y debe de seguir de una función.
+
+Kotlin también provee la palabra =it=, esto nos permitiría acortar el código de arriba:
+
+#+begin_src kotlin
+fun main (args: Array<String>) {
+    var arr = arrayOf(1, 3, 5)
+    arr.foreach {
+        println(it * 4)
+    }
+}
+#+end_src
+
+** Funciones de orden superior
+Una función puede tomar como argumento otra función, estas son llamadas funciones de orden superior.
+
+Esto es útil cuando queremos cambiar el comportamiento de una función
+
+#+begin_src kotlin
+fun apply(x:Int, action:(Int) -> Int) : Int {
+    return action(x)
+}
+#+end_src
+
+=apply= es una función de orden superior que toma un entero y una función llamada =action= con sus argumentos.
+
+Después llama a =action= con un argumento y retorna el resultado.
+
+Ahora podemos llamar a =apply= y pasarle diferentes funciones anónimas.
+
+#+begin_src kotlin
+println(apply(4, {x -> x*2}))
+println(apply(4, {x -> x/2}))
+#+end_src
+
+En nuestras funciones anónimas no necesitamos definir el tipo de sus argumentos, porque kotlin
+los adivina automáticamente.
+
+Kotlin tiene muchas funciones de orden superior ya definidas.
+
+Un ejemplo es =filter()= es una función que toma un arreglo y una función booleana y retorna los elementos
+que dan =true= a una condición.
+
+#+begin_src kotlin
+var arr = arrayOf(42, 3, 10, 6, 4, 1)
+var res = arr.filter({it > 5})
+println(res)
+#+end_src
+
+El código de arriba solo imprimirá los números que sean mayores a 5.
+
+* OOP
+** Clases y Objetos
+En kotlin definimos una clase con la palabra =class=
+
+#+begin_src kotlin
+class User {
+    var name = ""
+    var age = 0
+}
+#+end_src
+
+Esta clase tiene dos propiedades: =name= y =age=.
+
+#+begin_quote
+Una propiedad es una variable definida dentro de una clase.
+#+end_quote
+
+Cuando tenemos una clase definida, podemos crear objetos de esa clase.
+
+#+begin_src kotlin
+val u1 = User()
+u1.name = "James"
+u1.age = 42
+#+end_src
+
+En el código de arriba =u1= es un objeto de tipo =User=.
+
+Podemos acceder a las propiedades usando la sintaxis de punto junto al nombre de la propiedad.
+
+** Constructores
+Un constructor permite inicializar propiedades cuando los objetos son creados.
+
+Un constructor es definido usando los parentesis de la definición de la clase.
+
+#+begin_src kotlin
+class User(val name:String, val age:Int) {
+    // stuff
+}
+#+end_src
+
+Ahora cuando creemos un objeto tipo =User= debemos pasarle los valores para =name= y =age=.
+
+#+begin_src kotlin
+val u1 = User("James", 42)
+println(u1.name)
+#+end_src
+
+#+begin_quote
+De manera similar a los argumentos de una función, podemos pasarles valores por defecto para los argumentos.
+#+end_quote
+
+Kotlin nos permite crear clases con más de un constructor usando la palabra =constructor=
+
+#+begin_src kotlin
+class User {
+    var name = ""
+    var age = 0
+
+    constructor(nm: String) {
+        name = nm
+    }
+
+    constructor(nm: String, a: Int) {
+        name = nm
+        age = a
+    }
+}
+#+end_src
+
+Los constructores se son como funciones tomando argumentos.
+
+** =Getters= y =Setters=
+Hasta ahora hemos accedido a las propiedades de manera directa.
+
+Pero podemos modificar como accedemos a una propiedad, podemos poner =getters= y =setters= para una propiedad.
+
+Un =getter= define como accedemos a una propiedad y un =setter= define como escribimos o modificamos esa propiedad.
+
+#+begin_src kotlin
+class User {
+    var name = ""
+
+    var age = 0
+        get() = field
+
+        set(value) {
+            field = value
+        }
+}
+#+end_src
+
+En el código de arriba definimos un =getter= y un =setter= para la propiedad =age=.
+
+Se ocupa la palabra reservada =field= para referirnos a la propiedad de la cual es el =getter= o =setter= y la palabra
+=value= se refiere al valor que queremos guardar en la propiedad.
+
+En este caso, es un =getter= y un =setter= por defecto, esto significa que no hay una lógica detrás de como accedemos o
+modificamos la propiedad.
+
+Ahora podemos modificar la lógica del =getter= y =setter=.
+
+#+begin_src kotlin
+class User {
+    var name = ""
+
+    var age = 0
+       get ()  = field - 1
+
+       set(value) {
+           if (value > 0) {
+               field = 18
+           }
+           else {
+               field = value
+           }
+       }
+}
+#+end_src
+
+En el código de arriba, definimos un =getter= para el campo de =age= para que retorne la edad - 1.
+
+El =setter= esta definido para poner el número de 18 en caso de que el valor dado sea negativo.
+
+** Funciones de clase
+Una clase puede tener funciones, las cuales definen su comportamiento.
+
+#+begin_src kotlin
+class User(var name: String, var age: Int) {
+    fun login() {
+        println("Login from user" + name)
+    }
+}
+fun main(args: Array<String>) {
+    var u = User("James", 42)
+    u.login()
+}
+#+end_src
+
+Las funciones también pueden ser llamadas usando la sintaxis del punto.
+
+#+begin_src kotlin
+class User(var name: String, var age: Int) {
+    fun isAdult(): Boolean {
+        if (age >= 18) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+}
+#+end_src
+
+justo como otras funciones, podemos pasarle argumentos a estas.
+
+** Herencia
+La herencia nos permite crear clases basadas en otras clases, heredando sus funciones.
+
+#+begin_src kotlin
+open class User(var name: String, var age: Int) {
+    // ...
+}
+
+class Admin(name: String, age: Int): User(name, age) {
+    // ...
+}
+
+class Moderator(name: String, age: Int): User(name, age) {
+    // ...
+}
+#+end_src
+
+=Admin= y =Moderator= son clases que heredan de la clase =User=, Usamos dos puntos para definir la clase de la cual heredaremos
+Ambas clases usan el constructor para inicializar sus propiedades.
+
+La palabra =open= es necesaria para poder heredar, ya que por defecto todas las clases son =final=.
+
+Las clase heredadas pueden tener sus propias propiedades y funciones.
+
+#+begin_src kotlin
+open class User(var name: String, var age: Int) {
+    // ...
+}
+
+class Moderator(name: String, age: Int, var country: String): User(name, age) {
+    // ...
+}
+
+fun main(args: Array<String>) {
+    val b = Moderator("Amy", 23, "USA")
+    println(b.country)
+}
+#+end_src
+
+** Modificadores de Visibilidad
+Kotlin provee modificadores de visibilidad para restringir el acceso a propiedades y métodos
+- *public*: Visible en todos lados.
+- *protected*: Visible solo para las sublclases.
+- *private*: no visible desde afuera.
+
+ Por defecto todas las propiedades y métodos son públicos.
+
+#+begin_src kotlin
+class User(var name:String, private var age: Int) {
+    // ...
+}
+
+fun main(args: Array<String>) {
+    val u1 = User("Amy", 23)
+    println(u1.age) // Esto dará un error ya que age es privado
+}
+#+end_src
+
+#+begin_quote
+Esto permite asegurarnos de que no modifiquen la propiedad directamente.
+#+end_quote
