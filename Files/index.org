@@ -33,16 +33,23 @@ Notas y sobre libros que le leído últimamente.
 #+begin_quote
 Apuntes sobre distintos cursos que he tomado.
 #+end_quote
-- [[file:Cursos/WirelessEssentials/WirelessEssentialsMOC.org][Cisco Wireless Essentials]] (TODO)
-- [[file:Cursos/Pract-ethic-hack/main.org][Practical Ethical Hacking]]
-- [[file:Cursos/PythonDataStructures.org][Python Data Structures]]
-- [[file:Cursos/TecnicalWriting.org][Tectical writing]]
-- [[file:Cursos/BuenasPracticas.org][Buenas Practicas para escritura de código]]
-- [[file:Cursos/BashScripting.org][Bash scripting]]
-- [[file:Cursos/IntermPython.org][Intermediate Python]]
-- [[file:Cursos/MvvmWpfXaml.org][Mvvm Wpf xaml]]
-- [[file:Cursos/FundIngSoftware.org][Fundamentos Ing. de Software]]
-- [[file:Cursos/BasesTecnicasAndroid.org][Bases técnicas de Android]]
+- Otros
+  - [[file:Cursos/BuenasPracticas.org][Buenas Practicas para escritura de código]]
+  - [[file:Cursos/TecnicalWriting.org][Tectical writing]]
+  - [[file:Cursos/FundIngSoftware.org][Fundamentos Ing. de Software]]
+  - [[file:Cursos/BashScripting.org][Bash scripting]]
+  - [[file:Cursos/MvvmWpfXaml.org][Mvvm Wpf xaml]]
+- Redes
+  - [[file:Cursos/WirelessEssentials/WirelessEssentialsMOC.org][Cisco Wireless Essentials]] (TODO)
+  - [[file:Cursos/Pract-ethic-hack/main.org][Practical Ethical Hacking]]
+- Python
+  - [[file:Cursos/PythonDataStructures.org][Python Data Structures]]
+  - [[file:Cursos/IntermPython.org][Intermediate Python]]
+- Android
+  - [[file:Cursos/BasesTecnicasAndroid.org][Bases técnicas de Android]]
+  - [[file:Cursos/DisenoInterfacesAndroid.org][Curso básico de diseño de interfaces en Android]]
+- Diseño
+  - [[file:Cursos/Diseno/IntroduccionDiseno.org][Curso de Introducción al diseño]]
 
 * Notas generales
 #+begin_quote

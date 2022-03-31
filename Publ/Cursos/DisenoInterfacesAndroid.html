@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Curso Básico de diseño de interfaces en Android</title>
+<!-- 2022-03-31 Thu 01:51 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Introducción</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. UI en Android</a></li>
+<li><a href="#sec-1-2">1.2. Enlazando nuestro <code>layout</code> con código</a></li>
+<li><a href="#sec-1-3">1.3. <code>ViewGrup</code> y <code>View</code></a></li>
+<li><a href="#sec-1-4">1.4. Atributos Importantes: alto, ancho e id</a></li>
+<li><a href="#sec-1-5">1.5. Otros atributos y el <code>namespace</code> <code>tools</code></a></li>
+<li><a href="#sec-1-6">1.6. <code>LinearLayout</code>: organización lineal</a></li>
+<li><a href="#sec-1-7">1.7. <code>RelativeLayout</code>: Organizando con referencias</a></li>
+<li><a href="#sec-1-8">1.8. <code>FrameLayout</code>: Alineación por región</a></li>
+<li><a href="#sec-1-9">1.9. <code>Layout</code> Externos: <code>ConstraintLayout</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Estilos</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Qué es un estilo</a></li>
+<li><a href="#sec-2-2">2.2. Qué es un tema</a></li>
+<li><a href="#sec-2-3">2.3. Distribuyendo nuestros valores</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Extendiendo los <code>widgets</code></a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Agregando <code>widgets</code> externos</a></li>
+<li><a href="#sec-3-2">3.2. Reutilizando elementos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Curso Básico de diseño de interfaces en Android</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introducción</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> UI en Android</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><code>XML</code>
+<ul class="org-ul">
+<li>Lenguaje de marcado.
+</li>
+<li>Se estructuran los datos a tráves de tags.
+</li>
+<li>Pueden Contienen atributos.
+</li>
+</ul>
+</li>
+<li><code>Namespaces</code>
+<ul class="org-ul">
+<li>Una forma de darle contexto a un tag.
+</li>
+<li>Una forma de contextualizar los elementos de un XML.
+</li>
+<li>El <code>namespace</code> <code>android</code> es muy común en android.
+</li>
+<li>Atributo xmlns (xml namespace).
+<ul class="org-ul">
+<li>Le damos una procedencia a un xml para que sepa de donde sacar el namespace.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Enlazando nuestro <code>layout</code> con código</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Si en el visor de archivos ponemos la vista de <code>android</code> Encontraremos la carpeta res.
+<ul class="org-ul">
+<li><code>res</code> es de recursos.
+</li>
+<li>En esta carpeta encontraremos:
+<ul class="org-ul">
+<li>La carpeta <code>drawable</code>
+<ul class="org-ul">
+<li>Aquí se guardan todos los gráficos e imágenes.
+</li>
+</ul>
+</li>
+<li>La carpeta <code>layout</code>
+<ul class="org-ul">
+<li>Las estructuras de las pantallas.
+</li>
+</ul>
+</li>
+<li>La carpeta <code>mipmap</code>
+<ul class="org-ul">
+<li>Aquí guardaremos iconos.
+</li>
+</ul>
+</li>
+<li>La carpeta <code>values</code>
+<ul class="org-ul">
+<li>Es donde administramos los recursos
+<ul class="org-ul">
+<li>Textos, colores, estilos, temas, etc
+</li>
+</ul>
+</li>
+<li>archivos:
+<ul class="org-ul">
+<li><code>colors.xml</code>
+<ul class="org-ul">
+<li>Aquí están definidos los colores de la aplicación
+</li>
+</ul>
+</li>
+<li><code>strings.xml</code>
+<ul class="org-ul">
+<li>Donde se almacenan los textos de la aplicación.
+</li>
+<li>Se almacenan en forma de variables con un nombre y un valor.
+</li>
+<li>nos ayudan a poder cambiar de lenguaje nuestra aplicación.
+</li>
+</ul>
+</li>
+<li><code>dimens.xml</code>
+<ul class="org-ul">
+<li>guardaremos dimensiones compartidas.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> <code>ViewGrup</code> y <code>View</code></h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Las vistas en android están dadas por un xml.
+<ul class="org-ul">
+<li>Por lo tanto, siempre terminaremos trabajando en texto.
+</li>
+</ul>
+</li>
+<li><code>ViewGrup</code>
+<ul class="org-ul">
+<li>Sirve para agrupar vistas.
+</li>
+<li>Agrupa elementos en pantalla.
+</li>
+<li>Los cambios que hagamos en el <code>ViewGrup</code> afectan los elements dentro de este.
+</li>
+<li>EJ: <code>LinearLayout</code>
+</li>
+<li>Pueden tener <code>ViewGrup</code> anidados.
+</li>
+</ul>
+</li>
+<li><code>View</code>
+<ul class="org-ul">
+<li>Es un elemento como tal que se va a mostrar en pantalla y generalmente
+se cierran en la misma linea.
+<ul class="org-ul">
+<li><code>inline elements</code>
+</li>
+<li><code>&lt;textView /&gt;</code>, <code>&lt;ImageView /&gt;</code>, <code>&lt;EditText /&gt;</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Atributos Importantes: alto, ancho e id</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li><code>wrap_content</code>
+<ul class="org-ul">
+<li>Nos permite que el elemento crezca tanto como su contenido.
+</li>
+</ul>
+</li>
+<li><code>match_parent</code>
+<ul class="org-ul">
+<li>Con esto el elemento va a cubrir todo el espacio disponible para el.
+</li>
+</ul>
+</li>
+<li><code>hint</code>
+<ul class="org-ul">
+<li>Nos permite mostrar una sugerencia o información del elemento.
+</li>
+</ul>
+</li>
+<li><code>background</code>
+<ul class="org-ul">
+<li>Nos permite poner el background de un elemento.
+</li>
+<li>Podemos acceder a los recursos con <code>@</code>.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Otros atributos y el <code>namespace</code> <code>tools</code></h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>el elemento <code>id</code>
+<ul class="org-ul">
+<li>tienen la siguiente sintaxis <code>@+id/nombre</code> donde nombre es el nombre del elemento para referirnos a el.
+<ul class="org-ul">
+<li>Es útil usar nombres descriptivos para este elemento.
+</li>
+<li>Con esto podremos acceder a ellos desde la clase <code>R</code> en el code behind.
+<ul class="org-ul">
+<li><code>R.id.elemento</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Atributos específicos y compartidos
+<ul class="org-ul">
+<li><code>background</code> es un atributo compartido ya que todos los elementos lo tienen.
+</li>
+<li><code>hint</code> sería un atributo específico ya que solo algunos elementos lo tiene.
+</li>
+</ul>
+</li>
+<li>El <code>namespace tools</code>
+<ul class="org-ul">
+<li>Nos permite ver como se verá nuestra aplicación sin tener que correr esta.
+</li>
+<li>Por ejemplo poner texto de prueba para visualizarlo en el <code>preview</code> del editor.
+</li>
+<li>Nos da varias opciones como <code>text</code>, <code>background</code>, etc.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> <code>LinearLayout</code>: organización lineal</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>es parecido al <code>listbox</code> de xaml.
+</li>
+<li>Podemos ordenar los elementos verticalmente u horizontalmente.
+<ul class="org-ul">
+<li>esto lo hacemos con el parametro <code>orientation</code>.
+</li>
+<li>Estos irán ocupando el espacio que necesitan uno detrás del otro.
+</li>
+<li>En la orientación vertical.
+<ul class="org-ul">
+<li>Los elementos se llenan de arriba a abajo.
+</li>
+</ul>
+</li>
+<li>En la orientación horizontal.
+<ul class="org-ul">
+<li>Los elementos se llenan de izquierda a derecha.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Podemos tener <code>LinearLayout</code> dentro de otro <code>LinearLayout</code>
+<ul class="org-ul">
+<li>Permitiendo ordenar los elementos de diferente manera.
+</li>
+</ul>
+</li>
+<li>Los modificadores que empiezan con la palabra <code>layout</code> ej <code>layout_margin</code>, <code>layout_widith</code>
+<ul class="org-ul">
+<li>Solo modifican el elemento, no sus elementos hijos.
+</li>
+</ul>
+</li>
+</ul>
+
+<blockquote>
+<p>
+dp significa <code>density points</code>, es la unidad de medida y escala con el dpi de la pantalla.
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Si queremos tener recursos, debemos nombrarlos solo con snake case y en minusculas EJ: recurso<sub>nuevo.xml</sub>
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> <code>RelativeLayout</code>: Organizando con referencias</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>Permite Generar <code>layouts</code> más flexibles.
+</li>
+<li>Permite que el elemento indique como debe alinearse con respecto a el padre.
+</li>
+<li>Podemos hacer que uno o más elementos se alineen usando identificadores.
+</li>
+<li>Todos estos elementos se alinean con respecto al elemento padre
+</li>
+</ul>
+
+<p>
+Si queremos que un elemento se alinee arriba o abajo
+</p>
+
+<pre class="example">
+layout_alignParentTop="True"
+layout_alignParentBottom="True"
+</pre>
+
+<p>
+Si queremos que el elemento se alinea a la izquierda o derecha
+</p>
+
+<pre class="example">
+layout_alignParentStart="True"
+layout_alignParentEnd="True"
+</pre>
+
+<p>
+También podemos alinear un elemento respecto a otro, primero debemos indicar su
+posición y después le damos el id del elemento que queremos que este alineado.
+</p>
+
+<pre class="example">
+layout_alignParentEnd="True"
+layout_below="@id/name"
+</pre>
+
+<p>
+Con el código de arriba podríamos alinear un elemento a la derecha y abajo de otro.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> <code>FrameLayout</code>: Alineación por región</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>Nos permite ocupar una región de la pantalla basandonos en el elemento más grande de esa región.
+</li>
+<li>Otro uso común de <code>FrameLayout</code> es que podemos cargar vistas dinámicamente en el.
+</li>
+<li>También nos permite poner elementos enfrente de otro para crear nuevos efectos.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> <code>Layout</code> Externos: <code>ConstraintLayout</code></h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li>Es parecido a <code>RelativeLayout</code>
+</li>
+<li>Tiene la ventaja de que considera los elementos con los cuales se va alineando
+<ul class="org-ul">
+<li>Y cuando una modificación sucede, los elementos reaccionan.
+</li>
+</ul>
+</li>
+<li>Todos los elementos deben de tener una alineación vertical y horizontal.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Estilos</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Qué es un estilo</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>los elementos suelen compartir características
+<ul class="org-ul">
+<li>Esto se le conoce como estilos.
+</li>
+</ul>
+</li>
+<li>Los estilos están definidos en la carpeta <code>res/values/styles.xml</code>
+<ul class="org-ul">
+<li>Si no esta el archivo puedes crearlo añadiendo un nuevo recurso.
+</li>
+</ul>
+</li>
+<li>Los estilos necesitan un nombre y los damos de alta con la tag <code>style</code>.
+<ul class="org-ul">
+<li>Podemos crear sub estilos y heredar de otros estilos que hayamos definidos.
+</li>
+</ul>
+</li>
+<li>Dentro de estos estilos damos de alta etiquetas <code>item</code> cuyo nombre se refiere a algún
+tipo de elemento de la UI, por ejemplo <code>android:textSize</code> si queremos modificar el tamaño del texto.
+</li>
+<li>ya dentro del xml de nuestra <code>activity</code>, podemos llamar al estilo con el <code>@</code> y la ruta a este.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Qué es un tema</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Tener estilos es una manera correcta de compartir atributos entre nuestros elementos.
+</li>
+<li>tema:
+<ul class="org-ul">
+<li>Es un estilo aplicado globalmente
+</li>
+<li>Cuando hagamos una modificación todos los elementos se verán afectados.
+</li>
+</ul>
+</li>
+<li>Dentro del <code>AndroidManifest</code> tenemos una etiqueta de tema.
+<ul class="org-ul">
+<li>Este el tema global de la aplicación y cualquier cambio afectará toda la aplicación.
+</li>
+</ul>
+</li>
+<li>No hay manera de diferenciar un tema de un estilo (sintácticamente).
+<ul class="org-ul">
+<li>Ambos se crean con la tag <code>style</code>.
+</li>
+<li>(al parecer ahora ya hay una carpteta de themes)
+</li>
+</ul>
+</li>
+<li>Si ponemos un tema a nivel <code>layout</code> este afectará a todos los elementos hijos.
+<ul class="org-ul">
+<li>Aunque cada hijo puede sobreescribir los atributos de este.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Distribuyendo nuestros valores</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Dentro de el archivo <code>res/values/dimens.xml</code>
+<ul class="org-ul">
+<li>Podemos definir diferentes dimensiones para nuestros elementos.
+</li>
+<li>Esto nos sirve para normalizar o estandarizar nuestros elementos, como <code>pading</code>, <code>textSize</code>, <code>widith</code>, etc.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Extendiendo los <code>widgets</code></h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Agregando <code>widgets</code> externos</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Podemos agregar librerías.
+</li>
+<li>Debemos seguir las instrucciones de la librería
+<ul class="org-ul">
+<li>No hay manejador de paquetes buh!
+</li>
+<li>Generalmente Deberemos de pegar algo en el <code>build.gradle</code>.
+<ul class="org-ul">
+<li>En el que termina con .app
+</li>
+</ul>
+</li>
+<li>tendremos que refrescar el proyecto (o sincronizar).
+<ul class="org-ul">
+<li>Para que gradle se encargue de instalar la librería.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Reutilizando elementos</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Es posible reutilizar <code>layouts</code> o elementos para evitar copiar código.
+</li>
+<li>Debemos agregar un nuevo <code>layout_resource_file</code> en la carpeta de <code>layout</code>.
+</li>
+<li>Una vez agregado, lo importamos a nuestra <code>activity</code> con la etiqueta <code>include</code>.
+<ul class="org-ul">
+<li>con el <code>tag</code> <code>layout</code> incluimos nuestro elemento externo haciendo uso de <code>@layout/elemento</code>.
+</li>
+<li>Ahora debemos ponerle los atributos de posicionamiento que necesite ya que por defecto no tiene.
+</li>
+</ul>
+</li>
+<li>El principal problema es que por defecto nuestros nuevos elementos vienen en un <code>LinearLayout</code>.
+<ul class="org-ul">
+<li>Esto nos causa anidación de <code>layouts</code>.
+</li>
+<li>Para evitar esto, podemos remplazar la etiqueta <code>LinearLayout</code> por <code>merge</code>.
+</li>
+<li>Esto nos permitirá referirnos al elemento por si solo.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-03-31 Thu 01:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

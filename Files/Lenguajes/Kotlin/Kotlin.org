@@ -796,7 +796,7 @@ fun main(args: Array<String>) {
 ** Modificadores de Visibilidad
 Kotlin provee modificadores de visibilidad para restringir el acceso a propiedades y métodos
 - *public*: Visible en todos lados.
-- *protected*: Visible solo para las sublclases.
+- *protected*: Visible solo para las subclases.
 - *private*: no visible desde afuera.
 
  Por defecto todas las propiedades y métodos son públicos.
@@ -815,3 +815,79 @@ fun main(args: Array<String>) {
 #+begin_quote
 Esto permite asegurarnos de que no modifiquen la propiedad directamente.
 #+end_quote
+
+Ahora cuando =age= es privado podemos definir funciones para modificar sus valores
+
+#+begin_src kotlin
+class User(var name: String, private var age: Int) {
+
+    fun getAge(): Int {
+        if (age < 18)
+            return 18
+        else
+            return age
+    }
+
+    fun setAge(a: Int) {
+        if (a < 0)
+            age = 18
+        else
+            age = a
+    }
+}
+#+end_src
+
+Esto nos permite poner y leer los valores de una manera controlada.
+
+#+begin_quote
+Los modificadores de visibilidad también pueden aplicarse a clases.
+#+end_quote
+
+** Clases abstractas
+En algunos casos la clase base solo es necesaria por sus clases derivadas y no crearás objetos de la clase
+base.
+
+Para estos casos podemos definir una clase como abstracta.
+
+#+begin_src kotlin
+abstract class User(var name: String, var age: Int) {
+    //...
+}
+
+class Admin(name: String, age: Int): User(name, age) {
+    //...
+}
+
+class Moderator(name: String, age: Int, var Country: String): User(name, age) {
+    //...
+}
+#+end_src
+
+Ahora no podemos crear objetos tipo =User= solo crearemos objetos tipo =Admin= y =Moderator=.
+
+#+begin_quote
+Las clases abstractas siempre son =open= así que no necesitas poner la palabra =open=.
+#+end_quote
+
+Las clases abstractas también pueden contener funciones abstractas, funciones sin una definición
+que las clases derivadas tendrán que implementar.
+
+#+begin_src kotlin
+abstract class User(var name: String, var age: Int) {
+    abstract fun display()
+}
+
+class Admin(name: String, age: Int): User(name, age) {
+    override fun display() {
+        println(name + " is " + age + " years old")
+    }
+}
+
+class Moderator(name: String, age: Int, var Country: String): User(name, age) {
+    override fun display() {
+        println(name + " is from " + country)
+    }
+}
+#+end_src
+
+Ahora cada clase tiene su propia implementación de la función =display=.

@@ -1,0 +1,38 @@
+#+title: Curso de Introducción al diseño
+
+* Introducción al diseño
+
+** Qué es el diseño
+- Es un puente entre la *funcionalidad* y la *estética*.
+- Entre más nos involucremos en ambos lados, mejor producto entregaremos al usuario
+
+** El objetivo del diseño
+- El objetivo es facilitar una comunicación efectiva.
+- Debemos saber que queremos comunicar.
+- Debe ser universal
+  - Debe de ser de fácil acceso a el mayor número de personas posibles.
+- Debe ser atemporal
+  - Debe perdurar en el tiempo sin perder identidad.
+- Después de tener un concepto debemos:
+  1. Hacer el boceto
+  2. Definir la composición
+- hacemos uso de elementos visuales.
+  - Punto
+  - Linea
+  - Figuras geométricas
+  - Color
+  - Tipografía
+  - Ilustración
+
+* Principios del diseño
+** Comunicación efectiva en el diseño
+- El diseño nace por la necesidad de informar.
+- El diseño esta en todas partes, no hay una sola cosa hecha por el hombre que no tenga diseño.
+- El diseño con respecto a la comunicación debe incorporar:
+  - Debe cumplir criterios para que tenga una comunicación efectiva.
+  - Debe ser universal.
+  - Debe tomar los códigos visuales para poder comunicar cosas que para la gente sean precisas.
+  - El diseño debe tener claro que la funcionalidad y la estética deben de tener un fin claro.
+
+
+** Qué es el contraste
