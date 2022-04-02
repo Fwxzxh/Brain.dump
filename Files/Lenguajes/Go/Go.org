@@ -754,3 +754,513 @@ func main() {
 
 #+RESULTS:
 : 50
+
+* =Array=, =Range=, =Map=
+** =Arrays=
+Un arreglo es una secuencia de elementos del mismo tipo.
+
+Un arreglo es definido usando corchetes en el cual se define el número de elementos que tendrá.
+
+#+begin_src go
+var a [5]int
+#+end_src
+
+Ahora =a= es un arreglo de 5 elementos.
+
+También podemos inicializar los valores del arreglo usando la siguiente sintaxis.
+
+#+begin_src go
+a := [5]int{0, 2, 4, 6, 8}
+#+end_src
+
+#+begin_quote
+Debemos dar el tamaño del arreglo cuando lo declaremos, los arreglos tienen siempre un tamaño fijo.
+#+end_quote
+
+Después podemos acceder a los elementos del arreglo usando corchetes y su índice
+
+#+begin_src go
+var a [5]int
+
+a[0] = 8
+a[1] = 42
+
+fmt.Println(a[1])
+#+end_src
+
+Cada elemento del arreglo tiene su propio índice iniciando en 0.
+
+#+begin_quote
+Por defecto, los elementos del arreglo son inicializados al valor cero de su tipo.
+#+end_quote
+
+** =Slices=
+Por defecto los arreglos tienen un tamaño definido y fijo, para mejorar esto go provee =slices=
+
+Un =slice= es una vista dinámica de los elementos de un arreglo.
+
+Esta basado en un en un arreglo y se define dando dos índices, el índice inferior y el superior.
+
+#+begin_src go
+a := [5]int{0, 2, 4, 6, 8}
+
+var s []int = a[1:3]
+#+end_src
+
+Este código selecciona los elementos desde el índice 1 a 3 del arreglo =a=, incluyendo el primer índice pero excluyendo el último.
+
+Así que el =slice= =s= ahora incluye los valores =[2,4]=
+
+#+begin_quote
+Podemos omitir ya sea el índice inferior o el superior, omitir el inferior dará por defecto al índice 0 y omitir el superior
+tomara el tamaño del arreglo.
+#+end_quote
+
+Por ejemplo: =a[:3]= tomará los primeros 3 elementos del arreglo.
+
+Podemos acceder a los valores de un =slice= usando la misma sintaxis que un arreglo.
+
+#+begin_src go
+a := [5]int{0, 2, 4, 6, 8}
+var s[]int = a[1:3]
+
+fmt.Println(s[1])
+#+end_src
+
+Un =slice= no guarda ningún dato, solo describe una sección de un arreglo de fondo.
+Cambiar los elementos de un =slice= modifica el arreglo de fondo.
+
+#+begin_quote
+Podemos tener muchos =slices= del mismo arreglo, y cualquier cambio en alguno de ellos se reflejara en todos lados.
+#+end_quote
+
+Go provee la función =make()= para crear =slices=, es así como creamos arreglos dinámicos.
+
+#+begin_src go
+a := make([]int, 5)
+#+end_src
+
+La función =make()= crea un arreglo del tipo dado y tamaño y retorna un =slice= que se refiere a ese arreglo.
+
+Después de crear la =slice=, podemos agregar nuevos elementos a el usando la función =append()=.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+func main() {
+	a := make([]int, 5)
+	a = append(a, 8)
+	fmt.Println(a)
+}
+#+end_src
+
+#+RESULTS:
+: [0 0 0 0 0 8]
+
+La función =append()= toma una =slice= como primer argumento y los elementos a ser añadidos al final de este como
+su siguiente argumento.
+
+Esta retorna un nuevo =slice= que contiene el viejo =slice= más los nuevos elementos.
+
+#+begin_quote
+Podemos agregar múltiples valores al mismo tiempo separandolos por comas, EJ: =append(s, 1, 2, 3, 5)=
+#+end_quote
+
+** =Range=
+La variación =range= del ciclo =for= nos permite iterar en una =slice=
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+func main() {
+    a := make([]int, 5)
+    a[1] = 2
+    a[2] = 3
+
+    for i, v := range a {
+        fmt.Println(i, v)
+    }
+}
+#+end_src
+
+#+RESULTS:
+: 0 0
+: 1 2
+: 2 3
+: 3 0
+: 4 0
+
+Por cada iteración del ciclo, imprime el índice del elemento y cada valor del =slice=.
+
+Si solo queremos los valores, podemos ignorar el índice con un guión bajo.
+
+#+begin_src go
+for _, v := range a {
+	fmt.Println(v)
+}
+#+end_src
+
+#+begin_quote
+Podemos usar =range= para =slices= y para arreglos.
+#+end_quote
+
+También podemos usarlo para iterar sobre los caracteres de un =string=
+
+#+begin_src go
+package main
+
+import "fmt"
+
+func main() {
+    x := "hello"
+    for _, c := range x {
+        fmt.Println(c)
+    }
+}
+#+end_src
+
+#+RESULTS:
+: 104
+: 101
+: 108
+: 108
+: 111
+
+Esto imprimirá los números de los caracteres unicdoe de la palabra, si queremos los caracteres debemos usar
+la función =Printf()=
+
+#+begin_src go
+for _, c := range x {
+	fmt.Printf("%c \n", c)
+}
+#+end_src
+
+#+begin_quote
+La función =Printf= es similar a la que existe en C.
+#+end_quote
+
+** =Maps=
+Los =maps= son usados para guardar pares =llave:valor= donde la llave es siempre única.
+
+Podemos crear un =map= usando la función =make()=, de manera similar a los arreglos.
+
+#+begin_src go
+m := make(map[string]int)
+#+end_src
+
+ahora =m= es un =map= que mapea una llave tipo =string= a un valor =int=.
+
+#+begin_src go :exports both
+package main
+
+import "fmt"
+
+func main() {
+	m := make(map[string]int)
+	m["James"] = 42
+	m["Amy"] = 24
+
+	fmt.Println(m["James"])
+}
+#+end_src
+
+#+RESULTS:
+: 42
+
+También podemos inicializar un =map= con la siguiente sintaxis:
+
+#+begin_src go
+m := map[string]int{
+	"James": 42,
+	"Amy": 24
+}
+
+fmt.Printf(m["Amy"])
+#+end_src
+
+Si una llave no existe en el =map=, un valor 0 será retornado
+
+#+begin_quote
+También son llamados diccionarios o arreglos asociativos o tablas de hash.
+#+end_quote
+
+Podemos usar =delete= para eliminar un elemento del =map=
+
+#+begin_src go
+delete(m, "James")
+#+end_src
+
+** Funciones =Variadicas=
+Estas funciones son funciones que pueden ser llamadas con cualquier número de argumentos.
+
+Por ejemplo, =Println()= es un función variadica ya que podemos darle n número de argumentos separados por comas.
+
+También podemos definir nuestras propias funciones:
+
+#+begin_src go
+func sums(nums ...int) {
+	total := 0
+	for _, v := range nums {
+		total += v
+	}
+	fmt.Println(total)
+}
+#+end_src
+
+La función de arriba calcula la suma de todos los argumentos que le demos.
+
+ahora podemos usarla dándole n número de argumentos:
+
+#+begin_src go
+sum(2, 4, 6)
+sum(42, 8)
+sum(1, 2, 3, 4, 5, 6)
+#+end_src
+
+#+begin_quote
+Los tres puntos antes del tipo la definen como variadica.
+#+end_quote
+
+Si tenemos múltiples valores en un =slice= y queremos usarlos como argumentos para una función
+variadica, podríamos usar la siguiente sintaxis
+
+#+begin_src go
+s := []int{42, 33, 22, 11}
+sum(s...)
+#+end_src
+
+* Concurrencia
+** introducción
+Concurrencia significa que múltiples tareas de computación están sucediendo al mismo tiempo.
+
+Es sobre crear múltiples procesos y ejecutarlos de manera independiente.
+
+Cuando usamos concurrencia, somos capaces de lograr los resultados deseados en menos tiempo, mejorando
+el rendimiento de nuestros programas.
+
+Para lograr la concurrencia go provee las =gorutinas=
+
+Una =gorutina= es parecido a un hilo para lograr diferentes tareas, pero consume menos recursos
+que hilos del sistema operativo.
+
+#+begin_quote
+Las =gorutinas= son hilos virtuales, manejados por go, podemos tener cientos de =gorutinas= corriendo en un
+programa de go.
+#+end_quote
+
+** =Gorutinas=
+Teniendo el siguiente programa:
+
+#+begin_src go :exports both
+package main
+import (
+	"fmt"
+	"time"
+)
+
+func out(from, to int) {
+	for i := from; i <= to; i++ {
+		time.Sleep(50 * time.Millisecond)
+		fmt.Println(i)
+	}
+}
+
+func main() {
+	out(0, 5)
+	out(6, 10)
+}
+#+end_src
+
+#+RESULTS:
+#+begin_example
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+#+end_example
+
+La función =out()= solo imprime los números en un rango dado, usamos =time.Sleep= para emular trabajo
+entre las iteraciones, espera 50 milisegundos en cada iteración.
+
+#+begin_quote
+A esto se le llama programa secuencial, debido a que cada operación es ejecutada una después de la otra,
+y espera a que llamada anterior termine de ejecutarse antes de seguir con la siguiente.
+#+end_quote
+
+Cuando corremos programas concurrentes, no queremos esperar a que termine una tarea para hacer otra.
+
+Podemos covertir el programa anterior a concurrente usando =gorutinas= agregando la palabra =go= a las llamadas
+de la función.
+
+#+begin_src go
+package main
+import (
+	"fmt"
+	"time"
+)
+
+func out(from, to int) {
+	for i := from; i <= to; i++ {
+		time.Sleep(50 * time.Millisecond)
+		fmt.Println(i)
+	}
+}
+
+func main() {
+	go out(0, 5)
+	go out(6, 10)
+}
+#+end_src
+
+Si corremos este programa no recibiremos ningún =output=, eso pasa porque la función =main()= termina antes que nuestras
+=gorutinas=.
+
+#+begin_quote
+Nuestro programa tiene 3 hilos virtuales, las dos llamadas de funciones y la función =main=,
+las dos funciones son ejecutadas de manera concurrente pero =main= no espera a que terminen.
+#+end_quote
+
+** Canales
+Para permitir a las gorutinas comunicarse entre ellas, go provee canales.
+
+Un canal es como una tubería (pipe), permitiendo recibir y mandar datos entre =gorutinas=,
+permitiendolas comunicarse y sincronizarse.
+
+Para crear un canal, primero debemos hacer uno con la función =make()=.
+
+#+begin_src go
+ch := make(chan int)
+#+end_src
+
+El tipo después de la palabra =chan= indica el tipo de datos que vamos a mandar a través del canal.
+
+Podemos mandar datos por el canal usando la siguiente sintaxis:
+
+#+begin_src go
+ch <- 8
+#+end_src
+
+De manera similar podemos recibir datos desde el canal usando la siguiente sintaxis:
+
+#+begin_src go
+value := <- ch
+#+end_src
+
+Si no necesitamos el valor como una variable, podemos hacer lo siguiente:
+
+#+begin_src go
+<- ch
+#+end_src
+
+Ahora podemos usar nuestro canal y re escribir el ejemplo anterior de manera que tengamos =output=
+
+#+begin_src go :exports both
+package main
+import (
+	"fmt"
+	"time"
+)
+
+func out(from, to int, ch chan bool) {
+	for i := from; i <= to; i++ {
+		time.Sleep(50 * time.Millisecond)
+		fmt.Println(i)
+	}
+	ch <- true
+}
+
+func main() {
+	ch := make(chan bool)
+
+	go out(0, 5, ch)
+	go out(6, 10, ch)
+
+	<- ch
+}
+#+end_src
+
+#+RESULTS:
+: 0
+: 6
+: 7
+: 1
+: 2
+: 8
+: 3
+: 9
+: 10
+
+Como podemos ver, el =output= no esta ordenado esto es porque ambas tareas ocurrieron de manera concurrente.
+
+Definimos un canal tipo =bool= y se lo pasamos a nuestra función =out= como argumento,
+Después de que la función termina su tarea mandamos el valor =true= al canal el cual es recibido en la función =main=.
+
+Ahora =main= esta esperando a recibir datos del canal, haciendo que el hilo =main= espere a que las =gorutinas= terminen
+de ejecutarse.
+
+#+begin_quote
+La operación de recibir bloquea el código hasta que datos sean mandandos por la pipe,
+Si no se recibe ningún dato, ocurrirá un =deadlock=, bloqueando el programa.
+#+end_quote
+
+También podemos mandar datos desde una =gorutina= y usarla en la función =main()=
+
+Nuestro programa necesita calcular e imprimir la suma de todos los números pares en un
+rango dado más la suma de sus cuadrados e imprimir el resultado.
+
+#+begin_src go :exports both
+package main
+import (
+	"fmt"
+)
+
+func evenSum(from, to int, ch chan int) {
+	result := 0
+	for i := from; i <= to; i++ {
+		if i%2 == 0 {
+			result += i
+		}
+	}
+	ch <- result
+}
+
+func squareSum(from, to int, ch chan int) {
+	result := 0
+	for i := from; i <= to; i++ {
+		if i%2 == 0 {
+			result += i * i
+		}
+	}
+	ch <- result
+}
+
+func main() {
+	evenCh := make(chan int)
+	sqCh := make(chan int)
+
+	go evenSum(0, 100, evenCh)
+	go squareSum(0, 100, sqCh)
+
+	fmt.Println(<- evenCh + <- sqCh)
+}
+#+end_src
+
+#+RESULTS:
+: 174250
+
+Usamos canales para obtener el resultado de cada =gorutina= e imprimir su suma.
+
+#+begin_quote
+Si no necesitas mandar datos a un canal, puedes usar =close(ch)=, donde =ch= es el nombre del canal
+para cerrarlo.
+#+end_quote

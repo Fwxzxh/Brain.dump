@@ -39,7 +39,6 @@
 
 ** Hello World
 - La función =main= es el punto de entrada de cada programa de kotlin.
--
 
 #+begin_src kotlin
 fun main(args : Array<String>) {
