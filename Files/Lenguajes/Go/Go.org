@@ -1099,7 +1099,7 @@ y espera a que llamada anterior termine de ejecutarse antes de seguir con la sig
 
 Cuando corremos programas concurrentes, no queremos esperar a que termine una tarea para hacer otra.
 
-Podemos covertir el programa anterior a concurrente usando =gorutinas= agregando la palabra =go= a las llamadas
+Podemos convertir el programa anterior a concurrente usando =gorutinas= agregando la palabra =go= a las llamadas
 de la función.
 
 #+begin_src go
@@ -1264,3 +1264,117 @@ Usamos canales para obtener el resultado de cada =gorutina= e imprimir su suma.
 Si no necesitas mandar datos a un canal, puedes usar =close(ch)=, donde =ch= es el nombre del canal
 para cerrarlo.
 #+end_quote
+
+** =Select=
+La palabra =select= es usada para esperar en operaciones de múltiples canales.
+
+La sintaxis es similar al =switch=, solo que cada =case= será una operación de canal.
+
+#+begin_src go
+package main
+import (
+	"fmt"
+)
+
+func evenSum(from, to int, ch chan int) {
+	result := 0
+	for i := from; i <= to; i++ {
+		if i%2 == 0 {
+			result += i
+		}
+	}
+	ch <- result
+}
+
+func squareSum(from, to int, ch chan int) {
+	result := 0
+	for i := from; i <= to; i++ {
+		if i%2 == 0 {
+			result += i * i
+		}
+	}
+	ch <- result
+}
+
+func main() {
+	evenCh := make(chan int)
+	sqCh := make(chan int)
+
+	go evenSum(0, 100, evenCh)
+	go squareSum(0, 100, sqCh)
+
+	select {
+		case x := <- evenCh:
+		    fmt.Println(x)
+		case y := <- sqCh
+		    fmt.Println(y)
+	}
+}
+#+end_src
+
+El =select= espera que el canal reciba los datos y ejecuta el =case=.
+
+Un =select= puede tener un caso =default=, este se ejecutará cuando ninguno de los =case= esta listo.
+
+#+begin_src go :exports both
+package main
+import (
+	"fmt"
+	"time"
+)
+
+func evenSum(from, to int, ch chan int) {
+	result := 0
+	for i := from; i <= to; i++ {
+		if i%2 == 0 {
+			result += i
+		}
+	}
+	ch <- result
+}
+
+func squareSum(from, to int, ch chan int) {
+	result := 0
+	for i := from; i <= to; i++ {
+		if i%2 == 0 {
+			result += i * i
+		}
+	}
+	ch <- result
+}
+
+func main() {
+	evenCh := make(chan int)
+	sqCh := make(chan int)
+
+	go evenSum(0, 100, evenCh)
+	go squareSum(0, 100, sqCh)
+
+	for {
+        select {
+            case x := <- evenCh:
+                fmt.Println(x)
+                return
+            case y := <- sqCh:
+                fmt.Println(y)
+                return
+            default:
+                fmt.Println("Noting available")
+                time.Sleep(50 * time.Millisecond)
+        }
+	}
+}
+#+end_src
+
+#+RESULTS:
+: Noting available
+: 2550
+
+En este ejemplo el ciclo =for= infinito usa un =select= para verificar que canal obtuvo datos,
+si ninguno esta listo el caso =default= se ejecutará y esperará 50 milisegundos.
+
+En cuanto un canal obtenga datos, el =return= detendrá el ciclo y saldrá.
+
+El bloque =select= bloqueará el hilo hasta que ocurra uno de los =case=,
+El =default= es útil para prevenir =deadlocks=, sin el =select= el programa esperaría por siempre hasta que el
+programa se cerrara.

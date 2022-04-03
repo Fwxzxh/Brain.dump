@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Go</title>
-<!-- 2022-04-01 Fri 23:25 -->
+<!-- 2022-04-03 Sun 14:56 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -249,6 +249,7 @@ $(function() {
 <li><a href="#sec-6-1">6.1. introducción</a></li>
 <li><a href="#sec-6-2">6.2. <code>Gorutinas</code></a></li>
 <li><a href="#sec-6-3">6.3. Canales</a></li>
+<li><a href="#sec-6-4">6.4. <code>Select</code></a></li>
 </ul>
 </li>
 </ul>
@@ -1969,7 +1970,7 @@ Cuando corremos programas concurrentes, no queremos esperar a que termine una ta
 </p>
 
 <p>
-Podemos covertir el programa anterior a concurrente usando <code>gorutinas</code> agregando la palabra <code>go</code> a las llamadas
+Podemos convertir el programa anterior a concurrente usando <code>gorutinas</code> agregando la palabra <code>go</code> a las llamadas
 de la función.
 </p>
 
@@ -2097,12 +2098,12 @@ Ahora podemos usar nuestro canal y re escribir el ejemplo anterior de manera que
 </div>
 
 <pre class="example">
-0
 6
+0
 1
 7
-8
 2
+8
 3
 9
 4
@@ -2195,11 +2196,149 @@ para cerrarlo.
 </blockquote>
 </div>
 </div>
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> <code>Select</code></h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+La palabra <code>select</code> es usada para esperar en operaciones de múltiples canales.
+</p>
+
+<p>
+La sintaxis es similar al <code>switch</code>, solo que cada <code>case</code> será una operación de canal.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #61bfff;">(</span>
+    <span style="color: #f1fa8c;">"fmt"</span>
+<span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">i</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">evenCh</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">sqCh</span><span style="color: #ff79c6;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">select</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">evenCh</span>:
+            <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #50fa7b;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">sqCh</span>
+            <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">y</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+El <code>select</code> espera que el canal reciba los datos y ejecuta el <code>case</code>.
+</p>
+
+<p>
+Un <code>select</code> puede tener un caso <code>default</code>, este se ejecutará cuando ninguno de los <code>case</code> esta listo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">package</span> main
+<span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #61bfff;">(</span>
+    <span style="color: #f1fa8c;">"fmt"</span>
+    <span style="color: #f1fa8c;">"time"</span>
+<span style="color: #61bfff;">)</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">i</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">evenCh</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">sqCh</span><span style="color: #ff79c6;">)</span>
+
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">select</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">evenCh</span>:
+                <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #bd93f9;">)</span>
+                <span style="color: #ff79c6; font-style: italic;">return</span>
+            <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">sqCh</span>:
+                <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span><span style="color: #ffc9e8;">y</span><span style="color: #bd93f9;">)</span>
+                <span style="color: #ff79c6; font-style: italic;">return</span>
+            <span style="color: #ff79c6; font-style: italic;">default</span>:
+                <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Noting available"</span><span style="color: #bd93f9;">)</span>
+                <span style="color: #ffc9e8;">time</span>.<span style="color: #50fa7b; font-style: italic;">Sleep</span><span style="color: #bd93f9;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">time</span>.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #bd93f9;">)</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+Noting available
+2550
+</pre>
+
+
+<p>
+En este ejemplo el ciclo <code>for</code> infinito usa un <code>select</code> para verificar que canal obtuvo datos,
+si ninguno esta listo el caso <code>default</code> se ejecutará y esperará 50 milisegundos.
+</p>
+
+<p>
+En cuanto un canal obtenga datos, el <code>return</code> detendrá el ciclo y saldrá.
+</p>
+
+<p>
+El bloque <code>select</code> bloqueará el hilo hasta que ocurra uno de los <code>case</code>,
+El <code>default</code> es útil para prevenir <code>deadlocks</code>, sin el <code>select</code> el programa esperaría por siempre hasta que el
+programa se cerrara.
+</p>
+</div>
+</div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-04-01 Fri 23:25</p>
+<p class="date">Created: 2022-04-03 Sun 14:56</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
