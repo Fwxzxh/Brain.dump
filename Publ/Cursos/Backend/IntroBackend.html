@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Introducción al desarrollo Backend</title>
+<!-- 2022-04-20 Wed 18:40 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Fundamentos del desarrollo Web</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Frontend y Backend</a></li>
+<li><a href="#sec-1-2">1.2. Framework vs librería</a></li>
+<li><a href="#sec-1-3">1.3. Cómo se conecta el frontend con el backend</a></li>
+<li><a href="#sec-1-4">1.4. HTTP: el lenguaje que habla internet</a></li>
+<li><a href="#sec-1-5">1.5. El servidor:</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Diseño de una API</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Diseño y bosquejo de API:</a></li>
+<li><a href="#sec-2-2">2.2. Diseñando los <code>endpoints</code> de los tweets</a></li>
+<li><a href="#sec-2-3">2.3. Diseñando los <code>EndPoints</code> para los usuarios</a></li>
+<li><a href="#sec-2-4">2.4. aa</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Introducción al desarrollo Backend</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Fundamentos del desarrollo Web</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Frontend y Backend</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Frontend
+<ul class="org-ul">
+<li>Se puede hacer con:
+<ul class="org-ul">
+<li>HTML
+</li>
+<li>CSS
+</li>
+<li>JavaScript
+</li>
+</ul>
+</li>
+<li>Es la cara visible de la aplicación
+</li>
+<li>También tenemos Librerías y frameworks para facilitar tareas.
+</li>
+<li>Empieza con el diseño de la aplicación.
+<ul class="org-ul">
+<li>UI/UX
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Backend
+<ul class="org-ul">
+<li>La lógica de la aplicación.
+</li>
+<li>Se puede hacer con la mayoría de los lenguajes populares.
+<ul class="org-ul">
+<li>Estos tienen sus frameworks/librerías para facilitar tareas.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Framework vs librería</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>librería.
+<ul class="org-ul">
+<li>Código hecho por otra persona para hacer algo.
+</li>
+</ul>
+</li>
+<li>Framework.
+<ul class="org-ul">
+<li>Es un marco de trabajo, conjunto de reglas para hacer algo.
+</li>
+<li>Podrían definirse como un conjunto de librerías.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Cómo se conecta el frontend con el backend</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Se usan las API.
+<ul class="org-ul">
+<li>Application Programming Interface
+</li>
+<li>Nos permite que el frontend y el backend se comuniquen.
+</li>
+</ul>
+</li>
+<li>Hay dos estándares.
+<ul class="org-ul">
+<li>SOAP
+<ul class="org-ul">
+<li><code>Simple Object Acces Protocol</code>
+</li>
+<li>Mueve la información con XML.
+</li>
+</ul>
+</li>
+<li>REST
+<ul class="org-ul">
+<li><code>Representational state transfer</code>
+</li>
+<li>Mueve la información con JSON.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> HTTP: el lenguaje que habla internet</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li><code>Hypertext Transfer Protocol</code>
+</li>
+<li>Cliente y Servidor.
+</li>
+<li>Es un protocolo.
+<ul class="org-ul">
+<li>Es un conjunto de reglas.
+</li>
+</ul>
+</li>
+<li>Tenemos una <code>request</code> y una <code>response</code>
+<ul class="org-ul">
+<li>Ambos hablan HTTP.
+</li>
+<li>Tienen cabeceras.
+<ul class="org-ul">
+<li>Piezas de información.
+</li>
+</ul>
+</li>
+<li>Tenemos diferentes métodos para mandar la información.
+</li>
+</ul>
+</li>
+<li>Códigos de estado:
+<ul class="org-ul">
+<li>1xx : mensaje informativo.
+</li>
+<li>2xx : éxito.
+</li>
+<li>3xx : Redirección.
+</li>
+<li>4xx : Error del cliente.
+</li>
+<li>5xx : Error del servidor.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> El servidor:</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>también llamado la nube.
+</li>
+<li>es una computadora que contiene una aplicación y la distribuye en internet.
+<ul class="org-ul">
+<li>Y nos permite mediante HTTP traer la aplicación a mi computadora (cliente).
+</li>
+</ul>
+</li>
+<li><code>IaaS</code>
+<ul class="org-ul">
+<li>Infraestructura como servicio.
+</li>
+<li>Nos prestan el hardware que necesitemos.
+<ul class="org-ul">
+<li>Tenemos que gestionarlo.
+</li>
+</ul>
+</li>
+<li>Ejemplos: AWS, Azure, Digital Ocean
+</li>
+<li>Dos tipos:
+<ul class="org-ul">
+<li><code>VPS</code>:
+<ul class="org-ul">
+<li><code>Virtual private server</code>
+</li>
+<li>Un solo servidor dedicado para tu aplicación.
+</li>
+</ul>
+</li>
+<li><code>Shared Hosting</code>
+<ul class="org-ul">
+<li>Se comparten los recursos del servidor entre varios clientes.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>PaaS</code>
+<ul class="org-ul">
+<li>Plataforma como servicio.
+</li>
+<li>Nos permite elegir que cosas necesita nuestra aplicación para funcionar.
+</li>
+<li>Solo hacemos deploy.
+</li>
+<li>Ejemplos: Google AppEngine, Firebase, Heroku.
+</li>
+</ul>
+</li>
+<li><code>SaaS</code>
+<ul class="org-ul">
+<li>Software como servicio.
+</li>
+<li>Nos prestan el software.
+</li>
+<li>Generalmente son <code>no code</code>.
+</li>
+<li>Ejemplos: Google Docs, Slack, WordPress.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Diseño de una API</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Diseño y bosquejo de API:</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><code>Twitter clone</code>.
+</li>
+<li>En python tenemos 3 opciones:
+<ul class="org-ul">
+<li>FastApi.
+</li>
+<li>Django.
+<ul class="org-ul">
+<li>Con el rest framework.
+</li>
+</ul>
+</li>
+<li>Flask.
+</li>
+</ul>
+</li>
+<li><code>EndPoint</code> o Ruta o <code>Path</code>.
+<ul class="org-ul">
+<li>Es una sección de la URL del proyecto
+</li>
+<li>En este caso <code>HTTP://twiter.com/[endpoint]</code>.
+</li>
+<li>Nuestra aplicación tendrá el <code>EndPoint</code> base <code>/api/</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Diseñando los <code>endpoints</code> de los tweets</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>CRUD.
+<ul class="org-ul">
+<li>Create
+</li>
+<li>Read.
+</li>
+<li>Update.
+</li>
+<li>Delete.
+</li>
+</ul>
+</li>
+<li><code>EndPoints</code>
+<ul class="org-ul">
+<li><code>/tweets</code>
+<ul class="org-ul">
+<li>Muestra todos los tweets.
+</li>
+<li>Read
+</li>
+</ul>
+</li>
+<li><code>/post</code>
+<ul class="org-ul">
+<li>Publica un tweet.
+</li>
+<li>Create
+</li>
+</ul>
+</li>
+<li><code>/tweets/{tweetId}</code>
+<ul class="org-ul">
+<li>Muestra un tweet.
+</li>
+<li>Read.
+</li>
+</ul>
+</li>
+<li><code>/tweets/{tweetId}/update</code>
+<ul class="org-ul">
+<li>Edita un tweet.
+</li>
+<li>Update.
+</li>
+</ul>
+</li>
+<li><code>/tweet/{tweetId}/delete</code>
+<ul class="org-ul">
+<li>Borra un tweet.
+</li>
+<li>Delete.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Diseñando los <code>EndPoints</code> para los usuarios</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Modelos
+<ul class="org-ul">
+<li>Son tipos de datos en particular que voy a usar en la aplicación.
+<ul class="org-ul">
+<li>Usuarios
+</li>
+<li>tweets
+</li>
+</ul>
+</li>
+<li>Corresponden a una o más tablas de SQL
+</li>
+</ul>
+</li>
+<li>Cada uno de los endpoints nos va a dar un JSON.
+</li>
+<li><code>/users</code>
+<ul class="org-ul">
+<li>Muestra todos los usuarios.
+</li>
+<li>Read
+</li>
+</ul>
+</li>
+<li><code>/signup/</code>
+<ul class="org-ul">
+<li>nos permite registrar un usuario.
+</li>
+<li>Create
+</li>
+</ul>
+</li>
+<li><code>/users/{userId}</code>
+<ul class="org-ul">
+<li>mostrar un usuario.
+</li>
+<li>Read
+</li>
+</ul>
+</li>
+<li><code>/users/{userId}/update</code>
+<ul class="org-ul">
+<li>Actualizar un usuario.
+</li>
+<li>Update
+</li>
+</ul>
+</li>
+<li><code>/users/{userId}/delete</code>
+<ul class="org-ul">
+<li>Borra un usuario.
+</li>
+<li>Delete.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> aa</h3>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-04-20 Wed 18:40</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

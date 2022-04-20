@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Kotlin</title>
-<!-- 2022-04-01 Fri 23:25 -->
+<!-- 2022-04-20 Wed 18:40 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -436,6 +436,8 @@ C
 </li>
 <li>Se declaran usando la palabra <code>var</code>.
 </li>
+<li>También podemos declarar constantes con la palabra <code>const val</code>
+</li>
 </ul>
 
 <div class="org-src-container">
@@ -786,6 +788,31 @@ println<span style="color: #61bfff;">(</span>result<span style="color: #61bfff;"
 <p>
 Se compone de varias condicionales seguidas de una flecha y un resultado.
 </p>
+
+<p>
+Si lo usamos como <code>switch</code> podemos usar mas de un elemento en el <code>case</code> separandolo por comas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">when</span><span style="color: #61bfff;">(</span>color<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+     <span style="color: #f1fa8c;">"Amarillo"</span> -&gt; println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Amarillo"</span><span style="color: #ff79c6;">)</span>
+     <span style="color: #f1fa8c;">"Rojo"</span>, <span style="color: #f1fa8c;">"Carmesi"</span> -&gt; println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Rojo"</span><span style="color: #ff79c6;">)</span>
+     <span style="color: #ff79c6; font-style: italic;">else</span> -&gt; println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Error!"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">val</span> <span style="color: #ffc9e8;">code</span> = <span style="color: #bd93f9; font-weight: bold;">501</span>
+<span style="color: #ff79c6; font-style: italic;">when</span><span style="color: #61bfff;">(</span>code<span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">200</span>..<span style="color: #bd93f9; font-weight: bold;">299</span> -&gt; println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Todo OK"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #bd93f9; font-weight: bold;">400</span>..<span style="color: #bd93f9; font-weight: bold;">500</span> -&gt; println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Algo ha fallado"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">else</span> -&gt; println<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Error!"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -1779,8 +1806,8 @@ Ahora cada clase tiene su propia implementación de la función <code>display</c
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-04-01 Fri 23:25</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+<p class="date">Created: 2022-04-20 Wed 18:40</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>

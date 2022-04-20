@@ -1,0 +1,274 @@
+#+TITLE: SQL
+
+* Conceptos básicos
+** Introducción a las bases de datos
+- Son una colección de datos que están organizados de manera que facilite su acceso.
+  - además de su eficiente manejo y actualización.
+- Una base de datos esta formada por tablas que guardan información relevante.
+- Se usara la sintaxis de =MySQL=
+
+*** Tablas de la base de datos
+- Una tabla guarda y muestra datos de una manera y formato estructurado.
+- Consiste de columnas y filas.
+- Las bases de datos usualmente contienen múltiples tablas, cada una para un fin especifico.
+
+#+begin_quote
+Una tabla tiene un número especifico de columnas pero n número de filas.
+#+end_quote
+
+*** Llaves primarias
+- Es un campo en la tabla que identifica un registro en esta.
+- Tiene algunas características
+  - Debe tener un *valor único* en cada fila.
+  - No puede tener valores *null*.
+- Las tablas están limitadas a tener una sola llave primaria.
+
+*** Qué es SQL
+- SQL es =Structured Query Languaje=.
+- Es un lenguaje que utilizamos para accesar y manipular una base de datos.
+- SQL puede:
+  - Insertar, actualizar y borrar registros en la base de datos.
+  - Crear nuevas bases de datos, tablas, procedimientos guardados y vistas.
+  - Recibir datos de la base de datos.
+
+#+begin_quote
+SQL es un estándar ANSI, pero hay diferentes variantes de este lenguaje pero todas soportan los comandos principales.
+#+end_quote
+
+** =Select=
+*** Comandos básicos de SQL
+- El comando =show= nos permite ver información sobre los elementos que conforman la base de datos.
+  - Por ejemplo podemos escribir =show databases= para ver las bases de datos que tenemos.
+  - También podemos usar el comando =show tables= para ver las tablas que cierta base de datos podría tener.
+  - Con el comando =show columns= podemos ver informació sobre las columnas de cierta tabla.
+    - Este muestra la siguiente información de cada tabla:
+      - =Field= : el nombre de la columna.
+      - =Type= : El tipo de dato de la columna.
+      - =Key= : indica si la columna esta indexada.
+      - =Default= : Indica el valor por defecto de esta columna.
+      - =Extra= : Información adicional que esta disponible sobre una columna.
+
+
+*** =select=
+- El comando =select= es usado para seleccionar datos de una base de datos.
+- El resultado es guardado en una tabla de resultados llamada =result-set=.
+- Una consulta podría recibir información de columnas seleccionadas o por todas las columnas de la tabla.
+- Para escribir un comando =select= debemos especificar los nombres de las columnas que necesitamos de las tablas.
+
+#+begin_src sql
+select columnas
+from tabla
+#+end_src
+
+- =columnas= incluye una o más columnas de las cuales queremos recibir datos.
+- =tablas= es el nombre de la tabla en la cual están los datos que queremos obtener
+
+#+begin_quote
+Un =select= recibe cero o más filas de la tabla de la base de datos.
+#+end_quote
+
+** Sintaxis SQL
+*** Múltiples consultas.
+- SQL nos permite correr múltiples consultas al mismo tiempo.
+
+#+begin_src sql
+select FirstName from customers;
+select city from customers;
+#+end_src
+
+Cada consulta debe de terminar con punto y coma para que sean reconocidas.
+
+*** Mayúsculas
+SQL no le importan si son mayúsculas o minúsculas.
+
+#+begin_src sql
+select city from customers;
+SELECT city FROM customers;
+sElEcT city FrOm customers;
+#+end_src
+
+Todas las consultas anteriores son equivalentes.
+
+#+begin_quote
+Es una practica común que escribamos los comandos en mayúsculas.
+#+end_quote
+
+** Seleccionando de múltiples columnas
+Podemos seleccionar múltiples columnas al mismo tiempo, solo debemos especificar los nombres
+separados por comas.
+
+#+begin_src sql
+select FirstName, LastName, City
+from customers;
+#+end_src
+
+#+begin_quote
+No debemos de poner una coma al final del último nombre de columna.
+#+end_quote
+
+También podemos seleccionar todas las columnas de una tabla usando un asterisco =*= después del comando =select=.
+
+La siguiente consulta SQL selecciona todas las columnas de la tabla =customers=.
+
+#+begin_src sql
+select * from customers;
+#+end_src
+
+#+begin_quote
+En SQL el =*= significa todos.
+#+end_quote
+
+** =distinct= y =limit=
+*** =distinct=
+En situaciones donde tenemos múltiples registros duplicados en una tabla,
+tiene más sentido retornar solo los registros únicos en lugar de traer los duplicados.
+
+La palabra =distinct= es usada en conjunto con =select= para eliminar los registros duplicados y retornar
+los únicos.
+
+#+begin_src sql
+select distinct column_name1, column_name2
+from table_name1;
+#+end_src
+
+Podríamos tener una tabla =customers= donde la columna =city= tiene la ciudad de nuestros clientes,
+si quisiéramos obtener una lista de las ciudades a las cuales pertenecen nuestros clientes
+escribiríamos una consulta así:
+
+#+begin_src sql
+select distinct City from customers;
+#+end_src
+
+*** =limit=
+Por defecto, todos los resultados que satisfagan una condición en una consulta SQL serán dados,
+Sin embargo, a veces queremos recibir solo una cantidad de registros, para esto utilizamos la palabra =limit=
+
+#+begin_src sql
+select column1
+from table_name1
+limit N;
+#+end_src
+
+Por ejemplo si queremos recibir los primeros 5 registros de la tabla =customers=:
+
+#+begin_src sql
+select Id, FirstName, LastName, City
+from customers limit 5;
+#+end_src
+
+También podemos obtener registros con un ajuste particular, para eso utilizamos la palabra =offset=
+
+En la siguiente consulta obtendremos 4 registros, pero a partir de la 3ra posición.
+
+#+begin_src sql
+select Id, FirstName, LastName, City
+from customers offset 3 limit 4;
+#+end_src
+
+#+begin_quote
+MySQL empieza contando desde el id con número 0, por lo tanto, obtendríamos todas las columnas, desde
+el id con número 3.
+#+end_quote
+
+También podríamos reducir la consulta anterior como
+
+#+begin_src sql
+select Id, FirstName, LastName, City
+from customers limit 3,4;
+#+end_src
+
+** Ordenando resultados
+En SQL podemos dar el nombre de la tabla antes de el nombre de la columna separandolos por un punto.
+
+#+begin_src sql
+select City from customers;
+select customers.City from customers;
+#+end_src
+
+En la segunda consulta estariamos usando el nombre completo de la columna.
+
+#+begin_quote
+Esto es útil cuando trabajamos con múltiples tablas que podrían tener nombres de columnas similares.
+#+end_quote
+
+*** =Order by=
+Este es usado junto con el =select= para ordenar los datos obtenidos.
+
+En el siguiente ejemplo ordenamos el resultado con la columna =FirstName=.
+
+#+begin_src sql
+select * from customers
+order by FirstName;
+#+end_src
+
+Esto ordenará los registros de manera alfabética con los resultados de la columna =FirstName=
+
+#+begin_quote
+Por defecto =order by= ordena los resultados de manera ascendente.
+#+end_quote
+
+*** Ordenando múltiples columnas
+=order by= puede ordenar los datos recibidos por múltiples columnas, separando las columnas por comas.
+
+#+begin_src sql
+select * from customers
+order by LastName, Age;
+#+end_src
+
+De esta manera si tuviéramos dos Personas con apellido =smith= en los resultados, las agruparía y ordenaria por su edad.
+
+#+begin_quote
+El comando =order by= empezara por ordenar los resultados en el mismo orden en la que se le dan las columnas,
+primero ordenaria el primer elemento, despues el resultado lo ordenaria con el segundo y asi hasta terminar.
+#+end_quote
+
+* Filtrado, funciones y subconsultas
+** =where=
+La palabra =where= es usada para extraer solo aquellos registros que cumplen una condición.
+
+#+begin_src sql
+select column_name1
+from table_name1
+where condition;
+#+end_src
+
+Por ejemplo podemos seleccionar un registro con un =ID= especifico.
+
+#+begin_src sql
+select * from customers
+where ID = 7;
+#+end_src
+
+*** Operadores SQL
+En SQL tenemos operadores de comparación y operadores lógicos los cuales pueden ser usados en la sentencia =where=.
+
+Por ejemplo podemos seleccionar todos los nombres de los clientes con excepción del cliente con =id= 5:
+
+#+begin_src sql
+select * from customers
+where ID != 5;
+#+end_src
+
+*** Operador =between=
+El operador =between= selecciona un valor dentro de un rango dado, cuyo primer valor debe ser el limite inferior
+y el segundo el limite superior.
+
+#+begin_src sql
+select column_name1
+from table_name1
+where column1_name1 between value1 and value2;
+#+end_src
+
+La siguiente consulta selecciona todos los registros cuyo =ID= esta entre 3 y 7:
+
+#+begin_src sql
+select * from customers
+where ID between 3 and 7;
+#+end_src
+
+#+begin_quote
+El limite superior y el inferior dados son incluidos en los resultados
+#+end_quote
+
+*** Valores de texto
+Cuando trabajamos con columnas de texto podemos hacer

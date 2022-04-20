@@ -34,5 +34,108 @@
   - Debe tomar los códigos visuales para poder comunicar cosas que para la gente sean precisas.
   - El diseño debe tener claro que la funcionalidad y la estética deben de tener un fin claro.
 
-
 ** Qué es el contraste
+- El contraste ayuda a que haya una buena lectura de los elementos clave de un diseño.
+- Es la diferenciación visual de uno o mas elementos.
+  - Es crucial en el diseño.
+- El contraste a nivel de color es el más usado.
+  - Debemos de poder identificar cada color de manera clara.
+- También tenemos contraste por forma
+  - Complementa el de color.
+- Contraste por disposición
+  - El como están ubicadas las formas.
+
+** Qué es el concepto
+- Es nuestro punto de partida de un proyecto.
+  - Narración creada a través del diseño.
+- Es la narrativa, la historia que queremos contar con el diseño.
+  - Representación visual de la idea.
+- Necesitamos saber y crear el contexto de la narrativa.
+  - Debemos Conocer e investigar sobre el tema.
+  - Tomar los puntos más importantes.
+  - Definir la comunicación visual.
+
+** Diseño universal
+- El diseño debe ser universal.
+- Los iconos son diseño universal.
+- Debe estar libre de sesgos.
+- Se debe de entender sin necesidad de explicación.
+- Es importante porque le damos el sentido de pertenencia a la gente.
+- Eje: señalética.
+
+** Qué es el diseño atemporal
+- Debemos pensar en el tiempo de vida del diseño que haremos.
+- En el diseño atemporal queremos que el diseño perdure en el tiempo.
+- El diseño atemporal:
+  - No cambia con el tiempo.
+  - Crea un sentido de pertenencia.
+  - Información precisa.
+  - Mantiene una marca.
+- Un ejemplo es el símbolo de las olimpiadas.
+
+** El boceto
+- Una de las faces más importates.
+- Esta presente de estar en todas las ramas del diseño.
+- Es la forma en la que podemos aproximarnos al producto final.
+- Nos permite probar distintas vertientes de nuestro diseño.
+- Necesitamos lápiz y papel
+  - Porque es fácil.
+  - Las modificaciones son más libres.
+
+** Qué son los elementos visuales
+- Nos ayudan a comunicar de forma efectiva un mensaje.
+- Fotografía:
+  - Es la representación más exacta de la realidad
+- Ilustración:
+  - Es la representación artística por medio del dibujo.
+  - Tiene distintas variantes.
+    - Académica
+    - Síntesis
+    - formas
+    - Siluetas
+  - Puede ser física o digital
+- Tipografía:
+  - Es la forma en la que se representa el texto.
+  - También puede comunicar un sentimiento o una situación.
+- Color:
+  - Nos ayuda a crear una calidad e intención al mensaje
+  - A través de su infinidad de combinaciones.
+- Lineas y puntos:
+  - Son elementos simples
+  - Nos ayudan a crear diagramación, composición, alineación.
+- Figuras geométricas:
+  - Nos ayudan con la tarea de composición.
+  - Forman parte de todas las etapas del diseño.
+    - Principalmente en la disposición de los elementos.
+
+** Qué es la alineación
+- Nosotros por naturaleza vamos a querer alinear y agrupar elementos.
+- Nos permite jugar con la posición, forma y tamaño.
+- Podemos acentuar la alineación o la no alineación con color.
+- Da la sensación del equilibrio en el diseño.
+- Características:
+  - crea un balance por peso natural.
+  - Nos permite tener una mejor lectura y una mejor disposición del espacio.
+
+** Qué es la síntesis gráfica
+- Poder tomar todos los elementos actuales y decidir cuales son necesarios para dar el mensaje
+  que queremos dar.
+- También podemos reducir y combinar los elementos.
+- Debemos de tener en cuenta:
+  - El tiempo de lectura.
+  - Donde va a estar ubicado el diseño.
+  - Qué función va a tener.
+  - Qué usuarios los van a ver.
+  - Qué usuario lo van a consumir.
+- Optimiza tiempo de lectura y de comunicación.
+- Buen recurso si no se domina la ilustración o la fotografía.
+- Notas importantes:
+  - No solamente se da en una representación gráfica.
+  - Abarca desde el concepto.
+  - El propósito de la sintesis es saber tomar los puntos más precisos y poder
+    simplificar todo en una idea muy clara.
+
+* Composición
+
+** La composición y su función
+- La disposición de los diferentes elementos dentro de un formato que nos ayudan a comunicar.

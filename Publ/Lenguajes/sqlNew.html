@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>SQL</title>
+<!-- 2022-04-20 Wed 18:41 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Conceptos básicos</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Introducción a las bases de datos</a></li>
+<li><a href="#sec-1-2">1.2. <code>Select</code></a></li>
+<li><a href="#sec-1-3">1.3. Sintaxis SQL</a></li>
+<li><a href="#sec-1-4">1.4. Seleccionando de múltiples columnas</a></li>
+<li><a href="#sec-1-5">1.5. <code>distinct</code> y <code>limit</code></a></li>
+<li><a href="#sec-1-6">1.6. Ordenando resultados</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Filtrado, funciones y subconsultas</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. <code>where</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">SQL</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Conceptos básicos</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introducción a las bases de datos</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Son una colección de datos que están organizados de manera que facilite su acceso.
+<ul class="org-ul">
+<li>además de su eficiente manejo y actualización.
+</li>
+</ul>
+</li>
+<li>Una base de datos esta formada por tablas que guardan información relevante.
+</li>
+<li>Se usara la sintaxis de <code>MySQL</code>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Tablas de la base de datos</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>Una tabla guarda y muestra datos de una manera y formato estructurado.
+</li>
+<li>Consiste de columnas y filas.
+</li>
+<li>Las bases de datos usualmente contienen múltiples tablas, cada una para un fin especifico.
+</li>
+</ul>
+
+<blockquote>
+<p>
+Una tabla tiene un número especifico de columnas pero n número de filas.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Llaves primarias</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li>Es un campo en la tabla que identifica un registro en esta.
+</li>
+<li>Tiene algunas características
+<ul class="org-ul">
+<li>Debe tener un <b>valor único</b> en cada fila.
+</li>
+<li>No puede tener valores <b>null</b>.
+</li>
+</ul>
+</li>
+<li>Las tablas están limitadas a tener una sola llave primaria.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Qué es SQL</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>SQL es <code>Structured Query Languaje</code>.
+</li>
+<li>Es un lenguaje que utilizamos para accesar y manipular una base de datos.
+</li>
+<li>SQL puede:
+<ul class="org-ul">
+<li>Insertar, actualizar y borrar registros en la base de datos.
+</li>
+<li>Crear nuevas bases de datos, tablas, procedimientos guardados y vistas.
+</li>
+<li>Recibir datos de la base de datos.
+</li>
+</ul>
+</li>
+</ul>
+
+<blockquote>
+<p>
+SQL es un estándar ANSI, pero hay diferentes variantes de este lenguaje pero todas soportan los comandos principales.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> <code>Select</code></h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Comandos básicos de SQL</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>El comando <code>show</code> nos permite ver información sobre los elementos que conforman la base de datos.
+<ul class="org-ul">
+<li>Por ejemplo podemos escribir <code>show databases</code> para ver las bases de datos que tenemos.
+</li>
+<li>También podemos usar el comando <code>show tables</code> para ver las tablas que cierta base de datos podría tener.
+</li>
+<li>Con el comando <code>show columns</code> podemos ver informació sobre las columnas de cierta tabla.
+<ul class="org-ul">
+<li>Este muestra la siguiente información de cada tabla:
+<ul class="org-ul">
+<li><code>Field</code> : el nombre de la columna.
+</li>
+<li><code>Type</code> : El tipo de dato de la columna.
+</li>
+<li><code>Key</code> : indica si la columna esta indexada.
+</li>
+<li><code>Default</code> : Indica el valor por defecto de esta columna.
+</li>
+<li><code>Extra</code> : Información adicional que esta disponible sobre una columna.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> <code>select</code></h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>El comando <code>select</code> es usado para seleccionar datos de una base de datos.
+</li>
+<li>El resultado es guardado en una tabla de resultados llamada <code>result-set</code>.
+</li>
+<li>Una consulta podría recibir información de columnas seleccionadas o por todas las columnas de la tabla.
+</li>
+<li>Para escribir un comando <code>select</code> debemos especificar los nombres de las columnas que necesitamos de las tablas.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> columnas
+<span style="color: #ff79c6; font-style: italic;">from</span> tabla
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>columnas</code> incluye una o más columnas de las cuales queremos recibir datos.
+</li>
+<li><code>tablas</code> es el nombre de la tabla en la cual están los datos que queremos obtener
+</li>
+</ul>
+
+<blockquote>
+<p>
+Un <code>select</code> recibe cero o más filas de la tabla de la base de datos.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Sintaxis SQL</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Múltiples consultas.</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ul class="org-ul">
+<li>SQL nos permite correr múltiples consultas al mismo tiempo.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> FirstName <span style="color: #ff79c6; font-style: italic;">from</span> customers;
+<span style="color: #ff79c6; font-style: italic;">select</span> city <span style="color: #ff79c6; font-style: italic;">from</span> customers;
+</pre>
+</div>
+
+<p>
+Cada consulta debe de terminar con punto y coma para que sean reconocidas.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Mayúsculas</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+SQL no le importan si son mayúsculas o minúsculas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> city <span style="color: #ff79c6; font-style: italic;">from</span> customers;
+<span style="color: #ff79c6; font-style: italic;">SELECT</span> city <span style="color: #ff79c6; font-style: italic;">FROM</span> customers;
+<span style="color: #ff79c6; font-style: italic;">sElEcT</span> city <span style="color: #ff79c6; font-style: italic;">FrOm</span> customers;
+</pre>
+</div>
+
+<p>
+Todas las consultas anteriores son equivalentes.
+</p>
+
+<blockquote>
+<p>
+Es una practica común que escribamos los comandos en mayúsculas.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Seleccionando de múltiples columnas</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Podemos seleccionar múltiples columnas al mismo tiempo, solo debemos especificar los nombres
+separados por comas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> FirstName, LastName, City
+<span style="color: #ff79c6; font-style: italic;">from</span> customers;
+</pre>
+</div>
+
+<blockquote>
+<p>
+No debemos de poner una coma al final del último nombre de columna.
+</p>
+</blockquote>
+
+<p>
+También podemos seleccionar todas las columnas de una tabla usando un asterisco <code>*</code> después del comando <code>select</code>.
+</p>
+
+<p>
+La siguiente consulta SQL selecciona todas las columnas de la tabla <code>customers</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> * <span style="color: #ff79c6; font-style: italic;">from</span> customers;
+</pre>
+</div>
+
+<blockquote>
+<p>
+En SQL el <code>*</code> significa todos.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> <code>distinct</code> y <code>limit</code></h3>
+<div class="outline-text-3" id="text-1-5">
+</div><div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1"><span class="section-number-4">1.5.1</span> <code>distinct</code></h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+En situaciones donde tenemos múltiples registros duplicados en una tabla,
+tiene más sentido retornar solo los registros únicos en lugar de traer los duplicados.
+</p>
+
+<p>
+La palabra <code>distinct</code> es usada en conjunto con <code>select</code> para eliminar los registros duplicados y retornar
+los únicos.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> <span style="color: #ff79c6; font-style: italic;">distinct</span> column_name1, column_name2
+<span style="color: #ff79c6; font-style: italic;">from</span> table_name1;
+</pre>
+</div>
+
+<p>
+Podríamos tener una tabla <code>customers</code> donde la columna <code>city</code> tiene la ciudad de nuestros clientes,
+si quisiéramos obtener una lista de las ciudades a las cuales pertenecen nuestros clientes
+escribiríamos una consulta así:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> <span style="color: #ff79c6; font-style: italic;">distinct</span> City <span style="color: #ff79c6; font-style: italic;">from</span> customers;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2"><span class="section-number-4">1.5.2</span> <code>limit</code></h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+Por defecto, todos los resultados que satisfagan una condición en una consulta SQL serán dados,
+Sin embargo, a veces queremos recibir solo una cantidad de registros, para esto utilizamos la palabra <code>limit</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> column1
+<span style="color: #ff79c6; font-style: italic;">from</span> table_name1
+<span style="color: #ff79c6; font-style: italic;">limit</span> N;
+</pre>
+</div>
+
+<p>
+Por ejemplo si queremos recibir los primeros 5 registros de la tabla <code>customers</code>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> Id, FirstName, LastName, City
+<span style="color: #ff79c6; font-style: italic;">from</span> customers <span style="color: #ff79c6; font-style: italic;">limit</span> <span style="color: #bd93f9; font-weight: bold;">5</span>;
+</pre>
+</div>
+
+<p>
+También podemos obtener registros con un ajuste particular, para eso utilizamos la palabra <code>offset</code>
+</p>
+
+<p>
+En la siguiente consulta obtendremos 4 registros, pero a partir de la 3ra posición.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> Id, FirstName, LastName, City
+<span style="color: #ff79c6; font-style: italic;">from</span> customers offset <span style="color: #bd93f9; font-weight: bold;">3</span> <span style="color: #ff79c6; font-style: italic;">limit</span> <span style="color: #bd93f9; font-weight: bold;">4</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+MySQL empieza contando desde el id con número 0, por lo tanto, obtendríamos todas las columnas, desde
+el id con número 3.
+</p>
+</blockquote>
+
+<p>
+También podríamos reducir la consulta anterior como
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> Id, FirstName, LastName, City
+<span style="color: #ff79c6; font-style: italic;">from</span> customers <span style="color: #ff79c6; font-style: italic;">limit</span> <span style="color: #bd93f9; font-weight: bold;">3</span>,<span style="color: #bd93f9; font-weight: bold;">4</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Ordenando resultados</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+En SQL podemos dar el nombre de la tabla antes de el nombre de la columna separandolos por un punto.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> City <span style="color: #ff79c6; font-style: italic;">from</span> customers;
+<span style="color: #ff79c6; font-style: italic;">select</span> customers.City <span style="color: #ff79c6; font-style: italic;">from</span> customers;
+</pre>
+</div>
+
+<p>
+En la segunda consulta estariamos usando el nombre completo de la columna.
+</p>
+
+<blockquote>
+<p>
+Esto es útil cuando trabajamos con múltiples tablas que podrían tener nombres de columnas similares.
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> <code>Order by</code></h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+Este es usado junto con el <code>select</code> para ordenar los datos obtenidos.
+</p>
+
+<p>
+En el siguiente ejemplo ordenamos el resultado con la columna <code>FirstName</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> * <span style="color: #ff79c6; font-style: italic;">from</span> customers
+<span style="color: #ff79c6; font-style: italic;">order</span> <span style="color: #ff79c6; font-style: italic;">by</span> FirstName;
+</pre>
+</div>
+
+<p>
+Esto ordenará los registros de manera alfabética con los resultados de la columna <code>FirstName</code>
+</p>
+
+<blockquote>
+<p>
+Por defecto <code>order by</code> ordena los resultados de manera ascendente.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2"><span class="section-number-4">1.6.2</span> Ordenando múltiples columnas</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+<code>order by</code> puede ordenar los datos recibidos por múltiples columnas, separando las columnas por comas.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> * <span style="color: #ff79c6; font-style: italic;">from</span> customers
+<span style="color: #ff79c6; font-style: italic;">order</span> <span style="color: #ff79c6; font-style: italic;">by</span> LastName, Age;
+</pre>
+</div>
+
+<p>
+De esta manera si tuviéramos dos Personas con apellido <code>smith</code> en los resultados, las agruparía y ordenaria por su edad.
+</p>
+
+<blockquote>
+<p>
+El comando <code>order by</code> empezara por ordenar los resultados en el mismo orden en la que se le dan las columnas,
+primero ordenaria el primer elemento, despues el resultado lo ordenaria con el segundo y asi hasta terminar.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Filtrado, funciones y subconsultas</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <code>where</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+La palabra <code>where</code> es usada para extraer solo aquellos registros que cumplen una condición.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> column_name1
+<span style="color: #ff79c6; font-style: italic;">from</span> table_name1
+<span style="color: #ff79c6; font-style: italic;">where</span> condition;
+</pre>
+</div>
+
+<p>
+Por ejemplo podemos seleccionar un registro con un <code>ID</code> especifico.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> * <span style="color: #ff79c6; font-style: italic;">from</span> customers
+<span style="color: #ff79c6; font-style: italic;">where</span> ID = <span style="color: #bd93f9; font-weight: bold;">7</span>;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Operadores SQL</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+En SQL tenemos operadores de comparación y operadores lógicos los cuales pueden ser usados en la sentencia <code>where</code>.
+</p>
+
+<p>
+Por ejemplo podemos seleccionar todos los nombres de los clientes con excepción del cliente con <code>id</code> 5:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> * <span style="color: #ff79c6; font-style: italic;">from</span> customers
+<span style="color: #ff79c6; font-style: italic;">where</span> ID != <span style="color: #bd93f9; font-weight: bold;">5</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Operador <code>between</code></h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+El operador <code>between</code> selecciona un valor dentro de un rango dado, cuyo primer valor debe ser el limite inferior
+y el segundo el limite superior.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> column_name1
+<span style="color: #ff79c6; font-style: italic;">from</span> table_name1
+<span style="color: #ff79c6; font-style: italic;">where</span> column1_name1 <span style="color: #ff79c6; font-style: italic;">between</span> value1 <span style="color: #ff79c6; font-style: italic;">and</span> value2;
+</pre>
+</div>
+
+<p>
+La siguiente consulta selecciona todos los registros cuyo <code>ID</code> esta entre 3 y 7:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #ff79c6; font-style: italic;">select</span> * <span style="color: #ff79c6; font-style: italic;">from</span> customers
+<span style="color: #ff79c6; font-style: italic;">where</span> ID <span style="color: #ff79c6; font-style: italic;">between</span> <span style="color: #bd93f9; font-weight: bold;">3</span> <span style="color: #ff79c6; font-style: italic;">and</span> <span style="color: #bd93f9; font-weight: bold;">7</span>;
+</pre>
+</div>
+
+<blockquote>
+<p>
+El limite superior y el inferior dados son incluidos en los resultados
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> Valores de texto</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+Cuando trabajamos con columnas de texto podemos hacer
+</p>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-04-20 Wed 18:41</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

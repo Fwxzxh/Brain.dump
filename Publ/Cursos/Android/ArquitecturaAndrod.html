@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Curso de arquitectura en Android</title>
+<!-- 2022-04-20 Wed 18:40 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Arquitectura de Software</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Arquitectura en Android</a></li>
+<li><a href="#sec-1-2">1.2. Patrón de diseño VAS Arquitectura de diseño</a></li>
+<li><a href="#sec-1-3">1.3. Qué es la Arquitectura de diseño</a></li>
+<li><a href="#sec-1-4">1.4. Principios <code>SOLID</code></a></li>
+<li><a href="#sec-1-5">1.5. Evolución de arquitectura en Android</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Arquitectura MVC</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Qué es la arquitectura Model-View-Controler</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Arquitectura MVP</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Qué es la arquitectura Model-View-Presenter (MVP)</a></li>
+<li><a href="#sec-3-2">3.2. Qué es clean architecture</a></li>
+<li><a href="#sec-3-3">3.3. Composición de clases</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Curso de arquitectura en Android</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Arquitectura de Software</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Arquitectura en Android</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Deuda técnica
+<ul class="org-ul">
+<li>Esfuerzo adicional causado por la elección de un desarrollo sencillo.
+</li>
+</ul>
+</li>
+<li>Las aplicaciones deben ser:
+<ul class="org-ul">
+<li>Rápidas.
+</li>
+<li>Fluidas.
+</li>
+<li>Seguras.
+</li>
+<li>Mantenibles.
+</li>
+</ul>
+</li>
+<li>Necesitamos una buena arquitectura para cumplir los puntos anteriores.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Patrón de diseño VAS Arquitectura de diseño</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Patrón de diseño.
+<ul class="org-ul">
+<li>Solución a un problema común de código.
+</li>
+<li>Solo se refiere a un componente o elemento de la aplicación.
+</li>
+<li>Ejemplos:
+<ul class="org-ul">
+<li><code>Singleton</code>.
+</li>
+<li><code>Adapter</code>.
+</li>
+<li><code>Builder</code>.
+</li>
+<li><code>Factory</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Arquitectura de diseño.
+<ul class="org-ul">
+<li>Proporciona la estructura, funcionamiento e interacción entre las partes del software.
+</li>
+<li>La organización y estructura de la aplicación.
+</li>
+<li>Ejemplos:
+<ul class="org-ul">
+<li><code>MVC: Model-View-Controler</code>.
+</li>
+<li><code>MVP: Model-View-Presenter</code>.
+</li>
+<li><code>MVVM: Model-View-ViewModel</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Qué es la Arquitectura de diseño</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Se encarga de la Estructura, funcionamiento e Interacción de las partes del software.
+</li>
+<li>El modelo de capas:
+<ul class="org-ul">
+<li><code>UI</code>
+<ul class="org-ul">
+<li>La presentación.
+</li>
+<li><code>FrontEnd</code>.
+</li>
+</ul>
+</li>
+<li><code>Business Logic</code>
+<ul class="org-ul">
+<li>Las reglas de negocio.
+</li>
+<li>Casos de uso de la aplicación.
+</li>
+<li>Qué, como y cuando de la aplicación.
+</li>
+</ul>
+</li>
+<li><code>Data</code>
+<ul class="org-ul">
+<li>Persistencia y/o procesamiento de la información.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Arquitecto de software:
+<ul class="org-ul">
+<li>Analiza
+</li>
+<li>Planea con anticipación.
+</li>
+<li>Toma decisiones para evitar riesgos.
+</li>
+<li>Tiene una amplia experiencia resolviendo problemas.
+</li>
+</ul>
+</li>
+<li>Organiza mejor el código para trabajar en equipo.
+</li>
+<li>Hace el código más intuitivo de leer y de escribir.
+</li>
+<li>Hace más fácil testear e integrar nueva funcionalidad.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Principios <code>SOLID</code></h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li><code>S</code>: <code>Single Responsability</code>.
+<ul class="org-ul">
+<li>Cada clase debe de tener una sola responsabilidad.
+</li>
+<li>Esto nos ayuda a modularizar el código.
+</li>
+<li>Facilita cambiar funcionalidades.
+</li>
+</ul>
+</li>
+<li><code>O</code>: <code>Open/Closed Principle</code>
+<ul class="org-ul">
+<li>Organizar el código modularmente.
+</li>
+<li>Las clases, módulos, interfaces deben de estar abiertas para la extensión pero no para la modificación.
+</li>
+<li>Nos permite componer las clases.
+</li>
+<li>Composición &gt; Herencia.
+</li>
+</ul>
+</li>
+<li><code>L</code>: <code>Liskov substitution</code>
+<ul class="org-ul">
+<li>Deberíamos de poder usar una clase hija para sustituir una clase padre sin errores.
+</li>
+</ul>
+</li>
+<li><code>I</code>: <code>Interface Segregation</code>
+<ul class="org-ul">
+<li>Si una interfaz crece demasiado viola el primer principio.
+</li>
+<li>Usar Clases abstractas e interfaces para que cada interfaz cumpla el primer principio.
+</li>
+</ul>
+</li>
+<li><code>D</code>: <code>Dependency Inversion</code>
+<ul class="org-ul">
+<li>Inversión de dependencias.
+</li>
+<li>Un elemento debe de depender de una abstracción y no de algo concreto.
+</li>
+<li>Un módulos de alto nivel no debe depender de los de bajo nivel. ambos deben de depender de abstracciones.
+<ul class="org-ul">
+<li>P. Ej: interfaces.
+</li>
+</ul>
+</li>
+<li>Las abstracciones no deberían depender de los detalles.
+<ul class="org-ul">
+<li>Son los detalles los que deberían depender de abstracciones.
+</li>
+</ul>
+</li>
+<li>Los módulos no deben de depender unos de otros, si no de abstracciones.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Evolución de arquitectura en Android</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>MVC
+</li>
+<li>MVP
+</li>
+<li>MVVM
+</li>
+<li>Android Jetpack: arquitectura por componentes
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Arquitectura MVC</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Qué es la arquitectura Model-View-Controler</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><code>View</code>
+<ul class="org-ul">
+<li>La UI.
+</li>
+</ul>
+</li>
+<li><code>Controler</code>
+<ul class="org-ul">
+<li>Lógica de negocio.
+</li>
+<li>Casos de uso.
+</li>
+</ul>
+</li>
+<li>Ambos el <code>View</code> y el <code>Controler</code> están en la misma clase
+</li>
+<li><code>Model</code>
+<ul class="org-ul">
+<li>Contenido en una clase aparte.
+</li>
+<li>Conexión a almacenamiento.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Arquitectura MVP</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Qué es la arquitectura Model-View-Presenter (MVP)</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Ayuda a no recargar de código la <code>MainActivity</code> y las clases de las <code>activity</code>.
+</li>
+<li><code>View</code>
+<ul class="org-ul">
+<li>Activity
+</li>
+<li>Fragment
+</li>
+<li>UI en general
+</li>
+</ul>
+</li>
+<li><code>Presenter</code>
+<ul class="org-ul">
+<li>Orquesta lo que la vista pide.
+</li>
+<li>Es un intermediario entre el <code>model</code> y el <code>view</code>.
+</li>
+<li>Cada activity tiene su propio presenter.
+</li>
+</ul>
+</li>
+<li><code>Model</code>
+<ul class="org-ul">
+<li><code>Interactor</code>
+<ul class="org-ul">
+<li>Decide de donde sacar los datos.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Qué es clean architecture</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Hacen referencia a buenas prácticas de diseño y arquitectura que se aplican a ciertos elementos.
+</li>
+<li>Tiene como objetivo separar el código en sus diferentes responsabilidades.
+<ul class="org-ul">
+<li><code>Presentation layer</code>
+</li>
+<li><code>Business logic layer</code>
+</li>
+<li><code>Data layer</code>
+</li>
+</ul>
+</li>
+<li>Tiene 5 principios:
+<ul class="org-ul">
+<li>Independiente de cualquier Framework.
+</li>
+<li>Testeadle.
+</li>
+<li>Independiente de la UI.
+</li>
+<li>Independiente de la base de datos.
+</li>
+<li>Independiente de cualquier elemento externo.
+</li>
+</ul>
+</li>
+<li>Sus elementos son:
+<ul class="org-ul">
+<li><code>Entities</code>
+<ul class="org-ul">
+<li>Modelos definidos que interactúan en el sistema.
+</li>
+<li>Deben ser lo suficientemente abstractas para ser usadas por múltiples aplicaciones.
+</li>
+</ul>
+</li>
+<li><code>Use cases</code>
+<ul class="org-ul">
+<li>Contienen reglas que le dan sentido a la aplicación.
+</li>
+<li>Dirijan el flujo a las entidades y las orquestan para cumplir con el negocio.
+</li>
+</ul>
+</li>
+<li><code>Repositiories y Presenters</code>. <code>Interface adapters</code>
+<ul class="org-ul">
+<li>Esta es la capa interceptora que convierte los datos extraidos por la UI a un formato más conveniente para los casos de uso.
+</li>
+</ul>
+</li>
+<li><code>UI</code>, <code>Data source</code>, <code>Frameworks</code> y <code>Drivers</code>
+<ul class="org-ul">
+<li>En esta capa van todos los detalles, tanto para mostrar datos en la UI como para obtener los datos requeridos.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Composición de clases</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Composición &gt; Herencia.
+</li>
+<li>Componemos los comportamientos en interfaces y se los vamos dando a las clases que deseamos.
+</li>
+<li>Abstraemos funcionalidades mediante una interfaz.
+<ul class="org-ul">
+<li>con esto podemos reutilizar el comportamiento de una interfaz.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-04-20 Wed 18:40</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

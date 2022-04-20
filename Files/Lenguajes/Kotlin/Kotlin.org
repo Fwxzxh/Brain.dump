@@ -71,6 +71,7 @@ C
 - Son usadas para guardar datos.
 - Cada variable tiene un tipo, que define el tipo de la variable.
 - Se declaran usando la palabra =var=.
+- También podemos declarar constantes con la palabra =const val=
 
 #+begin_src kotlin
 var num : Int = 42
@@ -267,6 +268,25 @@ println(result)
 #+end_src
 
 Se compone de varias condicionales seguidas de una flecha y un resultado.
+
+Si lo usamos como =switch= podemos usar mas de un elemento en el =case= separandolo por comas.
+
+#+begin_src kotlin
+when(color) {
+     "Amarillo" -> println("Amarillo")
+     "Rojo", "Carmesi" -> println("Rojo")
+     else -> println("Error!")
+}
+#+end_src
+
+#+begin_src kotlin
+val code = 501
+when(code) {
+    in 200..299 -> println("Todo OK")
+    in 400..500 -> println("Algo ha fallado")
+    else -> println("Error!")
+}
+#+end_src
 
 ** Combinando operadores
 Podemos combinar diferentes condiciones usando operadores lógicos.
