@@ -136,3 +136,107 @@
 - Componemos los comportamientos en interfaces y se los vamos dando a las clases que deseamos.
 - Abstraemos funcionalidades mediante una interfaz.
   - con esto podemos reutilizar el comportamiento de una interfaz.
+
+
+** Model-view-Presenter explicado
+- =View=
+  - =MainActivity.kt=.
+    - Necesita una instancia de =CouponsPresenterImpl=.
+- =Presenter=.
+  - =CouponsPresenterImpl.kt=.
+    - Tiene contacto bidireccional con =MainActivity.kt=.
+    - Ocupa:
+      - =CoupounsView=.
+        - Para comunicarse con el =View=.
+      - =CoupunsInteractor=.
+- =Model=.
+  - =Interactor=.
+  - =CouponsInteractorImpl.kt=
+  - Tiene contacto unidireccional con =CouponsPresenterImpl.kt=.
+  - Solo el presenter tiene contacto con el =interactor=.
+  - =RepositoryAPI=.
+    - Obtiene los datos atravéz de una API.
+    - =CouponsRepositoryImpl.kt=.
+
+* Arquitectura Model-View-ViewModel
+** Qué es la arquitectura Model-View-ViewModel
+- =View=
+  - =Activity/Fragments=
+  - El view manda los datos al =ViewModel=.
+  - Usa =DataBinding= para comunicarse con el =ViewModel=.
+    - También podemos usar =LiveData=.
+    - O =RxJava=.
+- =ViewModel=
+  - =ViewModel=
+  - Tiene comunicación con el =Model=.
+- =Model=
+  - =Repository=
+    - Es de donde sacamos los datos ya sea una API o una BD.
+
+** =Data Binding=
+- Usa =AndroidX=
+  - =Android Extencion Library=
+- =View=
+  - =Activity/XML=
+  - Usa =DataBinding= Para comunicarse con el =ViewModel=.
+    - =@{  }=
+      - =Binding Expresion=.
+    - Debemos habilitar el =dataBinding= en =build.gradle=.
+- =ViewModel=
+  - Permite la comunicación entre las otras dos capas.
+  - Necesitamos heredar de la clase =ViewModel()= perteneciente a =androidx=.
+- =Model=
+- Debemos Hacer la migración a =AndroidX=.
+
+** Patrón =observer= en =MVVM=
+- Se da cuanto tenemos un elemento que contiene una lista de elementos.
+  - Se le llama =subject= o sujeto.
+  - El cual contiene una lista de =observers=.
+    - Tiene un método llamado =observer=
+    - Permite hacer cosas cuando los elementos de la lista son modificados.
+  - Parecido a la =observableCollection= de C#.
+
+* JetPack
+** Android =JetPack=
+- Acelera el desarrollo de android con componentes.
+- Componentes:
+  - Base.
+  - Comportamiento.
+  - Arquitectura.
+  - UI.
+- Esta basado en =MVVM=.
+- Usa:
+  - =Room=
+    - es un ROM.
+  - =Lifecycle=
+  - =LiveData=
+  - =ViewModel=
+
+** Arquitectura por componentes.
+- Es una forma de organizar el código deacuerdo a su función.
+- Utiliza los principios de =MVVM=.
+- Usan:
+  - =LiveCycle=
+    - =LiveCycleOwner=
+      - Tiene ciclo de vida.
+    - =LiveCycleObserver=
+      - Observa el ciclo de vida.
+    - Los =Activity= y los =Fragment= tienen ciclos de vida.
+      - También llamados =Events=.
+      - =OnCreate=
+      - =OnStart=
+      - =OnPause=
+      - =OnResume=
+      - =OnDestroy=
+      - etc.
+      - Delegan un estado (=State=).
+    - Entonces el =LiveCycleObserver= pueden observar el cambio de estado de un =Activity=.
+  - =LiveData=
+    - Depende totalmente del =LiveCycle=.
+  - Ambos basados en el patrón =observer=
+  - Nos permiten estar al tanto cuando un elemento cambia, pudiendo hacer cosas cada que cambien los elementos.
+  - =ViewModel=
+    - Debemos tener una clase que hereda de =ViewModel=.
+    - Provee los datos de la UI.
+    - Sobrevive a cualquier cambio del ciclo de vida de la =Activity=.
+    - Funciona como un observador de la UI.

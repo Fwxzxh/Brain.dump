@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Android Con Jetpack Compose</title>
+<!-- 2022-04-27 Wed 00:53 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Conceptos generales</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Introducción</a></li>
+<li><a href="#sec-1-2">1.2. Qué es <code>Jetpack Compose</code></a></li>
+<li><a href="#sec-1-3">1.3. Programación declarativa para creación de UI</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. UI Con <code>Jetpack Compose</code></a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Funciones <code>composable</code></a></li>
+<li><a href="#sec-2-2">2.2. Componentes principales y <code>layouts</code></a></li>
+<li><a href="#sec-2-3">2.3. Componentes personalizados y <code>modifiers</code></a></li>
+<li><a href="#sec-2-4">2.4. <code>Material design</code> con <code>Compose</code></a></li>
+<li><a href="#sec-2-5">2.5. aa</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Android Con Jetpack Compose</h1>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Conceptos generales</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introducción</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Porqué usar <code>compose</code>?
+<ul class="org-ul">
+<li>Apps con menos código.
+</li>
+<li>Desarrollo intuitivos.
+<ul class="org-ul">
+<li>Es una API declarativa.
+</li>
+</ul>
+</li>
+<li>Acelera nuestro desarrollo.
+<ul class="org-ul">
+<li>Es compatible con el código existente.
+</li>
+</ul>
+</li>
+<li>Es más potente.
+<ul class="org-ul">
+<li>Tiene más compatibilidad con APIs de android.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Qué es <code>Jetpack Compose</code></h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Es un kit moderno de herramientas declarativas.
+</li>
+<li>API declarativa para renderizar sin cambiar de vista.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Programación declarativa para creación de UI</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Modelo de UI declarativo.
+<ul class="org-ul">
+<li>Regeneración conceptual de toda la pantalla.
+<ul class="org-ul">
+<li>Aplicando solo los cambios necesarios.
+</li>
+</ul>
+</li>
+<li>Evita la complejidad de la jerarquía de vistas.
+</li>
+<li>Ejemplos declarativos de UI:
+<ul class="org-ul">
+<li>React.
+</li>
+<li>Switft UI.
+</li>
+<li>Fluter.
+</li>
+<li>Compose.
+</li>
+</ul>
+</li>
+<li>Desafíos de regenerar toda la pantalla.
+<ul class="org-ul">
+<li>Tiempo.
+</li>
+<li>Uso de batería.
+</li>
+<li>Uso de CPU
+</li>
+</ul>
+</li>
+<li>Recomposición:
+<ul class="org-ul">
+<li>Vuelve a llamar a la función que admite composición con datos nuevos.
+</li>
+<li>Los componentes de la función se vuelven a dibujar con datos nuevos.
+</li>
+<li>Recompone de forma inteligente solo los componentes que cambiaron.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> UI Con <code>Jetpack Compose</code></h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Funciones <code>composable</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Son funciones que llevan un <code>decorator</code> con el la palabra <code>Composable</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">MainActivity</span> : <span style="color: #bd93f9;">ComponentActvity</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">onCreate</span><span style="color: #ff79c6;">(</span>savedInstanceState: <span style="color: #bd93f9;">Bundle?</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">super</span>.onCreate<span style="color: #50fa7b;">(</span>savedInstanceState<span style="color: #50fa7b;">)</span>
+        setContent <span style="color: #50fa7b;">{</span>
+            <span style="color: #bd93f9;">HelloCompose</span><span style="color: #bd93f9;">()</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+@<span style="color: #bd93f9;">Composable</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #bd93f9;">HelloCompose</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Text</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hello Compose!"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Usando estas funciones podemos declarar UI, en el código anterior creamos un elemento tipo <code>Text</code>
+el cuál tiene de valor <code>"Hello Compose!"</code>
+</p>
+
+<p>
+También podemos hacer preview de nuestros elementos con el <code>decorator</code> <code>Preview</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin">@<span style="color: #bd93f9;">Preview</span><span style="color: #61bfff;">(</span>
+    showBackground = <span style="color: #8be9fd;">true</span>
+<span style="color: #61bfff;">)</span>
+@<span style="color: #bd93f9;">Composable</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #bd93f9;">HelloComposePreview</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">HelloCompose</span><span style="color: #ff79c6;">()</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>El decorator <code>Preview</code> puede definir argumentos sobre como mostrar el preview en el editor.
+</li>
+<li>Es común usar (nombreDeElemento)Preview para Nombrar las funciones de preview.
+</li>
+<li>Si no declaramos un preview, no aparecera la preview en el editor.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Componentes principales y <code>layouts</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Las funciones <code>Composable</code> funcionan como un <code>stack</code>.
+<ul class="org-ul">
+<li>Si ponemos dos componentes.
+<ul class="org-ul">
+<li>Como dos elementos <code>Text</code>.
+</li>
+</ul>
+</li>
+<li>Ambos se sobrepondrán en el mismo espacio.
+</li>
+<li>Debemos darle jerarquía con layouts.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin">@<span style="color: #bd93f9;">Composable</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #bd93f9;">HelloCompose</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Column</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">Image</span><span style="color: #50fa7b;">(</span>painterResource<span style="color: #bd93f9;">(</span>id  = <span style="color: #bd93f9;">R.Drawable.imagen</span><span style="color: #bd93f9;">)</span>, contentDescription = <span style="color: #f1fa8c;">"logo"</span><span style="color: #50fa7b;">)</span>
+        <span style="color: #bd93f9;">Text</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Este curso es lo mejor!!"</span><span style="color: #50fa7b;">)</span>
+        <span style="color: #bd93f9;">Text</span><span style="color: #50fa7b;">(</span><span style="color: #f1fa8c;">"Hello Compose!!"</span><span style="color: #50fa7b;">)</span>
+        <span style="color: #bd93f9;">Button</span><span style="color: #50fa7b;">(</span>
+            onClic = <span style="color: #bd93f9;">{</span>
+                <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">La acci&#243;n a hacer con el evento onClic</span>
+            <span style="color: #bd93f9;">}</span>
+        <span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #bd93f9;">Text</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Precioname!"</span><span style="color: #bd93f9;">)</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+En las funciones <code>Composable</code> podemos definir elementos de la UI y agruparlos de la manera que deseemos.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Componentes personalizados y <code>modifiers</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Todos los elementos tienen <code>modifiers</code>.
+</li>
+<li>Estos nos permiten cambiar cosas como el tamaño, bordes, etc.
+</li>
+<li>También cada componente tiene argumentos personalizados de cada componente.
+</li>
+<li>De esta manera podemos estilizar mejor nuestros componentes.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin">@<span style="color: #bd93f9;">Composable</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #bd93f9;">HelloCompose</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">Card</span><span style="color: #ff79c6;">(</span>
+        elevation = <span style="color: #bd93f9; font-weight: bold;">4</span>.dp,
+        shape = <span style="color: #bd93f9;">RoundedCornerShape</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9; font-weight: bold;">20</span>.dp<span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">Column</span><span style="color: #50fa7b;">(</span>
+            modifier = <span style="color: #bd93f9;">Modifier.padding</span><span style="color: #bd93f9;">(</span><span style="color: #bd93f9; font-weight: bold;">8</span>.dp<span style="color: #bd93f9;">)</span>,
+            horizontalAlignmet = <span style="color: #bd93f9;">Alignment.CenterHorizontally</span>
+        <span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #bd93f9;">Image</span><span style="color: #bd93f9;">(</span>painterResource<span style="color: #61bfff;">(</span>id  = <span style="color: #bd93f9;">R.Drawable.imagen</span><span style="color: #61bfff;">)</span>,
+                  contentDescription = <span style="color: #f1fa8c;">"logo"</span>,
+                  modifier = <span style="color: #bd93f9;">Modifier.size</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">40</span>.dp, <span style="color: #bd93f9; font-weight: bold;">40</span>.dp<span style="color: #61bfff;">)</span>
+            <span style="color: #bd93f9;">)</span>
+            <span style="color: #bd93f9;">Text</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Este curso es lo mejor!!"</span>, style = <span style="color: #bd93f9;">MaterialTheme.typography.h4</span><span style="color: #bd93f9;">)</span>
+            <span style="color: #bd93f9;">Text</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Hello Compose!!"</span><span style="color: #bd93f9;">)</span>
+            <span style="color: #bd93f9;">Button</span><span style="color: #bd93f9;">(</span>
+                onClic = <span style="color: #61bfff;">{</span>
+                    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">La acci&#243;n a hacer con el evento onClic</span>
+                <span style="color: #61bfff;">}</span>
+            , modifier = <span style="color: #bd93f9;">Modifier.padding</span><span style="color: #61bfff;">(</span>top = <span style="color: #bd93f9; font-weight: bold;">16</span>.dp<span style="color: #61bfff;">)</span><span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">{</span>
+                <span style="color: #bd93f9;">Text</span><span style="color: #61bfff;">(</span>text = <span style="color: #f1fa8c;">"Precioname!"</span><span style="color: #61bfff;">)</span>
+            <span style="color: #bd93f9;">}</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> <code>Material design</code> con <code>Compose</code></h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li><code>Jetpack Compose</code> nos provee con otra manera de manejar los temas.
+</li>
+<li>Dentro del proyecto tendremos una carpeta que se llama <code>ui.teme</code>.
+<ul class="org-ul">
+<li>En <code>Color.kt</code> declaramos los colores de nuestra aplicación
+</li>
+<li>En <code>Shape.kt</code> podemos definir distintas formas.
+</li>
+<li>En <code>Theme.kt</code> podemos definir diferentes temas para nuestra aplicación.
+</li>
+<li>En <code>Type.kt</code> podemos definir las diferentes tipografías.
+</li>
+<li>En el <code>Theme.kt</code> unimos todo lo de los archivos anteriores para crear un tema.
+</li>
+</ul>
+</li>
+<li>En la el archivo <code>Theme.kt</code> viene una función <code>Composable</code>.
+<ul class="org-ul">
+<li>En esa función, que se llama <code>(NombreProyecto)Theme</code> se definen todos los aspectos del tema.
+</li>
+<li>Si queremos usar ese tema u otro en nuestros elementos o de manera global debemos poner nuestros
+elementos dentro del bloque del tema.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin">@<span style="color: #bd93f9;">Composable</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #bd93f9;">HelloCompose</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">HelloComposeTheme</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span> <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;- Bloque del tema.</span>
+        <span style="color: #bd93f9;">Card</span><span style="color: #50fa7b;">(</span>
+            elevation = <span style="color: #bd93f9; font-weight: bold;">4</span>.dp,
+            shape = <span style="color: #bd93f9;">RoundedCornerShape</span><span style="color: #bd93f9;">(</span><span style="color: #bd93f9; font-weight: bold;">20</span>.dp<span style="color: #bd93f9;">)</span>
+        <span style="color: #50fa7b;">)</span> <span style="color: #50fa7b;">{</span>
+            <span style="color: #bd93f9;">Column</span><span style="color: #bd93f9;">(</span>
+                modifier = <span style="color: #bd93f9;">Modifier.padding</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">8</span>.dp<span style="color: #61bfff;">)</span>,
+                horizontalAlignmet = <span style="color: #bd93f9;">Alignment.CenterHorizontally</span>
+            <span style="color: #bd93f9;">)</span> <span style="color: #bd93f9;">{</span>
+                <span style="color: #bd93f9;">Image</span><span style="color: #61bfff;">(</span>painterResource<span style="color: #ff79c6;">(</span>id  = <span style="color: #bd93f9;">R.Drawable.imagen</span><span style="color: #ff79c6;">)</span>,
+                    contentDescription = <span style="color: #f1fa8c;">"logo"</span>,
+                    modifier = <span style="color: #bd93f9;">Modifier.size</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">40</span>.dp, <span style="color: #bd93f9; font-weight: bold;">40</span>.dp<span style="color: #ff79c6;">)</span>
+                <span style="color: #61bfff;">)</span>
+                <span style="color: #bd93f9;">Text</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Este curso es lo mejor!!"</span>, style = <span style="color: #bd93f9;">MaterialTheme.typography.h4</span><span style="color: #61bfff;">)</span>
+                <span style="color: #bd93f9;">Text</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"Hello Compose!!"</span><span style="color: #61bfff;">)</span>
+                <span style="color: #bd93f9;">Button</span><span style="color: #61bfff;">(</span>
+                    onClic = <span style="color: #ff79c6;">{</span>
+                        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">La acci&#243;n a hacer con el evento onClic</span>
+                    <span style="color: #ff79c6;">}</span>
+                , modifier = <span style="color: #bd93f9;">Modifier.padding</span><span style="color: #ff79c6;">(</span>top = <span style="color: #bd93f9; font-weight: bold;">16</span>.dp<span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+                    <span style="color: #bd93f9;">Text</span><span style="color: #ff79c6;">(</span>text = <span style="color: #f1fa8c;">"Precioname!"</span><span style="color: #ff79c6;">)</span>
+                <span style="color: #61bfff;">}</span>
+            <span style="color: #bd93f9;">}</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Para verlo en la preview y/o aplicar el tema de forma global debemos encerrar nuestro bloque de
+tema dentro de las funciones pertinentes.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">a nivel de preview</span>
+@<span style="color: #bd93f9;">Preview</span><span style="color: #61bfff;">(</span>
+    showBackground = <span style="color: #8be9fd;">true</span>
+<span style="color: #61bfff;">)</span>
+@<span style="color: #bd93f9;">Composable</span>
+<span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #bd93f9;">HelloComposePreview</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #bd93f9;">HelloComposeTheme</span><span style="color: #ff79c6;">()</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #bd93f9;">HelloCompose</span><span style="color: #50fa7b;">()</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+
+<pre class="src src-kotlin"><span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">A nivel global</span>
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">MainActivity</span> : <span style="color: #bd93f9;">ComponentActvity</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">override</span> <span style="color: #ff79c6; font-style: italic;">fun</span> <span style="color: #50fa7b;">onCreate</span><span style="color: #ff79c6;">(</span>savedInstanceState: <span style="color: #bd93f9;">Bundle?</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">super</span>.onCreate<span style="color: #50fa7b;">(</span>savedInstanceState<span style="color: #50fa7b;">)</span>
+        setContent <span style="color: #50fa7b;">{</span>
+            <span style="color: #bd93f9;">HelloComposeTheme</span><span style="color: #bd93f9;">()</span> <span style="color: #bd93f9;">{</span>
+                <span style="color: #bd93f9;">HelloCompose</span><span style="color: #61bfff;">()</span>
+            <span style="color: #bd93f9;">}</span>
+        <span style="color: #50fa7b;">}</span>
+    <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> aa</h3>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-04-27 Wed 00:53</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

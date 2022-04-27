@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Curso de arquitectura en Android</title>
-<!-- 2022-04-20 Wed 18:40 -->
+<!-- 2022-04-27 Wed 00:53 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -214,6 +214,20 @@ $(function() {
 <li><a href="#sec-3-1">3.1. Qué es la arquitectura Model-View-Presenter (MVP)</a></li>
 <li><a href="#sec-3-2">3.2. Qué es clean architecture</a></li>
 <li><a href="#sec-3-3">3.3. Composición de clases</a></li>
+<li><a href="#sec-3-4">3.4. Model-view-Presenter explicado</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Arquitectura Model-View-ViewModel</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Qué es la arquitectura Model-View-ViewModel</a></li>
+<li><a href="#sec-4-2">4.2. <code>Data Binding</code></a></li>
+<li><a href="#sec-4-3">4.3. Patrón <code>observer</code> en <code>MVVM</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. JetPack</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Android <code>JetPack</code></a></li>
+<li><a href="#sec-5-2">5.2. Arquitectura por componentes.</a></li>
 </ul>
 </li>
 </ul>
@@ -599,11 +613,306 @@ $(function() {
 </ul>
 </div>
 </div>
+
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Model-view-Presenter explicado</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li><code>View</code>
+<ul class="org-ul">
+<li><code>MainActivity.kt</code>.
+<ul class="org-ul">
+<li>Necesita una instancia de <code>CouponsPresenterImpl</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Presenter</code>.
+<ul class="org-ul">
+<li><code>CouponsPresenterImpl.kt</code>.
+<ul class="org-ul">
+<li>Tiene contacto bidireccional con <code>MainActivity.kt</code>.
+</li>
+<li>Ocupa:
+<ul class="org-ul">
+<li><code>CoupounsView</code>.
+<ul class="org-ul">
+<li>Para comunicarse con el <code>View</code>.
+</li>
+</ul>
+</li>
+<li><code>CoupunsInteractor</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Model</code>.
+<ul class="org-ul">
+<li><code>Interactor</code>.
+</li>
+<li><code>CouponsInteractorImpl.kt</code>
+</li>
+<li>Tiene contacto unidireccional con <code>CouponsPresenterImpl.kt</code>.
+</li>
+<li>Solo el presenter tiene contacto con el <code>interactor</code>.
+</li>
+<li><code>RepositoryAPI</code>.
+<ul class="org-ul">
+<li>Obtiene los datos atravéz de una API.
+</li>
+<li><code>CouponsRepositoryImpl.kt</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Arquitectura Model-View-ViewModel</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Qué es la arquitectura Model-View-ViewModel</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li><code>View</code>
+<ul class="org-ul">
+<li><code>Activity/Fragments</code>
+</li>
+<li>El view manda los datos al <code>ViewModel</code>.
+</li>
+<li>Usa <code>DataBinding</code> para comunicarse con el <code>ViewModel</code>.
+<ul class="org-ul">
+<li>También podemos usar <code>LiveData</code>.
+</li>
+<li>O <code>RxJava</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>ViewModel</code>
+<ul class="org-ul">
+<li><code>ViewModel</code>
+</li>
+<li>Tiene comunicación con el <code>Model</code>.
+</li>
+</ul>
+</li>
+<li><code>Model</code>
+<ul class="org-ul">
+<li><code>Repository</code>
+<ul class="org-ul">
+<li>Es de donde sacamos los datos ya sea una API o una BD.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <code>Data Binding</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Usa <code>AndroidX</code>
+<ul class="org-ul">
+<li><code>Android Extencion Library</code>
+</li>
+</ul>
+</li>
+<li><code>View</code>
+<ul class="org-ul">
+<li><code>Activity/XML</code>
+</li>
+<li>Usa <code>DataBinding</code> Para comunicarse con el <code>ViewModel</code>.
+<ul class="org-ul">
+<li><code>@{  }</code>
+<ul class="org-ul">
+<li><code>Binding Expresion</code>.
+</li>
+</ul>
+</li>
+<li>Debemos habilitar el <code>dataBinding</code> en <code>build.gradle</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>ViewModel</code>
+<ul class="org-ul">
+<li>Permite la comunicación entre las otras dos capas.
+</li>
+<li>Necesitamos heredar de la clase <code>ViewModel()</code> perteneciente a <code>androidx</code>.
+</li>
+</ul>
+</li>
+<li><code>Model</code>
+</li>
+<li>Debemos Hacer la migración a <code>AndroidX</code>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Patrón <code>observer</code> en <code>MVVM</code></h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Se da cuanto tenemos un elemento que contiene una lista de elementos.
+<ul class="org-ul">
+<li>Se le llama <code>subject</code> o sujeto.
+</li>
+<li>El cual contiene una lista de <code>observers</code>.
+<ul class="org-ul">
+<li>Tiene un método llamado <code>observer</code>
+</li>
+<li>Permite hacer cosas cuando los elementos de la lista son modificados.
+</li>
+</ul>
+</li>
+<li>Parecido a la <code>observableCollection</code> de C#.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> JetPack</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Android <code>JetPack</code></h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>Acelera el desarrollo de android con componentes.
+</li>
+<li>Componentes:
+<ul class="org-ul">
+<li>Base.
+</li>
+<li>Comportamiento.
+</li>
+<li>Arquitectura.
+</li>
+<li>UI.
+</li>
+</ul>
+</li>
+<li>Esta basado en <code>MVVM</code>.
+</li>
+<li>Usa:
+<ul class="org-ul">
+<li><code>Room</code>
+<ul class="org-ul">
+<li>es un ROM.
+</li>
+</ul>
+</li>
+<li><code>Lifecycle</code>
+</li>
+<li><code>LiveData</code>
+</li>
+<li><code>ViewModel</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Arquitectura por componentes.</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Es una forma de organizar el código deacuerdo a su función.
+</li>
+<li>Utiliza los principios de <code>MVVM</code>.
+</li>
+<li>Usan:
+<ul class="org-ul">
+<li><code>LiveCycle</code>
+<ul class="org-ul">
+<li><code>LiveCycleOwner</code>
+<ul class="org-ul">
+<li>Tiene ciclo de vida.
+</li>
+</ul>
+</li>
+<li><code>LiveCycleObserver</code>
+<ul class="org-ul">
+<li>Observa el ciclo de vida.
+</li>
+</ul>
+</li>
+<li>Los <code>Activity</code> y los <code>Fragment</code> tienen ciclos de vida.
+<ul class="org-ul">
+<li>También llamados <code>Events</code>.
+</li>
+<li><code>OnCreate</code>
+</li>
+<li><code>OnStart</code>
+</li>
+<li><code>OnPause</code>
+</li>
+<li><code>OnResume</code>
+</li>
+<li><code>OnDestroy</code>
+</li>
+<li>etc.
+</li>
+<li>Delegan un estado (<code>State</code>).
+</li>
+</ul>
+</li>
+<li>Entonces el <code>LiveCycleObserver</code> pueden observar el cambio de estado de un <code>Activity</code>.
+</li>
+</ul>
+</li>
+<li><code>LiveData</code>
+<ul class="org-ul">
+<li>Depende totalmente del <code>LiveCycle</code>.
+</li>
+</ul>
+</li>
+<li>Ambos basados en el patrón <code>observer</code>
+</li>
+<li>Nos permiten estar al tanto cuando un elemento cambia, pudiendo hacer cosas cada que cambien los elementos.
+</li>
+<li><code>ViewModel</code>
+<ul class="org-ul">
+<li>Debemos tener una clase que hereda de <code>ViewModel</code>.
+</li>
+<li>Provee los datos de la UI.
+</li>
+<li>Sobrevive a cualquier cambio del ciclo de vida de la <code>Activity</code>.
+</li>
+<li>Funciona como un observador de la UI.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-04-20 Wed 18:40</p>
+<p class="date">Created: 2022-04-27 Wed 00:53</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
