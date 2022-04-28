@@ -106,6 +106,7 @@ En las funciones =Composable= podemos definir elementos de la UI y agruparlos de
 - Estos nos permiten cambiar cosas como el tamaño, bordes, etc.
 - También cada componente tiene argumentos personalizados de cada componente.
 - De esta manera podemos estilizar mejor nuestros componentes.
+- Podemos encadenar diferentes =modifiers= separandolos con un punto.
 
 #+begin_src kotlin
 @Composable
@@ -115,7 +116,7 @@ fun HelloCompose() {
         shape = RoundedCornerShape(20.dp)
     ) {
         Column(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(8.dp).padding(16.dp)
             horizontalAlignmet = Alignment.CenterHorizontally
         ) {
             Image(painterResource(id  = R.Drawable.imagen),
@@ -210,6 +211,3 @@ class MainActivity : ComponentActvity() {
     }
 }
 #+end_src
-
-
-** aa

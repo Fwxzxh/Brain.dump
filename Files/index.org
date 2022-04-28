@@ -48,7 +48,8 @@ Apuntes sobre distintos cursos que he tomado.
 - Android
   - [[file:Cursos/BasesTecnicasAndroid.org][Bases técnicas de Android]]
   - [[file:Cursos/DisenoInterfacesAndroid.org][Curso básico de diseño de interfaces en Android]]
-  - Arquitectura de android
+  - [[file:Cursos/Android/ArquitecturaAndrod.org][Arquitectura de android]]
+  - Android con Jetpack Compose
 - Diseño
   - [[file:Cursos/Diseno/IntroduccionDiseno.org][Curso de Introducción al diseño]]
 - Backend
