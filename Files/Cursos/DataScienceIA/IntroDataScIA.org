@@ -1,0 +1,103 @@
+#+TITLE: Introducción a Data Science e Inteligencia Artificial
+
+* Importancia y usos de Data Science e Inteligencia Artificial
+** Glosario
+- Base de datos =OLAP=:
+  - Acrónimo en ingles de Procesamiento analítico en linea.
+    - =Online Analaytical Processing=
+  - Son bases de datos especializadas para generar consultas de grandes cantidades de datos.
+- Base de datos =OLTP=:
+  - Procesamiento de transacciones en linea.
+    - =Online Translation Processing=
+  - Se enfocan al registro y actualización de datos.
+  - Se usan generalmente en aplicaciones donde se encuentran los datos que necesitan estas mismas.
+- Computo en la nube:
+  - Servicios para almacenar, administrar y procesar datos, servidores, bases de datos, redes y software.
+  - =AWS=, =Google Cloud Plataform=, =Azure=.
+- =Data pipeline=:
+  - Es un proceso donde con diferentes tecnologías movemos y procesamos datos.
+  - Se usan para mover datos de bases de datos =OLTP= a =OLAP=.
+- =Data Science=:
+  - Es un campo que involucra métodos científicos, procesos y sistemas para obtener información.
+    - A través de análisis de datos y =machine learning=.
+- =ETL=:
+  - =Extract, Transform, Load=.
+  - Es un tipo de =pipeline= de datos donde extraemos datos de diversas fuentes.
+  - Los transformamos para poder almacenarlos y los cargamos en bases de datos especializadas para analítica.
+- =Insights=
+  - Información de valor.
+  - Es la información que se ha obtenido después de analizar datos.
+  - Generalmente sirve para tomar una decisión de negocio o generar estrategias en una organización.
+- Inteligencia Artificial:
+  - Es inteligencia expresada por máquinas.
+  - Algoritmos que hacen que las máquinas aprendan bajo repetición para emular la inteligencia natural.
+  - Para ello reconocen patrones en grandes cantidades de datos.
+- Limpieza de datos:
+  - Cuando se descubren datos erroneos o faltantes en una tabla o base de datos y se corrigen o eliminan.
+- =Machine Learning=:
+  - Aprendizaje automático.
+  - Es una rama de la inteligencia artificial.
+  - Su objetivo es que las computadoras aprendan.
+  - Las computadoras observan grandes cantidades de datos y construyen un modelo capaz de generar
+    predicciones para resolver problemas.
+- Modelo Machine:
+  - Es la salida de información que se genera cuando se entrena un algoritmo de =machine learning=.
+  - Después del entrenamiento podemos darle nuevos datos similares y obtener una predicción de salida.
+- Transformar datos:
+  - Implica separar datos, limpiar datos nulos, agregar nuevas columnas con nueva información, e incluso cambiarles el formato.
+
+** Qué es data Science?
+- *El proceso de descubrir información valiosa de los datos.*
+- Para:
+  - Tomar decisiones y crear estrategias de negocio.
+  - Crear productos de software más inteligentes y funcionales.
+- De que trata el proceso:
+  - Obtención de datos
+  - Transformar y limpiar los datos.
+  - Explorar, analizar y visualizar los datos.
+  - Usar modelos de =machine learning= (Opcional).
+  - Integrar datos e IA a productos de software.
+- El proceso entre proyecto a proyecto cambia poco.
+- El proceso es el método científico aplicado a los datos.
+- Es un proceso iterativo.
+
+** Qué es Inteligencia Artificial y su diferencia con =data science=
+- Son algoritmos para emular nuestra inteligencia natural.
+- Reconocen patrones en grandes cantidades de datos.
+- La IA solo va a hacer lo que nosotros la entrenemos que haga (=one trick pony=).
+- =Machine learning=
+  - Una rama de la inteligencia artificial.
+- Proceso de integrar machine learning a un producto:
+  1. Obtener Datos de entrenamiento
+  2. Validación de los datos.
+  3. Preparación de los datos
+  4. Entrenamiento de modelo.
+  5. Evaluación de modelo.
+  6. Validación de modelo.
+  7. Despliegue de modelo.
+- =Data Science + IA=
+  - En el proceso de data science utilizamos inteligencia artificial como una de sus herramientas.
+
+** Qué es =Big Data=? Cuál es su diferencia con Data Science?
+- Grandes volúmenes de datos muy variados y muy veloces.
+- Resulta complicado procesarlos con métodos tradicionales.
+- Las 5 V de =Big Data=:
+  - Volumen:
+    - El almacenamiento de la masiva cantidad de datos que pueden ser recolectados de múltiples fuentes.
+  - Velocidad:
+    - Los datos se generan en tiempo real gracias a las interacciones con las fuentes mencionadas.
+    - Deben de ser procesados con la misma velocidad.
+  - Variedad:
+    - Todo tipo de datos, ya sea estructurados o no estructurados.
+  - Veracidad:
+    - Es la calidad y la confiabilidad de los datos.
+  - Valor:
+    - Los datos deben poder proporcionar un valor o beneficio a la empresa que los esta usando.
+- Procesamiento de =Big Data=
+  - Se procesa al dividirla en partes pequeñas en varias máquinas.
+  - Tecnologías como =Spark=, =Hadoop= y servicios de computo en la nube.
+- =Data Science + IA + Big Data=
+  - =Big data= es la materia prima que podemos usar en =data science= para hacer análisis mas exhaustivos.
+  - Incluso podemos usar =machine learning= en ese mismo proceso para perfeccionar y evaluar los algoritmos
+    de IA que creemos.
+  - a

@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Introducción a Data Science e Inteligencia Artificial</title>
+<!-- 2022-05-05 Thu 01:13 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Importancia y usos de Data Science e Inteligencia Artificial</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Glosario</a></li>
+<li><a href="#sec-1-2">1.2. Qué es data Science?</a></li>
+<li><a href="#sec-1-3">1.3. Qué es Inteligencia Artificial y su diferencia con <code>data science</code></a></li>
+<li><a href="#sec-1-4">1.4. Qué es <code>Big Data</code>? Cuál es su diferencia con Data Science?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Introducción a Data Science e Inteligencia Artificial</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Importancia y usos de Data Science e Inteligencia Artificial</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Glosario</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Base de datos <code>OLAP</code>:
+<ul class="org-ul">
+<li>Acrónimo en ingles de Procesamiento analítico en linea.
+<ul class="org-ul">
+<li><code>Online Analaytical Processing</code>
+</li>
+</ul>
+</li>
+<li>Son bases de datos especializadas para generar consultas de grandes cantidades de datos.
+</li>
+</ul>
+</li>
+<li>Base de datos <code>OLTP</code>:
+<ul class="org-ul">
+<li>Procesamiento de transacciones en linea.
+<ul class="org-ul">
+<li><code>Online Translation Processing</code>
+</li>
+</ul>
+</li>
+<li>Se enfocan al registro y actualización de datos.
+</li>
+<li>Se usan generalmente en aplicaciones donde se encuentran los datos que necesitan estas mismas.
+</li>
+</ul>
+</li>
+<li>Computo en la nube:
+<ul class="org-ul">
+<li>Servicios para almacenar, administrar y procesar datos, servidores, bases de datos, redes y software.
+</li>
+<li><code>AWS</code>, <code>Google Cloud Plataform</code>, <code>Azure</code>.
+</li>
+</ul>
+</li>
+<li><code>Data pipeline</code>:
+<ul class="org-ul">
+<li>Es un proceso donde con diferentes tecnologías movemos y procesamos datos.
+</li>
+<li>Se usan para mover datos de bases de datos <code>OLTP</code> a <code>OLAP</code>.
+</li>
+</ul>
+</li>
+<li><code>Data Science</code>:
+<ul class="org-ul">
+<li>Es un campo que involucra métodos científicos, procesos y sistemas para obtener información.
+<ul class="org-ul">
+<li>A través de análisis de datos y <code>machine learning</code>.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>ETL</code>:
+<ul class="org-ul">
+<li><code>Extract, Transform, Load</code>.
+</li>
+<li>Es un tipo de <code>pipeline</code> de datos donde extraemos datos de diversas fuentes.
+</li>
+<li>Los transformamos para poder almacenarlos y los cargamos en bases de datos especializadas para analítica.
+</li>
+</ul>
+</li>
+<li><code>Insights</code>
+<ul class="org-ul">
+<li>Información de valor.
+</li>
+<li>Es la información que se ha obtenido después de analizar datos.
+</li>
+<li>Generalmente sirve para tomar una decisión de negocio o generar estrategias en una organización.
+</li>
+</ul>
+</li>
+<li>Inteligencia Artificial:
+<ul class="org-ul">
+<li>Es inteligencia expresada por máquinas.
+</li>
+<li>Algoritmos que hacen que las máquinas aprendan bajo repetición para emular la inteligencia natural.
+</li>
+<li>Para ello reconocen patrones en grandes cantidades de datos.
+</li>
+</ul>
+</li>
+<li>Limpieza de datos:
+<ul class="org-ul">
+<li>Cuando se descubren datos erroneos o faltantes en una tabla o base de datos y se corrigen o eliminan.
+</li>
+</ul>
+</li>
+<li><code>Machine Learning</code>:
+<ul class="org-ul">
+<li>Aprendizaje automático.
+</li>
+<li>Es una rama de la inteligencia artificial.
+</li>
+<li>Su objetivo es que las computadoras aprendan.
+</li>
+<li>Las computadoras observan grandes cantidades de datos y construyen un modelo capaz de generar
+predicciones para resolver problemas.
+</li>
+</ul>
+</li>
+<li>Modelo Machine:
+<ul class="org-ul">
+<li>Es la salida de información que se genera cuando se entrena un algoritmo de <code>machine learning</code>.
+</li>
+<li>Después del entrenamiento podemos darle nuevos datos similares y obtener una predicción de salida.
+</li>
+</ul>
+</li>
+<li>Transformar datos:
+<ul class="org-ul">
+<li>Implica separar datos, limpiar datos nulos, agregar nuevas columnas con nueva información, e incluso cambiarles el formato.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Qué es data Science?</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li><b>El proceso de descubrir información valiosa de los datos.</b>
+</li>
+<li>Para:
+<ul class="org-ul">
+<li>Tomar decisiones y crear estrategias de negocio.
+</li>
+<li>Crear productos de software más inteligentes y funcionales.
+</li>
+</ul>
+</li>
+<li>De que trata el proceso:
+<ul class="org-ul">
+<li>Obtención de datos
+</li>
+<li>Transformar y limpiar los datos.
+</li>
+<li>Explorar, analizar y visualizar los datos.
+</li>
+<li>Usar modelos de <code>machine learning</code> (Opcional).
+</li>
+<li>Integrar datos e IA a productos de software.
+</li>
+</ul>
+</li>
+<li>El proceso entre proyecto a proyecto cambia poco.
+</li>
+<li>El proceso es el método científico aplicado a los datos.
+</li>
+<li>Es un proceso iterativo.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Qué es Inteligencia Artificial y su diferencia con <code>data science</code></h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Son algoritmos para emular nuestra inteligencia natural.
+</li>
+<li>Reconocen patrones en grandes cantidades de datos.
+</li>
+<li>La IA solo va a hacer lo que nosotros la entrenemos que haga (<code>one trick pony</code>).
+</li>
+<li><code>Machine learning</code>
+<ul class="org-ul">
+<li>Una rama de la inteligencia artificial.
+</li>
+</ul>
+</li>
+<li>Proceso de integrar machine learning a un producto:
+<ol class="org-ol">
+<li>Obtener Datos de entrenamiento
+</li>
+<li>Validación de los datos.
+</li>
+<li>Preparación de los datos
+</li>
+<li>Entrenamiento de modelo.
+</li>
+<li>Evaluación de modelo.
+</li>
+<li>Validación de modelo.
+</li>
+<li>Despliegue de modelo.
+</li>
+</ol>
+</li>
+<li><code>Data Science + IA</code>
+<ul class="org-ul">
+<li>En el proceso de data science utilizamos inteligencia artificial como una de sus herramientas.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Qué es <code>Big Data</code>? Cuál es su diferencia con Data Science?</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Grandes volúmenes de datos muy variados y muy veloces.
+</li>
+<li>Resulta complicado procesarlos con métodos tradicionales.
+</li>
+<li>Las 5 V de <code>Big Data</code>:
+<ul class="org-ul">
+<li>Volumen:
+<ul class="org-ul">
+<li>El almacenamiento de la masiva cantidad de datos que pueden ser recolectados de múltiples fuentes.
+</li>
+</ul>
+</li>
+<li>Velocidad:
+<ul class="org-ul">
+<li>Los datos se generan en tiempo real gracias a las interacciones con las fuentes mencionadas.
+</li>
+<li>Deben de ser procesados con la misma velocidad.
+</li>
+</ul>
+</li>
+<li>Variedad:
+<ul class="org-ul">
+<li>Todo tipo de datos, ya sea estructurados o no estructurados.
+</li>
+</ul>
+</li>
+<li>Veracidad:
+<ul class="org-ul">
+<li>Es la calidad y la confiabilidad de los datos.
+</li>
+</ul>
+</li>
+<li>Valor:
+<ul class="org-ul">
+<li>Los datos deben poder proporcionar un valor o beneficio a la empresa que los esta usando.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Procesamiento de <code>Big Data</code>
+<ul class="org-ul">
+<li>Se procesa al dividirla en partes pequeñas en varias máquinas.
+</li>
+<li>Tecnologías como <code>Spark</code>, <code>Hadoop</code> y servicios de computo en la nube.
+</li>
+</ul>
+</li>
+<li><code>Data Science + IA + Big Data</code>
+<ul class="org-ul">
+<li><code>Big data</code> es la materia prima que podemos usar en <code>data science</code> para hacer análisis mas exhaustivos.
+</li>
+<li>Incluso podemos usar <code>machine learning</code> en ese mismo proceso para perfeccionar y evaluar los algoritmos
+de IA que creemos.
+</li>
+<li>a
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-05-05 Thu 01:13</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

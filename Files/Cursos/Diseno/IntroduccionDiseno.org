@@ -138,4 +138,48 @@
 * Composición
 
 ** La composición y su función
-- La disposición de los diferentes elementos dentro de un formato que nos ayudan a comunicar.
+- La disposición de los diferentes elementos dentro de un formato que nos ayudan a contar algo.
+- En la fotografía los elementos ya están dados, el solo decide que mostrar.
+- Son soluciones que no siempre son racionales.
+- Usamos composición guiamos el ojo de quien este viendo nuestra composición.
+
+** Unidad Visual y principios de la Gestalt
+- Unidad:
+  - Nuestro cerebro cuando ve algo busca simplificarlo para entenderlo.
+- Principios de la Gestalt:
+  - Semejanza.
+    - Intentamos agrupar elementos parecidos.
+    - Puede ser de color, de forma o de posición.
+    - En la UI buscamos elementos parecidos y los relacionamos con su función.
+  - Continuidad.
+    - Siempre buscamos unir lineas o alinear elementos.
+    - En los carruseles mostramos continuidad.
+  - Cerramiento.
+    - Buscamos completar formas que no están completas.
+    - Así que vemos lineas donde no las hay o formas donde no las hay.
+  - Proximidad.
+    - Nos crea unidad a partir de elementos que solo están cercanos.
+    - Podemos unir muchos elementos formando formas y el cerebro las tratará como una sola figura.
+    - O podemos separar algunos y crear grupos de figuras.
+  - Fondo y figura.
+    - Siempre que vemos una imagen, intentamos separar la figura se su fondo.
+    - Así que podemos jugar con esto y generar composiciones.
+  - Orden y Simetría.
+    - Objetos que están balanceados y simétricos los solemos ver como completos o llenos.
+  - Sincronía.
+    - Elementos que se mueven en cierta dirección se sienten relacionados.
+    - al contrario que elementos que no siguen la misma dirección.
+
+** Balance o equilibrio visual
+- algo queda balanceado hasta que se ve Balanceado.
+- Es una percepción psicológica natural, buscamos el balance.
+- Componentes del balance:
+  - Peso visual.
+    - Una figuras más grande que la otra se verá más grande.
+    - Una figura que tiene un color más contrastante con el fondo se va a ver más pesada.
+    - Una figura que tenga una textura más contrastante se verá más pesada.
+    - Una figura que tenga una inclinación diferente a la otra se verá más pesada.
+
+** Dirección visual
+- Peso visual: Mírame a mi
+- Dirección Visual: Mira hacia allá.
