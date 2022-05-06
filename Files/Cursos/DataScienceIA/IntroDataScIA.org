@@ -67,7 +67,7 @@
 - La IA solo va a hacer lo que nosotros la entrenemos que haga (=one trick pony=).
 - =Machine learning=
   - Una rama de la inteligencia artificial.
-- Proceso de integrar machine learning a un producto:
+- Proceso de integrar =machine learning= a un producto:
   1. Obtener Datos de entrenamiento
   2. Validación de los datos.
   3. Preparación de los datos
@@ -100,4 +100,183 @@
   - =Big data= es la materia prima que podemos usar en =data science= para hacer análisis mas exhaustivos.
   - Incluso podemos usar =machine learning= en ese mismo proceso para perfeccionar y evaluar los algoritmos
     de IA que creemos.
-  - a
+
+** Áreas de aplicación de =Data Science= e Inteligencia Artificial
+- Ramas de =IA=
+  - =Machine Learning=.
+  - =Deep Learning=.
+  - =RPA=.
+  - Visión artificial.
+  - Procesamiento de lenguaje natural.
+  - Robótica.
+- Áreas de Aplicación de =data science=
+  - Salud.
+  - Procesos productivos.
+  - Procesos comerciales.
+  - Redes sociales.
+
+** Roles en la industria: Cómo funcionan los equipos de datos e inteligencia artificial
+- Roles de la industria:
+  - =Data Scientist=.
+  - =Data Analyst=.
+  - =Data Engineer=.
+  - =Machine Learning Engineer=.
+- No se puede empezar a implementar modelos de =machine learning= sin antes tener una *Cultura data-driven*.
+- Necesidades de =Data Science=.
+  - Es el orden de las etapas que las empresas deben seguir para su desarrollo en la cultura =Data-Driven=.
+    1. Recolección de datos:
+       - Instrumentación.
+       - =Logging= (creación de cuentas de los usuarios).
+       - Sensores.
+       - Datos Externos.
+       - Contenido Generado por el usuario.
+    2. Movimiento y Almacenamiento:
+       - Datos Confiables.
+       - Flujo.
+       - Infraestructura.
+       - =Pipelines=.
+       - =ETL= (=Extract, Transform, Load=).
+       - Datos estructurados (que ya están organizados o clasificados por alguna estructura estándar).
+       - Datos no estructurados (datos que están sueltos).
+    3. Exploración y transformación:
+       - Limpieza.
+       - Detección de anomalías.
+       - Preparación.
+    4. Agregaciones y etiquetado:
+       - Estadísticas.
+       - Métricas (Las medidas de una actividad en concreto).
+       - Segmentación
+       - Agregaciones.
+       - Características.
+       - Entrenamiento de datos.
+    5. Aprendizaje y optimización:
+       - Pruebas A/B [[wikipedia:https://es.wikipedia.org/wiki/Prueba_A/B][Wiki]]
+       - Experimentación.
+       - Algoritmos Simples de =ML=.
+       - Inteligencia Artificial.
+       - =Deep Learning=.
+
+* =Data Analyst=
+** Qué hace un =Data Analyst=?
+- Utiliza los datos para obtener =Insights=.
+- Extrae datos recolectados, los analiza y reporta los resultados con gráficos y tableros.
+- Día a día:
+  - Identifica necesidades de información.
+  - Extraer datos de Fuentes con =SQL= y =python=.
+  - Limpiar y organizar los datos.
+  - Analizar los datos
+  - Comunicar los hallazgos en tableros o =dashboards=.
+- Flujo de trabajo:
+  1. Problema o pregunta.
+  2. Exploración y =queries=.
+  3. Recopilar información de valor.
+  4. Crear visualizaciones de la información.
+  5. Comunicar hallazgos.
+- Roles relacionados:
+  - =Business Analyst=
+    - Persona que tiene conocimientos más profundos con el negocio.
+  - =Data visualization specialist=
+    - Especialistas en presentar datos y resultados.
+
+** Herramientas y tecnologías para =Data Analyst=
+- Bases de datos =SQL=.
+- Software de visualización de datos como =Power BL= y =Tableau=.
+- =Excel= y =Google Sheets=.
+- Programación con =Python= o =R=.
+  - =Jupyter Notebooks=.
+  - =Pandas, Matplotlib, Numpy=.
+- Probabilidad y Estadística descriptiva.
+
+* =Data Scientist=
+** Qué hace un =Data Scientist=?
+- Toma datos y los utiliza para crear modelos de =machine learning=
+- Toma decisiones basadas en datos.
+- Incorpora datos a los productos de software.
+- Día a día:
+  - Obtener, limpiar y procesar.
+  - Diseñar y utilizar modelos de =machine learning=.
+  - Monitorear la precisión de los datos.
+  - Automatizar los proceso de recolección y transformación de datos
+  - Crea reportes de información en tableros.
+  - Incorpora datos a los productos.
+
+** Herramientas y tecnologías para =Data Scientist=
+- Programación con =Python= o =R=.
+  - =Jupyter Notebooks=.
+  - =Pandas, Matplotlib, Numpy=.
+- Algoritmos y librerías de =machine learning= como =scikit-learn, tensorflow=.
+- bases de datos =SQL= y =NoSQL=.
+- Matemáticas:
+  - Álgebra.
+  - Estadística descriptiva e inferencial.
+  - Probabilidad.
+  - Álgebra lineal.
+  - Cálculo.
+
+* =Data Engineer=
+** Qué hace un =Data Engineer=
+- El toma los datos crudos, los limpia y los almacena en una base de datos.
+- Trabaja para que el equipo tenga datos para el análisis.
+- Crea =Pipelines ETL=.
+  - Extracción transformación y carga.
+- Día a día:
+  - mantiene y crea =Data Pipelines= y bases de datos.
+  - Extrae datos de diferentes fuentes.
+  - Transforma los datos para el análisis.
+  - Los guarda en bases de datos especializadas para análisis.
+    - Bases de datos =OLAP= no transaccionales(=OLTP=).
+  - Crear automatizaciones pare el =ETL=.
+- Proceso =ETL=:
+  - Extraer:
+    - Archivos.
+    - Bases de datos (=OLTP=).
+    - =APIs=
+  - Transformar
+  - Cargar (=load=).
+    - los guardamos en =Data Warehouse= (=OLAP=).
+  - Roles Relacionados:
+    - =Data Architect=:
+      - Se encarga de plantear las estrategias de datos de la organización.
+    - =Big Data Architect=:
+      - Trabaja con =Big Data=.
+
+** Herramientas y tecnologías para =Data Engineers=
+- Programación con =Python= y bases de ingeniería de software.
+- =Linux=.
+- Automatización y =Scripting=.
+- =Jupyter Notebooks= y editores de código.
+- Bases de datos SQL y NoSQL.
+- =Pandas, Dask y Apache Spark=.
+- =Airflow=.
+- Tecnologías =Cloud= (=AWS=, =Azure=).
+- Contenedores =Docker=.
+- Orquestadores =Kubernetes=.
+- Matemáticas:
+  - Estadística Descriptiva.
+
+* =Machine Learning Engineer=
+** Qué hace un =Machine Learning Engineer=
+- El encargado de recibir el modelo de un =Data Scientist= e integrarlo a producción.
+- Crear productos basados en IA.
+- Escalar modelos de IA.
+- Día a día:
+  - Generar una evaluación extensiva de métricas de modelos de =machine learning=.
+  - Construir, escalar y robustecer sistemas de =machine learning= que funcionen en producción.
+  - Colaborar con =Data Scientist= y otras áreas de ingeniería de software.
+  - Monitorear el desempeño de los sistemas de =machine learning=.
+
+** Herramientas y tecnologías para =Machine Learning Engineer=
+- Programación avanzada con =Python, java y C++=.
+- Bases sólidas de ingeniería en software.
+- =Jupyter Notebooks=
+- =Pandas, Numpy, Matplotlib, Seaborn=
+- Uso extensivo de =frameworks= y librerías de =machine learning=.
+- =Flask o FastAPI=.
+- Tecnologías =Cloud=.
+- Contenedores =Docker=.
+- =Kubernetes=.
+- Matemáticas:
+  - Estadística descriptiva e inferencial.
+  - Probabilidad.
+  - Álgebra lineal.
+  - Cálculo.

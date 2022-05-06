@@ -50,12 +50,16 @@ Apuntes sobre distintos cursos que he tomado.
   - [[file:Cursos/DisenoInterfacesAndroid.org][Curso básico de diseño de interfaces en Android]]
   - [[file:Cursos/Android/ArquitecturaAndrod.org][Arquitectura de android]]
   - [[file:Cursos/Android/AndroidJetpackCompose.org][Android con Jetpack Compose]]
+- Frontend
+  - a
 - Diseño
   - [[file:Cursos/Diseno/IntroduccionDiseno.org][Curso de Introducción al diseño]]
 - Backend
   - [[file:Cursos/Backend/IntroBackend.org][Introducción desarrollo Backend]]
 - Data Science
   - [[file:Cursos/DataScienceIA/IntroDataScIA.org][Introducción a Data Science e Inteligencia Artificial]]
+- Flutter
+  - a
 
 * Notas generales
 #+begin_quote
