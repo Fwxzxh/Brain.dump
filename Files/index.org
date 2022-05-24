@@ -58,6 +58,8 @@ Apuntes sobre distintos cursos que he tomado.
   - [[file:Cursos/Backend/IntroBackend.org][Introducción desarrollo Backend]]
 - Data Science
   - [[file:Cursos/DataScienceIA/IntroDataScIA.org][Introducción a Data Science e Inteligencia Artificial]]
+  - [[file:Cursos/DataScienceIA/AnaNegociosDS.org][Análisis de negocios para ciencia de datos]]
+  - [[file:Cursos/DataScienceIA/FundamentosMath.org][Fundamentos de Matemáticas]]
 - Flutter
   - a
 

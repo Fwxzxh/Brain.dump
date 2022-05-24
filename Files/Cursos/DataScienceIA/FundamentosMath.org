@@ -1,0 +1,44 @@
+#+TITLE: Curso de fundamentos de Matemáticas
+
+* Aritmética
+** Operaciones básicas de matemáticas
+- Qué es la aritmética?
+  - La rama de las matemáticas que estudia los números y las operaciones que se hacen con ellos.
+  - Trabaja solo con números.
+- Operaciones básicas:
+  - Suma (+).
+  - Resta (-).
+  - Multiplicación (*).
+    - Es una suma repetida.
+    - Es conmutativa:
+      - El orden de los factores no altera el producto.
+  - División (/).
+    - Es una resta repetida.
+
+** Potenciación y sus propiedades
+#+begin_quote
+$m^n$
+#+end_quote
+
+- $m$ es la base y $n$ es el exponente.
+- Es una multiplicación repetida.
+- Propiedades:
+  - En la multiplicación de dos potencias con la misma base los exponentes se suman.
+  - En la división de dos potencias con la misma base los exponentes se restan
+  - Una potencia elevada a la cero da 1.
+  - Una potencia cuya base es 0 siempre va a dar 0, no importa el exponente.
+
+** Radicación y sus propiedades
+
+
+#+begin_center
+$4^2 = 16$
+
+$\sqrt[2]{16} = 4$
+#+end_center
+
+- Es la operación inversa a la potencia.
+- Encuentra la base de la potencia.
+- También podríamos pensar en por ejemplo $\sqrt[2]{16} = 2$ como:
+  - Qué número debemos de multiplicar 4 veces para obtener 16?
+- A esta operación se le llama raíz.
