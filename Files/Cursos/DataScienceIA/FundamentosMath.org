@@ -30,15 +30,61 @@ $m^n$
 
 ** Radicación y sus propiedades
 
-
-#+begin_center
 $4^2 = 16$
 
 $\sqrt[2]{16} = 4$
-#+end_center
 
 - Es la operación inversa a la potencia.
-- Encuentra la base de la potencia.
+- Encuentra la base de la potencia, es decir de donde vino el número.
 - También podríamos pensar en por ejemplo $\sqrt[2]{16} = 2$ como:
   - Qué número debemos de multiplicar 4 veces para obtener 16?
 - A esta operación se le llama raíz.
+
+** Orden de operadores
+1. Paréntesis / Corchetes.
+2. Exponentes / Raíces.
+3. Multiplicación/ División.
+4. Adición / Substracción
+
+** Factorización
+- Es el proceso de encontrar factores.
+  - Son elementos que podemos multiplicar para sacar el resultado.
+  - Todo esto para dividir una expresión en una más pequeña.
+- Métodos:
+  - Test de divisibilidad.
+    - 1 Siempre es un factor de cualquier número.
+    - *No existe un factor mayor a la mitad del número*.
+      - Por lo tanto podemos empezar a buscar sus factores desde la mitad del número.
+      - Podemos empezar a sacarlos dividiendo el número entre 1,2,3,4...
+        - Si el resultado es entero, entonces es un factor.
+  - Método de primos:
+    - Los números primos son divisibles por ellos mismos y por 1.
+      - Son la base para componer todos demás números usandolos de factores.
+      - Son primos de /primero/.
+    - Podemos usarlos para sacar los factores de un número.
+      - dividiendo entre números primos.
+
+* Principios del álgebra
+** Principios del álgebra
+- la $x$ simboliza una variable.
+  - Es desconocida, puede cambiar y es variable.
+- Una ecuación es una igualdad entre dos expresiones y con una o más variables.
+- Un sistema de ecuaciones es un grupo de ecuaciones relacionadas las cuales comparten sus variables.
+  - El resultado de sus variables debe de ser el mismo.
+
+** Propiedades de las ecuaciones
+- Reflexiva/idéntica:
+  - Toda cantidad o expresión matemática es igual a si misma.
+  - $b = b$, $a = a$
+- Simétrica:
+  - Establece que sin importar el orden de los miembros de la igualdad prevalece.
+  - $a + b = c$, $c = a + b$
+- Transitiva:
+  - Si los miembros que conforman una igualdad tienen un elemento en común, se dice que este elemento es igual
+    a cualquiera de los 2 miembros de la igualdad.
+  - $a = b, b = a, a = c$, $a = b, a = c, b = c$
+- Uniforme:
+  - Si se aumenta/disminuye la misma cantidad de los miembros de una igualdad, esta prevalece.
+  - $4 + 3 = 7$, $4 + 3 + 2 = 7 + 2$
+- Cancelativa:
+  - Al suprimir 2 elementos/cantidades iguales en ambos miembros (lados) la igualdad se mantiene:

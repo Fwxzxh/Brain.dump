@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Flutter</title>
+<!-- 2022-05-27 Fri 23:53 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Interfaz de usuario</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Introducción a los widgets</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Flutter</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Interfaz de usuario</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introducción a los widgets</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Los <code>widgets</code> se inspiran de <code>react</code>.
+</li>
+<li>Se construye la <code>UI</code> a partir de <code>widgets</code>.
+<ul class="org-ul">
+<li>Estos describen como se deben ver, su configuración y estado.
+</li>
+<li>Cuando el estado de uno de estos <code>widgets</code> cambia este se reconstruye.
+<ul class="org-ul">
+<li>El <code>widget</code>, reconstruye su descripción y hace un <code>diff</code> para determinar los cambios minimos que se tienen que hacer a este.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Hola mundo</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+
+<pre class="src src-dart"><span style="color: #ffb86c;">import</span> <span style="color: #f1fa8c;">'package:flutter/material.dart'</span>
+
+<span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  runApp<span style="color: #ff79c6;">(</span>
+    <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">Center</span><span style="color: #50fa7b;">(</span>
+      child: <span style="color: #bd93f9;">Text</span><span style="color: #bd93f9;">(</span>
+        <span style="color: #f1fa8c;">'Hello, world!'</span>,
+        textDirection: <span style="color: #bd93f9;">TextDirection</span>.ltr
+      <span style="color: #bd93f9;">)</span>,
+    <span style="color: #50fa7b;">)</span>,
+  <span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La función <code>runApp()</code> toma el widget dado y lo hace la raíz del árbol de widgets.
+</li>
+<li>EL árbol de widgets en este caso consiste de dos:
+<ul class="org-ul">
+<li>El widget <code>Center().</code>
+</li>
+<li>Su hijo (child) el widget <code>Text()</code>.
+</li>
+</ul>
+</li>
+<li>El <code>framework</code> obliga al widget raíz a cubrir la pantalla entera.
+<ul class="org-ul">
+<li>Por lo tanto el mensaje termina centrado en la pantalla.
+</li>
+</ul>
+</li>
+<li>el atributo <code>textDirection</code> necesita ser especificado en esta instancia.
+</li>
+</ul>
+
+<p>
+Cuando se escribe una aplicación flutter, generalmente creamos nuevos widgets, los cuales
+son subclases de las clases <code>StatelessWidget</code> o <code>StatefulWidget</code>.
+</p>
+
+<ul class="org-ul">
+<li>El trabajo principal de un widget es implementar una función <code>build()</code>.
+<ul class="org-ul">
+<li>Esta describe el widget en términos de otros widgets de más &ldquo;bajo nivel&rdquo;.
+</li>
+</ul>
+</li>
+<li>El <code>framework</code> construye estos widgets hasta que llega al final de la jerarquía.
+<ul class="org-ul">
+<li>esto en los clientes que representan el <code>RenderObject</code>.
+<ul class="org-ul">
+<li>El cual se encarga de describir la geometría del widget.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Widgets Básicos</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li><code>Text</code>
+<ul class="org-ul">
+<li>Nos permite crear una serie de texto en su aplicación.
+</li>
+</ul>
+</li>
+<li><code>Row</code>, <code>Column</code>
+<ul class="org-ul">
+<li>Nos permiten crear layouts flexibles en dirección horizontal (<code>Row</code>) y vertical (<code>Column</code>).
+</li>
+<li>Esta basado en <code>flexbox</code>.
+</li>
+</ul>
+</li>
+<li><code>Stack</code>
+<ul class="org-ul">
+<li>No es linearmente orientado (ni Horizontal y vertical).
+</li>
+<li>Nos permite poner widgets uno encima del otro, en orden de dibujado.
+</li>
+<li>Podemos usar el widget <code>Positioned</code> en un <code>chidren</code> de algún widget para darles posición
+<ul class="org-ul">
+<li>Posición relativa al <code>stack</code>.
+</li>
+<li>Esta basado en la posición absoluta del desarrollo web.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Container</code>
+<ul class="org-ul">
+<li>Nos permite crear un elemento visual rectangular.
+</li>
+<li>Estos pueden ser decorados con <code>BoxDecorator</code>.
+<ul class="org-ul">
+<li><code>Background</code>, <code>Border</code>, <code>shadow</code>.
+</li>
+</ul>
+</li>
+<li>También puede tener <code>margins</code>, <code>padding</code>, y <code>constraints</code>.
+</li>
+<li>También puede ser transformada en un espacio tridimensional usando una matriz.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-dart"><span style="color: #ffb86c;">import</span> <span style="color: #f1fa8c;">'package:flutter/material.dart'</span>;
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">MyAppBar</span> <span style="color: #ff79c6; font-style: italic;">extends</span> <span style="color: #bd93f9;">StatelessWidget</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">MyAppBar</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">{</span><span style="color: #ffb86c;">required</span> <span style="color: #ff79c6; font-style: italic;">this</span>.title, <span style="color: #ff79c6; font-style: italic;">super</span>.key<span style="color: #50fa7b;">}</span><span style="color: #ff79c6;">)</span>;
+
+  <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Fields in a Widget subclass are always marked "final".</span>
+
+  <span style="color: #ff79c6; font-style: italic;">final</span> <span style="color: #bd93f9;">Widget</span> <span style="color: #ffc9e8;">title</span>;
+
+  <span style="color: #8be9fd;">@override</span>
+  <span style="color: #bd93f9;">Widget</span> <span style="color: #50fa7b;">build</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">BuildContext</span> <span style="color: #ffc9e8;">context</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9;">Container</span><span style="color: #50fa7b;">(</span>
+      height: <span style="color: #bd93f9; font-weight: bold;">56.0</span>, <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">in logical pixels</span>
+      padding: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">EdgeInsets</span>.symmetric<span style="color: #bd93f9;">(</span>horizontal: <span style="color: #bd93f9; font-weight: bold;">8.0</span><span style="color: #bd93f9;">)</span>,
+      decoration: <span style="color: #bd93f9;">BoxDecoration</span><span style="color: #bd93f9;">(</span>color: <span style="color: #bd93f9;">Colors</span>.blue<span style="color: #61bfff;">[</span><span style="color: #bd93f9; font-weight: bold;">500</span><span style="color: #61bfff;">]</span><span style="color: #bd93f9;">)</span>,
+      <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Row is a horizontal, linear layout.</span>
+      child: <span style="color: #bd93f9;">Row</span><span style="color: #bd93f9;">(</span>
+        <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">&lt;Widget&gt; is the type of items in the list.</span>
+        children: <span style="color: #61bfff;">[</span>
+          <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">IconButton</span><span style="color: #ff79c6;">(</span>
+            icon: <span style="color: #bd93f9;">Icon</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">Icons</span>.menu<span style="color: #50fa7b;">)</span>,
+            tooltip: <span style="color: #f1fa8c;">'Navigation menu'</span>,
+            onPressed: <span style="color: #8be9fd;">null</span>, <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">null disables the button</span>
+          <span style="color: #ff79c6;">)</span>,
+          <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Expanded expands its child</span>
+          <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">to fill the available space.</span>
+          <span style="color: #bd93f9;">Expanded</span><span style="color: #ff79c6;">(</span>
+            child: title,
+          <span style="color: #ff79c6;">)</span>,
+          <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">IconButton</span><span style="color: #ff79c6;">(</span>
+            icon: <span style="color: #bd93f9;">Icon</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">Icons</span>.search<span style="color: #50fa7b;">)</span>,
+            tooltip: <span style="color: #f1fa8c;">'Search'</span>,
+            onPressed: <span style="color: #8be9fd;">null</span>,
+          <span style="color: #ff79c6;">)</span>,
+        <span style="color: #61bfff;">]</span>,
+      <span style="color: #bd93f9;">)</span>,
+    <span style="color: #50fa7b;">)</span>;
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">MyScaffold</span> <span style="color: #ff79c6; font-style: italic;">extends</span> <span style="color: #bd93f9;">StatelessWidget</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">MyScaffold</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">{</span><span style="color: #ff79c6; font-style: italic;">super</span>.key<span style="color: #50fa7b;">}</span><span style="color: #ff79c6;">)</span>;
+
+  <span style="color: #8be9fd;">@override</span>
+  <span style="color: #bd93f9;">Widget</span> <span style="color: #50fa7b;">build</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">BuildContext</span> <span style="color: #ffc9e8;">context</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Material is a conceptual piece</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">of paper on which the UI appears.</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9;">Material</span><span style="color: #50fa7b;">(</span>
+      <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Column is a vertical, linear layout.</span>
+      child: <span style="color: #bd93f9;">Column</span><span style="color: #bd93f9;">(</span>
+        children: <span style="color: #61bfff;">[</span>
+          <span style="color: #bd93f9;">MyAppBar</span><span style="color: #ff79c6;">(</span>
+            title: <span style="color: #bd93f9;">Text</span><span style="color: #50fa7b;">(</span>
+              <span style="color: #f1fa8c;">'Example title'</span>,
+              style: <span style="color: #bd93f9;">Theme</span>.of<span style="color: #bd93f9;">(</span>context<span style="color: #bd93f9;">)</span> <span style="color: #6272a4; font-style: italic;">//</span>
+                  .primaryTextTheme
+                  .headline6,
+            <span style="color: #50fa7b;">)</span>,
+          <span style="color: #ff79c6;">)</span>,
+          <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">Expanded</span><span style="color: #ff79c6;">(</span>
+            child: <span style="color: #bd93f9;">Center</span><span style="color: #50fa7b;">(</span>
+              child: <span style="color: #bd93f9;">Text</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">'Hello, world!'</span><span style="color: #bd93f9;">)</span>,
+            <span style="color: #50fa7b;">)</span>,
+          <span style="color: #ff79c6;">)</span>,
+        <span style="color: #61bfff;">]</span>,
+      <span style="color: #bd93f9;">)</span>,
+    <span style="color: #50fa7b;">)</span>;
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  runApp<span style="color: #ff79c6;">(</span>
+    <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">MaterialApp</span><span style="color: #50fa7b;">(</span>
+      title: <span style="color: #f1fa8c;">'My app'</span>, <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">used by the OS task switcher</span>
+      home: <span style="color: #bd93f9;">SafeArea</span><span style="color: #bd93f9;">(</span>
+        child: <span style="color: #bd93f9;">MyScaffold</span><span style="color: #61bfff;">()</span>,
+      <span style="color: #bd93f9;">)</span>,
+    <span style="color: #50fa7b;">)</span>,
+  <span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Asegúrate de tener <code>uses-material-design: true</code> en el archivo <code>pubsec.yaml</code> para usar los iconos de <code>material design</code> por defecto.
+</p>
+
+
+<p>
+Muchos widgets de <code>material design</code> deben de estar dentro de un <code>MaterialApp</code> para que funcionen de manera correcta y
+para heredar la información del tema, por lo tanto debemos de correr la aplicación dentro de un widget <code>MaterialApp</code>.
+</p>
+
+<ul class="org-ul">
+<li>El widget <code>MyAppBar</code> crea un <code>container</code> con una altura de 56 píxeles (independientes del dispositivo),
+con un <code>padding</code> de 8 pixeles, en la izquierda y derecha.
+</li>
+<li>Dentro del <code>container</code> usamos un <code>row</code> <code>layout</code> para organizar sus widgets hijos.
+<ul class="org-ul">
+<li>El widget de enemedio está marcado como <code>Expanded</code> esto para que utilice todo el espacio sin usar por otros widgets.
+</li>
+<li>Podemos tener múltiples widgets <code>Expanded</code>, y de terminar el ratio en el que consumen el espacio usando el argumento <code>flex</code>
+para <code>Expanded</code>
+</li>
+</ul>
+</li>
+<li>El widget <code>MyScaffold</code> organiza sus hijos en una columna vertical.
+<ul class="org-ul">
+<li>En la parte superior de la columna coloca una instancia del widget <code>MyAppBar</code>.
+<ul class="org-ul">
+<li>Pasando a este un widget <code>Text</code> para que use como su titulo.
+<ul class="org-ul">
+<li>Pasar widgets como argumento a otros widgets nos permite crear widgets genéricos que pueden ser
+reutilizados de muchas maneras.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>MyScaffold</code> usa <code>Expanded</code> para llenar el espacio restante en su cuerpo, que consiste de un mensaje centrado.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-05-27 Fri 23:53</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

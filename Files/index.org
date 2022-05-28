@@ -61,7 +61,7 @@ Apuntes sobre distintos cursos que he tomado.
   - [[file:Cursos/DataScienceIA/AnaNegociosDS.org][Análisis de negocios para ciencia de datos]]
   - [[file:Cursos/DataScienceIA/FundamentosMath.org][Fundamentos de Matemáticas]]
 - Flutter
-  - a
+  - [[file:Cursos/Flutter/flutter.org][Flutter]]
 
 * Notas generales
 #+begin_quote
