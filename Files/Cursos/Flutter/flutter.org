@@ -162,3 +162,75 @@ para heredar la información del tema, por lo tanto debemos de correr la aplicac
       - Pasar widgets como argumento a otros widgets nos permite crear widgets genéricos que pueden ser
         reutilizados de muchas maneras.
   - =MyScaffold= usa =Expanded= para llenar el espacio restante en su cuerpo, que consiste de un mensaje centrado.
+
+** Usando componentes material
+- Flutter provee widgets que nos ayudan a construir apps que siguen el estilo material.
+- Las apps con =material design= empiezan con un widget =MaterialApp=.
+  - Este widget construye otros widgets útiles como =Navigator=.
+    - Este maneja un =stack= de widgets identificados con =strings=, los cuales llamamos rutas.
+    - Nos permite navegar entre las diferentes ventanas de nuestra aplicación.
+  - Usar el widget =MaterialApp= es opcional pero buena práctica.
+
+#+begin_src dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    const MaterialApp(
+      title: 'Flutter Tutorial',
+      home: TutorialHome(),
+    ),
+  );
+}
+
+class TutorialHome extends StatelessWidget {
+  const TutorialHome({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Scaffold is a layout for
+    // the major Material Components.
+    return Scaffold(
+      appBar: AppBar(
+        leading: const IconButton(
+          icon: Icon(Icons.menu),
+          tooltip: 'Navigation menu',
+          onPressed: null,
+        ),
+        title: const Text('Example title'),
+        actions: const [
+          IconButton(
+            icon: Icon(Icons.search),
+            tooltip: 'Search',
+            onPressed: null,
+          ),
+        ],
+      ),
+      // body is the majority of the screen.
+      body: const Center(
+        child: Text('Hello, world!'),
+      ),
+      floatingActionButton: const FloatingActionButton(
+        tooltip: 'Add', // used by assistive technologies
+        child: Icon(Icons.add),
+        onPressed: null,
+      ),
+    );
+  }
+}
+#+end_src
+
+Ahora que usamos los componentes =AppBar= y =Scaffold= en lugar de nuestros widgets custom =MyAppBar= y =MyScaffold=.
+nuestra app va a utilizar los estilos de =material design= además de que agregamos un =floatingActionButton=.
+
+#+begin_quote
+Material es uno de los dos estilos que incluye flutter, para crear apps con estilo IOS utilizamos componentes
+=Cupertino=, ya como =CupertinoApp= o =CupertinoNavigator=.
+#+end_quote
+
+- El widget =Scaffold= toma una serie de diferentes widgets como argumentos con nombre.
+  - Cada uno toma lugar en el layout del =Scaffold= en el lugar asignado.
+- De manera similar el widget =AppBar= nos deja darle widgets para la posición =leading=, =actions= y =title=.
+
+** Manejando Gestos
+afdaff

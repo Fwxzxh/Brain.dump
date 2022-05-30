@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Flutter</title>
-<!-- 2022-05-27 Fri 23:53 -->
+<!-- 2022-05-30 Mon 00:58 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -198,6 +198,8 @@ $(function() {
 <li><a href="#sec-1">1. Interfaz de usuario</a>
 <ul class="nav">
 <li><a href="#sec-1-1">1.1. Introducción a los widgets</a></li>
+<li><a href="#sec-1-2">1.2. Usando componentes material</a></li>
+<li><a href="#sec-1-3">1.3. Manejando Gestos</a></li>
 </ul>
 </li>
 </ul>
@@ -477,11 +479,118 @@ reutilizados de muchas maneras.
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Usando componentes material</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Flutter provee widgets que nos ayudan a construir apps que siguen el estilo material.
+</li>
+<li>Las apps con <code>material design</code> empiezan con un widget <code>MaterialApp</code>.
+<ul class="org-ul">
+<li>Este widget construye otros widgets útiles como <code>Navigator</code>.
+<ul class="org-ul">
+<li>Este maneja un <code>stack</code> de widgets identificados con <code>strings</code>, los cuales llamamos rutas.
+</li>
+<li>Nos permite navegar entre las diferentes ventanas de nuestra aplicación.
+</li>
+</ul>
+</li>
+<li>Usar el widget <code>MaterialApp</code> es opcional pero buena práctica.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-dart"><span style="color: #ffb86c;">import</span> <span style="color: #f1fa8c;">'package:flutter/material.dart'</span>;
+
+<span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  runApp<span style="color: #ff79c6;">(</span>
+    <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">MaterialApp</span><span style="color: #50fa7b;">(</span>
+      title: <span style="color: #f1fa8c;">'Flutter Tutorial'</span>,
+      home: <span style="color: #bd93f9;">TutorialHome</span><span style="color: #bd93f9;">()</span>,
+    <span style="color: #50fa7b;">)</span>,
+  <span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">TutorialHome</span> <span style="color: #ff79c6; font-style: italic;">extends</span> <span style="color: #bd93f9;">StatelessWidget</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">TutorialHome</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">{</span><span style="color: #ff79c6; font-style: italic;">super</span>.key<span style="color: #50fa7b;">}</span><span style="color: #ff79c6;">)</span>;
+
+  <span style="color: #8be9fd;">@override</span>
+  <span style="color: #bd93f9;">Widget</span> <span style="color: #50fa7b;">build</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">BuildContext</span> <span style="color: #ffc9e8;">context</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">Scaffold is a layout for</span>
+    <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">the major Material Components.</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9;">Scaffold</span><span style="color: #50fa7b;">(</span>
+      appBar: <span style="color: #bd93f9;">AppBar</span><span style="color: #bd93f9;">(</span>
+        leading: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">IconButton</span><span style="color: #61bfff;">(</span>
+          icon: <span style="color: #bd93f9;">Icon</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">Icons</span>.menu<span style="color: #ff79c6;">)</span>,
+          tooltip: <span style="color: #f1fa8c;">'Navigation menu'</span>,
+          onPressed: <span style="color: #8be9fd;">null</span>,
+        <span style="color: #61bfff;">)</span>,
+        title: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">Text</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Example title'</span><span style="color: #61bfff;">)</span>,
+        actions: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #61bfff;">[</span>
+          <span style="color: #bd93f9;">IconButton</span><span style="color: #ff79c6;">(</span>
+            icon: <span style="color: #bd93f9;">Icon</span><span style="color: #50fa7b;">(</span><span style="color: #bd93f9;">Icons</span>.search<span style="color: #50fa7b;">)</span>,
+            tooltip: <span style="color: #f1fa8c;">'Search'</span>,
+            onPressed: <span style="color: #8be9fd;">null</span>,
+          <span style="color: #ff79c6;">)</span>,
+        <span style="color: #61bfff;">]</span>,
+      <span style="color: #bd93f9;">)</span>,
+      <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">body is the majority of the screen.</span>
+      body: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">Center</span><span style="color: #bd93f9;">(</span>
+        child: <span style="color: #bd93f9;">Text</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'Hello, world!'</span><span style="color: #61bfff;">)</span>,
+      <span style="color: #bd93f9;">)</span>,
+      floatingActionButton: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">FloatingActionButton</span><span style="color: #bd93f9;">(</span>
+        tooltip: <span style="color: #f1fa8c;">'Add'</span>, <span style="color: #6272a4; font-style: italic;">// </span><span style="color: #6272a4; font-style: italic;">used by assistive technologies</span>
+        child: <span style="color: #bd93f9;">Icon</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9;">Icons</span>.add<span style="color: #61bfff;">)</span>,
+        onPressed: <span style="color: #8be9fd;">null</span>,
+      <span style="color: #bd93f9;">)</span>,
+    <span style="color: #50fa7b;">)</span>;
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+Ahora que usamos los componentes <code>AppBar</code> y <code>Scaffold</code> en lugar de nuestros widgets custom <code>MyAppBar</code> y <code>MyScaffold</code>.
+nuestra app va a utilizar los estilos de <code>material design</code> además de que agregamos un <code>floatingActionButton</code>.
+</p>
+
+<blockquote>
+<p>
+Material es uno de los dos estilos que incluye flutter, para crear apps con estilo IOS utilizamos componentes
+<code>Cupertino</code>, ya como <code>CupertinoApp</code> o <code>CupertinoNavigator</code>.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>El widget <code>Scaffold</code> toma una serie de diferentes widgets como argumentos con nombre.
+<ul class="org-ul">
+<li>Cada uno toma lugar en el layout del <code>Scaffold</code> en el lugar asignado.
+</li>
+</ul>
+</li>
+<li>De manera similar el widget <code>AppBar</code> nos deja darle widgets para la posición <code>leading</code>, <code>actions</code> y <code>title</code>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Manejando Gestos</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+afdaff
+</p>
+</div>
+</div>
 </div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-05-27 Fri 23:53</p>
+<p class="date">Created: 2022-05-30 Mon 00:58</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
