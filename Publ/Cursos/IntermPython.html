@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Python Intermedio</title>
-<!-- 2022-01-25 Tue 18:52 -->
+<!-- 2022-07-05 Tue 19:10 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -225,13 +225,16 @@ MathJax.Hub.Config({
 <ul class="nav">
 <li><a href="#sec-1-1">1.1. Funciones puras</a></li>
 <li><a href="#sec-1-2">1.2. Lambdas</a></li>
-<li><a href="#sec-1-3">1.3. Map</a></li>
-<li><a href="#sec-1-4">1.4. Filter</a></li>
-<li><a href="#sec-1-5">1.5. Generators</a></li>
-<li><a href="#sec-1-6">1.6. Decorators</a></li>
-<li><a href="#sec-1-7">1.7. Recursión.</a></li>
-<li><a href="#sec-1-8">1.8. *args</a></li>
-<li><a href="#sec-1-9">1.9. **kwargs</a></li>
+<li><a href="#sec-1-3">1.3. List comprehencions</a></li>
+<li><a href="#sec-1-4">1.4. Dict comprehencions</a></li>
+<li><a href="#sec-1-5">1.5. Map</a></li>
+<li><a href="#sec-1-6">1.6. Filter</a></li>
+<li><a href="#sec-1-7">1.7. Reduce</a></li>
+<li><a href="#sec-1-8">1.8. Generators</a></li>
+<li><a href="#sec-1-9">1.9. Decorators</a></li>
+<li><a href="#sec-1-10">1.10. Recursión.</a></li>
+<li><a href="#sec-1-11">1.11. *args</a></li>
+<li><a href="#sec-1-12">1.12. **kwargs</a></li>
 </ul>
 </li>
 <li><a href="#sec-2">2. OOP</a>
@@ -253,6 +256,7 @@ MathJax.Hub.Config({
 <li><a href="#sec-3-2">3.2. Finally</a></li>
 <li><a href="#sec-3-3">3.3. Else</a></li>
 <li><a href="#sec-3-4">3.4. Levantando excepciones</a></li>
+<li><a href="#sec-3-5">3.5. Assert</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">4. Archivos</a>
@@ -260,6 +264,12 @@ MathJax.Hub.Config({
 <li><a href="#sec-4-1">4.1. Abriendo archivos</a></li>
 <li><a href="#sec-4-2">4.2. leeyendo archivos</a></li>
 <li><a href="#sec-4-3">4.3. Escribiendo archivos</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Extras</a>
+<ul class="nav">
+<li><a href="#sec-5-1">5.1. Ambientes virtuales</a></li>
+<li><a href="#sec-5-2">5.2. PIP</a></li>
 </ul>
 </li>
 </ul>
@@ -391,8 +401,67 @@ Solo pueden hacer operaciones que requieren de una sola expresión.
 </div>
 
 <div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Map</h3>
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> List comprehencions</h3>
 <div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Nos permite crear listas con una sintaxis más corta.
+</li>
+</ul>
+
+<p>
+La sintaxis es:
+</p>
+
+<blockquote>
+<p>
+[expression for element in iteratable if condition]
+</p>
+</blockquote>
+
+<p>
+Ejemplo:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ffc9e8;">squares</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span> i <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">101</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">if</span> i <span style="color: #ff79c6; font-style: italic;">%</span> <span style="color: #8be9fd;">36</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span><span style="color: #61bfff;">]</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>La <code>expression</code> representa cada uno de los elementos a poner en la nueva lista.
+</li>
+<li><code>for element in iterabale</code> es el ciclo en el cual extraeremos los elementos de otra lista o cualquier <code>iteratable</code>.
+</li>
+<li><code>if condition</code> La condición opcional para filtrar los elementos del ciclo.
+</li>
+<li>Al final la expresión nos regresa una lista que cumple los parametros dados.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Dict comprehencions</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Podemos usar las comprehencions en diccionarios.
+</li>
+<li>La sintaxis es la misma pero debemos de especificar al principio en la <code>expression</code> la llave y el valor.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ffc9e8;">my_dict</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">{</span>i: i<span style="color: #ff79c6; font-style: italic;">**</span><span style="color: #8be9fd;">3</span> <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">in</span> <span style="color: #ffb86c; font-weight: bold;">range</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">1</span>,<span style="color: #8be9fd;">101</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #8be9fd;">1</span> <span style="color: #ff79c6; font-style: italic;">%</span> <span style="color: #8be9fd;">3</span> <span style="color: #8be9fd;">1</span><span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">0</span><span style="color: #61bfff;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Map</h3>
+<div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Son útiles cuando trabajamos con listas o objetos iteratables.
 </li>
@@ -416,9 +485,9 @@ Solo pueden hacer operaciones que requieren de una sola expresión.
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Filter</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Filter</h3>
+<div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li><code>filter</code> Toma un iteratable y filtra los elementos que cumplen con una condición.
 </li>
@@ -431,12 +500,52 @@ Solo pueden hacer operaciones que requieren de una sola expresión.
 <span style="color: #ff79c6; font-style: italic;">return</span> res
 </pre>
 </div>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="right">
+
+<col  class="right">
+</colgroup>
+<tbody>
+<tr>
+<td class="text-right">22</td>
+<td class="text-right">44</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Generators</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Reduce</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Para usar esta función debemos de importar el modulo de <code>functools</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">from</span> functools <span style="color: #ff79c6; font-style: italic;">import</span> reduce
+
+<span style="color: #ffc9e8;">my_list</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">2</span><span style="color: #61bfff;">]</span>
+
+<span style="color: #ffc9e8;">all_multiplied</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">reduce</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">lambda</span> <span style="color: #ffc9e8;">a</span>, <span style="color: #ffc9e8;">b</span>: a <span style="color: #ff79c6; font-style: italic;">*</span> b, my_list<span style="color: #61bfff;">)</span>
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>all_multiplied<span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+En este caso no nos retornaria una lista si no la suma del producto de todos los elementos de la lista.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> Generators</h3>
+<div class="outline-text-3" id="text-1-8">
 <ul class="org-ul">
 <li>Son un tipo de iteratable, como las listas o las tuplas.
 </li>
@@ -458,6 +567,7 @@ Solo pueden hacer operaciones que requieren de una sola expresión.
     <span style="color: #ff79c6; font-style: italic;">return</span> i
 </pre>
 </div>
+
 
 <blockquote>
 <p>
@@ -511,9 +621,9 @@ Usar generadores da mejor rendimiento el cual es resultado de la evaluación per
 </div>
 </div>
 
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Decorators</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> Decorators</h3>
+<div class="outline-text-3" id="text-1-9">
 <ul class="org-ul">
 <li>Proveen una manera de modificar funciones usando otras funciones.
 </li>
@@ -606,9 +716,9 @@ Una sola función puede tener más de un decorador.
 </div>
 </div>
 
-<div id="outline-container-sec-1-7" class="outline-3">
-<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Recursión.</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10"><span class="section-number-3">1.10</span> Recursión.</h3>
+<div class="outline-text-3" id="text-1-10">
 <ul class="org-ul">
 <li>Se basa en la auto-referencia se una función
 </li>
@@ -660,9 +770,9 @@ Un buen ejemplo de recursión es el factorial.
 </div>
 </div>
 
-<div id="outline-container-sec-1-8" class="outline-3">
-<h3 id="sec-1-8"><span class="section-number-3">1.8</span> *args</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11"><span class="section-number-3">1.11</span> *args</h3>
+<div class="outline-text-3" id="text-1-11">
 <ul class="org-ul">
 <li>Usando <code>*args</code> podemos pasarle un numero arbitrario de argumentos a una función.
 </li>
@@ -694,9 +804,9 @@ Un buen ejemplo de recursión es el factorial.
 </div>
 </div>
 
-<div id="outline-container-sec-1-9" class="outline-3">
-<h3 id="sec-1-9"><span class="section-number-3">1.9</span> **kwargs</h3>
-<div class="outline-text-3" id="text-1-9">
+<div id="outline-container-sec-1-12" class="outline-3">
+<h3 id="sec-1-12"><span class="section-number-3">1.12</span> **kwargs</h3>
+<div class="outline-text-3" id="text-1-12">
 <ul class="org-ul">
 <li><i>Keyword arguments</i>.
 </li>
@@ -1724,6 +1834,51 @@ NameError: Invalid name!
 </pre>
 </div>
 </div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Assert</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Nos permite hacer afirmaciones, si esta se cumple podemos lanzar un error.
+</li>
+</ul>
+
+<p>
+sintaxis:
+</p>
+<blockquote>
+<p>
+<code>assert condition, mensaje de error</code>
+</p>
+</blockquote>
+
+<p>
+Ejemplo:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">def</span> <span style="color: #50fa7b;">palindrome</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">string</span><span style="color: #61bfff;">)</span>:
+    <span style="color: #ff79c6; font-style: italic;">assert</span> <span style="color: #ffb86c; font-weight: bold;">len</span><span style="color: #61bfff;">(</span>string<span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">0</span>, <span style="color: #f1fa8c;">"No se puede ingresar una cadena vac&#237;a"</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> string <span style="color: #ff79c6; font-style: italic;">==</span> string<span style="color: #61bfff;">[</span>::<span style="color: #ff79c6; font-style: italic;">-</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span>
+
+<span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">palindrome</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">""</span><span style="color: #ff79c6;">)</span><span style="color: #61bfff;">)</span>
+</pre>
+</div>
+
+<p>
+En el ejemplo vamos a tener una exepción <code>AssertionError</code> y en el mensaje vendrá el mensaje que le dimos como segundo argumento al <code>assert</code>.
+</p>
+
+<ul class="org-ul">
+<li>Las <code>assertions</code> son para errores del programador y no deberían ser manejadas por el programa, debería de crashear este.
+</li>
+<li>Para errores de los cuales se pueden recuperar usamos excepciones en lugar de detectarlas por <code>assert</code>.
+</li>
+<li>Usamos <code>assert</code> para cachar bug inesperados generalmente y para asegurarnos de que las cosas funcionan bien en ciertos puntos del programa.
+</li>
+</ul>
+</div>
+</div>
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
@@ -1944,7 +2099,7 @@ Para escribir algo que no sea un string, debe de convertirse a un string primero
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">with</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">as</span> <span style="color: #ffc9e8;">f</span>:
+<pre class="src src-python"><span style="color: #ff79c6; font-style: italic;">with</span> <span style="color: #ffb86c; font-weight: bold;">open</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"/file/file.txt"</span><span style="color: #61bfff;">)</span> <span style="color: #ff79c6; font-style: italic;">as</span> f:
     <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>f.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">read</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
@@ -1957,11 +2112,87 @@ El archivo es automáticamente cerrado al final del bloque <code>with</code>.
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Extras</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Ambientes virtuales</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>Un ambiente virtual es un interprete de python solo para tu proyecto.
+<ul class="org-ul">
+<li>Haciendo uso de este, podemos instalar dependencias sin que estas tengan conflictos con el interprete del sistema.
+</li>
+<li>También con estos podemos hacer que el entorno de desarrollo sea reproducible para equipos grandes.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> Comandos comunes usando <code>venv</code></h4>
+<div class="outline-text-4" id="text-5-1-1">
+<ul class="org-ul">
+<li><code>python -m venv nombre_venv</code>
+<ul class="org-ul">
+<li>Utilizamos el modulo <code>venv</code> para crear un ambiente virtual en la ruta en la que estamos.
+</li>
+<li>Dentro de esta tendremos una carpeta con los scripts para inicializar un ambiente virtual.
+<ul class="org-ul">
+<li><code>./venv/Scripts/activate</code> en windows.
+</li>
+<li><code>venv/bin/activate</code> en unix.
+</li>
+<li>Estos tienen su contraparte <code>deactivate</code> para apagar el ambiente virtual.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> PIP</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Es el manejador de paquetes de python.
+</li>
+<li>Nos ayuda a manejar y resolver dependencias.
+</li>
+<li>Generamente queremos usarlo dentro de un ambiente virtual para no &ldquo;Ensuciar&rdquo; el interprete del sistema.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-5-2-1" class="outline-4">
+<h4 id="sec-5-2-1"><span class="section-number-4">5.2.1</span> Comandos comunes</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<ul class="org-ul">
+<li><code>pip freeze</code> : Nos muestra las dependencias instaladas con PIP.
+</li>
+<li><code>pip install</code> : Nos ayuda a instalar algún paquete.
+</li>
+<li><code>pip freeze &gt; requirements.txt</code> : podemos utilizarlo para exportar nuestras dependencias a un archivo.
+<ul class="org-ul">
+<li>ahora podemos importar estas dependencias con <code>pip install -r requirements.txt</code>.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-01-25 Tue 18:52</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+<p class="date">Created: 2022-07-05 Tue 19:10</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Flutter</title>
-<!-- 2022-05-30 Mon 00:58 -->
+<!-- 2022-07-05 Tue 19:10 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -582,7 +582,54 @@ Material es uno de los dos estilos que incluye flutter, para crear apps con esti
 <h3 id="sec-1-3"><span class="section-number-3">1.3</span> Manejando Gestos</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
-afdaff
+El primer paso para construir una aplicación interactiva es detectar gestos.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-dart"><span style="color: #ffb86c;">import</span> <span style="color: #f1fa8c;">'package:flutter/material.dart'</span>;
+
+<span style="color: #ff79c6; font-style: italic;">class</span> <span style="color: #bd93f9;">MyButton</span> <span style="color: #ff79c6; font-style: italic;">extends</span> <span style="color: #bd93f9;">StatelessWidget</span> <span style="color: #61bfff;">{</span>
+  <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">MyButton</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">{</span><span style="color: #ff79c6; font-style: italic;">super</span>.key<span style="color: #50fa7b;">}</span><span style="color: #ff79c6;">)</span>;
+
+  <span style="color: #8be9fd;">@override</span>
+  <span style="color: #bd93f9;">Widget</span> <span style="color: #50fa7b;">build</span><span style="color: #ff79c6;">(</span><span style="color: #bd93f9;">BuildContext</span> <span style="color: #ffc9e8;">context</span><span style="color: #ff79c6;">)</span> <span style="color: #ff79c6;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #bd93f9;">GestureDetector</span><span style="color: #50fa7b;">(</span>
+      onTap: <span style="color: #bd93f9;">()</span> <span style="color: #bd93f9;">{</span>
+        print<span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">'MyButton was tapped!'</span><span style="color: #61bfff;">)</span>;
+      <span style="color: #bd93f9;">}</span>,
+      child: <span style="color: #bd93f9;">Container</span><span style="color: #bd93f9;">(</span>
+        height: <span style="color: #bd93f9; font-weight: bold;">50.0</span>,
+        padding: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">EdgeInsets</span>.all<span style="color: #61bfff;">(</span><span style="color: #bd93f9; font-weight: bold;">8.0</span><span style="color: #61bfff;">)</span>,
+        margin: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">EdgeInsets</span>.symmetric<span style="color: #61bfff;">(</span>horizontal: <span style="color: #bd93f9; font-weight: bold;">8.0</span><span style="color: #61bfff;">)</span>,
+        decoration: <span style="color: #bd93f9;">BoxDecoration</span><span style="color: #61bfff;">(</span>
+          borderRadius: <span style="color: #bd93f9;">BorderRadius</span>.circular<span style="color: #ff79c6;">(</span><span style="color: #bd93f9; font-weight: bold;">5.0</span><span style="color: #ff79c6;">)</span>,
+          color: <span style="color: #bd93f9;">Colors</span>.lightGreen<span style="color: #ff79c6;">[</span><span style="color: #bd93f9; font-weight: bold;">500</span><span style="color: #ff79c6;">]</span>,
+        <span style="color: #61bfff;">)</span>,
+        child: <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">Center</span><span style="color: #61bfff;">(</span>
+          child: <span style="color: #bd93f9;">Text</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">'Engage'</span><span style="color: #ff79c6;">)</span>,
+        <span style="color: #61bfff;">)</span>,
+      <span style="color: #bd93f9;">)</span>,
+    <span style="color: #50fa7b;">)</span>;
+  <span style="color: #ff79c6;">}</span>
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #bd93f9;">void</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
+  runApp<span style="color: #ff79c6;">(</span>
+    <span style="color: #ff79c6; font-style: italic;">const</span> <span style="color: #bd93f9;">MaterialApp</span><span style="color: #50fa7b;">(</span>
+      home: <span style="color: #bd93f9;">Scaffold</span><span style="color: #bd93f9;">(</span>
+        body: <span style="color: #bd93f9;">Center</span><span style="color: #61bfff;">(</span>
+          child: <span style="color: #bd93f9;">MyButton</span><span style="color: #ff79c6;">()</span>,
+        <span style="color: #61bfff;">)</span>,
+      <span style="color: #bd93f9;">)</span>,
+    <span style="color: #50fa7b;">)</span>,
+  <span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+<p>
+a
 </p>
 </div>
 </div>
@@ -590,7 +637,7 @@ afdaff
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-05-30 Mon 00:58</p>
+<p class="date">Created: 2022-07-05 Tue 19:10</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

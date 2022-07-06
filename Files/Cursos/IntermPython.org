@@ -71,6 +71,34 @@ print(polynomial(-4))
 print((lambda x: x**2 + 5*x + 4) (-4))
 #+end_src
 
+** List comprehencions
+- Nos permite crear listas con una sintaxis más corta.
+
+La sintaxis es:
+
+#+begin_quote
+[expression for element in iteratable if condition]
+#+end_quote
+
+Ejemplo:
+
+#+begin_src python
+squares = [ i for i in range(1, 101) if i % 36 == 0]
+#+end_src
+
+- La =expression= representa cada uno de los elementos a poner en la nueva lista.
+- =for element in iterabale= es el ciclo en el cual extraeremos los elementos de otra lista o cualquier =iteratable=.
+- =if condition= La condición opcional para filtrar los elementos del ciclo.
+- Al final la expresión nos regresa una lista que cumple los parametros dados.
+
+** Dict comprehencions
+- Podemos usar las comprehencions en diccionarios.
+- La sintaxis es la misma pero debemos de especificar al principio en la =expression= la llave y el valor.
+
+#+begin_src python
+my_dict = {i: i**3 for i in range(1,101) if 1 % 3 1= 0}
+#+end_src
+
 ** Map
 - Son útiles cuando trabajamos con listas o objetos iteratables.
 - Toma una función y un iteratable como argumento y retorna un nuevo iteratable con la función aplicada a cada argumento.
@@ -99,6 +127,20 @@ return res
 #+RESULTS:
 | 22 | 44 |
 
+** Reduce
+Para usar esta función debemos de importar el modulo de =functools=.
+
+#+begin_src python
+from functools import reduce
+
+my_list = [2, 2, 2, 2, 2]
+
+all_multiplied = reduce(lambda a, b: a * b, my_list)
+print(all_multiplied)
+#+end_src
+
+En este caso no nos retornaria una lista si no la suma del producto de todos los elementos de la lista.
+
 ** Generators
 - Son un tipo de iteratable, como las listas o las tuplas.
 - No permiten indexar con índices arbitrarios.
@@ -114,6 +156,7 @@ def countDown():
 for i in countDown():
     return i
 #+end_src
+
 
 #+begin_quote
 =yield= es usado para definir un generador, remplazando el =return= de una función; esto para retornar un resultado sin destruir las variables locales de la función.
@@ -961,6 +1004,29 @@ Traceback (most recent call last):
 NameError: Invalid name!
 #+end_example
 
+** Assert
+- Nos permite hacer afirmaciones, si esta se cumple podemos lanzar un error.
+
+sintaxis:
+#+begin_quote
+=assert condition, mensaje de error=
+#+end_quote
+
+Ejemplo:
+#+begin_src python
+def palindrome(string):
+    assert len(string) > 0, "No se puede ingresar una cadena vacía"
+    return string == string[::-1]
+
+print(palindrome(""))
+#+end_src
+
+En el ejemplo vamos a tener una exepción =AssertionError= y en el mensaje vendrá el mensaje que le dimos como segundo argumento al =assert=.
+
+- Las =assertions= son para errores del programador y no deberían ser manejadas por el programa, debería de crashear este.
+- Para errores de los cuales se pueden recuperar usamos excepciones en lugar de detectarlas por =assert=.
+- Usamos =assert= para cachar bug inesperados generalmente y para asegurarnos de que las cosas funcionan bien en ciertos puntos del programa.
+
 * Archivos
 ** Abriendo archivos
 - Es útil poder abrir, leer y escribir archivos.
@@ -1091,3 +1157,28 @@ with open("/file/file.txt") as f:
 #+begin_quote
 El archivo es automáticamente cerrado al final del bloque =with=.
 #+end_quote
+
+* Extras
+** Ambientes virtuales
+- Un ambiente virtual es un interprete de python solo para tu proyecto.
+  - Haciendo uso de este, podemos instalar dependencias sin que estas tengan conflictos con el interprete del sistema.
+  - También con estos podemos hacer que el entorno de desarrollo sea reproducible para equipos grandes.
+
+*** Comandos comunes usando =venv=
+- =python -m venv nombre_venv=
+  - Utilizamos el modulo =venv= para crear un ambiente virtual en la ruta en la que estamos.
+  - Dentro de esta tendremos una carpeta con los scripts para inicializar un ambiente virtual.
+    - =./venv/Scripts/activate= en windows.
+    - =venv/bin/activate= en unix.
+    - Estos tienen su contraparte =deactivate= para apagar el ambiente virtual.
+
+** PIP
+- Es el manejador de paquetes de python.
+- Nos ayuda a manejar y resolver dependencias.
+- Generamente queremos usarlo dentro de un ambiente virtual para no "Ensuciar" el interprete del sistema.
+
+*** Comandos comunes
+- =pip freeze= : Nos muestra las dependencias instaladas con PIP.
+- =pip install= : Nos ayuda a instalar algún paquete.
+- =pip freeze > requirements.txt= : podemos utilizarlo para exportar nuestras dependencias a un archivo.
+  - ahora podemos importar estas dependencias con =pip install -r requirements.txt=.
