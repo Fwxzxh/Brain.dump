@@ -61,6 +61,8 @@ Apuntes sobre distintos cursos que he tomado.
   - [[file:Cursos/DataScienceIA/AnaNegociosDS.org][Análisis de negocios para ciencia de datos]]
   - [[file:Cursos/DataScienceIA/FundamentosMath.org][Fundamentos de Matemáticas]]
   - [[file:Cursos/DataScienceIA/BussInteligenceUA.org][Curso de Business Intelligence: Utilidad y Áreas de Oportunidad]]
+  - [[file:Cursos/DataScienceIA/VisualizacionParaBS.org][Curso de principios de visualización de datos para Business Intelligence]]
+  - [[file:Cursos/DataScienceIA/MLForBeginers.org][ML-For-Beginers (by microsoft)]]
 - Flutter
   - [[file:Cursos/Flutter/flutter.org][Flutter]]
 

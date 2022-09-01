@@ -128,4 +128,57 @@
 $PE = \frac {\textrm{Costos fijos}} {\textrm{Precio de venta} - \textrm{costo variable por unidad}}$
 
 ** Razones matemáticas en los negocios
-- aaa
+- La relación entre dos distintas magnitudes
+  - O pensar en porcentajes.
+- Responde a cuanto hay de una magnitud en otra?.
+- Sirven para comparar rendimientos de manera sencilla.
+- Ejemplos:
+  - Utilidad / ingresos:
+    - Conocer el rendimiento respecto a otros productos, empresas e industrias.
+  - Margen de contribución / Precio:
+    - Conocer cuál producto conviene vender más.
+
+* =Business inteligence=
+** Extracción de datos y ejemplos de archivos
+- Debemos recordar el proceso =ETL=.
+- Es probable que la información este fragmentada en diferentes sitios (silos de información).
+  - cada departamento guarda información de manera diferente así que es probable que sea complicado relacionarla.
+- Debemos de saber como extraer la información de diferentes softwares.
+
+** Limpieza de datos con excel y python
+- La segunda parte del =ETL=.
+- debemos limpiar los datos para que sean entendibles para la siguiente fase.
+- =garbage in, garbage out=.
+  - Si ingresas contenido basura a tu proceso, lo que saldra de este es basura también.
+  - Debemos de ser cuidadosos con la limpieza.
+- Es el primer acercamiento para ver que tipo de información tenemos.
+
+** Exploración de datos
+- debemos explorar estos para poder encontrar patrones y tendencias en los datos podemos hacernos preguntas para comprender los datos.
+- Cambio de hipotesis iniciales ya que puede que la información cambie estas preguntas.
+
+** Descubrimientos, highlights, top y bottom data
+- Los highlights son los que nos ayuda a tomar desciciones.
+- Siempre iniciar con lo más usado.
+- Intentar buscar lo más y lo menos.
+- Tomar en cuenta el tiempo y ver patrones allí.
+
+** Reporting
+- Debemos pensar en la audiencia a la que le vamos a presentar los datos.
+  - Reportes van personalizados a la audiencia.
+  - Debemos centrarnos en el mensaje del reporte.
+- Debemos de dar *contexto*.
+- Concentrar nuestros esfuerzos en un dashboard.
+- usar storytelling para entretener a la audiencia.
+- Dejar sugerencias sobre esta información.
+
+* Buenas prácticas
+** Alertas, automatización y =live reporting=
+- Es mejor que tus reportes estén conectados a las fuentes de información.
+  - Usamos automatización con software.
+- Podemos poner alarmas para monitorear ciertos parametros.
+
+** Eficiencia, max profit y min cost
+- Mejorar un proceso nos permite mejorar nuestros recursos a largo plazo.
+- Siempre debemos de buscar mejorar la utilidad.
+- Pensar siempre en la jerarquía de stakeholders.
