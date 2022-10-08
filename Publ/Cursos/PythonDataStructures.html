@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Python Data Structures</title>
-<!-- 2022-01-25 Tue 18:52 -->
+<!-- 2022-10-08 Sat 18:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -266,7 +266,7 @@ Se usan para crear listas que siguen ciertas reglas
 </colgroup>
 <tbody>
 <tr>
-<td class="text-left">&#xa0;</td>
+<td class="text-left">None</td>
 </tr>
 </tbody>
 </table>
@@ -291,7 +291,7 @@ También podemos usar <code>if</code> para agregar condiciones:
 </colgroup>
 <tbody>
 <tr>
-<td class="text-left">&#xa0;</td>
+<td class="text-left">None</td>
 </tr>
 </tbody>
 </table>
@@ -362,7 +362,7 @@ Ejemplos:
 </div>
 
 <pre class="example">
-
+- None
 </pre>
 
 
@@ -375,7 +375,7 @@ Ejemplos:
 </div>
 
 <pre class="example">
-
+- None
 </pre>
 
 
@@ -618,6 +618,60 @@ s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">printList
 <span style="color: #ffb86c; font-weight: bold;">print</span><span style="color: #61bfff;">(</span>s.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">getLastNode</span><span style="color: #ff79c6;">()</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
+
+<pre class="example">
+    Python 3.10.7 (main, Sep  6 2022, 21:22:27) [GCC 12.2.0]
+    Type 'copyright', 'credits' or 'license' for more information
+    IPython 8.5.0 -- An enhanced Interactive Python. Type '?' for help.
+
+    In [1]:    ...:    ...:    ...:    ...: 
+    In [2]:    ...:    ...:    ...: 
+    In [3]:    ...:    ...: 
+    In [4]:    ...:    ...:    ...:    ...:    ...:    ...:    ...:    ...: 
+    In [5]:    ...:    ...:    ...:    ...:    ...: 
+    In [6]:    ...:    ...: 
+    In [7]:    ...:    ...:    ...:    ...:    ...: 
+    In [8]: 
+    In [9]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    Cell [0;32mIn [9], line 1[0m
+    [0;32m----&gt; 1[0m s[38;5;241m.[39maddAtFront([38;5;241m5[39m)
+
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'addAtFront'
+
+    In [10]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    Cell [0;32mIn [10], line 1[0m
+    [0;32m----&gt; 1[0m s[38;5;241m.[39maddAtEnd([38;5;241m8[39m)
+
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'addAtEnd'
+
+    In [11]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    Cell [0;32mIn [11], line 1[0m
+    [0;32m----&gt; 1[0m s[38;5;241m.[39maddAtFront([38;5;241m9[39m)
+
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'addAtFront'
+
+    In [12]: 
+    In [12]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    Cell [0;32mIn [12], line 1[0m
+    [0;32m----&gt; 1[0m s[38;5;241m.[39mprintList()
+
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'printList'
+
+    In [13]: 
+
+    In [14]: [0;31m---------------------------------------------------------------------------[0m
+    [0;31mAttributeError[0m                            Traceback (most recent call last)
+    Cell [0;32mIn [14], line 1[0m
+    [0;32m----&gt; 1[0m [38;5;28mprint[39m(s[38;5;241m.[39mgetLastNode())
+
+    [0;31mAttributeError[0m: 'LinkedList' object has no attribute 'getLastNode'
+
+    In [15]: Do you really want to exit ([y]/n)? 
+</pre>
 </li>
 </ul>
 </dd>
@@ -687,6 +741,47 @@ Implementación de un grafo usando una matriz de adyacencia.
     <span style="color: #8be9fd;">G</span>.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">display</span><span style="color: #61bfff;">()</span>
 </pre>
 </div>
+
+<pre class="example">
+        Python 3.10.7 (main, Sep  6 2022, 21:22:27) [GCC 12.2.0]
+        Type 'copyright', 'credits' or 'license' for more information
+        IPython 8.5.0 -- An enhanced Interactive Python. Type '?' for help.
+
+        In [1]:    ...:    ...:    ...:    ...: 
+        In [2]:    ...:    ...:    ...:    ...:    ...:    ...: 
+        In [3]:    ...:    ...:    ...:    ...:    ...:    ...: 
+        In [4]:    ...:    ...:    ...:    ...:    ...: 
+        In [5]: 
+        In [6]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        Cell [0;32mIn [6], line 1[0m
+        [0;32m----&gt; 1[0m G[38;5;241m.[39maddEdge([38;5;241m1[39m, [38;5;241m3[39m)
+
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'addEdge'
+
+        In [7]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        Cell [0;32mIn [7], line 1[0m
+        [0;32m----&gt; 1[0m G[38;5;241m.[39maddEdge([38;5;241m3[39m, [38;5;241m4[39m)
+
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'addEdge'
+
+        In [8]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        Cell [0;32mIn [8], line 1[0m
+        [0;32m----&gt; 1[0m G[38;5;241m.[39maddEdge([38;5;241m2[39m, [38;5;241m4[39m)
+
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'addEdge'
+
+        In [9]: [0;31m---------------------------------------------------------------------------[0m
+        [0;31mAttributeError[0m                            Traceback (most recent call last)
+        Cell [0;32mIn [9], line 1[0m
+        [0;32m----&gt; 1[0m G[38;5;241m.[39mdisplay()
+
+        [0;31mAttributeError[0m: 'Graph' object has no attribute 'display'
+
+        In [10]: Do you really want to exit ([y]/n)? 
+</pre>
 </li>
 </ul>
 </li>
@@ -715,8 +810,8 @@ Implementación de un grafo usando una matriz de adyacencia.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-01-25 Tue 18:52</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+<p class="date">Created: 2022-10-08 Sat 18:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>

@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Curso de visualización de datos para Business Inteligence</title>
+<!-- 2022-10-08 Sat 18:54 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Fundamentos de la visualizaciónn de datos</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. Qué es la visualización de datos?</a></li>
+<li><a href="#sec-1-2">1.2. Importancia de la visualización de datos</a></li>
+<li><a href="#sec-1-3">1.3. Buenas prácticas para visualización de datos</a></li>
+<li><a href="#sec-1-4">1.4. Conflictos de ética en la ciencia de datos y <code>Big data</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Elige la gráfica correcta para tus reportes</a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Gráfica de barras</a></li>
+<li><a href="#sec-2-2">2.2. Gráfica de pie</a></li>
+<li><a href="#sec-2-3">2.3. Gráfica de dispersión (scatter plot)</a></li>
+<li><a href="#sec-2-4">2.4. Gráfica de Burbujas</a></li>
+<li><a href="#sec-2-5">2.5. GrÃ¡fica de mapas</a></li>
+<li><a href="#sec-2-6">2.6. Tipos de mapas:</a></li>
+<li><a href="#sec-2-7">2.7. Gráfica de <code>heap map</code></a></li>
+<li><a href="#sec-2-8">2.8. Gráfica de tablas</a></li>
+<li><a href="#sec-2-9">2.9. Importancia del storytelling en la visualización de datos</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Data Visualization para Business Inteligence</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Cómo afecta la visualización de datos en tu negocio?</a></li>
+<li><a href="#sec-3-2">3.2. Agregar valor con los datos</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Flujo de trabajo y etapas del business Intelligence</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Recolección de datos</a></li>
+<li><a href="#sec-4-2">4.2. Limpieza de datos</a></li>
+<li><a href="#sec-4-3">4.3. Exploración de datos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">Curso de visualización de datos para Business Inteligence</h1>
+<p>
+<b>Recursos:</b> <a href="https://datavizcatalogue.com/ES/index.html">Catalogue Data Visualization</a>
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Fundamentos de la visualizaciónn de datos</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Qué es la visualización de datos?</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><b>Son representaciones simbólicas de conceptos complejos</b>.
+</li>
+<li>Input:
+<ul class="org-ul">
+<li>Es donde iniciamos el proceso de visualización de datos.
+</li>
+</ul>
+</li>
+<li>Output:
+<ul class="org-ul">
+<li>Nos ayuda a representar los datos de manera visual.
+</li>
+<li>Para reconocer fácilmente patrones.
+</li>
+<li>Al usar más de un sentido podemos facilitar el entendimiento de los datos.
+</li>
+</ul>
+</li>
+<li>Estamos en la era de información, así­ que haymás datos que nunca.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Importancia de la visualización de datos</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li><b>Reduce la carga cognitiva para retener y entender los datos</b>.
+</li>
+<li>Nos ayuda a entregar un mensaje de una manera clara y eficiente.
+</li>
+</ul>
+
+<blockquote>
+<p>
+Visualization gives you answers to questions you didn&rsquo;t know you had.
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>Nos ayuda a comunicar mejor a una audiencia.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Buenas prácticas para visualización de datos</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Define una audiencia y un motivo (mensaje).
+</li>
+<li>Utiliza la percepcíon visual.
+<ul class="org-ul">
+<li>Para disminuir la carga cognitiva.
+</li>
+</ul>
+</li>
+<li>Estandarizar.
+<ul class="org-ul">
+<li>Utilizar medidas.
+</li>
+<li>No cortar los axis.
+</li>
+<li>Alinear todo siempre.
+</li>
+<li>Todo para evitar confundir los números.
+</li>
+</ul>
+</li>
+<li>Simplificar pero no recortar.
+</li>
+<li>Disminuir el sesgo (bias), no <code>cherry-picking</code>.
+</li>
+<li>Principios <a href="file:///mnt/e/KnowledgeBase/Brain.dump/Files/Cursos/Diseno/IntroduccionDiseno.html">Gestalt</a>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Conflictos de ética en la ciencia de datos y <code>Big data</code></h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Nuestro papel ante la audiencia es evitar el sesgo y el bias en la visualizaciÃ³n.
+</li>
+<li>Siempre el mensaje debe de ser sin preferencias personales.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Elige la gráfica correcta para tus reportes</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><code>Data viz</code> es el termino con el que se refiere a una representación gráfica
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Gráfica de barras</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Existen verticales, horizontales y stackeadas.
+</li>
+<li>Debemos usar un color distinto para cada categoría
+</li>
+<li>Debemos representar las cosas de menor a mayor.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Gráfica de pie</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Para menos de 6 categorías de preferencia para mantener la claridad.
+</li>
+<li>No usar gráficas en 3D porque afectan la visualización.
+</li>
+<li>Pueden ser de pie o de dona.
+</li>
+<li>Si no se alcanza a ver las diferencias entre categorias, procurar usar otro tipo de gráfica.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Gráfica de dispersión (scatter plot)</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>los colores son importantes.
+</li>
+<li>Necesitamos buscar correlaciones ya sea positiva o negativa o que no haya alguna.
+</li>
+<li>Tener cuidado al poner anotaciones para que no dificulte la lectura del gráfico.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Gráfica de Burbujas</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>El tamaño de la burbuja nos puede mostrar una variable más para la vizualizacion.
+</li>
+<li>Pudeden ser como una gráfica de dispersión o solo usar el tamaño de la burbuja para denotar una cantidad.
+</li>
+<li>Tener cuidado con el tamaño de las anotaciones.
+</li>
+<li>Colores diferentes.
+</li>
+<li>No gráficos 3D.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> GrÃ¡fica de mapas</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Es una representación gráfica de datos ubicados geográficamente.
+</li>
+<li>Puede ser complicado para ubicar los datos.
+</li>
+<li>Los mapas pueden ser una representación sensilla y no tan precisa.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> Tipos de mapas:</h3>
+<div class="outline-text-3" id="text-2-6">
+</div><div id="outline-container-sec-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> Mapas de Isolíneas</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<ul class="org-ul">
+<li>Utilizan líneas para pode unir áreas que determinen cierta similitud.
+<ul class="org-ul">
+<li>Estos espacios suelen colorearse para mostrar distinción entre ellos.
+</li>
+</ul>
+</li>
+<li>Son muy utilizados en el aspecto metereológico.
+</li>
+<li><a href="https://google.com/search?q=Mapas+de+Isolíneas&amp;sourceid=chrome&amp;ie=UTF-8">Ejemplos</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6-2" class="outline-4">
+<h4 id="sec-2-6-2"><span class="section-number-4">2.6.2</span> Mapas Coroplágticos</h4>
+<div class="outline-text-4" id="text-2-6-2">
+<ul class="org-ul">
+<li>Son mapas que representan con color los lugares donde ocurrieron ciertos sucesos.
+</li>
+<li><a href="https://google.com/search?q=Mapas+Coropléticos&amp;sourceid=chrome&amp;ie=UTF-8">Ejemplo</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6-3" class="outline-4">
+<h4 id="sec-2-6-3"><span class="section-number-4">2.6.3</span> Mapas de diagramas</h4>
+<div class="outline-text-4" id="text-2-6-3">
+<ul class="org-ul">
+<li>Estos pueden considerarse mapas combinados, ya que por lo general utilizan el color para hacer una distinción
+variable y alguna otra visualización.
+</li>
+<li>Son utilizados en estadística, geografía, reportes económicos, salud, etc.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6-4" class="outline-4">
+<h4 id="sec-2-6-4"><span class="section-number-4">2.6.4</span> Mapas Anamárfico</h4>
+<div class="outline-text-4" id="text-2-6-4">
+<ul class="org-ul">
+<li>Utilizan distintos tipos de figuras geometrícas para identificar sucesos en determinadas ubicaciones.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> Gráfica de <code>heap map</code></h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Nos permiten sobreponer una paleta de colores para representar la frecuencia de los datos que queremos representar.
+</li>
+<li>Nos permite ver las zonas en las que más se repiten nuestros datos.
+</li>
+<li>Debemos estar al pendiente de la calibraciónn de la paleta de colores.
+<ul class="org-ul">
+<li>Debe de ser clara para representar los cambios de frecuencia.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Gráfica de tablas</h3>
+<div class="outline-text-3" id="text-2-8">
+<ul class="org-ul">
+<li>Se utiliza junto con otro elemento de data vizualizacion.
+</li>
+<li>No utilizar datos extensos ya que afecta la claridad y la carga cognitiva.
+</li>
+<li>Podemos utilizar colores para denotar ciertos valores.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> Importancia del storytelling en la visualización de datos</h3>
+<div class="outline-text-3" id="text-2-9">
+<ul class="org-ul">
+<li>El storytelling es la técnica de comunicación en la cual hilamos historias para comunicar un mensaje.
+</li>
+<li>Nos ayuda a retener la atención y entregar el mensaje de manera más efectiva.
+</li>
+<li>Siempre es bueno tener técnicas de storytelling en nuestros reportes.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Data Visualization para Business Inteligence</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Cómo afecta la visualización de datos en tu negocio?</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Nos ayudan a que dirección y gerencia entiendan claramente el mensaje que buscamos transmitirles.
+</li>
+<li>Nos permite que nuestro mensaje sea claro y fácil de interpretar.
+</li>
+<li>Nos permite poner en palabras conclusiones a las que no podríamos llegar sin verlas plasmadas en una forma visual.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Agregar valor con los datos</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Ofrecer información relevante.
+</li>
+<li>Explora, descubre, pregunta.
+</li>
+<li>Trabajar en equipo.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Flujo de trabajo y etapas del business Intelligence</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Recolección de datos</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>La primera etapa del proceso.
+</li>
+<li>Bases públicas y privadas.
+<ul class="org-ul">
+<li>Publicas:
+<ul class="org-ul">
+<li>data.nasa.gov
+</li>
+<li>www.makeovermonday.co.uk/data/
+</li>
+<li>maxar.com
+</li>
+<li>podaac.jpl.nasa.gov/datasetlist
+</li>
+<li>science.nasa.gov/citizenscience
+</li>
+<li>kaggle.com/datasets
+</li>
+<li>developers.google.com/earth-engine/datasets
+</li>
+</ul>
+</li>
+<li>Puede venir de manera estructurada o no estructurada.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Limpieza de datos</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Antes de interpretar los datos necesitamos que estos tengan un formato estandarizado.
+</li>
+<li>Garbage in garbage out.
+<ul class="org-ul">
+<li>Entre mejor sea nuestra información mejores serán nuestros resultados.
+</li>
+<li>El producto final depende de la calidad de los datos.
+</li>
+</ul>
+</li>
+<li>Es entre el 60/70% del trabajo de un data scientist.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Exploración de datos</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>Descubre, pregunta, reformula, analiza.
+</li>
+<li>Los datos sin historias son sólo números.
+</li>
+<li></li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-10-08 Sat 18:54</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Curso de Business Intelligence: Utilidad y Áreas de oportunidad</title>
-<!-- 2022-07-05 Tue 19:10 -->
+<!-- 2022-10-08 Sat 18:54 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -230,6 +230,21 @@ MathJax.Hub.Config({
 <li><a href="#sec-1-5">1.5. Ingreso, utilidad y costos</a></li>
 <li><a href="#sec-1-6">1.6. Margen de contribución</a></li>
 <li><a href="#sec-1-7">1.7. Razones matemáticas en los negocios</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. <code>Business inteligence</code></a>
+<ul class="nav">
+<li><a href="#sec-2-1">2.1. Extracción de datos y ejemplos de archivos</a></li>
+<li><a href="#sec-2-2">2.2. Limpieza de datos con excel y python</a></li>
+<li><a href="#sec-2-3">2.3. Exploración de datos</a></li>
+<li><a href="#sec-2-4">2.4. Descubrimientos, highlights, top y bottom data</a></li>
+<li><a href="#sec-2-5">2.5. Reporting</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Buenas prácticas</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Alertas, automatización y <code>live reporting</code></a></li>
+<li><a href="#sec-3-2">3.2. Eficiencia, max profit y min cost</a></li>
 </ul>
 </li>
 </ul>
@@ -606,7 +621,161 @@ MathJax.Hub.Config({
 <h3 id="sec-1-7"><span class="section-number-3">1.7</span> Razones matemáticas en los negocios</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
-<li>aaa
+<li>La relación entre dos distintas magnitudes
+<ul class="org-ul">
+<li>O pensar en porcentajes.
+</li>
+</ul>
+</li>
+<li>Responde a cuanto hay de una magnitud en otra?.
+</li>
+<li>Sirven para comparar rendimientos de manera sencilla.
+</li>
+<li>Ejemplos:
+<ul class="org-ul">
+<li>Utilidad / ingresos:
+<ul class="org-ul">
+<li>Conocer el rendimiento respecto a otros productos, empresas e industrias.
+</li>
+</ul>
+</li>
+<li>Margen de contribución / Precio:
+<ul class="org-ul">
+<li>Conocer cuál producto conviene vender más.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> <code>Business inteligence</code></h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Extracción de datos y ejemplos de archivos</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Debemos recordar el proceso <code>ETL</code>.
+</li>
+<li>Es probable que la información este fragmentada en diferentes sitios (silos de información).
+<ul class="org-ul">
+<li>cada departamento guarda información de manera diferente así que es probable que sea complicado relacionarla.
+</li>
+</ul>
+</li>
+<li>Debemos de saber como extraer la información de diferentes softwares.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Limpieza de datos con excel y python</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>La segunda parte del <code>ETL</code>.
+</li>
+<li>debemos limpiar los datos para que sean entendibles para la siguiente fase.
+</li>
+<li><code>garbage in, garbage out</code>.
+<ul class="org-ul">
+<li>Si ingresas contenido basura a tu proceso, lo que saldra de este es basura también.
+</li>
+<li>Debemos de ser cuidadosos con la limpieza.
+</li>
+</ul>
+</li>
+<li>Es el primer acercamiento para ver que tipo de información tenemos.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Exploración de datos</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>debemos explorar estos para poder encontrar patrones y tendencias en los datos podemos hacernos preguntas para comprender los datos.
+</li>
+<li>Cambio de hipotesis iniciales ya que puede que la información cambie estas preguntas.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Descubrimientos, highlights, top y bottom data</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Los highlights son los que nos ayuda a tomar desciciones.
+</li>
+<li>Siempre iniciar con lo más usado.
+</li>
+<li>Intentar buscar lo más y lo menos.
+</li>
+<li>Tomar en cuenta el tiempo y ver patrones allí.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Reporting</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Debemos pensar en la audiencia a la que le vamos a presentar los datos.
+<ul class="org-ul">
+<li>Reportes van personalizados a la audiencia.
+</li>
+<li>Debemos centrarnos en el mensaje del reporte.
+</li>
+</ul>
+</li>
+<li>Debemos de dar <b>contexto</b>.
+</li>
+<li>Concentrar nuestros esfuerzos en un dashboard.
+</li>
+<li>usar storytelling para entretener a la audiencia.
+</li>
+<li>Dejar sugerencias sobre esta información.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Buenas prácticas</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Alertas, automatización y <code>live reporting</code></h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Es mejor que tus reportes estén conectados a las fuentes de información.
+<ul class="org-ul">
+<li>Usamos automatización con software.
+</li>
+</ul>
+</li>
+<li>Podemos poner alarmas para monitorear ciertos parametros.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Eficiencia, max profit y min cost</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Mejorar un proceso nos permite mejorar nuestros recursos a largo plazo.
+</li>
+<li>Siempre debemos de buscar mejorar la utilidad.
+</li>
+<li>Pensar siempre en la jerarquía de stakeholders.
 </li>
 </ul>
 </div>
@@ -615,7 +784,7 @@ MathJax.Hub.Config({
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-07-05 Tue 19:10</p>
+<p class="date">Created: 2022-10-08 Sat 18:54</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>

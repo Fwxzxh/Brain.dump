@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>C++</title>
+<!-- 2022-10-08 Sat 18:55 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="J.D Castro">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script>
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><style>pre { font-size: 16px; background-color: #2E3440; color: #bbb; }</style>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-3 col-md-push-9"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Conceptos Básicos</a>
+<ul class="nav">
+<li><a href="#sec-1-1">1.1. C++</a></li>
+<li><a href="#sec-1-2">1.2. <code>Headers</code> y <code>namespaces</code></a></li>
+<li><a href="#sec-1-3">1.3. Salto de linea</a></li>
+<li><a href="#sec-1-4">1.4. Comentarios</a></li>
+<li><a href="#sec-1-5">1.5. Variables</a></li>
+<li><a href="#sec-1-6">1.6. Trabajando con variables</a></li>
+<li><a href="#sec-1-7">1.7. Más sobre variables</a></li>
+<li><a href="#sec-1-8">1.8. Operador de asignación e incremento</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div><div class="col-md-9 col-md-pull-3"><h1 class="title">C++</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Conceptos Básicos</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> C++</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Es un popular lenguaje multiplataforma de uso general.
+</li>
+<li>Puede ser usado para hacer aplicaciones de alto rendimiento.
+</li>
+<li>C++ esta derivado de C.
+</li>
+</ul>
+
+<hr >
+
+<p>
+Un programa de C++ es una colección de comandos
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span> <span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+El punto de entrada para cualquier programa de C++ es la función <code>main</code>.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Hola mundo</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">" This "</span> <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"is "</span> <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"awesome"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>cout</code> es usado para imprimir en la salida estándar (consola).
+</li>
+<li>Es usado en conjunto con el operador de inserción <code>&lt;&lt;</code>.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> <code>Headers</code> y <code>namespaces</code></h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>C++ ofrece diversos <code>headers</code> cada uno conteniendo información para que los programas se ejecuten de manera correcta.
+</li>
+<li>El <code>header</code> <code>iostream</code> define los objetos estándar para la entrada y salida de datos
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ff79c6; font-style: italic;">namespace</span> std<span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// &lt;- Namespace</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Hello world!"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Un <code>namespace</code> es un espacio de nombres, provee un alcance a los identificadores que se encuentran dentro del <code>namespace</code>.
+</li>
+<li>En nuestro código, <code>using namespace std</code> dice que vamos a usar el espacio de nombres <code>std</code>, en nuestro archivo.
+<ul class="org-ul">
+<li><code>std</code> incluye funcionalidades de la biblioteca estándar de c++.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Salto de linea</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Para meter saltos de línea a nuestro mensaje en consola utilizamos <code>endl</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ff79c6; font-style: italic;">namespace</span> std<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Hello world!"</span> <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> endl<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"I love programing"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+También podemos hacer uso del carácter de salto de linea en lugar de <code>endl</code>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ff79c6; font-style: italic;">namespace</span> std<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Hello world! \n"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"I love programing"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+El <code>\</code> indica que es un carácter especial.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Comentarios</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Los comentarios son lineas que el compilador ignora y son usadas para documentar el código.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ff79c6; font-style: italic;">namespace</span> std<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #6272a4; font-style: italic;">// &lt;- Esto es un comentario</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Hello world! \n"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"I love programing"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #6272a4; font-style: italic;">/*</span>
+<span style="color: #6272a4; font-style: italic;">      comentari multilinea</span>
+<span style="color: #6272a4; font-style: italic;">     */</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Los comentarios que empiezan con <code>/*</code> y terminan con <code>*/</code> son comentarios multilinea.
+</li>
+<li>Los comentarios que empiezan con dos diagonales son comentarios de una sola línea.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Variables</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Crear una variable reserva un espacio en la memoria para guardar esta variable.
+<ul class="org-ul">
+<li>Para esto el compilador necesita el tipo de esta variable, para guardar la cantidad exacta de espacio.
+</li>
+</ul>
+</li>
+<li>C++ tiene tipos por defecto además de que podemos definir los nuestros.
+</li>
+<li>Diferentes sistemas operativos y arquitecturas pueden reservar diferentes tamaños de memoria para cada tipo.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ff79c6; font-style: italic;">namespace</span> std<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">myVariable</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> myVariable<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+C++ es sensible a las mayúsculas con las variables.
+</p>
+
+<hr >
+
+<p>
+Podemos definir varias variables en una sola linea si son del mismo tipo.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">a</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ffc9e8;">b</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ffc9e8;">c</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">sum</span> <span style="color: #ff79c6; font-style: italic;">=</span> a <span style="color: #ff79c6; font-style: italic;">+</span> b <span style="color: #ff79c6; font-style: italic;">+</span> c<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+Todas las variables deben de ser definidas con un nombre y un tipo antes de ser utilizadas.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Trabajando con variables</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Podemos decidir si asignar un valor a una variable o hacerlo despues.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">a</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">b</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+
+<span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">10</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ffc9e8;">b</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">20</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+Para leer la entrada de un valor en la consola ocupamos <code>cin</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">num</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+cin <span style="color: #ff79c6; font-style: italic;">&gt;&gt;</span> num<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+</pre>
+</div>
+
+<p>
+El siguiente ejemplo le pide al usuario un valor y lo guarda en la variable <code>a</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ff79c6; font-style: italic;">namespace</span> std<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">a</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Please enter a number"</span> <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> endl<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cin <span style="color: #ff79c6; font-style: italic;">&gt;&gt;</span> a<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+
+<p>
+También podemos tener un ejemplo más complejo:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9; font-weight: bold;">#include</span> <span style="color: #f1fa8c;">&lt;iostream&gt;</span>
+<span style="color: #ff79c6; font-style: italic;">using</span> <span style="color: #ff79c6; font-style: italic;">namespace</span> std<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+
+<span style="color: #ffb86c;">int</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff; background-color: #282a36;">()</span>
+<span style="color: #61bfff; background-color: #282a36;">{</span>
+    <span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">a</span><span style="color: #f8f8f2; background-color: #282a36;">,</span> <span style="color: #ffc9e8;">b</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Please enter a number"</span> <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> endl<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cin <span style="color: #ff79c6; font-style: italic;">&gt;&gt;</span> a<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Enter another number \n"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cin <span style="color: #ff79c6; font-style: italic;">&gt;&gt;</span> b<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    cout <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> <span style="color: #f1fa8c;">"Sum is: "</span> <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> sum <span style="color: #ff79c6; font-style: italic;">&lt;&lt;</span> endl<span style="color: #f8f8f2; background-color: #282a36;">;</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #8be9fd;">0</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #61bfff; background-color: #282a36;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Más sobre variables</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>Especificar el tipo de dato es requerido solo una vez, cuando esta es declarada,
+después podemos usarla sin declarar su tipo.
+</li>
+<li>Una variable puede ser cambiada cada que sea necesario.
+</li>
+<li>Podemos usar la palabra <code>auto</code> para inferir el tipo automáticamente.
+<ul class="org-ul">
+<li>Las variables declaradas con <code>auto</code> deben ser inicializadas con un valor siempre.
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #bd93f9;">auto</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">4</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// integer</span>
+<span style="color: #bd93f9;">auto</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3.37</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// float</span>
+<span style="color: #bd93f9;">auto</span> <span style="color: #ffc9e8;">z</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #f1fa8c;">"hello"</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// string</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> Operador de asignación e incremento</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>Todos los operadores aritméticos son los mismos: <code>+-*/%</code>
+</li>
+<li>También podemos hacer una asignación y operación aritmética en una sola linea.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">20</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #8be9fd;">4</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// equivalente a x = x + 4</span>
+<span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">-=</span> <span style="color: #8be9fd;">5</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// equivalente a x = x - 4</span>
+</pre>
+</div>
+
+<p>
+También están los operadores de incremento y decremento
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-cpp"><span style="color: #ffb86c;">int</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">20</span><span style="color: #f8f8f2; background-color: #282a36;">;</span>
+<span style="color: #ffc9e8;">x</span><span style="color: #ff79c6; font-style: italic;">++</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// equivalente a x = x + 1</span>
+<span style="color: #ffc9e8;">x</span><span style="color: #ff79c6; font-style: italic;">--</span><span style="color: #f8f8f2; background-color: #282a36;">;</span> <span style="color: #6272a4; font-style: italic;">// equivalente a x = x - 1</span>
+</pre>
+</div>
+
+<p>
+Hay dos formas de este operador, prefix y posfix
+</p>
+</div>
+</div>
+</div>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: J.D Castro</p>
+<p class="date">Created: 2022-10-08 Sat 18:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+</div>
+</footer>
+</body>
+</html>

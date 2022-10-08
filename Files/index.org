@@ -65,6 +65,9 @@ Apuntes sobre distintos cursos que he tomado.
   - [[file:Cursos/DataScienceIA/MLForBeginers.org][ML-For-Beginers (by microsoft)]]
 - Flutter
   - [[file:Cursos/Flutter/flutter.org][Flutter]]
+- Finanzas
+  - [[file:Cursos/Finanzas/IntroEduFinanciera.org][Curso de introducción financiera]]
+  - [[file:Cursos/Finanzas/CurFinanzasPersonales.org][Curso de Finanzas Personales]]
 
 * Notas generales
 #+begin_quote
@@ -83,6 +86,7 @@ Mi propio rincón con enfoque tipo [[https://learnxinyminutes.com/][Learn X in Y
 - [[file:Lenguajes/Fsharp/Fsharp.org][F#]]
 - [[file:Lenguajes/Kotlin/Kotlin.org][Kotlin]]
 - [[file:Lenguajes/ocaml.org][OCaml]]
+- [[file:Lenguajes/Cpp/Cpp.org][C++]]
 
 * Teoría
 #+begin_quote

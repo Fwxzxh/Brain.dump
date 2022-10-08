@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Go</title>
-<!-- 2022-04-03 Sun 14:56 -->
+<!-- 2022-10-08 Sat 18:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -270,7 +270,7 @@ $(function() {
 <span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hello world"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hello world"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -372,7 +372,7 @@ Similar a otros lenguajes <code>func main()</code> es el punto de entrada del pr
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #6272a4; font-style: italic;">// comentario de una sola linea</span>
-<span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"go go go go!"</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #61bfff;">(</span><span style="color: #f1fa8c;">"go go go go!"</span><span style="color: #61bfff;">)</span>
 <span style="color: #6272a4; font-style: italic;">/* comentario</span>
 <span style="color: #6272a4; font-style: italic;">   multil&#237;nea */</span>
 </pre>
@@ -403,7 +403,7 @@ Similar a otros lenguajes <code>func main()</code> es el punto de entrada del pr
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">i</span> <span style="color: #bd93f9;">int</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span> <span style="color: #6272a4; font-style: italic;">// var &lt;nombe&gt; &lt;tipo&gt; = &lt;valor de la variable&gt;</span>
-fmt.<span style="color: #bd93f9;">print</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">i</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9;">print</span><span style="color: #61bfff;">(</span>i<span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -420,7 +420,7 @@ fmt.<span style="color: #bd93f9;">print</span><span style="color: #61bfff;">(</s
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">i</span>, <span style="color: #ffc9e8;">j</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">69</span>, <span style="color: #8be9fd;">42</span> <span style="color: #6272a4; font-style: italic;">// Go sabe que i y j son int (enteros)</span>
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">i</span>, j <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">69</span>, <span style="color: #8be9fd;">42</span> <span style="color: #6272a4; font-style: italic;">// Go sabe que i y j son int (enteros)</span>
 </pre>
 </div>
 
@@ -518,9 +518,9 @@ La diferencia entre <code>float32</code> y <code>float64</code> es la precisión
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">input</span> <span style="color: #bd93f9;">string</span>
-<span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Scanln</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">input</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Scanln</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span>input<span style="color: #61bfff;">)</span>
 
-fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">input</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span>input<span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -533,9 +533,9 @@ El carácter <code>&amp;</code> es usado para retornar la dirección de la varia
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">input</span> <span style="color: #bd93f9;">int</span>
-<span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Scanln</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">input</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Scanln</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span>input<span style="color: #61bfff;">)</span>
 
-fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">input</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span>input<span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -559,11 +559,11 @@ En este ejemplo como declaramos la variable <code>input</code> como <code>int</c
 
 <pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">69</span>
 
-<span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #8be9fd;">69</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Not funny!"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #ff79c6; font-style: italic;">if</span> x <span style="color: #ff79c6; font-style: italic;">!=</span> <span style="color: #8be9fd;">69</span> <span style="color: #61bfff;">{</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Not funny!"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 <span style="color: #bd93f9;">else</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Maybe funny!"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Maybe funny!"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -581,11 +581,11 @@ El código dentro de los corchetes no correrá a menos que la condición se cump
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>; <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">18</span> <span style="color: #61bfff;">{</span> <span style="color: #6272a4; font-style: italic;">// se usa el ; para separar las dos operaciones.</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Sup!"</span><span style="color: #ff79c6;">)</span>
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>; x <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">18</span> <span style="color: #61bfff;">{</span> <span style="color: #6272a4; font-style: italic;">// se usa el ; para separar las dos operaciones.</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Sup!"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 <span style="color: #bd93f9;">else</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Sup'n!"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Sup'n!"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -604,15 +604,15 @@ El código dentro de los corchetes no correrá a menos que la condición se cump
 
 <pre class="src src-go"><span style="color: #ffc9e8;">num</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">3</span>
 
-<span style="color: #ff79c6; font-style: italic;">switch</span> <span style="color: #ffc9e8;">num</span> <span style="color: #61bfff;">{</span>
+<span style="color: #ff79c6; font-style: italic;">switch</span> num <span style="color: #61bfff;">{</span>
 <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #8be9fd;">1</span>:
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"1"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"1"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #8be9fd;">2</span>:
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"2"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"2"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #8be9fd;">3</span>:
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"3"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"3"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #ff79c6; font-style: italic;">default</span>:
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">num</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>num<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -626,11 +626,11 @@ El código dentro de los corchetes no correrá a menos que la condición se cump
 
 <pre class="src src-go"><span style="color: #ffc9e8;">num</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">3</span>
 
-<span style="color: #ff79c6; font-style: italic;">switch</span> <span style="color: #ffc9e8;">num</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">num</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">0</span> <span style="color: #ff79c6; font-style: italic;">&amp;&amp;</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">10</span>:
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"algo"</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">num</span> <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">10</span>:
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"otra cosa"</span><span style="color: #ff79c6;">)</span>
+<span style="color: #ff79c6; font-style: italic;">switch</span> num <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6; font-style: italic;">case</span> num <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">0</span> <span style="color: #ff79c6; font-style: italic;">&amp;&amp;</span> x <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">10</span>:
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"algo"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">case</span> num <span style="color: #ff79c6; font-style: italic;">&gt;</span> <span style="color: #8be9fd;">10</span>:
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"otra cosa"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -657,8 +657,8 @@ Al igual que los <code>if/else</code>, el <code>switch</code> puede tener una de
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">5</span> ; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">i</span><span style="color: #ff79c6;">)</span>
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>; i <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">5</span> ; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #61bfff;">{</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>i<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -673,11 +673,11 @@ Al igual que los <code>if/else</code>, el <code>switch</code> puede tener una de
 <pre class="src src-go"><span style="color: #ffc9e8;">sum</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">1</span>
 <span style="color: #ffc9e8;">res</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
 
-<span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">sum</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1000</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">res</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">sum</span>
-    <span style="color: #ffc9e8;">sum</span> <span style="color: #ff79c6; font-style: italic;">++</span>
+<span style="color: #ff79c6; font-style: italic;">for</span> sum <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">1000</span> <span style="color: #61bfff;">{</span>
+    res <span style="color: #ff79c6; font-style: italic;">+=</span> sum
+    sum <span style="color: #ff79c6; font-style: italic;">++</span>
 <span style="color: #61bfff;">}</span>
-fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">res</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span>res<span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -702,7 +702,7 @@ fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(<
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"hello"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"hello"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -716,8 +716,8 @@ Hemos definido una función llamada <code>welcome</code> que imprime <code>Hello
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">()</span>
-    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">()</span>
+    <span style="color: #bd93f9; font-weight: bold;">welcome</span><span style="color: #ff79c6;">()</span>
+    <span style="color: #bd93f9; font-weight: bold;">welcome</span><span style="color: #ff79c6;">()</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -745,12 +745,12 @@ Ahora podemos llamar a esa función cuantas veces queramos.
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">name</span> <span style="color: #bd93f9;">string</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"hello,"</span><span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #ffc9e8;">name</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"hello,"</span><span style="color: #ff79c6; font-style: italic;">+</span>name<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"david"</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"james"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"david"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"james"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -774,11 +774,11 @@ En go el tipo del argumento va después de el nombre del argumento.
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">a</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">b</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">a</span><span style="color: #ff79c6; font-style: italic;">+</span><span style="color: #ffc9e8;">b</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6; font-style: italic;">+</span>b<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #50fa7b;">sum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">5</span>,<span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">sum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">5</span>,<span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -808,11 +808,11 @@ Si todos los argumentos son del mismo tipo podemos definir el tipo en el último
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #bd93f9;">int</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ffc9e8;">y</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> x <span style="color: #ff79c6; font-style: italic;">+</span> y
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">sum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">sum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -836,7 +836,7 @@ Debemos definir el tipo de dato del retorno fuera de los argumentos de la funci�
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">swap</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span>, <span style="color: #ffc9e8;">y</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">(</span><span style="color: #bd93f9;">int</span>, <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">return</span> <span style="color: #ffc9e8;">y</span>, <span style="color: #ffc9e8;">x</span>
+    <span style="color: #ff79c6; font-style: italic;">return</span> y, x
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -862,12 +862,12 @@ Al igual que retornando un solo valor, debemos declarar los tipos de los valores
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"welcome"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"welcome"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">defer</span> <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">()</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hey"</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">defer</span> <span style="color: #bd93f9; font-weight: bold;">welcome</span><span style="color: #ff79c6;">()</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Hey"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -901,13 +901,13 @@ En este caso, no se llama a <code>welcome</code> hasta que se haya terminado de 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"start"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"start"</span><span style="color: #ff79c6;">)</span>
 
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">5</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">defer</span> <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">i</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>; i <span style="color: #ff79c6; font-style: italic;">&lt;</span> <span style="color: #8be9fd;">5</span>; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">defer</span> fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>i<span style="color: #50fa7b;">)</span>
     <span style="color: #ff79c6;">}</span>
 
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"end"</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"end"</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 
 </pre>
@@ -945,11 +945,11 @@ end
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">test</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">9</span> <span style="color: #6272a4; font-style: italic;">// local</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1002,7 +1002,7 @@ Los punteros permiten pasar referencias a valores en tu programa.
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
-<span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+<span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>x
 </pre>
 </div>
 
@@ -1018,14 +1018,14 @@ Ahora <code>p</code> es un puntero y mantiene la dirección de memoria de x.
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
-  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">p</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>x
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>p<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
 
 <pre class="example">
-0xc00001e0b0
+0xc0000b2000
 </pre>
 
 
@@ -1041,8 +1041,8 @@ Si queremos acceder al valor de el puntero, podemos usar el operador <code>*</co
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
-  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">p</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>x
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">*</span>p<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1059,11 +1059,11 @@ El operador <code>*</code> puede ser usado para cambiar el valor de la direcció
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
-  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>x
 
-  <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">p</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #ff79c6; font-style: italic;">*</span>p <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">*</span>p<span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1098,9 +1098,9 @@ Somos capaces de  cambiar el valor de x usando el puntero <code>p</code>.
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">input</span> <span style="color: #bd93f9;">string</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Scanln</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">input</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Scanln</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span>input<span style="color: #ff79c6;">)</span>
 
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">input</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>input<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1122,21 +1122,21 @@ Podemos pasar punteros como parametros de una función.
 <span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">change</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">val</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ffc9e8;">val</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+  val <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">change_ptr</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+  <span style="color: #ff79c6; font-style: italic;">*</span>ptr <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">42</span>
 
-  <span style="color: #50fa7b;">change</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #bd93f9; font-weight: bold;">change</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
 
-  <span style="color: #50fa7b;">change_ptr</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #bd93f9; font-weight: bold;">change_ptr</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&amp;</span>x<span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1203,7 +1203,7 @@ También podemos darle el nombre de los campos a la hora de crearlo.
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">{</span><span style="color: #8be9fd; font-style: italic;">name</span>: <span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd; font-style: italic;">age</span>: <span style="color: #8be9fd;">42</span><span style="color: #61bfff;">}</span>
+<pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">{</span>name: <span style="color: #f1fa8c;">"James"</span>, age: <span style="color: #8be9fd;">42</span><span style="color: #61bfff;">}</span>
 </pre>
 </div>
 
@@ -1225,9 +1225,9 @@ Podemos acceder a los campos del <code>struct</code> de la siguiente manera.
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
 
-  <span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  x.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1249,7 +1249,7 @@ De manera similar a punteros simples, podemos hacer punteros a <code>structs</co
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #61bfff;">}</span>
-<span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+<span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>x
 </pre>
 </div>
 
@@ -1266,9 +1266,9 @@ De manera similar a punteros simples, podemos hacer punteros a <code>structs</co
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
-  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #ffc9e8;">x</span>
+  <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span>x
 
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">p</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>p.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1302,7 +1302,7 @@ También podemos usar punteros cuando creamos un nuevo <code>struct</code>.
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">p</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&amp;</span><span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"John"</span>, <span style="color: #8be9fd;">15</span><span style="color: #ff79c6;">}</span>
 
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">p</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>p.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1331,8 +1331,8 @@ Ahora <code>p</code> es un puntero a el <code>struct</code> que se acaba de crea
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1359,13 +1359,13 @@ Después de definir un método podemos acceder a el con la sintaxis punto.
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">welcome</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
-  <span style="color: #ffc9e8;">x</span>.<span style="color: #50fa7b; font-style: italic;">welcome</span><span style="color: #ff79c6;">()</span>
+  x.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">welcome</span><span style="color: #ff79c6;">()</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1386,12 +1386,12 @@ Como los métodos son solo funciones con un argumento recibidor, podemos alcanza
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">welcome</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">x</span> <span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">name</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
-  <span style="color: #50fa7b;">welcome</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #ff79c6;">)</span>
+  <span style="color: #bd93f9; font-weight: bold;">welcome</span><span style="color: #ff79c6;">(</span>x<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1409,7 +1409,7 @@ En el caso de que necesitemos cambiar los datos del <code>struct</code> en un m�
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">increase</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">val</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ffc9e8;">ptr</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">val</span>
+  ptr.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">+=</span> val
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1430,13 +1430,13 @@ El método <code>increase()</code> usa un puntero como argumento y puede modific
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">ptr</span> <span style="color: #ff79c6; font-style: italic;">*</span><span style="color: #bd93f9;">Contact</span><span style="color: #61bfff;">)</span> <span style="color: #50fa7b; font-style: italic;">increase</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">val</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-  <span style="color: #ffc9e8;">ptr</span>.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">val</span>
+  ptr.<span style="color: #8be9fd; font-style: italic;">age</span> <span style="color: #ff79c6; font-style: italic;">+=</span> val
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
   <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9;">Contact</span><span style="color: #ff79c6;">{</span><span style="color: #f1fa8c;">"James"</span>, <span style="color: #8be9fd;">42</span><span style="color: #ff79c6;">}</span>
-  <span style="color: #ffc9e8;">x</span>.<span style="color: #50fa7b; font-style: italic;">increase</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">8</span><span style="color: #ff79c6;">)</span>
-  <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">x</span>.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
+  x.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">increase</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">8</span><span style="color: #ff79c6;">)</span>
+  fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>x.<span style="color: #8be9fd; font-style: italic;">age</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1496,10 +1496,10 @@ Después podemos acceder a los elementos del arreglo usando corchetes y su índi
 
 <pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">a</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">5</span><span style="color: #61bfff;">]</span><span style="color: #bd93f9;">int</span>
 
-<span style="color: #ffc9e8;">a</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
-<span style="color: #ffc9e8;">a</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">42</span>
+a<span style="color: #61bfff;">[</span><span style="color: #8be9fd;">0</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">8</span>
+a<span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span><span style="color: #61bfff;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">42</span>
 
-fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">a</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span>a<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1534,7 +1534,7 @@ Esta basado en un en un arreglo y se define dando dos índices, el índice infer
 
 <pre class="src src-go"><span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">5</span><span style="color: #61bfff;">]</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">{</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">8</span><span style="color: #61bfff;">}</span>
 
-<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">s</span> <span style="color: #61bfff;">[]</span><span style="color: #bd93f9;">int</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffc9e8;">a</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span>:<span style="color: #8be9fd;">3</span><span style="color: #61bfff;">]</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">s</span> <span style="color: #61bfff;">[]</span><span style="color: #bd93f9;">int</span> <span style="color: #ff79c6; font-style: italic;">=</span> a<span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span>:<span style="color: #8be9fd;">3</span><span style="color: #61bfff;">]</span>
 </pre>
 </div>
 
@@ -1564,9 +1564,9 @@ Podemos acceder a los valores de un <code>slice</code> usando la misma sintaxis 
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #61bfff;">[</span><span style="color: #8be9fd;">5</span><span style="color: #61bfff;">]</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">{</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">8</span><span style="color: #61bfff;">}</span>
-<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">s</span><span style="color: #61bfff;">[]</span><span style="color: #bd93f9;">int</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #ffc9e8;">a</span><span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span>:<span style="color: #8be9fd;">3</span><span style="color: #61bfff;">]</span>
+<span style="color: #ff79c6; font-style: italic;">var</span> <span style="color: #ffc9e8;">s</span><span style="color: #61bfff;">[]</span><span style="color: #bd93f9;">int</span> <span style="color: #ff79c6; font-style: italic;">=</span> a<span style="color: #61bfff;">[</span><span style="color: #8be9fd;">1</span>:<span style="color: #8be9fd;">3</span><span style="color: #61bfff;">]</span>
 
-fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">s</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9;">Println</span><span style="color: #61bfff;">(</span>s<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1587,7 +1587,7 @@ Go provee la función <code>make()</code> para crear <code>slices</code>, es as�
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[]</span><span style="color: #bd93f9;">int</span>, <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
+<pre class="src src-go"><span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">[]</span><span style="color: #bd93f9;">int</span>, <span style="color: #8be9fd;">5</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1606,9 +1606,9 @@ Después de crear la <code>slice</code>, podemos agregar nuevos elementos a el u
 <span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">[]</span><span style="color: #bd93f9;">int</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #50fa7b;">append</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">a</span>, <span style="color: #8be9fd;">8</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">a</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">[]</span><span style="color: #bd93f9;">int</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+    a <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #bd93f9; font-weight: bold;">append</span><span style="color: #ff79c6;">(</span>a, <span style="color: #8be9fd;">8</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>a<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1648,12 +1648,12 @@ La variación <code>range</code> del ciclo <code>for</code> nos permite iterar e
 
 <span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">[]</span><span style="color: #bd93f9;">int</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ffc9e8;">a</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">2</span>
-    <span style="color: #ffc9e8;">a</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3</span>
+    <span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">[]</span><span style="color: #bd93f9;">int</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+    a<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">1</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">2</span>
+    a<span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">2</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">3</span>
 
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span>, <span style="color: #ffc9e8;">v</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> <span style="color: #ffc9e8;">a</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">i</span>, <span style="color: #ffc9e8;">v</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span>, <span style="color: #ffc9e8;">v</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> a <span style="color: #ff79c6;">{</span>
+        fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>i, v<span style="color: #50fa7b;">)</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
 </pre>
@@ -1678,8 +1678,8 @@ Si solo queremos los valores, podemos ignorar el índice con un guión bajo.
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">v</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> <span style="color: #ffc9e8;">a</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">v</span><span style="color: #ff79c6;">)</span>
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">v</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> a <span style="color: #61bfff;">{</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>v<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1702,8 +1702,8 @@ También podemos usarlo para iterar sobre los caracteres de un <code>string</cod
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #f1fa8c;">"hello"</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">c</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">c</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">c</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> x <span style="color: #ff79c6;">{</span>
+        fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>c<span style="color: #50fa7b;">)</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
 </pre>
@@ -1716,8 +1716,8 @@ la función <code>Printf()</code>
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">c</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> <span style="color: #ffc9e8;">x</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Printf</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"%c </span><span style="color: #f1fa8c; font-style: italic;">\n</span><span style="color: #f1fa8c;">"</span>, <span style="color: #ffc9e8;">c</span><span style="color: #ff79c6;">)</span>
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">c</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> x <span style="color: #61bfff;">{</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Printf</span><span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"%c </span><span style="color: #f1fa8c; font-style: italic;">\n</span><span style="color: #f1fa8c;">"</span>, c<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1743,7 +1743,7 @@ Podemos crear un <code>map</code> usando la función <code>make()</code>, de man
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ffc9e8;">m</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">map</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">]</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span>
+<pre class="src src-go"><span style="color: #ffc9e8;">m</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">map</span><span style="color: #ff79c6;">[</span><span style="color: #bd93f9;">string</span><span style="color: #ff79c6;">]</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1758,11 +1758,11 @@ ahora <code>m</code> es un <code>map</code> que mapea una llave tipo <code>strin
 <span style="color: #ff79c6; font-style: italic;">import</span> <span style="color: #f1fa8c;">"fmt"</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">m</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">map</span><span style="color: #50fa7b;">[</span><span style="color: #bd93f9;">string</span><span style="color: #50fa7b;">]</span><span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ffc9e8;">m</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"James"</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">42</span>
-    <span style="color: #ffc9e8;">m</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Amy"</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">24</span>
+    <span style="color: #ffc9e8;">m</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">map</span><span style="color: #50fa7b;">[</span><span style="color: #bd93f9;">string</span><span style="color: #50fa7b;">]</span><span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    m<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"James"</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">42</span>
+    m<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Amy"</span><span style="color: #ff79c6;">]</span> <span style="color: #ff79c6; font-style: italic;">=</span> <span style="color: #8be9fd;">24</span>
 
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">m</span><span style="color: #50fa7b;">[</span><span style="color: #f1fa8c;">"James"</span><span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>m<span style="color: #50fa7b;">[</span><span style="color: #f1fa8c;">"James"</span><span style="color: #50fa7b;">]</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1783,7 +1783,7 @@ También podemos inicializar un <code>map</code> con la siguiente sintaxis:
     <span style="color: #f1fa8c;">"Amy"</span>: <span style="color: #8be9fd;">24</span>
 <span style="color: #61bfff;">}</span>
 
-fmt.<span style="color: #bd93f9;">Printf</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">m</span><span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Amy"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
+fmt.<span style="color: #bd93f9;">Printf</span><span style="color: #61bfff;">(</span>m<span style="color: #ff79c6;">[</span><span style="color: #f1fa8c;">"Amy"</span><span style="color: #ff79c6;">]</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1803,7 +1803,7 @@ Podemos usar <code>delete</code> para eliminar un elemento del <code>map</code>
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #50fa7b;">delete</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">m</span>, <span style="color: #f1fa8c;">"James"</span><span style="color: #61bfff;">)</span>
+<pre class="src src-go"><span style="color: #bd93f9; font-weight: bold;">delete</span><span style="color: #61bfff;">(</span>m, <span style="color: #f1fa8c;">"James"</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -1826,12 +1826,12 @@ También podemos definir nuestras propias funciones:
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">sums</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">nums</span> <span style="color: #ff79c6; font-style: italic;">...</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">sums</span><span style="color: #61bfff;">(</span>nums <span style="color: #ff79c6; font-style: italic;">...</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">total</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">v</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> <span style="color: #ffc9e8;">nums</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ffc9e8;">total</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">v</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">_</span>, <span style="color: #ffc9e8;">v</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">range</span> nums <span style="color: #ff79c6;">{</span>
+        total <span style="color: #ff79c6; font-style: italic;">+=</span> v
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ffc9e8;">total</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span>total<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1846,9 +1846,9 @@ ahora podemos usarla dándole n número de argumentos:
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">6</span><span style="color: #61bfff;">)</span>
-<span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">42</span>, <span style="color: #8be9fd;">8</span><span style="color: #61bfff;">)</span>
-<span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">6</span><span style="color: #61bfff;">)</span>
+<pre class="src src-go"><span style="color: #bd93f9; font-weight: bold;">sum</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">6</span><span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9; font-weight: bold;">sum</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">42</span>, <span style="color: #8be9fd;">8</span><span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9; font-weight: bold;">sum</span><span style="color: #61bfff;">(</span><span style="color: #8be9fd;">1</span>, <span style="color: #8be9fd;">2</span>, <span style="color: #8be9fd;">3</span>, <span style="color: #8be9fd;">4</span>, <span style="color: #8be9fd;">5</span>, <span style="color: #8be9fd;">6</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -1866,7 +1866,7 @@ variadica, podríamos usar la siguiente sintaxis
 <div class="org-src-container">
 
 <pre class="src src-go"><span style="color: #ffc9e8;">s</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #61bfff;">[]</span><span style="color: #bd93f9;">int</span><span style="color: #61bfff;">{</span><span style="color: #8be9fd;">42</span>, <span style="color: #8be9fd;">33</span>, <span style="color: #8be9fd;">22</span>, <span style="color: #8be9fd;">11</span><span style="color: #61bfff;">}</span>
-<span style="color: #50fa7b;">sum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">s</span><span style="color: #ff79c6; font-style: italic;">...</span><span style="color: #61bfff;">)</span>
+<span style="color: #bd93f9; font-weight: bold;">sum</span><span style="color: #61bfff;">(</span>s<span style="color: #ff79c6; font-style: italic;">...</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 </div>
@@ -1926,15 +1926,15 @@ Teniendo el siguiente programa:
 <span style="color: #61bfff;">)</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">out</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ffc9e8;">time</span>.<span style="color: #50fa7b; font-style: italic;">Sleep</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">time</span>.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #50fa7b;">)</span>
-        <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">i</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        time.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Sleep</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> time.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #50fa7b;">)</span>
+        fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>i<span style="color: #50fa7b;">)</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #50fa7b;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #50fa7b;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">10</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #bd93f9; font-weight: bold;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">10</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -1983,15 +1983,15 @@ de la función.
 <span style="color: #61bfff;">)</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">out</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ffc9e8;">time</span>.<span style="color: #50fa7b; font-style: italic;">Sleep</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">time</span>.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #50fa7b;">)</span>
-        <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">i</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        time.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Sleep</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> time.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #50fa7b;">)</span>
+        fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>i<span style="color: #50fa7b;">)</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">10</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">5</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">10</span><span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -2028,7 +2028,7 @@ Para crear un canal, primero debemos hacer uno con la función <code>make()</cod
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span>
+<pre class="src src-go"><span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span>
 </pre>
 </div>
 
@@ -2042,7 +2042,7 @@ Podemos mandar datos por el canal usando la siguiente sintaxis:
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #8be9fd;">8</span>
+<pre class="src src-go">ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #8be9fd;">8</span>
 </pre>
 </div>
 
@@ -2052,7 +2052,7 @@ De manera similar podemos recibir datos desde el canal usando la siguiente sinta
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ffc9e8;">value</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">ch</span>
+<pre class="src src-go"><span style="color: #ffc9e8;">value</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> ch
 </pre>
 </div>
 
@@ -2062,7 +2062,7 @@ Si no necesitamos el valor como una variable, podemos hacer lo siguiente:
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">ch</span>
+<pre class="src src-go"><span style="color: #ff79c6; font-style: italic;">&lt;-</span> ch
 </pre>
 </div>
 
@@ -2079,36 +2079,36 @@ Ahora podemos usar nuestro canal y re escribir el ejemplo anterior de manera que
 <span style="color: #61bfff;">)</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">out</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">bool</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ffc9e8;">time</span>.<span style="color: #50fa7b; font-style: italic;">Sleep</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">time</span>.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #50fa7b;">)</span>
-        <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">i</span><span style="color: #50fa7b;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        time.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Sleep</span><span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> time.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #50fa7b;">)</span>
+        fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>i<span style="color: #50fa7b;">)</span>
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffb86c;">true</span>
+    ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffb86c;">true</span>
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">bool</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">bool</span><span style="color: #ff79c6;">)</span>
 
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">5</span>, <span style="color: #ffc9e8;">ch</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">10</span>, <span style="color: #ffc9e8;">ch</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">5</span>, ch<span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">out</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">6</span>, <span style="color: #8be9fd;">10</span>, ch<span style="color: #ff79c6;">)</span>
 
-    <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">ch</span>
+    <span style="color: #ff79c6; font-style: italic;">&lt;-</span> ch
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
 
 <pre class="example">
-6
 0
+6
 1
 7
 2
 8
 3
 9
-4
 10
 </pre>
+
 
 <p>
 Como podemos ver, el <code>output</code> no esta ordenado esto es porque ambas tareas ocurrieron de manera concurrente.
@@ -2149,32 +2149,32 @@ rango dado más la suma de sus cuadrados e imprimir el resultado.
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> i<span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            result <span style="color: #ff79c6; font-style: italic;">+=</span> i
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+    ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> result
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">i</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> i<span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            result <span style="color: #ff79c6; font-style: italic;">+=</span> i <span style="color: #ff79c6; font-style: italic;">*</span> i
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+    ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> result
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
 
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">evenCh</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">sqCh</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, evenCh<span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, sqCh<span style="color: #ff79c6;">)</span>
 
-    <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">sqCh</span><span style="color: #ff79c6;">)</span>
+    fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">&lt;-</span> evenCh <span style="color: #ff79c6; font-style: italic;">+</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> sqCh<span style="color: #ff79c6;">)</span>
 <span style="color: #61bfff;">}</span>
 </pre>
 </div>
@@ -2217,36 +2217,36 @@ La sintaxis es similar al <code>switch</code>, solo que cada <code>case</code> s
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> i<span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            result <span style="color: #ff79c6; font-style: italic;">+=</span> i
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+    ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> result
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">i</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> i<span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            result <span style="color: #ff79c6; font-style: italic;">+=</span> i <span style="color: #ff79c6; font-style: italic;">*</span> i
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+    ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> result
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
 
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">evenCh</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">sqCh</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, evenCh<span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, sqCh<span style="color: #ff79c6;">)</span>
 
     <span style="color: #ff79c6; font-style: italic;">select</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">evenCh</span>:
-            <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #50fa7b;">)</span>
-        <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">sqCh</span>
-            <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span><span style="color: #ffc9e8;">y</span><span style="color: #50fa7b;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">case</span> x <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> evenCh:
+            fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>x<span style="color: #50fa7b;">)</span>
+        <span style="color: #ff79c6; font-style: italic;">case</span> y <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> sqCh
+            fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #50fa7b;">(</span>y<span style="color: #50fa7b;">)</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
 </pre>
@@ -2270,42 +2270,42 @@ Un <code>select</code> puede tener un caso <code>default</code>, este se ejecuta
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> i<span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            result <span style="color: #ff79c6; font-style: italic;">+=</span> i
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+    ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> result
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #61bfff;">(</span><span style="color: #ffc9e8;">from</span>, <span style="color: #ffc9e8;">to</span> <span style="color: #bd93f9;">int</span>, <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
     <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #8be9fd;">0</span>
-    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ffc9e8;">from</span>; <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">&lt;=</span> <span style="color: #ffc9e8;">to</span>; <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
-        <span style="color: #ff79c6; font-style: italic;">if</span> <span style="color: #ffc9e8;">i</span><span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ffc9e8;">result</span> <span style="color: #ff79c6; font-style: italic;">+=</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">i</span>
+    <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ffc9e8;">i</span> <span style="color: #ff79c6; font-style: italic;">:=</span> from; i <span style="color: #ff79c6; font-style: italic;">&lt;=</span> to; i<span style="color: #ff79c6; font-style: italic;">++</span> <span style="color: #ff79c6;">{</span>
+        <span style="color: #ff79c6; font-style: italic;">if</span> i<span style="color: #ff79c6; font-style: italic;">%</span><span style="color: #8be9fd;">2</span> <span style="color: #ff79c6; font-style: italic;">==</span> <span style="color: #8be9fd;">0</span> <span style="color: #50fa7b;">{</span>
+            result <span style="color: #ff79c6; font-style: italic;">+=</span> i <span style="color: #ff79c6; font-style: italic;">*</span> i
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
-    <span style="color: #ffc9e8;">ch</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">result</span>
+    ch <span style="color: #ff79c6; font-style: italic;">&lt;-</span> result
 <span style="color: #61bfff;">}</span>
 
 <span style="color: #ff79c6; font-style: italic;">func</span> <span style="color: #50fa7b;">main</span><span style="color: #61bfff;">()</span> <span style="color: #61bfff;">{</span>
-    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #50fa7b;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">evenCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ffc9e8;">sqCh</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #bd93f9; font-weight: bold;">make</span><span style="color: #ff79c6;">(</span><span style="color: #ff79c6; font-style: italic;">chan</span> <span style="color: #bd93f9;">int</span><span style="color: #ff79c6;">)</span>
 
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">evenCh</span><span style="color: #ff79c6;">)</span>
-    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #50fa7b;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, <span style="color: #ffc9e8;">sqCh</span><span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">evenSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, evenCh<span style="color: #ff79c6;">)</span>
+    <span style="color: #ff79c6; font-style: italic;">go</span> <span style="color: #bd93f9; font-weight: bold;">squareSum</span><span style="color: #ff79c6;">(</span><span style="color: #8be9fd;">0</span>, <span style="color: #8be9fd;">100</span>, sqCh<span style="color: #ff79c6;">)</span>
 
     <span style="color: #ff79c6; font-style: italic;">for</span> <span style="color: #ff79c6;">{</span>
         <span style="color: #ff79c6; font-style: italic;">select</span> <span style="color: #50fa7b;">{</span>
-            <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">x</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">evenCh</span>:
-                <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span><span style="color: #ffc9e8;">x</span><span style="color: #bd93f9;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">case</span> x <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> evenCh:
+                fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span>x<span style="color: #bd93f9;">)</span>
                 <span style="color: #ff79c6; font-style: italic;">return</span>
-            <span style="color: #ff79c6; font-style: italic;">case</span> <span style="color: #ffc9e8;">y</span> <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> <span style="color: #ffc9e8;">sqCh</span>:
-                <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span><span style="color: #ffc9e8;">y</span><span style="color: #bd93f9;">)</span>
+            <span style="color: #ff79c6; font-style: italic;">case</span> y <span style="color: #ff79c6; font-style: italic;">:=</span> <span style="color: #ff79c6; font-style: italic;">&lt;-</span> sqCh:
+                fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span>y<span style="color: #bd93f9;">)</span>
                 <span style="color: #ff79c6; font-style: italic;">return</span>
             <span style="color: #ff79c6; font-style: italic;">default</span>:
-                <span style="color: #ffc9e8;">fmt</span>.<span style="color: #50fa7b; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Noting available"</span><span style="color: #bd93f9;">)</span>
-                <span style="color: #ffc9e8;">time</span>.<span style="color: #50fa7b; font-style: italic;">Sleep</span><span style="color: #bd93f9;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> <span style="color: #ffc9e8;">time</span>.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #bd93f9;">)</span>
+                fmt.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Println</span><span style="color: #bd93f9;">(</span><span style="color: #f1fa8c;">"Noting available"</span><span style="color: #bd93f9;">)</span>
+                time.<span style="color: #bd93f9; font-weight: bold; font-style: italic;">Sleep</span><span style="color: #bd93f9;">(</span><span style="color: #8be9fd;">50</span> <span style="color: #ff79c6; font-style: italic;">*</span> time.<span style="color: #8be9fd; font-style: italic;">Millisecond</span><span style="color: #bd93f9;">)</span>
         <span style="color: #50fa7b;">}</span>
     <span style="color: #ff79c6;">}</span>
 <span style="color: #61bfff;">}</span>
@@ -2314,7 +2314,7 @@ Un <code>select</code> puede tener un caso <code>default</code>, este se ejecuta
 
 <pre class="example">
 Noting available
-2550
+171700
 </pre>
 
 
@@ -2338,8 +2338,8 @@ programa se cerrara.
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: J.D Castro</p>
-<p class="date">Created: 2022-04-03 Sun 14:56</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.0.91 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
+<p class="date">Created: 2022-10-08 Sat 18:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.1.50 (<a href="http://orgmode.org">Org-mode</a> 9.6)</p>
 </div>
 </footer>
 </body>
