@@ -1,3 +1,3 @@
 #+title: Brain.Dump()
 
-Este es el repositorio fuente de mi propio PKMS, el cual es accesible en la siguiente [[https://fwxzxh.github.io/Brain.dump/Publ/][link]].
+Este es el repositorio fuente de mi propio PKMS, el cual es accesible en la siguiente [[https://www.wiki.fwxzxh.com/Publ/][link]].
